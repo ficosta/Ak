@@ -25,12 +25,25 @@ Partial Class DialogOptions
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.OK_Button = New System.Windows.Forms.Button()
     Me.Cancel_Button = New System.Windows.Forms.Button()
+    Me.CheckBoxShowOptionsOnStartup = New System.Windows.Forms.CheckBox()
     Me.TabControlOptions = New System.Windows.Forms.TabControl()
     Me.TabPage1 = New System.Windows.Forms.TabPage()
     Me.TabPage2 = New System.Windows.Forms.TabPage()
-    Me.CheckBoxShowOptionsOnStartup = New System.Windows.Forms.CheckBox()
+    Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+    Me.LabelHost = New System.Windows.Forms.Label()
+    Me.TextBoxVizrtHost = New System.Windows.Forms.TextBox()
+    Me.LabelREPort = New System.Windows.Forms.Label()
+    Me.NumericUpDownPort = New System.Windows.Forms.NumericUpDown()
+    Me.LabelPreviewPort = New System.Windows.Forms.Label()
+    Me.NumericUpDownPreviewPort = New System.Windows.Forms.NumericUpDown()
+    Me.LabelSceneVersion = New System.Windows.Forms.Label()
+    Me.ComboBoxSceneVersion = New System.Windows.Forms.ComboBox()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TabControlOptions.SuspendLayout()
+    Me.TabPage2.SuspendLayout()
+    Me.TableLayoutPanel2.SuspendLayout()
+    CType(Me.NumericUpDownPort, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.NumericUpDownPreviewPort, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'TableLayoutPanel1
@@ -69,6 +82,17 @@ Partial Class DialogOptions
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
     '
+    'CheckBoxShowOptionsOnStartup
+    '
+    Me.CheckBoxShowOptionsOnStartup.AutoSize = True
+    Me.CheckBoxShowOptionsOnStartup.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.CheckBoxShowOptionsOnStartup.Location = New System.Drawing.Point(3, 3)
+    Me.CheckBoxShowOptionsOnStartup.Name = "CheckBoxShowOptionsOnStartup"
+    Me.CheckBoxShowOptionsOnStartup.Size = New System.Drawing.Size(245, 23)
+    Me.CheckBoxShowOptionsOnStartup.TabIndex = 2
+    Me.CheckBoxShowOptionsOnStartup.Text = "Show options on application startup"
+    Me.CheckBoxShowOptionsOnStartup.UseVisualStyleBackColor = True
+    '
     'TabControlOptions
     '
     Me.TabControlOptions.Controls.Add(Me.TabPage1)
@@ -91,6 +115,7 @@ Partial Class DialogOptions
     '
     'TabPage2
     '
+    Me.TabPage2.Controls.Add(Me.TableLayoutPanel2)
     Me.TabPage2.Location = New System.Drawing.Point(4, 22)
     Me.TabPage2.Name = "TabPage2"
     Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -99,16 +124,101 @@ Partial Class DialogOptions
     Me.TabPage2.Text = "Vizrt options"
     Me.TabPage2.UseVisualStyleBackColor = True
     '
-    'CheckBoxShowOptionsOnStartup
+    'TableLayoutPanel2
     '
-    Me.CheckBoxShowOptionsOnStartup.AutoSize = True
-    Me.CheckBoxShowOptionsOnStartup.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.CheckBoxShowOptionsOnStartup.Location = New System.Drawing.Point(3, 3)
-    Me.CheckBoxShowOptionsOnStartup.Name = "CheckBoxShowOptionsOnStartup"
-    Me.CheckBoxShowOptionsOnStartup.Size = New System.Drawing.Size(245, 23)
-    Me.CheckBoxShowOptionsOnStartup.TabIndex = 2
-    Me.CheckBoxShowOptionsOnStartup.Text = "Show options on application startup"
-    Me.CheckBoxShowOptionsOnStartup.UseVisualStyleBackColor = True
+    Me.TableLayoutPanel2.ColumnCount = 2
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel2.Controls.Add(Me.NumericUpDownPreviewPort, 1, 2)
+    Me.TableLayoutPanel2.Controls.Add(Me.LabelHost, 0, 0)
+    Me.TableLayoutPanel2.Controls.Add(Me.TextBoxVizrtHost, 1, 0)
+    Me.TableLayoutPanel2.Controls.Add(Me.LabelREPort, 0, 1)
+    Me.TableLayoutPanel2.Controls.Add(Me.NumericUpDownPort, 1, 1)
+    Me.TableLayoutPanel2.Controls.Add(Me.LabelPreviewPort, 0, 2)
+    Me.TableLayoutPanel2.Controls.Add(Me.LabelSceneVersion, 0, 3)
+    Me.TableLayoutPanel2.Controls.Add(Me.ComboBoxSceneVersion, 1, 3)
+    Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
+    Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+    Me.TableLayoutPanel2.RowCount = 7
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(397, 224)
+    Me.TableLayoutPanel2.TabIndex = 0
+    '
+    'LabelHost
+    '
+    Me.LabelHost.AutoSize = True
+    Me.LabelHost.Location = New System.Drawing.Point(3, 0)
+    Me.LabelHost.Name = "LabelHost"
+    Me.LabelHost.Size = New System.Drawing.Size(50, 13)
+    Me.LabelHost.TabIndex = 0
+    Me.LabelHost.Text = "Vizrt host"
+    '
+    'TextBoxVizrtHost
+    '
+    Me.TextBoxVizrtHost.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TextBoxVizrtHost.Location = New System.Drawing.Point(103, 3)
+    Me.TextBoxVizrtHost.Name = "TextBoxVizrtHost"
+    Me.TextBoxVizrtHost.Size = New System.Drawing.Size(291, 20)
+    Me.TextBoxVizrtHost.TabIndex = 1
+    '
+    'LabelREPort
+    '
+    Me.LabelREPort.AutoSize = True
+    Me.LabelREPort.Location = New System.Drawing.Point(3, 30)
+    Me.LabelREPort.Name = "LabelREPort"
+    Me.LabelREPort.Size = New System.Drawing.Size(43, 13)
+    Me.LabelREPort.TabIndex = 2
+    Me.LabelREPort.Text = "RE port"
+    '
+    'NumericUpDownPort
+    '
+    Me.NumericUpDownPort.Location = New System.Drawing.Point(103, 33)
+    Me.NumericUpDownPort.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+    Me.NumericUpDownPort.Name = "NumericUpDownPort"
+    Me.NumericUpDownPort.Size = New System.Drawing.Size(68, 20)
+    Me.NumericUpDownPort.TabIndex = 3
+    '
+    'LabelPreviewPort
+    '
+    Me.LabelPreviewPort.AutoSize = True
+    Me.LabelPreviewPort.Location = New System.Drawing.Point(3, 60)
+    Me.LabelPreviewPort.Name = "LabelPreviewPort"
+    Me.LabelPreviewPort.Size = New System.Drawing.Size(66, 13)
+    Me.LabelPreviewPort.TabIndex = 4
+    Me.LabelPreviewPort.Text = "Preview port"
+    '
+    'NumericUpDownPreviewPort
+    '
+    Me.NumericUpDownPreviewPort.Location = New System.Drawing.Point(103, 63)
+    Me.NumericUpDownPreviewPort.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+    Me.NumericUpDownPreviewPort.Name = "NumericUpDownPreviewPort"
+    Me.NumericUpDownPreviewPort.Size = New System.Drawing.Size(68, 20)
+    Me.NumericUpDownPreviewPort.TabIndex = 5
+    '
+    'LabelSceneVersion
+    '
+    Me.LabelSceneVersion.AutoSize = True
+    Me.LabelSceneVersion.Location = New System.Drawing.Point(3, 90)
+    Me.LabelSceneVersion.Name = "LabelSceneVersion"
+    Me.LabelSceneVersion.Size = New System.Drawing.Size(75, 13)
+    Me.LabelSceneVersion.TabIndex = 6
+    Me.LabelSceneVersion.Text = "Scene version"
+    '
+    'ComboBoxSceneVersion
+    '
+    Me.ComboBoxSceneVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+    Me.ComboBoxSceneVersion.FormattingEnabled = True
+    Me.ComboBoxSceneVersion.Location = New System.Drawing.Point(103, 93)
+    Me.ComboBoxSceneVersion.Name = "ComboBoxSceneVersion"
+    Me.ComboBoxSceneVersion.Size = New System.Drawing.Size(192, 21)
+    Me.ComboBoxSceneVersion.TabIndex = 7
     '
     'DialogOptions
     '
@@ -129,6 +239,11 @@ Partial Class DialogOptions
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.TableLayoutPanel1.PerformLayout()
     Me.TabControlOptions.ResumeLayout(False)
+    Me.TabPage2.ResumeLayout(False)
+    Me.TableLayoutPanel2.ResumeLayout(False)
+    Me.TableLayoutPanel2.PerformLayout()
+    CType(Me.NumericUpDownPort, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.NumericUpDownPreviewPort, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub
@@ -139,4 +254,13 @@ Partial Class DialogOptions
   Friend WithEvents TabControlOptions As TabControl
   Friend WithEvents TabPage1 As TabPage
   Friend WithEvents TabPage2 As TabPage
+  Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+  Friend WithEvents LabelHost As Label
+  Friend WithEvents TextBoxVizrtHost As TextBox
+  Friend WithEvents LabelREPort As Label
+  Friend WithEvents NumericUpDownPort As NumericUpDown
+  Friend WithEvents LabelPreviewPort As Label
+  Friend WithEvents NumericUpDownPreviewPort As NumericUpDown
+  Friend WithEvents LabelSceneVersion As Label
+  Friend WithEvents ComboBoxSceneVersion As ComboBox
 End Class

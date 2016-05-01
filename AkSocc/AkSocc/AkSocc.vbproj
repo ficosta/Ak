@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{35DDAF7F-0630-47FD-BA9E-D55098CB9E9C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>AkSocc.My.MyApplication</StartupObject>
+    <StartupObject>Sub Main</StartupObject>
     <RootNamespace>AkSocc</RootNamespace>
     <AssemblyName>AkSocc</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -72,16 +72,52 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Clock\Clock.vb" />
+    <Compile Include="Classes\ErrorHandling.vb" />
+    <Compile Include="Classes\GraphicGroups\ControlScoreSingleGoal.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicF1ScoreLine.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsCtlF1FullFramers.vb" />
+    <Compile Include="Classes\Graphics\GraphicScoreLine.vb" />
+    <Compile Include="Classes\GraphicVersions\GraphicVersion.vb" />
+    <Compile Include="Classes\GraphicVersions\GraphicVersions.vb" />
+    <Compile Include="Classes\Prototype\Graphic.vb" />
+    <Compile Include="Classes\Prototype\GraphicStep.vb" />
+    <Compile Include="Classes\Prototype\GraphicSteps.vb" />
+    <Compile Include="Classes\Prototype\GraphicGroup.vb" />
+    <Compile Include="Controls\TeamViewer.Designer.vb">
+      <DependentUpon>TeamViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TeamViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\AboutBoxAk.Designer.vb">
       <DependentUpon>AboutBoxAk.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\AboutBoxAk.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\DialogChooseWithPreview.Designer.vb">
+      <DependentUpon>DialogChooseWithPreview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogChooseWithPreview.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DialogMatchSetup.Designer.vb">
+      <DependentUpon>DialogMatchSetup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogMatchSetup.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\DialogOptions.Designer.vb">
       <DependentUpon>DialogOptions.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\DialogOptions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DialogPreview.Designer.vb">
+      <DependentUpon>DialogPreview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogPreview.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmMain.vb">
@@ -97,6 +133,8 @@
     <Compile Include="Forms\SplashScreenMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Main.vb" />
+    <Compile Include="MFunctions.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -112,13 +150,31 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Controls\PlayerViewer.Designer.vb">
+      <DependentUpon>PlayerViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PlayerViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\TeamViewer.resx">
+      <DependentUpon>TeamViewer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AboutBoxAk.resx">
       <DependentUpon>AboutBoxAk.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DialogChooseWithPreview.resx">
+      <DependentUpon>DialogChooseWithPreview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DialogMatchSetup.resx">
+      <DependentUpon>DialogMatchSetup.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogOptions.resx">
       <DependentUpon>DialogOptions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DialogPreview.resx">
+      <DependentUpon>DialogPreview.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
@@ -131,6 +187,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PlayerViewer.resx">
+      <DependentUpon>PlayerViewer.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -145,9 +204,7 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\Graphics\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\MatchInfo\MatchInfo.vbproj">
       <Project>{358b286c-8a11-4853-8ea0-415bcc4002cd}</Project>

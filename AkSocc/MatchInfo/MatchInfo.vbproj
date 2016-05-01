@@ -63,7 +63,22 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\MatchInfo.vb" />
+    <Compile Include="Classes\Competition.vb" />
+    <Compile Include="Classes\Competitions.vb" />
+    <Compile Include="Classes\Match.vb" />
+    <Compile Include="Classes\Matches.vb" />
+    <Compile Include="Classes\MatchStats.vb" />
+    <Compile Include="Classes\NameDotText.vb" />
+    <Compile Include="Classes\Period.vb" />
+    <Compile Include="Classes\Periodes.vb" />
+    <Compile Include="Classes\Player.vb" />
+    <Compile Include="Classes\Players.vb" />
+    <Compile Include="Classes\Stat.vb" />
+    <Compile Include="Classes\StatSubject.vb" />
+    <Compile Include="Classes\SubjectStats.vb" />
+    <Compile Include="Classes\Team.vb" />
+    <Compile Include="Classes\Teams.vb" />
+    <Compile Include="Config.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -99,6 +114,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
