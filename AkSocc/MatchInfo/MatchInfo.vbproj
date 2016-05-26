@@ -76,6 +76,8 @@
     <Compile Include="Classes\Periodes.vb" />
     <Compile Include="Classes\Player.vb" />
     <Compile Include="Classes\Players.vb" />
+    <Compile Include="Classes\Referee.vb" />
+    <Compile Include="Classes\Referees.vb" />
     <Compile Include="Classes\Stat.vb" />
     <Compile Include="Classes\StatSubject.vb" />
     <Compile Include="Classes\SubjectStats.vb" />

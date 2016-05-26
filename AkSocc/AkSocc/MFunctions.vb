@@ -1,6 +1,4 @@
-﻿Imports InfoPartit
-
-Module MFuncions
+﻿Module MFuncions
   Private Const NOM_MODUL As String = "MFuncions"
 
   Public Structure tyNameIDPair

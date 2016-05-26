@@ -44,19 +44,19 @@ Public Class VizControl_new
 
 #Region "General functions"
   Public Function ActivateSceneOnLayer(scene As String, layer As VizCommands.SceneLayer) As Boolean
-
+    Return False
   End Function
 
   Public Function SendParameterToScene(scene As String, treePath As String, value As String) As Boolean
-
+    Return False
   End Function
 
   Public Function SendParameterToScene(scene As String, rootNode As String, name As String, value As String) As Boolean
-
+    Return False
   End Function
 
   Public Function SendParameterToScene(scene As String, param As SceneParameter) As Boolean
-
+    Return False
   End Function
 #End Region
 End Class

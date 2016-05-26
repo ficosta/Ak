@@ -343,6 +343,7 @@ Public Class VizControl
 
   Public Function ActivateScene(ByVal siFullPath As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
     Dim sRenderer As String = ""
+    Dim res As Integer = 0
     Try
       Dim CCommand As New Command(eVizrtCommands.ActivateScene, siFullPath, eiLayer)
       Select Case eiLayer
@@ -365,10 +366,11 @@ Public Class VizControl
       'desactivem lo que hi hagi per seguretat...
       CCommand.ID = SendTCPCommand(CCommand)
       'Me.GetLoadedScenes()
-      Return CCommand.ID
+      res = CCommand.ID
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return res
   End Function
 
 

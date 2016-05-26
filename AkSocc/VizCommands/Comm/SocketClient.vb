@@ -234,15 +234,17 @@ Public Class SocketClient
 
   Public ReadOnly Property SocketHandle() As Long
     Get
+      Dim res As Long
       Try
         If Me.CPiTCPSocket Is Nothing Then
-          Return 0
+          res = 0
         Else
-          Return Me.CPiTCPSocket.Handle
+          res = Me.CPiTCPSocket.Handle
         End If
       Catch ex As Exception
 
       End Try
+      Return res
     End Get
   End Property
 

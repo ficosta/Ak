@@ -170,10 +170,12 @@ End Enum
     'Catch ex As Exception
     '  CPuGlobals.LogError(Err.Source, ex.ToString, Err.Number)
     'End Try
+    Return 0
   End Function
 
 
   Public Function UpdateTempsJocClock() As Long
+
     Try
       'como decía john secada, nada que hacerrrr
       If Me.HoraInici = DEFAULT_TIME Then Exit Function
@@ -194,9 +196,9 @@ End Enum
         If nOld <> nPiTempsJoc Then Me.SavePart()
       End If
 
-      Return nPiTempsJoc
     Catch ex As Exception
     End Try
+    Return nPiTempsJoc
   End Function
 
   Public Function UpdateTempsJocManual(ByVal niTempsJoc As Long) As Long
@@ -220,9 +222,9 @@ End Enum
       If Me.AutoSave Then
         If nOld <> nPiTempsJoc Then Me.SavePart()
       End If
-      Return nPiTempsJoc
     Catch ex As Exception
     End Try
+    Return nPiTempsJoc
   End Function
 
   Public Function UpdateValorsPeriode(ByVal niAfegit As Integer, ByVal diHoraInici As Date, ByVal niTemperatura As Integer, ByVal biActiva As Boolean, ByVal niOffset As Integer, ByVal niTempsTotal As Integer) As Boolean
@@ -296,6 +298,7 @@ End Enum
     'Catch ex As Exception
     '  CPuGlobals.LogError(Err.Source, ex.ToString, Err.Number)
     'End Try
+    Return False
   End Function
 
   Public Function LoadPart() As Boolean
@@ -328,6 +331,7 @@ End Enum
     '  CPuGlobals.LogError(Err.Source, ex.ToString, Err.Number)
     'End Try
     'bWorking = False
+    Return False
   End Function
 
 
