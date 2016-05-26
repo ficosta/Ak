@@ -47,6 +47,18 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MetroFramework, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.Fonts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -73,7 +85,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Clock\Clock.vb" />
+    <Compile Include="Classes\Clock\ClockControl.vb" />
+    <Compile Include="Classes\Clock\ClockSubstitution.vb" />
     <Compile Include="Classes\ErrorHandling.vb" />
+    <Compile Include="Classes\GraphicGroups\ClockGenericStraps.vb" />
+    <Compile Include="Classes\GraphicGroups\ClockMatchStatistics.vb" />
+    <Compile Include="Classes\GraphicGroups\ClockOtherScores.vb" />
+    <Compile Include="Classes\GraphicGroups\ClockPenalties.vb" />
+    <Compile Include="Classes\GraphicGroups\ClockPlayerCard.vb" />
+    <Compile Include="Classes\GraphicGroups\ClockStrapsWithIcon.vb" />
+    <Compile Include="Classes\GraphicGroups\ClockSubstitutes.vb" />
     <Compile Include="Classes\GraphicGroups\ControlScoreSingleGoal.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicF1ScoreLine.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsCtlF1FullFramers.vb" />
@@ -95,6 +116,42 @@
     </Compile>
     <Compile Include="Forms\AboutBoxAk.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Choose\DialogChoose.Designer.vb">
+      <DependentUpon>DialogChoose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Choose\DialogChoose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Choose\FormChoose.Designer.vb">
+      <DependentUpon>FormChoose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Choose\FormChoose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Choose\UserControlChoose.Designer.vb">
+      <DependentUpon>UserControlChoose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Choose\UserControlChoose.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Clock\FormOvewriteClock.Designer.vb">
+      <DependentUpon>FormOvewriteClock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\FormOvewriteClock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clock\FormPeriodControl.Designer.vb">
+      <DependentUpon>FormPeriodControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\FormPeriodControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clock\UCPeriod.Designer.vb">
+      <DependentUpon>UCPeriod.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\UCPeriod.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\DialogChooseWithPreview.Designer.vb">
       <DependentUpon>DialogChooseWithPreview.vb</DependentUpon>
@@ -120,6 +177,12 @@
     <Compile Include="Forms\DialogPreview.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\MatchSetup\FormMatchSetup.Designer.vb">
+      <DependentUpon>FormMatchSetup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MatchSetup\FormMatchSetup.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -127,10 +190,34 @@
       <DependentUpon>frmMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\MatchSetup\UCTeamMatchSetup.Designer.vb">
+      <DependentUpon>UCTeamMatchSetup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MatchSetup\UCTeamMatchSetup.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\MatchSetup\UserControlTactica.Designer.vb">
+      <DependentUpon>UserControlTactica.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MatchSetup\UserControlTactica.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\SplashScreenMain.Designer.vb">
       <DependentUpon>SplashScreenMain.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\SplashScreenMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitution.Designer.vb">
+      <DependentUpon>FormSubstitution.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitution.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitutions.Designer.vb">
+      <DependentUpon>FormSubstitutions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitutions.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Main.vb" />
@@ -164,6 +251,24 @@
     <EmbeddedResource Include="Forms\AboutBoxAk.resx">
       <DependentUpon>AboutBoxAk.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Choose\DialogChoose.resx">
+      <DependentUpon>DialogChoose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Choose\FormChoose.resx">
+      <DependentUpon>FormChoose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Choose\UserControlChoose.resx">
+      <DependentUpon>UserControlChoose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\FormOvewriteClock.resx">
+      <DependentUpon>FormOvewriteClock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\FormPeriodControl.resx">
+      <DependentUpon>FormPeriodControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\UCPeriod.resx">
+      <DependentUpon>UCPeriod.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogChooseWithPreview.resx">
       <DependentUpon>DialogChooseWithPreview.vb</DependentUpon>
     </EmbeddedResource>
@@ -176,11 +281,26 @@
     <EmbeddedResource Include="Forms\DialogPreview.resx">
       <DependentUpon>DialogPreview.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MatchSetup\FormMatchSetup.resx">
+      <DependentUpon>FormMatchSetup.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MatchSetup\UCTeamMatchSetup.resx">
+      <DependentUpon>UCTeamMatchSetup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MatchSetup\UserControlTactica.resx">
+      <DependentUpon>UserControlTactica.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SplashScreenMain.resx">
       <DependentUpon>SplashScreenMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Substitutions\FormSubstitution.resx">
+      <DependentUpon>FormSubstitution.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Substitutions\FormSubstitutions.resx">
+      <DependentUpon>FormSubstitutions.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -203,8 +323,11 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\CAMP_PER_OPTA_OK.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MatchInfo\MatchInfo.vbproj">
       <Project>{358b286c-8a11-4853-8ea0-415bcc4002cd}</Project>
@@ -215,6 +338,19 @@
       <Name>VizCommands</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS_Triangle_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS_Triangle_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS_Triangle_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS_Triangle_down.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

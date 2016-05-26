@@ -60,15 +60,12 @@ Public Class TeamViewer
   Public Function GetControlForPlayerPosition(playerPosition As Integer) As PlayerViewer
     Dim res As PlayerViewer = Nothing
     For Each ctl As Control In Me.TableLayoutPanel1.Controls
-      Try
-        Dim pvCtl As PlayerViewer = CType(ctl, PlayerViewer)
-        If pvCtl.PlayerPosition = playerPosition Then
-          res = pvCtl
-          Exit For
-        End If
-      Catch ex As Exception
+      Dim pvCtl As PlayerViewer = TryCast(ctl, PlayerViewer)
 
-      End Try
+      If Not pvCtl Is Nothing AndAlso pvCtl.PlayerPosition = playerPosition Then
+        res = pvCtl
+        Exit For
+      End If
     Next
     Return res
   End Function
@@ -78,8 +75,10 @@ Public Class TeamViewer
     Try
       For Each ctl As Control In Me.TableLayoutPanel1.Controls
         Try
-          Dim pvCtl As PlayerViewer = CType(ctl, PlayerViewer)
-          AddHandler pvCtl.SelectionChanged, AddressOf Me.PlayerViewer_SelectionChanged
+          Dim pvCtl As PlayerViewer = TryCast(ctl, PlayerViewer)
+          If Not pvCtl Is Nothing Then
+            AddHandler pvCtl.SelectionChanged, AddressOf Me.PlayerViewer_SelectionChanged
+          End If
         Catch ex As Exception
 
         End Try
@@ -107,8 +106,8 @@ Public Class TeamViewer
     updating = True
 
     For Each ctl As Control In Me.TableLayoutPanel1.Controls
-        Try
-          Dim pvCtl As PlayerViewer = CType(ctl, PlayerViewer)
+      Dim pvCtl As PlayerViewer = TryCast(ctl, PlayerViewer)
+      If Not pvCtl Is Nothing Then
         If Not _selectedPlayer Is Nothing And Not pvCtl.Player Is Nothing Then
           If pvCtl.Player.PlayerID = _selectedPlayer.PlayerID Then
             'pvCtl.IsSelected = True
@@ -118,10 +117,8 @@ Public Class TeamViewer
         Else
           pvCtl.IsSelected = False
         End If
-      Catch ex As Exception
-
-        End Try
-      Next
+      End If
+    Next
     updating = False
   End Sub
 

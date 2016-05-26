@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Forms
 
 Public Class DialogOptions
-  Private _graphicVersions As New GraphicVersions
+  Private _graphicVersions As GraphicVersions = GraphicVersions.Instance
 
   Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
     If AcceptSettings() Then
@@ -56,6 +56,7 @@ Public Class DialogOptions
       My.Settings.VizrtPort = Me.NumericUpDownPort.Value
       My.Settings.VizrtPreviewPort = Me.NumericUpDownPreviewPort.Value
       Dim version As GraphicVersion = CType(Me.ComboBoxSceneVersion.SelectedItem, GraphicVersion)
+      GraphicVersions.Instance.SelectedGraphicVersion = version
       If Not version Is Nothing Then
         My.Settings.ScenePath = version.Path
       End If

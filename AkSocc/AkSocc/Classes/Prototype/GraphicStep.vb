@@ -25,7 +25,15 @@ Public Class GraphicStep
     End Get
   End Property
 
+  Private _childGraphicStep As GraphicStep = Nothing
   Public Property ChildGraphicStep As GraphicStep
+    Get
+      Return _childGraphicStep
+    End Get
+    Set(value As GraphicStep)
+      _childGraphicStep = value
+    End Set
+  End Property
 
   Public Property SceneParameters As VizCommands.SceneParameters
 
@@ -101,9 +109,9 @@ Public Class GraphicStep
 
   Public Overrides Function ToString() As String
     Dim sRes As String = ""
-    If Not Me.ParentGraphicStep Is Nothing Then sRes = Me.ParentGraphicStep.ToString & ":"
-    sRes = sRes & Me.Name
-    sRes = sRes & "[f=" & Me.IsFinalStep & "-t=" & Me.IsTransitionalStep & "]"
+    If Not Me.ParentGraphicStep Is Nothing Then sRes = Me.ParentGraphicStep.ToString & " : "
+    sRes = sRes & Me.Name & " "
+    'sRes = sRes & "[f=" & Me.IsFinalStep & "-t=" & Me.IsTransitionalStep & "]"
     Return sRes
   End Function
 End Class

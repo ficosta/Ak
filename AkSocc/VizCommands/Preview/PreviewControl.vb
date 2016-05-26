@@ -8,7 +8,7 @@ Public Class PreviewControl
   Private _processedAssets As New List(Of PreviewAsset)
   Private _finishedAssets As New List(Of PreviewAsset)
   Private _activeAsset As PreviewAsset = Nothing
-  Private _basePath As String = "\\server-egtr\ESPORTS\PREVIEW"
+  Private _basePath As String = "D:\Alamiya\Preview"
   Private _tConfig As tyConfigVizrt
 
   Public Event AssetAdded(ByVal asset As PreviewAsset)
@@ -158,28 +158,29 @@ Public Class PreviewControl
       controlVizrt.InitializeSockets(_tConfig)
 
       While Not _backgroundWorker.CancellationPending
+        Threading.Thread.Sleep(200)
         If _pendingAssets.Count > 0 Then
           Dim asset As PreviewAsset = _pendingAssets(0)
           Dim filePath As String = System.IO.Path.Combine(_basePath, asset.AssetFileName & ".png")
 
           _backgroundWorker.ReportProgress(0, New WorkState() With {.state = eWorkState.AssetSelected, .asset = asset})
-          Debug.Print(asset.Scene.SceneName)
+          If asset.Scene Is Nothing Then
+            'nothing to do here!
+          Else
+            Debug.Print(asset.Scene.SceneName)
+            'send scene to preview server
+            asset.Scene.SendSceneToEngine(controlVizrt)
+            'make sure we are at a frame with the graphics visible
+            controlVizrt.DirectorGoTo("DIR_MAIN", 135, asset.Scene.VizLayer)
 
-          'process asset 0
+            asset.AssetSate = ePreviewAssetState.Rendering
+            _backgroundWorker.ReportProgress(0, New WorkState() With {.state = eWorkState.AssetStateChanged, .asset = asset})
 
-          'send scene to preview server
-          asset.Scene.SendSceneToEngine(controlVizrt)
-          'make sure we are at a frame with the graphics visible
-          controlVizrt.DirectorGoTo("DIR_MAIN", 500, asset.Scene.VizLayer)
-
-
-          asset.AssetSate = ePreviewAssetState.Rendering
-          _backgroundWorker.ReportProgress(0, New WorkState() With {.state = eWorkState.AssetStateChanged, .asset = asset})
-
-          'request image to be created
-          controlVizrt.TakeSnapshot(filePath, False)
+            'request image to be created
+            controlVizrt.TakeSnapshot(filePath, False)
+            _processedAssets.Add(asset)
+          End If
           'we must wait for the snapshot to be taken, but we can continue working meanwhile
-          _processedAssets.Add(asset)
           _pendingAssets.RemoveAt(0)
         End If
 
@@ -215,6 +216,7 @@ Public Class PreviewControl
 
         End If
       End While
+      Debug.Print("Preview control thread finished")
     Catch ex As Exception
       Throw ex
     End Try
@@ -243,8 +245,13 @@ Public Class PreviewControl
 
   Protected Overrides Sub Finalize()
     MyBase.Finalize()
-    _backgroundWorker.CancelAsync()
-    _backgroundWorker.Dispose()
+    Try
+      _backgroundWorker.CancelAsync()
+      _backgroundWorker.Dispose()
+
+    Catch ex As Exception
+
+    End Try
 
   End Sub
 End Class

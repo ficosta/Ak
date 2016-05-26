@@ -31,6 +31,22 @@ Public MustInherit Class GraphicGroup
 
   Public MustOverride Function PrepareScene(graphicStep As GraphicStep) As VizCommands.Scene
 
+  Public Overridable Function PostProcessingAction() As Boolean
+    Try
+
+    Catch ex As Exception
+
+    End Try
+  End Function
+
+  Public Overridable Function PreProcessingAction() As Boolean
+    Try
+
+    Catch ex As Exception
+
+    End Try
+  End Function
+
   Public Overridable Function Send(viz As VizCommands.VizControl_new) As Boolean
     Try
 

@@ -45,12 +45,15 @@ Public Class GraphicGroupF1ScoreLine
 
   Public Overrides Function PrepareNextGraphicStep(Optional graphicStep As GraphicStep = Nothing) As GraphicStep
     Dim gsList As New GraphicSteps
-    Dim gs As New GraphicStep(graphicStep, "First step")
+    Dim gs As New GraphicStep(graphicStep, Me.Name)
     If Not graphicStep Is Nothing Then
       gs = graphicStep
     End If
 
+
     Try
+      gs.GraphicSteps.Clear()
+
       If graphicStep Is Nothing Then
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FirstHalf))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HalfTime))
@@ -86,7 +89,7 @@ Public Class GraphicGroupF1ScoreLine
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Try
       Scene.VizLayer = SceneLayer.Middle
-      Scene.SceneName = "F1_Score_Line"
+      Scene.SceneName = "gfx_Scoreline"
       Scene.SceneDirector = "DIR_MAIN"
       Select Case gs.ChildGraphicStep.Name
         Case Step0.FirstHalf
@@ -112,22 +115,28 @@ Public Class GraphicGroupF1ScoreLine
     Return Me.Scene
   End Function
 
-  Private Sub PrepareResultScene(ByRef scene As Scene, home_result As String, away_result As String, period_name As String, show_logo As Boolean)
+  Private Sub PrepareResultScene(ByRef scene As Scene, home_Result As String, away_Result As String, period_Name As String, show_Logo As Boolean)
     Try
-      scene.SceneParameters.Add(New SceneParameter("home_team_name", Match.HomeTeam.ArabicCaption1Name))
-      scene.SceneParameters.Add(New SceneParameter("away_team_name", Match.AwayTeam.ArabicCaption1Name))
-      scene.SceneParameters.Add(New SceneParameter("home_team_logo", Match.HomeTeam.BadgeName, paramType.Image))
-      scene.SceneParameters.Add(New SceneParameter("away_team_logo", Match.HomeTeam.BadgeName, paramType.Image))
+      scene.SceneDirectors.Add("DIR_MAIN", 0, DirectorAction.Start)
+      scene.SceneDirectors.Add("sponsor_in_out", 0, DirectorAction.Rewind)
 
-      scene.SceneParameters.Add(New SceneParameter("home_team_result", home_result))
-      scene.SceneParameters.Add(New SceneParameter("away_team_result", away_result))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Name", Match.HomeTeam.ArabicCaption1Name))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Name", Match.AwayTeam.ArabicCaption1Name))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.HomeTeam.BadgeName, paramType.Image))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.AwayTeam.BadgeName, paramType.Image))
 
-      scene.SceneParameters.Add(New SceneParameter("period_name", period_name))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Score", home_Result))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Score", away_Result))
 
-      If show_logo Then
-        scene.SceneParameters.Add(New SceneParameter("show_logo", "1"))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_period_Name", period_Name))
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Select_Type", "1"))
+
+      If show_Logo Then
+        scene.SceneParameters.Add(New SceneParameter("Scoreline_show_Logo", "1"))
+        scene.SceneDirectors.Add("sponsor_in_out", 100, DirectorAction.Start)
       Else
-        scene.SceneParameters.Add(New SceneParameter("show_logo", "0"))
+        scene.SceneParameters.Add(New SceneParameter("Scoreline_show_Logo", "0"))
       End If
 
     Catch ex As Exception

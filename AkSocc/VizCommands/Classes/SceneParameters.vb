@@ -63,8 +63,8 @@
     Return (output)
   End Function
 
-  Public Function Add(name As String, value As String) As SceneParameter
-    Dim param As New SceneParameter(name, value)
+  Public Function Add(name As String, value As String, Optional type As paramType = paramType.Text) As SceneParameter
+    Dim param As New SceneParameter(name, value, type)
     Try
       Dim index As Integer = -1
       For i As Integer = 0 To Me.Count - 1

@@ -31,7 +31,7 @@ Public Class ControlScoreSingleGoal
 
   Public Overrides Function PrepareNextGraphicStep(Optional graphicStep As GraphicStep = Nothing) As GraphicStep
     Dim gsList As New GraphicSteps
-    Dim gs As New GraphicStep(graphicStep, "First step")
+    Dim gs As New GraphicStep(graphicStep, Me.Name)
     If Not graphicStep Is Nothing Then
       gs = graphicStep
     End If
@@ -65,25 +65,53 @@ Public Class ControlScoreSingleGoal
   End Function
 
   Public Overrides Function PrepareScene(graphicStep As GraphicStep) As Scene
+    Me.Scene = Nothing
+    Me.graphicStep = graphicStep
+
+    Try
+      'Dim player As MatchInfo.Player = Nothing
+      'If Me.IsLocalTeam Then
+      '  MyBase.Match.home_goals += 1
+      'Else
+      '  MyBase.Match.away_goals += 1
+      'End If
+      'For Each aux As MatchInfo.Player In _team.MatchPlayers
+      '  If aux.ToString = graphicStep.Name Then
+      '    'this is the player that scored
+      '    player = aux
+      '    player.MatchStats.Goals += 1
+      '  End If
+      'Next
+
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+    Return Me.Scene
+  End Function
+
+
+  Public Overrides Function PreProcessingAction() As Boolean
     Try
       Dim player As MatchInfo.Player = Nothing
       If Me.IsLocalTeam Then
         MyBase.Match.home_goals += 1
-        MyBase.Match.HomeTeam.MatchStats.Goals.Value += 1
       Else
         MyBase.Match.away_goals += 1
-        MyBase.Match.AwayTeam.MatchStats.Goals.Value += 1
       End If
       For Each aux As MatchInfo.Player In _team.MatchPlayers
-        If aux.ToString = graphicStep.ChildGraphicStep.Name Then
+        If aux.ToString = graphicStep.Name Then
           'this is the player that scored
           player = aux
+          player.MatchStats.Goals += 1
         End If
       Next
 
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
-    Return Nothing
+    Return MyBase.PostProcessingAction()
+  End Function
+
+  Public Overrides Function PostProcessingAction() As Boolean
   End Function
 End Class

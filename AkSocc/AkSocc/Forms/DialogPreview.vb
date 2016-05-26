@@ -8,6 +8,7 @@ Public Class DialogPreview
     End Get
     Set(value As VizCommands.VizControl)
       _vizControl = value
+      Me.UcPreview1.VizControl = value
     End Set
   End Property
 
@@ -22,6 +23,7 @@ Public Class DialogPreview
     Set(value As VizCommands.Scene)
       _scene = value
       _previewControl = New VizCommands.PreviewControl(_vizControl.Config)
+      Me.UcPreview1.Scene = value
       ShowSceneInfo()
       GetPreview()
     End Set
@@ -90,39 +92,13 @@ Public Class DialogPreview
 
   Private Sub ShowSceneInfo()
     Try
-      Dim topItem As Integer = 0
-      If Not Me.DataGridViewParameters.TopLeftHeaderCell Is Nothing Then topItem = Me.DataGridViewParameters.TopLeftHeaderCell.RowIndex
-
-      Me.DataGridViewParameters.Rows.Clear()
-      Me.DataGridViewParameters.Columns.Clear()
-      Me.DataGridViewParameters.Columns.Add("name", "Name")
-      Me.DataGridViewParameters.Columns(Me.DataGridViewParameters.ColumnCount - 1).ReadOnly = True
-      Me.DataGridViewParameters.Columns.Add("value", "Value")
-      Me.DataGridViewParameters.Columns(Me.DataGridViewParameters.ColumnCount - 1).ReadOnly = False
-
-
-      For Each param As VizCommands.SceneParameter In _scene.SceneParameters
-        Dim aux = Me.DataGridViewParameters.Rows.Add(param.Name, param.Value)
-      Next
 
     Catch ex As Exception
 
     End Try
   End Sub
 
-  Private Sub DataGridViewParameters_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewParameters.CellEndEdit
-    Try
-      Dim dr As DataGridViewRow = Me.DataGridViewParameters.Rows(e.RowIndex)
-
-      _scene.SceneParameters.Add(dr.Cells("name").Value, dr.Cells("value").Value)
-
-      Me.GetPreview()
-    Catch ex As Exception
-
-    End Try
-  End Sub
-
-  Private Sub ButtonPreview_Click(sender As Object, e As EventArgs) Handles ButtonPreview.Click
+  Private Sub ButtonPreview_Click(sender As Object, e As EventArgs)
     _scene.SendSceneToEngine(_vizControl)
     _vizControl.DirectorStart(_scene.SceneDirector)
   End Sub

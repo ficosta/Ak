@@ -123,7 +123,7 @@ Public Class Rellotge
         End If
 
         If .Visible = False And .RequestVisible = True Then
-          If Not CiPartit.MatchPeriods.CPiPeriodeActiu Is Nothing Then
+          If Not CiPartit.MatchPeriods.ActivePeriod Is Nothing Then
             Me.VizControl.DirectorStart(.CPuScene.SceneDirector, .CPuScene.VizLayer)
             .Visible = True
 
@@ -135,11 +135,11 @@ Public Class Rellotge
           'Mostrar el temps afegit!
           .AddedTimeVisible = True
           .VizControl.ClockStop(1)
-          .VizControl.ClockSet(1, CInt(CiPartit.MatchPeriods.CPiPeriodeActiu.TempsTotal))
-          nLastClockSent1 = CInt(CiPartit.MatchPeriods.CPiPeriodeActiu.TempsJoc)
+          .VizControl.ClockSet(1, CInt(CiPartit.MatchPeriods.ActivePeriod.TotalTime))
+          nLastClockSent1 = CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime)
           dLastTimeClockSent1 = Now
-          .VizControl.ClockSet(2, CInt(CiPartit.MatchPeriods.CPiPeriodeActiu.TempsJoc - CiPartit.MatchPeriods.CPiPeriodeActiu.TempsTotal))
-          nLastClockSent2 = CInt(CiPartit.MatchPeriods.CPiPeriodeActiu.TempsJoc - CiPartit.MatchPeriods.CPiPeriodeActiu.TempsTotal)
+          .VizControl.ClockSet(2, CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime - CiPartit.MatchPeriods.ActivePeriod.TotalTime))
+          nLastClockSent2 = CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime - CiPartit.MatchPeriods.ActivePeriod.TotalTime)
           dLastTimeClockSent2 = Now
           .VizControl.ClockStart(2)
           .VizControl.DirectorStart("DIR_Added_Time", .CPuScene.VizLayer)
@@ -232,20 +232,20 @@ Public Class Rellotge
         End If
 
         If .nPuOffsetTime <> COld.nPuOffsetTime Or biForceSend Then
-          If Not CiPartit.MatchPeriods.CPiPeriodeActiu Is Nothing AndAlso CiPartit.MatchPeriods.CPiPeriodeActiu.TempsJoc < CiPartit.MatchPeriods.CPiPeriodeActiu.TempsTotal Then
-            If DateDiff(DateInterval.Second, dLastTimeClockSent1, Now) <> CInt(CiPartit.MatchPeriods.CPiPeriodeActiu.TempsJoc) - nLastClockSent1 Then
-              Debug.Print(DateDiff(DateInterval.Second, Now, dLastTimeClockSent1) & " " & CInt(CiPartit.MatchPeriods.CPiPeriodeActiu.TempsJoc) - nLastClockSent1)
-              CiPartit.MatchPeriods.CPiPeriodeActiu.LoadPart()
-              .VizControl.ClockSet(1, CInt(CiPartit.MatchPeriods.CPiPeriodeActiu.TempsJoc))
-              nLastClockSent1 = CInt(CiPartit.MatchPeriods.CPiPeriodeActiu.TempsJoc)
+          If Not CiPartit.MatchPeriods.ActivePeriod Is Nothing AndAlso CiPartit.MatchPeriods.ActivePeriod.PlayingTime < CiPartit.MatchPeriods.ActivePeriod.TotalTime Then
+            If DateDiff(DateInterval.Second, dLastTimeClockSent1, Now) <> CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime) - nLastClockSent1 Then
+              Debug.Print(DateDiff(DateInterval.Second, Now, dLastTimeClockSent1) & " " & CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime) - nLastClockSent1)
+              CiPartit.MatchPeriods.ActivePeriod.LoadPart()
+              .VizControl.ClockSet(1, CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime))
+              nLastClockSent1 = CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime)
               dLastTimeClockSent1 = Now
               .VizControl.ClockStart(1)
             End If
           Else
             .VizControl.ClockStop(1)
-            If Not CiPartit.MatchPeriods.CPiPeriodeActiu Is Nothing Then
-              .VizControl.ClockSet(1, CInt(CiPartit.MatchPeriods.CPiPeriodeActiu.TempsTotal))
-              nLastClockSent1 = CInt(CiPartit.MatchPeriods.CPiPeriodeActiu.TempsTotal)
+            If Not CiPartit.MatchPeriods.ActivePeriod Is Nothing Then
+              .VizControl.ClockSet(1, CInt(CiPartit.MatchPeriods.ActivePeriod.TotalTime))
+              nLastClockSent1 = CInt(CiPartit.MatchPeriods.ActivePeriod.TotalTime)
             End If
             dLastTimeClockSent1 = Now
           End If
@@ -306,7 +306,7 @@ Public Class Rellotge
       Me.AddedTimeVisible = False
       Me.AddedTimeVisibleAuto = True
 
-      If Not CiPartit.MatchPeriods.CPiPeriodeActiu Is Nothing Then
+      If Not CiPartit.MatchPeriods.ActivePeriod Is Nothing Then
         Me.ActualitzarMarcador(CiPartit)
         'Me.VizControl.DirectorStart(Me.CPuScene.DirectorIn, Me.CPuScene.VizLayer)
         Me.RequestVisible = True

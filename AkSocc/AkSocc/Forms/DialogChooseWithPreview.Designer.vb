@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class DialogChooseWithPreview
-  Inherits System.Windows.Forms.Form
+  Inherits MetroFramework.Forms.MetroForm
 
   'Form overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()> _
+  <System.Diagnostics.DebuggerNonUserCode()>
   Protected Overrides Sub Dispose(ByVal disposing As Boolean)
     Try
       If disposing AndAlso components IsNot Nothing Then
@@ -20,11 +20,11 @@ Partial Class DialogChooseWithPreview
   'NOTE: The following procedure is required by the Windows Form Designer
   'It can be modified using the Windows Form Designer.  
   'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()> _
+  <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New System.Windows.Forms.Button()
-    Me.Cancel_Button = New System.Windows.Forms.Button()
+    Me.OK_Button = New MetroFramework.Controls.MetroButton()
+    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
     Me.SplitContainerOptions = New System.Windows.Forms.SplitContainer()
     Me.ListViewOptions = New System.Windows.Forms.ListView()
     Me.lstColOptions1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -129,7 +129,7 @@ Partial Class DialogChooseWithPreview
     '
     'PictureBoxPreview
     '
-    Me.PictureBoxPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.PictureBoxPreview.BorderStyle = FormBorderStyle.FixedSingle
     Me.PictureBoxPreview.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PictureBoxPreview.Location = New System.Drawing.Point(0, 0)
     Me.PictureBoxPreview.Name = "PictureBoxPreview"
@@ -146,12 +146,12 @@ Partial Class DialogChooseWithPreview
     Me.ClientSize = New System.Drawing.Size(860, 418)
     Me.Controls.Add(Me.SplitContainerOptions)
     Me.Controls.Add(Me.TableLayoutPanel1)
-    Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+    Me.FormBorderStyle = FormBorderStyle.FixedDialog
     Me.MaximizeBox = False
     Me.MinimizeBox = False
     Me.Name = "DialogChooseWithPreview"
     Me.ShowInTaskbar = False
-    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+    Me.StartPosition = FormStartPosition.CenterParent
     Me.Text = "DialogChooseWithPreview"
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.SplitContainerOptions.Panel1.ResumeLayout(False)
@@ -163,8 +163,8 @@ Partial Class DialogChooseWithPreview
 
   End Sub
   Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-  Friend WithEvents OK_Button As System.Windows.Forms.Button
-  Friend WithEvents Cancel_Button As System.Windows.Forms.Button
+  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
   Friend WithEvents SplitContainerOptions As SplitContainer
   Private WithEvents ListViewOptions As ListView
   Private WithEvents lstColOptions1 As ColumnHeader

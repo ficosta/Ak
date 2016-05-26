@@ -5,6 +5,7 @@ Public Class Team
 
   Public Property MatchPlayers As New Players
   Public Property AllPlayers As New Players
+  Public Property Substitutions As New Substitutions
 
   Public TeamID As Integer
   Public TeamAELCaption1Name As String
@@ -18,6 +19,7 @@ Public Class Team
   Public GoalKeeperJersey As String
   Public PlayerJersey As String
   Public TeamClockColour As String
+  Public Tactic As New Tactic
 
 #Region "Constructors"
   Public Sub New()
@@ -235,5 +237,34 @@ Public Class Team
 
   Public Overrides Function ToString() As String
     Return TeamAELCaption1Name
+  End Function
+
+  Public Function GetPlayerById(ID As Integer) As Player
+    Dim res As Player = Nothing
+    Try
+
+      For Each player As Player In Me.AllPlayers
+        If player.ID = ID Then res = player
+        If player.PlayerID = ID Then res = player
+      Next
+    Catch ex As Exception
+    End Try
+    Return res
+  End Function
+
+  Public Function GetPlayerByPosicio(position As Integer) As Player
+    Dim res As Player = Nothing
+    Try
+
+      For Each player As Player In Me.AllPlayers
+        If player.PlayerPosition <> "" Then
+          If player.PlayerPosition = CStr(position) Then res = player
+         
+        End If
+
+      Next
+    Catch ex As Exception
+    End Try
+    Return res
   End Function
 End Class

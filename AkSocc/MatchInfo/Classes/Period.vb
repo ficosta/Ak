@@ -10,6 +10,10 @@ End Enum
   'Inherits COptaData
   Public Const DEFAULT_TIME As Date = #1/1/2000#
 
+  Public Event ActiveStateChanged(sender As Period)
+  Public Event SelectedStateChanged(sender As Period)
+
+
   Public Enum eModeTiming
     Normal
     Fraccionat
@@ -22,7 +26,7 @@ End Enum
   Public HoraInici As Date
   Private dPiLastUpdate As Date
   Private nPiTempsJoc As Long = 0
-  Public nPuOffsetTempsJoc As Long = 0
+  Public ManualOffset As Long = 0
   Public Afegit As Integer = 0
   Public Assistencia As Integer = 0
   Public Temperatura As Integer = 0
@@ -30,15 +34,35 @@ End Enum
   Public ModeTiming As eModeTiming = eModeTiming.Normal
   Public Nom As String
   Public NomCurt As String
-  Public TempsTotal As Long = 2 * 60
+  Public TotalTime As Long = 2 * 60
+  Public StartOffset As Long = 0
   Public AutoSave As Boolean = True
+
   Public IsProrroga As Boolean = False
 
   Public SquadNo As Integer = 0
   Public PeriodPosition As Integer = 0
 
+  Private _isSelected As Boolean = False
+  Public Property IsSelected As Boolean
+    Get
+      Return _isSelected
+    End Get
+    Set(value As Boolean)
+      _isSelected = value
+      RaiseEvent SelectedStateChanged(Me)
+    End Set
+  End Property
 
-  Public ReadOnly Property TempsJoc() As Long
+  Public ReadOnly Property IsPeriodDone As Boolean
+    Get
+      Return Me.PlayingTime >= Me.TotalTime
+    End Get
+  End Property
+
+
+
+  Public ReadOnly Property PlayingTime() As Long
     Get
       Return nPiTempsJoc
     End Get
@@ -62,7 +86,7 @@ End Enum
           'L'aturem??
           If bPiActiva = True Then
             'Sembla que si! fem-ho!
-            nPuOffsetTempsJoc = nPiTempsJoc
+            ManualOffset = nPiTempsJoc
             bPiActiva = False
           End If
         End If
@@ -75,6 +99,7 @@ End Enum
       If Me.AutoSave Then
         Me.SavePart()
       End If
+      RaiseEvent ActiveStateChanged(Me)
     End Set
   End Property
 
@@ -159,10 +184,10 @@ End Enum
 
       If Me.bPiActiva Then
         If Me.ModeTiming = eModeTiming.Fraccionat Then
-          nPiTempsJoc = nPiTempsJoc + DateDiff(DateInterval.Second, Me.dPiLastUpdate, Now) + nPuOffsetTempsJoc
+          nPiTempsJoc = nPiTempsJoc + DateDiff(DateInterval.Second, Me.dPiLastUpdate, Now) + ManualOffset
           Me.dPiLastUpdate = Now
         Else
-          nPiTempsJoc = DateDiff(DateInterval.Second, Me.HoraInici, Now) + nPuOffsetTempsJoc
+          nPiTempsJoc = DateDiff(DateInterval.Second, Me.HoraInici, Now) + ManualOffset
         End If
       End If
       If Me.AutoSave Then
@@ -183,16 +208,14 @@ End Enum
 
       nOld = nPiTempsJoc
 
-      If Me.bPiActiva Then
-        If Me.ModeTiming = eModeTiming.Fraccionat Then
-          nPiTempsJoc = niTempsJoc ' nPiTempsJoc + DateDiff(DateInterval.Second, Me.dPiLastUpdate, Now) + nPuOffsetTempsJoc
-          Me.dPiLastUpdate = Now
-        Else
-          nPiTempsJoc = niTempsJoc
-          nPuOffsetTempsJoc = 0
-          Me.HoraInici = DateAdd(DateInterval.Second, -(niTempsJoc), Now)
-          Me.dPiLastUpdate = Now
-        End If
+      If Me.ModeTiming = eModeTiming.Fraccionat Then
+        nPiTempsJoc = niTempsJoc ' nPiTempsJoc + DateDiff(DateInterval.Second, Me.dPiLastUpdate, Now) + nPuOffsetTempsJoc
+        Me.dPiLastUpdate = Now
+      Else
+        nPiTempsJoc = niTempsJoc
+        ManualOffset = 0
+        Me.HoraInici = DateAdd(DateInterval.Second, -(niTempsJoc), Now)
+        Me.dPiLastUpdate = Now
       End If
       If Me.AutoSave Then
         If nOld <> nPiTempsJoc Then Me.SavePart()
@@ -210,8 +233,8 @@ End Enum
       bChange = bChange Or (Me.HoraInici <> diHoraInici)
       bChange = bChange Or (Me.Temperatura <> niTemperatura)
       bChange = bChange Or (Me.Activa <> biActiva)
-      bChange = bChange Or (Me.nPuOffsetTempsJoc <> niOffset)
-      bChange = bChange Or (Me.TempsTotal <> niTempsTotal)
+      bChange = bChange Or (Me.ManualOffset <> niOffset)
+      bChange = bChange Or (Me.TotalTime <> niTempsTotal)
 
       'si ha canviat algo, que es vegi
       If bChange Then
@@ -219,8 +242,8 @@ End Enum
         Me.HoraInici = diHoraInici
         Me.Temperatura = niTemperatura
         Me.Activa = biActiva
-        Me.nPuOffsetTempsJoc = niOffset
-        Me.TempsTotal = niTempsTotal
+        Me.ManualOffset = niOffset
+        Me.TotalTime = niTempsTotal
       End If
     Catch ex As Exception
 
@@ -235,7 +258,7 @@ End Enum
       Me.dPiLastUpdate = DEFAULT_TIME
       Me.HoraInici = DEFAULT_TIME
       Me.nPiTempsJoc = 0
-      Me.nPuOffsetTempsJoc = 0
+      Me.ManualOffset = 0
       Me.SavePart()
     Catch ex As Exception
     End Try

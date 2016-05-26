@@ -1,9 +1,9 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class DialogOptions
-  Inherits System.Windows.Forms.Form
+  Inherits MetroFramework.Forms.MetroForm
 
   'Form overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()> _
+  <System.Diagnostics.DebuggerNonUserCode()>
   Protected Overrides Sub Dispose(ByVal disposing As Boolean)
     Try
       If disposing AndAlso components IsNot Nothing Then
@@ -20,24 +20,24 @@ Partial Class DialogOptions
   'NOTE: The following procedure is required by the Windows Form Designer
   'It can be modified using the Windows Form Designer.  
   'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()> _
+  <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New System.Windows.Forms.Button()
-    Me.Cancel_Button = New System.Windows.Forms.Button()
-    Me.CheckBoxShowOptionsOnStartup = New System.Windows.Forms.CheckBox()
-    Me.TabControlOptions = New System.Windows.Forms.TabControl()
-    Me.TabPage1 = New System.Windows.Forms.TabPage()
-    Me.TabPage2 = New System.Windows.Forms.TabPage()
+    Me.OK_Button = New MetroFramework.Controls.MetroButton()
+    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.CheckBoxShowOptionsOnStartup = New MetroFramework.Controls.MetroCheckBox()
+    Me.TabControlOptions = New MetroFramework.Controls.MetroTabControl()
+    Me.TabPage1 = New MetroFramework.Controls.MetroTabPage()
+    Me.TabPage2 = New MetroFramework.Controls.MetroTabPage()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-    Me.LabelHost = New System.Windows.Forms.Label()
-    Me.TextBoxVizrtHost = New System.Windows.Forms.TextBox()
-    Me.LabelREPort = New System.Windows.Forms.Label()
+    Me.LabelHost = New MetroFramework.Controls.MetroLabel()
+    Me.TextBoxVizrtHost = New MetroFramework.Controls.MetroTextBox()
+    Me.LabelREPort = New MetroFramework.Controls.MetroLabel()
     Me.NumericUpDownPort = New System.Windows.Forms.NumericUpDown()
-    Me.LabelPreviewPort = New System.Windows.Forms.Label()
+    Me.LabelPreviewPort = New MetroFramework.Controls.MetroLabel()
     Me.NumericUpDownPreviewPort = New System.Windows.Forms.NumericUpDown()
-    Me.LabelSceneVersion = New System.Windows.Forms.Label()
-    Me.ComboBoxSceneVersion = New System.Windows.Forms.ComboBox()
+    Me.LabelSceneVersion = New MetroFramework.Controls.MetroLabel()
+    Me.ComboBoxSceneVersion = New MetroFramework.Controls.MetroComboBox()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TabControlOptions.SuspendLayout()
     Me.TabPage2.SuspendLayout()
@@ -91,7 +91,6 @@ Partial Class DialogOptions
     Me.CheckBoxShowOptionsOnStartup.Size = New System.Drawing.Size(245, 23)
     Me.CheckBoxShowOptionsOnStartup.TabIndex = 2
     Me.CheckBoxShowOptionsOnStartup.Text = "Show options on application startup"
-    Me.CheckBoxShowOptionsOnStartup.UseVisualStyleBackColor = True
     '
     'TabControlOptions
     '
@@ -213,7 +212,7 @@ Partial Class DialogOptions
     '
     'ComboBoxSceneVersion
     '
-    Me.ComboBoxSceneVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+    Me.ComboBoxSceneVersion.DropDownStyle = ComboBoxStyle.DropDownList
     Me.ComboBoxSceneVersion.FormattingEnabled = True
     Me.ComboBoxSceneVersion.Location = New System.Drawing.Point(103, 93)
     Me.ComboBoxSceneVersion.Name = "ComboBoxSceneVersion"
@@ -229,12 +228,12 @@ Partial Class DialogOptions
     Me.ClientSize = New System.Drawing.Size(435, 315)
     Me.Controls.Add(Me.TabControlOptions)
     Me.Controls.Add(Me.TableLayoutPanel1)
-    Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+    Me.FormBorderStyle = FormBorderStyle.FixedDialog
     Me.MaximizeBox = False
     Me.MinimizeBox = False
     Me.Name = "DialogOptions"
     Me.ShowInTaskbar = False
-    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+    Me.StartPosition = FormStartPosition.CenterParent
     Me.Text = "DialogOptions"
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.TableLayoutPanel1.PerformLayout()
@@ -248,15 +247,15 @@ Partial Class DialogOptions
 
   End Sub
   Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-  Friend WithEvents OK_Button As System.Windows.Forms.Button
-  Friend WithEvents Cancel_Button As System.Windows.Forms.Button
+  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
   Friend WithEvents CheckBoxShowOptionsOnStartup As CheckBox
   Friend WithEvents TabControlOptions As TabControl
   Friend WithEvents TabPage1 As TabPage
   Friend WithEvents TabPage2 As TabPage
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
   Friend WithEvents LabelHost As Label
-  Friend WithEvents TextBoxVizrtHost As TextBox
+  Friend WithEvents TextBoxVizrtHost As MetroFramework.Controls.MetroTextBox
   Friend WithEvents LabelREPort As Label
   Friend WithEvents NumericUpDownPort As NumericUpDown
   Friend WithEvents LabelPreviewPort As Label

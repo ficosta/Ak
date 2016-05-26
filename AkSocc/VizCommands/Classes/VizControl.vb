@@ -536,7 +536,7 @@ Public Class VizControl
         Case eRendererLayers.MidleLayer
           sRenderer = "RENDERER"
       End Select
-      CCommand.SentData = sRenderer & "*STAGE*DIRECTOR*" & CCommand.Data & " SHOW " & CStr(niFrame) & " "
+      CCommand.SentData = sRenderer & "*STAGE*DIRECTOR*" & CCommand.Data & " SHOW F" & CStr(niFrame) & " "
       LlistaComandes.Add(CCommand)
       CCommand.ID = SendTCPCommand(CCommand)
     Catch ex As Exception

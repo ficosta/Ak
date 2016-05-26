@@ -5,8 +5,11 @@ Public Class frmMain
 #Region "Properties and variables"
   Private WithEvents _match As MatchInfo.Match
   Private WithEvents _statGraphic As GraphicStep
-  Private WithEvents _dlgChoosWithPreview As DialogChooseWithPreview
+  Private WithEvents _dlgChoosWithPreview As FormChoose
   Private WithEvents _vizControl As VizCommands.VizControl
+  Private WithEvents _previewControl As VizCommands.PreviewControl
+
+  Private WithEvents _clockControl As ClockControl = ClockControl.Instance
 #End Region
 
 #Region "Constructor"
@@ -23,8 +26,8 @@ Public Class frmMain
       If My.Settings.ShowSettingsOnStartup Then
         ShowOptions(Me)
       End If
-      MatchSetup()
       InitControls()
+      MatchSetup()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -41,10 +44,12 @@ Public Class frmMain
       _vizControl.Config.TCPPort = My.Settings.VizrtPort
       _vizControl.Config.SceneBasePath = My.Settings.ScenePath
       _vizControl.InitializeSockets()
-      Me.UpdateStatusLabel()
+
+      _previewControl = New VizCommands.PreviewControl(_vizControl.Config)
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
+    Me.UpdateStatusLabel()
   End Sub
 #End Region
 
@@ -77,7 +82,11 @@ Public Class frmMain
 #Region "Match functions"
   Public Function MatchSetup() As Boolean
     Try
-      Dim dlg As New DialogMatchSetup
+      Dim dlg As New FormMatchSetup
+      Dim aux As MetroFramework.Forms.MetroForm = TryCast(Me, MetroFramework.Forms.MetroForm)
+      If Not aux Is Nothing Then
+        dlg.StyleManager = aux.StyleManager
+      End If
       If dlg.ShowDialog(Me) = DialogResult.OK Then
         'match selected!
         InitMatchInfo(dlg.SelectedMatch)
@@ -99,6 +108,9 @@ Public Class frmMain
       If Not _match Is Nothing Then
         Me.LabelAwayTeamName.Text = _match.AwayTeam.ToString
         Me.LabelHomeTeamName.Text = _match.HomeTeam.ToString
+
+        Me.LabelAwayTeamShortName.Text = _match.AwayTeam.TeamAELTinyName
+        Me.LabelHomeTeamShortName.Text = _match.HomeTeam.TeamAELTinyName
 
         EngageDataBinding()
 
@@ -126,8 +138,12 @@ Public Class frmMain
 
   Private Sub EngageDataBinding()
     Try
-      Me.LabelHomeTeamResult.DataBindings.Add("Text", _match.HomeTeam.MatchStats.Goals, "Value")
-      Me.LabelAwayTeamResult.DataBindings.Add("Text", _match.AwayTeam.MatchStats.Goals, "Value")
+      Me.LabelHomeTeamResult.DataBindings.Add("Text", _match.HomeTeam.MatchStats.GoalStat, "Value")
+      Me.LabelAwayTeamResult.DataBindings.Add("Text", _match.AwayTeam.MatchStats.GoalStat, "Value")
+
+      _clockControl = ClockControl.Instance
+      _clockControl.VizControl = _vizControl
+      _clockControl.Match = _match
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -168,6 +184,17 @@ Public Class frmMain
 #Region "Team / player"
   Private _updating As Boolean
 
+  Public Sub New()
+
+    ' This call is required by the designer.
+    InitializeComponent()
+
+    ' Add any initialization after the InitializeComponent() call.
+    Me.StyleManager = msmMain
+    msmMain.Theme = MetroFramework.MetroThemeStyle.Light
+
+  End Sub
+
   Private Sub TeamViewer1_SelectedPlayerChanged(sender As TeamViewer, player As Player) Handles TeamViewer1.SelectedPlayerChanged
     If _updating Then Exit Sub
     _updating = True
@@ -190,8 +217,17 @@ Public Class frmMain
 #Region "Graphics"
   Private Sub StartGraphic(statGraphic As GraphicGroup)
     Try
-      _dlgChoosWithPreview = New DialogChooseWithPreview(_vizControl, statGraphic)
-      _dlgChoosWithPreview.ShowDialog(Me)
+      _dlgChoosWithPreview = New FormChoose(_vizControl, _previewControl, statGraphic)
+      If _dlgChoosWithPreview.ShowDialog(Me) Then
+        'what you gonna do?
+        _dlgChoosWithPreview.GraphicGroup.PreProcessingAction()
+        'send scene to engine, play animations
+        Dim scene As VizCommands.Scene = _dlgChoosWithPreview.GraphicGroup.PrepareScene(_dlgChoosWithPreview.GraphicGroup.graphicStep)
+
+        'What are we gonna do next?
+        _dlgChoosWithPreview.GraphicGroup.PostProcessingAction()
+
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -365,12 +401,12 @@ Public Class frmMain
       If _match Is Nothing Then Exit Sub
       Dim team As Team = _match.AwayTeam
 
-      If (MessageBox.Show("Do you want to set a goal to " & team.ToString & "?", Me.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.OK) Then
+      If MetroFramework.MetroMessageBox.Show(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
         Dim gsList As New GraphicSteps
         Dim gg As New ControlScoreSingleGoal(_match)
         gg.IsLocalTeam = False
 
-        StartGraphic(gg)
+        Me.StartGraphic(gg)
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -382,7 +418,7 @@ Public Class frmMain
       If _match Is Nothing Then Exit Sub
       Dim team As Team = _match.HomeTeam
 
-      If (MessageBox.Show("Do you want to set a goal to " & team.ToString & "?", Me.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.OK) Then
+      If MetroFramework.MetroMessageBox.Show(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
         Dim gsList As New GraphicSteps
         Dim gg As New ControlScoreSingleGoal(_match)
         gg.IsLocalTeam = True
@@ -395,5 +431,75 @@ Public Class frmMain
   End Sub
 
 
+
+#End Region
+
+#Region "Clock controls"
+
+  Private Sub MetroButtonTimeControl_Click(sender As Object, e As EventArgs) Handles MetroButtonTimeControl.Click
+    Try
+      Dim frm As New FormPeriodControl()
+      frm.Match = _match
+      frm.Show(Me)
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub TimerClock_Tick(sender As Object, e As EventArgs) Handles TimerClock.Tick
+    Try
+      Dim labelColor As Color = Color.White
+      Dim colorOn As Color = Color.LightGreen
+      Dim colorOff As Color = Color.LightSalmon
+
+      If _match Is Nothing Then Exit Sub
+      If _match.MatchPeriods.ActivePeriod Is Nothing Then
+        Me.MetroLabelPeriodTime.Text = "00:00"
+        Me.MetroLabelPeriodName.Text = ""
+        labelColor = colorOff
+      Else
+        Me.MetroLabelPeriodTime.Text = _match.MatchPeriods.TempsJocWithOffsetString
+        Me.MetroLabelPeriodName.Text = _match.MatchPeriods.Nom
+
+        Dim XX As New MetroFramework.Components.MetroStyleManager()
+        Me.MetroLabelPeriodTime.StyleManager = XX
+
+        If _match.MatchPeriods.ActivePeriod.PlayingTime > _match.MatchPeriods.ActivePeriod.TotalTime Then
+          labelColor = colorOn
+          XX.Theme = MetroFramework.MetroThemeStyle.Dark
+          Me.MetroLabelPeriodTime.Style = MetroFramework.MetroColorStyle.Red
+          Me.MetroLabelPeriodTime.Invalidate()
+        Else
+          labelColor = colorOff
+          XX.Theme = MetroFramework.MetroThemeStyle.Light
+
+          Me.MetroLabelPeriodTime.Style = MetroFramework.MetroColorStyle.Blue
+        End If
+      End If
+      Me.MetroLabelPeriodTime.BackColor = labelColor
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+
+  Private Sub MetroButtonClockIN_Click(sender As Object, e As EventArgs) Handles MetroButtonClockIN.Click
+    _clockControl.ShowIdentClock()
+  End Sub
+
+  Private Sub MetroButtonClockOUT_Click(sender As Object, e As EventArgs) Handles MetroButtonClockOUT.Click
+    _clockControl.HideIdentClock()
+  End Sub
+
+  Private Sub MetroButtonClockSubstitutions_Click(sender As Object, e As EventArgs) Handles MetroButtonClockSubstitutions.Click
+    'Me.StartGraphic(New ClockSubstitutes(_match))
+    Dim dlg As New FormSubstitutions()
+    dlg.match = _match
+    dlg.Show(Me)
+  End Sub
+
+  Private Sub MetroButtonMatchSubstitutions_Click(sender As Object, e As EventArgs) Handles MetroButtonMatchSubstitutions.Click
+
+  End Sub
 #End Region
 End Class

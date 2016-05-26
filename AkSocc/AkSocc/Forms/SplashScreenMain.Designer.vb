@@ -1,9 +1,9 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class SplashScreenMain
-  Inherits System.Windows.Forms.Form
+  Inherits MetroFramework.Forms.MetroForm
 
   'Form overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()> _
+  <System.Diagnostics.DebuggerNonUserCode()>
   Protected Overrides Sub Dispose(ByVal disposing As Boolean)
     Try
       If disposing AndAlso components IsNot Nothing Then
@@ -13,9 +13,9 @@ Partial Class SplashScreenMain
       MyBase.Dispose(disposing)
     End Try
   End Sub
-  Friend WithEvents ApplicationTitle As System.Windows.Forms.Label
-  Friend WithEvents Version As System.Windows.Forms.Label
-  Friend WithEvents Copyright As System.Windows.Forms.Label
+  Friend WithEvents ApplicationTitle As MetroFramework.Controls.MetroLabel
+  Friend WithEvents Version As MetroFramework.Controls.MetroLabel
+  Friend WithEvents Copyright As MetroFramework.Controls.MetroLabel
   Friend WithEvents MainLayoutPanel As System.Windows.Forms.TableLayoutPanel
   Friend WithEvents DetailsLayoutPanel As System.Windows.Forms.TableLayoutPanel
 
@@ -25,14 +25,14 @@ Partial Class SplashScreenMain
   'NOTE: The following procedure is required by the Windows Form Designer
   'It can be modified using the Windows Form Designer.  
   'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()> _
+  <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SplashScreenMain))
     Me.MainLayoutPanel = New System.Windows.Forms.TableLayoutPanel
     Me.DetailsLayoutPanel = New System.Windows.Forms.TableLayoutPanel
-    Me.Version = New System.Windows.Forms.Label
-    Me.Copyright = New System.Windows.Forms.Label
-    Me.ApplicationTitle = New System.Windows.Forms.Label
+    Me.Version = New MetroFramework.Controls.MetroLabel
+    Me.Copyright = New MetroFramework.Controls.MetroLabel
+    Me.ApplicationTitle = New MetroFramework.Controls.MetroLabel
     Me.MainLayoutPanel.SuspendLayout()
     Me.DetailsLayoutPanel.SuspendLayout()
     Me.SuspendLayout()
@@ -110,12 +110,12 @@ Partial Class SplashScreenMain
     Me.ClientSize = New System.Drawing.Size(496, 303)
     Me.ControlBox = False
     Me.Controls.Add(Me.MainLayoutPanel)
-    Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+    Me.FormBorderStyle = FormBorderStyle.FixedSingle
     Me.MaximizeBox = False
     Me.MinimizeBox = False
     Me.Name = "SplashScreenMain"
     Me.ShowInTaskbar = False
-    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+    Me.StartPosition = FormStartPosition.CenterScreen
     Me.MainLayoutPanel.ResumeLayout(False)
     Me.DetailsLayoutPanel.ResumeLayout(False)
     Me.ResumeLayout(False)

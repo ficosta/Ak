@@ -1,4 +1,6 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.ComponentModel
+Imports System.Data.OleDb
+Imports MatchInfo
 
 Public Class StatSubject
   Public Property ID As String
@@ -88,6 +90,27 @@ Public Class StatSubject
 
   Private Sub Update()
 
+  End Sub
+
+  Private Sub _matchStats_PropertyChanged(sender As Object, e As PropertyChangedEventArgs) Handles _matchStats.PropertyChanged
+    Try
+      Dim stat As Stat = TryCast(sender, Stat)
+      If Not stat Is Nothing Then
+        RaiseEvent StatValueChanged(Me, stat)
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub _matchStats_StatValueChanged(subjectStats As SubjectStats, stat As Stat) Handles _matchStats.StatValueChanged
+    Try
+      If Not stat Is Nothing Then
+        RaiseEvent StatValueChanged(Me, stat)
+      End If
+    Catch ex As Exception
+
+    End Try
   End Sub
 #End Region
 End Class

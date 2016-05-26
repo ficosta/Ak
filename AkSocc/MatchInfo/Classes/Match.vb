@@ -2,11 +2,58 @@
 Imports System.Data.SqlClient
 
 Public Class Match
+  Implements IComparable
+
   Public Property HomeTeam As Team
   Public Property AwayTeam As Team
 
+  Public Event ScoreChanged()
+  Public Event ActivePeriodStateChanged()
+
+  Public ReadOnly Property Substitutions As Substitutions
+    Get
+      Dim subs As New Substitutions()
+      If Not Me.HomeTeam Is Nothing AndAlso Not Me.HomeTeam.Substitutions Is Nothing Then
+        For Each substitution As Substitution In Me.HomeTeam.Substitutions
+          subs.Add(substitution)
+        Next
+      End If
+      If Not Me.HomeTeam Is Nothing AndAlso Not Me.AwayTeam.Substitutions Is Nothing Then
+        For Each substitution As Substitution In Me.AwayTeam.Substitutions
+          subs.Add(substitution)
+        Next
+      End If
+      Return subs
+    End Get
+  End Property
+
   Public Property HomeTeamName As String
   Public Property AwayTeamName As String
+
+
+  Private _home_goals As Integer = 0
+  Public Property home_goals As Integer
+    Get
+      Return _home_goals
+    End Get
+    Set(value As Integer)
+      _home_goals = value
+      If Not Me.HomeTeam Is Nothing Then Me.HomeTeam.MatchStats.GoalStat.Value = value
+      RaiseEvent ScoreChanged()
+    End Set
+  End Property
+
+  Private _away_goals As Integer = 0
+  Public Property away_goals As Integer
+    Get
+      Return _away_goals
+    End Get
+    Set(value As Integer)
+      _away_goals = value
+      If Not Me.HomeTeam Is Nothing Then Me.AwayTeam.MatchStats.GoalStat.Value = value
+      RaiseEvent ScoreChanged()
+    End Set
+  End Property
 
   Public match_id As Integer
   Public competition_id As Integer
@@ -16,8 +63,6 @@ Public Class Match
   Public away_team_id As Integer
   Public [date] As DateTime
   Public venue_id As Integer
-  Public home_goals As Integer
-  Public away_goals As Integer
   Public attendance As Integer
   Public state As String
 
@@ -27,7 +72,7 @@ Public Class Match
   Public ArabicMatchCommentators As String
   Public OPTAID As Integer
 
-  Public MatchPeriods As periodes
+  Public MatchPeriods As New Periods
 
 
   Public AA As String
@@ -54,7 +99,7 @@ Public Class Match
   End Sub
 
   Public Overrides Function ToString() As String
-    Return Me.match_date.ToShortDateString() & ":" & Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString
+    Return Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString
   End Function
 
   Public Sub New()
@@ -246,16 +291,24 @@ Public Class Match
         SQL += " VALUES (@AA, @match_date, @home_team_id, @away_team_id, @home_goals, @away_goals, @venue_id, @Attendance, @competition_id, @ArabicMatchDescription, @ArabicMatchCommentators, @OPTAID)"
         Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
         conn.Open()
-          Dim cmdExecute As OleDbCommand = CreateCommand()
-          cmdExecute.CommandText = SQL
-          cmdExecute.Connection = conn
-          cmdExecute.ExecuteNonQuery()
-          conn.Close()
-        End If
-      Catch err As Exception
-        Throw err
-      End Try
-    End Sub
+        Dim cmdExecute As OleDbCommand = CreateCommand()
+        cmdExecute.CommandText = SQL
+        cmdExecute.Connection = conn
+        cmdExecute.ExecuteNonQuery()
+        conn.Close()
+      End If
+    Catch err As Exception
+      Throw err
+    End Try
+  End Sub
 
-  End Class
+  Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+
+    If Not TypeOf obj Is Match Then
+      Throw New Exception("Object is not of type Match")
+    End If
+
+    Return Date.Compare(obj.match_date, Me.match_date)
+  End Function
+End Class
 

@@ -2,7 +2,7 @@
 Imports VizCommands
 
 Public Class DialogChooseWithPreview
-  Public Property Graphic As GraphicGroup
+  Public Property GraphicGroup As GraphicGroup
 
   Private WithEvents _vizControl As VizCommands.VizControl
 
@@ -16,7 +16,7 @@ Public Class DialogChooseWithPreview
     End Get
     Set(value As VizCommands.VizControl)
       _vizControl = value
-      _dlgPreview.vizControl = _vizControl
+      _dlgPreview.VizControl = _vizControl
     End Set
   End Property
 
@@ -49,7 +49,7 @@ Public Class DialogChooseWithPreview
 
     ' Add any initialization after the InitializeComponent() call.
     _vizControl = vizControl
-    Me.Graphic = graphic
+    Me.GraphicGroup = graphic
     ShowNextGraphicSteps(Nothing)
   End Sub
 #End Region
@@ -57,12 +57,12 @@ Public Class DialogChooseWithPreview
 #Region "Graphic steps"
   Private Sub ShowNextGraphicSteps(graphicStep As GraphicStep)
     Try
-      Me.Graphic.graphicStep = Me.Graphic.PrepareNextGraphicStep(graphicStep)
+      Me.GraphicGroup.graphicStep = Me.GraphicGroup.PrepareNextGraphicStep(graphicStep)
 
       With Me.ListViewOptions
         .Items.Clear()
 
-        For Each gStep As GraphicStep In Me.Graphic.graphicStep.GraphicSteps
+        For Each gStep As GraphicStep In Me.GraphicGroup.graphicStep.GraphicSteps
           Dim lvItem As New ListViewItem()
           lvItem.Name = gStep.UID
           If gStep.IsSeparator Then
@@ -87,27 +87,27 @@ Public Class DialogChooseWithPreview
     Dim gStep As GraphicStep = Nothing
     Try
       If Me.ListViewOptions.SelectedItems.Count > 0 Then
-        gStep = Me.Graphic.graphicStep.GraphicSteps.GetGraphicStep(Me.ListViewOptions.SelectedItems(0).Name)
-        If Not Me.Graphic.graphicStep Is Nothing Then Me.Graphic.graphicStep.ChildGraphicStep = gStep
+        gStep = Me.GraphicGroup.graphicStep.GraphicSteps.GetGraphicStep(Me.ListViewOptions.SelectedItems(0).Name)
+        If Not Me.GraphicGroup.graphicStep Is Nothing Then Me.GraphicGroup.graphicStep.ChildGraphicStep = gStep
         If Not gStep Is Nothing Then
           If gStep.IsFinalStep Then 'no s'ha d'anar més enllà
-            If Me.Graphic.AutomaticGraphic Then
+            If Me.GraphicGroup.AutomaticGraphic Then
               'preparar l'escena
 
-              Me.Graphic.PrepareScene(gStep)
+              Me.GraphicGroup.PrepareScene(gStep)
               'demanar previ
-              _dlgPreview = New DialogPreview(_vizControl, Me.Graphic.Scene)
+              _dlgPreview = New DialogPreview(_vizControl, Me.GraphicGroup.Scene)
               If _dlgPreview.ShowDialog(Me) = DialogResult.OK Then
                 'enviar e engine
-                Me.Graphic.Scene.SendSceneToEngine(_vizControl)
-                _vizControl.DirectorStart(Me.Graphic.Scene.SceneDirector)
+                Me.GraphicGroup.Scene.SendSceneToEngine(_vizControl)
+                _vizControl.DirectorStart(Me.GraphicGroup.Scene.SceneDirector)
               End If
             Else
               'no hem de fer res més, sortim!
             End If
 
           Else 'hi ha més passos
-              ShowNextGraphicSteps(gStep)
+            ShowNextGraphicSteps(gStep)
           End If
           If gStep.IsTransitionalStep = False Then
             'és un pas per enviar dades
@@ -116,10 +116,10 @@ Public Class DialogChooseWithPreview
             'comencem a seleccionar de zero
 
             Me.Text = gStep.ToString
-            Me.GetPreview(Me.Graphic.Scene, Me.PictureBoxPreview)
-            Me.Graphic.formerGraphicStep = Me.Graphic.graphicStep
+            Me.GetPreview(Me.GraphicGroup.Scene, Me.PictureBoxPreview)
+            Me.GraphicGroup.formerGraphicStep = Me.GraphicGroup.graphicStep
 
-            Me.Graphic.graphicStep = Nothing
+            Me.GraphicGroup.graphicStep = Nothing
             ShowNextGraphicSteps(Nothing)
           End If
         End If
@@ -188,6 +188,10 @@ Public Class DialogChooseWithPreview
     Catch ex As Exception
 
     End Try
+  End Sub
+
+  Private Sub ListViewOptions_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListViewOptions.SelectedIndexChanged
+
   End Sub
 #End Region
 End Class

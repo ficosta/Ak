@@ -1,9 +1,9 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class DialogMatchSetup
-  Inherits System.Windows.Forms.Form
+  Inherits MetroFramework.Forms.MetroForm
 
   'Form overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()> _
+  <System.Diagnostics.DebuggerNonUserCode()>
   Protected Overrides Sub Dispose(ByVal disposing As Boolean)
     Try
       If disposing AndAlso components IsNot Nothing Then
@@ -20,18 +20,18 @@ Partial Class DialogMatchSetup
   'NOTE: The following procedure is required by the Windows Form Designer
   'It can be modified using the Windows Form Designer.  
   'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()> _
+  <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New System.Windows.Forms.Button()
-    Me.Cancel_Button = New System.Windows.Forms.Button()
+    Me.OK_Button = New MetroFramework.Controls.MetroButton()
+    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
     Me.TableLayoutPanelGlobal = New System.Windows.Forms.TableLayoutPanel()
     Me.grpSelectMatch = New System.Windows.Forms.GroupBox()
     Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-    Me.label77 = New System.Windows.Forms.Label()
-    Me.cboMatch = New System.Windows.Forms.ComboBox()
-    Me.cboCompetition = New System.Windows.Forms.ComboBox()
-    Me.label76 = New System.Windows.Forms.Label()
+    Me.label77 = New MetroFramework.Controls.MetroLabel()
+    Me.cboMatch = New MetroFramework.Controls.MetroComboBox()
+    Me.cboCompetition = New MetroFramework.Controls.MetroComboBox()
+    Me.label76 = New MetroFramework.Controls.MetroLabel()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TableLayoutPanelGlobal.SuspendLayout()
     Me.grpSelectMatch.SuspendLayout()
@@ -61,6 +61,7 @@ Partial Class DialogMatchSetup
     Me.OK_Button.Size = New System.Drawing.Size(67, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
+    Me.OK_Button.UseSelectable = True
     '
     'Cancel_Button
     '
@@ -71,6 +72,7 @@ Partial Class DialogMatchSetup
     Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
+    Me.Cancel_Button.UseSelectable = True
     '
     'TableLayoutPanelGlobal
     '
@@ -135,19 +137,23 @@ Partial Class DialogMatchSetup
     '
     Me.cboMatch.Dock = System.Windows.Forms.DockStyle.Fill
     Me.cboMatch.FormattingEnabled = True
+    Me.cboMatch.ItemHeight = 23
     Me.cboMatch.Location = New System.Drawing.Point(575, 3)
     Me.cboMatch.Name = "cboMatch"
-    Me.cboMatch.Size = New System.Drawing.Size(367, 21)
+    Me.cboMatch.Size = New System.Drawing.Size(367, 29)
     Me.cboMatch.TabIndex = 5
+    Me.cboMatch.UseSelectable = True
     '
     'cboCompetition
     '
     Me.cboCompetition.Dock = System.Windows.Forms.DockStyle.Fill
     Me.cboCompetition.FormattingEnabled = True
+    Me.cboCompetition.ItemHeight = 23
     Me.cboCompetition.Location = New System.Drawing.Point(103, 3)
     Me.cboCompetition.Name = "cboCompetition"
-    Me.cboCompetition.Size = New System.Drawing.Size(366, 21)
+    Me.cboCompetition.Size = New System.Drawing.Size(366, 29)
     Me.cboCompetition.TabIndex = 1
+    Me.cboCompetition.UseSelectable = True
     '
     'label76
     '
@@ -174,7 +180,6 @@ Partial Class DialogMatchSetup
     Me.MinimizeBox = False
     Me.Name = "DialogMatchSetup"
     Me.ShowInTaskbar = False
-    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "DialogMatchSetup"
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.TableLayoutPanelGlobal.ResumeLayout(False)
@@ -185,13 +190,13 @@ Partial Class DialogMatchSetup
 
   End Sub
   Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-  Friend WithEvents OK_Button As System.Windows.Forms.Button
-  Friend WithEvents Cancel_Button As System.Windows.Forms.Button
+  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
   Friend WithEvents TableLayoutPanelGlobal As TableLayoutPanel
   Private WithEvents grpSelectMatch As GroupBox
   Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
-  Private WithEvents label77 As Label
-  Private WithEvents cboMatch As ComboBox
-  Private WithEvents cboCompetition As ComboBox
-  Private WithEvents label76 As Label
+  Private WithEvents label77 As MetroFramework.Controls.MetroLabel
+  Private WithEvents cboMatch As MetroFramework.Controls.MetroComboBox
+  Private WithEvents cboCompetition As MetroFramework.Controls.MetroComboBox
+  Private WithEvents label76 As MetroFramework.Controls.MetroLabel
 End Class

@@ -105,6 +105,10 @@ Module Main
   Public Sub ShowOptions(frm As Form)
     Try
       Dim dlg As New DialogOptions()
+      Dim aux As MetroFramework.Forms.MetroForm = TryCast(frm, MetroFramework.Forms.MetroForm)
+      If Not aux Is Nothing Then
+        dlg.StyleManager = aux.StyleManager
+      End If
       If dlg.ShowDialog(frm) = DialogResult.OK Then
 
       End If

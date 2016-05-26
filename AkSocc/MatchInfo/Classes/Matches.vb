@@ -30,8 +30,8 @@ Public Class Matches
     Return res
   End Function
 
-  Public Shared Function GetMatchesForCompetition(compId As Integer) As List(Of Match)
-    Dim res As New List(Of Match)
+  Public Shared Function GetMatchesForCompetition(compId As Integer) As Matches
+    Dim res As New Matches
     Try
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
@@ -52,6 +52,7 @@ Public Class Matches
     Catch err As Exception
       'Throw err
     End Try
+    res.sort
     Return res
   End Function
 
@@ -166,4 +167,12 @@ Public Class Matches
       Throw err
     End Try
   End Function
+
+  Public Function Add(match As Match) As Integer
+    Return MyBase.InnerList.Add(match)
+  End Function
+
+  Public Sub Sort()
+    MyBase.InnerList.Sort()
+  End Sub
 End Class

@@ -1,11 +1,37 @@
 ﻿<Serializable()> Public Class GraphicVersions
   Inherits CollectionBase
 
-  Public Sub New()
-    Me.Add(New GraphicVersion("Saudi league", "MBC/Football/Scenes/"))
-    Me.Add(New GraphicVersion("Cup", "MBC/CUP/"))
+#Region "Singleton"
+  Private Shared ReadOnly _instance As New Lazy(Of GraphicVersions)(Function() New GraphicVersions(), System.Threading.LazyThreadSafetyMode.ExecutionAndPublication)
 
+  Private Sub New()
+    Me.Add(New GraphicVersion("Saudi league", "CHANNELS/MBC_SPORTS/2016/CPC_2016/Ingame_Alkamel/", "CHANNELS/MBC_SPORTS/Badges/512/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Jerseys/Pics/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/3D_LOGOS/"))
+    Me.Add(New GraphicVersion("Saudi league old", "MBC/Football/Scenes/"))
+    Me.Add(New GraphicVersion("Cup", "MBC/CUP/"))
   End Sub
+
+  Public Shared ReadOnly Property Instance() As GraphicVersions
+    Get
+
+      Return _instance.Value
+    End Get
+  End Property
+#End Region
+
+
+  Private _selectedGraphicVersion As GraphicVersion = Nothing
+  Public Property SelectedGraphicVersion As GraphicVersion
+    Get
+      If _selectedGraphicVersion Is Nothing And Me.List.Count > 0 Then
+        _selectedGraphicVersion = Me.InnerList(0)
+      End If
+      Return _selectedGraphicVersion
+    End Get
+    Set(value As GraphicVersion)
+
+    End Set
+  End Property
+
 
   Public Function Add(graphicVersion As GraphicVersion) As Integer
     Try
