@@ -1,4 +1,6 @@
-﻿Imports VizCommands
+﻿Imports MetroFramework
+Imports MetroFramework.Forms
+Imports VizCommands
 
 Public Class FormChoose
   Private _graphicGroup As GraphicGroup
@@ -27,7 +29,37 @@ Public Class FormChoose
 
   Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
     Dim gstep As GraphicStep = Me.GraphicGroup.graphicStep
-    If Not gstep Is Nothing AndAlso gstep.IsFinalStep Then
+
+
+    If Not gstep Is Nothing Then
+
+      Dim lbl As New MetroFramework.Controls.MetroLabel
+      lbl.Text = "Wating for animation..."
+      lbl.FontSize = MetroFramework.MetroLabelSize.Tall
+      lbl.FontWeight = MetroFramework.MetroLabelWeight.Bold
+      lbl.TextAlign = ContentAlignment.MiddleCenter
+      lbl.Dock = DockStyle.Fill
+
+      Dim tsk As New MetroTaskWindow(5, lbl)
+
+      tsk.StartPosition = FormStartPosition.CenterScreen
+      tsk.MaximizeBox = False
+      tsk.MinimizeBox = False
+
+      'send scene to render and start animation
+      tsk.ShowDialog(Me)
+
+
+      If gstep.IsTransitionalStep = False Then
+        'there's nothing else: we wait for the "out" confirmation and close the dialog
+        MetroMessageBox.Show(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
+
+        Me.DialogResult = System.Windows.Forms.DialogResult.OK
+        Me.Close()
+      Else
+        MetroMessageBox.Show(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
+      End If
+    Else
       Me.DialogResult = System.Windows.Forms.DialogResult.OK
       Me.Close()
     End If
@@ -79,7 +111,10 @@ Public Class FormChoose
         lastIndex = sender.Index + 1
       End If
 
-      If Not gs Is Nothing Then Me.Text = gs.ToString
+      If Not gs Is Nothing Then
+        Me.Text = gs.ToString
+      End If
+      Me.GraphicGroup.graphicStep = gs
 
       Dim bNextStep As Boolean = False
       If gs Is Nothing Then

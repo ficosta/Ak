@@ -223,7 +223,8 @@ Public Class frmMain
         _dlgChoosWithPreview.GraphicGroup.PreProcessingAction()
         'send scene to engine, play animations
         Dim scene As VizCommands.Scene = _dlgChoosWithPreview.GraphicGroup.PrepareScene(_dlgChoosWithPreview.GraphicGroup.graphicStep)
-
+        scene.SendSceneToEngine(_vizControl)
+        scene.StartSceneDirectors(_vizControl)
         'What are we gonna do next?
         _dlgChoosWithPreview.GraphicGroup.PostProcessingAction()
 
@@ -284,7 +285,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF1FullFramers_Click(sender As Object, e As EventArgs) Handles ButtonCtlF1FullFramers.Click
-    Me.StartGraphic(New GraphicGroupCtlF1FullFramers(Nothing))
+    Me.StartGraphic(New GraphicGroupCtlF1FullFramers(_match))
   End Sub
 
   Private Sub ButtonCtlF2PlayerStatsCtrlF2_Click(sender As Object, e As EventArgs) Handles ButtonCtlF2PlayerStatsCtrlF2.Click
@@ -328,7 +329,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF12FFIdent_Click(sender As Object, e As EventArgs) Handles ButtonCtlF12FFIdent.Click
-
+    Me.StartGraphic(New GraphicsCtlF12MatchIdent(_match))
   End Sub
 
   Private Sub ButtonShftF1PenaltyShootOut_Click(sender As Object, e As EventArgs) Handles ButtonShftF1PenaltyShootOut.Click

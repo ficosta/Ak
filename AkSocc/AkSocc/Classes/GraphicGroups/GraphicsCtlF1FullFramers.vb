@@ -14,12 +14,12 @@ Public Class GraphicGroupCtlF1FullFramers
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
 
-    Public Shared ReadOnly LeagueTableTop As Step0 = New Step0("First half")
-    Public Shared ReadOnly LeagueTableBottom As Step0 = New Step0("Half time")
-    Public Shared ReadOnly OtherMatchScores As Step0 = New Step0("Second half")
-    Public Shared ReadOnly FullFrameStats As Step0 = New Step0("Full time")
-    Public Shared ReadOnly LeagueComparison As Step0 = New Step0("First half (extra time)")
-
+    Public Shared ReadOnly MatchIdent As Step0 = New Step0("League comparison")
+    Public Shared ReadOnly LeagueTableTop As Step0 = New Step0("League table top")
+    Public Shared ReadOnly LeagueTableBottom As Step0 = New Step0("League table bottom")
+    Public Shared ReadOnly OtherMatchScores As Step0 = New Step0("Other match scores")
+    Public Shared ReadOnly FullFrameStats As Step0 = New Step0("Full frame stats")
+    Public Shared ReadOnly LeagueComparison As Step0 = New Step0("League comparison")
 
     Public Sub New(key As String)
       MyBase.Key = key
@@ -30,8 +30,8 @@ Public Class GraphicGroupCtlF1FullFramers
   Class StepArrows
     Inherits GraphicStep.GraphicStepDefinition
 
-    Public Shared ReadOnly Arrows As GraphicStep.GraphicStepDefinition = New GraphicStep.GraphicStepDefinition("YES - Sponsor logo")
-    Public Shared ReadOnly NoArrows As GraphicStep.GraphicStepDefinition = New GraphicStep.GraphicStepDefinition("NO - No logo")
+    Public Shared ReadOnly Arrows As GraphicStep.GraphicStepDefinition = New GraphicStep.GraphicStepDefinition("YES - Arrows")
+    Public Shared ReadOnly NoArrows As GraphicStep.GraphicStepDefinition = New GraphicStep.GraphicStepDefinition("NO - No arrows")
   End Class
 
 
@@ -42,16 +42,15 @@ Public Class GraphicGroupCtlF1FullFramers
       gs = graphicStep
     End If
 
-
     Try
       gs.GraphicSteps.Clear()
 
       If graphicStep Is Nothing Then
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueTableTop))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueTableBottom))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.OtherMatchScores))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FullFrameStats))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueComparison))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.OtherMatchScores, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FullFrameStats, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueComparison, True, False))
       Else
         Select Case graphicStep.Depth
           Case 0
@@ -75,19 +74,18 @@ Public Class GraphicGroupCtlF1FullFramers
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Try
       Scene.VizLayer = SceneLayer.Middle
-      Scene.SceneName = "gfx_Scoreline"
+      Scene.SceneName = "cfx_Full_Frame_Work"
       Scene.SceneDirector = "DIR_MAIN"
+
       Select Case gs.ChildGraphicStep.Name
         Case Step0.LeagueTableTop
-    '      PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepArrows.Arrows)
+          Scene = PrepareLeagueTable(1, True)
         Case Step0.OtherMatchScores
-     '     PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Second half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepArrows.Arrows)
+          Scene = PrepareLeagueTable(1, True)
         Case Step0.LeagueTableBottom
-      '    PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Half time", gs.ChildGraphicStep.ChildGraphicStep.Name = StepArrows.Arrows)
+          Scene = PrepareLeagueTable(1, False)
         Case Step0.FullFrameStats
-       '   PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Full time", gs.ChildGraphicStep.ChildGraphicStep.Name = StepArrows.Arrows)
         Case Step0.LeagueComparison
-          '  PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half (extra time)", gs.ChildGraphicStep.ChildGraphicStep.Name = StepArrows.Arrows)
       End Select
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -96,6 +94,79 @@ Public Class GraphicGroupCtlF1FullFramers
   End Function
 
 #Region "Full frame scenes"
+  Private Function InitDefaultScene() As Scene
+    Dim scene As New Scene()
 
+    scene.VizLayer = SceneLayer.Middle
+    scene.SceneName = "cfx_Full_Frame_Work"
+    scene.SceneDirector = "anim_Full_Frame$In_Out"
+
+    Return scene
+  End Function
+  Public Function PrepareMatchIdent(gStep As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene()
+    Dim prefix As String = "TeamList_Step_" & gStep & "_"
+    Try
+      scene.SceneParameters.Add("Side_" & gStep & "_Control_Omo", 0)
+    Catch ex As Exception
+
+    End Try
+    Return scene
+  End Function
+
+  Public Function PrepareTeamList(gStep As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene()
+    Dim prefix As String = "TeamList_Step_" & gStep & "_"
+    Try
+      scene.SceneParameters.Add("Side_" & gStep & "_Control_Omo", 0)
+    Catch ex As Exception
+
+    End Try
+    Return scene
+  End Function
+
+  Public Function PrepareDoubleTeams(gStep As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene()
+    Dim prefix As String = "TeamList_Step_" & gStep & "_"
+    Try
+      scene.SceneParameters.Add("Side_" & gStep & "_Control_Omo", 1)
+    Catch ex As Exception
+
+    End Try
+    Return scene
+  End Function
+
+  Public Function PrepareLeagueTable(gStep As Integer, isTop As Boolean) As Scene
+    Dim scene As Scene = InitDefaultScene()
+    Dim prefix As String = "TeamList_Step_" & gStep & "_"
+    Try
+      scene.SceneParameters.Add("Side_" & gStep & "_Control_Omo", 2)
+    Catch ex As Exception
+
+    End Try
+    Return scene
+  End Function
+
+  Public Function PrepareMatchScores(gStep As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene()
+    Dim prefix As String = "TeamList_Step_" & gStep & "_"
+    Try
+      scene.SceneParameters.Add("Side_" & gStep & "_Control_Omo", 3)
+    Catch ex As Exception
+
+    End Try
+    Return scene
+  End Function
+
+  Public Function PrepareFormation(gStep As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene()
+    Dim prefix As String = "TeamList_Step_" & gStep & "_"
+    Try
+      scene.SceneParameters.Add("Side_" & gStep & "_Control_Omo", 4)
+    Catch ex As Exception
+
+    End Try
+    Return scene
+  End Function
 #End Region
 End Class

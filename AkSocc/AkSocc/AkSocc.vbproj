@@ -97,6 +97,7 @@
     <Compile Include="Classes\GraphicGroups\ClockSubstitutes.vb" />
     <Compile Include="Classes\GraphicGroups\ControlScoreSingleGoal.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicF1ScoreLine.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsCtlF12MatchIdent.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsCtlF1FullFramers.vb" />
     <Compile Include="Classes\Graphics\GraphicScoreLine.vb" />
     <Compile Include="Classes\GraphicVersions\GraphicVersion.vb" />
@@ -115,6 +116,12 @@
       <DependentUpon>AboutBoxAk.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\AboutBoxAk.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Waiting for director\FormWaitingForDirector.Designer.vb">
+      <DependentUpon>FormWaitingForDirector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Waiting for director\FormWaitingForDirector.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Choose\FormChoose.Designer.vb">

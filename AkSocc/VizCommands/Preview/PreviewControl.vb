@@ -8,7 +8,7 @@ Public Class PreviewControl
   Private _processedAssets As New List(Of PreviewAsset)
   Private _finishedAssets As New List(Of PreviewAsset)
   Private _activeAsset As PreviewAsset = Nothing
-  Private _basePath As String = "D:\Alamiya\Preview"
+  Private _basePath As String = "\\vaio\Shared\Snapshots"
   Private _tConfig As tyConfigVizrt
 
   Public Event AssetAdded(ByVal asset As PreviewAsset)
