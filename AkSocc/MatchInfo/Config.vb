@@ -20,6 +20,6 @@
 #Region "Properties"
   Public Property LocalConnectionString As String
   Public Property OptaConnectionString As String
-
+  Public Property LocalDataBasePath As String
 #End Region
 End Class

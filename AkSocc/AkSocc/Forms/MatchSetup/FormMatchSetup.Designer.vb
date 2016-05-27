@@ -195,7 +195,7 @@ Partial Class FormMatchSetup
     Me.MetroTabControl1.Location = New System.Drawing.Point(415, 3)
     Me.MetroTabControl1.Name = "MetroTabControl1"
     Me.TableLayoutPanelGlobal.SetRowSpan(Me.MetroTabControl1, 2)
-    Me.MetroTabControl1.SelectedIndex = 0
+    Me.MetroTabControl1.SelectedIndex = 2
     Me.MetroTabControl1.Size = New System.Drawing.Size(939, 524)
     Me.MetroTabControl1.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTabControl1.TabIndex = 48
@@ -374,6 +374,7 @@ Partial Class FormMatchSetup
     Me.MetroLabel2.TabIndex = 11
     Me.MetroLabel2.Text = "On air clocks position"
     Me.MetroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.MetroLabel2.Visible = False
     '
     'TableLayoutPanel3
     '
@@ -397,6 +398,7 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel3.Size = New System.Drawing.Size(725, 179)
     Me.TableLayoutPanel3.TabIndex = 12
+    Me.TableLayoutPanel3.Visible = False
     '
     'PictureBoxClockUp
     '

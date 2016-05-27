@@ -30,20 +30,27 @@ Partial Class DialogOptions
     Me.TabPage1 = New MetroFramework.Controls.MetroTabPage()
     Me.TabPage2 = New MetroFramework.Controls.MetroTabPage()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+    Me.NumericUpDownPreviewPort = New System.Windows.Forms.NumericUpDown()
     Me.LabelHost = New MetroFramework.Controls.MetroLabel()
     Me.TextBoxVizrtHost = New MetroFramework.Controls.MetroTextBox()
     Me.LabelREPort = New MetroFramework.Controls.MetroLabel()
     Me.NumericUpDownPort = New System.Windows.Forms.NumericUpDown()
     Me.LabelPreviewPort = New MetroFramework.Controls.MetroLabel()
-    Me.NumericUpDownPreviewPort = New System.Windows.Forms.NumericUpDown()
     Me.LabelSceneVersion = New MetroFramework.Controls.MetroLabel()
     Me.ComboBoxSceneVersion = New MetroFramework.Controls.MetroComboBox()
+    Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+    Me.MetroLabelDataBase = New MetroFramework.Controls.MetroLabel()
+    Me.MetroTextBoxDataBase = New MetroFramework.Controls.MetroTextBox()
+    Me.MetroButtonDataBase = New MetroFramework.Controls.MetroButton()
+    Me.OpenFileDialogDataBase = New System.Windows.Forms.OpenFileDialog()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TabControlOptions.SuspendLayout()
+    Me.TabPage1.SuspendLayout()
     Me.TabPage2.SuspendLayout()
     Me.TableLayoutPanel2.SuspendLayout()
-    CType(Me.NumericUpDownPort, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.NumericUpDownPreviewPort, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.NumericUpDownPort, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.TableLayoutPanel3.SuspendLayout()
     Me.SuspendLayout()
     '
     'TableLayoutPanel1
@@ -71,6 +78,7 @@ Partial Class DialogOptions
     Me.OK_Button.Size = New System.Drawing.Size(67, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
+    Me.OK_Button.UseSelectable = True
     '
     'Cancel_Button
     '
@@ -81,6 +89,7 @@ Partial Class DialogOptions
     Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
+    Me.Cancel_Button.UseSelectable = True
     '
     'CheckBoxShowOptionsOnStartup
     '
@@ -91,6 +100,7 @@ Partial Class DialogOptions
     Me.CheckBoxShowOptionsOnStartup.Size = New System.Drawing.Size(245, 23)
     Me.CheckBoxShowOptionsOnStartup.TabIndex = 2
     Me.CheckBoxShowOptionsOnStartup.Text = "Show options on application startup"
+    Me.CheckBoxShowOptionsOnStartup.UseSelectable = True
     '
     'TabControlOptions
     '
@@ -101,27 +111,41 @@ Partial Class DialogOptions
     Me.TabControlOptions.SelectedIndex = 0
     Me.TabControlOptions.Size = New System.Drawing.Size(411, 256)
     Me.TabControlOptions.TabIndex = 1
+    Me.TabControlOptions.UseSelectable = True
     '
     'TabPage1
     '
-    Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+    Me.TabPage1.Controls.Add(Me.TableLayoutPanel3)
+    Me.TabPage1.HorizontalScrollbarBarColor = True
+    Me.TabPage1.HorizontalScrollbarHighlightOnWheel = False
+    Me.TabPage1.HorizontalScrollbarSize = 10
+    Me.TabPage1.Location = New System.Drawing.Point(4, 38)
     Me.TabPage1.Name = "TabPage1"
     Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-    Me.TabPage1.Size = New System.Drawing.Size(403, 230)
+    Me.TabPage1.Size = New System.Drawing.Size(403, 214)
     Me.TabPage1.TabIndex = 0
     Me.TabPage1.Text = "General options"
     Me.TabPage1.UseVisualStyleBackColor = True
+    Me.TabPage1.VerticalScrollbarBarColor = True
+    Me.TabPage1.VerticalScrollbarHighlightOnWheel = False
+    Me.TabPage1.VerticalScrollbarSize = 10
     '
     'TabPage2
     '
     Me.TabPage2.Controls.Add(Me.TableLayoutPanel2)
-    Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+    Me.TabPage2.HorizontalScrollbarBarColor = True
+    Me.TabPage2.HorizontalScrollbarHighlightOnWheel = False
+    Me.TabPage2.HorizontalScrollbarSize = 10
+    Me.TabPage2.Location = New System.Drawing.Point(4, 38)
     Me.TabPage2.Name = "TabPage2"
     Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-    Me.TabPage2.Size = New System.Drawing.Size(403, 230)
+    Me.TabPage2.Size = New System.Drawing.Size(403, 214)
     Me.TabPage2.TabIndex = 1
     Me.TabPage2.Text = "Vizrt options"
     Me.TabPage2.UseVisualStyleBackColor = True
+    Me.TabPage2.VerticalScrollbarBarColor = True
+    Me.TabPage2.VerticalScrollbarHighlightOnWheel = False
+    Me.TabPage2.VerticalScrollbarSize = 10
     '
     'TableLayoutPanel2
     '
@@ -147,34 +171,68 @@ Partial Class DialogOptions
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(397, 224)
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(397, 208)
     Me.TableLayoutPanel2.TabIndex = 0
+    '
+    'NumericUpDownPreviewPort
+    '
+    Me.NumericUpDownPreviewPort.Location = New System.Drawing.Point(103, 63)
+    Me.NumericUpDownPreviewPort.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+    Me.NumericUpDownPreviewPort.Name = "NumericUpDownPreviewPort"
+    Me.NumericUpDownPreviewPort.Size = New System.Drawing.Size(68, 20)
+    Me.NumericUpDownPreviewPort.TabIndex = 5
     '
     'LabelHost
     '
     Me.LabelHost.AutoSize = True
+    Me.LabelHost.Dock = System.Windows.Forms.DockStyle.Fill
     Me.LabelHost.Location = New System.Drawing.Point(3, 0)
     Me.LabelHost.Name = "LabelHost"
-    Me.LabelHost.Size = New System.Drawing.Size(50, 13)
+    Me.LabelHost.Size = New System.Drawing.Size(94, 30)
     Me.LabelHost.TabIndex = 0
     Me.LabelHost.Text = "Vizrt host"
+    Me.LabelHost.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'TextBoxVizrtHost
     '
+    '
+    '
+    '
+    Me.TextBoxVizrtHost.CustomButton.Image = Nothing
+    Me.TextBoxVizrtHost.CustomButton.Location = New System.Drawing.Point(269, 2)
+    Me.TextBoxVizrtHost.CustomButton.Name = ""
+    Me.TextBoxVizrtHost.CustomButton.Size = New System.Drawing.Size(19, 19)
+    Me.TextBoxVizrtHost.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
+    Me.TextBoxVizrtHost.CustomButton.TabIndex = 1
+    Me.TextBoxVizrtHost.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
+    Me.TextBoxVizrtHost.CustomButton.UseSelectable = True
+    Me.TextBoxVizrtHost.CustomButton.Visible = False
     Me.TextBoxVizrtHost.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TextBoxVizrtHost.Lines = New String(-1) {}
     Me.TextBoxVizrtHost.Location = New System.Drawing.Point(103, 3)
+    Me.TextBoxVizrtHost.MaxLength = 32767
     Me.TextBoxVizrtHost.Name = "TextBoxVizrtHost"
-    Me.TextBoxVizrtHost.Size = New System.Drawing.Size(291, 20)
+    Me.TextBoxVizrtHost.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+    Me.TextBoxVizrtHost.ScrollBars = System.Windows.Forms.ScrollBars.None
+    Me.TextBoxVizrtHost.SelectedText = ""
+    Me.TextBoxVizrtHost.SelectionLength = 0
+    Me.TextBoxVizrtHost.SelectionStart = 0
+    Me.TextBoxVizrtHost.Size = New System.Drawing.Size(291, 24)
     Me.TextBoxVizrtHost.TabIndex = 1
+    Me.TextBoxVizrtHost.UseSelectable = True
+    Me.TextBoxVizrtHost.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
+    Me.TextBoxVizrtHost.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
     'LabelREPort
     '
     Me.LabelREPort.AutoSize = True
+    Me.LabelREPort.Dock = System.Windows.Forms.DockStyle.Fill
     Me.LabelREPort.Location = New System.Drawing.Point(3, 30)
     Me.LabelREPort.Name = "LabelREPort"
-    Me.LabelREPort.Size = New System.Drawing.Size(43, 13)
+    Me.LabelREPort.Size = New System.Drawing.Size(94, 30)
     Me.LabelREPort.TabIndex = 2
     Me.LabelREPort.Text = "RE port"
+    Me.LabelREPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'NumericUpDownPort
     '
@@ -187,37 +245,113 @@ Partial Class DialogOptions
     'LabelPreviewPort
     '
     Me.LabelPreviewPort.AutoSize = True
+    Me.LabelPreviewPort.Dock = System.Windows.Forms.DockStyle.Fill
     Me.LabelPreviewPort.Location = New System.Drawing.Point(3, 60)
     Me.LabelPreviewPort.Name = "LabelPreviewPort"
-    Me.LabelPreviewPort.Size = New System.Drawing.Size(66, 13)
+    Me.LabelPreviewPort.Size = New System.Drawing.Size(94, 30)
     Me.LabelPreviewPort.TabIndex = 4
     Me.LabelPreviewPort.Text = "Preview port"
-    '
-    'NumericUpDownPreviewPort
-    '
-    Me.NumericUpDownPreviewPort.Location = New System.Drawing.Point(103, 63)
-    Me.NumericUpDownPreviewPort.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-    Me.NumericUpDownPreviewPort.Name = "NumericUpDownPreviewPort"
-    Me.NumericUpDownPreviewPort.Size = New System.Drawing.Size(68, 20)
-    Me.NumericUpDownPreviewPort.TabIndex = 5
+    Me.LabelPreviewPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'LabelSceneVersion
     '
     Me.LabelSceneVersion.AutoSize = True
+    Me.LabelSceneVersion.Dock = System.Windows.Forms.DockStyle.Fill
     Me.LabelSceneVersion.Location = New System.Drawing.Point(3, 90)
     Me.LabelSceneVersion.Name = "LabelSceneVersion"
-    Me.LabelSceneVersion.Size = New System.Drawing.Size(75, 13)
+    Me.LabelSceneVersion.Size = New System.Drawing.Size(94, 30)
     Me.LabelSceneVersion.TabIndex = 6
     Me.LabelSceneVersion.Text = "Scene version"
+    Me.LabelSceneVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'ComboBoxSceneVersion
     '
-    Me.ComboBoxSceneVersion.DropDownStyle = ComboBoxStyle.DropDownList
     Me.ComboBoxSceneVersion.FormattingEnabled = True
+    Me.ComboBoxSceneVersion.ItemHeight = 23
     Me.ComboBoxSceneVersion.Location = New System.Drawing.Point(103, 93)
     Me.ComboBoxSceneVersion.Name = "ComboBoxSceneVersion"
-    Me.ComboBoxSceneVersion.Size = New System.Drawing.Size(192, 21)
+    Me.ComboBoxSceneVersion.Size = New System.Drawing.Size(192, 29)
     Me.ComboBoxSceneVersion.TabIndex = 7
+    Me.ComboBoxSceneVersion.UseSelectable = True
+    '
+    'TableLayoutPanel3
+    '
+    Me.TableLayoutPanel3.ColumnCount = 3
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroLabelDataBase, 0, 0)
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroTextBoxDataBase, 1, 0)
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroButtonDataBase, 2, 0)
+    Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 3)
+    Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+    Me.TableLayoutPanel3.RowCount = 7
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel3.Size = New System.Drawing.Size(397, 208)
+    Me.TableLayoutPanel3.TabIndex = 2
+    '
+    'MetroLabelDataBase
+    '
+    Me.MetroLabelDataBase.AutoSize = True
+    Me.MetroLabelDataBase.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabelDataBase.Location = New System.Drawing.Point(3, 0)
+    Me.MetroLabelDataBase.Name = "MetroLabelDataBase"
+    Me.MetroLabelDataBase.Size = New System.Drawing.Size(94, 30)
+    Me.MetroLabelDataBase.TabIndex = 0
+    Me.MetroLabelDataBase.Text = "Data base"
+    Me.MetroLabelDataBase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'MetroTextBoxDataBase
+    '
+    '
+    '
+    '
+    Me.MetroTextBoxDataBase.CustomButton.Image = Nothing
+    Me.MetroTextBoxDataBase.CustomButton.Location = New System.Drawing.Point(234, 2)
+    Me.MetroTextBoxDataBase.CustomButton.Name = ""
+    Me.MetroTextBoxDataBase.CustomButton.Size = New System.Drawing.Size(19, 19)
+    Me.MetroTextBoxDataBase.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
+    Me.MetroTextBoxDataBase.CustomButton.TabIndex = 1
+    Me.MetroTextBoxDataBase.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
+    Me.MetroTextBoxDataBase.CustomButton.UseSelectable = True
+    Me.MetroTextBoxDataBase.CustomButton.Visible = False
+    Me.MetroTextBoxDataBase.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTextBoxDataBase.Lines = New String(-1) {}
+    Me.MetroTextBoxDataBase.Location = New System.Drawing.Point(103, 3)
+    Me.MetroTextBoxDataBase.MaxLength = 32767
+    Me.MetroTextBoxDataBase.Name = "MetroTextBoxDataBase"
+    Me.MetroTextBoxDataBase.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+    Me.MetroTextBoxDataBase.ScrollBars = System.Windows.Forms.ScrollBars.None
+    Me.MetroTextBoxDataBase.SelectedText = ""
+    Me.MetroTextBoxDataBase.SelectionLength = 0
+    Me.MetroTextBoxDataBase.SelectionStart = 0
+    Me.MetroTextBoxDataBase.Size = New System.Drawing.Size(256, 24)
+    Me.MetroTextBoxDataBase.TabIndex = 1
+    Me.MetroTextBoxDataBase.UseSelectable = True
+    Me.MetroTextBoxDataBase.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
+    Me.MetroTextBoxDataBase.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
+    '
+    'MetroButtonDataBase
+    '
+    Me.MetroButtonDataBase.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonDataBase.Location = New System.Drawing.Point(365, 3)
+    Me.MetroButtonDataBase.Name = "MetroButtonDataBase"
+    Me.MetroButtonDataBase.Size = New System.Drawing.Size(29, 24)
+    Me.MetroButtonDataBase.TabIndex = 2
+    Me.MetroButtonDataBase.Text = "..."
+    Me.MetroButtonDataBase.UseSelectable = True
+    '
+    'OpenFileDialogDataBase
+    '
+    Me.OpenFileDialogDataBase.FileName = "OpenFileDialog1"
+    Me.OpenFileDialogDataBase.Title = "Data base"
     '
     'DialogOptions
     '
@@ -228,38 +362,46 @@ Partial Class DialogOptions
     Me.ClientSize = New System.Drawing.Size(435, 315)
     Me.Controls.Add(Me.TabControlOptions)
     Me.Controls.Add(Me.TableLayoutPanel1)
-    Me.FormBorderStyle = FormBorderStyle.FixedDialog
+    Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
     Me.MaximizeBox = False
     Me.MinimizeBox = False
     Me.Name = "DialogOptions"
     Me.ShowInTaskbar = False
-    Me.StartPosition = FormStartPosition.CenterParent
+    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "DialogOptions"
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.TableLayoutPanel1.PerformLayout()
     Me.TabControlOptions.ResumeLayout(False)
+    Me.TabPage1.ResumeLayout(False)
     Me.TabPage2.ResumeLayout(False)
     Me.TableLayoutPanel2.ResumeLayout(False)
     Me.TableLayoutPanel2.PerformLayout()
-    CType(Me.NumericUpDownPort, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.NumericUpDownPreviewPort, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.NumericUpDownPort, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.TableLayoutPanel3.ResumeLayout(False)
+    Me.TableLayoutPanel3.PerformLayout()
     Me.ResumeLayout(False)
 
   End Sub
   Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
   Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
   Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
-  Friend WithEvents CheckBoxShowOptionsOnStartup As CheckBox
-  Friend WithEvents TabControlOptions As TabControl
-  Friend WithEvents TabPage1 As TabPage
-  Friend WithEvents TabPage2 As TabPage
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
-  Friend WithEvents LabelHost As Label
   Friend WithEvents TextBoxVizrtHost As MetroFramework.Controls.MetroTextBox
-  Friend WithEvents LabelREPort As Label
   Friend WithEvents NumericUpDownPort As NumericUpDown
-  Friend WithEvents LabelPreviewPort As Label
   Friend WithEvents NumericUpDownPreviewPort As NumericUpDown
-  Friend WithEvents LabelSceneVersion As Label
-  Friend WithEvents ComboBoxSceneVersion As ComboBox
+  Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
+  Friend WithEvents MetroLabelDataBase As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroTextBoxDataBase As MetroFramework.Controls.MetroTextBox
+  Friend WithEvents MetroButtonDataBase As MetroFramework.Controls.MetroButton
+  Friend WithEvents CheckBoxShowOptionsOnStartup As MetroFramework.Controls.MetroCheckBox
+  Friend WithEvents TabControlOptions As MetroFramework.Controls.MetroTabControl
+  Friend WithEvents TabPage1 As MetroFramework.Controls.MetroTabPage
+  Friend WithEvents TabPage2 As MetroFramework.Controls.MetroTabPage
+  Friend WithEvents LabelHost As MetroFramework.Controls.MetroLabel
+  Friend WithEvents LabelREPort As MetroFramework.Controls.MetroLabel
+  Friend WithEvents LabelPreviewPort As MetroFramework.Controls.MetroLabel
+  Friend WithEvents LabelSceneVersion As MetroFramework.Controls.MetroLabel
+  Friend WithEvents ComboBoxSceneVersion As MetroFramework.Controls.MetroComboBox
+  Friend WithEvents OpenFileDialogDataBase As OpenFileDialog
 End Class

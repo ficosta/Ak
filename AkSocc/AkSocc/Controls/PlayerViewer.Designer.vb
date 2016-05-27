@@ -33,11 +33,12 @@ Partial Class PlayerViewer
     '
     'TableLayoutPanelPlayer
     '
-    Me.TableLayoutPanelPlayer.ColumnCount = 4
+    Me.TableLayoutPanelPlayer.ColumnCount = 5
     Me.TableLayoutPanelPlayer.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
     Me.TableLayoutPanelPlayer.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelPlayer.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
-    Me.TableLayoutPanelPlayer.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
+    Me.TableLayoutPanelPlayer.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelPlayer.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelPlayer.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
     Me.TableLayoutPanelPlayer.Controls.Add(Me.LabelCards, 2, 0)
     Me.TableLayoutPanelPlayer.Controls.Add(Me.LabelName, 1, 0)
     Me.TableLayoutPanelPlayer.Controls.Add(Me.LabelDorsal, 0, 0)
@@ -55,10 +56,10 @@ Partial Class PlayerViewer
     Me.LabelCards.BackColor = System.Drawing.Color.White
     Me.LabelCards.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.LabelCards.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelCards.Location = New System.Drawing.Point(645, 3)
+    Me.LabelCards.Location = New System.Drawing.Point(705, 3)
     Me.LabelCards.Margin = New System.Windows.Forms.Padding(3)
     Me.LabelCards.Name = "LabelCards"
-    Me.LabelCards.Size = New System.Drawing.Size(34, 26)
+    Me.LabelCards.Size = New System.Drawing.Size(14, 26)
     Me.LabelCards.TabIndex = 2
     Me.LabelCards.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
     '
@@ -70,7 +71,7 @@ Partial Class PlayerViewer
     Me.LabelName.Location = New System.Drawing.Point(43, 3)
     Me.LabelName.Margin = New System.Windows.Forms.Padding(3)
     Me.LabelName.Name = "LabelName"
-    Me.LabelName.Size = New System.Drawing.Size(596, 26)
+    Me.LabelName.Size = New System.Drawing.Size(656, 26)
     Me.LabelName.TabIndex = 1
     Me.LabelName.Text = "PLAYER NAME"
     Me.LabelName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -93,9 +94,9 @@ Partial Class PlayerViewer
     Me.PictureBoxInfo.BackColor = System.Drawing.Color.Maroon
     Me.PictureBoxInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.PictureBoxInfo.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PictureBoxInfo.Location = New System.Drawing.Point(685, 3)
+    Me.PictureBoxInfo.Location = New System.Drawing.Point(725, 3)
     Me.PictureBoxInfo.Name = "PictureBoxInfo"
-    Me.PictureBoxInfo.Size = New System.Drawing.Size(74, 26)
+    Me.PictureBoxInfo.Size = New System.Drawing.Size(14, 26)
     Me.PictureBoxInfo.TabIndex = 3
     Me.PictureBoxInfo.TabStop = False
     Me.PictureBoxInfo.Visible = False

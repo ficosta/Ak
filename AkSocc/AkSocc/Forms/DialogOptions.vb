@@ -25,13 +25,15 @@ Public Class DialogOptions
 #Region "Settings"
   Private Sub InitializeSettings()
     Try
+      Me.MetroTextBoxDataBase.Text = My.Settings.DataBasePath
       Me.CheckBoxShowOptionsOnStartup.Checked = My.Settings.ShowSettingsOnStartup
       Me.TextBoxVizrtHost.Text = My.Settings.VizrtHost
       Me.NumericUpDownPort.Value = My.Settings.VizrtPort
       Me.NumericUpDownPreviewPort.Value = My.Settings.VizrtPreviewPort
 
       Dim index As Integer = -1
-      Me.ComboBoxSceneVersion.Items.Clear
+      Me.ComboBoxSceneVersion.Items.Clear()
+
       For Each version As GraphicVersion In _graphicVersions
         Me.ComboBoxSceneVersion.Items.Add(version)
         If version.Path = My.Settings.ScenePath Then
@@ -51,6 +53,7 @@ Public Class DialogOptions
   Private Function AcceptSettings() As Boolean
     Dim res As Boolean = True
     Try
+      My.Settings.DataBasePath = Me.MetroTextBoxDataBase.Text
       My.Settings.ShowSettingsOnStartup = Me.CheckBoxShowOptionsOnStartup.Checked
       My.Settings.VizrtHost = Me.TextBoxVizrtHost.Text
       My.Settings.VizrtPort = Me.NumericUpDownPort.Value
@@ -70,6 +73,17 @@ Public Class DialogOptions
   Private Sub RejectSettings()
     Try
 
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub MetroButtonDataBase_Click(sender As Object, e As EventArgs) Handles MetroButtonDataBase.Click
+    Try
+      Me.OpenFileDialogDataBase.FileName = Me.MetroTextBoxDataBase.Text
+      If Me.OpenFileDialogDataBase.ShowDialog(Me) Then
+        Me.MetroTextBoxDataBase.Text = Me.OpenFileDialogDataBase.FileName
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try

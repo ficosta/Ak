@@ -3,6 +3,8 @@
 Public Class FormMatchSetup
   Private _matches As MatchInfo.Matches
 
+  Private _officials As New Officials
+
   Public Property SelectedMatchId As Integer
   Public Property SelectedCompetitionId As Integer
 
@@ -23,7 +25,14 @@ Public Class FormMatchSetup
       Me.UcTeamMatchSetupHome.Color = Color.Turquoise
       Me.UcTeamMatchSetupHome.IsLocalTeam = True
       Me.UcTeamMatchSetupAway.Color = Color.SaddleBrown
-      Me.UcTeamMatchSetupAway.IsLocalTeam = False
+      Me.UcTeamMatchSetupAway.IsLocalTeam = True
+
+      For Each official As Official In _officials
+        Me.MetroComboBoxReferee1.Items.Add(official)
+        Me.MetroComboBoxReferee2.Items.Add(official)
+        Me.MetroComboBoxReferee3.Items.Add(official)
+      Next
+
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try

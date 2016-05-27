@@ -9,14 +9,14 @@ Module Main
 
   Public ReadOnly Property LocalConnectionString As String
     Get
-      Dim path As String = System.IO.Path.Combine("C:\BeInReal\Alamiya\AEL Saudi Football.mdb")
+      Dim path As String = System.IO.Path.Combine(My.Settings.DataBasePath)
       Return "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & path
     End Get
   End Property
 
   Public ReadOnly Property OptaConnectionString As String
     Get
-      Dim path As String = System.IO.Path.Combine("C:\BeInReal\Alamiya\AEL Saudi Football.mdb")
+      Dim path As String = System.IO.Path.Combine(My.Settings.DataBasePath)
       Return "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & path
     End Get
   End Property
