@@ -117,12 +117,6 @@
     <Compile Include="Forms\AboutBoxAk.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Choose\DialogChoose.Designer.vb">
-      <DependentUpon>DialogChoose.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Choose\DialogChoose.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\Choose\FormChoose.Designer.vb">
       <DependentUpon>FormChoose.vb</DependentUpon>
     </Compile>
@@ -250,9 +244,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AboutBoxAk.resx">
       <DependentUpon>AboutBoxAk.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Choose\DialogChoose.resx">
-      <DependentUpon>DialogChoose.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Choose\FormChoose.resx">
       <DependentUpon>FormChoose.vb</DependentUpon>
