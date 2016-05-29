@@ -71,8 +71,8 @@ Public Class GraphicGroupF1ScoreLine
       Else
         Select Case graphicStep.Depth
           Case 0
-            gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.SponsorLogo, True, True))
-            gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.NoLogo, True, True))
+            gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.SponsorLogo, True, False))
+            gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.NoLogo, True, False))
           Case 1
             'graphic is ready
 
@@ -117,8 +117,9 @@ Public Class GraphicGroupF1ScoreLine
 
   Private Sub PrepareResultScene(ByRef scene As Scene, home_Result As String, away_Result As String, period_Name As String, show_Logo As Boolean)
     Try
-      scene.SceneDirectors.Add("DIR_MAIN", 0, DirectorAction.Start)
-      scene.SceneDirectors.Add("sponsor_in_out", 0, DirectorAction.Rewind)
+      scene.SceneDirectorsIn.Add("DIR_MAIN", 0, DirectorAction.Start)
+      scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
+      scene.SceneDirectorsOut.Add("DIR_MAIN", 0, DirectorAction.ContinueNormal)
 
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Name", Match.HomeTeam.ArabicCaption1Name))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Name", Match.AwayTeam.ArabicCaption1Name))
@@ -134,9 +135,10 @@ Public Class GraphicGroupF1ScoreLine
 
       If show_Logo Then
         scene.SceneParameters.Add(New SceneParameter("Scoreline_show_Logo", "1"))
-        scene.SceneDirectors.Add("sponsor_in_out", 100, DirectorAction.Start)
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 100, DirectorAction.Start)
       Else
         scene.SceneParameters.Add(New SceneParameter("Scoreline_show_Logo", "0"))
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 100, DirectorAction.Dummy)
       End If
 
     Catch ex As Exception

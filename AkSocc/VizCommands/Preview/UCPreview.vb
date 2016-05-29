@@ -150,7 +150,7 @@ Public Class UCPreview
 
   Private Sub ButtonPreview_Click(sender As Object, e As EventArgs) Handles ButtonPreview.Click
     _scene.SendSceneToEngine(_vizControl)
-    _scene.StartSceneDirectors(_vizControl)
+    _scene.StartSceneDirectors(_vizControl, _scene.SceneDirectorsIn)
     '_vizControl.DirectorStart(_scene.SceneDirector)
   End Sub
 

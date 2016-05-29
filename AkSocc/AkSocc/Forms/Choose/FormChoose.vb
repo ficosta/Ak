@@ -40,13 +40,21 @@ Public Class FormChoose
       lbl.TextAlign = ContentAlignment.MiddleCenter
       lbl.Dock = DockStyle.Fill
 
-      Dim tsk As New MetroTaskWindow(5, lbl)
+
+
+
+      Dim scene As VizCommands.Scene = Me.GraphicGroup.PrepareScene(Me.GraphicGroup.graphicStep)
+
+      Dim tsk As New MetroTaskWindow(scene.SceneDirectorsIn.MaxFrame / 40, lbl)
 
       tsk.StartPosition = FormStartPosition.CenterScreen
       tsk.MaximizeBox = False
       tsk.MinimizeBox = False
 
       'send scene to render and start animation
+      scene.SendSceneToEngine(_vizControl)
+      scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
+      'wait for animation to end
       tsk.ShowDialog(Me)
 
 
@@ -54,6 +62,7 @@ Public Class FormChoose
         'there's nothing else: we wait for the "out" confirmation and close the dialog
         MetroMessageBox.Show(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
 
+        scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
       Else

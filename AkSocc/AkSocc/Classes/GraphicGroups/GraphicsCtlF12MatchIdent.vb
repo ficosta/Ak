@@ -97,6 +97,10 @@ Public Class GraphicsCtlF12MatchIdent
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "Match_Ident_Side_" & gStep & "_"
     Try
+
+      scene.SceneDirectorsIn.Add("anim_Full_Frame$In_Out", 0, DirectorAction.Start)
+      scene.SceneDirectorsIn.Add("anim_Full_Frame$In_Out", 100, DirectorAction.Dummy)
+
       scene.SceneParameters.Add("Side_" & gStep & "_Control_Omo", 0)
 
       scene.SceneParameters.Add(prefix & "Header_Text", "Header text")

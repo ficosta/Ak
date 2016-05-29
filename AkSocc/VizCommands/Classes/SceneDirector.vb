@@ -5,6 +5,7 @@
   Rewind
   Pause
   JumpTo
+  Dummy
 End Enum
 Public Class SceneDirector
   Public Property ID As String = Guid.NewGuid().ToString

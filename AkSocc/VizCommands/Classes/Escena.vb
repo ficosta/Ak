@@ -25,7 +25,10 @@ End Enum
   Public Property VizLayer As SceneLayer = SceneLayer.Middle
   Public Property PreviewJumpoTime As Integer = 0
 
-  Public Property SceneDirectors As New SceneDirectors
+  Public Property SceneDirectorsIn As New SceneDirectors
+  Public Property SceneDirectorsOut As New SceneDirectors
+  Public Property SceneDirectorsChange As New SceneDirectors
+  Private _currentSceneDirectors As SceneDirectors
 
   Private WithEvents _vizrtControl As VizControl = Nothing
 
@@ -80,7 +83,25 @@ End Enum
     Return nCount
   End Function
 
-  Public Sub StartSceneDirectors(CiControlVizrt As VizControl)
+  Public Enum TypeOfDirectors
+    InDirectors
+    OutDirectors
+    ChangeDirectors
+  End Enum
+
+  Public Sub StartSceneDirectors(CiControlVizrt As VizControl, type As TypeOfDirectors)
+    Select Case type
+      Case TypeOfDirectors.InDirectors
+        StartSceneDirectors(CiControlVizrt, Me.SceneDirectorsIn)
+      Case TypeOfDirectors.OutDirectors
+        StartSceneDirectors(CiControlVizrt, Me.SceneDirectorsOut)
+      Case TypeOfDirectors.ChangeDirectors
+        StartSceneDirectors(CiControlVizrt, Me.SceneDirectorsChange)
+
+    End Select
+  End Sub
+
+  Public Sub StartSceneDirectors(CiControlVizrt As VizControl, sceneDirectors As SceneDirectors)
     Try
       _vizrtControl = CiControlVizrt
       If _backgroundWorker Is Nothing Then
@@ -88,6 +109,8 @@ End Enum
         _backgroundWorker.WorkerReportsProgress = True
         _backgroundWorker.WorkerSupportsCancellation = True
       End If
+
+      _currentSceneDirectors = sceneDirectors
 
       If Not _backgroundWorker.IsBusy Then
         _backgroundWorker.RunWorkerAsync()
@@ -100,7 +123,7 @@ End Enum
   Private Sub _backgroundWorker_DoWork(sender As Object, e As DoWorkEventArgs) Handles _backgroundWorker.DoWork
     Try
       Dim frame As Integer = 0
-      Dim maxFrame As Integer = Me.SceneDirectors.MaxFrame
+      Dim maxFrame As Integer = Me._currentSceneDirectors.MaxFrame
       Dim stopWatch As New Stopwatch
       stopWatch.Start()
       'report first frame
@@ -122,7 +145,7 @@ End Enum
   Private Sub _backgroundWorker_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles _backgroundWorker.ProgressChanged
     Debug.Print("frame " & e.ProgressPercentage)
     Try
-      For Each director As SceneDirector In Me.SceneDirectors.GetSceneDirectorsByFrame(e.ProgressPercentage)
+      For Each director As SceneDirector In _currentSceneDirectors.GetSceneDirectorsByFrame(e.ProgressPercentage)
         Select Case director.Action
           Case DirectorAction.Start
             _vizrtControl.DirectorStart(director.Name, Me.VizLayer)

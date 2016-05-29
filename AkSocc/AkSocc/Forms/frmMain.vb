@@ -219,14 +219,14 @@ Public Class frmMain
     Try
       _dlgChoosWithPreview = New FormChoose(_vizControl, _previewControl, statGraphic)
       If _dlgChoosWithPreview.ShowDialog(Me) Then
-        'what you gonna do?
-        _dlgChoosWithPreview.GraphicGroup.PreProcessingAction()
-        'send scene to engine, play animations
-        Dim scene As VizCommands.Scene = _dlgChoosWithPreview.GraphicGroup.PrepareScene(_dlgChoosWithPreview.GraphicGroup.graphicStep)
-        scene.SendSceneToEngine(_vizControl)
-        scene.StartSceneDirectors(_vizControl)
-        'What are we gonna do next?
-        _dlgChoosWithPreview.GraphicGroup.PostProcessingAction()
+        ''what you gonna do?
+        '_dlgChoosWithPreview.GraphicGroup.PreProcessingAction()
+        ''send scene to engine, play animations
+        'Dim scene As VizCommands.Scene = _dlgChoosWithPreview.GraphicGroup.PrepareScene(_dlgChoosWithPreview.GraphicGroup.graphicStep)
+        'scene.SendSceneToEngine(_vizControl)
+        'scene.StartSceneDirectors(_vizControl, VizCommands.Scene.TypeOfDirectors.InDirectors)
+        ''What are we gonna do next?
+        '_dlgChoosWithPreview.GraphicGroup.PostProcessingAction()
 
       End If
     Catch ex As Exception
