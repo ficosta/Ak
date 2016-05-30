@@ -30,7 +30,6 @@ Public Class Match
   Public Property HomeTeamName As String
   Public Property AwayTeamName As String
 
-
   Private _home_goals As Integer = 0
   Public Property home_goals As Integer
     Get

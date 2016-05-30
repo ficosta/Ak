@@ -52,12 +52,12 @@ Partial Class FormMatchSetup
     Me.PictureBoxClockRight = New System.Windows.Forms.PictureBox()
     Me.PictureBoxClockDown = New System.Windows.Forms.PictureBox()
     Me.TabPageHome = New System.Windows.Forms.TabPage()
+    Me.UcTeamMatchSetupHome = New AkSocc.UCTeamMatchSetup()
     Me.TabPageAway = New System.Windows.Forms.TabPage()
+    Me.UcTeamMatchSetupAway = New AkSocc.UCTeamMatchSetup()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.OK_Button = New MetroFramework.Controls.MetroButton()
     Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
-    Me.UcTeamMatchSetupHome = New AkSocc.UCTeamMatchSetup()
-    Me.UcTeamMatchSetupAway = New AkSocc.UCTeamMatchSetup()
     Me.TableLayoutPanelGlobal.SuspendLayout()
     CType(Me.MetroGridMatches, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.MetroTabControl1.SuspendLayout()
@@ -195,7 +195,7 @@ Partial Class FormMatchSetup
     Me.MetroTabControl1.Location = New System.Drawing.Point(415, 3)
     Me.MetroTabControl1.Name = "MetroTabControl1"
     Me.TableLayoutPanelGlobal.SetRowSpan(Me.MetroTabControl1, 2)
-    Me.MetroTabControl1.SelectedIndex = 2
+    Me.MetroTabControl1.SelectedIndex = 0
     Me.MetroTabControl1.Size = New System.Drawing.Size(939, 524)
     Me.MetroTabControl1.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTabControl1.TabIndex = 48
@@ -216,13 +216,13 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanel2.ColumnCount = 2
     Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
     Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel4, 0, 3)
     Me.TableLayoutPanel2.Controls.Add(Me.MetroTileMatchInfo, 0, 4)
     Me.TableLayoutPanel2.Controls.Add(Me.MetroLabelSceneVersion, 0, 5)
     Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxSceneVersion, 1, 5)
     Me.TableLayoutPanel2.Controls.Add(Me.MetroTileReferees, 0, 0)
     Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel1, 0, 1)
     Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel3, 0, 2)
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel4, 0, 3)
     Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxReferee1, 1, 1)
     Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxReferee2, 1, 2)
     Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxReferee3, 1, 3)
@@ -457,6 +457,18 @@ Partial Class FormMatchSetup
     Me.TabPageHome.TabIndex = 0
     Me.TabPageHome.Text = "Home team"
     '
+    'UcTeamMatchSetupHome
+    '
+    Me.UcTeamMatchSetupHome.Color = System.Drawing.Color.AliceBlue
+    Me.UcTeamMatchSetupHome.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcTeamMatchSetupHome.IsLocalTeam = True
+    Me.UcTeamMatchSetupHome.Location = New System.Drawing.Point(0, 0)
+    Me.UcTeamMatchSetupHome.Name = "UcTeamMatchSetupHome"
+    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(931, 482)
+    Me.UcTeamMatchSetupHome.TabIndex = 0
+    Me.UcTeamMatchSetupHome.Tactic = Nothing
+    Me.UcTeamMatchSetupHome.Team = Nothing
+    '
     'TabPageAway
     '
     Me.TabPageAway.Controls.Add(Me.UcTeamMatchSetupAway)
@@ -465,6 +477,18 @@ Partial Class FormMatchSetup
     Me.TabPageAway.Size = New System.Drawing.Size(931, 482)
     Me.TabPageAway.TabIndex = 1
     Me.TabPageAway.Text = "Away team"
+    '
+    'UcTeamMatchSetupAway
+    '
+    Me.UcTeamMatchSetupAway.Color = System.Drawing.Color.AliceBlue
+    Me.UcTeamMatchSetupAway.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcTeamMatchSetupAway.IsLocalTeam = True
+    Me.UcTeamMatchSetupAway.Location = New System.Drawing.Point(0, 0)
+    Me.UcTeamMatchSetupAway.Name = "UcTeamMatchSetupAway"
+    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(931, 482)
+    Me.UcTeamMatchSetupAway.TabIndex = 0
+    Me.UcTeamMatchSetupAway.Tactic = Nothing
+    Me.UcTeamMatchSetupAway.Team = Nothing
     '
     'TableLayoutPanel1
     '
@@ -501,30 +525,6 @@ Partial Class FormMatchSetup
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
     Me.Cancel_Button.UseSelectable = True
-    '
-    'UcTeamMatchSetupHome
-    '
-    Me.UcTeamMatchSetupHome.Color = System.Drawing.Color.AliceBlue
-    Me.UcTeamMatchSetupHome.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcTeamMatchSetupHome.IsLocalTeam = True
-    Me.UcTeamMatchSetupHome.Location = New System.Drawing.Point(0, 0)
-    Me.UcTeamMatchSetupHome.Name = "UcTeamMatchSetupHome"
-    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(931, 482)
-    Me.UcTeamMatchSetupHome.TabIndex = 0
-    Me.UcTeamMatchSetupHome.Tactic = Nothing
-    Me.UcTeamMatchSetupHome.Team = Nothing
-    '
-    'UcTeamMatchSetupAway
-    '
-    Me.UcTeamMatchSetupAway.Color = System.Drawing.Color.AliceBlue
-    Me.UcTeamMatchSetupAway.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcTeamMatchSetupAway.IsLocalTeam = True
-    Me.UcTeamMatchSetupAway.Location = New System.Drawing.Point(0, 0)
-    Me.UcTeamMatchSetupAway.Name = "UcTeamMatchSetupAway"
-    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(931, 482)
-    Me.UcTeamMatchSetupAway.TabIndex = 0
-    Me.UcTeamMatchSetupAway.Tactic = Nothing
-    Me.UcTeamMatchSetupAway.Team = Nothing
     '
     'FormMatchSetup
     '

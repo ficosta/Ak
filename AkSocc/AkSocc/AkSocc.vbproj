@@ -160,12 +160,6 @@
     <Compile Include="Forms\DialogChooseWithPreview.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DialogMatchSetup.Designer.vb">
-      <DependentUpon>DialogMatchSetup.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DialogMatchSetup.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\DialogOptions.Designer.vb">
       <DependentUpon>DialogOptions.vb</DependentUpon>
     </Compile>
@@ -244,6 +238,20 @@
     <Compile Include="Controls\PlayerViewer.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="OtherMatches\frmOtherMatches.Designer.vb">
+      <DependentUpon>frmOtherMatches.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OtherMatches\frmOtherMatches.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherMatches\OtherMatch.vb" />
+    <Compile Include="OtherMatches\OtherMatches.vb" />
+    <Compile Include="OtherMatches\UCOtherMatch.Designer.vb">
+      <DependentUpon>UCOtherMatch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OtherMatches\UCOtherMatch.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\TeamViewer.resx">
@@ -269,9 +277,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogChooseWithPreview.resx">
       <DependentUpon>DialogChooseWithPreview.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DialogMatchSetup.resx">
-      <DependentUpon>DialogMatchSetup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogOptions.resx">
       <DependentUpon>DialogOptions.vb</DependentUpon>
@@ -300,6 +305,9 @@
     <EmbeddedResource Include="Forms\Substitutions\FormSubstitutions.resx">
       <DependentUpon>FormSubstitutions.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Waiting for director\FormWaitingForDirector.resx">
+      <DependentUpon>FormWaitingForDirector.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -308,6 +316,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PlayerViewer.resx">
       <DependentUpon>PlayerViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherMatches\frmOtherMatches.resx">
+      <DependentUpon>frmOtherMatches.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherMatches\UCOtherMatch.resx">
+      <DependentUpon>UCOtherMatch.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

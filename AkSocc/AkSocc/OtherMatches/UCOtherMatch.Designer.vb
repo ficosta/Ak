@@ -1,8 +1,8 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormWaitingForDirector
-  Inherits MetroFramework.Forms.MetroForm
+Partial Class UCOtherMatch
+  Inherits System.Windows.Forms.UserControl
 
-  'Form overrides dispose to clean up the component list.
+  'UserControl overrides dispose to clean up the component list.
   <System.Diagnostics.DebuggerNonUserCode()> _
   Protected Overrides Sub Dispose(ByVal disposing As Boolean)
     Try
@@ -24,14 +24,14 @@ Partial Class FormWaitingForDirector
   Private Sub InitializeComponent()
     Me.SuspendLayout()
     '
-    'FormWaitingForDirector
+    'UCOtherMatch
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(300, 195)
-    Me.Name = "FormWaitingForDirector"
-    Me.Text = "Waiting for director"
+    Me.Name = "UCOtherMatch"
+    Me.Size = New System.Drawing.Size(775, 100)
     Me.ResumeLayout(False)
 
   End Sub
+
 End Class
