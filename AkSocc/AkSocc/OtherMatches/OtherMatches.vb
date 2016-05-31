@@ -1,23 +1,15 @@
-﻿<Serializable()> Public Class OtherMatches
+﻿<Serializable()> Public Class MatchDay
   Inherits CollectionBase
+  Implements IComparable
+
+  Public Property MatchDayID As String = Guid.NewGuid().ToString
+  Public Property MatchDay As String
 
   Public Sub New()
   End Sub
 
-  Public Sub LoadFromFile(file As String)
-    Try
-      DesserializeObjectFromFile(file, Me.InnerList)
-    Catch ex As Exception
-      WriteToErrorLog(ex)
-    End Try
-  End Sub
-
-  Public Sub SaveToFile(file As String)
-    Try
-      SerializeObjectToFile(file, Me.InnerList)
-    Catch ex As Exception
-      WriteToErrorLog(ex)
-    End Try
+  Public Sub New(matchDay As String)
+    Me.MatchDay = matchDay
   End Sub
 
   Public Function Add(OtherMatch As OtherMatch) As Integer
@@ -35,6 +27,7 @@
           Me.List.Add(OtherMatch)
         End If
       End If
+      UpdateIndexes()
     Catch ex As Exception
     End Try
     Return Me.List.Count
@@ -54,12 +47,12 @@
     Me.InnerList.Sort()
   End Sub
 
-  Public Function GetMatchesByMatchDay(index As Integer) As OtherMatches
-    Dim res As New OtherMatches
+  Public Function GetMatchesByMatchDay(matchDay As String) As MatchDay
+    Dim res As MatchDay = Nothing
     Try
-      For Each match As OtherMatch In Me.InnerList
-        If match.MatchDay = index Then
-          res.Add(match)
+      For Each matches As MatchDay In Me.InnerList
+        If matches.MatchDay = matchDay Then
+          res = matches
         End If
       Next
       res.Sort()
@@ -69,12 +62,12 @@
     Return res
   End Function
 
-  Public Function GetMatchDays() As List(Of OtherMatches)
-    Dim res As New List(Of OtherMatches)
+  Public Function GetMatchDays() As List(Of MatchDay)
+    Dim res As New List(Of MatchDay)
     Try
       For Each match As OtherMatch In Me.InnerList
-        For Each otherMatches As OtherMatches In res
-          If otherMatches.
+        For Each matchDay As MatchDay In res
+
         Next
       Next
     Catch ex As Exception
@@ -82,5 +75,29 @@
     End Try
     Return res
   End Function
+
+  Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+    Dim aux As MatchDay = CType(obj, MatchDay)
+    If aux.MatchDay > Me.MatchDay Then
+      Return 1
+    ElseIf aux.MatchDay < Me.MatchDay Then
+      Return -1
+    Else
+      Return 0
+    End If
+  End Function
+
+  Public Sub UpdateIndexes()
+    Dim orderChanged As Boolean = False
+    Try
+      '_pagines.Sort()
+      For nIndex As Integer = 0 To Me.Count - 1
+        orderChanged = orderChanged Or (Me.Item(nIndex).MatchIndex <> nIndex)
+        Me.Item(nIndex).MatchIndex = nIndex
+        '_pagines(nIndex).ID = nIndex
+      Next
+    Catch ex As Exception
+    End Try
+  End Sub
 
 End Class

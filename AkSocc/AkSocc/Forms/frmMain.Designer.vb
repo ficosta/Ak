@@ -27,7 +27,7 @@ Partial Class frmMain
     Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
     Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
     Me.MatchSetupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-    Me.OtherMatchesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.MatchDayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
     Me.ClassificationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
     Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
     Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -39,7 +39,7 @@ Partial Class frmMain
     Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
     Me.ToolStripButtonSettings = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripButtonMatchSetup = New System.Windows.Forms.ToolStripButton()
-    Me.ToolStripButtonOtherMatches = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStripButtonMatchDay = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripButtonClassification = New System.Windows.Forms.ToolStripButton()
     Me.SplitContainerAll = New System.Windows.Forms.SplitContainer()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -147,7 +147,7 @@ Partial Class frmMain
     '
     'FileToolStripMenuItem
     '
-    Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MatchSetupToolStripMenuItem, Me.OtherMatchesToolStripMenuItem, Me.ClassificationToolStripMenuItem, Me.ToolStripMenuItem2, Me.SettingsToolStripMenuItem, Me.ToolStripMenuItem1, Me.CloseToolStripMenuItem})
+    Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MatchSetupToolStripMenuItem, Me.MatchDayToolStripMenuItem, Me.ClassificationToolStripMenuItem, Me.ToolStripMenuItem2, Me.SettingsToolStripMenuItem, Me.ToolStripMenuItem1, Me.CloseToolStripMenuItem})
     Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
     Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
     Me.FileToolStripMenuItem.Text = "File"
@@ -158,11 +158,11 @@ Partial Class frmMain
     Me.MatchSetupToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
     Me.MatchSetupToolStripMenuItem.Text = "Match setup..."
     '
-    'OtherMatchesToolStripMenuItem
+    'MatchDayToolStripMenuItem
     '
-    Me.OtherMatchesToolStripMenuItem.Name = "OtherMatchesToolStripMenuItem"
-    Me.OtherMatchesToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
-    Me.OtherMatchesToolStripMenuItem.Text = "Other Matches..."
+    Me.MatchDayToolStripMenuItem.Name = "MatchDayToolStripMenuItem"
+    Me.MatchDayToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+    Me.MatchDayToolStripMenuItem.Text = "Other Matches..."
     '
     'ClassificationToolStripMenuItem
     '
@@ -225,7 +225,7 @@ Partial Class frmMain
     '
     'ToolStrip1
     '
-    Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonSettings, Me.ToolStripButtonMatchSetup, Me.ToolStripButtonOtherMatches, Me.ToolStripButtonClassification})
+    Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonSettings, Me.ToolStripButtonMatchSetup, Me.ToolStripButtonMatchDay, Me.ToolStripButtonClassification})
     Me.ToolStrip1.Location = New System.Drawing.Point(20, 84)
     Me.ToolStrip1.Name = "ToolStrip1"
     Me.ToolStrip1.Size = New System.Drawing.Size(1140, 25)
@@ -248,13 +248,13 @@ Partial Class frmMain
     Me.ToolStripButtonMatchSetup.Size = New System.Drawing.Size(93, 22)
     Me.ToolStripButtonMatchSetup.Text = "Match setup"
     '
-    'ToolStripButtonOtherMatches
+    'ToolStripButtonMatchDay
     '
-    Me.ToolStripButtonOtherMatches.Image = CType(resources.GetObject("ToolStripButtonOtherMatches.Image"), System.Drawing.Image)
-    Me.ToolStripButtonOtherMatches.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButtonOtherMatches.Name = "ToolStripButtonOtherMatches"
-    Me.ToolStripButtonOtherMatches.Size = New System.Drawing.Size(105, 22)
-    Me.ToolStripButtonOtherMatches.Text = "Other matches"
+    Me.ToolStripButtonMatchDay.Image = CType(resources.GetObject("ToolStripButtonMatchDay.Image"), System.Drawing.Image)
+    Me.ToolStripButtonMatchDay.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButtonMatchDay.Name = "ToolStripButtonMatchDay"
+    Me.ToolStripButtonMatchDay.Size = New System.Drawing.Size(105, 22)
+    Me.ToolStripButtonMatchDay.Text = "Other matches"
     '
     'ToolStripButtonClassification
     '
@@ -1290,7 +1290,7 @@ Partial Class frmMain
   Friend WithEvents ToolStripStatusLabelVizConnection As ToolStripStatusLabel
   Friend WithEvents ToolStripStatusLabelLoggerConnection As ToolStripStatusLabel
   Friend WithEvents MatchSetupToolStripMenuItem As ToolStripMenuItem
-  Friend WithEvents OtherMatchesToolStripMenuItem As ToolStripMenuItem
+  Friend WithEvents MatchDayToolStripMenuItem As ToolStripMenuItem
   Friend WithEvents ClassificationToolStripMenuItem As ToolStripMenuItem
   Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
   Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
@@ -1298,7 +1298,7 @@ Partial Class frmMain
   Friend WithEvents ToolStrip1 As ToolStrip
   Friend WithEvents ToolStripButtonSettings As ToolStripButton
   Friend WithEvents ToolStripButtonMatchSetup As ToolStripButton
-  Friend WithEvents ToolStripButtonOtherMatches As ToolStripButton
+  Friend WithEvents ToolStripButtonMatchDay As ToolStripButton
   Friend WithEvents ToolStripButtonClassification As ToolStripButton
   Friend WithEvents SplitContainerAll As SplitContainer
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel

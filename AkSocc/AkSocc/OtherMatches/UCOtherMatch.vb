@@ -14,6 +14,29 @@
       _otherMatch = value
     End Set
   End Property
+
+
+  Private _arrowUpVisible As Boolean = True
+  Public Property ArrowUpVisible() As Boolean
+    Get
+      Return _arrowUpVisible
+    End Get
+    Set(ByVal value As Boolean)
+      _arrowUpVisible = value
+      Me.ButtonUP.Visible = value
+    End Set
+  End Property
+
+  Private _arrowDownVisible As Boolean = True
+  Public Property ArrowDownVisible() As Boolean
+    Get
+      Return _arrowDownVisible
+    End Get
+    Set(ByVal value As Boolean)
+      _arrowDownVisible = value
+      Me.ButtonDOWN.Visible = value
+    End Set
+  End Property
 #End Region
 
 #Region "Buttons"

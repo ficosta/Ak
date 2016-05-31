@@ -245,6 +245,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OtherMatches\OtherMatch.vb" />
+    <Compile Include="OtherMatches\OtherMatchDays.vb" />
     <Compile Include="OtherMatches\OtherMatches.vb" />
     <Compile Include="OtherMatches\UCOtherMatch.Designer.vb">
       <DependentUpon>UCOtherMatch.vb</DependentUpon>

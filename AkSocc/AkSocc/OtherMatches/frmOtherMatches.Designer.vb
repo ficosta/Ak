@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmOtherMatches
+Partial Class frmMatchDay
   Inherits MetroFramework.Forms.MetroForm
 
   'Form overrides dispose to clean up the component list.
@@ -22,6 +22,7 @@ Partial Class frmOtherMatches
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
+    Me.components = New System.ComponentModel.Container()
     Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -29,14 +30,30 @@ Partial Class frmOtherMatches
     Me.OK_Button = New MetroFramework.Controls.MetroButton()
     Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
     Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-    Me.MetroGridOtherMatches = New MetroFramework.Controls.MetroGrid()
+    Me.MetroGridMatchDay = New MetroFramework.Controls.MetroGrid()
     Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ContextMenuStripMatchDays = New System.Windows.Forms.ContextMenuStrip(Me.components)
+    Me.NewMatchDayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.DeleteMatchDayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.TableLayoutPanelUCOtherMatches = New System.Windows.Forms.TableLayoutPanel()
+    Me.UcOtherMatch1 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch2 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch3 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch4 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch5 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch6 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch7 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch8 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch9 = New AkSocc.UCOtherMatch()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SplitContainer1.Panel1.SuspendLayout()
+    Me.SplitContainer1.Panel2.SuspendLayout()
     Me.SplitContainer1.SuspendLayout()
-    CType(Me.MetroGridOtherMatches, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.MetroGridMatchDay, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.ContextMenuStripMatchDays.SuspendLayout()
+    Me.TableLayoutPanelUCOtherMatches.SuspendLayout()
     Me.SuspendLayout()
     '
     'TableLayoutPanel1
@@ -48,7 +65,7 @@ Partial Class frmOtherMatches
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
     Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 1, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 2, 0)
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(23, 504)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(122, 603)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -78,26 +95,33 @@ Partial Class frmOtherMatches
     '
     'SplitContainer1
     '
+    Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.SplitContainer1.Location = New System.Drawing.Point(23, 63)
     Me.SplitContainer1.Name = "SplitContainer1"
     '
     'SplitContainer1.Panel1
     '
-    Me.SplitContainer1.Panel1.Controls.Add(Me.MetroGridOtherMatches)
-    Me.SplitContainer1.Size = New System.Drawing.Size(1002, 435)
-    Me.SplitContainer1.SplitterDistance = 252
+    Me.SplitContainer1.Panel1.Controls.Add(Me.MetroGridMatchDay)
+    '
+    'SplitContainer1.Panel2
+    '
+    Me.SplitContainer1.Panel2.Controls.Add(Me.TableLayoutPanelUCOtherMatches)
+    Me.SplitContainer1.Size = New System.Drawing.Size(1101, 534)
+    Me.SplitContainer1.SplitterDistance = 276
     Me.SplitContainer1.TabIndex = 2
     '
-    'MetroGridOtherMatches
+    'MetroGridMatchDay
     '
-    Me.MetroGridOtherMatches.AllowUserToAddRows = False
-    Me.MetroGridOtherMatches.AllowUserToDeleteRows = False
-    Me.MetroGridOtherMatches.AllowUserToResizeColumns = False
-    Me.MetroGridOtherMatches.AllowUserToResizeRows = False
-    Me.MetroGridOtherMatches.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridOtherMatches.BorderStyle = System.Windows.Forms.BorderStyle.None
-    Me.MetroGridOtherMatches.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-    Me.MetroGridOtherMatches.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+    Me.MetroGridMatchDay.AllowUserToAddRows = False
+    Me.MetroGridMatchDay.AllowUserToDeleteRows = False
+    Me.MetroGridMatchDay.AllowUserToResizeColumns = False
+    Me.MetroGridMatchDay.AllowUserToResizeRows = False
+    Me.MetroGridMatchDay.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroGridMatchDay.BorderStyle = System.Windows.Forms.BorderStyle.None
+    Me.MetroGridMatchDay.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+    Me.MetroGridMatchDay.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
     DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
     DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
     DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -105,9 +129,10 @@ Partial Class frmOtherMatches
     DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
     DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridOtherMatches.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-    Me.MetroGridOtherMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-    Me.MetroGridOtherMatches.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.ColumnDescription})
+    Me.MetroGridMatchDay.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+    Me.MetroGridMatchDay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+    Me.MetroGridMatchDay.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.ColumnDescription})
+    Me.MetroGridMatchDay.ContextMenuStrip = Me.ContextMenuStripMatchDays
     DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
     DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
     DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -115,17 +140,16 @@ Partial Class frmOtherMatches
     DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
     DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-    Me.MetroGridOtherMatches.DefaultCellStyle = DataGridViewCellStyle2
-    Me.MetroGridOtherMatches.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroGridOtherMatches.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-    Me.MetroGridOtherMatches.EnableHeadersVisualStyles = False
-    Me.MetroGridOtherMatches.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    Me.MetroGridOtherMatches.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridOtherMatches.Location = New System.Drawing.Point(0, 0)
-    Me.MetroGridOtherMatches.MultiSelect = False
-    Me.MetroGridOtherMatches.Name = "MetroGridOtherMatches"
-    Me.MetroGridOtherMatches.ReadOnly = True
-    Me.MetroGridOtherMatches.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+    Me.MetroGridMatchDay.DefaultCellStyle = DataGridViewCellStyle2
+    Me.MetroGridMatchDay.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroGridMatchDay.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2
+    Me.MetroGridMatchDay.EnableHeadersVisualStyles = False
+    Me.MetroGridMatchDay.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    Me.MetroGridMatchDay.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroGridMatchDay.Location = New System.Drawing.Point(0, 0)
+    Me.MetroGridMatchDay.MultiSelect = False
+    Me.MetroGridMatchDay.Name = "MetroGridMatchDay"
+    Me.MetroGridMatchDay.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
     DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
     DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
     DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
@@ -133,23 +157,22 @@ Partial Class frmOtherMatches
     DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
     DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridOtherMatches.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-    Me.MetroGridOtherMatches.RowHeadersWidth = 10
-    Me.MetroGridOtherMatches.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-    Me.MetroGridOtherMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridOtherMatches.ShowCellErrors = False
-    Me.MetroGridOtherMatches.ShowCellToolTips = False
-    Me.MetroGridOtherMatches.ShowEditingIcon = False
-    Me.MetroGridOtherMatches.ShowRowErrors = False
-    Me.MetroGridOtherMatches.Size = New System.Drawing.Size(252, 435)
-    Me.MetroGridOtherMatches.Style = MetroFramework.MetroColorStyle.Orange
-    Me.MetroGridOtherMatches.TabIndex = 48
+    Me.MetroGridMatchDay.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+    Me.MetroGridMatchDay.RowHeadersVisible = False
+    Me.MetroGridMatchDay.RowHeadersWidth = 10
+    Me.MetroGridMatchDay.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+    Me.MetroGridMatchDay.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+    Me.MetroGridMatchDay.ShowCellErrors = False
+    Me.MetroGridMatchDay.ShowCellToolTips = False
+    Me.MetroGridMatchDay.ShowRowErrors = False
+    Me.MetroGridMatchDay.Size = New System.Drawing.Size(276, 534)
+    Me.MetroGridMatchDay.Style = MetroFramework.MetroColorStyle.Orange
+    Me.MetroGridMatchDay.TabIndex = 48
     '
     'Column1
     '
     Me.Column1.HeaderText = "ColumnID"
     Me.Column1.Name = "Column1"
-    Me.Column1.ReadOnly = True
     Me.Column1.Visible = False
     Me.Column1.Width = 60
     '
@@ -158,22 +181,188 @@ Partial Class frmOtherMatches
     Me.ColumnDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
     Me.ColumnDescription.HeaderText = "Description"
     Me.ColumnDescription.Name = "ColumnDescription"
-    Me.ColumnDescription.ReadOnly = True
     '
-    'frmOtherMatches
+    'ContextMenuStripMatchDays
+    '
+    Me.ContextMenuStripMatchDays.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewMatchDayToolStripMenuItem, Me.DeleteMatchDayToolStripMenuItem})
+    Me.ContextMenuStripMatchDays.Name = "ContextMenuStripMatchDays"
+    Me.ContextMenuStripMatchDays.Size = New System.Drawing.Size(176, 48)
+    '
+    'NewMatchDayToolStripMenuItem
+    '
+    Me.NewMatchDayToolStripMenuItem.Name = "NewMatchDayToolStripMenuItem"
+    Me.NewMatchDayToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+    Me.NewMatchDayToolStripMenuItem.Text = "New match day..."
+    '
+    'DeleteMatchDayToolStripMenuItem
+    '
+    Me.DeleteMatchDayToolStripMenuItem.Name = "DeleteMatchDayToolStripMenuItem"
+    Me.DeleteMatchDayToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+    Me.DeleteMatchDayToolStripMenuItem.Text = "Delete match day..."
+    '
+    'TableLayoutPanelUCOtherMatches
+    '
+    Me.TableLayoutPanelUCOtherMatches.AutoScroll = True
+    Me.TableLayoutPanelUCOtherMatches.AutoSize = True
+    Me.TableLayoutPanelUCOtherMatches.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+    Me.TableLayoutPanelUCOtherMatches.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
+    Me.TableLayoutPanelUCOtherMatches.ColumnCount = 1
+    Me.TableLayoutPanelUCOtherMatches.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelUCOtherMatches.Controls.Add(Me.UcOtherMatch9, 0, 8)
+    Me.TableLayoutPanelUCOtherMatches.Controls.Add(Me.UcOtherMatch8, 0, 7)
+    Me.TableLayoutPanelUCOtherMatches.Controls.Add(Me.UcOtherMatch7, 0, 6)
+    Me.TableLayoutPanelUCOtherMatches.Controls.Add(Me.UcOtherMatch6, 0, 5)
+    Me.TableLayoutPanelUCOtherMatches.Controls.Add(Me.UcOtherMatch5, 0, 4)
+    Me.TableLayoutPanelUCOtherMatches.Controls.Add(Me.UcOtherMatch4, 0, 3)
+    Me.TableLayoutPanelUCOtherMatches.Controls.Add(Me.UcOtherMatch3, 0, 2)
+    Me.TableLayoutPanelUCOtherMatches.Controls.Add(Me.UcOtherMatch2, 0, 1)
+    Me.TableLayoutPanelUCOtherMatches.Controls.Add(Me.UcOtherMatch1, 0, 0)
+    Me.TableLayoutPanelUCOtherMatches.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanelUCOtherMatches.Location = New System.Drawing.Point(0, 0)
+    Me.TableLayoutPanelUCOtherMatches.Name = "TableLayoutPanelUCOtherMatches"
+    Me.TableLayoutPanelUCOtherMatches.RowCount = 9
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelUCOtherMatches.Size = New System.Drawing.Size(821, 534)
+    Me.TableLayoutPanelUCOtherMatches.TabIndex = 0
+    '
+    'UcOtherMatch1
+    '
+    Me.UcOtherMatch1.ArrowDownVisible = True
+    Me.UcOtherMatch1.ArrowUpVisible = True
+    Me.UcOtherMatch1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch1.Location = New System.Drawing.Point(4, 4)
+    Me.UcOtherMatch1.Name = "UcOtherMatch1"
+    Me.UcOtherMatch1.OtherMatchInfo = Nothing
+    Me.UcOtherMatch1.Size = New System.Drawing.Size(813, 52)
+    Me.UcOtherMatch1.TabIndex = 0
+    Me.UcOtherMatch1.UseSelectable = True
+    '
+    'UcOtherMatch2
+    '
+    Me.UcOtherMatch2.ArrowDownVisible = True
+    Me.UcOtherMatch2.ArrowUpVisible = True
+    Me.UcOtherMatch2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch2.Location = New System.Drawing.Point(4, 63)
+    Me.UcOtherMatch2.Name = "UcOtherMatch2"
+    Me.UcOtherMatch2.OtherMatchInfo = Nothing
+    Me.UcOtherMatch2.Size = New System.Drawing.Size(813, 52)
+    Me.UcOtherMatch2.TabIndex = 1
+    Me.UcOtherMatch2.UseSelectable = True
+    '
+    'UcOtherMatch3
+    '
+    Me.UcOtherMatch3.ArrowDownVisible = True
+    Me.UcOtherMatch3.ArrowUpVisible = True
+    Me.UcOtherMatch3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch3.Location = New System.Drawing.Point(4, 122)
+    Me.UcOtherMatch3.Name = "UcOtherMatch3"
+    Me.UcOtherMatch3.OtherMatchInfo = Nothing
+    Me.UcOtherMatch3.Size = New System.Drawing.Size(813, 52)
+    Me.UcOtherMatch3.TabIndex = 2
+    Me.UcOtherMatch3.UseSelectable = True
+    '
+    'UcOtherMatch4
+    '
+    Me.UcOtherMatch4.ArrowDownVisible = True
+    Me.UcOtherMatch4.ArrowUpVisible = True
+    Me.UcOtherMatch4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch4.Location = New System.Drawing.Point(4, 181)
+    Me.UcOtherMatch4.Name = "UcOtherMatch4"
+    Me.UcOtherMatch4.OtherMatchInfo = Nothing
+    Me.UcOtherMatch4.Size = New System.Drawing.Size(813, 52)
+    Me.UcOtherMatch4.TabIndex = 3
+    Me.UcOtherMatch4.UseSelectable = True
+    '
+    'UcOtherMatch5
+    '
+    Me.UcOtherMatch5.ArrowDownVisible = True
+    Me.UcOtherMatch5.ArrowUpVisible = True
+    Me.UcOtherMatch5.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch5.Location = New System.Drawing.Point(4, 240)
+    Me.UcOtherMatch5.Name = "UcOtherMatch5"
+    Me.UcOtherMatch5.OtherMatchInfo = Nothing
+    Me.UcOtherMatch5.Size = New System.Drawing.Size(813, 52)
+    Me.UcOtherMatch5.TabIndex = 4
+    Me.UcOtherMatch5.UseSelectable = True
+    '
+    'UcOtherMatch6
+    '
+    Me.UcOtherMatch6.ArrowDownVisible = True
+    Me.UcOtherMatch6.ArrowUpVisible = True
+    Me.UcOtherMatch6.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch6.Location = New System.Drawing.Point(4, 299)
+    Me.UcOtherMatch6.Name = "UcOtherMatch6"
+    Me.UcOtherMatch6.OtherMatchInfo = Nothing
+    Me.UcOtherMatch6.Size = New System.Drawing.Size(813, 52)
+    Me.UcOtherMatch6.TabIndex = 5
+    Me.UcOtherMatch6.UseSelectable = True
+    '
+    'UcOtherMatch7
+    '
+    Me.UcOtherMatch7.ArrowDownVisible = True
+    Me.UcOtherMatch7.ArrowUpVisible = True
+    Me.UcOtherMatch7.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch7.Location = New System.Drawing.Point(4, 358)
+    Me.UcOtherMatch7.Name = "UcOtherMatch7"
+    Me.UcOtherMatch7.OtherMatchInfo = Nothing
+    Me.UcOtherMatch7.Size = New System.Drawing.Size(813, 52)
+    Me.UcOtherMatch7.TabIndex = 6
+    Me.UcOtherMatch7.UseSelectable = True
+    '
+    'UcOtherMatch8
+    '
+    Me.UcOtherMatch8.ArrowDownVisible = True
+    Me.UcOtherMatch8.ArrowUpVisible = True
+    Me.UcOtherMatch8.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch8.Location = New System.Drawing.Point(4, 417)
+    Me.UcOtherMatch8.Name = "UcOtherMatch8"
+    Me.UcOtherMatch8.OtherMatchInfo = Nothing
+    Me.UcOtherMatch8.Size = New System.Drawing.Size(813, 52)
+    Me.UcOtherMatch8.TabIndex = 7
+    Me.UcOtherMatch8.UseSelectable = True
+    '
+    'UcOtherMatch9
+    '
+    Me.UcOtherMatch9.ArrowDownVisible = True
+    Me.UcOtherMatch9.ArrowUpVisible = True
+    Me.UcOtherMatch9.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch9.Location = New System.Drawing.Point(4, 476)
+    Me.UcOtherMatch9.Name = "UcOtherMatch9"
+    Me.UcOtherMatch9.OtherMatchInfo = Nothing
+    Me.UcOtherMatch9.Size = New System.Drawing.Size(813, 54)
+    Me.UcOtherMatch9.TabIndex = 8
+    Me.UcOtherMatch9.UseSelectable = True
+    '
+    'frmMatchDay
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1048, 556)
+    Me.ClientSize = New System.Drawing.Size(1147, 655)
     Me.Controls.Add(Me.SplitContainer1)
     Me.Controls.Add(Me.TableLayoutPanel1)
-    Me.Name = "frmOtherMatches"
+    Me.Name = "frmMatchDay"
     Me.Text = "Other matches"
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.SplitContainer1.Panel1.ResumeLayout(False)
+    Me.SplitContainer1.Panel2.ResumeLayout(False)
+    Me.SplitContainer1.Panel2.PerformLayout()
     CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.SplitContainer1.ResumeLayout(False)
-    CType(Me.MetroGridOtherMatches, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.MetroGridMatchDay, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.ContextMenuStripMatchDays.ResumeLayout(False)
+    Me.TableLayoutPanelUCOtherMatches.ResumeLayout(False)
     Me.ResumeLayout(False)
 
   End Sub
@@ -182,7 +371,20 @@ Partial Class frmOtherMatches
   Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
   Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
   Friend WithEvents SplitContainer1 As SplitContainer
-  Friend WithEvents MetroGridOtherMatches As MetroFramework.Controls.MetroGrid
+  Friend WithEvents MetroGridMatchDay As MetroFramework.Controls.MetroGrid
   Friend WithEvents Column1 As DataGridViewTextBoxColumn
   Friend WithEvents ColumnDescription As DataGridViewTextBoxColumn
+  Friend WithEvents ContextMenuStripMatchDays As ContextMenuStrip
+  Friend WithEvents NewMatchDayToolStripMenuItem As ToolStripMenuItem
+  Friend WithEvents DeleteMatchDayToolStripMenuItem As ToolStripMenuItem
+  Friend WithEvents TableLayoutPanelUCOtherMatches As TableLayoutPanel
+  Friend WithEvents UcOtherMatch1 As UCOtherMatch
+  Friend WithEvents UcOtherMatch9 As UCOtherMatch
+  Friend WithEvents UcOtherMatch8 As UCOtherMatch
+  Friend WithEvents UcOtherMatch7 As UCOtherMatch
+  Friend WithEvents UcOtherMatch6 As UCOtherMatch
+  Friend WithEvents UcOtherMatch5 As UCOtherMatch
+  Friend WithEvents UcOtherMatch4 As UCOtherMatch
+  Friend WithEvents UcOtherMatch3 As UCOtherMatch
+  Friend WithEvents UcOtherMatch2 As UCOtherMatch
 End Class

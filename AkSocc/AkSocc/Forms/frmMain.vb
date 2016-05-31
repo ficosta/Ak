@@ -67,9 +67,9 @@ Public Class frmMain
   End Sub
 
 
-  Private Sub ToolStripButtonOtherMatches_Click(sender As Object, e As EventArgs) Handles ToolStripButtonOtherMatches.Click
+  Private Sub ToolStripButtonMatchDay_Click(sender As Object, e As EventArgs) Handles ToolStripButtonMatchDay.Click
     Try
-
+      ShowMatchDay()
     Catch ex As Exception
 
     End Try
@@ -500,7 +500,7 @@ Public Class frmMain
   Private Sub MetroButtonClockSubstitutions_Click(sender As Object, e As EventArgs) Handles MetroButtonClockSubstitutions.Click
     'Me.StartGraphic(New ClockSubstitutes(_match))
     Dim dlg As New FormSubstitutions()
-    dlg.match = _match
+    dlg.Match = _match
     dlg.Show(Me)
   End Sub
 
@@ -510,13 +510,13 @@ Public Class frmMain
 #End Region
 
 #Region "Other Matches"
-  Private WithEvents _frmOtherMatches As frmOtherMatches
-  Public Sub ShowOtherMatches()
+  Private WithEvents _frmMatchDay As frmMatchDay
+  Public Sub ShowMatchDay()
     Try
-      If _frmOtherMatches Is Nothing Then
-        _frmOtherMatches = New frmOtherMatches()
+      If _frmMatchDay Is Nothing Then
+        _frmMatchDay = New frmMatchDay()
       End If
-      _frmOtherMatches.ShowDialog(Me)
+      _frmMatchDay.ShowDialog(Me)
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try

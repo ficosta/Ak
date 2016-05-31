@@ -14,7 +14,7 @@ Imports MatchInfo
     LatestResult
   End Enum
 
-  Public Property OtherMatchID As Integer
+  Public Property OtherMatchID As String = Guid.NewGuid().ToString
 
   Public Property MatchTitle As String
   Public Property MatchDay As Integer
