@@ -1,5 +1,11 @@
-﻿<Serializable()> Public Class OtherMatch
+﻿Imports System.ComponentModel
+Imports MatchInfo
+
+<Serializable()> Public Class OtherMatch
   Implements IComparable
+  Implements INotifyPropertyChanged
+
+  Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
   Public Enum otherMatchStatus
     Idle
@@ -7,25 +13,106 @@
     FullTime
     LatestResult
   End Enum
+
   Public Property OtherMatchID As Integer
 
   Public Property MatchTitle As String
   Public Property MatchDay As Integer
   Public Property MatchDate As Date
+
+  Private _matchIndex As Integer = 0
   Public Property MatchIndex As Integer
+    Get
+      Return _matchIndex
+    End Get
+    Set(value As Integer)
+      _matchIndex = value
+      RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("MatchIndex"))
+    End Set
+  End Property
 
-  Public Property HomeTeamID As Integer
-  Public Property AwayTeamID As Integer
-  Public Property HomeTeamName As String
-  Public Property AwayTeamName As String
-  Public Property HomeTeamScore As Integer
-  Public Property AwayTeamScore As Integer
+  Private _logoChannel As Integer = 0
+  Public Property LogoChannel As Integer
+    Get
+      Return _logoChannel
+    End Get
+    Set(value As Integer)
+      _logoChannel = value
+      RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("LogoChannel"))
+    End Set
+  End Property
 
-  Public Property LogoChannel As Integer = 0
-  Public Property MatchStatus As otherMatchStatus = otherMatchStatus.Idle
+  Private _matchStatus As otherMatchStatus = otherMatchStatus.Idle
+  Public Property MatchStatus As otherMatchStatus
+    Get
+      Return _matchStatus
+    End Get
+    Set(value As otherMatchStatus)
+      _matchStatus = value
+      RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("MatchStatus"))
+    End Set
+  End Property
+
+  Private _homeScore As String = ""
+  Public Property HomeScore As String
+    Get
+      Return _homeScore
+    End Get
+    Set(value As String)
+      _homeScore = value
+      RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("HomeScore"))
+    End Set
+  End Property
+
+  Private _awayScore As String = ""
+  Public Property AwayScore As String
+    Get
+      Return _awayScore
+    End Get
+    Set(value As String)
+      _awayScore = value
+      RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("AwayScore"))
+    End Set
+  End Property
+
+  Private _match As Match
+  Public Property Match As Match
+    Get
+      Return _match
+    End Get
+    Set(value As Match)
+      _match = value
+      RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Match"))
+
+    End Set
+  End Property
+
+  Private _isTable As Boolean = False
+  Public Property IsTable As Boolean
+    Get
+      Return _isTable
+    End Get
+    Set(value As Boolean)
+      _isTable = value
+      RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("IsTable"))
+    End Set
+  End Property
+
+  Private _isCrawl As Boolean = False
+  Public Property IsCrawl As Boolean
+    Get
+      Return _isCrawl
+    End Get
+    Set(value As Boolean)
+      _isCrawl = value
+      RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("IsCrawl"))
+    End Set
+  End Property
 
   Public Sub New()
   End Sub
+
+
   Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
     Dim aux As OtherMatch = CType(obj, OtherMatch)
     If aux.MatchDay > Me.MatchDay Then

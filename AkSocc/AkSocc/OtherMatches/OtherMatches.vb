@@ -69,4 +69,18 @@
     Return res
   End Function
 
+  Public Function GetMatchDays() As List(Of OtherMatches)
+    Dim res As New List(Of OtherMatches)
+    Try
+      For Each match As OtherMatch In Me.InnerList
+        For Each otherMatches As OtherMatches In res
+          If otherMatches.
+        Next
+      Next
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
 End Class

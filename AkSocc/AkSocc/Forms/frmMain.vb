@@ -66,8 +66,13 @@ Public Class frmMain
     MatchSetup()
   End Sub
 
-  Private Sub ToolStripButtonOtherMatches_Click(sender As Object, e As EventArgs) Handles ToolStripButtonOtherMatches.Click
 
+  Private Sub ToolStripButtonOtherMatches_Click(sender As Object, e As EventArgs) Handles ToolStripButtonOtherMatches.Click
+    Try
+
+    Catch ex As Exception
+
+    End Try
   End Sub
 
   Private Sub ToolStripButtonClassification_Click(sender As Object, e As EventArgs) Handles ToolStripButtonClassification.Click
@@ -503,4 +508,19 @@ Public Class frmMain
 
   End Sub
 #End Region
+
+#Region "Other Matches"
+  Private WithEvents _frmOtherMatches As frmOtherMatches
+  Public Sub ShowOtherMatches()
+    Try
+      If _frmOtherMatches Is Nothing Then
+        _frmOtherMatches = New frmOtherMatches()
+      End If
+      _frmOtherMatches.ShowDialog(Me)
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+#End Region
+
 End Class
