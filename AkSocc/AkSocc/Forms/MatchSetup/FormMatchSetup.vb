@@ -58,9 +58,7 @@ Public Class FormMatchSetup
 
   Private Sub cboCompetition_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCompetition.SelectedIndexChanged
     Try
-
       ShowMatches()
-
     Catch err As Exception
       WriteToErrorLog(err)
     End Try
@@ -80,7 +78,7 @@ Public Class FormMatchSetup
         _matches = Matches.GetMatchesForCompetition(comp.CompID)
         For Each myMatch As Match In _matches
           Dim sResult As String = IIf(myMatch.away_goals >= 0 And myMatch.home_goals >= 0, myMatch.away_goals & "-" & myMatch.home_goals, "")
-          .Rows.Add(myMatch.match_id, myMatch.match_date.ToShortDateString, myMatch.ToString, sResult)
+          .Rows.Add(myMatch.match_id, myMatch.match_date.ToShortDateString, myMatch.Description, sResult)
           'If myMatch.match_id = My.Settings.LastMatchId Then
 
           If Not SelectedMatch Is Nothing AndAlso SelectedMatch.match_id = myMatch.match_id Then

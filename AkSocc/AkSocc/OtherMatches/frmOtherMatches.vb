@@ -1,4 +1,6 @@
-﻿Public Class frmMatchDay
+﻿Imports MatchInfo
+
+Public Class frmMatchDay
 #Region "Other matches"
   Private _matchDay As MatchDay
   Public Property OtherMatchas As MatchDay
@@ -15,6 +17,21 @@
   Private _selectedMatchDay As MatchDay = Nothing
   Private _controls As New List(Of UCOtherMatch)
 
+  Private _competition As Competition
+  Public Property Competition As Competition
+    Get
+      Return _competition
+    End Get
+    Set(value As Competition)
+      _competition = value
+
+      For Each ctl As UCOtherMatch In _controls
+        ctl.Competition = Me.Competition
+      Next
+    End Set
+  End Property
+
+
   Private Sub frmMatchDay_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     Try
       _controls.Clear()
@@ -27,6 +44,14 @@
       _controls.Add(Me.UcOtherMatch7)
       _controls.Add(Me.UcOtherMatch8)
       _controls.Add(Me.UcOtherMatch9)
+
+      For Each ctl As UCOtherMatch In _controls
+        AddHandler ctl.MoveUp, AddressOf Me.UCOtherMatch_MoveUp
+        AddHandler ctl.MoveDown, AddressOf Me.UCOtherMatch_MoveDown
+        AddHandler ctl.Delete, AddressOf Me.UCOtherMatch_Delete
+        AddHandler ctl.AddNew, AddressOf Me.UCOtherMatch_AddNew
+        ctl.Competition = Me.Competition
+      Next
     Catch ex As Exception
 
     End Try
@@ -81,7 +106,7 @@
     Try
       Dim id As String = MetroGridMatchDay.SelectedRows(0).Cells(Column1.Index).Value
       _selectedMatchDay = _matchDays.GetMatchDay(id)
-      MostrarMatchDay(True)
+      MostrarMatchDay()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -89,26 +114,23 @@
 
 #Region "MatchDay"
 
-  Private Sub MostrarMatchDay(biRedraw As Boolean)
+  Private Sub MostrarMatchDay()
     Try
       Me.TableLayoutPanelUCOtherMatches.SuspendLayout()
       'Me.TableLayoutPanelUCOtherMatches.Visible = False
       Try
-
-        If biRedraw Then
-          For Each CControl As UCOtherMatch In Me.TableLayoutPanelUCOtherMatches.Controls
-            RemoveHandler CControl.Delete, AddressOf Me.UCOtherMatch_Delete
-            RemoveHandler CControl.MoveUp, AddressOf Me.UCOtherMatch_MoveUp
-            RemoveHandler CControl.MoveDown, AddressOf Me.UCOtherMatch_MoveDown
-          Next
-          ' _controls.Clear()
-          ' Me.TableLayoutPanelUCOtherMatches.Controls.Clear()
-          ' InsertPagina(Nothing, Me.TableLayoutPanelUCOtherMatches)
-        End If
-
-        For index As Integer = 0 To _selectedMatchDay.Count - 1
-          Dim CPagina As OtherMatch = _selectedMatchDay(index)
-          '  Dim CControl As UCOtherMatch = InsertPagina(CPagina, Me.TableLayoutPanelUCOtherMatches)
+        Dim maxItems As Integer = Math.Min(_controls.Count, _selectedMatchDay.Count)
+        For index As Integer = 0 To maxItems - 1
+          _controls(index).OtherMatchInfo = _selectedMatchDay(index)
+          _controls(index).ArrowUpVisible = (index > 0)
+          _controls(index).ArrowDownVisible = (index < maxItems - 1)
+          _controls(index).ButtonActionEnum = UCOtherMatch.eButtonAction.Delete
+        Next
+        For index As Integer = maxItems To _controls.Count - 1
+          _controls(index).OtherMatchInfo = Nothing
+          _controls(index).ArrowUpVisible = False
+          _controls(index).ArrowDownVisible = False
+          _controls(index).ButtonActionEnum = IIf(index = maxItems, UCOtherMatch.eButtonAction.AddNew, UCOtherMatch.eButtonAction.None)
         Next
       Catch ex As Exception
 
@@ -177,7 +199,20 @@
     End Try
   End Sub
   Public Sub UCOtherMatch_Delete(sender As UCOtherMatch)
+    Try
+      _selectedMatchDay.Remove(sender.OtherMatchInfo)
+      MostrarMatchDay()
+    Catch ex As Exception
+    End Try
+  End Sub
 
+  Public Sub UCOtherMatch_AddNew(sender As UCOtherMatch)
+    Try
+      _selectedMatchDay.Add(New OtherMatch())
+      MostrarMatchDay()
+    Catch ex As Exception
+
+    End Try
   End Sub
 
 
@@ -189,6 +224,7 @@
         _selectedMatchDay(index2) = aux
       End If
       _selectedMatchDay.UpdateIndexes()
+      MostrarMatchDay()
     Catch ex As Exception
 
     End Try

@@ -98,6 +98,10 @@ Public Class Match
   End Sub
 
   Public Overrides Function ToString() As String
+    Return Me.match_date.ToShortDateString & " " & Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString
+  End Function
+
+  Public Function Description() As String
     Return Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString
   End Function
 

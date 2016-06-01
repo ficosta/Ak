@@ -7,6 +7,12 @@ Imports MatchInfo
 
   Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
+  Public Enum eOtherMatchLineType
+    Blank = 0
+    Result
+    Title
+  End Enum
+
   Public Enum otherMatchStatus
     Idle
     HalfTime
@@ -50,6 +56,17 @@ Imports MatchInfo
     Set(value As otherMatchStatus)
       _matchStatus = value
       RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("MatchStatus"))
+    End Set
+  End Property
+
+  Private _lineType As eOtherMatchLineType = otherMatchStatus.Idle
+  Public Property LineType As eOtherMatchLineType
+    Get
+      Return _lineType
+    End Get
+    Set(value As eOtherMatchLineType)
+      _lineType = value
+      RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("LineType"))
     End Set
   End Property
 

@@ -33,6 +33,23 @@
     Return Me.List.Count
   End Function
 
+
+
+  Public Sub Remove(OtherMatch As OtherMatch)
+    Try
+      If Not OtherMatch Is Nothing Then
+        For index As Integer = Me.List.Count - 1 To 0 Step -1
+          If Me.List(index).OtherMatchID = OtherMatch.OtherMatchID Then
+            Me.List.RemoveAt(index)
+          End If
+        Next
+      End If
+      UpdateIndexes()
+    Catch ex As Exception
+    End Try
+  End Sub
+
+
   Default Public Property Item(Index As Integer) As OtherMatch
     Get
       Return DirectCast(List(Index), OtherMatch)

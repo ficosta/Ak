@@ -37,15 +37,15 @@ Partial Class frmMatchDay
     Me.NewMatchDayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
     Me.DeleteMatchDayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
     Me.TableLayoutPanelUCOtherMatches = New System.Windows.Forms.TableLayoutPanel()
-    Me.UcOtherMatch1 = New AkSocc.UCOtherMatch()
-    Me.UcOtherMatch2 = New AkSocc.UCOtherMatch()
-    Me.UcOtherMatch3 = New AkSocc.UCOtherMatch()
-    Me.UcOtherMatch4 = New AkSocc.UCOtherMatch()
-    Me.UcOtherMatch5 = New AkSocc.UCOtherMatch()
-    Me.UcOtherMatch6 = New AkSocc.UCOtherMatch()
-    Me.UcOtherMatch7 = New AkSocc.UCOtherMatch()
-    Me.UcOtherMatch8 = New AkSocc.UCOtherMatch()
     Me.UcOtherMatch9 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch8 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch7 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch6 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch5 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch4 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch3 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch2 = New AkSocc.UCOtherMatch()
+    Me.UcOtherMatch1 = New AkSocc.UCOtherMatch()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SplitContainer1.Panel1.SuspendLayout()
@@ -65,7 +65,7 @@ Partial Class frmMatchDay
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
     Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 1, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 2, 0)
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(122, 603)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(344, 737)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -108,8 +108,8 @@ Partial Class frmMatchDay
     'SplitContainer1.Panel2
     '
     Me.SplitContainer1.Panel2.Controls.Add(Me.TableLayoutPanelUCOtherMatches)
-    Me.SplitContainer1.Size = New System.Drawing.Size(1101, 534)
-    Me.SplitContainer1.SplitterDistance = 276
+    Me.SplitContainer1.Size = New System.Drawing.Size(1323, 668)
+    Me.SplitContainer1.SplitterDistance = 264
     Me.SplitContainer1.TabIndex = 2
     '
     'MetroGridMatchDay
@@ -165,7 +165,7 @@ Partial Class frmMatchDay
     Me.MetroGridMatchDay.ShowCellErrors = False
     Me.MetroGridMatchDay.ShowCellToolTips = False
     Me.MetroGridMatchDay.ShowRowErrors = False
-    Me.MetroGridMatchDay.Size = New System.Drawing.Size(276, 534)
+    Me.MetroGridMatchDay.Size = New System.Drawing.Size(264, 668)
     Me.MetroGridMatchDay.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroGridMatchDay.TabIndex = 48
     '
@@ -220,22 +220,115 @@ Partial Class frmMatchDay
     Me.TableLayoutPanelUCOtherMatches.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanelUCOtherMatches.Location = New System.Drawing.Point(0, 0)
     Me.TableLayoutPanelUCOtherMatches.Name = "TableLayoutPanelUCOtherMatches"
-    Me.TableLayoutPanelUCOtherMatches.RowCount = 9
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-    Me.TableLayoutPanelUCOtherMatches.Size = New System.Drawing.Size(821, 534)
+    Me.TableLayoutPanelUCOtherMatches.RowCount = 10
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73.0!))
+    Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelUCOtherMatches.Size = New System.Drawing.Size(1055, 668)
     Me.TableLayoutPanelUCOtherMatches.TabIndex = 0
+    '
+    'UcOtherMatch9
+    '
+    Me.UcOtherMatch9.ArrowDownVisible = True
+    Me.UcOtherMatch9.ArrowUpVisible = True
+    Me.UcOtherMatch9.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch9.Location = New System.Drawing.Point(4, 596)
+    Me.UcOtherMatch9.Name = "UcOtherMatch9"
+    Me.UcOtherMatch9.OtherMatchInfo = Nothing
+    Me.UcOtherMatch9.Size = New System.Drawing.Size(1047, 67)
+    Me.UcOtherMatch9.TabIndex = 8
+    Me.UcOtherMatch9.UseSelectable = True
+    '
+    'UcOtherMatch8
+    '
+    Me.UcOtherMatch8.ArrowDownVisible = True
+    Me.UcOtherMatch8.ArrowUpVisible = True
+    Me.UcOtherMatch8.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch8.Location = New System.Drawing.Point(4, 522)
+    Me.UcOtherMatch8.Name = "UcOtherMatch8"
+    Me.UcOtherMatch8.OtherMatchInfo = Nothing
+    Me.UcOtherMatch8.Size = New System.Drawing.Size(1047, 67)
+    Me.UcOtherMatch8.TabIndex = 7
+    Me.UcOtherMatch8.UseSelectable = True
+    '
+    'UcOtherMatch7
+    '
+    Me.UcOtherMatch7.ArrowDownVisible = True
+    Me.UcOtherMatch7.ArrowUpVisible = True
+    Me.UcOtherMatch7.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch7.Location = New System.Drawing.Point(4, 448)
+    Me.UcOtherMatch7.Name = "UcOtherMatch7"
+    Me.UcOtherMatch7.OtherMatchInfo = Nothing
+    Me.UcOtherMatch7.Size = New System.Drawing.Size(1047, 67)
+    Me.UcOtherMatch7.TabIndex = 6
+    Me.UcOtherMatch7.UseSelectable = True
+    '
+    'UcOtherMatch6
+    '
+    Me.UcOtherMatch6.ArrowDownVisible = True
+    Me.UcOtherMatch6.ArrowUpVisible = True
+    Me.UcOtherMatch6.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch6.Location = New System.Drawing.Point(4, 374)
+    Me.UcOtherMatch6.Name = "UcOtherMatch6"
+    Me.UcOtherMatch6.OtherMatchInfo = Nothing
+    Me.UcOtherMatch6.Size = New System.Drawing.Size(1047, 67)
+    Me.UcOtherMatch6.TabIndex = 5
+    Me.UcOtherMatch6.UseSelectable = True
+    '
+    'UcOtherMatch5
+    '
+    Me.UcOtherMatch5.ArrowDownVisible = True
+    Me.UcOtherMatch5.ArrowUpVisible = True
+    Me.UcOtherMatch5.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch5.Location = New System.Drawing.Point(4, 300)
+    Me.UcOtherMatch5.Name = "UcOtherMatch5"
+    Me.UcOtherMatch5.OtherMatchInfo = Nothing
+    Me.UcOtherMatch5.Size = New System.Drawing.Size(1047, 67)
+    Me.UcOtherMatch5.TabIndex = 4
+    Me.UcOtherMatch5.UseSelectable = True
+    '
+    'UcOtherMatch4
+    '
+    Me.UcOtherMatch4.ArrowDownVisible = True
+    Me.UcOtherMatch4.ArrowUpVisible = True
+    Me.UcOtherMatch4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch4.Location = New System.Drawing.Point(4, 226)
+    Me.UcOtherMatch4.Name = "UcOtherMatch4"
+    Me.UcOtherMatch4.OtherMatchInfo = Nothing
+    Me.UcOtherMatch4.Size = New System.Drawing.Size(1047, 67)
+    Me.UcOtherMatch4.TabIndex = 3
+    Me.UcOtherMatch4.UseSelectable = True
+    '
+    'UcOtherMatch3
+    '
+    Me.UcOtherMatch3.ArrowDownVisible = True
+    Me.UcOtherMatch3.ArrowUpVisible = True
+    Me.UcOtherMatch3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch3.Location = New System.Drawing.Point(4, 152)
+    Me.UcOtherMatch3.Name = "UcOtherMatch3"
+    Me.UcOtherMatch3.OtherMatchInfo = Nothing
+    Me.UcOtherMatch3.Size = New System.Drawing.Size(1047, 67)
+    Me.UcOtherMatch3.TabIndex = 2
+    Me.UcOtherMatch3.UseSelectable = True
+    '
+    'UcOtherMatch2
+    '
+    Me.UcOtherMatch2.ArrowDownVisible = True
+    Me.UcOtherMatch2.ArrowUpVisible = True
+    Me.UcOtherMatch2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcOtherMatch2.Location = New System.Drawing.Point(4, 78)
+    Me.UcOtherMatch2.Name = "UcOtherMatch2"
+    Me.UcOtherMatch2.OtherMatchInfo = Nothing
+    Me.UcOtherMatch2.Size = New System.Drawing.Size(1047, 67)
+    Me.UcOtherMatch2.TabIndex = 1
+    Me.UcOtherMatch2.UseSelectable = True
     '
     'UcOtherMatch1
     '
@@ -245,114 +338,19 @@ Partial Class frmMatchDay
     Me.UcOtherMatch1.Location = New System.Drawing.Point(4, 4)
     Me.UcOtherMatch1.Name = "UcOtherMatch1"
     Me.UcOtherMatch1.OtherMatchInfo = Nothing
-    Me.UcOtherMatch1.Size = New System.Drawing.Size(813, 52)
+    Me.UcOtherMatch1.Size = New System.Drawing.Size(1047, 67)
     Me.UcOtherMatch1.TabIndex = 0
     Me.UcOtherMatch1.UseSelectable = True
-    '
-    'UcOtherMatch2
-    '
-    Me.UcOtherMatch2.ArrowDownVisible = True
-    Me.UcOtherMatch2.ArrowUpVisible = True
-    Me.UcOtherMatch2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcOtherMatch2.Location = New System.Drawing.Point(4, 63)
-    Me.UcOtherMatch2.Name = "UcOtherMatch2"
-    Me.UcOtherMatch2.OtherMatchInfo = Nothing
-    Me.UcOtherMatch2.Size = New System.Drawing.Size(813, 52)
-    Me.UcOtherMatch2.TabIndex = 1
-    Me.UcOtherMatch2.UseSelectable = True
-    '
-    'UcOtherMatch3
-    '
-    Me.UcOtherMatch3.ArrowDownVisible = True
-    Me.UcOtherMatch3.ArrowUpVisible = True
-    Me.UcOtherMatch3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcOtherMatch3.Location = New System.Drawing.Point(4, 122)
-    Me.UcOtherMatch3.Name = "UcOtherMatch3"
-    Me.UcOtherMatch3.OtherMatchInfo = Nothing
-    Me.UcOtherMatch3.Size = New System.Drawing.Size(813, 52)
-    Me.UcOtherMatch3.TabIndex = 2
-    Me.UcOtherMatch3.UseSelectable = True
-    '
-    'UcOtherMatch4
-    '
-    Me.UcOtherMatch4.ArrowDownVisible = True
-    Me.UcOtherMatch4.ArrowUpVisible = True
-    Me.UcOtherMatch4.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcOtherMatch4.Location = New System.Drawing.Point(4, 181)
-    Me.UcOtherMatch4.Name = "UcOtherMatch4"
-    Me.UcOtherMatch4.OtherMatchInfo = Nothing
-    Me.UcOtherMatch4.Size = New System.Drawing.Size(813, 52)
-    Me.UcOtherMatch4.TabIndex = 3
-    Me.UcOtherMatch4.UseSelectable = True
-    '
-    'UcOtherMatch5
-    '
-    Me.UcOtherMatch5.ArrowDownVisible = True
-    Me.UcOtherMatch5.ArrowUpVisible = True
-    Me.UcOtherMatch5.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcOtherMatch5.Location = New System.Drawing.Point(4, 240)
-    Me.UcOtherMatch5.Name = "UcOtherMatch5"
-    Me.UcOtherMatch5.OtherMatchInfo = Nothing
-    Me.UcOtherMatch5.Size = New System.Drawing.Size(813, 52)
-    Me.UcOtherMatch5.TabIndex = 4
-    Me.UcOtherMatch5.UseSelectable = True
-    '
-    'UcOtherMatch6
-    '
-    Me.UcOtherMatch6.ArrowDownVisible = True
-    Me.UcOtherMatch6.ArrowUpVisible = True
-    Me.UcOtherMatch6.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcOtherMatch6.Location = New System.Drawing.Point(4, 299)
-    Me.UcOtherMatch6.Name = "UcOtherMatch6"
-    Me.UcOtherMatch6.OtherMatchInfo = Nothing
-    Me.UcOtherMatch6.Size = New System.Drawing.Size(813, 52)
-    Me.UcOtherMatch6.TabIndex = 5
-    Me.UcOtherMatch6.UseSelectable = True
-    '
-    'UcOtherMatch7
-    '
-    Me.UcOtherMatch7.ArrowDownVisible = True
-    Me.UcOtherMatch7.ArrowUpVisible = True
-    Me.UcOtherMatch7.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcOtherMatch7.Location = New System.Drawing.Point(4, 358)
-    Me.UcOtherMatch7.Name = "UcOtherMatch7"
-    Me.UcOtherMatch7.OtherMatchInfo = Nothing
-    Me.UcOtherMatch7.Size = New System.Drawing.Size(813, 52)
-    Me.UcOtherMatch7.TabIndex = 6
-    Me.UcOtherMatch7.UseSelectable = True
-    '
-    'UcOtherMatch8
-    '
-    Me.UcOtherMatch8.ArrowDownVisible = True
-    Me.UcOtherMatch8.ArrowUpVisible = True
-    Me.UcOtherMatch8.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcOtherMatch8.Location = New System.Drawing.Point(4, 417)
-    Me.UcOtherMatch8.Name = "UcOtherMatch8"
-    Me.UcOtherMatch8.OtherMatchInfo = Nothing
-    Me.UcOtherMatch8.Size = New System.Drawing.Size(813, 52)
-    Me.UcOtherMatch8.TabIndex = 7
-    Me.UcOtherMatch8.UseSelectable = True
-    '
-    'UcOtherMatch9
-    '
-    Me.UcOtherMatch9.ArrowDownVisible = True
-    Me.UcOtherMatch9.ArrowUpVisible = True
-    Me.UcOtherMatch9.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcOtherMatch9.Location = New System.Drawing.Point(4, 476)
-    Me.UcOtherMatch9.Name = "UcOtherMatch9"
-    Me.UcOtherMatch9.OtherMatchInfo = Nothing
-    Me.UcOtherMatch9.Size = New System.Drawing.Size(813, 54)
-    Me.UcOtherMatch9.TabIndex = 8
-    Me.UcOtherMatch9.UseSelectable = True
     '
     'frmMatchDay
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1147, 655)
+    Me.ClientSize = New System.Drawing.Size(1369, 789)
     Me.Controls.Add(Me.SplitContainer1)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Name = "frmMatchDay"
+    Me.Resizable = False
     Me.Text = "Other matches"
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.SplitContainer1.Panel1.ResumeLayout(False)

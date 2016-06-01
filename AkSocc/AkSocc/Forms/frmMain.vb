@@ -513,10 +513,15 @@ Public Class frmMain
   Private WithEvents _frmMatchDay As frmMatchDay
   Public Sub ShowMatchDay()
     Try
-      If _frmMatchDay Is Nothing Then
-        _frmMatchDay = New frmMatchDay()
+      _frmMatchDay = New frmMatchDay()
+      Dim mps As New Competitions()
+      mps.GetFromDB("")
+      _frmMatchDay.Competition = mps.GetCompetition(_match.competition_id)
+      If _frmMatchDay.ShowDialog(Me) = DialogResult.OK Then
+
       End If
-      _frmMatchDay.ShowDialog(Me)
+      _frmMatchDay.Dispose()
+      _frmMatchDay = Nothing
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try

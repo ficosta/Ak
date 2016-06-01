@@ -35,13 +35,13 @@ Partial Class FormMatchSetup
     Me.MetroTabControl1 = New MetroFramework.Controls.MetroTabControl()
     Me.TabPageMatchSetup = New System.Windows.Forms.TabPage()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+    Me.MetroLabel4 = New MetroFramework.Controls.MetroLabel()
     Me.MetroTileMatchInfo = New MetroFramework.Controls.MetroTile()
     Me.MetroLabelSceneVersion = New MetroFramework.Controls.MetroLabel()
     Me.MetroComboBoxSceneVersion = New MetroFramework.Controls.MetroComboBox()
     Me.MetroTileReferees = New MetroFramework.Controls.MetroTile()
     Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
     Me.MetroLabel3 = New MetroFramework.Controls.MetroLabel()
-    Me.MetroLabel4 = New MetroFramework.Controls.MetroLabel()
     Me.MetroComboBoxReferee1 = New MetroFramework.Controls.MetroComboBox()
     Me.MetroComboBoxReferee2 = New MetroFramework.Controls.MetroComboBox()
     Me.MetroComboBoxReferee3 = New MetroFramework.Controls.MetroComboBox()
@@ -52,12 +52,12 @@ Partial Class FormMatchSetup
     Me.PictureBoxClockRight = New System.Windows.Forms.PictureBox()
     Me.PictureBoxClockDown = New System.Windows.Forms.PictureBox()
     Me.TabPageHome = New System.Windows.Forms.TabPage()
-    Me.UcTeamMatchSetupHome = New AkSocc.UCTeamMatchSetup()
     Me.TabPageAway = New System.Windows.Forms.TabPage()
-    Me.UcTeamMatchSetupAway = New AkSocc.UCTeamMatchSetup()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.OK_Button = New MetroFramework.Controls.MetroButton()
     Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.UcTeamMatchSetupHome = New AkSocc.UCTeamMatchSetup()
+    Me.UcTeamMatchSetupAway = New AkSocc.UCTeamMatchSetup()
     Me.TableLayoutPanelGlobal.SuspendLayout()
     CType(Me.MetroGridMatches, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.MetroTabControl1.SuspendLayout()
@@ -103,10 +103,10 @@ Partial Class FormMatchSetup
     Me.MetroGridMatches.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
     Me.MetroGridMatches.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
     DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
+    DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
     DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
+    DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
     DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
     Me.MetroGridMatches.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
@@ -116,7 +116,7 @@ Partial Class FormMatchSetup
     DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
     DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
-    DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
+    DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
     DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
     Me.MetroGridMatches.DefaultCellStyle = DataGridViewCellStyle2
@@ -130,10 +130,10 @@ Partial Class FormMatchSetup
     Me.MetroGridMatches.Name = "MetroGridMatches"
     Me.MetroGridMatches.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
     DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
+    DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
     DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
     DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
+    DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
     DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
     Me.MetroGridMatches.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
@@ -145,7 +145,6 @@ Partial Class FormMatchSetup
     Me.MetroGridMatches.ShowEditingIcon = False
     Me.MetroGridMatches.ShowRowErrors = False
     Me.MetroGridMatches.Size = New System.Drawing.Size(406, 489)
-    Me.MetroGridMatches.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroGridMatches.TabIndex = 47
     '
     'Column1
@@ -197,7 +196,6 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanelGlobal.SetRowSpan(Me.MetroTabControl1, 2)
     Me.MetroTabControl1.SelectedIndex = 0
     Me.MetroTabControl1.Size = New System.Drawing.Size(939, 524)
-    Me.MetroTabControl1.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTabControl1.TabIndex = 48
     Me.MetroTabControl1.UseSelectable = True
     '
@@ -245,6 +243,17 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel2.Size = New System.Drawing.Size(931, 482)
     Me.TableLayoutPanel2.TabIndex = 0
+    '
+    'MetroLabel4
+    '
+    Me.MetroLabel4.AutoSize = True
+    Me.MetroLabel4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabel4.Location = New System.Drawing.Point(3, 110)
+    Me.MetroLabel4.Name = "MetroLabel4"
+    Me.MetroLabel4.Size = New System.Drawing.Size(194, 35)
+    Me.MetroLabel4.TabIndex = 7
+    Me.MetroLabel4.Text = "Assistant referee #2"
+    Me.MetroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'MetroTileMatchInfo
     '
@@ -316,17 +325,6 @@ Partial Class FormMatchSetup
     Me.MetroLabel3.TabIndex = 6
     Me.MetroLabel3.Text = "Assistant referee #1"
     Me.MetroLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
-    'MetroLabel4
-    '
-    Me.MetroLabel4.AutoSize = True
-    Me.MetroLabel4.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel4.Location = New System.Drawing.Point(3, 110)
-    Me.MetroLabel4.Name = "MetroLabel4"
-    Me.MetroLabel4.Size = New System.Drawing.Size(194, 35)
-    Me.MetroLabel4.TabIndex = 7
-    Me.MetroLabel4.Text = "Assistant referee #2"
-    Me.MetroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'MetroComboBoxReferee1
     '
@@ -457,18 +455,6 @@ Partial Class FormMatchSetup
     Me.TabPageHome.TabIndex = 0
     Me.TabPageHome.Text = "Home team"
     '
-    'UcTeamMatchSetupHome
-    '
-    Me.UcTeamMatchSetupHome.Color = System.Drawing.Color.AliceBlue
-    Me.UcTeamMatchSetupHome.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcTeamMatchSetupHome.IsLocalTeam = True
-    Me.UcTeamMatchSetupHome.Location = New System.Drawing.Point(0, 0)
-    Me.UcTeamMatchSetupHome.Name = "UcTeamMatchSetupHome"
-    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(931, 482)
-    Me.UcTeamMatchSetupHome.TabIndex = 0
-    Me.UcTeamMatchSetupHome.Tactic = Nothing
-    Me.UcTeamMatchSetupHome.Team = Nothing
-    '
     'TabPageAway
     '
     Me.TabPageAway.Controls.Add(Me.UcTeamMatchSetupAway)
@@ -477,18 +463,6 @@ Partial Class FormMatchSetup
     Me.TabPageAway.Size = New System.Drawing.Size(931, 482)
     Me.TabPageAway.TabIndex = 1
     Me.TabPageAway.Text = "Away team"
-    '
-    'UcTeamMatchSetupAway
-    '
-    Me.UcTeamMatchSetupAway.Color = System.Drawing.Color.AliceBlue
-    Me.UcTeamMatchSetupAway.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcTeamMatchSetupAway.IsLocalTeam = True
-    Me.UcTeamMatchSetupAway.Location = New System.Drawing.Point(0, 0)
-    Me.UcTeamMatchSetupAway.Name = "UcTeamMatchSetupAway"
-    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(931, 482)
-    Me.UcTeamMatchSetupAway.TabIndex = 0
-    Me.UcTeamMatchSetupAway.Tactic = Nothing
-    Me.UcTeamMatchSetupAway.Team = Nothing
     '
     'TableLayoutPanel1
     '
@@ -525,6 +499,30 @@ Partial Class FormMatchSetup
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
     Me.Cancel_Button.UseSelectable = True
+    '
+    'UcTeamMatchSetupHome
+    '
+    Me.UcTeamMatchSetupHome.Color = System.Drawing.Color.AliceBlue
+    Me.UcTeamMatchSetupHome.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcTeamMatchSetupHome.IsLocalTeam = True
+    Me.UcTeamMatchSetupHome.Location = New System.Drawing.Point(0, 0)
+    Me.UcTeamMatchSetupHome.Name = "UcTeamMatchSetupHome"
+    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(931, 482)
+    Me.UcTeamMatchSetupHome.TabIndex = 0
+    Me.UcTeamMatchSetupHome.Tactic = Nothing
+    Me.UcTeamMatchSetupHome.Team = Nothing
+    '
+    'UcTeamMatchSetupAway
+    '
+    Me.UcTeamMatchSetupAway.Color = System.Drawing.Color.AliceBlue
+    Me.UcTeamMatchSetupAway.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcTeamMatchSetupAway.IsLocalTeam = True
+    Me.UcTeamMatchSetupAway.Location = New System.Drawing.Point(0, 0)
+    Me.UcTeamMatchSetupAway.Name = "UcTeamMatchSetupAway"
+    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(931, 482)
+    Me.UcTeamMatchSetupAway.TabIndex = 0
+    Me.UcTeamMatchSetupAway.Tactic = Nothing
+    Me.UcTeamMatchSetupAway.Team = Nothing
     '
     'FormMatchSetup
     '
