@@ -21,5 +21,6 @@
   Public Property LocalConnectionString As String
   Public Property OptaConnectionString As String
   Public Property LocalDataBasePath As String
+  Public Property MatchDaysPath As String
 #End Region
 End Class

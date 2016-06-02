@@ -66,13 +66,18 @@ Public NotInheritable Class ClockControl
 
 #Region "Initialization"
 
-  Private Sub InitScene()
-    Scene = New Scene
-    With Scene
+  Public Shared Function GetClockBaseScene() As Scene
+    Dim scene As New Scene
+    With scene
       .SceneName = "gfx_Clock"
       .SceneDirector = "DIR_MAIN"
       .VizLayer = SceneLayer.Back
     End With
+    Return scene
+  End Function
+
+  Private Sub InitScene()
+    Me.Scene = GetClockBaseScene()
   End Sub
 #End Region
 
@@ -106,7 +111,8 @@ Public NotInheritable Class ClockControl
   Public Sub ShowIdentClock()
     Try
       UpdateAndSendScene()
-      _vizControl.DirectorStart("DIR_MAIN", Me.Scene.VizLayer)
+      '_vizControl.DirectorStart("DIR_MAIN", Me.Scene.VizLayer)
+      Me.Scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
 
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -116,8 +122,27 @@ Public NotInheritable Class ClockControl
   Public Sub HideIdentClock()
     Try
 
-      _vizControl.DirectorContinue("DIR_MAIN", Me.Scene.VizLayer)
+      '_vizControl.DirectorContinue("DIR_MAIN", Me.Scene.VizLayer)  
+      Me.Scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
 
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub UpdateRunningClock()
+    Try
+      If _match Is Nothing Then Exit Sub
+      If _match.MatchPeriods.ActivePeriod Is Nothing Then Exit Sub
+
+      Dim clockIndex As Integer = 0
+
+      _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime)
+      If _match.MatchPeriods.ActivePeriod.Activa Then
+        _vizControl.ClockStart(clockIndex)
+      Else
+        _vizControl.ClockStop(clockIndex)
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -126,6 +151,28 @@ Public NotInheritable Class ClockControl
   Private Sub UpdateScene()
     Try
       With Me.Scene
+        'Directors
+        .SceneDirectorsIn.Add("DIR_MAIN", 0, DirectorAction.Start)
+
+        .SceneDirectorsIn.Add("Added_Time_Text", 0, DirectorAction.Rewind)
+        .SceneDirectorsIn.Add("Added_Time_Clock", 0, DirectorAction.Rewind)
+
+        .SceneDirectorsIn.Add("Team_Left_Cards", 0, DirectorAction.Rewind)
+        .SceneDirectorsIn.Add("Team_Right_Cards", 0, DirectorAction.Rewind)
+
+        .SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
+        
+        .SceneDirectorsIn.Add("anim_Clock_Substitute", 0, DirectorAction.Rewind)
+        .SceneDirectorsIn.Add("anim_Clock_Player_Card", 0, DirectorAction.Rewind)
+        .SceneDirectorsIn.Add("anim_Clock_Match_Statistics", 0, DirectorAction.Rewind)
+        .SceneDirectorsIn.Add("anim_Clock_Generic_Straps", 0, DirectorAction.Rewind)
+        .SceneDirectorsIn.Add("anim_Clock_Straps_with_Icon", 0, DirectorAction.Rewind)
+        .SceneDirectorsIn.Add("anim_Clock_Penalties", 0, DirectorAction.Rewind)
+        .SceneDirectorsIn.Add("anim_OtherScores", 0, DirectorAction.Rewind)
+
+        .SceneDirectorsOut.Add("DIR_MAIN", 0, DirectorAction.ContinueNormal)
+
+        'Control objects
         .SceneParameters.Add("Clock_Home_Team_Name", _match.HomeTeam.TeamAELCaption1Name)
         .SceneParameters.Add("Clock_Away_Team_Name", _match.AwayTeam.TeamAELCaption1Name)
 
@@ -136,6 +183,9 @@ Public NotInheritable Class ClockControl
         .SceneParameters.Add("Clock_Away_Team_TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & _match.AwayTeam.BadgeName, paramType.Image)
 
         .SceneParameters.Add("Clock_Half_Indicator_Text", "time")
+
+        'clock control
+        UpdateRunningClock()
       End With
     Catch ex As Exception
       WriteToErrorLog(ex)

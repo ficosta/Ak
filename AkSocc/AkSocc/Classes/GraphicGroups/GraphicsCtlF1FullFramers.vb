@@ -66,7 +66,6 @@ Public Class GraphicGroupCtlF1FullFramers
       WriteToErrorLog(ex)
     End Try
     Return gs
-
   End Function
 
   Public Overrides Function PrepareScene(graphicStep As GraphicStep) As Scene

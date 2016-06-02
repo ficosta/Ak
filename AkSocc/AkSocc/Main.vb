@@ -114,6 +114,7 @@ Module Main
       End If
       MatchInfo.Config.Instance.LocalConnectionString = LocalConnectionString
       MatchInfo.Config.Instance.OptaConnectionString = OptaConnectionString
+
     Catch ex As Exception
 
     End Try

@@ -43,6 +43,8 @@ Partial Class frmMain
     Me.ToolStripButtonClassification = New System.Windows.Forms.ToolStripButton()
     Me.SplitContainerAll = New System.Windows.Forms.SplitContainer()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+    Me.TeamViewer1 = New AkSocc.TeamViewer()
+    Me.TeamViewer2 = New AkSocc.TeamViewer()
     Me.TableLayoutPanelMatchInfo = New System.Windows.Forms.TableLayoutPanel()
     Me.LabelHomeTeamShortName = New MetroFramework.Controls.MetroLabel()
     Me.LabelHomeTeamName = New MetroFramework.Controls.MetroLabel()
@@ -53,10 +55,10 @@ Partial Class frmMain
     Me.TableLayoutPanelControls = New System.Windows.Forms.TableLayoutPanel()
     Me.TableLayoutPanel8 = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroTileClock = New MetroFramework.Controls.MetroTile()
+    Me.MetroButtonClockSubstitutions = New MetroFramework.Controls.MetroButton()
     Me.MetroButtonClockOUT = New MetroFramework.Controls.MetroButton()
     Me.MetroButtonClockIN = New MetroFramework.Controls.MetroButton()
     Me.MetroTileClockBasedGraphics = New MetroFramework.Controls.MetroTile()
-    Me.MetroButtonClockSubstitutions = New MetroFramework.Controls.MetroButton()
     Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
     Me.ButtonAltF6HtFtBug = New MetroFramework.Controls.MetroButton()
     Me.ButtonShftF1PenaltyShootOut = New MetroFramework.Controls.MetroButton()
@@ -109,12 +111,14 @@ Partial Class frmMain
     Me.MetroLabelPeriodName = New MetroFramework.Controls.MetroLabel()
     Me.TableLayoutPanelClockControl = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroButtonTimeControl = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonMatchSubstitutions = New MetroFramework.Controls.MetroButton()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.msmMain = New MetroFramework.Components.MetroStyleManager(Me.components)
     Me.TimerClock = New System.Windows.Forms.Timer(Me.components)
-    Me.TeamViewer1 = New AkSocc.TeamViewer()
-    Me.TeamViewer2 = New AkSocc.TeamViewer()
-    Me.MetroButtonMatchSubstitutions = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonClockStats = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonClockOtherScores = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonClockPenalties = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonClockStrapsWithIcon = New MetroFramework.Controls.MetroButton()
     Me.MenuStrip1.SuspendLayout()
     Me.StatusStrip1.SuspendLayout()
     Me.ToolStrip1.SuspendLayout()
@@ -299,6 +303,26 @@ Partial Class frmMain
     Me.TableLayoutPanel1.Size = New System.Drawing.Size(489, 641)
     Me.TableLayoutPanel1.TabIndex = 0
     '
+    'TeamViewer1
+    '
+    Me.TeamViewer1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TeamViewer1.Location = New System.Drawing.Point(3, 63)
+    Me.TeamViewer1.Name = "TeamViewer1"
+    Me.TeamViewer1.SelectedPlayer = Nothing
+    Me.TeamViewer1.Size = New System.Drawing.Size(238, 575)
+    Me.TeamViewer1.TabIndex = 0
+    Me.TeamViewer1.Team = Nothing
+    '
+    'TeamViewer2
+    '
+    Me.TeamViewer2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TeamViewer2.Location = New System.Drawing.Point(247, 63)
+    Me.TeamViewer2.Name = "TeamViewer2"
+    Me.TeamViewer2.SelectedPlayer = Nothing
+    Me.TeamViewer2.Size = New System.Drawing.Size(239, 575)
+    Me.TeamViewer2.TabIndex = 1
+    Me.TeamViewer2.Team = Nothing
+    '
     'TableLayoutPanelMatchInfo
     '
     Me.TableLayoutPanelMatchInfo.ColumnCount = 6
@@ -419,6 +443,10 @@ Partial Class frmMain
     Me.TableLayoutPanel8.Controls.Add(Me.MetroButtonClockOUT, 0, 2)
     Me.TableLayoutPanel8.Controls.Add(Me.MetroButtonClockIN, 0, 1)
     Me.TableLayoutPanel8.Controls.Add(Me.MetroTileClockBasedGraphics, 1, 0)
+    Me.TableLayoutPanel8.Controls.Add(Me.MetroButtonClockStats, 2, 1)
+    Me.TableLayoutPanel8.Controls.Add(Me.MetroButtonClockOtherScores, 1, 2)
+    Me.TableLayoutPanel8.Controls.Add(Me.MetroButtonClockPenalties, 2, 2)
+    Me.TableLayoutPanel8.Controls.Add(Me.MetroButtonClockStrapsWithIcon, 3, 1)
     Me.TableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanel8.Location = New System.Drawing.Point(3, 123)
     Me.TableLayoutPanel8.Name = "TableLayoutPanel8"
@@ -439,6 +467,19 @@ Partial Class frmMain
     Me.MetroTileClock.TabIndex = 0
     Me.MetroTileClock.Text = "Clock controls"
     Me.MetroTileClock.UseSelectable = True
+    '
+    'MetroButtonClockSubstitutions
+    '
+    Me.MetroButtonClockSubstitutions.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroButtonClockSubstitutions.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockSubstitutions.Location = New System.Drawing.Point(161, 28)
+    Me.MetroButtonClockSubstitutions.Name = "MetroButtonClockSubstitutions"
+    Me.MetroButtonClockSubstitutions.Size = New System.Drawing.Size(152, 38)
+    Me.MetroButtonClockSubstitutions.TabIndex = 3
+    Me.MetroButtonClockSubstitutions.Text = "Substitutions"
+    Me.MetroButtonClockSubstitutions.UseCustomBackColor = True
+    Me.MetroButtonClockSubstitutions.UseCustomForeColor = True
+    Me.MetroButtonClockSubstitutions.UseSelectable = True
     '
     'MetroButtonClockOUT
     '
@@ -471,16 +512,6 @@ Partial Class frmMain
     Me.MetroTileClockBasedGraphics.TabIndex = 2
     Me.MetroTileClockBasedGraphics.Text = "Clock based graphics"
     Me.MetroTileClockBasedGraphics.UseSelectable = True
-    '
-    'MetroButtonClockSubstitutions
-    '
-    Me.MetroButtonClockSubstitutions.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonClockSubstitutions.Location = New System.Drawing.Point(161, 28)
-    Me.MetroButtonClockSubstitutions.Name = "MetroButtonClockSubstitutions"
-    Me.MetroButtonClockSubstitutions.Size = New System.Drawing.Size(152, 38)
-    Me.MetroButtonClockSubstitutions.TabIndex = 3
-    Me.MetroButtonClockSubstitutions.Text = "Substitutions"
-    Me.MetroButtonClockSubstitutions.UseSelectable = True
     '
     'TableLayoutPanel4
     '
@@ -1189,6 +1220,16 @@ Partial Class frmMain
     Me.MetroButtonTimeControl.Text = "Time control"
     Me.MetroButtonTimeControl.UseSelectable = True
     '
+    'MetroButtonMatchSubstitutions
+    '
+    Me.MetroButtonMatchSubstitutions.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonMatchSubstitutions.Location = New System.Drawing.Point(179, 3)
+    Me.MetroButtonMatchSubstitutions.Name = "MetroButtonMatchSubstitutions"
+    Me.MetroButtonMatchSubstitutions.Size = New System.Drawing.Size(170, 35)
+    Me.MetroButtonMatchSubstitutions.TabIndex = 1
+    Me.MetroButtonMatchSubstitutions.Text = "Substitutions"
+    Me.MetroButtonMatchSubstitutions.UseSelectable = True
+    '
     'TableLayoutPanel2
     '
     Me.TableLayoutPanel2.ColumnCount = 2
@@ -1212,35 +1253,57 @@ Partial Class frmMain
     Me.TimerClock.Enabled = True
     Me.TimerClock.Interval = 250
     '
-    'TeamViewer1
+    'MetroButtonClockStats
     '
-    Me.TeamViewer1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TeamViewer1.Location = New System.Drawing.Point(3, 63)
-    Me.TeamViewer1.Name = "TeamViewer1"
-    Me.TeamViewer1.SelectedPlayer = Nothing
-    Me.TeamViewer1.Size = New System.Drawing.Size(238, 575)
-    Me.TeamViewer1.TabIndex = 0
-    Me.TeamViewer1.Team = Nothing
+    Me.MetroButtonClockStats.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroButtonClockStats.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockStats.Location = New System.Drawing.Point(319, 28)
+    Me.MetroButtonClockStats.Name = "MetroButtonClockStats"
+    Me.MetroButtonClockStats.Size = New System.Drawing.Size(152, 38)
+    Me.MetroButtonClockStats.TabIndex = 4
+    Me.MetroButtonClockStats.Text = "Straps"
+    Me.MetroButtonClockStats.UseCustomBackColor = True
+    Me.MetroButtonClockStats.UseCustomForeColor = True
+    Me.MetroButtonClockStats.UseSelectable = True
     '
-    'TeamViewer2
+    'MetroButtonClockOtherScores
     '
-    Me.TeamViewer2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TeamViewer2.Location = New System.Drawing.Point(247, 63)
-    Me.TeamViewer2.Name = "TeamViewer2"
-    Me.TeamViewer2.SelectedPlayer = Nothing
-    Me.TeamViewer2.Size = New System.Drawing.Size(239, 575)
-    Me.TeamViewer2.TabIndex = 1
-    Me.TeamViewer2.Team = Nothing
+    Me.MetroButtonClockOtherScores.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroButtonClockOtherScores.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockOtherScores.Location = New System.Drawing.Point(161, 72)
+    Me.MetroButtonClockOtherScores.Name = "MetroButtonClockOtherScores"
+    Me.MetroButtonClockOtherScores.Size = New System.Drawing.Size(152, 39)
+    Me.MetroButtonClockOtherScores.TabIndex = 5
+    Me.MetroButtonClockOtherScores.Text = "Other scores"
+    Me.MetroButtonClockOtherScores.UseCustomBackColor = True
+    Me.MetroButtonClockOtherScores.UseCustomForeColor = True
+    Me.MetroButtonClockOtherScores.UseSelectable = True
     '
-    'MetroButtonMatchSubstitutions
+    'MetroButtonClockPenalties
     '
-    Me.MetroButtonMatchSubstitutions.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonMatchSubstitutions.Location = New System.Drawing.Point(179, 3)
-    Me.MetroButtonMatchSubstitutions.Name = "MetroButtonMatchSubstitutions"
-    Me.MetroButtonMatchSubstitutions.Size = New System.Drawing.Size(170, 35)
-    Me.MetroButtonMatchSubstitutions.TabIndex = 1
-    Me.MetroButtonMatchSubstitutions.Text = "Substitutions"
-    Me.MetroButtonMatchSubstitutions.UseSelectable = True
+    Me.MetroButtonClockPenalties.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroButtonClockPenalties.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockPenalties.Location = New System.Drawing.Point(319, 72)
+    Me.MetroButtonClockPenalties.Name = "MetroButtonClockPenalties"
+    Me.MetroButtonClockPenalties.Size = New System.Drawing.Size(152, 39)
+    Me.MetroButtonClockPenalties.TabIndex = 6
+    Me.MetroButtonClockPenalties.Text = "Penalties"
+    Me.MetroButtonClockPenalties.UseCustomBackColor = True
+    Me.MetroButtonClockPenalties.UseCustomForeColor = True
+    Me.MetroButtonClockPenalties.UseSelectable = True
+    '
+    'MetroButtonClockStrapsWithIcon
+    '
+    Me.MetroButtonClockStrapsWithIcon.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroButtonClockStrapsWithIcon.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockStrapsWithIcon.Location = New System.Drawing.Point(477, 28)
+    Me.MetroButtonClockStrapsWithIcon.Name = "MetroButtonClockStrapsWithIcon"
+    Me.MetroButtonClockStrapsWithIcon.Size = New System.Drawing.Size(155, 38)
+    Me.MetroButtonClockStrapsWithIcon.TabIndex = 7
+    Me.MetroButtonClockStrapsWithIcon.Text = "Straps with icon"
+    Me.MetroButtonClockStrapsWithIcon.UseCustomBackColor = True
+    Me.MetroButtonClockStrapsWithIcon.UseCustomForeColor = True
+    Me.MetroButtonClockStrapsWithIcon.UseSelectable = True
     '
     'frmMain
     '
@@ -1374,4 +1437,8 @@ Partial Class frmMain
   Friend WithEvents MetroTileClockBasedGraphics As MetroFramework.Controls.MetroTile
   Friend WithEvents MetroButtonClockSubstitutions As MetroFramework.Controls.MetroButton
   Friend WithEvents MetroButtonMatchSubstitutions As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonClockStats As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonClockOtherScores As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonClockPenalties As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonClockStrapsWithIcon As MetroFramework.Controls.MetroButton
 End Class

@@ -504,6 +504,22 @@ Public Class frmMain
     dlg.Show(Me)
   End Sub
 
+  Private Sub MetroButtonClockStats_Click(sender As Object, e As EventArgs) Handles MetroButtonClockStats.Click
+    Me.StartGraphic(New ClockGenericStraps(_match))
+  End Sub
+
+  Private Sub MetroButtonClockStrapsWithIcon_Click(sender As Object, e As EventArgs) Handles MetroButtonClockStrapsWithIcon.Click
+    Me.StartGraphic(New ClockStrapsWithIcon(_match))
+  End Sub
+
+  Private Sub MetroButtonClockOtherScores_Click(sender As Object, e As EventArgs) Handles MetroButtonClockOtherScores.Click
+    Me.StartGraphic(New ClockOtherScores(_match))
+  End Sub
+
+  Private Sub MetroButtonClockPenalties_Click(sender As Object, e As EventArgs) Handles MetroButtonClockPenalties.Click
+    Me.StartGraphic(New ClockPenalties(_match))
+  End Sub
+
   Private Sub MetroButtonMatchSubstitutions_Click(sender As Object, e As EventArgs) Handles MetroButtonMatchSubstitutions.Click
 
   End Sub

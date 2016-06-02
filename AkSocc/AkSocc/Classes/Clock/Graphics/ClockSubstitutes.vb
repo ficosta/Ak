@@ -86,6 +86,9 @@ Public Class ClockSubstitutes
 
   Private Sub PrepareResultScene(ByRef scene As Scene, home_result As String, away_result As String, period_name As String, show_logo As Boolean)
     Try
+      scene.SceneDirectorsIn.Add("anim_Clock_Substitute", 0, DirectorAction.Start)
+      scene.SceneDirectorsOut.Add("anim_Clock_Substitute", 0, DirectorAction.Start)
+
       scene.SceneParameters.Add(New SceneParameter("home_team_name", Match.HomeTeam.ArabicCaption1Name))
       scene.SceneParameters.Add(New SceneParameter("away_team_name", Match.AwayTeam.ArabicCaption1Name))
       scene.SceneParameters.Add(New SceneParameter("home_team_logo", Match.HomeTeam.BadgeName, paramType.Image))
