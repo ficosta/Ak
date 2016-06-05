@@ -2,7 +2,7 @@
 
 Imports System.Data.OleDb
 
-Public Class Players
+<Serializable()> Public Class Players
   Inherits CollectionBase
 
   Public Sub New()

@@ -120,6 +120,29 @@ End Enum
     End Try
   End Sub
 
+  Public Sub JumpToEndFrame(CiControlVizrt As VizControl, sceneDirectors As SceneDirectors)
+    Try
+      Dim frame As Integer = 0
+      Dim maxFrame As Integer = sceneDirectors.MaxFrame
+
+      For Each director As SceneDirector In sceneDirectors
+        Select Case director.Action
+          Case DirectorAction.Start, DirectorAction.ContinueNormal
+            _vizrtControl.DirectorGoTo(director.Name, maxFrame, Me.VizLayer)
+
+          Case DirectorAction.Dummy, DirectorAction.JumpTo
+            _vizrtControl.DirectorGoTo(director.Name, director.Frame, Me.VizLayer)
+          Case Else
+            _vizrtControl.DirectorGoTo(director.Name, 0, Me.VizLayer)
+
+
+        End Select
+      Next
+
+    Catch ex As Exception
+    End Try
+  End Sub
+
   Private Sub _backgroundWorker_DoWork(sender As Object, e As DoWorkEventArgs) Handles _backgroundWorker.DoWork
     Try
       Dim frame As Integer = 0

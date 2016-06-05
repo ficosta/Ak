@@ -82,6 +82,8 @@
     <Compile Include="Classes\VizControl.vb" />
     <Compile Include="Classes\VizControl_new.vb" />
     <Compile Include="Comm\SocketClient.vb" />
+    <Compile Include="Language\Translation.vb" />
+    <Compile Include="Language\Translator.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

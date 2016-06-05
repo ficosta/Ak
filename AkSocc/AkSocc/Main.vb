@@ -114,6 +114,7 @@ Module Main
       End If
       MatchInfo.Config.Instance.LocalConnectionString = LocalConnectionString
       MatchInfo.Config.Instance.OptaConnectionString = OptaConnectionString
+      MatchInfo.Config.Instance.UseArabicNames = My.Settings.UseArabicNames
 
     Catch ex As Exception
 

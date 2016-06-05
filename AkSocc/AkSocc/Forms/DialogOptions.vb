@@ -26,7 +26,9 @@ Public Class DialogOptions
   Private Sub InitializeSettings()
     Try
       Me.MetroTextBoxDataBase.Text = My.Settings.DataBasePath
+      Me.MetroTextBoxOtherMatchesFilePath.Text = My.Settings.OtherMatchesPath
       Me.CheckBoxShowOptionsOnStartup.Checked = My.Settings.ShowSettingsOnStartup
+      Me.MetroCheckBoxUseArabicNames.Checked = My.Settings.UseArabicNames
       Me.TextBoxVizrtHost.Text = My.Settings.VizrtHost
       Me.NumericUpDownPort.Value = My.Settings.VizrtPort
       Me.NumericUpDownPreviewPort.Value = My.Settings.VizrtPreviewPort
@@ -54,7 +56,9 @@ Public Class DialogOptions
     Dim res As Boolean = True
     Try
       My.Settings.DataBasePath = Me.MetroTextBoxDataBase.Text
+      My.Settings.OtherMatchesPath = Me.MetroTextBoxOtherMatchesFilePath.Text
       My.Settings.ShowSettingsOnStartup = Me.CheckBoxShowOptionsOnStartup.Checked
+      My.Settings.UseArabicNames = Me.MetroCheckBoxUseArabicNames.Checked
       My.Settings.VizrtHost = Me.TextBoxVizrtHost.Text
       My.Settings.VizrtPort = Me.NumericUpDownPort.Value
       My.Settings.VizrtPreviewPort = Me.NumericUpDownPreviewPort.Value
@@ -83,6 +87,17 @@ Public Class DialogOptions
       Me.OpenFileDialogDataBase.FileName = Me.MetroTextBoxDataBase.Text
       If Me.OpenFileDialogDataBase.ShowDialog(Me) Then
         Me.MetroTextBoxDataBase.Text = Me.OpenFileDialogDataBase.FileName
+      End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub MetroButtonOtherMatchesPath_Click(sender As Object, e As EventArgs) Handles MetroButtonOtherMatchesPath.Click
+    Try
+      Me.OpenFileDialogXML.FileName = Me.MetroTextBoxOtherMatchesFilePath.Text
+      If Me.OpenFileDialogXML.ShowDialog(Me) Then
+        Me.MetroTextBoxOtherMatchesFilePath.Text = Me.OpenFileDialogXML.FileName
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)

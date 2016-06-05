@@ -45,7 +45,12 @@ Public Class frmMain
       _vizControl.Config.SceneBasePath = My.Settings.ScenePath
       _vizControl.InitializeSockets()
 
-      _previewControl = New VizCommands.PreviewControl(_vizControl.Config)
+      Dim pvwConfig As New VizCommands.tyConfigVizrt
+      pvwConfig.TCPHost = My.Settings.VizrtHost
+      pvwConfig.TCPPort = My.Settings.VizrtPreviewPort
+      pvwConfig.SceneBasePath = My.Settings.ScenePath
+
+      _previewControl = New VizCommands.PreviewControl(pvwConfig)
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try

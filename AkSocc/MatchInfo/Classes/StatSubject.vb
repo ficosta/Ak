@@ -26,7 +26,15 @@ Public Class StatSubject
     End Set
   End Property
 
+  Private _name As String = ""
   Public Property Name As String
+    Get
+      Return _name
+    End Get
+    Set(value As String)
+      _Name = value
+    End Set
+  End Property
 
   Public Property Match_ID As Integer = -1
 
@@ -34,6 +42,10 @@ Public Class StatSubject
   Public Property FieldName As String
 
   Public Event StatValueChanged(sender As StatSubject, stat As Stat)
+
+  Public Sub New()
+
+  End Sub
 
 #Region "Stats"
   Public ReadOnly Property SQL As String

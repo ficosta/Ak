@@ -1,7 +1,7 @@
 ﻿Imports System.Data.OleDb
 Imports System.Data.SqlClient
 
-Public Class Match
+<Serializable()> Public Class Match
   Implements IComparable
 
   Public Property HomeTeam As Team

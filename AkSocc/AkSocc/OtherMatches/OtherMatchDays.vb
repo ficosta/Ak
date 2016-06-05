@@ -4,22 +4,6 @@
   Public Sub New()
   End Sub
 
-  Public Sub LoadFromFile(file As String)
-    Try
-      DesserializeObjectFromFile(file, Me.InnerList)
-    Catch ex As Exception
-      WriteToErrorLog(ex)
-    End Try
-  End Sub
-
-  Public Sub SaveToFile(file As String)
-    Try
-      SerializeObjectToFile(file, Me.InnerList)
-    Catch ex As Exception
-      WriteToErrorLog(ex)
-    End Try
-  End Sub
-
   Public Function Add(MatchDay As MatchDay) As Integer
     Try
       If Not MatchDay Is Nothing Then
@@ -38,7 +22,6 @@
       List(Index) = Value
     End Set
   End Property
-
 
   Public Sub Sort()
     Me.InnerList.Sort()
@@ -62,7 +45,7 @@
     Dim res As MatchDay = Nothing
     Try
       For Each match As MatchDay In Me.InnerList
-        If match.MatchDay = matchDay Or match.MatchDayID = matchDay Then
+        If match.MatchDayName = matchDay Or match.MatchDayID = matchDay Then
           res = match
           Exit For
         End If
@@ -72,5 +55,4 @@
     End Try
     Return res
   End Function
-
 End Class

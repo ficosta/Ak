@@ -1,6 +1,6 @@
 ﻿Imports System.Data.OleDb
 
-Public Class Team
+<Serializable()> Public Class Team
   Inherits StatSubject
 
   Public Property MatchPlayers As New Players
@@ -20,6 +20,21 @@ Public Class Team
   Public PlayerJersey As String
   Public TeamClockColour As String
   Public Tactic As New Tactic
+
+  Private _name As String = ""
+  Public Overloads Property Name As String
+    Get
+      If Config.Instance.UseArabicNames Then
+        Return Me.ArabicCaption1Name
+      Else
+        Return Me.TeamAELCaption1Name
+      End If
+    End Get
+    Set(value As String)
+      _name = value
+    End Set
+  End Property
+
 
 #Region "Constructors"
   Public Sub New()

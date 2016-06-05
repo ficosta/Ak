@@ -35,5 +35,11 @@
     <Setting Name="GraphicVersion" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="OtherMatchesPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\BeInReal\Alamiya\OtherMatches.xml</Value>
+    </Setting>
+    <Setting Name="UseArabicNames" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

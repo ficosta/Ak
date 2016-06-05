@@ -45,6 +45,9 @@ Partial Class DialogOptions
     Me.OpenFileDialogDataBase = New System.Windows.Forms.OpenFileDialog()
     Me.MetroLabelOtherMatches = New MetroFramework.Controls.MetroLabel()
     Me.MetroTextBoxOtherMatchesFilePath = New MetroFramework.Controls.MetroTextBox()
+    Me.MetroButtonOtherMatchesPath = New MetroFramework.Controls.MetroButton()
+    Me.OpenFileDialogXML = New System.Windows.Forms.OpenFileDialog()
+    Me.MetroCheckBoxUseArabicNames = New MetroFramework.Controls.MetroCheckBox()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TabControlOptions.SuspendLayout()
     Me.TabPage1.SuspendLayout()
@@ -142,11 +145,13 @@ Partial Class DialogOptions
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155.0!))
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroButtonOtherMatchesPath, 2, 1)
     Me.TableLayoutPanel3.Controls.Add(Me.MetroTextBoxOtherMatchesFilePath, 1, 1)
     Me.TableLayoutPanel3.Controls.Add(Me.MetroLabelOtherMatches, 0, 1)
     Me.TableLayoutPanel3.Controls.Add(Me.MetroLabelDataBase, 0, 0)
     Me.TableLayoutPanel3.Controls.Add(Me.MetroTextBoxDataBase, 1, 0)
     Me.TableLayoutPanel3.Controls.Add(Me.MetroButtonDataBase, 2, 0)
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroCheckBoxUseArabicNames, 1, 2)
     Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 3)
     Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
@@ -281,7 +286,7 @@ Partial Class DialogOptions
     '
     '
     Me.TextBoxVizrtHost.CustomButton.Image = Nothing
-    Me.TextBoxVizrtHost.CustomButton.Location = New System.Drawing.Point(269, 2)
+    Me.TextBoxVizrtHost.CustomButton.Location = New System.Drawing.Point(431, 2)
     Me.TextBoxVizrtHost.CustomButton.Name = ""
     Me.TextBoxVizrtHost.CustomButton.Size = New System.Drawing.Size(19, 19)
     Me.TextBoxVizrtHost.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
@@ -402,6 +407,31 @@ Partial Class DialogOptions
     Me.MetroTextBoxOtherMatchesFilePath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.MetroTextBoxOtherMatchesFilePath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
+    'MetroButtonOtherMatchesPath
+    '
+    Me.MetroButtonOtherMatchesPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonOtherMatchesPath.Location = New System.Drawing.Point(527, 33)
+    Me.MetroButtonOtherMatchesPath.Name = "MetroButtonOtherMatchesPath"
+    Me.MetroButtonOtherMatchesPath.Size = New System.Drawing.Size(29, 24)
+    Me.MetroButtonOtherMatchesPath.TabIndex = 5
+    Me.MetroButtonOtherMatchesPath.Text = "..."
+    Me.MetroButtonOtherMatchesPath.UseSelectable = True
+    '
+    'OpenFileDialogXML
+    '
+    Me.OpenFileDialogXML.FileName = "Matches file path"
+    '
+    'MetroCheckBoxUseArabicNames
+    '
+    Me.MetroCheckBoxUseArabicNames.AutoSize = True
+    Me.MetroCheckBoxUseArabicNames.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroCheckBoxUseArabicNames.Location = New System.Drawing.Point(158, 63)
+    Me.MetroCheckBoxUseArabicNames.Name = "MetroCheckBoxUseArabicNames"
+    Me.MetroCheckBoxUseArabicNames.Size = New System.Drawing.Size(363, 24)
+    Me.MetroCheckBoxUseArabicNames.TabIndex = 6
+    Me.MetroCheckBoxUseArabicNames.Text = "Use arabic names"
+    Me.MetroCheckBoxUseArabicNames.UseSelectable = True
+    '
     'DialogOptions
     '
     Me.AcceptButton = Me.OK_Button
@@ -454,4 +484,7 @@ Partial Class DialogOptions
   Friend WithEvents OpenFileDialogDataBase As OpenFileDialog
   Friend WithEvents MetroTextBoxOtherMatchesFilePath As MetroFramework.Controls.MetroTextBox
   Friend WithEvents MetroLabelOtherMatches As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroButtonOtherMatchesPath As MetroFramework.Controls.MetroButton
+  Friend WithEvents OpenFileDialogXML As OpenFileDialog
+  Friend WithEvents MetroCheckBoxUseArabicNames As MetroFramework.Controls.MetroCheckBox
 End Class

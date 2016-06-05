@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Main.vb" />
     <Compile Include="MFunctions.vb" />
+    <Compile Include="MTranslator.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -246,7 +247,7 @@
     </Compile>
     <Compile Include="OtherMatches\OtherMatch.vb" />
     <Compile Include="OtherMatches\OtherMatchDays.vb" />
-    <Compile Include="OtherMatches\OtherMatches.vb" />
+    <Compile Include="OtherMatches\MatchDay.vb" />
     <Compile Include="OtherMatches\UCOtherMatch.Designer.vb">
       <DependentUpon>UCOtherMatch.vb</DependentUpon>
     </Compile>

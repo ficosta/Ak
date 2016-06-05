@@ -45,7 +45,7 @@ Public Class FormChoose
 
       Dim scene As VizCommands.Scene = Me.GraphicGroup.PrepareScene(Me.GraphicGroup.graphicStep)
 
-      Dim tsk As New MetroTaskWindow(scene.SceneDirectorsIn.MaxFrame / 40, lbl)
+      Dim tsk As New MetroTaskWindow(scene.SceneDirectorsIn.MaxFrame / 40 + 1, lbl)
 
       tsk.StartPosition = FormStartPosition.CenterScreen
       tsk.MaximizeBox = False
@@ -67,6 +67,7 @@ Public Class FormChoose
         Me.Close()
       Else
         MetroMessageBox.Show(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
+        scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
       End If
     Else
       Me.DialogResult = System.Windows.Forms.DialogResult.OK

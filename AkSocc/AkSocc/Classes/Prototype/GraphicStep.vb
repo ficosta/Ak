@@ -41,6 +41,20 @@ Public Class GraphicStep
   Class GraphicStepDefinition
     Public Key As String
 
+    Private _name As String = ""
+    Public Property Name As String
+      Get
+        If _name = "" Then
+          Return Key
+        Else
+          Return _name
+        End If
+      End Get
+      Set(value As String)
+        _name = value
+      End Set
+    End Property
+
     Public Sub New()
 
     End Sub
@@ -49,8 +63,13 @@ Public Class GraphicStep
       Me.Key = key
     End Sub
 
+    Public Sub New(key As String, name As String)
+      Me.Key = key
+      Me.Name = name
+    End Sub
+
     Public Overrides Function ToString() As String
-      Return Me.Key
+      Return Me.Name
     End Function
 
     Public Shared Narrowing Operator CType(ByVal b As String) As GraphicStepDefinition
@@ -84,7 +103,7 @@ Public Class GraphicStep
   End Sub
 
   Public Sub New(parentGraphicStep As GraphicStep, stepDefinition As GraphicStepDefinition, isFinal As Boolean, isTransitionalStep As Boolean)
-    Me.New(parentGraphicStep, stepDefinition.Key, "", isFinal, isTransitionalStep, False, False)
+    Me.New(parentGraphicStep, stepDefinition.Name, stepDefinition.Key, isFinal, isTransitionalStep, False, False)
   End Sub
 
   Public Sub New(parentGraphicStep As GraphicStep, name As String, ID As String, isFinal As Boolean, isTransitionalStep As Boolean, isTitle As Boolean, isSeparator As Boolean)

@@ -163,6 +163,13 @@ Public Class UCOtherMatch
           Me.MetroComboBoxMatch.Text = ""
         Else
           Me.MetroComboBoxMatch.Text = _otherMatch.Match.Description
+          'Me.MetroComboBoxMatch.SelectedItem = Me.MetroComboBoxMatch.Items(0)
+          For index As Integer = 0 To Me.MetroComboBoxMatch.Items.Count - 1
+            Dim aux As Match = Me.MetroComboBoxMatch.Items(index)
+            If aux.match_id = _otherMatch.Match.match_id Then
+              Me.MetroComboBoxMatch.SelectedItem = Me.MetroComboBoxMatch.Items(index)
+            End If
+          Next
         End If
       End If
       TableLayoutPanelCheckboxes.Visible = MetroTabControlLineType.Visible

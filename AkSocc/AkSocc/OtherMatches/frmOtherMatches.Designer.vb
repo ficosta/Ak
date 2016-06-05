@@ -58,24 +58,25 @@ Partial Class frmMatchDay
     '
     'TableLayoutPanel1
     '
-    Me.TableLayoutPanel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.TableLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.TableLayoutPanel1.ColumnCount = 3
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
     Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 1, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 2, 0)
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(344, 737)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(23, 737)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1002, 29)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1323, 29)
     Me.TableLayoutPanel1.TabIndex = 1
     '
     'OK_Button
     '
     Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
-    Me.OK_Button.Location = New System.Drawing.Point(848, 3)
+    Me.OK_Button.Location = New System.Drawing.Point(1169, 3)
     Me.OK_Button.Name = "OK_Button"
     Me.OK_Button.Size = New System.Drawing.Size(67, 23)
     Me.OK_Button.TabIndex = 0
@@ -86,7 +87,7 @@ Partial Class frmMatchDay
     '
     Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
     Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
-    Me.Cancel_Button.Location = New System.Drawing.Point(928, 3)
+    Me.Cancel_Button.Location = New System.Drawing.Point(1249, 3)
     Me.Cancel_Button.Name = "Cancel_Button"
     Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
     Me.Cancel_Button.TabIndex = 1
@@ -238,6 +239,8 @@ Partial Class frmMatchDay
     '
     Me.UcOtherMatch9.ArrowDownVisible = True
     Me.UcOtherMatch9.ArrowUpVisible = True
+    Me.UcOtherMatch9.ButtonActionEnum = AkSocc.UCOtherMatch.eButtonAction.AddNew
+    Me.UcOtherMatch9.Competition = Nothing
     Me.UcOtherMatch9.Dock = System.Windows.Forms.DockStyle.Fill
     Me.UcOtherMatch9.Location = New System.Drawing.Point(4, 596)
     Me.UcOtherMatch9.Name = "UcOtherMatch9"
@@ -250,6 +253,8 @@ Partial Class frmMatchDay
     '
     Me.UcOtherMatch8.ArrowDownVisible = True
     Me.UcOtherMatch8.ArrowUpVisible = True
+    Me.UcOtherMatch8.ButtonActionEnum = AkSocc.UCOtherMatch.eButtonAction.AddNew
+    Me.UcOtherMatch8.Competition = Nothing
     Me.UcOtherMatch8.Dock = System.Windows.Forms.DockStyle.Fill
     Me.UcOtherMatch8.Location = New System.Drawing.Point(4, 522)
     Me.UcOtherMatch8.Name = "UcOtherMatch8"
@@ -262,6 +267,8 @@ Partial Class frmMatchDay
     '
     Me.UcOtherMatch7.ArrowDownVisible = True
     Me.UcOtherMatch7.ArrowUpVisible = True
+    Me.UcOtherMatch7.ButtonActionEnum = AkSocc.UCOtherMatch.eButtonAction.AddNew
+    Me.UcOtherMatch7.Competition = Nothing
     Me.UcOtherMatch7.Dock = System.Windows.Forms.DockStyle.Fill
     Me.UcOtherMatch7.Location = New System.Drawing.Point(4, 448)
     Me.UcOtherMatch7.Name = "UcOtherMatch7"
@@ -274,6 +281,8 @@ Partial Class frmMatchDay
     '
     Me.UcOtherMatch6.ArrowDownVisible = True
     Me.UcOtherMatch6.ArrowUpVisible = True
+    Me.UcOtherMatch6.ButtonActionEnum = AkSocc.UCOtherMatch.eButtonAction.AddNew
+    Me.UcOtherMatch6.Competition = Nothing
     Me.UcOtherMatch6.Dock = System.Windows.Forms.DockStyle.Fill
     Me.UcOtherMatch6.Location = New System.Drawing.Point(4, 374)
     Me.UcOtherMatch6.Name = "UcOtherMatch6"
@@ -286,6 +295,8 @@ Partial Class frmMatchDay
     '
     Me.UcOtherMatch5.ArrowDownVisible = True
     Me.UcOtherMatch5.ArrowUpVisible = True
+    Me.UcOtherMatch5.ButtonActionEnum = AkSocc.UCOtherMatch.eButtonAction.AddNew
+    Me.UcOtherMatch5.Competition = Nothing
     Me.UcOtherMatch5.Dock = System.Windows.Forms.DockStyle.Fill
     Me.UcOtherMatch5.Location = New System.Drawing.Point(4, 300)
     Me.UcOtherMatch5.Name = "UcOtherMatch5"
@@ -298,6 +309,8 @@ Partial Class frmMatchDay
     '
     Me.UcOtherMatch4.ArrowDownVisible = True
     Me.UcOtherMatch4.ArrowUpVisible = True
+    Me.UcOtherMatch4.ButtonActionEnum = AkSocc.UCOtherMatch.eButtonAction.AddNew
+    Me.UcOtherMatch4.Competition = Nothing
     Me.UcOtherMatch4.Dock = System.Windows.Forms.DockStyle.Fill
     Me.UcOtherMatch4.Location = New System.Drawing.Point(4, 226)
     Me.UcOtherMatch4.Name = "UcOtherMatch4"
@@ -310,6 +323,8 @@ Partial Class frmMatchDay
     '
     Me.UcOtherMatch3.ArrowDownVisible = True
     Me.UcOtherMatch3.ArrowUpVisible = True
+    Me.UcOtherMatch3.ButtonActionEnum = AkSocc.UCOtherMatch.eButtonAction.AddNew
+    Me.UcOtherMatch3.Competition = Nothing
     Me.UcOtherMatch3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.UcOtherMatch3.Location = New System.Drawing.Point(4, 152)
     Me.UcOtherMatch3.Name = "UcOtherMatch3"
@@ -322,6 +337,8 @@ Partial Class frmMatchDay
     '
     Me.UcOtherMatch2.ArrowDownVisible = True
     Me.UcOtherMatch2.ArrowUpVisible = True
+    Me.UcOtherMatch2.ButtonActionEnum = AkSocc.UCOtherMatch.eButtonAction.AddNew
+    Me.UcOtherMatch2.Competition = Nothing
     Me.UcOtherMatch2.Dock = System.Windows.Forms.DockStyle.Fill
     Me.UcOtherMatch2.Location = New System.Drawing.Point(4, 78)
     Me.UcOtherMatch2.Name = "UcOtherMatch2"
@@ -334,6 +351,8 @@ Partial Class frmMatchDay
     '
     Me.UcOtherMatch1.ArrowDownVisible = True
     Me.UcOtherMatch1.ArrowUpVisible = True
+    Me.UcOtherMatch1.ButtonActionEnum = AkSocc.UCOtherMatch.eButtonAction.AddNew
+    Me.UcOtherMatch1.Competition = Nothing
     Me.UcOtherMatch1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.UcOtherMatch1.Location = New System.Drawing.Point(4, 4)
     Me.UcOtherMatch1.Name = "UcOtherMatch1"

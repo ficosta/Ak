@@ -1,6 +1,6 @@
 ﻿Imports System.Data.OleDb
 
-Public Class Player
+<Serializable()> Public Class Player
   Inherits StatSubject
 
   Public PlayerID As Integer
@@ -42,6 +42,21 @@ Public Class Player
       Return Convert.ToString(PlayerFirstName & Convert.ToString(" ")) & PlayerSurname
     End Get
   End Property
+
+  Private _name As String = ""
+  Public Overloads Property Name As String
+    Get
+      If Config.Instance.UseArabicNames Then
+        Return Me.ArabicName
+      Else
+        Return Me.PlayerUniqueName
+      End If
+    End Get
+    Set(value As String)
+      _name = value
+    End Set
+  End Property
+
 
   Public Sub New()
     InitPlayer(-1)

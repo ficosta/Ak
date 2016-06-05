@@ -40,6 +40,10 @@ Public Class Stat
   End Property
 
 #Region "Constructors"
+  Public Sub New()
+
+  End Sub
+
   Public Sub New(name As String, Optional dataType As eDataType = eDataType.IntValue)
     Me.Name = name
     Me.DataType = dataType

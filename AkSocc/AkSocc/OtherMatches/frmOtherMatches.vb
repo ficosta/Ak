@@ -56,8 +56,7 @@ Public Class frmMatchDay
 
     End Try
     _matchDays = New OtherMatchDays
-    _matchDays.LoadFromFile("")
-    _matchDays.Add(New MatchDay("New item"))
+    DesserializeObjectFromFile(My.Settings.OtherMatchesPath, _matchDays)
     ShowMatchDays()
   End Sub
 
@@ -66,7 +65,7 @@ Public Class frmMatchDay
       With Me.MetroGridMatchDay
         .Rows.Clear()
         For Each day As MatchDay In _matchDays
-          Dim itm As Integer = .Rows.Add(day.MatchDayID, day.MatchDay)
+          Dim itm As Integer = .Rows.Add(day.MatchDayID, day.MatchDayName)
 
         Next
       End With
@@ -119,7 +118,7 @@ Public Class frmMatchDay
       Me.TableLayoutPanelUCOtherMatches.SuspendLayout()
       'Me.TableLayoutPanelUCOtherMatches.Visible = False
       Try
-        Dim maxItems As Integer = Math.Min(_controls.Count, _selectedMatchDay.Count)
+        Dim maxItems As Integer = Math.Min(_controls.Count, _selectedMatchDay.OtherMatches.Count)
         For index As Integer = 0 To maxItems - 1
           _controls(index).OtherMatchInfo = _selectedMatchDay(index)
           _controls(index).ArrowUpVisible = (index > 0)
@@ -218,7 +217,7 @@ Public Class frmMatchDay
 
   Private Sub SwapPagines(ByVal index1 As Integer, ByVal index2 As Integer)
     Try
-      If index1 >= 0 And index2 >= 0 And index1 < _selectedMatchDay.Count And index2 < _selectedMatchDay.Count And index1 <> index2 Then
+      If index1 >= 0 And index2 >= 0 And index1 < _selectedMatchDay.OtherMatches.Count And index2 < _selectedMatchDay.OtherMatches.Count And index1 <> index2 Then
         Dim aux As OtherMatch = _selectedMatchDay(index1)
         _selectedMatchDay(index1) = _selectedMatchDay(index2)
         _selectedMatchDay(index2) = aux
@@ -232,8 +231,12 @@ Public Class frmMatchDay
 #End Region
 
   Private Sub MetroGridMatchDay_CellValidated(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridMatchDay.CellValidated
-    Try
 
+    Try
+      If e.ColumnIndex = ColumnDescription.Index Then
+        Dim matchDay As MatchDay = _matchDays.Item(e.RowIndex)
+        matchDay.MatchDayName = MetroGridMatchDay.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -244,6 +247,14 @@ Public Class frmMatchDay
 
     Catch ex As Exception
       WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
+    Try
+      SerializeObjectToFile(My.Settings.OtherMatchesPath, _matchDays)
+    Catch ex As Exception
+
     End Try
   End Sub
 End Class

@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Classes\Competition.vb" />
     <Compile Include="Classes\Competitions.vb" />
+    <Compile Include="Classes\EnglishToArabicTranslation.vb" />
+    <Compile Include="Classes\EnglishToArabicTranslator.vb" />
     <Compile Include="Classes\Goal.vb" />
     <Compile Include="Classes\Goals.vb" />
     <Compile Include="Classes\GraphicSubject.vb" />

@@ -100,7 +100,6 @@ Imports MatchInfo
     Set(value As Match)
       _match = value
       RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Match"))
-
     End Set
   End Property
 
@@ -129,6 +128,25 @@ Imports MatchInfo
   Public Sub New()
   End Sub
 
+  Public Overrides Function ToString() As String
+    Dim res As String = ""
+
+    Select Case Me.LineType
+      Case eOtherMatchLineType.Blank
+        res = "Blank line"
+      Case eOtherMatchLineType.Title
+        res = "Title: " & Me.MatchTitle
+      Case eOtherMatchLineType.Result
+        If Not _match Is Nothing Then
+          res = _match.ToString
+        Else
+          res = MyBase.ToString
+        End If
+    End Select
+
+    Return res
+
+  End Function
 
   Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
     Dim aux As OtherMatch = CType(obj, OtherMatch)

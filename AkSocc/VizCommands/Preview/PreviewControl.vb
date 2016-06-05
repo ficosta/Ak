@@ -170,6 +170,7 @@ Public Class PreviewControl
             Debug.Print(asset.Scene.SceneName)
             'send scene to preview server
             asset.Scene.SendSceneToEngine(controlVizrt)
+            asset.Scene.JumpToEndFrame(controlVizrt, asset.Scene.SceneDirectorsIn)
             'make sure we are at a frame with the graphics visible
             controlVizrt.DirectorGoTo("DIR_MAIN", 135, asset.Scene.VizLayer)
 

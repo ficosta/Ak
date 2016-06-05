@@ -137,7 +137,7 @@ Public NotInheritable Class ClockControl
 
       Dim clockIndex As Integer = 0
 
-      _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime)
+      _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime + _match.MatchPeriods.ActivePeriod.StartOffset)
       If _match.MatchPeriods.ActivePeriod.Activa Then
         _vizControl.ClockStart(clockIndex)
       Else
@@ -173,8 +173,8 @@ Public NotInheritable Class ClockControl
         .SceneDirectorsOut.Add("DIR_MAIN", 0, DirectorAction.ContinueNormal)
 
         'Control objects
-        .SceneParameters.Add("Clock_Home_Team_Name", _match.HomeTeam.TeamAELCaption1Name)
-        .SceneParameters.Add("Clock_Away_Team_Name", _match.AwayTeam.TeamAELCaption1Name)
+        .SceneParameters.Add("Clock_Home_Team_Name", _match.HomeTeam.Name)
+        .SceneParameters.Add("Clock_Away_Team_Name", _match.AwayTeam.Name)
 
         .SceneParameters.Add("Clock_Home_Team_Score", _match.home_goals)
         .SceneParameters.Add("Clock_Away_Team_Score", _match.away_goals)
@@ -182,7 +182,14 @@ Public NotInheritable Class ClockControl
         .SceneParameters.Add("Clock_Home_Team_TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & _match.HomeTeam.BadgeName, paramType.Image)
         .SceneParameters.Add("Clock_Away_Team_TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & _match.AwayTeam.BadgeName, paramType.Image)
 
-        .SceneParameters.Add("Clock_Half_Indicator_Text", "time")
+        Dim sTime As String = ""
+        If _match.MatchPeriods.ActivePeriod Is Nothing Then
+          sTime = ""
+        Else
+          sTime = EnglishToArabicTranslator.Instance.ToArabic(_match.MatchPeriods.ActivePeriod.Nom)
+        End If
+
+        .SceneParameters.Add("Clock_Half_Indicator_Text", sTime)
 
         'clock control
         UpdateRunningClock()

@@ -185,6 +185,30 @@ Namespace My
                 Me("GraphicVersion") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\BeInReal\Alamiya\OtherMatches.xml")>  _
+        Public Property OtherMatchesPath() As String
+            Get
+                Return CType(Me("OtherMatchesPath"),String)
+            End Get
+            Set
+                Me("OtherMatchesPath") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property UseArabicNames() As Boolean
+            Get
+                Return CType(Me("UseArabicNames"),Boolean)
+            End Get
+            Set
+                Me("UseArabicNames") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
