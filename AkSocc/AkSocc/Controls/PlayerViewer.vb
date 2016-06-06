@@ -80,6 +80,7 @@ Public Class PlayerViewer
     Me.LabelCards.Text = sender.ID
     Debug.Print(Me.Player.ToString & " " & stat.Name & "=" & stat.Value)
     Me.PictureBoxInfo.Visible = (stat.Value > 0)
+    UpdateCardControls()
   End Sub
 
 
@@ -142,6 +143,52 @@ Public Class PlayerViewer
 
     End Try
   End Sub
+
 #End Region
 
+
+#Region "Card controls"
+  Private _updatingCards As Boolean = False
+
+  Private Sub UpdateCardControls()
+    _updatingCards = True
+    YellowCardToolStripMenuItem.Checked = Me.Player.MatchStats.YellowCards.Value > 0
+    SecondYellowCardToolStripMenuItem.Checked = Me.Player.MatchStats.YellowCards.Value > 1
+    RedCardToolStripMenuItem.Checked = Me.Player.MatchStats.RedCards.Value > 0
+    _updatingCards = False
+  End Sub
+
+  Private Sub YellowCardToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles YellowCardToolStripMenuItem.CheckedChanged
+    If _updatingCards Then Exit Sub
+
+    If YellowCardToolStripMenuItem.Checked Then
+      Me.Player.MatchStats.YellowCards.Value = 1
+    Else
+      Me.Player.MatchStats.YellowCards.Value = 0
+    End If
+    UpdateCardControls()
+  End Sub
+
+  Private Sub SecondYellowCardToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles SecondYellowCardToolStripMenuItem.CheckedChanged
+    If _updatingCards Then Exit Sub
+    If SecondYellowCardToolStripMenuItem.Checked Then
+      Me.Player.MatchStats.YellowCards.Value = 2
+    ElseIf YellowCardToolStripMenuItem.Checked Then
+      Me.Player.MatchStats.YellowCards.Value = 1
+    Else
+      Me.Player.MatchStats.YellowCards.Value = 0
+    End If
+    UpdateCardControls()
+  End Sub
+
+  Private Sub RedCardToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles RedCardToolStripMenuItem.CheckedChanged
+    If _updatingCards Then Exit Sub
+    If RedCardToolStripMenuItem.Checked Then
+      Me.Player.MatchStats.YellowCards.Value = 1
+    Else
+      Me.Player.MatchStats.YellowCards.Value = 0
+    End If
+    UpdateCardControls()
+  End Sub
+#End Region
 End Class

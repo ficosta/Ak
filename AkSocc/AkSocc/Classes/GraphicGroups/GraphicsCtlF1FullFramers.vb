@@ -83,6 +83,7 @@ Public Class GraphicGroupCtlF1FullFramers
   Public Overrides Function PrepareScene(graphicStep As GraphicStep) As Scene
     Me.Scene = New Scene
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
+    Dim changeStep As Integer = 1
     Try
       Scene.VizLayer = SceneLayer.Middle
       Scene.SceneName = "cfx_Full_Frame_Work"
@@ -90,12 +91,12 @@ Public Class GraphicGroupCtlF1FullFramers
 
       Select Case gs.ChildGraphicStep.Name
         Case Step0.LeagueTableTop
-          Scene = PrepareLeagueTable(1, True)
+          Scene = PrepareLeagueTable(changeStep, True)
         Case Step0.OtherMatchScores
           Dim matchDay As MatchDay = _otherMatchDays.GetMatchDay(graphicStep.UID)
-          Scene = PrepareMatchScores(1, matchDay)
+          Scene = PrepareMatchScores(changeStep, matchDay)
         Case Step0.LeagueTableBottom
-          Scene = PrepareLeagueTable(1, False)
+          Scene = PrepareLeagueTable(changeStep, False)
         Case Step0.FullFrameStats
         Case Step0.LeagueComparison
       End Select
@@ -180,8 +181,42 @@ Public Class GraphicGroupCtlF1FullFramers
     Dim prefix As String = "Side_" & gStep & "_"
     Try
       scene.SceneParameters.Add(prefix & "Results_Vis.active", "1")
-    Catch ex As Exception
 
+      prefix = "Results_" & prefix
+      If Not matchDay Is Nothing Then
+        For Each match As OtherMatch In matchDay.OtherMatches
+          Dim subjectPrefix As String = prefix & "Subject_0" & (match.MatchIndex + 1) & "_"
+          Select Case match.LineType
+            Case OtherMatch.eOtherMatchLineType.Blank
+              scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "0")
+            Case OtherMatch.eOtherMatchLineType.Result
+              scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "1")
+            Case OtherMatch.eOtherMatchLineType.Title
+              scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "0")
+          End Select
+          scene.SceneParameters.Add(subjectPrefix & "Title", match.MatchTitle)
+
+          scene.SceneParameters.Add(subjectPrefix & "Control_OMO_TV_Channel", match.LogoChannel + 1)
+          scene.SceneParameters.Add(subjectPrefix & "Control_OMO_Score", match.AwayScore & "-" & match.HomeScore)
+          scene.SceneParameters.Add(subjectPrefix & "No_Score_Text", "")
+          If Not match.Match Is Nothing Then
+            scene.SceneParameters.Add(subjectPrefix & "Home_Team_Name", match.Match.HomeTeam.Name)
+            scene.SceneParameters.Add(subjectPrefix & "Away_Team_Name", match.Match.AwayTeam.Name)
+          Else
+            scene.SceneParameters.Add(subjectPrefix & "Home_Team_Name", "")
+            scene.SceneParameters.Add(subjectPrefix & "Away_Team_Name", "")
+          End If
+          scene.SceneParameters.Add(subjectPrefix & "Home_Team_Score", match.HomeScore)
+          scene.SceneParameters.Add(subjectPrefix & "Away_Team_Score", match.AwayScore)
+
+        Next
+        For index As Integer = matchDay.OtherMatches.Count To 10
+          Dim subjectPrefix As String = prefix & "Subject_0" & index & "_"
+          scene.SceneParameters.Add(subjectPrefix & "Title", "no match to show")
+        Next
+      End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
     End Try
     Return scene
   End Function

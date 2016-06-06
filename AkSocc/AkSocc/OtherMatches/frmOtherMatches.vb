@@ -253,8 +253,20 @@ Public Class frmMatchDay
   Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
     Try
       SerializeObjectToFile(My.Settings.OtherMatchesPath, _matchDays)
+      Me.DialogResult = DialogResult.OK
+      Me.Close()
     Catch ex As Exception
 
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub Cancel_Button_Click(sender As Object, e As EventArgs) Handles Cancel_Button.Click
+    Try
+      Me.DialogResult = DialogResult.Cancel
+      Me.Close()
+    Catch ex As Exception
+      WriteToErrorLog(ex)
     End Try
   End Sub
 End Class

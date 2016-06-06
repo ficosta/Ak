@@ -44,7 +44,11 @@ Public Class StatSubject
   Public Event StatValueChanged(sender As StatSubject, stat As Stat)
 
   Public Sub New()
+    Try
 
+    Catch ex As Exception
+
+    End Try
   End Sub
 
 #Region "Stats"

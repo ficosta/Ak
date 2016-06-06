@@ -274,7 +274,7 @@
       For Each player As Player In Me.AllPlayers
         If player.PlayerPosition <> "" Then
           If player.PlayerPosition = CStr(position) Then res = player
-         
+
         End If
 
       Next
@@ -282,4 +282,15 @@
     End Try
     Return res
   End Function
+
+  Public Sub GetDataFromDB()
+    Try
+      Me.ReadStatsFromDB()
+      For Each player As Player In Me.AllPlayers
+        player.ReadStatsFromDB()
+      Next
+    Catch ex As Exception
+
+    End Try
+  End Sub
 End Class

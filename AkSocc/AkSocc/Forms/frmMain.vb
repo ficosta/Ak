@@ -116,6 +116,9 @@ Public Class frmMain
 
       _match = match
       If Not _match Is Nothing Then
+        _match.HomeTeam.GetDataFromDB()
+        _match.AwayTeam.GetDataFromDB()
+
         Me.LabelAwayTeamName.Text = _match.AwayTeam.ToString
         Me.LabelHomeTeamName.Text = _match.HomeTeam.ToString
 
@@ -416,6 +419,8 @@ Public Class frmMain
         Dim gsList As New GraphicSteps
         Dim gg As New ControlScoreSingleGoal(_match)
         gg.IsLocalTeam = False
+
+        _match.away_goals += 1
 
         Me.StartGraphic(gg)
       End If

@@ -22,13 +22,21 @@ Partial Class PlayerViewer
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
+    Me.components = New System.ComponentModel.Container()
     Me.TableLayoutPanelPlayer = New System.Windows.Forms.TableLayoutPanel()
     Me.LabelCards = New MetroFramework.Controls.MetroLabel()
     Me.LabelName = New MetroFramework.Controls.MetroLabel()
     Me.LabelDorsal = New MetroFramework.Controls.MetroLabel()
     Me.PictureBoxInfo = New System.Windows.Forms.PictureBox()
+    Me.MetroContextMenuPlayer = New MetroFramework.Controls.MetroContextMenu(Me.components)
+    Me.CardsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.YellowCardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.SecondYellowCardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+    Me.RedCardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
     Me.TableLayoutPanelPlayer.SuspendLayout()
     CType(Me.PictureBoxInfo, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.MetroContextMenuPlayer.SuspendLayout()
     Me.SuspendLayout()
     '
     'TableLayoutPanelPlayer
@@ -67,6 +75,7 @@ Partial Class PlayerViewer
     '
     Me.LabelName.BackColor = System.Drawing.Color.White
     Me.LabelName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.LabelName.ContextMenuStrip = Me.MetroContextMenuPlayer
     Me.LabelName.Dock = System.Windows.Forms.DockStyle.Fill
     Me.LabelName.Location = New System.Drawing.Point(43, 3)
     Me.LabelName.Margin = New System.Windows.Forms.Padding(3)
@@ -80,6 +89,7 @@ Partial Class PlayerViewer
     '
     Me.LabelDorsal.BackColor = System.Drawing.Color.White
     Me.LabelDorsal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.LabelDorsal.ContextMenuStrip = Me.MetroContextMenuPlayer
     Me.LabelDorsal.Dock = System.Windows.Forms.DockStyle.Fill
     Me.LabelDorsal.Location = New System.Drawing.Point(3, 3)
     Me.LabelDorsal.Margin = New System.Windows.Forms.Padding(3)
@@ -101,6 +111,45 @@ Partial Class PlayerViewer
     Me.PictureBoxInfo.TabStop = False
     Me.PictureBoxInfo.Visible = False
     '
+    'MetroContextMenuPlayer
+    '
+    Me.MetroContextMenuPlayer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CardsToolStripMenuItem})
+    Me.MetroContextMenuPlayer.Name = "MetroContextMenuPlayer"
+    Me.MetroContextMenuPlayer.Size = New System.Drawing.Size(153, 48)
+    '
+    'CardsToolStripMenuItem
+    '
+    Me.CardsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YellowCardToolStripMenuItem, Me.SecondYellowCardToolStripMenuItem, Me.ToolStripMenuItem1, Me.RedCardToolStripMenuItem})
+    Me.CardsToolStripMenuItem.Name = "CardsToolStripMenuItem"
+    Me.CardsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+    Me.CardsToolStripMenuItem.Text = "Cards"
+    '
+    'YellowCardToolStripMenuItem
+    '
+    Me.YellowCardToolStripMenuItem.CheckOnClick = True
+    Me.YellowCardToolStripMenuItem.Name = "YellowCardToolStripMenuItem"
+    Me.YellowCardToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+    Me.YellowCardToolStripMenuItem.Text = "Yellow card"
+    '
+    'SecondYellowCardToolStripMenuItem
+    '
+    Me.SecondYellowCardToolStripMenuItem.CheckOnClick = True
+    Me.SecondYellowCardToolStripMenuItem.Name = "SecondYellowCardToolStripMenuItem"
+    Me.SecondYellowCardToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+    Me.SecondYellowCardToolStripMenuItem.Text = "Second yellow card"
+    '
+    'ToolStripMenuItem1
+    '
+    Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+    Me.ToolStripMenuItem1.Size = New System.Drawing.Size(173, 6)
+    '
+    'RedCardToolStripMenuItem
+    '
+    Me.RedCardToolStripMenuItem.CheckOnClick = True
+    Me.RedCardToolStripMenuItem.Name = "RedCardToolStripMenuItem"
+    Me.RedCardToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+    Me.RedCardToolStripMenuItem.Text = "Red card"
+    '
     'PlayerViewer
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -110,6 +159,7 @@ Partial Class PlayerViewer
     Me.Size = New System.Drawing.Size(762, 32)
     Me.TableLayoutPanelPlayer.ResumeLayout(False)
     CType(Me.PictureBoxInfo, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.MetroContextMenuPlayer.ResumeLayout(False)
     Me.ResumeLayout(False)
 
   End Sub
@@ -119,4 +169,10 @@ Partial Class PlayerViewer
   Friend WithEvents LabelCards As MetroFramework.Controls.MetroLabel
   Friend WithEvents LabelDorsal As MetroFramework.Controls.MetroLabel
   Friend WithEvents PictureBoxInfo As PictureBox
+  Friend WithEvents MetroContextMenuPlayer As MetroFramework.Controls.MetroContextMenu
+  Friend WithEvents CardsToolStripMenuItem As ToolStripMenuItem
+  Friend WithEvents YellowCardToolStripMenuItem As ToolStripMenuItem
+  Friend WithEvents SecondYellowCardToolStripMenuItem As ToolStripMenuItem
+  Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+  Friend WithEvents RedCardToolStripMenuItem As ToolStripMenuItem
 End Class
