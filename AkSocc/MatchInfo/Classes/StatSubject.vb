@@ -3,8 +3,8 @@ Imports System.Data.OleDb
 Imports MatchInfo
 
 Public Class StatSubject
-  Public Property ID As String
-  Public Property ParentID As String
+  Public Property ID As String = "-1"
+  Public Property ParentID As String = "-1"
 
   Private WithEvents _matchStats As New SubjectStats
   Public Property MatchStats As SubjectStats
@@ -38,8 +38,8 @@ Public Class StatSubject
 
   Public Property Match_ID As Integer = -1
 
-  Public Property TableName As String
-  Public Property FieldName As String
+  Public Property TableName As String = ""
+  Public Property FieldName As String = ""
 
   Public Event StatValueChanged(sender As StatSubject, stat As Stat)
 
@@ -50,6 +50,8 @@ Public Class StatSubject
 
     End Try
   End Sub
+
+  Public Property SaveToDB() As Boolean = False
 
 #Region "Stats"
   Public ReadOnly Property SQL As String
@@ -81,8 +83,6 @@ Public Class StatSubject
 
       Dim CmdSQL As New OleDbCommand(mySQL, conn)
 
-
-
       CmdSQL.CommandType = System.Data.CommandType.Text
       Dim myReader As OleDbDataReader = CmdSQL.ExecuteReader()
 
@@ -91,14 +91,88 @@ Public Class StatSubject
           Try
             Dim value As Double = myReader.GetInt32(myReader.GetOrdinal(stat.Name))
             stat.Value = value
-
           Catch ex As Exception
 
           End Try
         Next
+      Else
+        Me.WriteStatsToDB()
       End If
       myReader.Close()
       conn.Close()
+    Catch ex As Exception
+      Throw ex
+    End Try
+  End Sub
+
+  Public Sub WriteStatsToDB()
+    Try
+      If SaveToDB = False Then Exit Sub
+
+      Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
+      conn.Open()
+
+      For Each stat As Stat In Me.MatchStats.StatBag
+        Try
+          Dim mySQL As String = "UPDATE " & Me.TableName & " SET " & stat.Name & " = " & stat.Value & " WHERE MatchID=" & Me.Match_ID & " AND " & Me.FieldName & "=" & Me.ID
+
+          Dim CmdSQL As New OleDbCommand(mySQL, conn)
+
+          CmdSQL.CommandType = System.Data.CommandType.Text
+
+          CmdSQL.ExecuteNonQuery()
+
+        Catch ex As Exception
+
+        End Try
+      Next
+
+      conn.Close()
+
+    Catch ex As Exception
+      Throw ex
+    End Try
+  End Sub
+
+  Public Sub WriteStatToDB(stat As Stat)
+    Try
+      If SaveToDB = False Then Exit Sub
+      If Me.TableName = "" Then Exit Sub
+      If Me.Match_ID = "-1" Then Exit Sub
+      If Me.FieldName = "" Then Exit Sub
+      If Me.ID = "" Then Exit Sub
+
+      Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
+      conn.Open()
+
+      Dim mySQL As String = "UPDATE " & Me.TableName & " SET " & stat.Name & " = '" & stat.Value & "' WHERE MatchID='" & Me.Match_ID & "' AND " & Me.FieldName & "='" & Me.ID & "'"
+
+      Dim CmdSQL As New OleDbCommand(mySQL, conn)
+      CmdSQL.CommandType = System.Data.CommandType.Text
+      CmdSQL.ExecuteNonQuery()
+      conn.Close()
+
+    Catch ex As Exception
+      Debug.Print(ex.ToString)
+      'Throw ex
+    End Try
+  End Sub
+
+  Public Sub ResetDB()
+    Try
+
+      Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
+      conn.Open()
+      Dim mySQL As String = "UPDATE PlayerStats SET Shots=0, Shots_on_Target=0,Fouls=0, Saves=0, Substituion=0, YCard=0, RCard=0, Assis=0 WHERE MatchID = " & Me.Match_ID
+
+      Dim CmdSQL As New OleDbCommand(mySQL, conn)
+
+      CmdSQL.CommandType = System.Data.CommandType.Text
+
+      CmdSQL.ExecuteNonQuery()
+
+      conn.Close()
+
     Catch ex As Exception
       Throw ex
     End Try
@@ -112,6 +186,7 @@ Public Class StatSubject
     Try
       Dim stat As Stat = TryCast(sender, Stat)
       If Not stat Is Nothing Then
+        WriteStatToDB(stat)
         RaiseEvent StatValueChanged(Me, stat)
       End If
     Catch ex As Exception
@@ -122,6 +197,7 @@ Public Class StatSubject
   Private Sub _matchStats_StatValueChanged(subjectStats As SubjectStats, stat As Stat) Handles _matchStats.StatValueChanged
     Try
       If Not stat Is Nothing Then
+        WriteStatToDB(stat)
         RaiseEvent StatValueChanged(Me, stat)
       End If
     Catch ex As Exception

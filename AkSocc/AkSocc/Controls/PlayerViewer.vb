@@ -1,8 +1,12 @@
 ﻿Imports MatchInfo
+Imports MetroFramework
 
 Public Class PlayerViewer
 #Region "Definitions"
   Public Event SelectionChanged(ByRef sender As PlayerViewer, value As Boolean)
+  Public Event GoalScored(ByRef sender As PlayerViewer, add As Boolean)
+
+
 #End Region
 
 #Region "Variables"
@@ -55,7 +59,6 @@ Public Class PlayerViewer
     Try
       Me.LabelDorsal.DataBindings.Clear()
       Me.LabelName.DataBindings.Clear()
-      Me.LabelCards.DataBindings.Clear()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -68,6 +71,7 @@ Public Class PlayerViewer
         Me.LabelDorsal.Text = _player.SquadNo
         Me.LabelName.Text = _player.PlayerName
         AddHandler _player.StatValueChanged, AddressOf _player_StatValueChanged
+        Me.UpdateStatInterface()
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -77,10 +81,12 @@ Public Class PlayerViewer
 
 
   Private Sub _player_StatValueChanged(sender As StatSubject, stat As Stat) Handles _player.StatValueChanged
-    Me.LabelCards.Text = sender.ID
-    Debug.Print(Me.Player.ToString & " " & stat.Name & "=" & stat.Value)
-    Me.PictureBoxInfo.Visible = (stat.Value > 0)
-    UpdateCardControls()
+    Try
+
+      UpdateStatInterface()
+    Catch ex As Exception
+
+    End Try
   End Sub
 
 
@@ -88,6 +94,7 @@ Public Class PlayerViewer
     ReleaseDataBinding()
     Me.IsSelected = False
     EngageDataBinding()
+    Me.UpdateStatInterface()
   End Sub
 
 
@@ -97,29 +104,28 @@ Public Class PlayerViewer
       Dim font As Font = _defaultFont
       If _IsSelected Then
         ' Me.BackColor = Color.Red
-        Me.LabelCards.BackColor = Color.LightSalmon
+        Me.LabelDorsal.BackColor = Color.LightSalmon
         font = _selectedFont
       Else
         'Me.BackColor = Color.White
         If _isMouseOver Then
-          Me.LabelCards.BackColor = Color.Red
+          Me.LabelDorsal.BackColor = Color.Red
           font = _selectedFont
         Else
-          Me.LabelCards.BackColor = Color.White
+          Me.LabelDorsal.BackColor = Color.White
         End If
       End If
       Me.LabelName.Font = font
       Me.LabelName.Style = MetroFramework.MetroColorStyle.Green
-      Me.LabelDorsal.BackColor = Me.LabelCards.BackColor
-      Me.LabelName.BackColor = Me.LabelCards.BackColor
-      Me.BackColor = Me.LabelCards.BackColor
+      Me.LabelName.BackColor = Me.LabelDorsal.BackColor
+      Me.BackColor = Me.LabelDorsal.BackColor
       Me.LabelName.Invalidate()
     Catch ex As Exception
 
     End Try
   End Sub
 
-  Private Sub Label_Click(sender As Object, e As EventArgs) Handles LabelDorsal.Click, LabelName.Click, LabelCards.Click
+  Private Sub Label_Click(sender As Object, e As EventArgs) Handles LabelDorsal.Click, LabelName.Click
     Try
       Me.IsSelected = True
       Me.IsMouseOver = False
@@ -148,47 +154,115 @@ Public Class PlayerViewer
 
 
 #Region "Card controls"
-  Private _updatingCards As Boolean = False
 
-  Private Sub UpdateCardControls()
-    _updatingCards = True
-    YellowCardToolStripMenuItem.Checked = Me.Player.MatchStats.YellowCards.Value > 0
-    SecondYellowCardToolStripMenuItem.Checked = Me.Player.MatchStats.YellowCards.Value > 1
-    RedCardToolStripMenuItem.Checked = Me.Player.MatchStats.RedCards.Value > 0
-    _updatingCards = False
-  End Sub
 
   Private Sub YellowCardToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles YellowCardToolStripMenuItem.CheckedChanged
-    If _updatingCards Then Exit Sub
+    If _updating Then Exit Sub
 
     If YellowCardToolStripMenuItem.Checked Then
-      Me.Player.MatchStats.YellowCards.Value = 1
+      Me.Player.YellowCards = 1
     Else
-      Me.Player.MatchStats.YellowCards.Value = 0
+      Me.Player.YellowCards = 0
     End If
-    UpdateCardControls()
+    'UpdateStatInterface()
   End Sub
 
   Private Sub SecondYellowCardToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles SecondYellowCardToolStripMenuItem.CheckedChanged
-    If _updatingCards Then Exit Sub
+    If _updating Then Exit Sub
     If SecondYellowCardToolStripMenuItem.Checked Then
-      Me.Player.MatchStats.YellowCards.Value = 2
+      Me.Player.YellowCards = 2
     ElseIf YellowCardToolStripMenuItem.Checked Then
-      Me.Player.MatchStats.YellowCards.Value = 1
+      Me.Player.YellowCards = 1
     Else
-      Me.Player.MatchStats.YellowCards.Value = 0
+      Me.Player.YellowCards = 0
     End If
-    UpdateCardControls()
+    UpdateStatInterface()
   End Sub
 
   Private Sub RedCardToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles RedCardToolStripMenuItem.CheckedChanged
-    If _updatingCards Then Exit Sub
+    If _updating Then Exit Sub
     If RedCardToolStripMenuItem.Checked Then
-      Me.Player.MatchStats.YellowCards.Value = 1
+      Me.Player.RedCards = 1
     Else
-      Me.Player.MatchStats.YellowCards.Value = 0
+      Me.Player.RedCards = 0
     End If
+    UpdateStatInterface()
+  End Sub
+#End Region
+
+#Region "Interface functions"
+  Private _updating As Boolean = False
+
+  Private Sub UpdateStatInterface()
+    If _updating Then Exit Sub
+    _updating = True
     UpdateCardControls()
+    UpdateStatInfoBox()
+    _updating = False
+  End Sub
+
+  Private Sub UpdateCardControls()
+    Try
+      YellowCardToolStripMenuItem.Checked = Me.Player.YellowCards > 0
+      SecondYellowCardToolStripMenuItem.Checked = Me.Player.YellowCards > 1
+      RedCardToolStripMenuItem.Checked = Me.Player.RedCards > 0
+      RemoveGoalToolStripMenuItem.Enabled = (Me.Player.Goals > 0)
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub UpdateStatInfoBox()
+    Try
+      If PictureBoxInfo.Image Is Nothing Then PictureBoxInfo.Image = New Bitmap(PictureBoxInfo.ClientSize.Width, PictureBoxInfo.ClientSize.Height)
+      Using g As Graphics = Graphics.FromImage(PictureBoxInfo.Image)
+        g.Clear(Color.White)
+        Dim rect As Rectangle
+        Dim span As Integer = 3
+        Dim pieceWidth As Integer = PictureBoxInfo.Width / 3
+        Dim pieceHeight As Integer = PictureBoxInfo.Height
+        'yellow card
+        If Me.Player.YellowCards > 0 Then
+          rect = New Rectangle(0 * pieceWidth + span, span / 2, pieceWidth - 2 * span, pieceHeight - 2 * span)
+          g.FillRectangle(Brushes.Yellow, rect)
+          g.DrawRectangle(Pens.DarkGoldenrod, rect)
+        End If 'second yellow card
+        If Me.Player.YellowCards > 1 Then
+          rect = New Rectangle(1 * pieceWidth + span, span / 2, pieceWidth - 2 * span, pieceHeight - 2 * span)
+          g.FillRectangle(Brushes.Yellow, rect)
+          g.DrawRectangle(Pens.DarkGoldenrod, rect)
+        End If
+        'red card
+        If Me.Player.RedCards > 0 Then
+          rect = New Rectangle(0.5 * pieceWidth + span, span, pieceWidth - 2 * span, pieceHeight - span)
+          g.FillRectangle(Brushes.Red, rect)
+          g.DrawRectangle(Pens.DarkRed, rect)
+        End If
+        'goals
+        If Me.Player.Goals > 0 Then
+          rect = New Rectangle(2 * pieceWidth + span, span, pieceWidth - 2 * span, pieceHeight - 2 * span)
+          g.FillEllipse(Brushes.LightGray, rect)
+          g.DrawEllipse(Pens.Gray, rect)
+        End If
+      End Using
+      Me.PictureBoxInfo.Invalidate()
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub GoalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GoalToolStripMenuItem.Click
+
+    If MetroMessageBox.Show(Me, "Add goal to player " & Me.Player.PlayerName & "?", "Goal", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.OK Then
+      RaiseEvent GoalScored(Me, True)
+    End If
+  End Sub
+
+  Private Sub RemoveGoalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveGoalToolStripMenuItem.Click
+
+    If MetroMessageBox.Show(Me, "Remove goal from player " & Me.Player.PlayerName & "?", "Goal", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.OK Then
+      RaiseEvent GoalScored(Me, False)
+    End If
   End Sub
 #End Region
 End Class

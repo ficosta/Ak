@@ -129,6 +129,8 @@ Public Class frmMain
 
         Me.TeamViewer1.Team = _match.HomeTeam
         Me.TeamViewer2.Team = _match.AwayTeam
+
+        _match.SaveToDB = True
       Else
         Me.LabelAwayTeamName.Text = ""
         Me.LabelHomeTeamName.Text = ""
@@ -530,9 +532,6 @@ Public Class frmMain
     Me.StartGraphic(New ClockPenalties(_match))
   End Sub
 
-  Private Sub MetroButtonMatchSubstitutions_Click(sender As Object, e As EventArgs) Handles MetroButtonMatchSubstitutions.Click
-
-  End Sub
 #End Region
 
 #Region "Other Matches"

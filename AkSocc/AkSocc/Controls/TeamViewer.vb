@@ -78,6 +78,7 @@ Public Class TeamViewer
           Dim pvCtl As PlayerViewer = TryCast(ctl, PlayerViewer)
           If Not pvCtl Is Nothing Then
             AddHandler pvCtl.SelectionChanged, AddressOf Me.PlayerViewer_SelectionChanged
+            AddHandler pvCtl.GoalScored, AddressOf Me.PlayerViewer_GoalScored
           End If
         Catch ex As Exception
 
@@ -94,6 +95,22 @@ Public Class TeamViewer
         Me.SelectedPlayer = sender.Player
         ShowSelectedPlayer()
 
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub PlayerViewer_GoalScored(ByRef sender As PlayerViewer, add As Boolean)
+    Try
+      Me.SelectedPlayer = sender.Player
+      ShowSelectedPlayer()
+      If add Then
+        Me.Team.Goals += 1
+        Me.SelectedPlayer.Goals += 1
+      ElseIf Me.SelectedPlayer.Goals > 0 Then
+        Me.Team.Goals -= 1
+        Me.SelectedPlayer.Goals -= 1
       End If
     Catch ex As Exception
 

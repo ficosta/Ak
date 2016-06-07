@@ -21,6 +21,7 @@
   Public TeamClockColour As String
   Public Tactic As New Tactic
 
+#Region "Overloaded properties"
   Private _name As String = ""
   Public Overloads Property Name As String
     Get
@@ -34,6 +35,51 @@
       _name = value
     End Set
   End Property
+
+  Private _savetoToDB As Boolean = False
+  Public Overloads Property SaveToDB() As Boolean
+    Get
+      Return _savetoToDB
+    End Get
+    Set(value As Boolean)
+      _savetoToDB = value
+      For Each player As Player In Me.AllPlayers
+        player.SaveToDB = _savetoToDB
+      Next
+    End Set
+  End Property
+#End Region
+
+#Region "Direct access to stats"
+  Public Property YellowCards As Integer
+    Get
+      Return Me.MatchStats.YellowCards.Value
+    End Get
+    Set(value As Integer)
+      Me.MatchStats.YellowCards.Value = value
+    End Set
+  End Property
+
+  Public Property RedCards As Integer
+    Get
+      Return Me.MatchStats.RedCards.Value
+    End Get
+    Set(value As Integer)
+      Me.MatchStats.RedCards.Value = value
+    End Set
+  End Property
+
+  Public Property Goals As Integer
+    Get
+      Return Me.MatchStats.GoalStat.Value
+    End Get
+    Set(value As Integer)
+      Me.MatchStats.GoalStat.Value = value
+    End Set
+  End Property
+
+
+#End Region
 
 
 #Region "Constructors"

@@ -37,7 +37,7 @@ Imports System.Data.SqlClient
     End Get
     Set(value As Integer)
       _home_goals = value
-      If Not Me.HomeTeam Is Nothing Then Me.HomeTeam.MatchStats.GoalStat.Value = value
+      If Not Me.HomeTeam Is Nothing Then Me.HomeTeam.Goals = value
       RaiseEvent ScoreChanged()
     End Set
   End Property
@@ -49,7 +49,7 @@ Imports System.Data.SqlClient
     End Get
     Set(value As Integer)
       _away_goals = value
-      If Not Me.HomeTeam Is Nothing Then Me.AwayTeam.MatchStats.GoalStat.Value = value
+      If Not Me.HomeTeam Is Nothing Then Me.AwayTeam.Goals = value
       RaiseEvent ScoreChanged()
     End Set
   End Property
@@ -79,6 +79,19 @@ Imports System.Data.SqlClient
   Public locked As Boolean
 
   Public last_update As DateTime
+
+
+  Private _savetoToDB As Boolean = False
+  Public Overloads Property SaveToDB() As Boolean
+    Get
+      Return _savetoToDB
+    End Get
+    Set(value As Boolean)
+      _savetoToDB = value
+      Me.HomeTeam.SaveToDB = value
+      Me.AwayTeam.SaveToDB = value
+    End Set
+  End Property
 
   Private Sub InitMatch(ID As Integer)
     match_id = ID

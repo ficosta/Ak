@@ -22,8 +22,6 @@
   Public EnglishBiog3 As String
   Public Biog3 As String
   Public Nationality As String
-  Public YellowCards As Integer
-  Public RedCards As Integer
   Public SeasonGoals As Integer
   Public PhotoName As String
   Public ArabicName As String
@@ -35,7 +33,9 @@
   Public OptaId As Integer
   Public SeasonCleanSheets As Integer
 
-  'Variables non from the Player table
+
+
+#Region "Variables non from the Player table"
   Private team_name As String = ""
   Public ReadOnly Property PlayerName() As String
     Get
@@ -56,7 +56,38 @@
       _name = value
     End Set
   End Property
+#End Region
 
+#Region "Direct access to stats"
+  Public Property YellowCards As Integer
+    Get
+      Return Me.MatchStats.YellowCards.Value
+    End Get
+    Set(value As Integer)
+      Me.MatchStats.YellowCards.Value = value
+    End Set
+  End Property
+
+  Public Property RedCards As Integer
+    Get
+      Return Me.MatchStats.RedCards.Value
+    End Get
+    Set(value As Integer)
+      Me.MatchStats.RedCards.Value = value
+    End Set
+  End Property
+
+  Public Property Goals As Integer
+    Get
+      Return Me.MatchStats.GoalStat.Value
+    End Get
+    Set(value As Integer)
+      Me.MatchStats.GoalStat.Value = value
+    End Set
+  End Property
+
+
+#End Region
 
   Public Sub New()
     InitPlayer(-1)
