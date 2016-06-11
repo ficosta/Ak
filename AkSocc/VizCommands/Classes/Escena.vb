@@ -17,6 +17,7 @@ End Enum
     Active
     Inactive
   End Enum
+
   Public BackgroundImageState As eBackgroundImageState = eBackgroundImageState.Inactive
 
   Public Property SceneName As String
@@ -117,6 +118,42 @@ End Enum
       End If
     Catch ex As Exception
 
+    End Try
+  End Sub
+
+
+  Public Sub RewindSceneDirectors(CiControlVizrt As VizControl, type As TypeOfDirectors)
+    Select Case type
+      Case TypeOfDirectors.InDirectors
+        RewindSceneDirectors(CiControlVizrt, Me.SceneDirectorsIn)
+      Case TypeOfDirectors.OutDirectors
+        RewindSceneDirectors(CiControlVizrt, Me.SceneDirectorsOut)
+      Case TypeOfDirectors.ChangeDirectors
+        RewindSceneDirectors(CiControlVizrt, Me.SceneDirectorsChange)
+
+    End Select
+  End Sub
+
+  Public Sub RewindSceneDirectors(CiControlVizrt As VizControl, sceneDirectors As SceneDirectors)
+    Try
+      Dim frame As Integer = 0
+      Dim maxFrame As Integer = sceneDirectors.MaxFrame
+
+      For Each director As SceneDirector In sceneDirectors
+        Select Case director.Action
+          Case DirectorAction.Start, DirectorAction.ContinueNormal
+            _vizrtControl.DirectorGoTo(director.Name, 0, Me.VizLayer)
+
+          Case DirectorAction.Dummy, DirectorAction.JumpTo
+            _vizrtControl.DirectorGoTo(director.Name, 0, Me.VizLayer)
+          Case Else
+            _vizrtControl.DirectorGoTo(director.Name, 0, Me.VizLayer)
+
+
+        End Select
+      Next
+
+    Catch ex As Exception
     End Try
   End Sub
 

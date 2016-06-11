@@ -37,6 +37,8 @@ Public Class frmMain
 #Region "Initialize functions"
   Private Sub InitControls()
     Try
+      InitPlayerControls()
+
       Me.UpdateStatusLabel()
       _vizControl = New VizCommands.VizControl
       _vizControl.Config = New VizCommands.tyConfigVizrt
@@ -51,6 +53,7 @@ Public Class frmMain
       pvwConfig.SceneBasePath = My.Settings.ScenePath
 
       _previewControl = New VizCommands.PreviewControl(pvwConfig)
+
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -108,6 +111,7 @@ Public Class frmMain
   End Function
 
   Private Sub InitMatchInfo(match As MatchInfo.Match)
+    Me.Cursor = Cursors.WaitCursor
     Try
 
       If Not _match Is Nothing AndAlso _match.match_id <> match.match_id Then
@@ -119,6 +123,9 @@ Public Class frmMain
         _match.HomeTeam.GetDataFromDB()
         _match.AwayTeam.GetDataFromDB()
 
+        InitTeamPlayerControls(_match.HomeTeam, _homePlayerControls)
+        InitTeamPlayerControls(_match.AwayTeam, _awayPlayerControls)
+
         Me.LabelAwayTeamName.Text = _match.AwayTeam.ToString
         Me.LabelHomeTeamName.Text = _match.HomeTeam.ToString
 
@@ -127,10 +134,7 @@ Public Class frmMain
 
         EngageDataBinding()
 
-        Me.TeamViewer1.Team = _match.HomeTeam
-        Me.TeamViewer2.Team = _match.AwayTeam
-
-        _match.SaveToDB = True
+        _match.SaveToDBEnabled = True
       Else
         Me.LabelAwayTeamName.Text = ""
         Me.LabelHomeTeamName.Text = ""
@@ -140,6 +144,7 @@ Public Class frmMain
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
+    Me.Cursor = Cursors.Default
   End Sub
 
   Private Sub ReleaseDataBinding()
@@ -153,6 +158,9 @@ Public Class frmMain
 
   Private Sub EngageDataBinding()
     Try
+      Me.LabelHomeTeamResult.DataBindings.Clear()
+      Me.LabelAwayTeamResult.DataBindings.Clear()
+
       Me.LabelHomeTeamResult.DataBindings.Add("Text", _match.HomeTeam.MatchStats.GoalStat, "Value")
       Me.LabelAwayTeamResult.DataBindings.Add("Text", _match.AwayTeam.MatchStats.GoalStat, "Value")
 
@@ -210,20 +218,20 @@ Public Class frmMain
 
   End Sub
 
-  Private Sub TeamViewer1_SelectedPlayerChanged(sender As TeamViewer, player As Player) Handles TeamViewer1.SelectedPlayerChanged
+  Private Sub TeamViewer1_SelectedPlayerChanged(sender As TeamViewer, player As Player)
     If _updating Then Exit Sub
     _updating = True
 
-    TeamViewer2.SelectedPlayer = Nothing
+    'TeamViewerAway.SelectedPlayer = Nothing
     _updating = False
 
   End Sub
 
-  Private Sub TeamViewer2_SelectedPlayerChanged(sender As TeamViewer, player As Player) Handles TeamViewer2.SelectedPlayerChanged
+  Private Sub TeamViewer2_SelectedPlayerChanged(sender As TeamViewer, player As Player)
     If _updating Then Exit Sub
     _updating = True
 
-    TeamViewer1.SelectedPlayer = Nothing
+    'TeamViewerHome.SelectedPlayer = Nothing
     _updating = False
   End Sub
 
@@ -553,4 +561,131 @@ Public Class frmMain
   End Sub
 #End Region
 
+#Region "Team viewer"
+  Private _selectedPlayer As Player = Nothing
+  Private _homePlayerControls As New List(Of PlayerViewer)
+  Private _awayPlayerControls As New List(Of PlayerViewer)
+
+  Private Sub InitPlayerControls()
+    _homePlayerControls.Add(Me.PlayerHomeViewer1)
+    _homePlayerControls.Add(Me.PlayerHomeViewer2)
+    _homePlayerControls.Add(Me.PlayerHomeViewer3)
+    _homePlayerControls.Add(Me.PlayerHomeViewer4)
+    _homePlayerControls.Add(Me.PlayerHomeViewer5)
+    _homePlayerControls.Add(Me.PlayerHomeViewer6)
+    _homePlayerControls.Add(Me.PlayerHomeViewer7)
+    _homePlayerControls.Add(Me.PlayerHomeViewer8)
+    _homePlayerControls.Add(Me.PlayerHomeViewer9)
+    _homePlayerControls.Add(Me.PlayerHomeViewer10)
+    _homePlayerControls.Add(Me.PlayerHomeViewer11)
+    _homePlayerControls.Add(Me.PlayerHomeViewer12)
+    _homePlayerControls.Add(Me.PlayerHomeViewer13)
+    _homePlayerControls.Add(Me.PlayerHomeViewer14)
+    _homePlayerControls.Add(Me.PlayerHomeViewer15)
+    _homePlayerControls.Add(Me.PlayerHomeViewer16)
+    _homePlayerControls.Add(Me.PlayerHomeViewer17)
+    _homePlayerControls.Add(Me.PlayerHomeViewer18)
+
+    _awayPlayerControls.Add(Me.PlayerAwayViewer1)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer2)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer3)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer4)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer5)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer6)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer7)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer8)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer9)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer10)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer11)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer12)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer13)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer14)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer15)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer16)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer17)
+    _awayPlayerControls.Add(Me.PlayerAwayViewer18)
+
+    For Each ctl As PlayerViewer In _homePlayerControls
+      AddHandler ctl.GoalScored, AddressOf Me.PlayerHomeViewer_GoalScored
+      AddHandler ctl.SelectionChanged, AddressOf Me.PlayerViewer_SelectionChanged
+    Next
+
+    For Each ctl As PlayerViewer In _awayPlayerControls
+      AddHandler ctl.GoalScored, AddressOf Me.PlayerAwayViewer_GoalScored
+      AddHandler ctl.SelectionChanged, AddressOf Me.PlayerViewer_SelectionChanged
+    Next
+  End Sub
+
+  Private Sub TeamViewerHome_GoalScored(team As Team, player As Player, add As Boolean)
+
+  End Sub
+
+  Private Sub TeamViewerAway_GoalScored(team As Team, player As Player, add As Boolean)
+
+  End Sub
+
+  Private Sub TeamViewerHome_Load(sender As Object, e As EventArgs)
+
+  End Sub
+
+  Private Sub TeamViewerAway_Load(sender As Object, e As EventArgs)
+
+  End Sub
+
+  Private Sub PlayerHomeViewer1_Load(sender As Object, e As EventArgs) ' Handles PlayerViewer1.Load
+
+  End Sub
+  Private Sub PlayerViewer_SelectionChanged(ByRef sender As PlayerViewer, value As Boolean)
+    If _updating Then Exit Sub
+    _updating = True
+    Try
+      If _match Is Nothing Then Exit Sub
+      For Each ctl As PlayerViewer In _homePlayerControls
+        ctl.IsSelected = (ctl.Player.ID = sender.Player.ID)
+      Next
+
+    Catch ex As Exception
+    End Try
+    _updating = False
+  End Sub
+
+  Private Sub PlayerHomeViewer_GoalScored(ByRef sender As PlayerViewer, add As Boolean)
+    If _updating Then Exit Sub
+    _updating = True
+
+    Try
+      If _match Is Nothing Then Exit Sub
+      _match.AddGoal(True, sender.Player, False, False)
+    Catch ex As Exception
+    End Try
+    _updating = False
+  End Sub
+
+  Private Sub PlayerAwayViewer_GoalScored(ByRef sender As PlayerViewer, add As Boolean)
+    If _updating Then Exit Sub
+    _updating = True
+
+    Try
+      If _match Is Nothing Then Exit Sub
+      _match.AddGoal(False, sender.Player, False, False)
+    Catch ex As Exception
+    End Try
+
+    _updating = False
+  End Sub
+
+
+  Private Sub InitTeamPlayerControls(team As Team, controls As List(Of PlayerViewer))
+    Try
+      If Not team Is Nothing Then
+        For index As Integer = 1 To controls.Count
+          Dim player As Player = team.MatchPlayers.GetPlayerByPosition(index)
+          controls(index - 1).Player = player
+        Next
+      End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+#End Region
 End Class

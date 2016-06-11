@@ -235,7 +235,8 @@ Public Class FormMatchSetup
         If MetroGridMatches.Rows(i).Selected Then selectedIndex = i
       Next
       If selectedIndex >= 0 Then
-        SelectedMatch = _matches(selectedIndex)
+        Dim id As Integer = CInt(MetroGridMatches.Rows(selectedIndex).Cells(ColumnID.Index).Value)
+        SelectedMatch = _matches.GetMatch(id)
       Else
         SelectedMatch = Nothing
       End If

@@ -56,7 +56,6 @@ Public Class Matches
     Return res
   End Function
 
-
   Public Sub GetFromDB(Where As String)
     Try
       List.Clear()
@@ -100,6 +99,8 @@ Public Class Matches
       Throw err
     End Try
   End Sub
+
+
 
   Public Sub GetFromDBWithDetails(Condition As String)
     Try

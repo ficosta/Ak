@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+Imports MatchInfo
 
 <Serializable()> Public Class Team
   Inherits StatSubject
@@ -21,6 +22,12 @@
   Public TeamClockColour As String
   Public Tactic As New Tactic
 
+  Public MatchGoals As New MatchGoals
+
+
+  Public Event PlayerStatValueChanged(team As Team, player As Player, stat As Stat)
+  Public Event GoalScored(team As Team, player As Player, own_goal As Boolean, penalty As Boolean)
+
 #Region "Overloaded properties"
   Private _name As String = ""
   Public Overloads Property Name As String
@@ -37,7 +44,7 @@
   End Property
 
   Private _savetoToDB As Boolean = False
-  Public Overloads Property SaveToDB() As Boolean
+  Public Overloads Property SaveToDBEnabled() As Boolean
     Get
       Return _savetoToDB
     End Get
@@ -81,7 +88,6 @@
 
 #End Region
 
-
 #Region "Constructors"
   Public Sub New()
     InitTeam(-1)
@@ -102,6 +108,7 @@
     TeamID = ID
     Me.ID = ID
     Me.InitStats(match_id, "TeamMatchStats", "TeamID")
+    If Not Me.MatchGoals Is Nothing Then Me.MatchGoals.GetMatchGoals(match_id, Me.ID)
     If GetData Then
       GetTeam()
     Else
@@ -111,6 +118,7 @@
 
 #End Region
 
+#Region "General functions"
   Public Sub InitTeam(ID As Integer)
     TeamID = ID
     TeamAELCaption1Name = ""
@@ -201,8 +209,13 @@
       CmdSQL.CommandType = System.Data.CommandType.Text
       Dim myReader As OleDbDataReader = CmdSQL.ExecuteReader()
       While myReader.Read()
+
         Dim player As New Player(myReader.GetInt32(myReader.GetOrdinal("PlayerID")))
+        player.InitStats(Me.Match_ID, "PlayerStats", "PlayerID")
+        player.ID = player.PlayerID
+        AddHandler player.StatValueChanged, AddressOf player_statValueChanged
         'player.GetPlayer()
+
         Me.AllPlayers.Add(player)
       End While
       myReader.Close()
@@ -211,6 +224,16 @@
     End Try
     Return True
   End Function
+
+  Private Sub player_statValueChanged(sender As StatSubject, stat As Stat)
+    Try
+      If Me.SaveToDBEnabled Then
+        ' Me.WriteStatsToDB()
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
 
   Private Function GetPlayersForMatch() As Boolean
     Dim res = True
@@ -332,11 +355,34 @@
   Public Sub GetDataFromDB()
     Try
       Me.ReadStatsFromDB()
+      Me.MatchGoals.GetMatchGoals(Me.Match_ID, Me.ID)
       For Each player As Player In Me.AllPlayers
         player.ReadStatsFromDB()
+        player.Goals = Me.MatchGoals.GetGoalsByPlayer(player).Count
       Next
+      Me.Goals = Me.MatchGoals.Count
     Catch ex As Exception
 
     End Try
   End Sub
+#End Region
+
+#Region "Stat functions and events"
+  Private Sub Team_StatValueChanged(sender As StatSubject, stat As Stat) Handles Me.StatValueChanged
+    Try
+      RaiseEvent PlayerStatValueChanged(Me, Nothing, stat)
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Public Sub AddGoal(player As Player, own_goal As Boolean, penalty As Boolean)
+       RaiseEvent GoalScored(Me, player, own_goal, penalty)
+  End Sub
+
+  Public Sub UpdateGoal(goalID As Integer, player As Player, own_goal As Boolean, penalty As Boolean)
+
+  End Sub
+#End Region
+
 End Class

@@ -26,7 +26,13 @@ Partial Class FormChoose
     Me.OK_Button = New MetroFramework.Controls.MetroButton()
     Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
     Me.TableLayoutPanelAll = New System.Windows.Forms.TableLayoutPanel()
+    Me.SplitContainerAll = New System.Windows.Forms.SplitContainer()
+    Me._ucPreview = New VizCommands.UCPreview()
     Me.TableLayoutPanel1.SuspendLayout()
+    CType(Me.SplitContainerAll, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.SplitContainerAll.Panel1.SuspendLayout()
+    Me.SplitContainerAll.Panel2.SuspendLayout()
+    Me.SplitContainerAll.SuspendLayout()
     Me.SuspendLayout()
     '
     'TableLayoutPanel1
@@ -67,29 +73,64 @@ Partial Class FormChoose
     '
     'TableLayoutPanelAll
     '
-    Me.TableLayoutPanelAll.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.TableLayoutPanelAll.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
     Me.TableLayoutPanelAll.ColumnCount = 1
     Me.TableLayoutPanelAll.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelAll.Location = New System.Drawing.Point(23, 63)
+    Me.TableLayoutPanelAll.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanelAll.Location = New System.Drawing.Point(0, 0)
     Me.TableLayoutPanelAll.Name = "TableLayoutPanelAll"
     Me.TableLayoutPanelAll.RowCount = 1
     Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelAll.Size = New System.Drawing.Size(1082, 429)
+    Me.TableLayoutPanelAll.Size = New System.Drawing.Size(635, 429)
     Me.TableLayoutPanelAll.TabIndex = 6
+    '
+    'SplitContainerAll
+    '
+    Me.SplitContainerAll.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.SplitContainerAll.FixedPanel = System.Windows.Forms.FixedPanel.Panel2
+    Me.SplitContainerAll.Location = New System.Drawing.Point(23, 63)
+    Me.SplitContainerAll.Name = "SplitContainerAll"
+    '
+    'SplitContainerAll.Panel1
+    '
+    Me.SplitContainerAll.Panel1.Controls.Add(Me.TableLayoutPanelAll)
+    '
+    'SplitContainerAll.Panel2
+    '
+    Me.SplitContainerAll.Panel2.Controls.Add(Me._ucPreview)
+    Me.SplitContainerAll.Size = New System.Drawing.Size(1082, 429)
+    Me.SplitContainerAll.SplitterDistance = 635
+    Me.SplitContainerAll.TabIndex = 7
+    '
+    '_ucPreview
+    '
+    Me._ucPreview.Dock = System.Windows.Forms.DockStyle.Fill
+    Me._ucPreview.Location = New System.Drawing.Point(0, 0)
+    Me._ucPreview.Name = "_ucPreview"
+    Me._ucPreview.PreviewControl = Nothing
+    Me._ucPreview.Scene = Nothing
+    Me._ucPreview.ShowAdvancedControls = True
+    Me._ucPreview.Size = New System.Drawing.Size(443, 429)
+    Me._ucPreview.TabIndex = 0
+    Me._ucPreview.Title = "Title"
+    Me._ucPreview.VizControl = Nothing
     '
     'FormChoose
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.ClientSize = New System.Drawing.Size(1131, 550)
-    Me.Controls.Add(Me.TableLayoutPanelAll)
+    Me.Controls.Add(Me.SplitContainerAll)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Name = "FormChoose"
     Me.Text = "Graphic options"
     Me.TableLayoutPanel1.ResumeLayout(False)
+    Me.SplitContainerAll.Panel1.ResumeLayout(False)
+    Me.SplitContainerAll.Panel2.ResumeLayout(False)
+    CType(Me.SplitContainerAll, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.SplitContainerAll.ResumeLayout(False)
     Me.ResumeLayout(False)
 
   End Sub
@@ -97,4 +138,6 @@ Partial Class FormChoose
   Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
   Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
   Friend WithEvents TableLayoutPanelAll As TableLayoutPanel
+  Friend WithEvents SplitContainerAll As SplitContainer
+  Friend WithEvents _ucPreview As VizCommands.UCPreview
 End Class

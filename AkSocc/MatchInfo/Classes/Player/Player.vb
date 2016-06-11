@@ -131,7 +131,7 @@
     OptaId = -1
     SeasonCleanSheets = -1
 
-    Me.GetFromDB()
+    If ID <> -1 Then Me.GetFromDB()
   End Sub
 
   Public Function CreateCommand() As OleDbCommand

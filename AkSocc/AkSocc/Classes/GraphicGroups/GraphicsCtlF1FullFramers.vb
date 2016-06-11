@@ -117,6 +117,9 @@ Public Class GraphicGroupCtlF1FullFramers
     scene.SceneDirectorsIn.Add("Change", 0, DirectorAction.Rewind)
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
+    scene.SceneDirectorsOut.Add("Change", 0, DirectorAction.Start)
+    scene.SceneDirectorsOut.Add("Change", 100, DirectorAction.Dummy)
+
     scene.SceneParameters.Add("Veil_On_Off_Vis", "1")
     scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
 

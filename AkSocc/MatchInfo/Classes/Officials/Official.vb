@@ -28,8 +28,7 @@ Public Class Official
     OfficialFirstName = ""
     OfficialSurname = ""
     OfficialArabicName = ""
-
-    Me.GetFromDB()
+    If ID <> -1 Then Me.GetFromDB()
   End Sub
 
   Public Function CreateCommand() As OleDbCommand

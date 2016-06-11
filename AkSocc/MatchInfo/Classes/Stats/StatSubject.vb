@@ -87,10 +87,20 @@ Public Class StatSubject
       Dim myReader As OleDbDataReader = CmdSQL.ExecuteReader()
 
       If myReader.Read() Then
+        Dim colset As DataTable = myReader.GetSchemaTable()
         For Each stat As Stat In Me.MatchStats.StatBag
           Try
-            Dim value As Double = myReader.GetInt32(myReader.GetOrdinal(stat.Name))
-            stat.Value = value
+            Dim found As Boolean = False
+            For i As Integer = 0 To colset.Rows.Count - 1
+              If colset(i).ItemArray(0).ToString = stat.Name Then
+                found = True
+                Exit For
+              End If
+            Next
+            If found AndAlso Not IsDBNull(myReader(myReader.GetOrdinal(stat.Name))) Then
+              Dim value As Double = myReader.GetInt32(myReader.GetOrdinal(stat.Name))
+              stat.Value = value
+            End If
           Catch ex As Exception
 
           End Try
@@ -109,25 +119,9 @@ Public Class StatSubject
     Try
       If SaveToDB = False Then Exit Sub
 
-      Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
-      conn.Open()
-
       For Each stat As Stat In Me.MatchStats.StatBag
-        Try
-          Dim mySQL As String = "UPDATE " & Me.TableName & " SET " & stat.Name & " = " & stat.Value & " WHERE MatchID=" & Me.Match_ID & " AND " & Me.FieldName & "=" & Me.ID
-
-          Dim CmdSQL As New OleDbCommand(mySQL, conn)
-
-          CmdSQL.CommandType = System.Data.CommandType.Text
-
-          CmdSQL.ExecuteNonQuery()
-
-        Catch ex As Exception
-
-        End Try
+        Me.WriteStatToDB(stat)
       Next
-
-      conn.Close()
 
     Catch ex As Exception
       Throw ex
@@ -145,11 +139,30 @@ Public Class StatSubject
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
 
-      Dim mySQL As String = "UPDATE " & Me.TableName & " SET " & stat.Name & " = '" & stat.Value & "' WHERE MatchID='" & Me.Match_ID & "' AND " & Me.FieldName & "='" & Me.ID & "'"
+      Dim mySQL As String = "SELECT * FROM " & Me.TableName & " WHERE MatchID=" & Me.Match_ID & " AND " & Me.FieldName & "=" & Me.ID
 
       Dim CmdSQL As New OleDbCommand(mySQL, conn)
+
       CmdSQL.CommandType = System.Data.CommandType.Text
-      CmdSQL.ExecuteNonQuery()
+      Dim myReader As OleDbDataReader = CmdSQL.ExecuteReader()
+
+
+      Dim colset As DataTable = myReader.GetSchemaTable()
+      Dim found As Boolean = False
+      For i As Integer = 0 To colset.Rows.Count - 1
+        If colset(i).ItemArray(0).ToString = stat.Name Then
+          found = True
+          Exit For
+        End If
+      Next
+
+      If found Then
+        mySQL = "UPDATE " & Me.TableName & " SET " & stat.Name & " = " & stat.Value & " WHERE MatchID=" & Me.Match_ID & " AND " & Me.FieldName & "=" & Me.ID
+        CmdSQL = New OleDbCommand(mySQL, conn)
+
+        CmdSQL.CommandType = System.Data.CommandType.Text
+        CmdSQL.ExecuteNonQuery()
+      End If
       conn.Close()
 
     Catch ex As Exception
@@ -186,7 +199,7 @@ Public Class StatSubject
     Try
       Dim stat As Stat = TryCast(sender, Stat)
       If Not stat Is Nothing Then
-        WriteStatToDB(stat)
+        ' WriteStatToDB(stat)
         RaiseEvent StatValueChanged(Me, stat)
       End If
     Catch ex As Exception
@@ -197,7 +210,7 @@ Public Class StatSubject
   Private Sub _matchStats_StatValueChanged(subjectStats As SubjectStats, stat As Stat) Handles _matchStats.StatValueChanged
     Try
       If Not stat Is Nothing Then
-        WriteStatToDB(stat)
+        ' WriteStatToDB(stat)
         RaiseEvent StatValueChanged(Me, stat)
       End If
     Catch ex As Exception

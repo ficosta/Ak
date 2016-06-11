@@ -118,6 +118,18 @@
     <Compile Include="Forms\AboutBoxAk.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Goals\frmGoal.Designer.vb">
+      <DependentUpon>frmGoal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Goals\frmGoal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Goals\frmGoals.Designer.vb">
+      <DependentUpon>frmGoals.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Goals\frmGoals.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Waiting for director\FormWaitingForDirector.Designer.vb">
       <DependentUpon>FormWaitingForDirector.vb</DependentUpon>
     </Compile>
@@ -285,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogPreview.resx">
       <DependentUpon>DialogPreview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Goals\frmGoals.resx">
+      <DependentUpon>frmGoals.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MatchSetup\FormMatchSetup.resx">
       <DependentUpon>FormMatchSetup.vb</DependentUpon>

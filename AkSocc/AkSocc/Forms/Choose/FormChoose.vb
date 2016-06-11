@@ -23,7 +23,8 @@ Public Class FormChoose
 
   Private WithEvents _dlgPreview As New DialogPreview
 
-  Private WithEvents _ucPreview As UCPreview
+  Private _currentScene As Scene = Nothing
+  Private _formerScene As Scene = Nothing
 
   Private _firstControl As Boolean = True
 
@@ -32,7 +33,6 @@ Public Class FormChoose
 
 
     If Not gstep Is Nothing Then
-
       Dim lbl As New MetroFramework.Controls.MetroLabel
       lbl.Text = "Wating for animation..."
       lbl.FontSize = MetroFramework.MetroLabelSize.Tall
@@ -40,34 +40,64 @@ Public Class FormChoose
       lbl.TextAlign = ContentAlignment.MiddleCenter
       lbl.Dock = DockStyle.Fill
 
+      _formerScene = _currentScene
+      _currentScene = Me.GraphicGroup.PrepareScene(Me.GraphicGroup.graphicStep)
 
+      If Not _currentScene Is Nothing Then
+        If _formerScene Is Nothing Then
+          'this is the first time we send a scene
+          Dim tsk As New MetroTaskWindow(_currentScene.SceneDirectorsIn.MaxFrame / 40 + 1, lbl)
 
+          tsk.StartPosition = FormStartPosition.CenterScreen
+          tsk.MaximizeBox = False
+          tsk.MinimizeBox = False
 
-      Dim scene As VizCommands.Scene = Me.GraphicGroup.PrepareScene(Me.GraphicGroup.graphicStep)
+          'send scene to render and start animation
+          _currentScene.SendSceneToEngine(_vizControl)
+          _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
 
-      Dim tsk As New MetroTaskWindow(scene.SceneDirectorsIn.MaxFrame / 40 + 1, lbl)
+          'wait for animation to end
+          tsk.ShowDialog(Me)
+        Else
+          'we are changing!
+          Dim tsk As New MetroTaskWindow(_currentScene.SceneDirectorsChange.MaxFrame / 40 + 1, lbl)
+          'Send parameter on side 1 to side 2
+          For Each param As SceneParameter In _formerScene.SceneParameters
+            param.Name = param.Name.Replace("Side_1", "Side_2")
+          Next
+          _formerScene.SendSceneToEngine(_vizControl)
+          'rewind change animation to initial step
+          _formerScene.RewindSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeDirectors)
 
-      tsk.StartPosition = FormStartPosition.CenterScreen
-      tsk.MaximizeBox = False
-      tsk.MinimizeBox = False
+          'send new parameters
+          _currentScene.SendSceneToEngine(_vizControl)
 
-      'send scene to render and start animation
-      scene.SendSceneToEngine(_vizControl)
-      scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
-      'wait for animation to end
-      tsk.ShowDialog(Me)
+          'Start change animation
+          tsk.StartPosition = FormStartPosition.CenterScreen
+          tsk.MaximizeBox = False
+          tsk.MinimizeBox = False
 
+          'send scene to render and start animation
+          _currentScene.SendSceneToEngine(_vizControl)
+          _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeDirectors)
+          'wait for animation to end
+          tsk.ShowDialog(Me)
+        End If
 
-      If gstep.IsTransitionalStep = False Then
-        'there's nothing else: we wait for the "out" confirmation and close the dialog
-        MetroMessageBox.Show(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
+        If gstep.IsTransitionalStep = False Then
+          'there's nothing else: we wait for the "out" confirmation and close the dialog
+          MetroMessageBox.Show(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
 
-        scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
+          _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
+          Me.DialogResult = System.Windows.Forms.DialogResult.OK
+          Me.Close()
+        Else
+          'MetroMessageBox.Show(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
+          ' _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
+        End If
+      Else
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
-      Else
-        MetroMessageBox.Show(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
-        scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
       End If
     Else
       Me.DialogResult = System.Windows.Forms.DialogResult.OK
@@ -183,25 +213,14 @@ Public Class FormChoose
 
         If Not scene Is Nothing Then
 
-          If _firstControl = False Then
-            Me.TableLayoutPanelAll.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50))
-            Me.TableLayoutPanelAll.ColumnCount += 1
-          End If
+          'If _firstControl = False Then
+          '  Me.TableLayoutPanelAll.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50))
+          '  Me.TableLayoutPanelAll.ColumnCount += 1
+          'End If
 
-          Dim uc As New UCPreview(_vizControl, _previewControl)
-
-          uc.Width = (Me.TableLayoutPanelAll.Width) / 2
-          uc.Top = 10
-          uc.Height = Me.TableLayoutPanelAll.Height - 2 * uc.Top - 10
-          uc.Left = lastLeft
-
-          uc.GetPreview(_graphicGroup.PrepareScene(gs))
-          uc.ShowAdvancedControls = True
-          uc.Title = gs.ToString
-          'AddHandler uc.GraphicStepSelected, AddressOf Me.GraphicStepSelected
-
-          Me.TableLayoutPanelAll.Controls.Add(uc, Me.TableLayoutPanelAll.ColumnCount - 1, 0)
-          'Me.TableLayoutPanelAll.HorizontalScroll.Value = uc.Left
+          _ucPreview.GetPreview(_graphicGroup.PrepareScene(gs))
+          _ucPreview.ShowAdvancedControls = True
+          _ucPreview.Title = gs.ToString
         End If
 
         Me.OK_Button.Enabled = True
@@ -254,19 +273,19 @@ Public Class FormChoose
     _llistaPreviewRequests.Add(New PreviewRequest(_previewControl.NewAsset(escena), pic))
   End Sub
 
-  Private Sub _previewControl_ActiveAssetChanged(ByVal asset As VizCommands.PreviewAsset, ByVal former_asset As VizCommands.PreviewAsset) Handles _previewControl.ActiveAssetChanged
+  Private Sub _previewControl_ActiveAssetChanged(ByVal asset As VizCommands.PreviewAsset, ByVal former_asset As VizCommands.PreviewAsset)
     Try
     Catch ex As Exception
     End Try
   End Sub
 
-  Private Sub _previewControl_AssetAdded(ByVal asset As VizCommands.PreviewAsset) Handles _previewControl.AssetAdded
+  Private Sub _previewControl_AssetAdded(ByVal asset As VizCommands.PreviewAsset)
     Try
     Catch ex As Exception
     End Try
   End Sub
 
-  Private Sub _previewControl_AssetStateChanged(ByVal asset As VizCommands.PreviewAsset) Handles _previewControl.AssetStateChanged
+  Private Sub _previewControl_AssetStateChanged(ByVal asset As VizCommands.PreviewAsset)
     Try
       'Dim pic As PictureBox = Me.PictureBoxPreview
 

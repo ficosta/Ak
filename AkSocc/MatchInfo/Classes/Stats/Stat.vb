@@ -23,13 +23,17 @@ Public Class Stat
       Return _value
     End Get
     Set(value As Double)
-      _value = value
+      If _value <> value Then
+        _value = value
 
-      RaiseEvent PropertyChanged(Me,
-                New System.ComponentModel.PropertyChangedEventArgs("Value"))
-      RaiseEvent PropertyChanged(Me,
-                New System.ComponentModel.PropertyChangedEventArgs("ValueText"))
-      RaiseEvent StatValueChanged(Me)
+        RaiseEvent PropertyChanged(Me,
+                  New System.ComponentModel.PropertyChangedEventArgs("Value"))
+        RaiseEvent PropertyChanged(Me,
+                  New System.ComponentModel.PropertyChangedEventArgs("ValueText"))
+        RaiseEvent StatValueChanged(Me)
+      Else
+        'Debug.Print ("No change " & me.Name & " = " & me.value & " ID " )
+      End If
     End Set
   End Property
 
@@ -38,6 +42,8 @@ Public Class Stat
       Return CStr(_value)
     End Get
   End Property
+
+  Public Property FromDataBase As Boolean = True
 
 #Region "Constructors"
   Public Sub New()

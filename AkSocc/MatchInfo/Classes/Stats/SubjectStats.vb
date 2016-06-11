@@ -6,7 +6,7 @@ Public Class SubjectStats
 
   Public Event StatValueChanged(subjectStats As SubjectStats, stat As Stat)
 
-  Private WithEvents _goals As New Stat("Goals", 0)
+  Private WithEvents _goals As New Stat("Goals", 0) With {.FromDataBase = False}
   Public ReadOnly Property GoalStat As Stat
     Get
       Return _goals
@@ -17,13 +17,15 @@ Public Class SubjectStats
       Return _goals.Value
     End Get
     Set(value As Double)
-      _goals.Value = value
-      RaiseEvent PropertyChanged(Me,
-                New System.ComponentModel.PropertyChangedEventArgs("Goals"))
+      If _goals.Value <> value Then
+        _goals.Value = value
 
+        RaiseEvent PropertyChanged(Me,
+                  New System.ComponentModel.PropertyChangedEventArgs("Goals"))
+      End If
     End Set
   End Property
-  Private WithEvents _ShotsOn As New Stat("ShotsOn", 0)
+  Private WithEvents _ShotsOn As New Stat("Shots_on_target", 0)
   Public ReadOnly Property ShotsOn As Stat
     Get
       Return _ShotsOn
@@ -58,14 +60,14 @@ Public Class SubjectStats
     End Get
   End Property
 
-  Private WithEvents _yellowCards As New Stat("yellowCards", 0)
+  Private WithEvents _yellowCards As New Stat("YCard", 0)
   Public ReadOnly Property YellowCards As Stat
     Get
       Return _yellowCards
     End Get
   End Property
 
-  Private WithEvents _redCards As New Stat("RedCards", 0)
+  Private WithEvents _redCards As New Stat("RCard", 0)
   Public ReadOnly Property RedCards As Stat
     Get
       Return _redCards

@@ -308,20 +308,22 @@ Public Class VizControl
         CPiSocketTCP.LineMode = False
         CPiSocketTCP.NoDelay = True
 
-        ipAddresses = System.Net.Dns.GetHostAddresses(.UDPSendHost)
-        If ipAddresses.Length > 0 Then
-          ip = ipAddresses(0)
-          endpoint = New System.Net.IPEndPoint(ip, .UDPSendPort)
-          CPiSocketUDPSend = New Socket(endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp)
-          CPiSocketUDPSend.Connect(.UDPSendHost, .UDPSendPort)
-        End If
+        If Not .UDPSendHost Is Nothing AndAlso .UDPSendHost <> "" Then
+          ipAddresses = System.Net.Dns.GetHostAddresses(.UDPSendHost)
+          If ipAddresses.Length > 0 Then
+            ip = ipAddresses(0)
+            endpoint = New System.Net.IPEndPoint(ip, .UDPSendPort)
+            CPiSocketUDPSend = New Socket(endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp)
+            CPiSocketUDPSend.Connect(.UDPSendHost, .UDPSendPort)
+          End If
 
-        ipAddresses = System.Net.Dns.GetHostAddresses(.UDPSendHost)
-        If ipAddresses.Length > 0 Then
-          ip = ipAddresses(0)
-          endpoint = New System.Net.IPEndPoint(ip, .UDPReceivePort)
-          CPiSocketUDPReceive = New Socket(endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp)
-          CPiSocketUDPReceive.Connect(.UDPReceiveHost, .UDPReceivePort)
+          ipAddresses = System.Net.Dns.GetHostAddresses(.UDPSendHost)
+          If ipAddresses.Length > 0 Then
+            ip = ipAddresses(0)
+            endpoint = New System.Net.IPEndPoint(ip, .UDPReceivePort)
+            CPiSocketUDPReceive = New Socket(endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp)
+            CPiSocketUDPReceive.Connect(.UDPReceiveHost, .UDPReceivePort)
+          End If
         End If
       End With
 

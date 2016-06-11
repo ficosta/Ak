@@ -5,6 +5,7 @@ Public Class TeamViewer
   Private _team As Team
 
   Public Event SelectedPlayerChanged(sender As TeamViewer, player As Player)
+  Public Event GoalScored(team As Team, player As Player, add As Boolean)
 
 #Region "properties"
 
@@ -77,8 +78,10 @@ Public Class TeamViewer
         Try
           Dim pvCtl As PlayerViewer = TryCast(ctl, PlayerViewer)
           If Not pvCtl Is Nothing Then
-            AddHandler pvCtl.SelectionChanged, AddressOf Me.PlayerViewer_SelectionChanged
-            AddHandler pvCtl.GoalScored, AddressOf Me.PlayerViewer_GoalScored
+            'RemoveHandler pvCtl.SelectionChanged, AddressOf Me.PlayerViewerHome_SelectionChanged
+            'RemoveHandler pvCtl.GoalScored, AddressOf Me.PlayerViewerHome_GoalScored
+            'AddHandler pvCtl.SelectionChanged, AddressOf Me.PlayerViewerHome_SelectionChanged
+            'AddHandler pvCtl.GoalScored, AddressOf Me.PlayerViewerHome_GoalScored
           End If
         Catch ex As Exception
 
@@ -102,6 +105,10 @@ Public Class TeamViewer
   End Sub
 
   Private Sub PlayerViewer_GoalScored(ByRef sender As PlayerViewer, add As Boolean)
+    Me.Team.AddGoal(sender.Player, False, False)
+    'RaiseEvent GoalScored(Me.Team, sender.Player, add)
+    Exit Sub
+
     Try
       Me.SelectedPlayer = sender.Player
       ShowSelectedPlayer()
@@ -113,7 +120,7 @@ Public Class TeamViewer
         Me.SelectedPlayer.Goals -= 1
       End If
     Catch ex As Exception
-
+      Debug.Print(ex.ToString)
     End Try
   End Sub
 

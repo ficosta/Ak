@@ -203,6 +203,7 @@ Public Class PlayerViewer
 
   Private Sub UpdateCardControls()
     Try
+      If Me.Player Is Nothing Then Exit Sub
       YellowCardToolStripMenuItem.Checked = Me.Player.YellowCards > 0
       SecondYellowCardToolStripMenuItem.Checked = Me.Player.YellowCards > 1
       RedCardToolStripMenuItem.Checked = Me.Player.RedCards > 0
@@ -221,28 +222,31 @@ Public Class PlayerViewer
         Dim span As Integer = 3
         Dim pieceWidth As Integer = PictureBoxInfo.Width / 3
         Dim pieceHeight As Integer = PictureBoxInfo.Height
-        'yellow card
-        If Me.Player.YellowCards > 0 Then
-          rect = New Rectangle(0 * pieceWidth + span, span / 2, pieceWidth - 2 * span, pieceHeight - 2 * span)
-          g.FillRectangle(Brushes.Yellow, rect)
-          g.DrawRectangle(Pens.DarkGoldenrod, rect)
-        End If 'second yellow card
-        If Me.Player.YellowCards > 1 Then
-          rect = New Rectangle(1 * pieceWidth + span, span / 2, pieceWidth - 2 * span, pieceHeight - 2 * span)
-          g.FillRectangle(Brushes.Yellow, rect)
-          g.DrawRectangle(Pens.DarkGoldenrod, rect)
-        End If
-        'red card
-        If Me.Player.RedCards > 0 Then
-          rect = New Rectangle(0.5 * pieceWidth + span, span, pieceWidth - 2 * span, pieceHeight - span)
-          g.FillRectangle(Brushes.Red, rect)
-          g.DrawRectangle(Pens.DarkRed, rect)
-        End If
-        'goals
-        If Me.Player.Goals > 0 Then
-          rect = New Rectangle(2 * pieceWidth + span, span, pieceWidth - 2 * span, pieceHeight - 2 * span)
-          g.FillEllipse(Brushes.LightGray, rect)
-          g.DrawEllipse(Pens.Gray, rect)
+        If Not Me.Player Is Nothing Then
+          'yellow card
+          If Me.Player.YellowCards > 0 Then
+            rect = New Rectangle(0 * pieceWidth + span, span / 2, pieceWidth - 2 * span, pieceHeight - 2 * span)
+            g.FillRectangle(Brushes.Yellow, rect)
+            g.DrawRectangle(Pens.DarkGoldenrod, rect)
+          End If 'second yellow card
+          If Me.Player.YellowCards > 1 Then
+            rect = New Rectangle(1 * pieceWidth + span, span / 2, pieceWidth - 2 * span, pieceHeight - 2 * span)
+            g.FillRectangle(Brushes.Yellow, rect)
+            g.DrawRectangle(Pens.DarkGoldenrod, rect)
+          End If
+          'red card
+          If Me.Player.RedCards > 0 Then
+            rect = New Rectangle(0.5 * pieceWidth + span, span, pieceWidth - 2 * span, pieceHeight - span)
+            g.FillRectangle(Brushes.Red, rect)
+            g.DrawRectangle(Pens.DarkRed, rect)
+          End If
+          'goals
+          If Me.Player.Goals > 0 Then
+            rect = New Rectangle(2 * pieceWidth + span, span, pieceWidth - 2 * span, pieceHeight - 2 * span)
+            g.FillEllipse(Brushes.LightGray, rect)
+            g.DrawEllipse(Pens.Gray, rect)
+            g.DrawString(Me.Player.Goals, Me.Font, Brushes.Black, rect)
+          End If
         End If
       End Using
       Me.PictureBoxInfo.Invalidate()

@@ -19,6 +19,8 @@ Public MustInherit Class GraphicGroup
   Public Property graphicStep As GraphicStep
   Public Property formerGraphicStep As GraphicStep
 
+
+
   Public Property Scene As New VizCommands.Scene
 
   Public Property AutomaticGraphic As Boolean = True

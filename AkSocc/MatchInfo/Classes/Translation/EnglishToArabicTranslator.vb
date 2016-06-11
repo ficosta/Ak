@@ -62,18 +62,20 @@ Public Class EnglishToArabicTranslator
     Dim output As String = ""
     Dim found As Boolean = False
     Try
-      For Each Search As EnglishToArabicTranslation In List
-        If Search.EnglishWord.ToUpper() = English.ToUpper() Then
-          output = Search.ArabicWord
-          found = True
-          Exit For
-        End If
-      Next
-      If found = False Then
-        If output = "" Then
-          Dim sw As System.IO.StreamWriter = System.IO.File.AppendText("C:\NotInDictionary.txt")
-          sw.WriteLine(Convert.ToString(DateTime.Now.ToString("HH:mm:ss") + " ") & English)
-          sw.Close()
+      If Not English Is Nothing Then
+        For Each Search As EnglishToArabicTranslation In List
+          If Search.EnglishWord.ToUpper() = English.ToUpper() Then
+            output = Search.ArabicWord
+            found = True
+            Exit For
+          End If
+        Next
+        If found = False Then
+          If output = "" Then
+            Dim sw As System.IO.StreamWriter = System.IO.File.AppendText("C:\NotInDictionary.txt")
+            sw.WriteLine(Convert.ToString(DateTime.Now.ToString("HH:mm:ss") + " ") & English)
+            sw.Close()
+          End If
         End If
       End If
     Catch err As Exception
