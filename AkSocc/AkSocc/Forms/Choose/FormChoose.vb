@@ -66,11 +66,11 @@ Public Class FormChoose
             param.Name = param.Name.Replace("Side_1", "Side_2")
           Next
           _formerScene.SendSceneToEngine(_vizControl)
+          'send new parameters
+          _currentScene.SendSceneToEngine(_vizControl)
           'rewind change animation to initial step
           _formerScene.RewindSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeDirectors)
 
-          'send new parameters
-          _currentScene.SendSceneToEngine(_vizControl)
 
           'Start change animation
           tsk.StartPosition = FormStartPosition.CenterScreen
@@ -81,7 +81,7 @@ Public Class FormChoose
           _currentScene.SendSceneToEngine(_vizControl)
           _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeDirectors)
           'wait for animation to end
-          tsk.ShowDialog(Me)
+          ' tsk.ShowDialog(Me)
         End If
 
         If gstep.IsTransitionalStep = False Then

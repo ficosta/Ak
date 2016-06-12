@@ -81,16 +81,7 @@
     Dim director As New SceneDirector(name, frame, type)
     Try
       Dim index As Integer = -1
-      For i As Integer = 0 To Me.Count - 1
-        If Me.Item(i).Name = name Then
-          index = i
-        End If
-      Next
-      If index <> -1 Then
-        Me.Item(index) = director
-      Else
-        Me.Add(director)
-      End If
+      Me.Add(director)
     Catch ex As Exception
     End Try
     Return director

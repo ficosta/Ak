@@ -117,8 +117,8 @@ Public Class GraphicGroupCtlF1FullFramers
     scene.SceneDirectorsIn.Add("Change", 0, DirectorAction.Rewind)
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
-    scene.SceneDirectorsOut.Add("Change", 0, DirectorAction.Start)
-    scene.SceneDirectorsOut.Add("Change", 100, DirectorAction.Dummy)
+    scene.SceneDirectorsChange.Add("Change", 0, DirectorAction.Start)
+    scene.SceneDirectorsChange.Add("Change", 100, DirectorAction.Dummy)
 
     scene.SceneParameters.Add("Veil_On_Off_Vis", "1")
     scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
@@ -184,11 +184,17 @@ Public Class GraphicGroupCtlF1FullFramers
     Dim prefix As String = "Side_" & gStep & "_"
     Try
       scene.SceneParameters.Add(prefix & "Results_Vis.active", "1")
-
       prefix = "Results_" & prefix
-      If Not matchDay Is Nothing Then
+
+      Dim subjectPrefix As String = prefix & "Subject_01_"
+      scene.SceneParameters.Add(subjectPrefix & "Title", "THIS IS AddressOf TITLLE")
+      scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "0")
+
+
+
+      If Not matchDay Is Nothing And False Then
         For Each match As OtherMatch In matchDay.OtherMatches
-          Dim subjectPrefix As String = prefix & "Subject_0" & (match.MatchIndex + 1) & "_"
+          subjectPrefix = prefix & "Subject_0" & (match.MatchIndex + 1) & "_"
           Select Case match.LineType
             Case OtherMatch.eOtherMatchLineType.Blank
               scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "0")
@@ -214,10 +220,11 @@ Public Class GraphicGroupCtlF1FullFramers
 
         Next
         For index As Integer = matchDay.OtherMatches.Count To 10
-          Dim subjectPrefix As String = prefix & "Subject_0" & index & "_"
+          subjectPrefix = prefix & "Subject_0" & index & "_"
           scene.SceneParameters.Add(subjectPrefix & "Title", "no match to show")
         Next
       End If
+
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
