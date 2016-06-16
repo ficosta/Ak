@@ -27,10 +27,15 @@ Partial Class FormMatchSetup
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanelGlobal = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroGridMatches = New MetroFramework.Controls.MetroGrid()
+    Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnResult = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.cboCompetition = New MetroFramework.Controls.MetroComboBox()
     Me.MetroTabControl1 = New MetroFramework.Controls.MetroTabControl()
     Me.TabPageMatchSetup = New System.Windows.Forms.TabPage()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+    Me.MetroTileGeneralMatchInfo = New MetroFramework.Controls.MetroTile()
     Me.MetroLabel4 = New MetroFramework.Controls.MetroLabel()
     Me.MetroTileMatchInfo = New MetroFramework.Controls.MetroTile()
     Me.MetroLabelSceneVersion = New MetroFramework.Controls.MetroLabel()
@@ -48,16 +53,15 @@ Partial Class FormMatchSetup
     Me.PictureBoxClockRight = New System.Windows.Forms.PictureBox()
     Me.PictureBoxClockDown = New System.Windows.Forms.PictureBox()
     Me.TabPageHome = New System.Windows.Forms.TabPage()
+    Me.UcTeamMatchSetupHome = New AkSocc.UCTeamMatchSetup()
     Me.TabPageAway = New System.Windows.Forms.TabPage()
+    Me.UcTeamMatchSetupAway = New AkSocc.UCTeamMatchSetup()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.OK_Button = New MetroFramework.Controls.MetroButton()
     Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
-    Me.UcTeamMatchSetupHome = New AkSocc.UCTeamMatchSetup()
-    Me.UcTeamMatchSetupAway = New AkSocc.UCTeamMatchSetup()
-    Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnResult = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
+    Me.MetroLabelHomeTeam = New MetroFramework.Controls.MetroLabel()
+    Me.MetroLabelAwayTeam = New MetroFramework.Controls.MetroLabel()
     Me.TableLayoutPanelGlobal.SuspendLayout()
     CType(Me.MetroGridMatches, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.MetroTabControl1.SuspendLayout()
@@ -71,6 +75,7 @@ Partial Class FormMatchSetup
     Me.TabPageHome.SuspendLayout()
     Me.TabPageAway.SuspendLayout()
     Me.TableLayoutPanel1.SuspendLayout()
+    Me.TableLayoutPanel4.SuspendLayout()
     Me.SuspendLayout()
     '
     'TableLayoutPanelGlobal
@@ -147,6 +152,33 @@ Partial Class FormMatchSetup
     Me.MetroGridMatches.Size = New System.Drawing.Size(406, 489)
     Me.MetroGridMatches.TabIndex = 47
     '
+    'ColumnID
+    '
+    Me.ColumnID.HeaderText = "ColumnID"
+    Me.ColumnID.Name = "ColumnID"
+    Me.ColumnID.Visible = False
+    Me.ColumnID.Width = 60
+    '
+    'ColumnDate
+    '
+    Me.ColumnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnDate.HeaderText = "Date"
+    Me.ColumnDate.Name = "ColumnDate"
+    Me.ColumnDate.Width = 64
+    '
+    'ColumnDescription
+    '
+    Me.ColumnDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnDescription.HeaderText = "Description"
+    Me.ColumnDescription.Name = "ColumnDescription"
+    Me.ColumnDescription.Width = 108
+    '
+    'ColumnResult
+    '
+    Me.ColumnResult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnResult.HeaderText = "Result"
+    Me.ColumnResult.Name = "ColumnResult"
+    '
     'cboCompetition
     '
     Me.cboCompetition.Dock = System.Windows.Forms.DockStyle.Fill
@@ -187,27 +219,31 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanel2.ColumnCount = 2
     Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
     Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel4, 0, 3)
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroTileMatchInfo, 0, 4)
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabelSceneVersion, 0, 5)
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxSceneVersion, 1, 5)
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroTileReferees, 0, 0)
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel1, 0, 1)
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel3, 0, 2)
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxReferee1, 1, 1)
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxReferee2, 1, 2)
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxReferee3, 1, 3)
-    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel2, 0, 6)
-    Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanel3, 1, 6)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroTileGeneralMatchInfo, 0, 0)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel4, 0, 5)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroTileMatchInfo, 0, 6)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabelSceneVersion, 0, 7)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxSceneVersion, 1, 7)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroTileReferees, 0, 2)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel1, 0, 3)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel3, 0, 4)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxReferee1, 1, 3)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxReferee2, 1, 4)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxReferee3, 1, 5)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel2, 0, 8)
+    Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanel3, 1, 8)
+    Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanel4, 1, 1)
     Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
     Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-    Me.TableLayoutPanel2.RowCount = 11
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanel2.RowCount = 13
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
@@ -217,11 +253,24 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanel2.Size = New System.Drawing.Size(931, 482)
     Me.TableLayoutPanel2.TabIndex = 0
     '
+    'MetroTileGeneralMatchInfo
+    '
+    Me.MetroTileGeneralMatchInfo.ActiveControl = Nothing
+    Me.TableLayoutPanel2.SetColumnSpan(Me.MetroTileGeneralMatchInfo, 2)
+    Me.MetroTileGeneralMatchInfo.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTileGeneralMatchInfo.Location = New System.Drawing.Point(3, 3)
+    Me.MetroTileGeneralMatchInfo.Name = "MetroTileGeneralMatchInfo"
+    Me.MetroTileGeneralMatchInfo.Size = New System.Drawing.Size(925, 19)
+    Me.MetroTileGeneralMatchInfo.Style = MetroFramework.MetroColorStyle.Orange
+    Me.MetroTileGeneralMatchInfo.TabIndex = 13
+    Me.MetroTileGeneralMatchInfo.Text = "GeneralMatchInfo"
+    Me.MetroTileGeneralMatchInfo.UseSelectable = True
+    '
     'MetroLabel4
     '
     Me.MetroLabel4.AutoSize = True
     Me.MetroLabel4.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel4.Location = New System.Drawing.Point(3, 110)
+    Me.MetroLabel4.Location = New System.Drawing.Point(3, 155)
     Me.MetroLabel4.Name = "MetroLabel4"
     Me.MetroLabel4.Size = New System.Drawing.Size(194, 35)
     Me.MetroLabel4.TabIndex = 7
@@ -233,9 +282,9 @@ Partial Class FormMatchSetup
     Me.MetroTileMatchInfo.ActiveControl = Nothing
     Me.TableLayoutPanel2.SetColumnSpan(Me.MetroTileMatchInfo, 2)
     Me.MetroTileMatchInfo.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileMatchInfo.Location = New System.Drawing.Point(3, 148)
+    Me.MetroTileMatchInfo.Location = New System.Drawing.Point(3, 193)
     Me.MetroTileMatchInfo.Name = "MetroTileMatchInfo"
-    Me.MetroTileMatchInfo.Size = New System.Drawing.Size(925, 34)
+    Me.MetroTileMatchInfo.Size = New System.Drawing.Size(925, 19)
     Me.MetroTileMatchInfo.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileMatchInfo.TabIndex = 0
     Me.MetroTileMatchInfo.Text = "General match info"
@@ -245,7 +294,7 @@ Partial Class FormMatchSetup
     '
     Me.MetroLabelSceneVersion.AutoSize = True
     Me.MetroLabelSceneVersion.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabelSceneVersion.Location = New System.Drawing.Point(3, 185)
+    Me.MetroLabelSceneVersion.Location = New System.Drawing.Point(3, 215)
     Me.MetroLabelSceneVersion.Name = "MetroLabelSceneVersion"
     Me.MetroLabelSceneVersion.Size = New System.Drawing.Size(194, 35)
     Me.MetroLabelSceneVersion.TabIndex = 1
@@ -258,7 +307,7 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxSceneVersion.FormattingEnabled = True
     Me.MetroComboBoxSceneVersion.ItemHeight = 23
     Me.MetroComboBoxSceneVersion.Items.AddRange(New Object() {"Saudi league", "Cup"})
-    Me.MetroComboBoxSceneVersion.Location = New System.Drawing.Point(203, 188)
+    Me.MetroComboBoxSceneVersion.Location = New System.Drawing.Point(203, 218)
     Me.MetroComboBoxSceneVersion.Name = "MetroComboBoxSceneVersion"
     Me.MetroComboBoxSceneVersion.Size = New System.Drawing.Size(725, 29)
     Me.MetroComboBoxSceneVersion.TabIndex = 2
@@ -269,9 +318,9 @@ Partial Class FormMatchSetup
     Me.MetroTileReferees.ActiveControl = Nothing
     Me.TableLayoutPanel2.SetColumnSpan(Me.MetroTileReferees, 2)
     Me.MetroTileReferees.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileReferees.Location = New System.Drawing.Point(3, 3)
+    Me.MetroTileReferees.Location = New System.Drawing.Point(3, 63)
     Me.MetroTileReferees.Name = "MetroTileReferees"
-    Me.MetroTileReferees.Size = New System.Drawing.Size(925, 34)
+    Me.MetroTileReferees.Size = New System.Drawing.Size(925, 19)
     Me.MetroTileReferees.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileReferees.TabIndex = 3
     Me.MetroTileReferees.Text = "Referees"
@@ -281,7 +330,7 @@ Partial Class FormMatchSetup
     '
     Me.MetroLabel1.AutoSize = True
     Me.MetroLabel1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel1.Location = New System.Drawing.Point(3, 40)
+    Me.MetroLabel1.Location = New System.Drawing.Point(3, 85)
     Me.MetroLabel1.Name = "MetroLabel1"
     Me.MetroLabel1.Size = New System.Drawing.Size(194, 35)
     Me.MetroLabel1.TabIndex = 4
@@ -292,7 +341,7 @@ Partial Class FormMatchSetup
     '
     Me.MetroLabel3.AutoSize = True
     Me.MetroLabel3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel3.Location = New System.Drawing.Point(3, 75)
+    Me.MetroLabel3.Location = New System.Drawing.Point(3, 120)
     Me.MetroLabel3.Name = "MetroLabel3"
     Me.MetroLabel3.Size = New System.Drawing.Size(194, 35)
     Me.MetroLabel3.TabIndex = 6
@@ -305,7 +354,7 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxReferee1.FormattingEnabled = True
     Me.MetroComboBoxReferee1.ItemHeight = 23
     Me.MetroComboBoxReferee1.Items.AddRange(New Object() {"Varcas Adam", "Abdul aziz Al funaitar", "Khaled Al Threes"})
-    Me.MetroComboBoxReferee1.Location = New System.Drawing.Point(203, 43)
+    Me.MetroComboBoxReferee1.Location = New System.Drawing.Point(203, 88)
     Me.MetroComboBoxReferee1.Name = "MetroComboBoxReferee1"
     Me.MetroComboBoxReferee1.Size = New System.Drawing.Size(725, 29)
     Me.MetroComboBoxReferee1.TabIndex = 8
@@ -317,7 +366,7 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxReferee2.FormattingEnabled = True
     Me.MetroComboBoxReferee2.ItemHeight = 23
     Me.MetroComboBoxReferee2.Items.AddRange(New Object() {"Varcas Adam", "Abdul aziz Al funaitar", "Khaled Al Threes"})
-    Me.MetroComboBoxReferee2.Location = New System.Drawing.Point(203, 78)
+    Me.MetroComboBoxReferee2.Location = New System.Drawing.Point(203, 123)
     Me.MetroComboBoxReferee2.Name = "MetroComboBoxReferee2"
     Me.MetroComboBoxReferee2.Size = New System.Drawing.Size(725, 29)
     Me.MetroComboBoxReferee2.TabIndex = 9
@@ -329,7 +378,7 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxReferee3.FormattingEnabled = True
     Me.MetroComboBoxReferee3.ItemHeight = 23
     Me.MetroComboBoxReferee3.Items.AddRange(New Object() {"Varcas Adam", "Abdul aziz Al funaitar", "Khaled Al Threes"})
-    Me.MetroComboBoxReferee3.Location = New System.Drawing.Point(203, 113)
+    Me.MetroComboBoxReferee3.Location = New System.Drawing.Point(203, 158)
     Me.MetroComboBoxReferee3.Name = "MetroComboBoxReferee3"
     Me.MetroComboBoxReferee3.Size = New System.Drawing.Size(725, 29)
     Me.MetroComboBoxReferee3.TabIndex = 10
@@ -339,7 +388,7 @@ Partial Class FormMatchSetup
     '
     Me.MetroLabel2.AutoSize = True
     Me.MetroLabel2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel2.Location = New System.Drawing.Point(3, 220)
+    Me.MetroLabel2.Location = New System.Drawing.Point(3, 250)
     Me.MetroLabel2.Name = "MetroLabel2"
     Me.MetroLabel2.Size = New System.Drawing.Size(194, 35)
     Me.MetroLabel2.TabIndex = 11
@@ -359,7 +408,7 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanel3.Controls.Add(Me.PictureBoxClockRight, 2, 1)
     Me.TableLayoutPanel3.Controls.Add(Me.PictureBoxClockDown, 1, 2)
     Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel3.Location = New System.Drawing.Point(203, 223)
+    Me.TableLayoutPanel3.Location = New System.Drawing.Point(203, 253)
     Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
     Me.TableLayoutPanel3.RowCount = 4
     Me.TableLayoutPanel2.SetRowSpan(Me.TableLayoutPanel3, 2)
@@ -428,6 +477,18 @@ Partial Class FormMatchSetup
     Me.TabPageHome.TabIndex = 0
     Me.TabPageHome.Text = "Home team"
     '
+    'UcTeamMatchSetupHome
+    '
+    Me.UcTeamMatchSetupHome.Color = System.Drawing.Color.AliceBlue
+    Me.UcTeamMatchSetupHome.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcTeamMatchSetupHome.IsLocalTeam = True
+    Me.UcTeamMatchSetupHome.Location = New System.Drawing.Point(0, 0)
+    Me.UcTeamMatchSetupHome.Name = "UcTeamMatchSetupHome"
+    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(931, 482)
+    Me.UcTeamMatchSetupHome.TabIndex = 0
+    Me.UcTeamMatchSetupHome.Tactic = Nothing
+    Me.UcTeamMatchSetupHome.Team = Nothing
+    '
     'TabPageAway
     '
     Me.TabPageAway.Controls.Add(Me.UcTeamMatchSetupAway)
@@ -436,6 +497,18 @@ Partial Class FormMatchSetup
     Me.TabPageAway.Size = New System.Drawing.Size(931, 482)
     Me.TabPageAway.TabIndex = 1
     Me.TabPageAway.Text = "Away team"
+    '
+    'UcTeamMatchSetupAway
+    '
+    Me.UcTeamMatchSetupAway.Color = System.Drawing.Color.AliceBlue
+    Me.UcTeamMatchSetupAway.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcTeamMatchSetupAway.IsLocalTeam = True
+    Me.UcTeamMatchSetupAway.Location = New System.Drawing.Point(0, 0)
+    Me.UcTeamMatchSetupAway.Name = "UcTeamMatchSetupAway"
+    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(931, 482)
+    Me.UcTeamMatchSetupAway.TabIndex = 0
+    Me.UcTeamMatchSetupAway.Tactic = Nothing
+    Me.UcTeamMatchSetupAway.Team = Nothing
     '
     'TableLayoutPanel1
     '
@@ -473,56 +546,40 @@ Partial Class FormMatchSetup
     Me.Cancel_Button.Text = "Cancel"
     Me.Cancel_Button.UseSelectable = True
     '
-    'UcTeamMatchSetupHome
+    'TableLayoutPanel4
     '
-    Me.UcTeamMatchSetupHome.Color = System.Drawing.Color.AliceBlue
-    Me.UcTeamMatchSetupHome.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcTeamMatchSetupHome.IsLocalTeam = True
-    Me.UcTeamMatchSetupHome.Location = New System.Drawing.Point(0, 0)
-    Me.UcTeamMatchSetupHome.Name = "UcTeamMatchSetupHome"
-    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(931, 482)
-    Me.UcTeamMatchSetupHome.TabIndex = 0
-    Me.UcTeamMatchSetupHome.Tactic = Nothing
-    Me.UcTeamMatchSetupHome.Team = Nothing
+    Me.TableLayoutPanel4.ColumnCount = 3
+    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+    Me.TableLayoutPanel4.Controls.Add(Me.MetroLabelAwayTeam, 1, 0)
+    Me.TableLayoutPanel4.Controls.Add(Me.MetroLabelHomeTeam, 0, 0)
+    Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel4.Location = New System.Drawing.Point(203, 28)
+    Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
+    Me.TableLayoutPanel4.RowCount = 1
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanel4.Size = New System.Drawing.Size(725, 29)
+    Me.TableLayoutPanel4.TabIndex = 14
     '
-    'UcTeamMatchSetupAway
+    'MetroLabelHomeTeam
     '
-    Me.UcTeamMatchSetupAway.Color = System.Drawing.Color.AliceBlue
-    Me.UcTeamMatchSetupAway.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcTeamMatchSetupAway.IsLocalTeam = True
-    Me.UcTeamMatchSetupAway.Location = New System.Drawing.Point(0, 0)
-    Me.UcTeamMatchSetupAway.Name = "UcTeamMatchSetupAway"
-    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(931, 482)
-    Me.UcTeamMatchSetupAway.TabIndex = 0
-    Me.UcTeamMatchSetupAway.Tactic = Nothing
-    Me.UcTeamMatchSetupAway.Team = Nothing
+    Me.MetroLabelHomeTeam.AutoSize = True
+    Me.MetroLabelHomeTeam.Location = New System.Drawing.Point(3, 0)
+    Me.MetroLabelHomeTeam.Name = "MetroLabelHomeTeam"
+    Me.MetroLabelHomeTeam.Size = New System.Drawing.Size(87, 19)
+    Me.MetroLabelHomeTeam.TabIndex = 0
+    Me.MetroLabelHomeTeam.Text = "HOME TEAM"
     '
-    'ColumnID
+    'MetroLabelAwayTeam
     '
-    Me.ColumnID.HeaderText = "ColumnID"
-    Me.ColumnID.Name = "ColumnID"
-    Me.ColumnID.Visible = False
-    Me.ColumnID.Width = 60
-    '
-    'ColumnDate
-    '
-    Me.ColumnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnDate.HeaderText = "Date"
-    Me.ColumnDate.Name = "ColumnDate"
-    Me.ColumnDate.Width = 64
-    '
-    'ColumnDescription
-    '
-    Me.ColumnDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnDescription.HeaderText = "Description"
-    Me.ColumnDescription.Name = "ColumnDescription"
-    Me.ColumnDescription.Width = 108
-    '
-    'ColumnResult
-    '
-    Me.ColumnResult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnResult.HeaderText = "Result"
-    Me.ColumnResult.Name = "ColumnResult"
+    Me.MetroLabelAwayTeam.AutoSize = True
+    Me.MetroLabelAwayTeam.Location = New System.Drawing.Point(244, 0)
+    Me.MetroLabelAwayTeam.Name = "MetroLabelAwayTeam"
+    Me.MetroLabelAwayTeam.Size = New System.Drawing.Size(87, 19)
+    Me.MetroLabelAwayTeam.TabIndex = 1
+    Me.MetroLabelAwayTeam.Text = "AWAY TEAM"
     '
     'FormMatchSetup
     '
@@ -548,6 +605,8 @@ Partial Class FormMatchSetup
     Me.TabPageHome.ResumeLayout(False)
     Me.TabPageAway.ResumeLayout(False)
     Me.TableLayoutPanel1.ResumeLayout(False)
+    Me.TableLayoutPanel4.ResumeLayout(False)
+    Me.TableLayoutPanel4.PerformLayout()
     Me.ResumeLayout(False)
 
   End Sub
@@ -585,4 +644,8 @@ Partial Class FormMatchSetup
   Friend WithEvents ColumnDate As DataGridViewTextBoxColumn
   Friend WithEvents ColumnDescription As DataGridViewTextBoxColumn
   Friend WithEvents ColumnResult As DataGridViewTextBoxColumn
+  Friend WithEvents MetroTileGeneralMatchInfo As MetroFramework.Controls.MetroTile
+  Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
+  Friend WithEvents MetroLabelAwayTeam As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroLabelHomeTeam As MetroFramework.Controls.MetroLabel
 End Class

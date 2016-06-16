@@ -247,4 +247,7 @@ Public Class FormMatchSetup
     End Try
   End Sub
 
+  Private Sub MetroGridMatches_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridMatches.CellContentClick
+
+  End Sub
 End Class

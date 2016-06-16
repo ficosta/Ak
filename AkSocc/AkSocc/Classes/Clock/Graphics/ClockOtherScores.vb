@@ -78,9 +78,15 @@ Public Class ClockOtherScores
         .SceneDirectorsIn.Add("anim_Clock_Penalties", 0, DirectorAction.Rewind)
         .SceneDirectorsIn.Add("anim_OtherScores", 0, DirectorAction.Rewind)
 
-        .SceneDirectorsIn.Add("anim_OtherScores", 100, DirectorAction.Dummy)
+        .SceneDirectorsIn.Add("anim_OtherScores", 25, DirectorAction.Dummy)
         .SceneDirectorsIn.Add("anim_OtherScores", 0, DirectorAction.Start)
+
         .SceneDirectorsOut.Add("anim_OtherScores", 0, DirectorAction.ContinueNormal)
+
+        .SceneDirectorsChangeOut.Add("anim_OtherScores", 0, DirectorAction.ContinueNormal)
+        .SceneDirectorsChangeOut.Add("anim_OtherScores", 25, DirectorAction.Dummy)
+        .SceneDirectorsChangeIn.Add("anim_OtherScores", 0, DirectorAction.Start)
+        .SceneDirectorsChangeIn.Add("anim_OtherScores", 25, DirectorAction.Dummy)
 
         If _otherMatchDays Is Nothing Then Return Me.Scene
         If _otherMatchDay Is Nothing Then Return Me.Scene

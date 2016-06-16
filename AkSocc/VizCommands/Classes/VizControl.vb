@@ -362,7 +362,7 @@ Public Class VizControl
         CCommand.SentData = sRenderer & " SET_OBJECT"
       End If
       If siFullPath.Length > 0 Then
-        Me.ActivateScene("", eiLayer)
+        '  Me.ActivateScene("", eiLayer)
       End If
       LlistaComandes.Add(CCommand)
       'desactivem lo que hi hagi per seguretat...

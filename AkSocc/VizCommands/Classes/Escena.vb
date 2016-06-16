@@ -28,7 +28,8 @@ End Enum
 
   Public Property SceneDirectorsIn As New SceneDirectors
   Public Property SceneDirectorsOut As New SceneDirectors
-  Public Property SceneDirectorsChange As New SceneDirectors
+  Public Property SceneDirectorsChangeIn As New SceneDirectors
+  Public Property SceneDirectorsChangeOut As New SceneDirectors
   Private _currentSceneDirectors As SceneDirectors
 
   Private WithEvents _vizrtControl As VizControl = Nothing
@@ -49,7 +50,7 @@ End Enum
 
       bUcase = _vizrtControl.Config.UcaseTexts
       If biActivate Then
-        _vizrtControl.ActivateScene("", Me.VizLayer)
+        ' _vizrtControl.ActivateScene("", Me.VizLayer)
         _vizrtControl.ActivateScene(_vizrtControl.Config.SceneBasePath & Me.SceneName, Me.VizLayer)
         Select Case Me.BackgroundImageState
           Case eBackgroundImageState.Active
@@ -87,7 +88,8 @@ End Enum
   Public Enum TypeOfDirectors
     InDirectors
     OutDirectors
-    ChangeDirectors
+    ChangeOutDirectors
+    ChangeInDirectors
   End Enum
 
   Public Sub StartSceneDirectors(CiControlVizrt As VizControl, type As TypeOfDirectors)
@@ -96,8 +98,10 @@ End Enum
         StartSceneDirectors(CiControlVizrt, Me.SceneDirectorsIn)
       Case TypeOfDirectors.OutDirectors
         StartSceneDirectors(CiControlVizrt, Me.SceneDirectorsOut)
-      Case TypeOfDirectors.ChangeDirectors
-        StartSceneDirectors(CiControlVizrt, Me.SceneDirectorsChange)
+      Case TypeOfDirectors.ChangeOutDirectors
+        StartSceneDirectors(CiControlVizrt, Me.SceneDirectorsChangeOut)
+      Case TypeOfDirectors.ChangeInDirectors
+        StartSceneDirectors(CiControlVizrt, Me.SceneDirectorsChangeIn)
 
     End Select
   End Sub
@@ -128,8 +132,10 @@ End Enum
         RewindSceneDirectors(CiControlVizrt, Me.SceneDirectorsIn)
       Case TypeOfDirectors.OutDirectors
         RewindSceneDirectors(CiControlVizrt, Me.SceneDirectorsOut)
-      Case TypeOfDirectors.ChangeDirectors
-        RewindSceneDirectors(CiControlVizrt, Me.SceneDirectorsChange)
+      Case TypeOfDirectors.ChangeOutDirectors
+        RewindSceneDirectors(CiControlVizrt, Me.SceneDirectorsChangeOut)
+      Case TypeOfDirectors.ChangeInDirectors
+        RewindSceneDirectors(CiControlVizrt, Me.SceneDirectorsChangeIn)
 
     End Select
   End Sub

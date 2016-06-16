@@ -117,8 +117,10 @@ Public Class GraphicGroupCtlF1FullFramers
     scene.SceneDirectorsIn.Add("Change", 0, DirectorAction.Rewind)
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
-    scene.SceneDirectorsChange.Add("Change", 0, DirectorAction.Start)
-    scene.SceneDirectorsChange.Add("Change", 100, DirectorAction.Dummy)
+    ' scene.SceneDirectorsChangeOut.Add("Change", 0, DirectorAction.Rewind)
+
+    scene.SceneDirectorsChangeIn.Add("Change", 0, DirectorAction.Start)
+    scene.SceneDirectorsChangeIn.Add("Change", 200, DirectorAction.Dummy)
 
     scene.SceneParameters.Add("Veil_On_Off_Vis", "1")
     scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
@@ -182,17 +184,13 @@ Public Class GraphicGroupCtlF1FullFramers
   Public Function PrepareMatchScores(gStep As Integer, matchDay As MatchDay) As Scene
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "Side_" & gStep & "_"
+    Dim subjectPrefix As String = ""
     Try
       scene.SceneParameters.Add(prefix & "Results_Vis.active", "1")
       prefix = "Results_" & prefix
 
-      Dim subjectPrefix As String = prefix & "Subject_01_"
-      scene.SceneParameters.Add(subjectPrefix & "Title", "THIS IS AddressOf TITLLE")
-      scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "0")
 
-
-
-      If Not matchDay Is Nothing And False Then
+      If Not matchDay Is Nothing Then
         For Each match As OtherMatch In matchDay.OtherMatches
           subjectPrefix = prefix & "Subject_0" & (match.MatchIndex + 1) & "_"
           Select Case match.LineType

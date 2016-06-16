@@ -60,28 +60,43 @@ Public Class FormChoose
           tsk.ShowDialog(Me)
         Else
           'we are changing!
-          Dim tsk As New MetroTaskWindow(_currentScene.SceneDirectorsChange.MaxFrame / 40 + 1, lbl)
+
+          'take the graphic out, if there's a change out animation sequence
+          If _currentScene.SceneDirectorsChangeOut.Count > 0 Then
+            _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeOutDirectors)
+            Application.DoEvents()
+
+            Dim frm As New frmWait(1000 * _currentScene.SceneDirectorsChangeOut.MaxFrame / 40)
+            frm.ShowDialog()
+          End If
+
           'Send parameter on side 1 to side 2
           For Each param As SceneParameter In _formerScene.SceneParameters
+            param.Name = param.Name.Replace("Side_2", "Side_1")
+          Next
+          For Each param As SceneParameter In _currentScene.SceneParameters
             param.Name = param.Name.Replace("Side_1", "Side_2")
           Next
           _formerScene.SendSceneToEngine(_vizControl)
+          Application.DoEvents()
+
+          'rewind change animation to initial step
+          _formerScene.RewindSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeInDirectors)
+          Application.DoEvents()
+
           'send new parameters
           _currentScene.SendSceneToEngine(_vizControl)
-          'rewind change animation to initial step
-          _formerScene.RewindSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeDirectors)
+          Application.DoEvents()
 
+          If _currentScene.SceneDirectorsChangeIn.Count > 0 Then
+            'send scene to render and start animation
+            _currentScene.SendSceneToEngine(_vizControl)
+            _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeInDirectors)
+            Application.DoEvents()
+            'wait for animation to end
+            'tsk.ShowDialog(Me)
+          End If
 
-          'Start change animation
-          tsk.StartPosition = FormStartPosition.CenterScreen
-          tsk.MaximizeBox = False
-          tsk.MinimizeBox = False
-
-          'send scene to render and start animation
-          _currentScene.SendSceneToEngine(_vizControl)
-          _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeDirectors)
-          'wait for animation to end
-          ' tsk.ShowDialog(Me)
         End If
 
         If gstep.IsTransitionalStep = False Then
@@ -106,6 +121,13 @@ Public Class FormChoose
   End Sub
 
   Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
+    Try
+      If Not _currentScene Is Nothing Then
+        _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
+      End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
     Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
     Me.Close()
   End Sub
