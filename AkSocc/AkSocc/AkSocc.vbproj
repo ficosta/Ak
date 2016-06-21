@@ -97,9 +97,10 @@
     <Compile Include="Classes\Clock\Graphics\ClockSubstitutes.vb" />
     <Compile Include="Classes\Clock\ControlScoreSingleGoal.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicF1ScoreLine.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsCrawlResults.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsCtlF12MatchIdent.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsCtlF1FullFramers.vb" />
-    <Compile Include="Classes\GraphicGroups\GraphicsTeamCrawls.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsCrawlTeam.vb" />
     <Compile Include="Classes\Graphics\GraphicScoreLine.vb" />
     <Compile Include="Classes\GraphicVersions\GraphicVersion.vb" />
     <Compile Include="Classes\GraphicVersions\GraphicVersions.vb" />

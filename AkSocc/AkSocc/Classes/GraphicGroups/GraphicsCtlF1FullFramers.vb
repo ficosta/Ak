@@ -4,10 +4,11 @@ Imports VizCommands
 Public Class GraphicGroupCtlF1FullFramers
   Inherits GraphicGroup
 
-  Public Sub New(_match As MatchInfo.Match)
+  Public Sub New(_match As MatchInfo.Match, otherMatchDays As OtherMatchDays)
     MyBase.New(_match)
 
     MyBase.Name = "GraphicsCtlF1FullFramers"
+    Me.OtherMatchDays = otherMatchDays
     MyBase.ID = 1
   End Sub
 
@@ -32,6 +33,14 @@ Public Class GraphicGroupCtlF1FullFramers
   End Class
 
   Private _otherMatchDays As OtherMatchDays
+  Public Property OtherMatchDays As OtherMatchDays
+    Get
+      Return _otherMatchDays
+    End Get
+    Set(value As OtherMatchDays)
+      _otherMatchDays = value
+    End Set
+  End Property
 
   Class StepArrows
     Inherits GraphicStep.GraphicStepDefinition
@@ -65,8 +74,6 @@ Public Class GraphicGroupCtlF1FullFramers
                 gs.GraphicSteps.Add(New GraphicStep(gs, StepArrows.Arrows, True, True))
                 gs.GraphicSteps.Add(New GraphicStep(gs, StepArrows.NoArrows, True, True))
               Case Step0.OtherMatchScores
-                _otherMatchDays = New OtherMatchDays
-                DesserializeObjectFromFile(My.Settings.OtherMatchesPath, _otherMatchDays)
                 For Each matchDays As MatchDay In _otherMatchDays
                   gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(matchDays.MatchDayID, matchDays.MatchDayName), True, True))
                 Next

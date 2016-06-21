@@ -9,6 +9,8 @@ Public Class frmMain
   Private WithEvents _vizControl As VizCommands.VizControl
   Private WithEvents _previewControl As VizCommands.PreviewControl
 
+  Private WithEvents _otherMatchDays As New OtherMatchDays
+
   Private WithEvents _clockControl As ClockControl = ClockControl.Instance
 #End Region
 
@@ -26,6 +28,7 @@ Public Class frmMain
       If My.Settings.ShowSettingsOnStartup Then
         ShowOptions(Me)
       End If
+      DesserializeObjectFromFile(My.Settings.OtherMatchesPath, _otherMatchDays)
       InitControls()
       MatchSetup()
     Catch ex As Exception
@@ -77,7 +80,7 @@ Public Class frmMain
 
   Private Sub ToolStripButtonMatchDay_Click(sender As Object, e As EventArgs) Handles ToolStripButtonMatchDay.Click
     Try
-      ShowMatchDay()
+      ShowOtherMatches()
     Catch ex As Exception
 
     End Try
@@ -308,7 +311,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF1FullFramers_Click(sender As Object, e As EventArgs) Handles ButtonCtlF1FullFramers.Click
-    Me.StartGraphic(New GraphicGroupCtlF1FullFramers(_match))
+    Me.StartGraphic(New GraphicGroupCtlF1FullFramers(_match, _otherMatchDays))
   End Sub
 
   Private Sub ButtonCtlF2PlayerStatsCtrlF2_Click(sender As Object, e As EventArgs) Handles ButtonCtlF2PlayerStatsCtrlF2.Click
@@ -380,7 +383,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonShftF8TeamListsCrawlSF8_Click(sender As Object, e As EventArgs) Handles ButtonShftF8TeamListsCrawlSF8.Click
-
+    Me.StartGraphic(New GraphicGroupCrawlTeams(_match))
   End Sub
 
   Private Sub ButtonShftF9OtherScores_Click(sender As Object, e As EventArgs) Handles ButtonShftF9OtherScores.Click
@@ -396,7 +399,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonShftF12MatchScoresCrawl_Click(sender As Object, e As EventArgs) Handles ButtonShftF12MatchScoresCrawl.Click
-
+    Me.StartGraphic(New GraphicsCrawlResults(_match, _otherMatchDays))
   End Sub
 
   Private Sub ButtonAltF2FreeTextCrawl_Click(sender As Object, e As EventArgs) Handles ButtonAltF2FreeTextCrawl.Click
@@ -544,14 +547,15 @@ Public Class frmMain
 
 #Region "Other Matches"
   Private WithEvents _frmMatchDay As frmMatchDay
-  Public Sub ShowMatchDay()
+  Public Sub ShowOtherMatches()
     Try
       _frmMatchDay = New frmMatchDay()
       Dim mps As New Competitions()
       mps.GetFromDB("")
-      _frmMatchDay.Competition = mps.GetCompetition(_match.competition_id)
+      '_frmMatchDay.Competition = mps.GetCompetition(_match.competition_id)
+      _frmMatchDay.OtherMatchDays = _otherMatchDays
       If _frmMatchDay.ShowDialog(Me) = DialogResult.OK Then
-
+        _otherMatchDays = _frmMatchDay.OtherMatchDays
       End If
       _frmMatchDay.Dispose()
       _frmMatchDay = Nothing

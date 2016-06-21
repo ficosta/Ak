@@ -3,7 +3,7 @@
 Public Class frmMatchDay
 #Region "Other matches"
   Private _matchDay As MatchDay
-  Public Property OtherMatchas As MatchDay
+  Public Property MatchDay As MatchDay
     Get
       Return _matchDay
     End Get
@@ -13,24 +13,18 @@ Public Class frmMatchDay
   End Property
 #End Region
 
-  Private _matchDays As OtherMatchDays
-  Private _selectedMatchDay As MatchDay = Nothing
-  Private _controls As New List(Of UCOtherMatch)
-
-  Private _competition As Competition
-  Public Property Competition As Competition
+  Private _otherMatchDays As OtherMatchDays
+  Public Property OtherMatchDays As OtherMatchDays
     Get
-      Return _competition
+      Return _otherMatchDays
     End Get
-    Set(value As Competition)
-      _competition = value
-
-      For Each ctl As UCOtherMatch In _controls
-        ctl.Competition = Me.Competition
-      Next
+    Set(value As OtherMatchDays)
+      _otherMatchDays = value
     End Set
   End Property
 
+  Private _selectedMatchDay As MatchDay = Nothing
+  Private _controls As New List(Of UCOtherMatch)
 
   Private Sub frmMatchDay_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     Try
@@ -50,13 +44,10 @@ Public Class frmMatchDay
         AddHandler ctl.MoveDown, AddressOf Me.UCOtherMatch_MoveDown
         AddHandler ctl.Delete, AddressOf Me.UCOtherMatch_Delete
         AddHandler ctl.AddNew, AddressOf Me.UCOtherMatch_AddNew
-        ctl.Competition = Me.Competition
       Next
     Catch ex As Exception
 
     End Try
-    _matchDays = New OtherMatchDays
-    DesserializeObjectFromFile(My.Settings.OtherMatchesPath, _matchDays)
     ShowMatchDays()
   End Sub
 
@@ -64,7 +55,7 @@ Public Class frmMatchDay
     Try
       With Me.MetroGridMatchDay
         .Rows.Clear()
-        For Each day As MatchDay In _matchDays
+        For Each day As MatchDay In _otherMatchDays
           Dim itm As Integer = .Rows.Add(day.MatchDayID, day.MatchDayName)
 
         Next
@@ -85,7 +76,7 @@ Public Class frmMatchDay
       newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
       newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
 
-      _matchDays.Add(newMatchDay)
+      _otherMatchDays.Add(newMatchDay)
 
       ShowMatchDays()
     Catch ex As Exception
@@ -104,7 +95,7 @@ Public Class frmMatchDay
   Private Sub MetroGridMatchDay_SelectionChanged(sender As Object, e As EventArgs) Handles MetroGridMatchDay.SelectionChanged
     Try
       Dim id As String = MetroGridMatchDay.SelectedRows(0).Cells(Column1.Index).Value
-      _selectedMatchDay = _matchDays.GetMatchDay(id)
+      _selectedMatchDay = _otherMatchDays.GetMatchDay(id)
       MostrarMatchDay()
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -234,7 +225,7 @@ Public Class frmMatchDay
 
     Try
       If e.ColumnIndex = ColumnDescription.Index Then
-        Dim matchDay As MatchDay = _matchDays.Item(e.RowIndex)
+        Dim matchDay As MatchDay = _otherMatchDays.Item(e.RowIndex)
         matchDay.MatchDayName = MetroGridMatchDay.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
       End If
     Catch ex As Exception
@@ -252,7 +243,7 @@ Public Class frmMatchDay
 
   Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
     Try
-      SerializeObjectToFile(My.Settings.OtherMatchesPath, _matchDays)
+      SerializeObjectToFile(My.Settings.OtherMatchesPath, _otherMatchDays)
       Me.DialogResult = DialogResult.OK
       Me.Close()
     Catch ex As Exception

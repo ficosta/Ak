@@ -1,13 +1,14 @@
 ﻿Imports AkSocc
+Imports MatchInfo
 Imports VizCommands
 
-Public Class GraphicGroupTeamCrawls
+Public Class GraphicGroupCrawlTeams
   Inherits GraphicGroup
 
   Public Sub New(_match As MatchInfo.Match)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicsCtlF1FullFramers"
+    MyBase.Name = "GraphicGroupCrawlTeams"
     MyBase.ID = 1
   End Sub
 
@@ -44,12 +45,12 @@ Public Class GraphicGroupTeamCrawls
       gs.GraphicSteps.Clear()
 
       If graphicStep Is Nothing Then
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeTeam))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeTeamWithSubs))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeam))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeamWithSubs))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeAwayTeams))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeAwayTeamsWithSubs))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeTeam, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeTeamWithSubs, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeam, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeamWithSubs, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeAwayTeams, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeAwayTeamsWithSubs, True, False))
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -62,18 +63,19 @@ Public Class GraphicGroupTeamCrawls
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Dim changeStep As Integer = 1
     Try
-      Scene.VizLayer = SceneLayer.Middle
-      Scene.SceneName = "cfx_Full_Frame_Work"
-      Scene.SceneDirector = "DIR_MAIN"
+      Scene = InitDefaultScene()
 
-      Select Case gs.ChildGraphicStep.Name
+      Select Case gs.ChildGraphicStep.Depth
         Case 0
           Select Case graphicStep.Name
             Case Step0.HomeTeam
-              Scene = PrepareSingleTeam(changeStep, True)
+              Scene = PrepareSingleTeam(Me.Match.HomeTeam, False)
             Case Step0.HomeTeamWithSubs
+              Scene = PrepareSingleTeam(Me.Match.HomeTeam, True)
             Case Step0.AwayTeam
+              Scene = PrepareSingleTeam(Me.Match.AwayTeam, False)
             Case Step0.AwayTeamWithSubs
+              Scene = PrepareSingleTeam(Me.Match.AwayTeam, True)
             Case Step0.HomeAwayTeams
             Case Step0.HomeAwayTeamsWithSubs
 
@@ -81,32 +83,23 @@ Public Class GraphicGroupTeamCrawls
 
       End Select
 
-      Select Case gs.ChildGraphicStep.Name
-        Case Step0.LeagueTableTop
-          Scene = PrepareSingleTeam(changeStep, True)
-        Case Step0.OtherMatchScores
-          Dim matchDay As MatchDay = _otherMatchDays.GetMatchDay(graphicStep.UID)
-          Scene = PrepareMatchScores(changeStep, matchDay)
-        Case Step0.LeagueTableBottom
-          Scene = PrepareSingleTeam(changeStep, False)
-        Case Step0.FullFrameStats
-        Case Step0.LeagueComparison
-      End Select
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
     Return Me.Scene
   End Function
 
-#Region "Full frame scenes"
+#Region "Crawl scenes"
   Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
-    scene.SceneName = "cfx_Full_Frame_Work"
-    scene.SceneDirector = "anim_Full_Frame$In_Out"
+    scene.SceneName = "gfx_crawl"
+    scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("Change", 0, DirectorAction.Rewind)
+
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
     ' scene.SceneDirectorsChangeOut.Add("Change", 0, DirectorAction.Rewind)
@@ -130,11 +123,56 @@ Public Class GraphicGroupTeamCrawls
   End Function
 
 
-  Public Function PrepareSingleTeam(team As Team, isTop As Boolean) As Scene
+  Public Function PrepareSingleTeam(team As Team, withSubs As Boolean) As Scene
     Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "Side_" & gStep & "_"
+    Dim gSide As Integer = 1
+    Dim prefix As String = "Crawll_Side_" & gSide & "_"
     Try
-      scene.SceneParameters.Add(prefix & "Table_Vis.active", 1)
+      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 1)
+      prefix = "Crawll_Team_List_Side_1_"
+      scene.SceneParameters.Add(prefix & "Team_A_Name", team.Name)
+      scene.SceneParameters.Add(prefix & "Team_B_Name", "")
+
+      For i As Integer = 1 To 18
+        prefix = "Crawll_Team_List_Side_1_Team_A_Player_" & i & "_"
+        scene.SceneParameters.Add(prefix & "Name", "")
+        scene.SceneParameters.Add(prefix & "Number", "")
+
+        prefix = "Crawll_Team_List_Side_2_Team_A_Player_" & i & "_"
+        scene.SceneParameters.Add(prefix & "Name", "")
+        scene.SceneParameters.Add(prefix & "Number", "")
+      Next
+
+      For Each player As Player In team.MatchPlayers
+        prefix = "Crawll_Team_List_Side_1_Team_A_Player_" & player.PlayerPosition & "_"
+        Dim pos As Integer = 0
+        Dim paint As Boolean = True
+        If Integer.TryParse(player.PlayerPosition, pos) Then
+          If pos > 12 And withSubs = False Then
+            paint = False
+          End If
+        End If
+        If paint Then
+          scene.SceneParameters.Add(prefix & "Name", player.Name)
+          scene.SceneParameters.Add(prefix & "Number", player.DomesticSquadNo)
+          If player.RedCards > 0 Then
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "2")
+          ElseIf player.YellowCards > 1 Then
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "2")
+          ElseIf player.YellowCards > 0 Then
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "1")
+          Else
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
+          End If
+          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "0")
+
+        Else
+          scene.SceneParameters.Add(prefix & "Name", "")
+          scene.SceneParameters.Add(prefix & "Number", "")
+          scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
+          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "0")
+        End If
+      Next
     Catch ex As Exception
 
     End Try
