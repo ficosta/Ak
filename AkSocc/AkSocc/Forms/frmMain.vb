@@ -403,7 +403,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonAltF2FreeTextCrawl_Click(sender As Object, e As EventArgs) Handles ButtonAltF2FreeTextCrawl.Click
-
+    Me.StartGraphic(New GraphicsCrawlFreeText(_match))
   End Sub
 
   Private Sub ButtonAltF6HtFtBug_Click(sender As Object, e As EventArgs) Handles ButtonAltF6HtFtBug.Click
