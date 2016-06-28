@@ -56,6 +56,31 @@ Public Class Teams
     End Try
   End Sub
 
+  Public Function Add(team As Team) As Integer
+    Dim res As Integer = -1
+    Try
+      If Not Me.Contains(team) Then
+        Me.List.Add(team)
+      End If
+    Catch ex As Exception
+    End Try
+    Return res
+  End Function
+
+  Public Function Contains(team As Team) As Boolean
+    Dim res As Boolean = False
+    Try
+      For index = 0 To Me.List.Count - 1
+        If CType(Me.List(index), Team).ID = team.ID Then
+          res = True
+          Exit For
+        End If
+      Next
+    Catch ex As Exception
+    End Try
+    Return res
+  End Function
+
   Default Public Property Item(Index As Integer) As Team
     Get
       Return DirectCast(List(Index), Team)

@@ -239,13 +239,13 @@ Public Class FormChoose
           '  Me.TableLayoutPanelAll.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50))
           '  Me.TableLayoutPanelAll.ColumnCount += 1
           'End If
-
+          If _ucPreview.VizControl Is Nothing Then _ucPreview.VizControl = Me._vizControl
           _ucPreview.GetPreview(_graphicGroup.PrepareScene(gs))
-          _ucPreview.ShowAdvancedControls = True
-          _ucPreview.Title = gs.ToString
-        End If
+            _ucPreview.ShowAdvancedControls = True
+            _ucPreview.Title = gs.ToString
+          End If
 
-        Me.OK_Button.Enabled = True
+          Me.OK_Button.Enabled = True
         'preview
 
       End If

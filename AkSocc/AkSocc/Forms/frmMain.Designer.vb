@@ -43,43 +43,14 @@ Partial Class frmMain
     Me.ToolStripButtonClassification = New System.Windows.Forms.ToolStripButton()
     Me.SplitContainerAll = New System.Windows.Forms.SplitContainer()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.PlayerAwayViewer18 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer17 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer16 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer15 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer14 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer13 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer12 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer11 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer10 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer9 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer8 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer7 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer6 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer5 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer4 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer3 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer2 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer18 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer17 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer16 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer15 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer14 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer13 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer12 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer11 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer10 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer9 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer8 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer7 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer6 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer5 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer4 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer3 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer2 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer1 = New AkSocc.PlayerViewer()
     Me.TableLayoutPanelMatchInfo = New System.Windows.Forms.TableLayoutPanel()
-    Me.PlayerAwayViewer1 = New AkSocc.PlayerViewer()
+    Me.LabelHomeTeamShortName = New MetroFramework.Controls.MetroLabel()
+    Me.LabelHomeTeamName = New MetroFramework.Controls.MetroLabel()
+    Me.LabelHomeTeamResult = New MetroFramework.Controls.MetroLabel()
+    Me.LabelAwayTeamResult = New MetroFramework.Controls.MetroLabel()
+    Me.LabelAwayTeamName = New MetroFramework.Controls.MetroLabel()
+    Me.LabelAwayTeamShortName = New MetroFramework.Controls.MetroLabel()
+    Me.MetroTileAlternates = New MetroFramework.Controls.MetroTile()
     Me.TableLayoutPanelControls = New System.Windows.Forms.TableLayoutPanel()
     Me.TableLayoutPanel8Clock = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroTileClock = New MetroFramework.Controls.MetroTile()
@@ -144,13 +115,42 @@ Partial Class frmMain
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.msmMain = New MetroFramework.Components.MetroStyleManager(Me.components)
     Me.TimerClock = New System.Windows.Forms.Timer(Me.components)
-    Me.LabelAwayTeamShortName = New MetroFramework.Controls.MetroLabel()
-    Me.LabelAwayTeamName = New MetroFramework.Controls.MetroLabel()
-    Me.LabelAwayTeamResult = New MetroFramework.Controls.MetroLabel()
-    Me.LabelHomeTeamResult = New MetroFramework.Controls.MetroLabel()
-    Me.LabelHomeTeamName = New MetroFramework.Controls.MetroLabel()
-    Me.LabelHomeTeamShortName = New MetroFramework.Controls.MetroLabel()
-    Me.MetroTileAlternates = New MetroFramework.Controls.MetroTile()
+    Me.PlayerAwayViewer18 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer17 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer16 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer15 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer14 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer13 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer12 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer11 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer10 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer9 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer8 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer7 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer6 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer5 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer4 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer3 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer2 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer18 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer17 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer16 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer15 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer14 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer13 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer12 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer11 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer10 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer9 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer8 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer7 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer6 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer5 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer4 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer3 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer2 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer1 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer1 = New AkSocc.PlayerViewer()
     Me.MenuStrip1.SuspendLayout()
     Me.StatusStrip1.SuspendLayout()
     Me.ToolStrip1.SuspendLayout()
@@ -389,461 +389,6 @@ Partial Class frmMain
     Me.TableLayoutPanel1.Size = New System.Drawing.Size(489, 641)
     Me.TableLayoutPanel1.TabIndex = 0
     '
-    'PlayerViewer18
-    '
-    Me.PlayerAwayViewer18.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer18.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer18.IsSelected = False
-    Me.PlayerAwayViewer18.Location = New System.Drawing.Point(244, 582)
-    Me.PlayerAwayViewer18.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer18.Name = "PlayerViewer18"
-    Me.PlayerAwayViewer18.Player = Nothing
-    Me.PlayerAwayViewer18.PlayerPosition = 0
-    Me.PlayerAwayViewer18.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer18.TabIndex = 39
-    '
-    'PlayerViewer17
-    '
-    Me.PlayerAwayViewer17.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer17.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer17.IsSelected = False
-    Me.PlayerAwayViewer17.Location = New System.Drawing.Point(244, 553)
-    Me.PlayerAwayViewer17.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer17.Name = "PlayerViewer17"
-    Me.PlayerAwayViewer17.Player = Nothing
-    Me.PlayerAwayViewer17.PlayerPosition = 0
-    Me.PlayerAwayViewer17.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer17.TabIndex = 38
-    '
-    'PlayerViewer16
-    '
-    Me.PlayerAwayViewer16.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer16.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer16.IsSelected = False
-    Me.PlayerAwayViewer16.Location = New System.Drawing.Point(244, 524)
-    Me.PlayerAwayViewer16.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer16.Name = "PlayerViewer16"
-    Me.PlayerAwayViewer16.Player = Nothing
-    Me.PlayerAwayViewer16.PlayerPosition = 0
-    Me.PlayerAwayViewer16.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer16.TabIndex = 37
-    '
-    'PlayerViewer15
-    '
-    Me.PlayerAwayViewer15.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer15.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer15.IsSelected = False
-    Me.PlayerAwayViewer15.Location = New System.Drawing.Point(244, 495)
-    Me.PlayerAwayViewer15.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer15.Name = "PlayerViewer15"
-    Me.PlayerAwayViewer15.Player = Nothing
-    Me.PlayerAwayViewer15.PlayerPosition = 0
-    Me.PlayerAwayViewer15.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer15.TabIndex = 36
-    '
-    'PlayerViewer14
-    '
-    Me.PlayerAwayViewer14.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer14.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer14.IsSelected = False
-    Me.PlayerAwayViewer14.Location = New System.Drawing.Point(244, 466)
-    Me.PlayerAwayViewer14.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer14.Name = "PlayerViewer14"
-    Me.PlayerAwayViewer14.Player = Nothing
-    Me.PlayerAwayViewer14.PlayerPosition = 0
-    Me.PlayerAwayViewer14.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer14.TabIndex = 35
-    '
-    'PlayerViewer13
-    '
-    Me.PlayerAwayViewer13.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer13.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer13.IsSelected = False
-    Me.PlayerAwayViewer13.Location = New System.Drawing.Point(244, 437)
-    Me.PlayerAwayViewer13.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer13.Name = "PlayerViewer13"
-    Me.PlayerAwayViewer13.Player = Nothing
-    Me.PlayerAwayViewer13.PlayerPosition = 0
-    Me.PlayerAwayViewer13.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer13.TabIndex = 34
-    '
-    'PlayerViewer12
-    '
-    Me.PlayerAwayViewer12.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer12.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer12.IsSelected = False
-    Me.PlayerAwayViewer12.Location = New System.Drawing.Point(244, 408)
-    Me.PlayerAwayViewer12.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer12.Name = "PlayerViewer12"
-    Me.PlayerAwayViewer12.Player = Nothing
-    Me.PlayerAwayViewer12.PlayerPosition = 0
-    Me.PlayerAwayViewer12.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer12.TabIndex = 33
-    '
-    'PlayerViewer11
-    '
-    Me.PlayerAwayViewer11.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer11.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer11.IsSelected = False
-    Me.PlayerAwayViewer11.Location = New System.Drawing.Point(244, 350)
-    Me.PlayerAwayViewer11.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer11.Name = "PlayerViewer11"
-    Me.PlayerAwayViewer11.Player = Nothing
-    Me.PlayerAwayViewer11.PlayerPosition = 0
-    Me.PlayerAwayViewer11.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer11.TabIndex = 32
-    '
-    'PlayerViewer10
-    '
-    Me.PlayerAwayViewer10.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer10.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer10.IsSelected = False
-    Me.PlayerAwayViewer10.Location = New System.Drawing.Point(244, 321)
-    Me.PlayerAwayViewer10.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer10.Name = "PlayerViewer10"
-    Me.PlayerAwayViewer10.Player = Nothing
-    Me.PlayerAwayViewer10.PlayerPosition = 0
-    Me.PlayerAwayViewer10.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer10.TabIndex = 31
-    '
-    'PlayerViewer9
-    '
-    Me.PlayerAwayViewer9.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer9.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer9.IsSelected = False
-    Me.PlayerAwayViewer9.Location = New System.Drawing.Point(244, 292)
-    Me.PlayerAwayViewer9.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer9.Name = "PlayerViewer9"
-    Me.PlayerAwayViewer9.Player = Nothing
-    Me.PlayerAwayViewer9.PlayerPosition = 0
-    Me.PlayerAwayViewer9.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer9.TabIndex = 30
-    '
-    'PlayerViewer8
-    '
-    Me.PlayerAwayViewer8.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer8.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer8.IsSelected = False
-    Me.PlayerAwayViewer8.Location = New System.Drawing.Point(244, 263)
-    Me.PlayerAwayViewer8.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer8.Name = "PlayerViewer8"
-    Me.PlayerAwayViewer8.Player = Nothing
-    Me.PlayerAwayViewer8.PlayerPosition = 0
-    Me.PlayerAwayViewer8.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer8.TabIndex = 29
-    '
-    'PlayerViewer7
-    '
-    Me.PlayerAwayViewer7.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer7.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer7.IsSelected = False
-    Me.PlayerAwayViewer7.Location = New System.Drawing.Point(244, 234)
-    Me.PlayerAwayViewer7.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer7.Name = "PlayerViewer7"
-    Me.PlayerAwayViewer7.Player = Nothing
-    Me.PlayerAwayViewer7.PlayerPosition = 0
-    Me.PlayerAwayViewer7.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer7.TabIndex = 28
-    '
-    'PlayerViewer6
-    '
-    Me.PlayerAwayViewer6.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer6.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer6.IsSelected = False
-    Me.PlayerAwayViewer6.Location = New System.Drawing.Point(244, 205)
-    Me.PlayerAwayViewer6.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer6.Name = "PlayerViewer6"
-    Me.PlayerAwayViewer6.Player = Nothing
-    Me.PlayerAwayViewer6.PlayerPosition = 0
-    Me.PlayerAwayViewer6.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer6.TabIndex = 27
-    '
-    'PlayerViewer5
-    '
-    Me.PlayerAwayViewer5.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer5.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer5.IsSelected = False
-    Me.PlayerAwayViewer5.Location = New System.Drawing.Point(244, 176)
-    Me.PlayerAwayViewer5.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer5.Name = "PlayerViewer5"
-    Me.PlayerAwayViewer5.Player = Nothing
-    Me.PlayerAwayViewer5.PlayerPosition = 0
-    Me.PlayerAwayViewer5.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer5.TabIndex = 26
-    '
-    'PlayerViewer4
-    '
-    Me.PlayerAwayViewer4.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer4.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer4.IsSelected = False
-    Me.PlayerAwayViewer4.Location = New System.Drawing.Point(244, 147)
-    Me.PlayerAwayViewer4.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer4.Name = "PlayerViewer4"
-    Me.PlayerAwayViewer4.Player = Nothing
-    Me.PlayerAwayViewer4.PlayerPosition = 0
-    Me.PlayerAwayViewer4.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer4.TabIndex = 25
-    '
-    'PlayerViewer3
-    '
-    Me.PlayerAwayViewer3.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer3.IsSelected = False
-    Me.PlayerAwayViewer3.Location = New System.Drawing.Point(244, 118)
-    Me.PlayerAwayViewer3.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer3.Name = "PlayerViewer3"
-    Me.PlayerAwayViewer3.Player = Nothing
-    Me.PlayerAwayViewer3.PlayerPosition = 0
-    Me.PlayerAwayViewer3.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer3.TabIndex = 24
-    '
-    'PlayerViewer2
-    '
-    Me.PlayerAwayViewer2.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer2.IsSelected = False
-    Me.PlayerAwayViewer2.Location = New System.Drawing.Point(244, 89)
-    Me.PlayerAwayViewer2.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer2.Name = "PlayerViewer2"
-    Me.PlayerAwayViewer2.Player = Nothing
-    Me.PlayerAwayViewer2.PlayerPosition = 0
-    Me.PlayerAwayViewer2.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer2.TabIndex = 23
-    '
-    'PlayerHomeViewer18
-    '
-    Me.PlayerHomeViewer18.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer18.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer18.IsSelected = False
-    Me.PlayerHomeViewer18.Location = New System.Drawing.Point(0, 582)
-    Me.PlayerHomeViewer18.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer18.Name = "PlayerHomeViewer18"
-    Me.PlayerHomeViewer18.Player = Nothing
-    Me.PlayerHomeViewer18.PlayerPosition = 0
-    Me.PlayerHomeViewer18.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer18.TabIndex = 21
-    '
-    'PlayerHomeViewer17
-    '
-    Me.PlayerHomeViewer17.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer17.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer17.IsSelected = False
-    Me.PlayerHomeViewer17.Location = New System.Drawing.Point(0, 553)
-    Me.PlayerHomeViewer17.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer17.Name = "PlayerHomeViewer17"
-    Me.PlayerHomeViewer17.Player = Nothing
-    Me.PlayerHomeViewer17.PlayerPosition = 0
-    Me.PlayerHomeViewer17.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer17.TabIndex = 20
-    '
-    'PlayerHomeViewer16
-    '
-    Me.PlayerHomeViewer16.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer16.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer16.IsSelected = False
-    Me.PlayerHomeViewer16.Location = New System.Drawing.Point(0, 524)
-    Me.PlayerHomeViewer16.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer16.Name = "PlayerHomeViewer16"
-    Me.PlayerHomeViewer16.Player = Nothing
-    Me.PlayerHomeViewer16.PlayerPosition = 0
-    Me.PlayerHomeViewer16.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer16.TabIndex = 19
-    '
-    'PlayerHomeViewer15
-    '
-    Me.PlayerHomeViewer15.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer15.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer15.IsSelected = False
-    Me.PlayerHomeViewer15.Location = New System.Drawing.Point(0, 495)
-    Me.PlayerHomeViewer15.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer15.Name = "PlayerHomeViewer15"
-    Me.PlayerHomeViewer15.Player = Nothing
-    Me.PlayerHomeViewer15.PlayerPosition = 0
-    Me.PlayerHomeViewer15.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer15.TabIndex = 18
-    '
-    'PlayerHomeViewer14
-    '
-    Me.PlayerHomeViewer14.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer14.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer14.IsSelected = False
-    Me.PlayerHomeViewer14.Location = New System.Drawing.Point(0, 466)
-    Me.PlayerHomeViewer14.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer14.Name = "PlayerHomeViewer14"
-    Me.PlayerHomeViewer14.Player = Nothing
-    Me.PlayerHomeViewer14.PlayerPosition = 0
-    Me.PlayerHomeViewer14.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer14.TabIndex = 17
-    '
-    'PlayerHomeViewer13
-    '
-    Me.PlayerHomeViewer13.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer13.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer13.IsSelected = False
-    Me.PlayerHomeViewer13.Location = New System.Drawing.Point(0, 437)
-    Me.PlayerHomeViewer13.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer13.Name = "PlayerHomeViewer13"
-    Me.PlayerHomeViewer13.Player = Nothing
-    Me.PlayerHomeViewer13.PlayerPosition = 0
-    Me.PlayerHomeViewer13.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer13.TabIndex = 16
-    '
-    'PlayerHomeViewer12
-    '
-    Me.PlayerHomeViewer12.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer12.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer12.IsSelected = False
-    Me.PlayerHomeViewer12.Location = New System.Drawing.Point(0, 408)
-    Me.PlayerHomeViewer12.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer12.Name = "PlayerHomeViewer12"
-    Me.PlayerHomeViewer12.Player = Nothing
-    Me.PlayerHomeViewer12.PlayerPosition = 0
-    Me.PlayerHomeViewer12.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer12.TabIndex = 15
-    '
-    'PlayerHomeViewer11
-    '
-    Me.PlayerHomeViewer11.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer11.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer11.IsSelected = False
-    Me.PlayerHomeViewer11.Location = New System.Drawing.Point(0, 350)
-    Me.PlayerHomeViewer11.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer11.Name = "PlayerHomeViewer11"
-    Me.PlayerHomeViewer11.Player = Nothing
-    Me.PlayerHomeViewer11.PlayerPosition = 0
-    Me.PlayerHomeViewer11.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer11.TabIndex = 14
-    '
-    'PlayerHomeViewer10
-    '
-    Me.PlayerHomeViewer10.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer10.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer10.IsSelected = False
-    Me.PlayerHomeViewer10.Location = New System.Drawing.Point(0, 321)
-    Me.PlayerHomeViewer10.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer10.Name = "PlayerHomeViewer10"
-    Me.PlayerHomeViewer10.Player = Nothing
-    Me.PlayerHomeViewer10.PlayerPosition = 0
-    Me.PlayerHomeViewer10.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer10.TabIndex = 13
-    '
-    'PlayerHomeViewer9
-    '
-    Me.PlayerHomeViewer9.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer9.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer9.IsSelected = False
-    Me.PlayerHomeViewer9.Location = New System.Drawing.Point(0, 292)
-    Me.PlayerHomeViewer9.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer9.Name = "PlayerHomeViewer9"
-    Me.PlayerHomeViewer9.Player = Nothing
-    Me.PlayerHomeViewer9.PlayerPosition = 0
-    Me.PlayerHomeViewer9.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer9.TabIndex = 12
-    '
-    'PlayerHomeViewer8
-    '
-    Me.PlayerHomeViewer8.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer8.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer8.IsSelected = False
-    Me.PlayerHomeViewer8.Location = New System.Drawing.Point(0, 263)
-    Me.PlayerHomeViewer8.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer8.Name = "PlayerHomeViewer8"
-    Me.PlayerHomeViewer8.Player = Nothing
-    Me.PlayerHomeViewer8.PlayerPosition = 0
-    Me.PlayerHomeViewer8.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer8.TabIndex = 11
-    '
-    'PlayerHomeViewer7
-    '
-    Me.PlayerHomeViewer7.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer7.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer7.IsSelected = False
-    Me.PlayerHomeViewer7.Location = New System.Drawing.Point(0, 234)
-    Me.PlayerHomeViewer7.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer7.Name = "PlayerHomeViewer7"
-    Me.PlayerHomeViewer7.Player = Nothing
-    Me.PlayerHomeViewer7.PlayerPosition = 0
-    Me.PlayerHomeViewer7.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer7.TabIndex = 10
-    '
-    'PlayerHomeViewer6
-    '
-    Me.PlayerHomeViewer6.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer6.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer6.IsSelected = False
-    Me.PlayerHomeViewer6.Location = New System.Drawing.Point(0, 205)
-    Me.PlayerHomeViewer6.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer6.Name = "PlayerHomeViewer6"
-    Me.PlayerHomeViewer6.Player = Nothing
-    Me.PlayerHomeViewer6.PlayerPosition = 0
-    Me.PlayerHomeViewer6.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer6.TabIndex = 9
-    '
-    'PlayerHomeViewer5
-    '
-    Me.PlayerHomeViewer5.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer5.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer5.IsSelected = False
-    Me.PlayerHomeViewer5.Location = New System.Drawing.Point(0, 176)
-    Me.PlayerHomeViewer5.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer5.Name = "PlayerHomeViewer5"
-    Me.PlayerHomeViewer5.Player = Nothing
-    Me.PlayerHomeViewer5.PlayerPosition = 0
-    Me.PlayerHomeViewer5.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer5.TabIndex = 8
-    '
-    'PlayerHomeViewer4
-    '
-    Me.PlayerHomeViewer4.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer4.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer4.IsSelected = False
-    Me.PlayerHomeViewer4.Location = New System.Drawing.Point(0, 147)
-    Me.PlayerHomeViewer4.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer4.Name = "PlayerHomeViewer4"
-    Me.PlayerHomeViewer4.Player = Nothing
-    Me.PlayerHomeViewer4.PlayerPosition = 0
-    Me.PlayerHomeViewer4.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer4.TabIndex = 7
-    '
-    'PlayerHomeViewer3
-    '
-    Me.PlayerHomeViewer3.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer3.IsSelected = False
-    Me.PlayerHomeViewer3.Location = New System.Drawing.Point(0, 118)
-    Me.PlayerHomeViewer3.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer3.Name = "PlayerHomeViewer3"
-    Me.PlayerHomeViewer3.Player = Nothing
-    Me.PlayerHomeViewer3.PlayerPosition = 0
-    Me.PlayerHomeViewer3.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer3.TabIndex = 6
-    '
-    'PlayerHomeViewer2
-    '
-    Me.PlayerHomeViewer2.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer2.IsSelected = False
-    Me.PlayerHomeViewer2.Location = New System.Drawing.Point(0, 89)
-    Me.PlayerHomeViewer2.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer2.Name = "PlayerHomeViewer2"
-    Me.PlayerHomeViewer2.Player = Nothing
-    Me.PlayerHomeViewer2.PlayerPosition = 0
-    Me.PlayerHomeViewer2.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer2.TabIndex = 5
-    '
-    'PlayerHomeViewer1
-    '
-    Me.PlayerHomeViewer1.BackColor = System.Drawing.Color.White
-    Me.PlayerHomeViewer1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerHomeViewer1.IsSelected = False
-    Me.PlayerHomeViewer1.Location = New System.Drawing.Point(0, 60)
-    Me.PlayerHomeViewer1.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerHomeViewer1.Name = "PlayerHomeViewer1"
-    Me.PlayerHomeViewer1.Player = Nothing
-    Me.PlayerHomeViewer1.PlayerPosition = 0
-    Me.PlayerHomeViewer1.Size = New System.Drawing.Size(244, 29)
-    Me.PlayerHomeViewer1.TabIndex = 3
-    '
     'TableLayoutPanelMatchInfo
     '
     Me.TableLayoutPanelMatchInfo.ColumnCount = 6
@@ -869,18 +414,78 @@ Partial Class frmMain
     Me.TableLayoutPanelMatchInfo.Size = New System.Drawing.Size(483, 54)
     Me.TableLayoutPanelMatchInfo.TabIndex = 2
     '
-    'PlayerViewer1
+    'LabelHomeTeamShortName
     '
-    Me.PlayerAwayViewer1.BackColor = System.Drawing.Color.White
-    Me.PlayerAwayViewer1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PlayerAwayViewer1.IsSelected = False
-    Me.PlayerAwayViewer1.Location = New System.Drawing.Point(244, 60)
-    Me.PlayerAwayViewer1.Margin = New System.Windows.Forms.Padding(0)
-    Me.PlayerAwayViewer1.Name = "PlayerViewer1"
-    Me.PlayerAwayViewer1.Player = Nothing
-    Me.PlayerAwayViewer1.PlayerPosition = 0
-    Me.PlayerAwayViewer1.Size = New System.Drawing.Size(245, 29)
-    Me.PlayerAwayViewer1.TabIndex = 22
+    Me.LabelHomeTeamShortName.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelHomeTeamShortName.Location = New System.Drawing.Point(3, 20)
+    Me.LabelHomeTeamShortName.Name = "LabelHomeTeamShortName"
+    Me.LabelHomeTeamShortName.Size = New System.Drawing.Size(54, 34)
+    Me.LabelHomeTeamShortName.TabIndex = 0
+    Me.LabelHomeTeamShortName.Text = "AAA"
+    Me.LabelHomeTeamShortName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'LabelHomeTeamName
+    '
+    Me.LabelHomeTeamName.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelHomeTeamName.Location = New System.Drawing.Point(63, 20)
+    Me.LabelHomeTeamName.Name = "LabelHomeTeamName"
+    Me.LabelHomeTeamName.Size = New System.Drawing.Size(135, 34)
+    Me.LabelHomeTeamName.TabIndex = 1
+    Me.LabelHomeTeamName.Text = "TEAM NAME"
+    Me.LabelHomeTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'LabelHomeTeamResult
+    '
+    Me.LabelHomeTeamResult.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelHomeTeamResult.Location = New System.Drawing.Point(204, 20)
+    Me.LabelHomeTeamResult.Name = "LabelHomeTeamResult"
+    Me.LabelHomeTeamResult.Size = New System.Drawing.Size(34, 34)
+    Me.LabelHomeTeamResult.TabIndex = 2
+    Me.LabelHomeTeamResult.Text = "00"
+    Me.LabelHomeTeamResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'LabelAwayTeamResult
+    '
+    Me.LabelAwayTeamResult.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelAwayTeamResult.Location = New System.Drawing.Point(244, 20)
+    Me.LabelAwayTeamResult.Name = "LabelAwayTeamResult"
+    Me.LabelAwayTeamResult.Size = New System.Drawing.Size(34, 34)
+    Me.LabelAwayTeamResult.TabIndex = 2
+    Me.LabelAwayTeamResult.Text = "00"
+    Me.LabelAwayTeamResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'LabelAwayTeamName
+    '
+    Me.LabelAwayTeamName.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelAwayTeamName.Location = New System.Drawing.Point(284, 20)
+    Me.LabelAwayTeamName.Name = "LabelAwayTeamName"
+    Me.LabelAwayTeamName.Size = New System.Drawing.Size(135, 34)
+    Me.LabelAwayTeamName.TabIndex = 1
+    Me.LabelAwayTeamName.Text = "TEAM NAME"
+    Me.LabelAwayTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'LabelAwayTeamShortName
+    '
+    Me.LabelAwayTeamShortName.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelAwayTeamShortName.Location = New System.Drawing.Point(425, 20)
+    Me.LabelAwayTeamShortName.Name = "LabelAwayTeamShortName"
+    Me.LabelAwayTeamShortName.Size = New System.Drawing.Size(55, 34)
+    Me.LabelAwayTeamShortName.TabIndex = 0
+    Me.LabelAwayTeamShortName.Text = "AAA"
+    Me.LabelAwayTeamShortName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'MetroTileAlternates
+    '
+    Me.MetroTileAlternates.ActiveControl = Nothing
+    Me.TableLayoutPanel1.SetColumnSpan(Me.MetroTileAlternates, 2)
+    Me.MetroTileAlternates.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTileAlternates.Location = New System.Drawing.Point(3, 382)
+    Me.MetroTileAlternates.Name = "MetroTileAlternates"
+    Me.MetroTileAlternates.Size = New System.Drawing.Size(483, 23)
+    Me.MetroTileAlternates.TabIndex = 40
+    Me.MetroTileAlternates.Text = "ALTERNATES"
+    Me.MetroTileAlternates.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+    Me.MetroTileAlternates.UseSelectable = True
     '
     'TableLayoutPanelControls
     '
@@ -950,7 +555,7 @@ Partial Class frmMain
     Me.MetroButtonClockSubstitutions.Name = "MetroButtonClockSubstitutions"
     Me.MetroButtonClockSubstitutions.Size = New System.Drawing.Size(152, 38)
     Me.MetroButtonClockSubstitutions.TabIndex = 3
-    Me.MetroButtonClockSubstitutions.Text = "Substitutions"
+    Me.MetroButtonClockSubstitutions.Text = "Substitutions F4"
     Me.MetroButtonClockSubstitutions.UseCustomBackColor = True
     Me.MetroButtonClockSubstitutions.UseCustomForeColor = True
     Me.MetroButtonClockSubstitutions.UseSelectable = True
@@ -1056,7 +661,6 @@ Partial Class frmMain
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF8TeamListsCrawlSF8, 4, 7)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF11ActionAreas, 3, 8)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonTeamListsCrawl, 4, 6)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF2NameReporter, 1, 0)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF7L3Commons, 3, 7)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF12FFIdent, 4, 5)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF9OtherScores, 0, 8)
@@ -1202,10 +806,10 @@ Partial Class frmMain
     '
     Me.ButtonF2NameReporter.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonF2NameReporter.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF2NameReporter.Location = New System.Drawing.Point(143, 1)
+    Me.ButtonF2NameReporter.Location = New System.Drawing.Point(159, 26)
     Me.ButtonF2NameReporter.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonF2NameReporter.Name = "ButtonF2NameReporter"
-    Me.ButtonF2NameReporter.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonF2NameReporter.Size = New System.Drawing.Size(156, 42)
     Me.ButtonF2NameReporter.TabIndex = 283
     Me.ButtonF2NameReporter.Text = "   REPORTER    F2"
     Me.ButtonF2NameReporter.UseSelectable = True
@@ -1687,6 +1291,7 @@ Partial Class frmMain
     Me.TableLayoutPanelMainGraphics.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
     Me.TableLayoutPanelMainGraphics.Controls.Add(Me.MetroTileMainGraphics, 0, 0)
     Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonF1ScoreLine, 0, 1)
+    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonF2NameReporter, 1, 1)
     Me.TableLayoutPanelMainGraphics.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanelMainGraphics.Location = New System.Drawing.Point(3, 243)
     Me.TableLayoutPanelMainGraphics.Name = "TableLayoutPanelMainGraphics"
@@ -1744,78 +1349,473 @@ Partial Class frmMain
     Me.TimerClock.Enabled = True
     Me.TimerClock.Interval = 250
     '
-    'LabelAwayTeamShortName
+    'PlayerAwayViewer18
     '
-    Me.LabelAwayTeamShortName.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelAwayTeamShortName.Location = New System.Drawing.Point(425, 20)
-    Me.LabelAwayTeamShortName.Name = "LabelAwayTeamShortName"
-    Me.LabelAwayTeamShortName.Size = New System.Drawing.Size(55, 34)
-    Me.LabelAwayTeamShortName.TabIndex = 0
-    Me.LabelAwayTeamShortName.Text = "AAA"
-    Me.LabelAwayTeamShortName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    Me.PlayerAwayViewer18.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer18.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer18.IsSelected = False
+    Me.PlayerAwayViewer18.Location = New System.Drawing.Point(244, 582)
+    Me.PlayerAwayViewer18.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer18.Name = "PlayerAwayViewer18"
+    Me.PlayerAwayViewer18.Player = Nothing
+    Me.PlayerAwayViewer18.PlayerPosition = 0
+    Me.PlayerAwayViewer18.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer18.TabIndex = 39
     '
-    'LabelAwayTeamName
+    'PlayerAwayViewer17
     '
-    Me.LabelAwayTeamName.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelAwayTeamName.Location = New System.Drawing.Point(284, 20)
-    Me.LabelAwayTeamName.Name = "LabelAwayTeamName"
-    Me.LabelAwayTeamName.Size = New System.Drawing.Size(135, 34)
-    Me.LabelAwayTeamName.TabIndex = 1
-    Me.LabelAwayTeamName.Text = "TEAM NAME"
-    Me.LabelAwayTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    Me.PlayerAwayViewer17.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer17.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer17.IsSelected = False
+    Me.PlayerAwayViewer17.Location = New System.Drawing.Point(244, 553)
+    Me.PlayerAwayViewer17.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer17.Name = "PlayerAwayViewer17"
+    Me.PlayerAwayViewer17.Player = Nothing
+    Me.PlayerAwayViewer17.PlayerPosition = 0
+    Me.PlayerAwayViewer17.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer17.TabIndex = 38
     '
-    'LabelAwayTeamResult
+    'PlayerAwayViewer16
     '
-    Me.LabelAwayTeamResult.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelAwayTeamResult.Location = New System.Drawing.Point(244, 20)
-    Me.LabelAwayTeamResult.Name = "LabelAwayTeamResult"
-    Me.LabelAwayTeamResult.Size = New System.Drawing.Size(34, 34)
-    Me.LabelAwayTeamResult.TabIndex = 2
-    Me.LabelAwayTeamResult.Text = "00"
-    Me.LabelAwayTeamResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    Me.PlayerAwayViewer16.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer16.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer16.IsSelected = False
+    Me.PlayerAwayViewer16.Location = New System.Drawing.Point(244, 524)
+    Me.PlayerAwayViewer16.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer16.Name = "PlayerAwayViewer16"
+    Me.PlayerAwayViewer16.Player = Nothing
+    Me.PlayerAwayViewer16.PlayerPosition = 0
+    Me.PlayerAwayViewer16.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer16.TabIndex = 37
     '
-    'LabelHomeTeamResult
+    'PlayerAwayViewer15
     '
-    Me.LabelHomeTeamResult.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelHomeTeamResult.Location = New System.Drawing.Point(204, 20)
-    Me.LabelHomeTeamResult.Name = "LabelHomeTeamResult"
-    Me.LabelHomeTeamResult.Size = New System.Drawing.Size(34, 34)
-    Me.LabelHomeTeamResult.TabIndex = 2
-    Me.LabelHomeTeamResult.Text = "00"
-    Me.LabelHomeTeamResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    Me.PlayerAwayViewer15.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer15.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer15.IsSelected = False
+    Me.PlayerAwayViewer15.Location = New System.Drawing.Point(244, 495)
+    Me.PlayerAwayViewer15.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer15.Name = "PlayerAwayViewer15"
+    Me.PlayerAwayViewer15.Player = Nothing
+    Me.PlayerAwayViewer15.PlayerPosition = 0
+    Me.PlayerAwayViewer15.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer15.TabIndex = 36
     '
-    'LabelHomeTeamName
+    'PlayerAwayViewer14
     '
-    Me.LabelHomeTeamName.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelHomeTeamName.Location = New System.Drawing.Point(63, 20)
-    Me.LabelHomeTeamName.Name = "LabelHomeTeamName"
-    Me.LabelHomeTeamName.Size = New System.Drawing.Size(135, 34)
-    Me.LabelHomeTeamName.TabIndex = 1
-    Me.LabelHomeTeamName.Text = "TEAM NAME"
-    Me.LabelHomeTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    Me.PlayerAwayViewer14.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer14.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer14.IsSelected = False
+    Me.PlayerAwayViewer14.Location = New System.Drawing.Point(244, 466)
+    Me.PlayerAwayViewer14.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer14.Name = "PlayerAwayViewer14"
+    Me.PlayerAwayViewer14.Player = Nothing
+    Me.PlayerAwayViewer14.PlayerPosition = 0
+    Me.PlayerAwayViewer14.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer14.TabIndex = 35
     '
-    'LabelHomeTeamShortName
+    'PlayerAwayViewer13
     '
-    Me.LabelHomeTeamShortName.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelHomeTeamShortName.Location = New System.Drawing.Point(3, 20)
-    Me.LabelHomeTeamShortName.Name = "LabelHomeTeamShortName"
-    Me.LabelHomeTeamShortName.Size = New System.Drawing.Size(54, 34)
-    Me.LabelHomeTeamShortName.TabIndex = 0
-    Me.LabelHomeTeamShortName.Text = "AAA"
-    Me.LabelHomeTeamShortName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    Me.PlayerAwayViewer13.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer13.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer13.IsSelected = False
+    Me.PlayerAwayViewer13.Location = New System.Drawing.Point(244, 437)
+    Me.PlayerAwayViewer13.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer13.Name = "PlayerAwayViewer13"
+    Me.PlayerAwayViewer13.Player = Nothing
+    Me.PlayerAwayViewer13.PlayerPosition = 0
+    Me.PlayerAwayViewer13.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer13.TabIndex = 34
     '
-    'MetroTileAlternates
+    'PlayerAwayViewer12
     '
-    Me.MetroTileAlternates.ActiveControl = Nothing
-    Me.TableLayoutPanel1.SetColumnSpan(Me.MetroTileAlternates, 2)
-    Me.MetroTileAlternates.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileAlternates.Location = New System.Drawing.Point(3, 382)
-    Me.MetroTileAlternates.Name = "MetroTileAlternates"
-    Me.MetroTileAlternates.Size = New System.Drawing.Size(483, 23)
-    Me.MetroTileAlternates.TabIndex = 40
-    Me.MetroTileAlternates.Text = "ALTERNATES"
-    Me.MetroTileAlternates.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-    Me.MetroTileAlternates.UseSelectable = True
+    Me.PlayerAwayViewer12.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer12.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer12.IsSelected = False
+    Me.PlayerAwayViewer12.Location = New System.Drawing.Point(244, 408)
+    Me.PlayerAwayViewer12.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer12.Name = "PlayerAwayViewer12"
+    Me.PlayerAwayViewer12.Player = Nothing
+    Me.PlayerAwayViewer12.PlayerPosition = 0
+    Me.PlayerAwayViewer12.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer12.TabIndex = 33
+    '
+    'PlayerAwayViewer11
+    '
+    Me.PlayerAwayViewer11.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer11.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer11.IsSelected = False
+    Me.PlayerAwayViewer11.Location = New System.Drawing.Point(244, 350)
+    Me.PlayerAwayViewer11.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer11.Name = "PlayerAwayViewer11"
+    Me.PlayerAwayViewer11.Player = Nothing
+    Me.PlayerAwayViewer11.PlayerPosition = 0
+    Me.PlayerAwayViewer11.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer11.TabIndex = 32
+    '
+    'PlayerAwayViewer10
+    '
+    Me.PlayerAwayViewer10.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer10.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer10.IsSelected = False
+    Me.PlayerAwayViewer10.Location = New System.Drawing.Point(244, 321)
+    Me.PlayerAwayViewer10.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer10.Name = "PlayerAwayViewer10"
+    Me.PlayerAwayViewer10.Player = Nothing
+    Me.PlayerAwayViewer10.PlayerPosition = 0
+    Me.PlayerAwayViewer10.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer10.TabIndex = 31
+    '
+    'PlayerAwayViewer9
+    '
+    Me.PlayerAwayViewer9.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer9.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer9.IsSelected = False
+    Me.PlayerAwayViewer9.Location = New System.Drawing.Point(244, 292)
+    Me.PlayerAwayViewer9.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer9.Name = "PlayerAwayViewer9"
+    Me.PlayerAwayViewer9.Player = Nothing
+    Me.PlayerAwayViewer9.PlayerPosition = 0
+    Me.PlayerAwayViewer9.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer9.TabIndex = 30
+    '
+    'PlayerAwayViewer8
+    '
+    Me.PlayerAwayViewer8.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer8.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer8.IsSelected = False
+    Me.PlayerAwayViewer8.Location = New System.Drawing.Point(244, 263)
+    Me.PlayerAwayViewer8.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer8.Name = "PlayerAwayViewer8"
+    Me.PlayerAwayViewer8.Player = Nothing
+    Me.PlayerAwayViewer8.PlayerPosition = 0
+    Me.PlayerAwayViewer8.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer8.TabIndex = 29
+    '
+    'PlayerAwayViewer7
+    '
+    Me.PlayerAwayViewer7.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer7.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer7.IsSelected = False
+    Me.PlayerAwayViewer7.Location = New System.Drawing.Point(244, 234)
+    Me.PlayerAwayViewer7.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer7.Name = "PlayerAwayViewer7"
+    Me.PlayerAwayViewer7.Player = Nothing
+    Me.PlayerAwayViewer7.PlayerPosition = 0
+    Me.PlayerAwayViewer7.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer7.TabIndex = 28
+    '
+    'PlayerAwayViewer6
+    '
+    Me.PlayerAwayViewer6.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer6.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer6.IsSelected = False
+    Me.PlayerAwayViewer6.Location = New System.Drawing.Point(244, 205)
+    Me.PlayerAwayViewer6.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer6.Name = "PlayerAwayViewer6"
+    Me.PlayerAwayViewer6.Player = Nothing
+    Me.PlayerAwayViewer6.PlayerPosition = 0
+    Me.PlayerAwayViewer6.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer6.TabIndex = 27
+    '
+    'PlayerAwayViewer5
+    '
+    Me.PlayerAwayViewer5.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer5.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer5.IsSelected = False
+    Me.PlayerAwayViewer5.Location = New System.Drawing.Point(244, 176)
+    Me.PlayerAwayViewer5.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer5.Name = "PlayerAwayViewer5"
+    Me.PlayerAwayViewer5.Player = Nothing
+    Me.PlayerAwayViewer5.PlayerPosition = 0
+    Me.PlayerAwayViewer5.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer5.TabIndex = 26
+    '
+    'PlayerAwayViewer4
+    '
+    Me.PlayerAwayViewer4.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer4.IsSelected = False
+    Me.PlayerAwayViewer4.Location = New System.Drawing.Point(244, 147)
+    Me.PlayerAwayViewer4.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer4.Name = "PlayerAwayViewer4"
+    Me.PlayerAwayViewer4.Player = Nothing
+    Me.PlayerAwayViewer4.PlayerPosition = 0
+    Me.PlayerAwayViewer4.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer4.TabIndex = 25
+    '
+    'PlayerAwayViewer3
+    '
+    Me.PlayerAwayViewer3.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer3.IsSelected = False
+    Me.PlayerAwayViewer3.Location = New System.Drawing.Point(244, 118)
+    Me.PlayerAwayViewer3.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer3.Name = "PlayerAwayViewer3"
+    Me.PlayerAwayViewer3.Player = Nothing
+    Me.PlayerAwayViewer3.PlayerPosition = 0
+    Me.PlayerAwayViewer3.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer3.TabIndex = 24
+    '
+    'PlayerAwayViewer2
+    '
+    Me.PlayerAwayViewer2.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer2.IsSelected = False
+    Me.PlayerAwayViewer2.Location = New System.Drawing.Point(244, 89)
+    Me.PlayerAwayViewer2.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer2.Name = "PlayerAwayViewer2"
+    Me.PlayerAwayViewer2.Player = Nothing
+    Me.PlayerAwayViewer2.PlayerPosition = 0
+    Me.PlayerAwayViewer2.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer2.TabIndex = 23
+    '
+    'PlayerHomeViewer18
+    '
+    Me.PlayerHomeViewer18.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer18.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer18.IsSelected = False
+    Me.PlayerHomeViewer18.Location = New System.Drawing.Point(0, 582)
+    Me.PlayerHomeViewer18.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer18.Name = "PlayerHomeViewer18"
+    Me.PlayerHomeViewer18.Player = Nothing
+    Me.PlayerHomeViewer18.PlayerPosition = 0
+    Me.PlayerHomeViewer18.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer18.TabIndex = 21
+    '
+    'PlayerHomeViewer17
+    '
+    Me.PlayerHomeViewer17.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer17.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer17.IsSelected = False
+    Me.PlayerHomeViewer17.Location = New System.Drawing.Point(0, 553)
+    Me.PlayerHomeViewer17.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer17.Name = "PlayerHomeViewer17"
+    Me.PlayerHomeViewer17.Player = Nothing
+    Me.PlayerHomeViewer17.PlayerPosition = 0
+    Me.PlayerHomeViewer17.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer17.TabIndex = 20
+    '
+    'PlayerHomeViewer16
+    '
+    Me.PlayerHomeViewer16.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer16.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer16.IsSelected = False
+    Me.PlayerHomeViewer16.Location = New System.Drawing.Point(0, 524)
+    Me.PlayerHomeViewer16.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer16.Name = "PlayerHomeViewer16"
+    Me.PlayerHomeViewer16.Player = Nothing
+    Me.PlayerHomeViewer16.PlayerPosition = 0
+    Me.PlayerHomeViewer16.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer16.TabIndex = 19
+    '
+    'PlayerHomeViewer15
+    '
+    Me.PlayerHomeViewer15.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer15.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer15.IsSelected = False
+    Me.PlayerHomeViewer15.Location = New System.Drawing.Point(0, 495)
+    Me.PlayerHomeViewer15.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer15.Name = "PlayerHomeViewer15"
+    Me.PlayerHomeViewer15.Player = Nothing
+    Me.PlayerHomeViewer15.PlayerPosition = 0
+    Me.PlayerHomeViewer15.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer15.TabIndex = 18
+    '
+    'PlayerHomeViewer14
+    '
+    Me.PlayerHomeViewer14.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer14.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer14.IsSelected = False
+    Me.PlayerHomeViewer14.Location = New System.Drawing.Point(0, 466)
+    Me.PlayerHomeViewer14.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer14.Name = "PlayerHomeViewer14"
+    Me.PlayerHomeViewer14.Player = Nothing
+    Me.PlayerHomeViewer14.PlayerPosition = 0
+    Me.PlayerHomeViewer14.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer14.TabIndex = 17
+    '
+    'PlayerHomeViewer13
+    '
+    Me.PlayerHomeViewer13.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer13.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer13.IsSelected = False
+    Me.PlayerHomeViewer13.Location = New System.Drawing.Point(0, 437)
+    Me.PlayerHomeViewer13.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer13.Name = "PlayerHomeViewer13"
+    Me.PlayerHomeViewer13.Player = Nothing
+    Me.PlayerHomeViewer13.PlayerPosition = 0
+    Me.PlayerHomeViewer13.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer13.TabIndex = 16
+    '
+    'PlayerHomeViewer12
+    '
+    Me.PlayerHomeViewer12.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer12.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer12.IsSelected = False
+    Me.PlayerHomeViewer12.Location = New System.Drawing.Point(0, 408)
+    Me.PlayerHomeViewer12.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer12.Name = "PlayerHomeViewer12"
+    Me.PlayerHomeViewer12.Player = Nothing
+    Me.PlayerHomeViewer12.PlayerPosition = 0
+    Me.PlayerHomeViewer12.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer12.TabIndex = 15
+    '
+    'PlayerHomeViewer11
+    '
+    Me.PlayerHomeViewer11.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer11.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer11.IsSelected = False
+    Me.PlayerHomeViewer11.Location = New System.Drawing.Point(0, 350)
+    Me.PlayerHomeViewer11.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer11.Name = "PlayerHomeViewer11"
+    Me.PlayerHomeViewer11.Player = Nothing
+    Me.PlayerHomeViewer11.PlayerPosition = 0
+    Me.PlayerHomeViewer11.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer11.TabIndex = 14
+    '
+    'PlayerHomeViewer10
+    '
+    Me.PlayerHomeViewer10.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer10.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer10.IsSelected = False
+    Me.PlayerHomeViewer10.Location = New System.Drawing.Point(0, 321)
+    Me.PlayerHomeViewer10.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer10.Name = "PlayerHomeViewer10"
+    Me.PlayerHomeViewer10.Player = Nothing
+    Me.PlayerHomeViewer10.PlayerPosition = 0
+    Me.PlayerHomeViewer10.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer10.TabIndex = 13
+    '
+    'PlayerHomeViewer9
+    '
+    Me.PlayerHomeViewer9.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer9.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer9.IsSelected = False
+    Me.PlayerHomeViewer9.Location = New System.Drawing.Point(0, 292)
+    Me.PlayerHomeViewer9.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer9.Name = "PlayerHomeViewer9"
+    Me.PlayerHomeViewer9.Player = Nothing
+    Me.PlayerHomeViewer9.PlayerPosition = 0
+    Me.PlayerHomeViewer9.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer9.TabIndex = 12
+    '
+    'PlayerHomeViewer8
+    '
+    Me.PlayerHomeViewer8.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer8.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer8.IsSelected = False
+    Me.PlayerHomeViewer8.Location = New System.Drawing.Point(0, 263)
+    Me.PlayerHomeViewer8.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer8.Name = "PlayerHomeViewer8"
+    Me.PlayerHomeViewer8.Player = Nothing
+    Me.PlayerHomeViewer8.PlayerPosition = 0
+    Me.PlayerHomeViewer8.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer8.TabIndex = 11
+    '
+    'PlayerHomeViewer7
+    '
+    Me.PlayerHomeViewer7.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer7.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer7.IsSelected = False
+    Me.PlayerHomeViewer7.Location = New System.Drawing.Point(0, 234)
+    Me.PlayerHomeViewer7.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer7.Name = "PlayerHomeViewer7"
+    Me.PlayerHomeViewer7.Player = Nothing
+    Me.PlayerHomeViewer7.PlayerPosition = 0
+    Me.PlayerHomeViewer7.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer7.TabIndex = 10
+    '
+    'PlayerHomeViewer6
+    '
+    Me.PlayerHomeViewer6.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer6.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer6.IsSelected = False
+    Me.PlayerHomeViewer6.Location = New System.Drawing.Point(0, 205)
+    Me.PlayerHomeViewer6.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer6.Name = "PlayerHomeViewer6"
+    Me.PlayerHomeViewer6.Player = Nothing
+    Me.PlayerHomeViewer6.PlayerPosition = 0
+    Me.PlayerHomeViewer6.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer6.TabIndex = 9
+    '
+    'PlayerHomeViewer5
+    '
+    Me.PlayerHomeViewer5.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer5.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer5.IsSelected = False
+    Me.PlayerHomeViewer5.Location = New System.Drawing.Point(0, 176)
+    Me.PlayerHomeViewer5.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer5.Name = "PlayerHomeViewer5"
+    Me.PlayerHomeViewer5.Player = Nothing
+    Me.PlayerHomeViewer5.PlayerPosition = 0
+    Me.PlayerHomeViewer5.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer5.TabIndex = 8
+    '
+    'PlayerHomeViewer4
+    '
+    Me.PlayerHomeViewer4.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer4.IsSelected = False
+    Me.PlayerHomeViewer4.Location = New System.Drawing.Point(0, 147)
+    Me.PlayerHomeViewer4.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer4.Name = "PlayerHomeViewer4"
+    Me.PlayerHomeViewer4.Player = Nothing
+    Me.PlayerHomeViewer4.PlayerPosition = 0
+    Me.PlayerHomeViewer4.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer4.TabIndex = 7
+    '
+    'PlayerHomeViewer3
+    '
+    Me.PlayerHomeViewer3.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer3.IsSelected = False
+    Me.PlayerHomeViewer3.Location = New System.Drawing.Point(0, 118)
+    Me.PlayerHomeViewer3.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer3.Name = "PlayerHomeViewer3"
+    Me.PlayerHomeViewer3.Player = Nothing
+    Me.PlayerHomeViewer3.PlayerPosition = 0
+    Me.PlayerHomeViewer3.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer3.TabIndex = 6
+    '
+    'PlayerHomeViewer2
+    '
+    Me.PlayerHomeViewer2.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer2.IsSelected = False
+    Me.PlayerHomeViewer2.Location = New System.Drawing.Point(0, 89)
+    Me.PlayerHomeViewer2.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer2.Name = "PlayerHomeViewer2"
+    Me.PlayerHomeViewer2.Player = Nothing
+    Me.PlayerHomeViewer2.PlayerPosition = 0
+    Me.PlayerHomeViewer2.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer2.TabIndex = 5
+    '
+    'PlayerHomeViewer1
+    '
+    Me.PlayerHomeViewer1.BackColor = System.Drawing.Color.White
+    Me.PlayerHomeViewer1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerHomeViewer1.IsSelected = False
+    Me.PlayerHomeViewer1.Location = New System.Drawing.Point(0, 60)
+    Me.PlayerHomeViewer1.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerHomeViewer1.Name = "PlayerHomeViewer1"
+    Me.PlayerHomeViewer1.Player = Nothing
+    Me.PlayerHomeViewer1.PlayerPosition = 0
+    Me.PlayerHomeViewer1.Size = New System.Drawing.Size(244, 29)
+    Me.PlayerHomeViewer1.TabIndex = 3
+    '
+    'PlayerAwayViewer1
+    '
+    Me.PlayerAwayViewer1.BackColor = System.Drawing.Color.White
+    Me.PlayerAwayViewer1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PlayerAwayViewer1.IsSelected = False
+    Me.PlayerAwayViewer1.Location = New System.Drawing.Point(244, 60)
+    Me.PlayerAwayViewer1.Margin = New System.Windows.Forms.Padding(0)
+    Me.PlayerAwayViewer1.Name = "PlayerAwayViewer1"
+    Me.PlayerAwayViewer1.Player = Nothing
+    Me.PlayerAwayViewer1.PlayerPosition = 0
+    Me.PlayerAwayViewer1.Size = New System.Drawing.Size(245, 29)
+    Me.PlayerAwayViewer1.TabIndex = 22
     '
     'frmMain
     '

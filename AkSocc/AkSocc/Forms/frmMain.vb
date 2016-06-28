@@ -87,6 +87,14 @@ Public Class frmMain
   End Sub
 
   Private Sub ToolStripButtonClassification_Click(sender As Object, e As EventArgs) Handles ToolStripButtonClassification.Click
+    Try
+      If Not _otherMatchDays Is Nothing Then
+        _otherMatchDays.ComputeClassification()
+      End If
+
+    Catch ex As Exception
+
+    End Try
 
   End Sub
 
@@ -244,6 +252,7 @@ Public Class frmMain
   Private Sub StartGraphic(statGraphic As GraphicGroup)
     Try
       _dlgChoosWithPreview = New FormChoose(_vizControl, _previewControl, statGraphic)
+
       If _dlgChoosWithPreview.ShowDialog(Me) Then
         ''what you gonna do?
         '_dlgChoosWithPreview.GraphicGroup.PreProcessingAction()
@@ -267,7 +276,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonF2NameReporter_Click(sender As Object, e As EventArgs) Handles ButtonF2NameReporter.Click
-
+    Me.StartGraphic(New GraphicsF2Reporter(_match))
   End Sub
 
   Private Sub ButtonF3L3Subs_Click(sender As Object, e As EventArgs) Handles ButtonF3L3Subs.Click
@@ -287,11 +296,11 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonF7FirstTeamStuff_Click(sender As Object, e As EventArgs) Handles ButtonF7FirstTeamStuff.Click
-
+    Me.StartGraphic(New GraphicsTeamStaff(_match, _match.HomeTeam))
   End Sub
 
   Private Sub ButtonF8SecondTeamStuff_Click(sender As Object, e As EventArgs) Handles ButtonF8SecondTeamStuff.Click
-
+    Me.StartGraphic(New GraphicsTeamStaff(_match, _match.AwayTeam))
   End Sub
 
   Private Sub ButtonF9TeamCaptions_Click(sender As Object, e As EventArgs) Handles ButtonF9TeamCaptions.Click

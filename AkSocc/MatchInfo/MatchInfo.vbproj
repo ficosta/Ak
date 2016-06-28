@@ -63,9 +63,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Additional data\TeamStaff.vb" />
     <Compile Include="Classes\Competition\Competition.vb" />
     <Compile Include="Classes\Competition\Competitions.vb" />
-    <Compile Include="Classes\FreeTexts\FreeText.vb" />
+    <Compile Include="Classes\Additional data\FreeText.vb" />
     <Compile Include="Classes\Translation\EnglishToArabicTranslation.vb" />
     <Compile Include="Classes\Translation\EnglishToArabicTranslator.vb" />
     <Compile Include="Classes\Stats\GraphicSubject.vb" />
@@ -74,7 +75,7 @@
     <Compile Include="Classes\MatchGoals\MatchGoal.vb" />
     <Compile Include="Classes\MatchGoals\MatchGoals.vb" />
     <Compile Include="Classes\Stats\MatchStats.vb" />
-    <Compile Include="Classes\NameDotText.vb" />
+    <Compile Include="Classes\Additional data\NameDotText.vb" />
     <Compile Include="Classes\Period\Period.vb" />
     <Compile Include="Classes\Period\Periodes.vb" />
     <Compile Include="Classes\Player\Player.vb" />
