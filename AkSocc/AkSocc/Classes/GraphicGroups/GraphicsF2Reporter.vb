@@ -61,7 +61,7 @@ Public Class GraphicsF2Reporter
 
 
       Dim matchDay As NameDotText = _reporters.GetName(CInt(graphicStep.UID))
-      Scene = PrepareMatchScores(changeStep, matchDay)
+      Scene = PrepareReporters(changeStep, matchDay)
 
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -83,8 +83,6 @@ Public Class GraphicsF2Reporter
 
     scene.SceneDirectorsOut.Add("anim_lower3rd$In_Out", 0, DirectorAction.ContinueNormal)
 
-    ' scene.SceneDirectorsChangeOut.Add("Change", 0, DirectorAction.Rewind)
-
     scene.SceneDirectorsChangeIn.Add("BottomChange", 0, DirectorAction.Start)
     scene.SceneDirectorsChangeIn.Add("BottomChange", 200, DirectorAction.Dummy)
 
@@ -92,20 +90,11 @@ Public Class GraphicsF2Reporter
     scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Control_OMO_GV_Choose", "0")
     scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Control_OMO_GV_Choose", "0")
 
-    Dim prefix As String = "Side_" & gStep
-    scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_TeamList_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Double_teams_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Table_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Results_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Formation_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Stats_Vis.active", "0")
-
     Return scene
   End Function
 
 
-  Public Function PrepareMatchScores(gSide As Integer, nameDotText As NameDotText) As Scene
+  Public Function PrepareReporters(gSide As Integer, nameDotText As NameDotText) As Scene
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "Lower3rd_Side_1" & gSide & "_"
     Dim subjectPrefix As String = ""

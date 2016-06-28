@@ -71,7 +71,6 @@ Partial Class frmMain
     Me.ButtonShftF8TeamListsCrawlSF8 = New MetroFramework.Controls.MetroButton()
     Me.ButtonShftF11ActionAreas = New MetroFramework.Controls.MetroButton()
     Me.ButtonTeamListsCrawl = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF2NameReporter = New MetroFramework.Controls.MetroButton()
     Me.ButtonShftF7L3Commons = New MetroFramework.Controls.MetroButton()
     Me.ButtonCtlF12FFIdent = New MetroFramework.Controls.MetroButton()
     Me.ButtonShftF9OtherScores = New MetroFramework.Controls.MetroButton()
@@ -112,6 +111,7 @@ Partial Class frmMain
     Me.TableLayoutPanelMainGraphics = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroTileMainGraphics = New MetroFramework.Controls.MetroTile()
     Me.ButtonF1ScoreLine = New MetroFramework.Controls.MetroButton()
+    Me.ButtonF2NameReporter = New MetroFramework.Controls.MetroButton()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.msmMain = New MetroFramework.Components.MetroStyleManager(Me.components)
     Me.TimerClock = New System.Windows.Forms.Timer(Me.components)
@@ -802,18 +802,6 @@ Partial Class frmMain
     Me.ButtonTeamListsCrawl.TabIndex = 288
     Me.ButtonTeamListsCrawl.UseSelectable = True
     '
-    'ButtonF2NameReporter
-    '
-    Me.ButtonF2NameReporter.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonF2NameReporter.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF2NameReporter.Location = New System.Drawing.Point(159, 26)
-    Me.ButtonF2NameReporter.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF2NameReporter.Name = "ButtonF2NameReporter"
-    Me.ButtonF2NameReporter.Size = New System.Drawing.Size(156, 42)
-    Me.ButtonF2NameReporter.TabIndex = 283
-    Me.ButtonF2NameReporter.Text = "   REPORTER    F2"
-    Me.ButtonF2NameReporter.UseSelectable = True
-    '
     'ButtonShftF7L3Commons
     '
     Me.ButtonShftF7L3Commons.BackColor = System.Drawing.Color.DeepSkyBlue
@@ -1325,6 +1313,18 @@ Partial Class frmMain
     Me.ButtonF1ScoreLine.TabIndex = 274
     Me.ButtonF1ScoreLine.Text = " SCORE LINE    F1"
     Me.ButtonF1ScoreLine.UseSelectable = True
+    '
+    'ButtonF2NameReporter
+    '
+    Me.ButtonF2NameReporter.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonF2NameReporter.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF2NameReporter.Location = New System.Drawing.Point(159, 26)
+    Me.ButtonF2NameReporter.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF2NameReporter.Name = "ButtonF2NameReporter"
+    Me.ButtonF2NameReporter.Size = New System.Drawing.Size(156, 42)
+    Me.ButtonF2NameReporter.TabIndex = 283
+    Me.ButtonF2NameReporter.Text = "   REPORTER    F2"
+    Me.ButtonF2NameReporter.UseSelectable = True
     '
     'TableLayoutPanel2
     '

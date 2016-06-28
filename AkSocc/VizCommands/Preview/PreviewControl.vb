@@ -158,7 +158,6 @@ Public Class PreviewControl
       controlVizrt.InitializeSockets(_tConfig)
 
       While Not _backgroundWorker.CancellationPending
-        Threading.Thread.Sleep(200)
         If _pendingAssets.Count > 0 Then
           Dim asset As PreviewAsset = _pendingAssets(0)
           Dim filePath As String = System.IO.Path.Combine(_basePath, asset.AssetFileName & ".png")
@@ -184,6 +183,7 @@ Public Class PreviewControl
           'we must wait for the snapshot to be taken, but we can continue working meanwhile
           _pendingAssets.RemoveAt(0)
         End If
+        Threading.Thread.Sleep(300)
 
         If _processedAssets.Count > 0 Then
           For index As Integer = _processedAssets.Count - 1 To 0 Step -1
@@ -216,6 +216,7 @@ Public Class PreviewControl
           Next
 
         End If
+        Threading.Thread.Sleep(20)
       End While
       Debug.Print("Preview control thread finished")
     Catch ex As Exception

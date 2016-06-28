@@ -11,7 +11,22 @@ Public Class frmMatchDay
       _matchDay = value
     End Set
   End Property
+
+  Private _competition As Competition
+  Public Property Competition As Competition
+    Get
+      Return _competition
+    End Get
+    Set(value As Competition)
+      _competition = value
+
+      For Each ctl As UCOtherMatch In _controls
+        ctl.Competition = _competition
+      Next
+    End Set
+  End Property
 #End Region
+
 
   Private _otherMatchDays As OtherMatchDays
   Public Property OtherMatchDays As OtherMatchDays
@@ -44,6 +59,7 @@ Public Class frmMatchDay
         AddHandler ctl.MoveDown, AddressOf Me.UCOtherMatch_MoveDown
         AddHandler ctl.Delete, AddressOf Me.UCOtherMatch_Delete
         AddHandler ctl.AddNew, AddressOf Me.UCOtherMatch_AddNew
+        ctl.Competition = Me.Competition
       Next
     Catch ex As Exception
 
