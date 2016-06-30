@@ -26,7 +26,16 @@ Public Class frmGoals
         ' goals.Sort()
         For Each goal As MatchGoal In goals
           Dim item As Integer = .Rows.Add(goal.GoalID)
-          '.Rows(item).Cells(ColumnInPlayer.Index).Value = subst.PlayerIn.ToString
+          Dim team As Team = IIf(_match.HomeTeam.ID = goal.TeamGoalID, _match.HomeTeam, _match.AwayTeam)
+          Dim player As Player = IIf(goal.PlayerID <> 0, team.GetPlayerById(goal.PlayerID), Nothing)
+          .Rows(item).Cells(ColumnAwayTeam.Index).Value = team.Name
+          If Not player Is Nothing Then
+            .Rows(item).Cells(ColumnHomePlayer.Index).Value = player.ToString
+
+          Else
+            .Rows(item).Cells(ColumnHomePlayer.Index).Value = ""
+
+          End If
           '.Rows(item).Cells(ColumnOutPlayer.Index).Value = subst.PlayerOut.ToString
           '.Rows(item).Cells(ColumnTeam.Index).Value = subst.Team.ToString
           '.Rows(item).Cells(ColumnTime.Index).Value = subst.part & "p " & subst.timeInSeconds & "s"

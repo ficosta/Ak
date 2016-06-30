@@ -449,7 +449,9 @@ Public Class frmMain
         Dim gg As New ControlScoreSingleGoal(_match)
         gg.IsLocalTeam = False
 
-        _match.away_goals += 1
+        _match.AddGoal(False, Nothing, False, False)
+
+        '_match.away_goals += 1
 
         Me.StartGraphic(gg)
       End If
@@ -468,6 +470,8 @@ Public Class frmMain
         Dim gg As New ControlScoreSingleGoal(_match)
         gg.IsLocalTeam = True
 
+        _match.AddGoal(True, Nothing, False, False)
+
         StartGraphic(gg)
       End If
     Catch ex As Exception
@@ -475,6 +479,19 @@ Public Class frmMain
     End Try
   End Sub
 
+  Private Sub MetroButtonManageGoals_Click(sender As Object, e As EventArgs) Handles MetroButtonManageGoals.Click
+    Try
+      If _match Is Nothing Then Exit Sub
+
+      Dim frm As New frmGoals
+      frm.Match = _match
+      If frm.ShowDialog(Me) = DialogResult.OK Then
+        'do something
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
 
 
 #End Region
@@ -714,5 +731,6 @@ Public Class frmMain
   Private Sub PlayerAwayViewer1_Load(sender As Object, e As EventArgs) Handles PlayerAwayViewer1.Load
 
   End Sub
+
 #End Region
 End Class

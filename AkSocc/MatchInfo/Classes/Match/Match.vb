@@ -82,6 +82,14 @@ Imports MatchInfo
   Private _matchGoals As New MatchGoals()
   Public Property MatchGoals() As MatchGoals
     Get
+      _matchGoals.Clear()
+
+      For Each goal As MatchGoal In Me.HomeTeam.MatchGoals
+        _matchGoals.Add(goal)
+      Next
+      For Each goal As MatchGoal In Me.AwayTeam.MatchGoals
+        _matchGoals.Add(goal)
+      Next
       Return _matchGoals
     End Get
     Set(value As MatchGoals)
@@ -499,7 +507,9 @@ Imports MatchInfo
       End If
       team.MatchGoals.Add(goal)
       Me.MatchGoals.Add(goal)
-      player.Goals = team.MatchGoals.GetGoalsByPlayer(player).count
+      If Not player Is Nothing Then
+        player.Goals = team.MatchGoals.GetGoalsByPlayer(player).Count
+      End If
       team.Goals = team.MatchGoals.Count
     Catch ex As Exception
 

@@ -151,6 +151,7 @@ Partial Class frmMain
     Me.PlayerHomeViewer2 = New AkSocc.PlayerViewer()
     Me.PlayerHomeViewer1 = New AkSocc.PlayerViewer()
     Me.PlayerAwayViewer1 = New AkSocc.PlayerViewer()
+    Me.MetroButtonManageGoals = New MetroFramework.Controls.MetroButton()
     Me.MenuStrip1.SuspendLayout()
     Me.StatusStrip1.SuspendLayout()
     Me.ToolStrip1.SuspendLayout()
@@ -1226,6 +1227,7 @@ Partial Class frmMain
     Me.TableLayoutPanelClockControl.Controls.Add(Me.MetroButtonTimeControl, 0, 0)
     Me.TableLayoutPanelClockControl.Controls.Add(Me.ButtonAwayGoal, 1, 0)
     Me.TableLayoutPanelClockControl.Controls.Add(Me.ButtonHomeGoal, 2, 0)
+    Me.TableLayoutPanelClockControl.Controls.Add(Me.MetroButtonManageGoals, 1, 1)
     Me.TableLayoutPanelClockControl.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanelClockControl.Location = New System.Drawing.Point(103, 28)
     Me.TableLayoutPanelClockControl.Name = "TableLayoutPanelClockControl"
@@ -1817,6 +1819,15 @@ Partial Class frmMain
     Me.PlayerAwayViewer1.Size = New System.Drawing.Size(245, 29)
     Me.PlayerAwayViewer1.TabIndex = 22
     '
+    'MetroButtonManageGoals
+    '
+    Me.MetroButtonManageGoals.Location = New System.Drawing.Point(179, 44)
+    Me.MetroButtonManageGoals.Name = "MetroButtonManageGoals"
+    Me.MetroButtonManageGoals.Size = New System.Drawing.Size(123, 26)
+    Me.MetroButtonManageGoals.TabIndex = 277
+    Me.MetroButtonManageGoals.Text = "Manage goals"
+    Me.MetroButtonManageGoals.UseSelectable = True
+    '
     'frmMain
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1984,4 +1995,5 @@ Partial Class frmMain
   Friend WithEvents LabelAwayTeamName As MetroFramework.Controls.MetroLabel
   Friend WithEvents LabelAwayTeamShortName As MetroFramework.Controls.MetroLabel
   Friend WithEvents MetroTileAlternates As MetroFramework.Controls.MetroTile
+  Friend WithEvents MetroButtonManageGoals As MetroFramework.Controls.MetroButton
 End Class
