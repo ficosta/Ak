@@ -97,6 +97,7 @@
     <Compile Include="Classes\Clock\Graphics\ClockSubstitutes.vb" />
     <Compile Include="Classes\Clock\ControlScoreSingleGoal.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicF1ScoreLine.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsF5TeamStats.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsCrawlFreeText.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsCrawlResults.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsCtlF12MatchIdent.vb" />

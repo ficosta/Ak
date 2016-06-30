@@ -46,18 +46,14 @@ Public Class FormChoose
       If Not _currentScene Is Nothing Then
         If _formerScene Is Nothing Then
           'this is the first time we send a scene
-          Dim tsk As New MetroTaskWindow(_currentScene.SceneDirectorsIn.MaxFrame / 40 + 1, lbl)
-
-          tsk.StartPosition = FormStartPosition.CenterScreen
-          tsk.MaximizeBox = False
-          tsk.MinimizeBox = False
 
           'send scene to render and start animation
           _currentScene.SendSceneToEngine(_vizControl)
           _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
 
           'wait for animation to end
-          tsk.ShowDialog(Me)
+          Dim frm As New frmWait(1000 * _currentScene.SceneDirectorsChangeOut.MaxFrame / 40)
+          frm.ShowDialog()
         Else
           'we are changing!
 
@@ -149,6 +145,7 @@ Public Class FormChoose
     ' Add any initialization after the InitializeComponent() call.
     _vizControl = vizControl
     _previewControl = previewControl
+    _ucPreview.PreviewControl = previewControl
     Me.GraphicGroup = graphicGroup
     'ShowNextGraphicSteps()
   End Sub

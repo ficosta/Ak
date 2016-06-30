@@ -171,9 +171,7 @@ Public Class PreviewControl
             'send scene to preview server
             asset.Scene.SendSceneToEngine(controlVizrt)
             asset.Scene.JumpToEndFrame(controlVizrt, asset.Scene.SceneDirectorsIn)
-            'make sure we are at a frame with the graphics visible
-            controlVizrt.DirectorGoTo("DIR_MAIN", 135, asset.Scene.VizLayer)
-
+            
             asset.AssetSate = ePreviewAssetState.Rendering
             _backgroundWorker.ReportProgress(0, New WorkState() With {.state = eWorkState.AssetStateChanged, .asset = asset})
 

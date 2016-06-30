@@ -71,6 +71,15 @@ Public Class GraphicsCtlF12MatchIdent
       Scene.SceneName = "cfx_Full_Frame_Work"
       Scene.SceneDirector = "anim_Full_Frame$In_Out"
 
+      Scene.SceneDirectorsIn.Add(New SceneDirector("anim_Full_Frame$In_Out", 0, DirectorAction.Start))
+      Scene.SceneDirectorsIn.Add(New SceneDirector("anim_Full_Frame$In_Out", 100, DirectorAction.Dummy))
+
+      Scene.SceneDirectorsOut.Add(New SceneDirector("anim_Full_Frame$In_Out", 0, DirectorAction.ContinueNormal))
+
+
+
+      Scene.SceneDirector = "anim_Full_Frame$In_Out"
+
       Select Case gs.ChildGraphicStep.Name
         Case Step0.NoLogo
           Scene = PrepareMatchIdent(1)

@@ -24,16 +24,23 @@ Public Class frmMain
 
 #Region "Form events"
   Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+  End Sub
+
+  Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
     Try
       If My.Settings.ShowSettingsOnStartup Then
         ShowOptions(Me)
       End If
+      Me.Cursor = Cursors.WaitCursor
       DesserializeObjectFromFile(My.Settings.OtherMatchesPath, _otherMatchDays)
       InitControls()
       MatchSetup()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
+    Me.Cursor = Cursors.Default
+
   End Sub
 #End Region
 
@@ -288,7 +295,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonF5TeamMatchStats_Click(sender As Object, e As EventArgs) Handles ButtonF5TeamMatchStats.Click
-
+    Me.StartGraphic(New GraphicsF5TeamStats(_match))
   End Sub
 
   Private Sub ButtonF6PlayerName_Click(sender As Object, e As EventArgs) Handles ButtonF6PlayerName.Click

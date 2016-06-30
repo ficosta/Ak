@@ -82,6 +82,23 @@ Public Class SubjectStats
     End Get
   End Property
 
+
+  Private WithEvents _FoulsComitted As New Stat("FoulsComitted", 0)
+  Public ReadOnly Property FoulsComitted As Stat
+    Get
+      Return _FoulsComitted
+    End Get
+  End Property
+
+  Private WithEvents _LastPossessions As New Stat("LastPossessions", eDataType.PercentageValue)
+
+  Public ReadOnly Property LastPossessions As Stat
+    Get
+      Return _LastPossessions
+    End Get
+  End Property
+
+
   Public Property StatBag As New List(Of Stat) From {Me.GoalStat, Me.ShotsOn, Me.Shots, Me.Corners, Me.Offsides, Me.WoodHits, Me.YellowCards, Me.RedCards, Me.Possession}
 
   Public Sub New()
