@@ -568,7 +568,7 @@ Public Class frmMain
       _frmMatchDay = New frmMatchDay()
       Dim mps As New Competitions()
       mps.GetFromDB("")
-      '_frmMatchDay.Competition = mps.GetCompetition(_match.competition_id)
+      _frmMatchDay.Competition = mps.GetCompetition(_match.competition_id)
       _frmMatchDay.OtherMatchDays = _otherMatchDays
       If _frmMatchDay.ShowDialog(Me) = DialogResult.OK Then
         _otherMatchDays = _frmMatchDay.OtherMatchDays
@@ -663,6 +663,9 @@ Public Class frmMain
       For Each ctl As PlayerViewer In _homePlayerControls
         ctl.IsSelected = (ctl.Player.ID = sender.Player.ID)
       Next
+      For Each ctl As PlayerViewer In _awayPlayerControls
+        ctl.IsSelected = (ctl.Player.ID = sender.Player.ID)
+      Next
 
     Catch ex As Exception
     End Try
@@ -706,6 +709,10 @@ Public Class frmMain
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
+  End Sub
+
+  Private Sub PlayerAwayViewer1_Load(sender As Object, e As EventArgs) Handles PlayerAwayViewer1.Load
+
   End Sub
 #End Region
 End Class

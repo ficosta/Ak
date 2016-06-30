@@ -90,7 +90,11 @@ Public Class GraphicGroupF1ScoreLine
     Try
       Scene.VizLayer = SceneLayer.Middle
       Scene.SceneName = "gfx_Scoreline"
-      Scene.SceneDirector = "DIR_MAIN"
+
+      ' scene.SceneDirectorsChangeOut.Add("Change", 0, DirectorAction.Rewind)
+
+      Scene.SceneDirectorsChangeIn.Add("Change", 0, DirectorAction.Start)
+      Scene.SceneDirectorsChangeIn.Add("Change", 200, DirectorAction.Dummy)
       Select Case gs.ChildGraphicStep.Name
         Case Step0.FirstHalf
           PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
@@ -117,9 +121,14 @@ Public Class GraphicGroupF1ScoreLine
 
   Private Sub PrepareResultScene(ByRef scene As Scene, home_Result As String, away_Result As String, period_Name As String, show_Logo As Boolean)
     Try
-      scene.SceneDirectorsIn.Add("DIR_MAIN", 0, DirectorAction.Start)
+      scene.SceneDirector = "DIR_MAIN$In_Out"
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 50, DirectorAction.Dummy)
+      scene.SceneDirectorsIn.Add("Bottom_change", 0, DirectorAction.Rewind)
+      scene.SceneDirectorsIn.Add("Goals_Crawler", 0, DirectorAction.Rewind)
       scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
-      scene.SceneDirectorsOut.Add("DIR_MAIN", 0, DirectorAction.ContinueNormal)
+
+      scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Name", Match.HomeTeam.ArabicCaption1Name))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Name", Match.AwayTeam.ArabicCaption1Name))

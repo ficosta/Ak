@@ -115,7 +115,7 @@ Public Class GraphicsCrawlResults
     Dim prefix As String = "Crawll_Side_" & gSide & "_"
     Dim subjectPrefix As String = ""
     Try
-      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 2)
+      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Cho  ose", 2)
       prefix = "Crawll_Results_Side_" & gSide & "_"
 
 
