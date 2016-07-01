@@ -81,7 +81,7 @@ Public Class GraphicsF5TeamStats
         Case Step0.AttempsOntarget
           Scene = PrepareTeamStat(changeStep, "Attempts on target", Me.Match.HomeTeam.MatchStats.ShotsOn.ValueText, Me.Match.AwayTeam.MatchStats.ShotsOn.ValueText)
         Case Step0.YellowCards
-          Scene = PrepareTeamStat(changeStep, "Yellow cards", Me.Match.HomeTeam.MatchStats.YellowCards.ValueText, Me.Match.AwayTeam.MatchStats.YellowCards.ValueText)
+          Scene = PrepareTeamCards(changeStep)
         Case Step0.RedCards
           Scene = PrepareTeamStat(changeStep, "Red cards", Me.Match.HomeTeam.MatchStats.RedCards.ValueText, Me.Match.AwayTeam.MatchStats.RedCards.ValueText)
         Case Step0.Offisdes
@@ -154,6 +154,41 @@ Public Class GraphicsF5TeamStats
       scene.SceneParameters.Add(prefix & "Subject_01_Right_Score_Text", away_team_value)
 
       scene.SceneParameters.Add(prefix & "Subject_01_Team_Name", stat_name)
+
+      For i As Integer = 2 To 7
+        scene.SceneParameters.Add(prefix & "Text_0" & i, "")
+        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Left_Control_OMO_GV_Chosse", 0)
+        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Right_Control_OMO_GV_Chosse", 0)
+        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Left_Score_Text", "")
+        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Right_Score_Text", "")
+        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Team_Name", "r")
+      Next
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+    Return scene
+  End Function
+
+  Public Function PrepareTeamCards(gSide As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene()
+    Dim prefix As String = "LeftFramer_Title_Stats_Side_" & gSide & "_"
+    Dim subjectPrefix As String = ""
+    Try
+      prefix = "LeftFramer_Title_Stats_Side_" & gSide & "_"
+
+      scene.SceneParameters.Add(prefix & "Text_Center", "cards")
+      scene.SceneParameters.Add(prefix & "Text_Right", Me.Match.HomeTeam.Name)
+      scene.SceneParameters.Add(prefix & "Text_Left", Me.Match.AwayTeam.Name)
+
+      prefix = "LeftFramer_Stats_Side_" & gSide & "_"
+
+      scene.SceneParameters.Add(prefix & "Subject_01_Left_Control_OMO_GV_Chosse", 2)
+      scene.SceneParameters.Add(prefix & "Subject_01_Left_Score_Text", Me.Match.AwayTeam.MatchStats.YellowCards.ValueText)
+
+      scene.SceneParameters.Add(prefix & "Subject_01_Right_Control_OMO_GV_Chosse", 2)
+      scene.SceneParameters.Add(prefix & "Subject_01_Left_Score_Text", Me.Match.HomeTeam.MatchStats.YellowCards.ValueText)
+
+      scene.SceneParameters.Add(prefix & "Subject_01_Team_Name", "stat name")
 
       For i As Integer = 2 To 7
         scene.SceneParameters.Add(prefix & "Text_0" & i, "")
