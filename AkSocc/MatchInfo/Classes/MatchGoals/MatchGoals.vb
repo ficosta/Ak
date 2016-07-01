@@ -84,6 +84,10 @@ Public Class MatchGoals
     End Set
   End Property
 
+  Public Sub Sort()
+    Me.InnerList.Sort()
+  End Sub
+
   Public Function GetGoal(local_ID As Integer) As MatchGoal
     Dim output As MatchGoal = Nothing
     Try

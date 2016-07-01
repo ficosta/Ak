@@ -313,6 +313,9 @@
     <EmbeddedResource Include="Forms\DialogPreview.resx">
       <DependentUpon>DialogPreview.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Goals\frmGoal.resx">
+      <DependentUpon>frmGoal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Goals\frmGoals.resx">
       <DependentUpon>frmGoals.vb</DependentUpon>
     </EmbeddedResource>

@@ -35,9 +35,14 @@ Partial Class frmGoals
     Me.MetroButtonAddHomeTeamSubstitition = New MetroFramework.Controls.MetroButton()
     Me.MetroButtonShowSelectedGoal = New MetroFramework.Controls.MetroButton()
     Me.MetroTileData = New MetroFramework.Controls.MetroTile()
+    Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnHomeType = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnHomePlayer = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnHomeGoal = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnAwayTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnAwayGoal = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnAwayPlayer = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnAwayType = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.TableLayoutPanel2.SuspendLayout()
     Me.TableLayoutPanelData.SuspendLayout()
     CType(Me.MetroGridGoals, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,14 +66,14 @@ Partial Class frmGoals
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(798, 350)
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(798, 373)
     Me.TableLayoutPanel2.TabIndex = 3
     '
     'MetroTileGraphics
     '
     Me.MetroTileGraphics.ActiveControl = Nothing
     Me.MetroTileGraphics.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileGraphics.Location = New System.Drawing.Point(3, 288)
+    Me.MetroTileGraphics.Location = New System.Drawing.Point(3, 311)
     Me.MetroTileGraphics.Name = "MetroTileGraphics"
     Me.MetroTileGraphics.Size = New System.Drawing.Size(792, 24)
     Me.MetroTileGraphics.TabIndex = 0
@@ -85,12 +90,13 @@ Partial Class frmGoals
     Me.TableLayoutPanelData.Controls.Add(Me.MetroButtonRemoveGoal, 1, 0)
     Me.TableLayoutPanelData.Controls.Add(Me.MetroGridGoals, 0, 1)
     Me.TableLayoutPanelData.Controls.Add(Me.MetroButtonAddHomeTeamSubstitition, 0, 0)
+    Me.TableLayoutPanelData.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanelData.Location = New System.Drawing.Point(3, 33)
     Me.TableLayoutPanelData.Name = "TableLayoutPanelData"
     Me.TableLayoutPanelData.RowCount = 2
     Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelData.Size = New System.Drawing.Size(792, 231)
+    Me.TableLayoutPanelData.Size = New System.Drawing.Size(792, 272)
     Me.TableLayoutPanelData.TabIndex = 1
     '
     'MetroButtonAddAwayTeamSubstitition
@@ -132,7 +138,7 @@ Partial Class frmGoals
     DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
     Me.MetroGridGoals.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
     Me.MetroGridGoals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-    Me.MetroGridGoals.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnHomePlayer, Me.ColumnTime, Me.ColumnAwayTeam})
+    Me.MetroGridGoals.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnID, Me.ColumnHomeType, Me.ColumnHomePlayer, Me.ColumnHomeGoal, Me.ColumnTime, Me.ColumnAwayGoal, Me.ColumnAwayPlayer, Me.ColumnAwayType})
     Me.TableLayoutPanelData.SetColumnSpan(Me.MetroGridGoals, 3)
     DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
     DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
@@ -160,7 +166,7 @@ Partial Class frmGoals
     Me.MetroGridGoals.RowHeadersVisible = False
     Me.MetroGridGoals.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridGoals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridGoals.Size = New System.Drawing.Size(786, 195)
+    Me.MetroGridGoals.Size = New System.Drawing.Size(786, 236)
     Me.MetroGridGoals.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroGridGoals.TabIndex = 0
     '
@@ -177,7 +183,7 @@ Partial Class frmGoals
     'MetroButtonShowSelectedGoal
     '
     Me.MetroButtonShowSelectedGoal.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonShowSelectedGoal.Location = New System.Drawing.Point(3, 318)
+    Me.MetroButtonShowSelectedGoal.Location = New System.Drawing.Point(3, 341)
     Me.MetroButtonShowSelectedGoal.Name = "MetroButtonShowSelectedGoal"
     Me.MetroButtonShowSelectedGoal.Size = New System.Drawing.Size(792, 29)
     Me.MetroButtonShowSelectedGoal.TabIndex = 1
@@ -196,12 +202,31 @@ Partial Class frmGoals
     Me.MetroTileData.Text = "Data"
     Me.MetroTileData.UseSelectable = True
     '
+    'ColumnID
+    '
+    Me.ColumnID.HeaderText = "ColumnID"
+    Me.ColumnID.Name = "ColumnID"
+    Me.ColumnID.ReadOnly = True
+    Me.ColumnID.Visible = False
+    '
+    'ColumnHomeType
+    '
+    Me.ColumnHomeType.HeaderText = "Type"
+    Me.ColumnHomeType.Name = "ColumnHomeType"
+    '
     'ColumnHomePlayer
     '
     Me.ColumnHomePlayer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
     Me.ColumnHomePlayer.HeaderText = "Player"
     Me.ColumnHomePlayer.Name = "ColumnHomePlayer"
     Me.ColumnHomePlayer.ReadOnly = True
+    '
+    'ColumnHomeGoal
+    '
+    Me.ColumnHomeGoal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnHomeGoal.HeaderText = "Goal"
+    Me.ColumnHomeGoal.Name = "ColumnHomeGoal"
+    Me.ColumnHomeGoal.ReadOnly = True
     '
     'ColumnTime
     '
@@ -212,18 +237,26 @@ Partial Class frmGoals
     Me.ColumnTime.Name = "ColumnTime"
     Me.ColumnTime.ReadOnly = True
     '
-    'ColumnAwayTeam
+    'ColumnAwayGoal
     '
-    Me.ColumnAwayTeam.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnAwayTeam.HeaderText = "Player"
-    Me.ColumnAwayTeam.Name = "ColumnAwayTeam"
-    Me.ColumnAwayTeam.ReadOnly = True
+    Me.ColumnAwayGoal.HeaderText = "Goal"
+    Me.ColumnAwayGoal.Name = "ColumnAwayGoal"
+    '
+    'ColumnAwayPlayer
+    '
+    Me.ColumnAwayPlayer.HeaderText = "Player"
+    Me.ColumnAwayPlayer.Name = "ColumnAwayPlayer"
+    '
+    'ColumnAwayType
+    '
+    Me.ColumnAwayType.HeaderText = "Type"
+    Me.ColumnAwayType.Name = "ColumnAwayType"
     '
     'frmGoals
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(844, 436)
+    Me.ClientSize = New System.Drawing.Size(844, 459)
     Me.Controls.Add(Me.TableLayoutPanel2)
     Me.Name = "frmGoals"
     Me.Text = "frmGoals"
@@ -242,7 +275,12 @@ Partial Class frmGoals
   Friend WithEvents MetroButtonAddHomeTeamSubstitition As MetroFramework.Controls.MetroButton
   Friend WithEvents MetroButtonShowSelectedGoal As MetroFramework.Controls.MetroButton
   Friend WithEvents MetroTileData As MetroFramework.Controls.MetroTile
+  Friend WithEvents ColumnID As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnHomeType As DataGridViewTextBoxColumn
   Friend WithEvents ColumnHomePlayer As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnHomeGoal As DataGridViewTextBoxColumn
   Friend WithEvents ColumnTime As DataGridViewTextBoxColumn
-  Friend WithEvents ColumnAwayTeam As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnAwayGoal As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnAwayPlayer As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnAwayType As DataGridViewTextBoxColumn
 End Class

@@ -2,6 +2,8 @@
 Imports System.Data.OleDb
 
 Public Class MatchGoal
+  Implements IComparable
+
   Public GoalID As Integer
   Public MatchID As Integer
   Public TeamGoalID As Integer
@@ -9,6 +11,28 @@ Public Class MatchGoal
   Public PlayerID As Integer
   Public Penalty As Boolean
   Public OwnGoal As Boolean
+
+  Public Enum eGoalType
+    Normal = 0
+    Penalty
+    Own
+  End Enum
+
+  Public Property GoalType As eGoalType
+    Get
+      If OwnGoal Then
+        Return eGoalType.Own
+      ElseIf Penalty Then
+        Return eGoalType.Penalty
+      Else
+        Return eGoalType.Normal
+      End If
+    End Get
+    Set(value As eGoalType)
+      Me.OwnGoal = (value = eGoalType.Own)
+      Me.OwnGoal = (value = eGoalType.Penalty)
+    End Set
+  End Property
 
   Public Sub New()
     GoalID = -1
@@ -127,4 +151,21 @@ Public Class MatchGoal
       Throw err
     End Try
   End Sub
+
+  Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+    Dim res As Integer = 0
+    Try
+      Dim aux As MatchGoal = CType(obj, MatchGoal)
+      If aux.Minute > Me.Minute Then
+        Return 1
+      ElseIf aux.Minute < Me.Minute Then
+        Return -1
+      Else
+        Return 0
+      End If
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
 End Class
