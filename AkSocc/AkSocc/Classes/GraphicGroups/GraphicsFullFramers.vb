@@ -118,7 +118,7 @@ Public Class GraphicGroupCtlF1FullFramers
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
-    scene.SceneName = "cfx_Full_Frame_Work"
+    scene.SceneName = "gfx_Full_Frame"
     scene.SceneDirector = "anim_Full_Frame$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("Change", 0, DirectorAction.Rewind)

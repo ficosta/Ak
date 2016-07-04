@@ -3,7 +3,7 @@ Imports MatchInfo
 Imports VizCommands
 
 
-Public Class GraphicsF2Reporter
+Public Class GraphicsReporter
   Inherits GraphicGroup
 
   Public Sub New(_match As MatchInfo.Match)

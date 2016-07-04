@@ -113,5 +113,6 @@ Public Class ControlScoreSingleGoal
   End Function
 
   Public Overrides Function PostProcessingAction() As Boolean
+    Return False
   End Function
 End Class

@@ -73,6 +73,7 @@ Public Class FormSubstitutions
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
+    Return Nothing
   End Function
 
   Private Sub FormSubstitutions_Load(sender As Object, e As EventArgs) Handles MyBase.Load

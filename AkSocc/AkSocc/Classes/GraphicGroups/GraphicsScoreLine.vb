@@ -1,13 +1,13 @@
 ﻿Imports AkSocc
 Imports VizCommands
 
-Public Class GraphicGroupF1ScoreLine
+Public Class GraphicsScoreLine
   Inherits GraphicGroup
 
   Public Sub New(_match As MatchInfo.Match)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicF1ScoreLine"
+    MyBase.Name = "GraphicsScoreLine"
     MyBase.ID = 1
   End Sub
 
@@ -95,6 +95,7 @@ Public Class GraphicGroupF1ScoreLine
 
       Scene.SceneDirectorsChangeIn.Add("Change", 0, DirectorAction.Start)
       Scene.SceneDirectorsChangeIn.Add("Change", 200, DirectorAction.Dummy)
+
       Select Case gs.ChildGraphicStep.Name
         Case Step0.FirstHalf
           PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
@@ -112,6 +113,9 @@ Public Class GraphicGroupF1ScoreLine
           PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Half time (extra time)", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
         Case Step0.ETFullTime
           PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Full time (extra time)", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+        Case Step0.WithhAllScorers
+          PrepareResultSceneWithScorerCrawl(Scene, Match.home_goals, Match.away_goals, gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+
       End Select
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -123,8 +127,8 @@ Public Class GraphicGroupF1ScoreLine
     Try
       scene.SceneDirector = "DIR_MAIN$In_Out"
       scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 50, DirectorAction.Dummy)
-      scene.SceneDirectorsIn.Add("Bottom_change", 0, DirectorAction.Rewind)
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 100, DirectorAction.Dummy)
+      'scene.SceneDirectorsIn.Add("Bottom_change", 80, DirectorAction.JumpTo)
       scene.SceneDirectorsIn.Add("Goals_Crawler", 0, DirectorAction.Rewind)
       scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
 
@@ -140,7 +144,62 @@ Public Class GraphicGroupF1ScoreLine
 
       scene.SceneParameters.Add(New SceneParameter("Scoreline_period_Name", period_Name))
 
-      scene.SceneParameters.Add(New SceneParameter("Scoreline_Select_Type", "1"))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Control_OMO_Subline_Type_Base", "0"))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Data_Control_OMO_Data", "0"))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Type_1_Data_01_Text", period_Name))
+
+      If show_Logo Then
+        scene.SceneParameters.Add(New SceneParameter("Scoreline_show_Logo", "1"))
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 100, DirectorAction.Start)
+      Else
+        scene.SceneParameters.Add(New SceneParameter("Scoreline_show_Logo", "0"))
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 100, DirectorAction.Dummy)
+      End If
+
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub PrepareResultSceneWithScorerCrawl(ByRef scene As Scene, home_Result As String, away_Result As String, show_Logo As Boolean)
+    Try
+      scene.SceneDirector = "DIR_MAIN$In_Out"
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 100, DirectorAction.Dummy)
+      'scene.SceneDirectorsIn.Add("Bottom_change", 0, DirectorAction.Rewind)
+      scene.SceneDirectorsIn.Add("Goals_Crawler", 0, DirectorAction.Rewind)
+      scene.SceneDirectorsIn.Add("Goals_Crawler", 100, DirectorAction.Start)
+      scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
+
+      scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Name", Match.HomeTeam.ArabicCaption1Name))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Name", Match.AwayTeam.ArabicCaption1Name))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.HomeTeam.BadgeName, paramType.Image))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.AwayTeam.BadgeName, paramType.Image))
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Score", home_Result))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Score", away_Result))
+
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Control_OMO_Subline_Type_Base", "1"))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Data_Control_OMO_Data", "1"))
+
+      Dim goals As MatchInfo.MatchGoals = Me.Match.MatchGoals
+
+      goals.Sort()
+
+      For i As Integer = 1 To 11
+        If i - 1 < goals.Count Then
+          Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
+        End If
+        scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_2_Sublines_Type_2_Goals_Left_" & i & "_Score_A", "jojo " & i))
+        scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_2_Sublines_Type_2_Goals_Left_" & i & "_Text_01", "jaja " & i))
+
+        scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_2_Sublines_Type_2_Goals_Right_" & i & "_Score_A", "jojo " & i))
+        scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_2_Sublines_Type_2_Goals_Right_" & i & "_Text_01", "jaja " & i))
+      Next
+
 
       If show_Logo Then
         scene.SceneParameters.Add(New SceneParameter("Scoreline_show_Logo", "1"))

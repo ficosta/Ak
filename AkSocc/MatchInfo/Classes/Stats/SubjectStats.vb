@@ -83,10 +83,24 @@ Public Class SubjectStats
   End Property
 
 
-  Private WithEvents _FoulsComitted As New Stat("FoulsComitted", 0)
-  Public ReadOnly Property FoulsComitted As Stat
+  Private WithEvents _fouls As New Stat("Fouls", 0)
+  Public ReadOnly Property Fouls As Stat
     Get
-      Return _FoulsComitted
+      Return _fouls
+    End Get
+  End Property
+
+  Private WithEvents _saves As New Stat("Saves", 0)
+  Public ReadOnly Property Saves As Stat
+    Get
+      Return _saves
+    End Get
+  End Property
+
+  Private WithEvents _assis As New Stat("Assis", 0)
+  Public ReadOnly Property Assis As Stat
+    Get
+      Return _assis
     End Get
   End Property
 
@@ -98,8 +112,29 @@ Public Class SubjectStats
     End Get
   End Property
 
+  Private WithEvents _Formation_pos As New Stat("Formation_pos", 0)
+  Public ReadOnly Property Formation_Pos As Stat
+    Get
+      Return _Formation_pos
+    End Get
+  End Property
 
-  Public Property StatBag As New List(Of Stat) From {Me.GoalStat, Me.ShotsOn, Me.Shots, Me.Corners, Me.Offsides, Me.WoodHits, Me.YellowCards, Me.RedCards, Me.Possession}
+  Private WithEvents _Formation_X As New Stat("Formation_x", 0)
+  Public ReadOnly Property Formation_X As Stat
+    Get
+      Return _Formation_X
+    End Get
+  End Property
+
+  Private WithEvents _Formation_Y As New Stat("Formation_y", 0)
+  Public ReadOnly Property Formation_Y As Stat
+    Get
+      Return _Formation_Y
+    End Get
+  End Property
+
+
+  Public Property StatBag As New List(Of Stat) From {Me.GoalStat, Me.ShotsOn, Me.Shots, Me.Corners, Me.Offsides, Me.WoodHits, Me.YellowCards, Me.RedCards, Me.Possession, Me.Formation_Pos, Me.Formation_X, Me.Formation_Y, Me.Saves, Me.Fouls}
 
   Public Sub New()
     UpdatePropertyEvents()

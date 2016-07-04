@@ -4,32 +4,30 @@ Imports MatchInfo
 Imports VizCommands
 
 
-Public Class GraphicsF5TeamStats
+Public Class GraphicsPlayerStats
 
   Inherits GraphicGroup
 
-  Public Sub New(_match As MatchInfo.Match)
+  Public Sub New(_match As MatchInfo.Match, player As Player)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicsF5TeamStats"
+    MyBase.Name = "GraphicsPlayerStats"
+    Me.Player = player
     MyBase.ID = 1
   End Sub
 
-  Public Property _teamStaffs As TeamStaffs
+  Public Property Player As Player
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
 
-
     Public Shared ReadOnly AttemptsOnGoal As Step0 = New Step0("Attempts On Goal")
-    Public Shared ReadOnly AttempsOntarget As Step0 = New Step0("Attempts On target")
     Public Shared ReadOnly YellowCards As Step0 = New Step0("Yellow cards")
     Public Shared ReadOnly RedCards As Step0 = New Step0("Red Cards")
-    Public Shared ReadOnly Offisdes As Step0 = New Step0("Offsides")
     Public Shared ReadOnly FoulsComitted As Step0 = New Step0("Fouls committed")
-    Public Shared ReadOnly Corners As Step0 = New Step0("Corners")
-    Public Shared ReadOnly Possession As Step0 = New Step0("Possession")
-    Public Shared ReadOnly LastPossessions As Step0 = New Step0("Last 5 Minutes Possession")
+    Public Shared ReadOnly Assists As Step0 = New Step0("Assists")
+    Public Shared ReadOnly Saves As Step0 = New Step0("Saves")
+    Public Shared ReadOnly Shots As Step0 = New Step0("Shots")
 
     Public Sub New(key As String)
       MyBase.Key = key
@@ -51,18 +49,15 @@ Public Class GraphicsF5TeamStats
 
     Try
       gs.GraphicSteps.Clear()
-      _teamStaffs = New TeamStaffs
 
       If graphicStep Is Nothing Then
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AttemptsOnGoal, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AttempsOntarget, True, True))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCards, True, True))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.RedCards, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Offisdes, True, True))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FoulsComitted, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Corners, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Possession, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LastPossessions, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Assists, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Saves, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Shots, True, True))
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -77,25 +72,14 @@ Public Class GraphicsF5TeamStats
     Try
       Select Case gs.ChildGraphicStep.Name
         Case Step0.AttemptsOnGoal
-          Scene = PrepareTeamStat(changeStep, "Attempts on Goal", Me.Match.HomeTeam.MatchStats.Shots.ValueText, Me.Match.AwayTeam.MatchStats.Shots.ValueText)
-        Case Step0.AttempsOntarget
-          Scene = PrepareTeamStat(changeStep, "Attempts on target", Me.Match.HomeTeam.MatchStats.ShotsOn.ValueText, Me.Match.AwayTeam.MatchStats.ShotsOn.ValueText)
+          Scene = PreparePlayerStat(changeStep, "Attempts on Goal", Me.Match.HomeTeam.MatchStats.Shots.ValueText, Me.Match.AwayTeam.MatchStats.Shots.ValueText)
         Case Step0.YellowCards
           Scene = PrepareTeamCards(changeStep)
         Case Step0.RedCards
-          Scene = PrepareTeamStat(changeStep, "Red cards", Me.Match.HomeTeam.MatchStats.RedCards.ValueText, Me.Match.AwayTeam.MatchStats.RedCards.ValueText)
-        Case Step0.Offisdes
-          Scene = PrepareTeamStat(changeStep, "Offsides", Me.Match.HomeTeam.MatchStats.Offsides.ValueText, Me.Match.AwayTeam.MatchStats.Offsides.ValueText)
+          Scene = PreparePlayerStat(changeStep, "Red cards", Me.Match.HomeTeam.MatchStats.RedCards.ValueText, Me.Match.AwayTeam.MatchStats.RedCards.ValueText)
         Case Step0.FoulsComitted
-          Scene = PrepareTeamStat(changeStep, "Fouls comitted", Me.Match.HomeTeam.MatchStats.FoulsComitted.ValueText, Me.Match.AwayTeam.MatchStats.FoulsComitted.ValueText)
-        Case Step0.Corners
-          Scene = PrepareTeamStat(changeStep, "Corners", Me.Match.HomeTeam.MatchStats.Corners.ValueText, Me.Match.AwayTeam.MatchStats.Corners.ValueText)
-        Case Step0.Possession
-          Scene = PrepareTeamStat(changeStep, "Possession", Me.Match.HomeTeam.MatchStats.Possession.ValueText, Me.Match.AwayTeam.MatchStats.Possession.ValueText)
-        Case Step0.LastPossessions
-          Scene = PrepareTeamStat(changeStep, "Last 5 minutes possession", Me.Match.HomeTeam.MatchStats.LastPossessions.ValueText, Me.Match.AwayTeam.MatchStats.LastPossessions.ValueText)
+          Scene = PreparePlayerStat(changeStep, "Fouls comitted", Me.Match.HomeTeam.MatchStats.Fouls.ValueText, Me.Match.AwayTeam.MatchStats.Fouls.ValueText)
       End Select
-
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -134,7 +118,7 @@ Public Class GraphicsF5TeamStats
   End Function
 
 
-  Public Function PrepareTeamStat(gSide As Integer, stat_name As String, home_team_value As String, away_team_value As String) As Scene
+  Public Function PreparePlayerStat(gSide As Integer, stat_name As String, home_team_value As String, away_team_value As String) As Scene
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "LeftFramer_Title_Stats_Side_" & gSide & "_"
     Dim subjectPrefix As String = ""

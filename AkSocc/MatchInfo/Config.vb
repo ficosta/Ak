@@ -19,6 +19,7 @@
 
 #Region "Properties"
   Public Property LocalConnectionString As String
+  Public Property LocalODBCConnectionString As String
   Public Property OptaConnectionString As String
   Public Property LocalDataBasePath As String
   Public Property MatchDaysPath As String

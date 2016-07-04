@@ -23,9 +23,9 @@ Public Class UserControlTactica
     Set(ByVal value As Team)
       _team = value
       If _tactica Is Nothing And Not _team Is Nothing Then _tactica = _team.Tactic
+      InicialitzarVisualitzacioPlayersTeam(_team, Me.ListViewTeam)
       ShowTactics()
 
-      InicialitzarVisualitzacioPlayersTeam(_team, Me.ListViewTeam)
     End Set
   End Property
 
@@ -195,6 +195,8 @@ Public Class UserControlTactica
         ny = -center.Y
       End If
 
+      'center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - size / 2
+      'center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - size / 2
       center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - size / 2
       center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - size / 2
 
@@ -216,6 +218,8 @@ Public Class UserControlTactica
         ny = -center.Y
       End If
 
+      'center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - size / 2
+      'center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - size / 2
       center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - size / 2
       center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - size / 2
 
@@ -258,6 +262,8 @@ Public Class UserControlTactica
       Dim canvasSize As Size = Me.PictureBoxCanvas.Image.Size
 
 
+      'center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - _size / 2
+      'center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - _size / 2
       center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - _size / 2
       center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - _size / 2
     Catch ex As Exception
@@ -290,8 +296,13 @@ Public Class UserControlTactica
       If tactic Is Nothing Then Exit Sub
       If team Is Nothing Then Exit Sub
       For Each pos As PosicioTactic In tactic.LlistaPosicions
+        pos.Player = team.GetPlayerByPosicio(pos.Posicio)
         If pos.Player Is Nothing Then
           pos.Player = team.GetPlayerByPosicio(pos.Posicio)
+        End If
+        If Not pos.Player Is Nothing Then
+          'pos.X = pos.Player.Formation_X
+          'pos.Y = pos.Player.Formation_Y
         End If
         pos.Team = team
       Next
@@ -457,6 +468,7 @@ Public Class UserControlTactica
 
         .Columns(1).Text = CiTeam.ToString
 
+
         Dim CPlayer As Player
 
         Dim sText As String = ""
@@ -464,22 +476,32 @@ Public Class UserControlTactica
         Dim y As Integer = 0
         Dim sNom As String = ""
         Dim bEntrenador As Boolean = False
-        Dim bAltres As Boolean
 
         For index As Integer = 0 To CiTeam.MatchPlayers.Count - 1
           CPlayer = CiTeam.MatchPlayers(index)
-          If CPlayer.PlayerPosition <> "" Then
-            bAltres = CPlayer.PlayerPosition > 101
-          Else
-            CPlayer.PlayerPosition = CStr(index + 1)
-          End If
-          CItem = .Items.Add(CPlayer.DomesticSquadNo)
-          CItem.Name = CStr(CPlayer.PlayerID)
-          CItem.SubItems.Add(CPlayer.PlayerName)
-          If CPlayer.PlayerPosition <> "" AndAlso (CPlayer.PlayerPosition <= 11 Or CPlayer.SquadNo = 0) Then
-            CItem.ForeColor = Color.Black
-          Else
-            CItem.ForeColor = Color.DarkGray
+          If CPlayer.Formation_Pos > 0 Then
+            While CPlayer.Formation_Pos > .Items.Count
+              .Items.Add("empty")
+            End While
+            CItem = .Items.Item(CPlayer.Formation_Pos - 1)
+            CItem.Name = CStr(CPlayer.PlayerID)
+            CItem.Text = CPlayer.SquadNo
+            CPlayer.ReadStatsFromDB()
+            CItem.SubItems.Add(CPlayer.PlayerName & " " & CPlayer.Formation_Pos & " " & CPlayer.Formation_X & "x" & CPlayer.Formation_Y)
+            If CPlayer.Formation_Pos > 0 AndAlso (CPlayer.Formation_Pos <= 11 Or CPlayer.SquadNo = 0) Then
+              CItem.ForeColor = Color.Black
+
+              If Not Tactic Is Nothing Then
+                Dim pos As PosicioTactic = Tactic.GetPosicioByID(CPlayer.Formation_Pos)
+                If Not pos Is Nothing Then
+                  pos.X = CPlayer.Formation_X
+                  pos.Y = CPlayer.Formation_Y
+                End If
+              End If
+            Else
+              CItem.ForeColor = Color.DarkGray
+            End If
+
           End If
         Next
       End With
@@ -657,7 +679,7 @@ Public Class UserControlTactica
             If pos.Team.ID = _dragTeam.ID Then
               pos.Player = _dragPlayer
               _lastSelectedPosicio = pos
-              _dragPlayer.PlayerPosition = _lastSelectedPosicio.Posicio
+              _dragPlayer.Formation_Pos = _lastSelectedPosicio.Posicio
               _lastSelectedPosicio.Player = _dragPlayer
 
               ShowTactics()
@@ -724,4 +746,25 @@ Public Class UserControlTactica
     Next
   End Sub
 
+  Public Sub Save()
+    Try
+      For Each pos As PosicioTactic In Me.Tactic.LlistaPosicions
+        pos.Player.Formation_X = pos.X
+        pos.Player.Formation_Y = pos.Y
+
+        pos.Player.SaveToDB = True
+        pos.Player.WriteStatToDB(pos.Player.MatchStats.Formation_X)
+        pos.Player.WriteStatToDB(pos.Player.MatchStats.Formation_Y)
+        pos.Player.SaveToDB = False
+
+      Next
+      For Each player As Player In _team.MatchPlayers
+        player.SaveToDB = True
+        player.WriteStatToDB(player.MatchStats.Formation_Pos)
+        player.SaveToDB = False
+      Next
+    Catch ex As Exception
+
+    End Try
+  End Sub
 End Class

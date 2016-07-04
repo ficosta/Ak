@@ -11,6 +11,8 @@ Public Class FormMatchSetup
   Public Property SelectedMatch As Match = Nothing
   Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
     Me.DialogResult = System.Windows.Forms.DialogResult.OK
+    Me.UcTeamMatchSetupHome.Save()
+    Me.UcTeamMatchSetupAway.Save()
     Me.Close()
   End Sub
 
@@ -210,26 +212,32 @@ Public Class FormMatchSetup
         Me.SelectedMatch = match
         Me.UcTeamMatchSetupHome.Team = Nothing
         Me.UcTeamMatchSetupAway.Team = Nothing
+        Me.MetroLabelHomeTeam.Text = ""
+        Me.MetroLabelAwayTeam.Text = ""
       Else
         match.GetMatch()
 
-
-
         match.HomeTeam.GetFullMatchData()
         match.AwayTeam.GetFullMatchData()
+
 
         Me.SelectedMatch = match
         Me.SelectedMatchId = match.match_id
 
         Me.UcTeamMatchSetupHome.Team = match.HomeTeam
         Me.UcTeamMatchSetupAway.Team = match.AwayTeam
+
+        Me.MetroLabelHomeTeam.Text = match.HomeTeam.TeamAELCaption1Name
+        Me.MetroLabelAwayTeam.Text = match.AwayTeam.TeamAELCaption1Name
       End If
     Catch ex As Exception
-
+      WriteToErrorLog (ex)
     End Try
   End Sub
 
   Private Sub MetroGridMatches_SelectionChanged(sender As Object, e As EventArgs) Handles MetroGridMatches.SelectionChanged
+    Exit Sub
+
     Dim selectedIndex As Integer = -1
 
     Try
@@ -249,7 +257,26 @@ Public Class FormMatchSetup
     End Try
   End Sub
 
-  Private Sub MetroGridMatches_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridMatches.CellContentClick
 
+  Private Sub MetroGridMatches_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridMatches.CellClick
+    Dim selectedIndex As Integer = -1
+    Me.Cursor = Cursors.WaitCursor
+    Try
+      For i As Integer = 0 To MetroGridMatches.Rows.Count - 1
+        If MetroGridMatches.Rows(i).Selected Then selectedIndex = i
+      Next
+      If selectedIndex >= 0 Then
+        Dim id As Integer = CInt(MetroGridMatches.Rows(selectedIndex).Cells(ColumnID.Index).Value)
+        SelectedMatch = _matches.GetMatch(id)
+      Else
+        SelectedMatch = Nothing
+      End If
+      ShowMatchInfo(SelectedMatch)
+
+    Catch ex As Exception
+
+    End Try
+    Me.Cursor = Cursors.Default
   End Sub
+
 End Class

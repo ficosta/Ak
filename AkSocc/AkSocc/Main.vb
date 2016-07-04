@@ -14,6 +14,13 @@ Module Main
     End Get
   End Property
 
+  Public ReadOnly Property LocalODBCConnectionString As String
+    Get
+      Dim path As String = System.IO.Path.Combine(My.Settings.DataBasePath)
+      Return "Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq='" & path & "';"
+    End Get
+  End Property
+
   Public ReadOnly Property OptaConnectionString As String
     Get
       Dim path As String = System.IO.Path.Combine(My.Settings.DataBasePath)
@@ -113,6 +120,7 @@ Module Main
 
       End If
       MatchInfo.Config.Instance.LocalConnectionString = LocalConnectionString
+      MatchInfo.Config.Instance.LocalODBCConnectionString = LocalODBCConnectionString
       MatchInfo.Config.Instance.OptaConnectionString = OptaConnectionString
       MatchInfo.Config.Instance.UseArabicNames = My.Settings.UseArabicNames
 

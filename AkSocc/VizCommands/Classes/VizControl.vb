@@ -402,6 +402,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function LoadScene(ByVal siFullPath As String) As Integer
@@ -415,6 +416,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function GetSceneTree(Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -436,6 +438,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function GetSceneIcon(ByVal siScene As String, ByVal niWidth As Integer, ByVal niHeight As Integer) As Integer
@@ -449,6 +452,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function GetImageIcon(ByVal siScene As String, ByVal niWidth As Integer, ByVal niHeight As Integer) As Integer
@@ -464,6 +468,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorRewindAll(Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -484,6 +489,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorRewind(ByVal siDirector As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -505,6 +511,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorGotoAll(ByVal niFrame As Integer, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -525,6 +532,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorGoTo(ByVal siDirector As String, ByVal niFrame As Integer, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -546,6 +554,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorStartAll(Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -566,6 +575,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorStart(ByVal siDirector As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -587,6 +597,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorStop(ByVal siDirector As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -608,6 +619,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorContinueAll(Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -628,6 +640,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorContinue(ByVal siDirector As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -649,6 +662,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorContinueAllReverse(Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -669,6 +683,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorGetStatus(ByVal siDirector As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -690,6 +705,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorGetStartTime(ByVal siDirector As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -711,6 +727,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorGetKeyframeTime(ByVal siDirector As String, ByVal siKeyFrame As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -732,6 +749,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorGetEndTime(ByVal siDirector As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -753,6 +771,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function StageGetDirectors(Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -774,6 +793,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function DirectorContinueReverse(ByVal siDirector As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -795,6 +815,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
 
@@ -817,6 +838,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
 
@@ -839,6 +861,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function GetSceneBackgroundImageActive(Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -860,6 +883,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function SetNodeText(ByVal siNodePath As String, ByVal siText As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -881,6 +905,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function SetNodeImage(ByVal siNodePath As String, ByVal siImage As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -902,6 +927,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
 
@@ -924,6 +950,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function SetControlObjectValue(ByVal siNodePath As String, ByVal siField As String, ByVal siValue As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -946,6 +973,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function SetControlObjectImageValue(ByVal siNodePath As String, ByVal siField As String, ByVal siValue As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -972,6 +1000,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function GetControlObjectFields(ByVal siNodePath As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -997,6 +1026,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function SetNodeActive(ByVal siNodePath As String, ByVal siText As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -1018,6 +1048,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function SetNodePosition(ByVal siNodePath As String, ByVal X As Decimal, ByVal Y As Decimal, ByVal Z As Decimal, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -1039,6 +1070,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function SetNodeRotation(ByVal siNodePath As String, ByVal X As Decimal, ByVal Y As Decimal, ByVal Z As Decimal, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -1060,6 +1092,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function SetNodeScaling(ByVal siNodePath As String, ByVal X As Decimal, ByVal Y As Decimal, ByVal Z As Decimal, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
@@ -1081,6 +1114,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Sub GetActiveScene(Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer)
@@ -1242,6 +1276,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function ClockStop(ByVal niClockIndex As Integer) As Integer
@@ -1255,6 +1290,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
 
@@ -1270,6 +1306,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
 
@@ -1289,6 +1326,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
 
@@ -1303,6 +1341,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function TakeSnapshot(ByVal siPath As String, ByVal biAlpha As Boolean) As Integer
@@ -1317,6 +1356,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
 
@@ -1331,6 +1371,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Public Function SendCameraParameters(ByVal tiCamera As tyCameraParameters) As Integer()
@@ -1366,6 +1407,7 @@ Public Class VizControl
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
     End Try
+    Return 0
   End Function
 
   Private Function DecimalToString(ByVal dDada As Decimal) As String
@@ -1377,6 +1419,7 @@ Public Class VizControl
     Catch ex As Exception
       Return "0"
     End Try
+    Return 0
   End Function
 
   Public Sub SendCommand(ByVal eiCommand As eVizrtCommands, Optional ByVal siSource As String = "", Optional ByVal siParam As String = "", Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer)
@@ -1579,8 +1622,8 @@ Public Class VizControl
 
     Catch ex As Exception
       'AddError(Me.ToString, "SendSocketCommand", ex.ToString)
-      Return 0
     End Try
+    Return 0
   End Function
 
   Public Sub New()

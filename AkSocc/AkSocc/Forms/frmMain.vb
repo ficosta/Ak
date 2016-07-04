@@ -279,11 +279,11 @@ Public Class frmMain
 
 #Region "Graphic buttons"
   Private Sub ButtonF1ScoreLine_Click(sender As Object, e As EventArgs) Handles ButtonF1ScoreLine.Click
-    Me.StartGraphic(New GraphicGroupF1ScoreLine(_match))
+    Me.StartGraphic(New GraphicsScoreLine(_match))
   End Sub
 
   Private Sub ButtonF2NameReporter_Click(sender As Object, e As EventArgs) Handles ButtonF2NameReporter.Click
-    Me.StartGraphic(New GraphicsF2Reporter(_match))
+    Me.StartGraphic(New GraphicsReporter(_match))
   End Sub
 
   Private Sub ButtonF3L3Subs_Click(sender As Object, e As EventArgs) Handles ButtonF3L3Subs.Click
@@ -295,11 +295,11 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonF5TeamMatchStats_Click(sender As Object, e As EventArgs) Handles ButtonF5TeamMatchStats.Click
-    Me.StartGraphic(New GraphicsF5TeamStats(_match))
+    Me.StartGraphic(New GraphicsTeamStats(_match))
   End Sub
 
   Private Sub ButtonF6PlayerName_Click(sender As Object, e As EventArgs) Handles ButtonF6PlayerName.Click
-
+    Me.StartGraphic(New GraphicsPlayerStats(_match, _selectedPlayer))
   End Sub
 
   Private Sub ButtonF7FirstTeamStuff_Click(sender As Object, e As EventArgs) Handles ButtonF7FirstTeamStuff.Click
@@ -311,7 +311,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonF9TeamCaptions_Click(sender As Object, e As EventArgs) Handles ButtonF9TeamCaptions.Click
-
+    Me.StartGraphic(New GrapchicsTeamCaptions(_match))
   End Sub
 
   Private Sub ButtonF10IdentClock_Click(sender As Object, e As EventArgs) Handles ButtonF10IdentClock.Click
@@ -347,7 +347,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF6Referee_Click(sender As Object, e As EventArgs) Handles ButtonCtlF6Referee.Click
-
+    Me.StartGraphic(New GraphicsReferee(_match))
   End Sub
 
   Private Sub ButtonCtlF7ScoreBugs_Click(sender As Object, e As EventArgs) Handles ButtonCtlF7ScoreBugs.Click
@@ -371,7 +371,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF12FFIdent_Click(sender As Object, e As EventArgs) Handles ButtonCtlF12FFIdent.Click
-    Me.StartGraphic(New GraphicsCtlF12MatchIdent(_match))
+    Me.StartGraphic(New GraphicsMatchIdent(_match))
   End Sub
 
   Private Sub ButtonShftF1PenaltyShootOut_Click(sender As Object, e As EventArgs) Handles ButtonShftF1PenaltyShootOut.Click

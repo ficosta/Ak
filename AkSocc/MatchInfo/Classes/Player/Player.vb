@@ -34,7 +34,6 @@
   Public SeasonCleanSheets As Integer
 
 
-
 #Region "Variables non from the Player table"
   Private team_name As String = ""
   Public ReadOnly Property PlayerName() As String
@@ -86,6 +85,34 @@
     End Set
   End Property
 
+  Public Property Formation_Pos As Integer
+    Get
+      Return Me.MatchStats.Formation_Pos.Value
+    End Get
+    Set(value As Integer)
+      Me.MatchStats.Formation_Pos.Value = value
+    End Set
+  End Property
+
+  Public Property Formation_X As Double
+    Get
+      Return Me.MatchStats.Formation_X.Value / 100
+    End Get
+    Set(value As Double)
+      Me.MatchStats.Formation_X.Value = value * 100
+    End Set
+  End Property
+
+  Public Property Formation_Y As Double
+    Get
+      Return Me.MatchStats.Formation_Y.Value / 100
+    End Get
+    Set(value As Double)
+      Me.MatchStats.Formation_Y.Value = value * 100
+    End Set
+  End Property
+
+
 
 #End Region
 
@@ -130,6 +157,10 @@
     VideoName2 = ""
     OptaId = -1
     SeasonCleanSheets = -1
+
+    Formation_Pos = -10
+    Formation_X = 0
+    Formation_Y = 0
 
     If ID <> -1 Then Me.GetFromDB()
   End Sub
@@ -279,7 +310,9 @@
           Me.SeasonCleanSheets = myPlayerReader.GetInt32(30)
         End If
       End If
+
       conn.Close()
+      
     Catch err As Exception
       Throw err
     End Try

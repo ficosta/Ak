@@ -43,6 +43,41 @@ Partial Class frmMain
     Me.ToolStripButtonClassification = New System.Windows.Forms.ToolStripButton()
     Me.SplitContainerAll = New System.Windows.Forms.SplitContainer()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+    Me.PlayerAwayViewer18 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer17 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer16 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer15 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer14 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer13 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer12 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer11 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer10 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer9 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer8 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer7 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer6 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer5 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer4 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer3 = New AkSocc.PlayerViewer()
+    Me.PlayerAwayViewer2 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer18 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer17 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer16 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer15 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer14 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer13 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer12 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer11 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer10 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer9 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer8 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer7 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer6 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer5 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer4 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer3 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer2 = New AkSocc.PlayerViewer()
+    Me.PlayerHomeViewer1 = New AkSocc.PlayerViewer()
     Me.TableLayoutPanelMatchInfo = New System.Windows.Forms.TableLayoutPanel()
     Me.LabelHomeTeamShortName = New MetroFramework.Controls.MetroLabel()
     Me.LabelHomeTeamName = New MetroFramework.Controls.MetroLabel()
@@ -50,6 +85,7 @@ Partial Class frmMain
     Me.LabelAwayTeamResult = New MetroFramework.Controls.MetroLabel()
     Me.LabelAwayTeamName = New MetroFramework.Controls.MetroLabel()
     Me.LabelAwayTeamShortName = New MetroFramework.Controls.MetroLabel()
+    Me.PlayerAwayViewer1 = New AkSocc.PlayerViewer()
     Me.MetroTileAlternates = New MetroFramework.Controls.MetroTile()
     Me.TableLayoutPanelControls = New System.Windows.Forms.TableLayoutPanel()
     Me.TableLayoutPanel8Clock = New System.Windows.Forms.TableLayoutPanel()
@@ -108,6 +144,7 @@ Partial Class frmMain
     Me.MetroButtonTimeControl = New MetroFramework.Controls.MetroButton()
     Me.ButtonAwayGoal = New MetroFramework.Controls.MetroButton()
     Me.ButtonHomeGoal = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonManageGoals = New MetroFramework.Controls.MetroButton()
     Me.TableLayoutPanelMainGraphics = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroTileMainGraphics = New MetroFramework.Controls.MetroTile()
     Me.ButtonF1ScoreLine = New MetroFramework.Controls.MetroButton()
@@ -115,43 +152,6 @@ Partial Class frmMain
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.msmMain = New MetroFramework.Components.MetroStyleManager(Me.components)
     Me.TimerClock = New System.Windows.Forms.Timer(Me.components)
-    Me.PlayerAwayViewer18 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer17 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer16 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer15 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer14 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer13 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer12 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer11 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer10 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer9 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer8 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer7 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer6 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer5 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer4 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer3 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer2 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer18 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer17 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer16 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer15 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer14 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer13 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer12 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer11 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer10 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer9 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer8 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer7 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer6 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer5 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer4 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer3 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer2 = New AkSocc.PlayerViewer()
-    Me.PlayerHomeViewer1 = New AkSocc.PlayerViewer()
-    Me.PlayerAwayViewer1 = New AkSocc.PlayerViewer()
-    Me.MetroButtonManageGoals = New MetroFramework.Controls.MetroButton()
     Me.MenuStrip1.SuspendLayout()
     Me.StatusStrip1.SuspendLayout()
     Me.ToolStrip1.SuspendLayout()
@@ -389,967 +389,6 @@ Partial Class frmMain
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
     Me.TableLayoutPanel1.Size = New System.Drawing.Size(489, 641)
     Me.TableLayoutPanel1.TabIndex = 0
-    '
-    'TableLayoutPanelMatchInfo
-    '
-    Me.TableLayoutPanelMatchInfo.ColumnCount = 6
-    Me.TableLayoutPanel1.SetColumnSpan(Me.TableLayoutPanelMatchInfo, 2)
-    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
-    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
-    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61.0!))
-    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelHomeTeamShortName, 0, 1)
-    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelHomeTeamName, 1, 1)
-    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelHomeTeamResult, 2, 1)
-    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelAwayTeamResult, 3, 1)
-    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelAwayTeamName, 4, 1)
-    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelAwayTeamShortName, 5, 1)
-    Me.TableLayoutPanelMatchInfo.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanelMatchInfo.Location = New System.Drawing.Point(3, 3)
-    Me.TableLayoutPanelMatchInfo.Name = "TableLayoutPanelMatchInfo"
-    Me.TableLayoutPanelMatchInfo.RowCount = 2
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelMatchInfo.Size = New System.Drawing.Size(483, 54)
-    Me.TableLayoutPanelMatchInfo.TabIndex = 2
-    '
-    'LabelHomeTeamShortName
-    '
-    Me.LabelHomeTeamShortName.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelHomeTeamShortName.Location = New System.Drawing.Point(3, 20)
-    Me.LabelHomeTeamShortName.Name = "LabelHomeTeamShortName"
-    Me.LabelHomeTeamShortName.Size = New System.Drawing.Size(54, 34)
-    Me.LabelHomeTeamShortName.TabIndex = 0
-    Me.LabelHomeTeamShortName.Text = "AAA"
-    Me.LabelHomeTeamShortName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    '
-    'LabelHomeTeamName
-    '
-    Me.LabelHomeTeamName.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelHomeTeamName.Location = New System.Drawing.Point(63, 20)
-    Me.LabelHomeTeamName.Name = "LabelHomeTeamName"
-    Me.LabelHomeTeamName.Size = New System.Drawing.Size(135, 34)
-    Me.LabelHomeTeamName.TabIndex = 1
-    Me.LabelHomeTeamName.Text = "TEAM NAME"
-    Me.LabelHomeTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    '
-    'LabelHomeTeamResult
-    '
-    Me.LabelHomeTeamResult.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelHomeTeamResult.Location = New System.Drawing.Point(204, 20)
-    Me.LabelHomeTeamResult.Name = "LabelHomeTeamResult"
-    Me.LabelHomeTeamResult.Size = New System.Drawing.Size(34, 34)
-    Me.LabelHomeTeamResult.TabIndex = 2
-    Me.LabelHomeTeamResult.Text = "00"
-    Me.LabelHomeTeamResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    '
-    'LabelAwayTeamResult
-    '
-    Me.LabelAwayTeamResult.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelAwayTeamResult.Location = New System.Drawing.Point(244, 20)
-    Me.LabelAwayTeamResult.Name = "LabelAwayTeamResult"
-    Me.LabelAwayTeamResult.Size = New System.Drawing.Size(34, 34)
-    Me.LabelAwayTeamResult.TabIndex = 2
-    Me.LabelAwayTeamResult.Text = "00"
-    Me.LabelAwayTeamResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    '
-    'LabelAwayTeamName
-    '
-    Me.LabelAwayTeamName.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelAwayTeamName.Location = New System.Drawing.Point(284, 20)
-    Me.LabelAwayTeamName.Name = "LabelAwayTeamName"
-    Me.LabelAwayTeamName.Size = New System.Drawing.Size(135, 34)
-    Me.LabelAwayTeamName.TabIndex = 1
-    Me.LabelAwayTeamName.Text = "TEAM NAME"
-    Me.LabelAwayTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    '
-    'LabelAwayTeamShortName
-    '
-    Me.LabelAwayTeamShortName.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelAwayTeamShortName.Location = New System.Drawing.Point(425, 20)
-    Me.LabelAwayTeamShortName.Name = "LabelAwayTeamShortName"
-    Me.LabelAwayTeamShortName.Size = New System.Drawing.Size(55, 34)
-    Me.LabelAwayTeamShortName.TabIndex = 0
-    Me.LabelAwayTeamShortName.Text = "AAA"
-    Me.LabelAwayTeamShortName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    '
-    'MetroTileAlternates
-    '
-    Me.MetroTileAlternates.ActiveControl = Nothing
-    Me.TableLayoutPanel1.SetColumnSpan(Me.MetroTileAlternates, 2)
-    Me.MetroTileAlternates.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileAlternates.Location = New System.Drawing.Point(3, 382)
-    Me.MetroTileAlternates.Name = "MetroTileAlternates"
-    Me.MetroTileAlternates.Size = New System.Drawing.Size(483, 23)
-    Me.MetroTileAlternates.TabIndex = 40
-    Me.MetroTileAlternates.Text = "ALTERNATES"
-    Me.MetroTileAlternates.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-    Me.MetroTileAlternates.UseSelectable = True
-    '
-    'TableLayoutPanelControls
-    '
-    Me.TableLayoutPanelControls.ColumnCount = 2
-    Me.TableLayoutPanelControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelControls.Controls.Add(Me.TableLayoutPanel8Clock, 0, 1)
-    Me.TableLayoutPanelControls.Controls.Add(Me.TableLayoutPanel4, 0, 3)
-    Me.TableLayoutPanelControls.Controls.Add(Me.Panel1, 1, 3)
-    Me.TableLayoutPanelControls.Controls.Add(Me.TableLayoutPanelClock, 0, 0)
-    Me.TableLayoutPanelControls.Controls.Add(Me.TableLayoutPanelMainGraphics, 0, 2)
-    Me.TableLayoutPanelControls.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanelControls.Location = New System.Drawing.Point(0, 0)
-    Me.TableLayoutPanelControls.Name = "TableLayoutPanelControls"
-    Me.TableLayoutPanelControls.RowCount = 5
-    Me.TableLayoutPanelControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
-    Me.TableLayoutPanelControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
-    Me.TableLayoutPanelControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
-    Me.TableLayoutPanelControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
-    Me.TableLayoutPanelControls.Size = New System.Drawing.Size(641, 641)
-    Me.TableLayoutPanelControls.TabIndex = 0
-    '
-    'TableLayoutPanel8Clock
-    '
-    Me.TableLayoutPanel8Clock.ColumnCount = 4
-    Me.TableLayoutPanelControls.SetColumnSpan(Me.TableLayoutPanel8Clock, 2)
-    Me.TableLayoutPanel8Clock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanel8Clock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanel8Clock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanel8Clock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroTileClock, 0, 0)
-    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockSubstitutions, 1, 1)
-    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockOUT, 0, 2)
-    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockIN, 0, 1)
-    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroTileClockBasedGraphics, 1, 0)
-    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockStats, 2, 1)
-    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockOtherScores, 1, 2)
-    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockPenalties, 2, 2)
-    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockStrapsWithIcon, 3, 1)
-    Me.TableLayoutPanel8Clock.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel8Clock.Location = New System.Drawing.Point(3, 123)
-    Me.TableLayoutPanel8Clock.Name = "TableLayoutPanel8Clock"
-    Me.TableLayoutPanel8Clock.RowCount = 3
-    Me.TableLayoutPanel8Clock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-    Me.TableLayoutPanel8Clock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanel8Clock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanel8Clock.Size = New System.Drawing.Size(635, 114)
-    Me.TableLayoutPanel8Clock.TabIndex = 3
-    '
-    'MetroTileClock
-    '
-    Me.MetroTileClock.ActiveControl = Nothing
-    Me.MetroTileClock.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileClock.Location = New System.Drawing.Point(3, 3)
-    Me.MetroTileClock.Name = "MetroTileClock"
-    Me.MetroTileClock.Size = New System.Drawing.Size(152, 19)
-    Me.MetroTileClock.TabIndex = 0
-    Me.MetroTileClock.Text = "Clock controls"
-    Me.MetroTileClock.UseSelectable = True
-    '
-    'MetroButtonClockSubstitutions
-    '
-    Me.MetroButtonClockSubstitutions.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroButtonClockSubstitutions.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonClockSubstitutions.Location = New System.Drawing.Point(161, 28)
-    Me.MetroButtonClockSubstitutions.Name = "MetroButtonClockSubstitutions"
-    Me.MetroButtonClockSubstitutions.Size = New System.Drawing.Size(152, 38)
-    Me.MetroButtonClockSubstitutions.TabIndex = 3
-    Me.MetroButtonClockSubstitutions.Text = "Substitutions F4"
-    Me.MetroButtonClockSubstitutions.UseCustomBackColor = True
-    Me.MetroButtonClockSubstitutions.UseCustomForeColor = True
-    Me.MetroButtonClockSubstitutions.UseSelectable = True
-    '
-    'MetroButtonClockOUT
-    '
-    Me.MetroButtonClockOUT.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonClockOUT.Location = New System.Drawing.Point(3, 72)
-    Me.MetroButtonClockOUT.Name = "MetroButtonClockOUT"
-    Me.MetroButtonClockOUT.Size = New System.Drawing.Size(152, 39)
-    Me.MetroButtonClockOUT.TabIndex = 1
-    Me.MetroButtonClockOUT.Text = "Animate clock Out"
-    Me.MetroButtonClockOUT.UseSelectable = True
-    '
-    'MetroButtonClockIN
-    '
-    Me.MetroButtonClockIN.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonClockIN.Location = New System.Drawing.Point(3, 28)
-    Me.MetroButtonClockIN.Name = "MetroButtonClockIN"
-    Me.MetroButtonClockIN.Size = New System.Drawing.Size(152, 38)
-    Me.MetroButtonClockIN.TabIndex = 0
-    Me.MetroButtonClockIN.Text = "Animate clock in No logo"
-    Me.MetroButtonClockIN.UseSelectable = True
-    '
-    'MetroTileClockBasedGraphics
-    '
-    Me.MetroTileClockBasedGraphics.ActiveControl = Nothing
-    Me.TableLayoutPanel8Clock.SetColumnSpan(Me.MetroTileClockBasedGraphics, 3)
-    Me.MetroTileClockBasedGraphics.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileClockBasedGraphics.Location = New System.Drawing.Point(161, 3)
-    Me.MetroTileClockBasedGraphics.Name = "MetroTileClockBasedGraphics"
-    Me.MetroTileClockBasedGraphics.Size = New System.Drawing.Size(471, 19)
-    Me.MetroTileClockBasedGraphics.TabIndex = 2
-    Me.MetroTileClockBasedGraphics.Text = "Clock based graphics"
-    Me.MetroTileClockBasedGraphics.UseSelectable = True
-    '
-    'MetroButtonClockStats
-    '
-    Me.MetroButtonClockStats.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroButtonClockStats.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonClockStats.Location = New System.Drawing.Point(319, 28)
-    Me.MetroButtonClockStats.Name = "MetroButtonClockStats"
-    Me.MetroButtonClockStats.Size = New System.Drawing.Size(152, 38)
-    Me.MetroButtonClockStats.TabIndex = 4
-    Me.MetroButtonClockStats.Text = "Straps"
-    Me.MetroButtonClockStats.UseCustomBackColor = True
-    Me.MetroButtonClockStats.UseCustomForeColor = True
-    Me.MetroButtonClockStats.UseSelectable = True
-    '
-    'MetroButtonClockOtherScores
-    '
-    Me.MetroButtonClockOtherScores.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroButtonClockOtherScores.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonClockOtherScores.Location = New System.Drawing.Point(161, 72)
-    Me.MetroButtonClockOtherScores.Name = "MetroButtonClockOtherScores"
-    Me.MetroButtonClockOtherScores.Size = New System.Drawing.Size(152, 39)
-    Me.MetroButtonClockOtherScores.TabIndex = 5
-    Me.MetroButtonClockOtherScores.Text = "Other scores"
-    Me.MetroButtonClockOtherScores.UseCustomBackColor = True
-    Me.MetroButtonClockOtherScores.UseCustomForeColor = True
-    Me.MetroButtonClockOtherScores.UseSelectable = True
-    '
-    'MetroButtonClockPenalties
-    '
-    Me.MetroButtonClockPenalties.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroButtonClockPenalties.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonClockPenalties.Location = New System.Drawing.Point(319, 72)
-    Me.MetroButtonClockPenalties.Name = "MetroButtonClockPenalties"
-    Me.MetroButtonClockPenalties.Size = New System.Drawing.Size(152, 39)
-    Me.MetroButtonClockPenalties.TabIndex = 6
-    Me.MetroButtonClockPenalties.Text = "Penalties"
-    Me.MetroButtonClockPenalties.UseCustomBackColor = True
-    Me.MetroButtonClockPenalties.UseCustomForeColor = True
-    Me.MetroButtonClockPenalties.UseSelectable = True
-    '
-    'MetroButtonClockStrapsWithIcon
-    '
-    Me.MetroButtonClockStrapsWithIcon.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroButtonClockStrapsWithIcon.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonClockStrapsWithIcon.Location = New System.Drawing.Point(477, 28)
-    Me.MetroButtonClockStrapsWithIcon.Name = "MetroButtonClockStrapsWithIcon"
-    Me.MetroButtonClockStrapsWithIcon.Size = New System.Drawing.Size(155, 38)
-    Me.MetroButtonClockStrapsWithIcon.TabIndex = 7
-    Me.MetroButtonClockStrapsWithIcon.Text = "Straps with icon"
-    Me.MetroButtonClockStrapsWithIcon.UseCustomBackColor = True
-    Me.MetroButtonClockStrapsWithIcon.UseCustomForeColor = True
-    Me.MetroButtonClockStrapsWithIcon.UseSelectable = True
-    '
-    'TableLayoutPanel4
-    '
-    Me.TableLayoutPanel4.ColumnCount = 5
-    Me.TableLayoutPanelControls.SetColumnSpan(Me.TableLayoutPanel4, 2)
-    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.22222!))
-    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.22222!))
-    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
-    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.22222!))
-    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.22222!))
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonAltF6HtFtBug, 4, 9)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF1PenaltyShootOut, 0, 6)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonAltF2FreeTextCrawl, 3, 9)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF12MatchScoresCrawl, 4, 8)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF10ClockCard, 1, 8)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF8TeamListsCrawlSF8, 4, 7)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF11ActionAreas, 3, 8)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonTeamListsCrawl, 4, 6)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF7L3Commons, 3, 7)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF12FFIdent, 4, 5)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF9OtherScores, 0, 8)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF8Bugs, 4, 4)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF3NameNoNumber, 3, 6)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF2Interview, 1, 6)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF4TwoWayBoxes, 4, 3)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF5TeamMatchStats, 0, 1)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF11AsItStands, 3, 5)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF12VideoTalkThroughts, 4, 2)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF5TeamStatsMultiline, 0, 7)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF8SecondTeamStuff, 4, 1)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF7ScoreBugs, 3, 4)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF6PlayerName, 1, 1)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF4ClockSubs, 4, 0)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF9TeamCaptions, 0, 2)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF3ClockDropDown, 3, 3)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF10L3TeamStatsDb, 1, 5)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF10IdentClock, 1, 2)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF6Referee, 1, 4)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF11OptaTop5, 3, 2)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF1FullFramers, 0, 3)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF2PlayerStatsCtrlF2, 1, 3)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF9AddedTree, 0, 5)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF7FirstTeamStuff, 3, 1)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF5PlayerBio, 0, 4)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF3L3Subs, 3, 0)
-    Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 360)
-    Me.TableLayoutPanel4.Margin = New System.Windows.Forms.Padding(0)
-    Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
-    Me.TableLayoutPanel4.RowCount = 10
-    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
-    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
-    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
-    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
-    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
-    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
-    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
-    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
-    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
-    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.997302!))
-    Me.TableLayoutPanel4.Size = New System.Drawing.Size(641, 201)
-    Me.TableLayoutPanel4.TabIndex = 1
-    '
-    'ButtonAltF6HtFtBug
-    '
-    Me.ButtonAltF6HtFtBug.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonAltF6HtFtBug.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonAltF6HtFtBug.Location = New System.Drawing.Point(498, 181)
-    Me.ButtonAltF6HtFtBug.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonAltF6HtFtBug.Name = "ButtonAltF6HtFtBug"
-    Me.ButtonAltF6HtFtBug.Size = New System.Drawing.Size(142, 19)
-    Me.ButtonAltF6HtFtBug.TabIndex = 291
-    Me.ButtonAltF6HtFtBug.Text = "HT FT BUG Alt+F6"
-    Me.ButtonAltF6HtFtBug.UseSelectable = True
-    '
-    'ButtonShftF1PenaltyShootOut
-    '
-    Me.ButtonShftF1PenaltyShootOut.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonShftF1PenaltyShootOut.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF1PenaltyShootOut.Location = New System.Drawing.Point(1, 121)
-    Me.ButtonShftF1PenaltyShootOut.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonShftF1PenaltyShootOut.Name = "ButtonShftF1PenaltyShootOut"
-    Me.ButtonShftF1PenaltyShootOut.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonShftF1PenaltyShootOut.TabIndex = 293
-    Me.ButtonShftF1PenaltyShootOut.Text = "PENALTY SHOOTOUT Shift+F1"
-    Me.ButtonShftF1PenaltyShootOut.UseSelectable = True
-    '
-    'ButtonAltF2FreeTextCrawl
-    '
-    Me.ButtonAltF2FreeTextCrawl.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonAltF2FreeTextCrawl.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonAltF2FreeTextCrawl.Location = New System.Drawing.Point(356, 181)
-    Me.ButtonAltF2FreeTextCrawl.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonAltF2FreeTextCrawl.Name = "ButtonAltF2FreeTextCrawl"
-    Me.ButtonAltF2FreeTextCrawl.Size = New System.Drawing.Size(140, 19)
-    Me.ButtonAltF2FreeTextCrawl.TabIndex = 281
-    Me.ButtonAltF2FreeTextCrawl.Text = "FREE TEXT CRAWL        Alt+F2"
-    Me.ButtonAltF2FreeTextCrawl.UseSelectable = True
-    '
-    'ButtonShftF12MatchScoresCrawl
-    '
-    Me.ButtonShftF12MatchScoresCrawl.BackColor = System.Drawing.Color.LightSteelBlue
-    Me.ButtonShftF12MatchScoresCrawl.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF12MatchScoresCrawl.Location = New System.Drawing.Point(498, 161)
-    Me.ButtonShftF12MatchScoresCrawl.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonShftF12MatchScoresCrawl.Name = "ButtonShftF12MatchScoresCrawl"
-    Me.ButtonShftF12MatchScoresCrawl.Size = New System.Drawing.Size(142, 18)
-    Me.ButtonShftF12MatchScoresCrawl.TabIndex = 290
-    Me.ButtonShftF12MatchScoresCrawl.Text = "MATCH SCORES CRAWL Shift+F12"
-    Me.ButtonShftF12MatchScoresCrawl.UseSelectable = True
-    '
-    'ButtonShftF10ClockCard
-    '
-    Me.ButtonShftF10ClockCard.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonShftF10ClockCard.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF10ClockCard.Location = New System.Drawing.Point(143, 161)
-    Me.ButtonShftF10ClockCard.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonShftF10ClockCard.Name = "ButtonShftF10ClockCard"
-    Me.ButtonShftF10ClockCard.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonShftF10ClockCard.TabIndex = 291
-    Me.ButtonShftF10ClockCard.Text = "CLOCK CARD Shift+F10"
-    Me.ButtonShftF10ClockCard.UseSelectable = True
-    '
-    'ButtonShftF8TeamListsCrawlSF8
-    '
-    Me.ButtonShftF8TeamListsCrawlSF8.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonShftF8TeamListsCrawlSF8.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF8TeamListsCrawlSF8.Location = New System.Drawing.Point(498, 141)
-    Me.ButtonShftF8TeamListsCrawlSF8.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonShftF8TeamListsCrawlSF8.Name = "ButtonShftF8TeamListsCrawlSF8"
-    Me.ButtonShftF8TeamListsCrawlSF8.Size = New System.Drawing.Size(142, 18)
-    Me.ButtonShftF8TeamListsCrawlSF8.TabIndex = 289
-    Me.ButtonShftF8TeamListsCrawlSF8.Text = "TEAM  CRAWL Shift+F8"
-    Me.ButtonShftF8TeamListsCrawlSF8.UseSelectable = True
-    '
-    'ButtonShftF11ActionAreas
-    '
-    Me.ButtonShftF11ActionAreas.BackColor = System.Drawing.Color.SkyBlue
-    Me.ButtonShftF11ActionAreas.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF11ActionAreas.Location = New System.Drawing.Point(356, 161)
-    Me.ButtonShftF11ActionAreas.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonShftF11ActionAreas.Name = "ButtonShftF11ActionAreas"
-    Me.ButtonShftF11ActionAreas.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonShftF11ActionAreas.TabIndex = 280
-    Me.ButtonShftF11ActionAreas.Text = "ACTION AREAS Shift+F11"
-    Me.ButtonShftF11ActionAreas.UseSelectable = True
-    '
-    'ButtonTeamListsCrawl
-    '
-    Me.ButtonTeamListsCrawl.BackColor = System.Drawing.Color.SlateGray
-    Me.ButtonTeamListsCrawl.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonTeamListsCrawl.Enabled = False
-    Me.ButtonTeamListsCrawl.Location = New System.Drawing.Point(498, 121)
-    Me.ButtonTeamListsCrawl.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonTeamListsCrawl.Name = "ButtonTeamListsCrawl"
-    Me.ButtonTeamListsCrawl.Size = New System.Drawing.Size(142, 18)
-    Me.ButtonTeamListsCrawl.TabIndex = 288
-    Me.ButtonTeamListsCrawl.UseSelectable = True
-    '
-    'ButtonShftF7L3Commons
-    '
-    Me.ButtonShftF7L3Commons.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonShftF7L3Commons.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF7L3Commons.Location = New System.Drawing.Point(356, 141)
-    Me.ButtonShftF7L3Commons.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonShftF7L3Commons.Name = "ButtonShftF7L3Commons"
-    Me.ButtonShftF7L3Commons.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonShftF7L3Commons.TabIndex = 279
-    Me.ButtonShftF7L3Commons.Text = "L3 COMMONS  Shift+F7"
-    Me.ButtonShftF7L3Commons.UseSelectable = True
-    '
-    'ButtonCtlF12FFIdent
-    '
-    Me.ButtonCtlF12FFIdent.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonCtlF12FFIdent.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF12FFIdent.Location = New System.Drawing.Point(498, 101)
-    Me.ButtonCtlF12FFIdent.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF12FFIdent.Name = "ButtonCtlF12FFIdent"
-    Me.ButtonCtlF12FFIdent.Size = New System.Drawing.Size(142, 18)
-    Me.ButtonCtlF12FFIdent.TabIndex = 287
-    Me.ButtonCtlF12FFIdent.Text = "FF IDENT Ctrl+F12"
-    Me.ButtonCtlF12FFIdent.UseSelectable = True
-    '
-    'ButtonShftF9OtherScores
-    '
-    Me.ButtonShftF9OtherScores.BackColor = System.Drawing.Color.SlateGray
-    Me.ButtonShftF9OtherScores.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF9OtherScores.Location = New System.Drawing.Point(1, 161)
-    Me.ButtonShftF9OtherScores.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonShftF9OtherScores.Name = "ButtonShftF9OtherScores"
-    Me.ButtonShftF9OtherScores.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonShftF9OtherScores.TabIndex = 281
-    Me.ButtonShftF9OtherScores.Text = "OTHER SCORES Shift+F9"
-    Me.ButtonShftF9OtherScores.UseSelectable = True
-    '
-    'ButtonCtlF8Bugs
-    '
-    Me.ButtonCtlF8Bugs.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonCtlF8Bugs.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF8Bugs.Location = New System.Drawing.Point(498, 81)
-    Me.ButtonCtlF8Bugs.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF8Bugs.Name = "ButtonCtlF8Bugs"
-    Me.ButtonCtlF8Bugs.Size = New System.Drawing.Size(142, 18)
-    Me.ButtonCtlF8Bugs.TabIndex = 286
-    Me.ButtonCtlF8Bugs.Text = "     BUGS      Ctrl+F8"
-    Me.ButtonCtlF8Bugs.UseSelectable = True
-    '
-    'ButtonShftF3NameNoNumber
-    '
-    Me.ButtonShftF3NameNoNumber.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonShftF3NameNoNumber.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF3NameNoNumber.Location = New System.Drawing.Point(356, 121)
-    Me.ButtonShftF3NameNoNumber.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonShftF3NameNoNumber.Name = "ButtonShftF3NameNoNumber"
-    Me.ButtonShftF3NameNoNumber.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonShftF3NameNoNumber.TabIndex = 278
-    Me.ButtonShftF3NameNoNumber.Text = "NAME NO NUMBER Shift+F3"
-    Me.ButtonShftF3NameNoNumber.UseSelectable = True
-    '
-    'ButtonShftF2Interview
-    '
-    Me.ButtonShftF2Interview.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonShftF2Interview.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF2Interview.Location = New System.Drawing.Point(143, 121)
-    Me.ButtonShftF2Interview.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonShftF2Interview.Name = "ButtonShftF2Interview"
-    Me.ButtonShftF2Interview.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonShftF2Interview.TabIndex = 289
-    Me.ButtonShftF2Interview.Text = "INTEVIEWS Shift+F2"
-    Me.ButtonShftF2Interview.UseSelectable = True
-    '
-    'ButtonCtlF4TwoWayBoxes
-    '
-    Me.ButtonCtlF4TwoWayBoxes.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonCtlF4TwoWayBoxes.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF4TwoWayBoxes.Location = New System.Drawing.Point(498, 61)
-    Me.ButtonCtlF4TwoWayBoxes.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF4TwoWayBoxes.Name = "ButtonCtlF4TwoWayBoxes"
-    Me.ButtonCtlF4TwoWayBoxes.Size = New System.Drawing.Size(142, 18)
-    Me.ButtonCtlF4TwoWayBoxes.TabIndex = 285
-    Me.ButtonCtlF4TwoWayBoxes.Text = "2 WAY BOXES Ctrl+F4"
-    Me.ButtonCtlF4TwoWayBoxes.UseSelectable = True
-    '
-    'ButtonF5TeamMatchStats
-    '
-    Me.ButtonF5TeamMatchStats.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonF5TeamMatchStats.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF5TeamMatchStats.Location = New System.Drawing.Point(1, 21)
-    Me.ButtonF5TeamMatchStats.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF5TeamMatchStats.Name = "ButtonF5TeamMatchStats"
-    Me.ButtonF5TeamMatchStats.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonF5TeamMatchStats.TabIndex = 275
-    Me.ButtonF5TeamMatchStats.Text = "  TEAM STATS   F5"
-    Me.ButtonF5TeamMatchStats.UseSelectable = True
-    '
-    'ButtonCtlF11AsItStands
-    '
-    Me.ButtonCtlF11AsItStands.BackColor = System.Drawing.Color.LightSteelBlue
-    Me.ButtonCtlF11AsItStands.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF11AsItStands.Location = New System.Drawing.Point(356, 101)
-    Me.ButtonCtlF11AsItStands.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF11AsItStands.Name = "ButtonCtlF11AsItStands"
-    Me.ButtonCtlF11AsItStands.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonCtlF11AsItStands.TabIndex = 277
-    Me.ButtonCtlF11AsItStands.Text = "AS IT STANDS Ctrl+F11"
-    Me.ButtonCtlF11AsItStands.UseSelectable = True
-    '
-    'ButtonF12VideoTalkThroughts
-    '
-    Me.ButtonF12VideoTalkThroughts.BackColor = System.Drawing.Color.LightSteelBlue
-    Me.ButtonF12VideoTalkThroughts.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF12VideoTalkThroughts.Location = New System.Drawing.Point(498, 41)
-    Me.ButtonF12VideoTalkThroughts.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF12VideoTalkThroughts.Name = "ButtonF12VideoTalkThroughts"
-    Me.ButtonF12VideoTalkThroughts.Size = New System.Drawing.Size(142, 18)
-    Me.ButtonF12VideoTalkThroughts.TabIndex = 284
-    Me.ButtonF12VideoTalkThroughts.Text = "VIDEO TALKTHR. F12"
-    Me.ButtonF12VideoTalkThroughts.UseSelectable = True
-    '
-    'ButtonShftF5TeamStatsMultiline
-    '
-    Me.ButtonShftF5TeamStatsMultiline.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonShftF5TeamStatsMultiline.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF5TeamStatsMultiline.Location = New System.Drawing.Point(1, 141)
-    Me.ButtonShftF5TeamStatsMultiline.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonShftF5TeamStatsMultiline.Name = "ButtonShftF5TeamStatsMultiline"
-    Me.ButtonShftF5TeamStatsMultiline.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonShftF5TeamStatsMultiline.TabIndex = 280
-    Me.ButtonShftF5TeamStatsMultiline.Text = "TEAM STATS MULTI Shift+F5"
-    Me.ButtonShftF5TeamStatsMultiline.UseSelectable = True
-    '
-    'ButtonF8SecondTeamStuff
-    '
-    Me.ButtonF8SecondTeamStuff.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonF8SecondTeamStuff.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF8SecondTeamStuff.Location = New System.Drawing.Point(498, 21)
-    Me.ButtonF8SecondTeamStuff.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF8SecondTeamStuff.Name = "ButtonF8SecondTeamStuff"
-    Me.ButtonF8SecondTeamStuff.Size = New System.Drawing.Size(142, 18)
-    Me.ButtonF8SecondTeamStuff.TabIndex = 283
-    Me.ButtonF8SecondTeamStuff.Text = "2nd TEAM STAFF F8"
-    Me.ButtonF8SecondTeamStuff.UseSelectable = True
-    '
-    'ButtonCtlF7ScoreBugs
-    '
-    Me.ButtonCtlF7ScoreBugs.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonCtlF7ScoreBugs.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF7ScoreBugs.Location = New System.Drawing.Point(356, 81)
-    Me.ButtonCtlF7ScoreBugs.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF7ScoreBugs.Name = "ButtonCtlF7ScoreBugs"
-    Me.ButtonCtlF7ScoreBugs.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonCtlF7ScoreBugs.TabIndex = 276
-    Me.ButtonCtlF7ScoreBugs.Text = "SCORE BUGS Ctrl+F7"
-    Me.ButtonCtlF7ScoreBugs.UseSelectable = True
-    '
-    'ButtonF6PlayerName
-    '
-    Me.ButtonF6PlayerName.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonF6PlayerName.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF6PlayerName.Location = New System.Drawing.Point(143, 21)
-    Me.ButtonF6PlayerName.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF6PlayerName.Name = "ButtonF6PlayerName"
-    Me.ButtonF6PlayerName.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonF6PlayerName.TabIndex = 284
-    Me.ButtonF6PlayerName.Text = "PLAYER NAME   F6"
-    Me.ButtonF6PlayerName.UseSelectable = True
-    '
-    'ButtonF4ClockSubs
-    '
-    Me.ButtonF4ClockSubs.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonF4ClockSubs.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF4ClockSubs.Location = New System.Drawing.Point(498, 1)
-    Me.ButtonF4ClockSubs.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF4ClockSubs.Name = "ButtonF4ClockSubs"
-    Me.ButtonF4ClockSubs.Size = New System.Drawing.Size(142, 18)
-    Me.ButtonF4ClockSubs.TabIndex = 282
-    Me.ButtonF4ClockSubs.Text = "  CLOCK SUBS   F4"
-    Me.ButtonF4ClockSubs.UseSelectable = True
-    '
-    'ButtonF9TeamCaptions
-    '
-    Me.ButtonF9TeamCaptions.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonF9TeamCaptions.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF9TeamCaptions.Location = New System.Drawing.Point(1, 41)
-    Me.ButtonF9TeamCaptions.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF9TeamCaptions.Name = "ButtonF9TeamCaptions"
-    Me.ButtonF9TeamCaptions.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonF9TeamCaptions.TabIndex = 276
-    Me.ButtonF9TeamCaptions.Text = "TEAM CAPTIONS F9"
-    Me.ButtonF9TeamCaptions.UseSelectable = True
-    '
-    'ButtonCtlF3ClockDropDown
-    '
-    Me.ButtonCtlF3ClockDropDown.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonCtlF3ClockDropDown.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF3ClockDropDown.Location = New System.Drawing.Point(356, 61)
-    Me.ButtonCtlF3ClockDropDown.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF3ClockDropDown.Name = "ButtonCtlF3ClockDropDown"
-    Me.ButtonCtlF3ClockDropDown.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonCtlF3ClockDropDown.TabIndex = 275
-    Me.ButtonCtlF3ClockDropDown.Text = "CLOCK DROP DOWN Ctrl+F3"
-    Me.ButtonCtlF3ClockDropDown.UseSelectable = True
-    '
-    'ButtonCtlF10L3TeamStatsDb
-    '
-    Me.ButtonCtlF10L3TeamStatsDb.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonCtlF10L3TeamStatsDb.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF10L3TeamStatsDb.Location = New System.Drawing.Point(143, 101)
-    Me.ButtonCtlF10L3TeamStatsDb.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF10L3TeamStatsDb.Name = "ButtonCtlF10L3TeamStatsDb"
-    Me.ButtonCtlF10L3TeamStatsDb.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonCtlF10L3TeamStatsDb.TabIndex = 288
-    Me.ButtonCtlF10L3TeamStatsDb.Text = "L3 TEAM STATS Ctrl+F10"
-    Me.ButtonCtlF10L3TeamStatsDb.UseSelectable = True
-    '
-    'ButtonF10IdentClock
-    '
-    Me.ButtonF10IdentClock.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonF10IdentClock.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF10IdentClock.Location = New System.Drawing.Point(143, 41)
-    Me.ButtonF10IdentClock.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF10IdentClock.Name = "ButtonF10IdentClock"
-    Me.ButtonF10IdentClock.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonF10IdentClock.TabIndex = 285
-    Me.ButtonF10IdentClock.Text = "IDENT CLOCK F10"
-    Me.ButtonF10IdentClock.UseSelectable = True
-    '
-    'ButtonCtlF6Referee
-    '
-    Me.ButtonCtlF6Referee.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonCtlF6Referee.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF6Referee.Location = New System.Drawing.Point(143, 81)
-    Me.ButtonCtlF6Referee.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF6Referee.Name = "ButtonCtlF6Referee"
-    Me.ButtonCtlF6Referee.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonCtlF6Referee.TabIndex = 287
-    Me.ButtonCtlF6Referee.Text = "REFEREE  Ctrl+F6"
-    Me.ButtonCtlF6Referee.UseSelectable = True
-    '
-    'ButtonF11OptaTop5
-    '
-    Me.ButtonF11OptaTop5.BackColor = System.Drawing.Color.LightSteelBlue
-    Me.ButtonF11OptaTop5.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF11OptaTop5.Location = New System.Drawing.Point(356, 41)
-    Me.ButtonF11OptaTop5.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF11OptaTop5.Name = "ButtonF11OptaTop5"
-    Me.ButtonF11OptaTop5.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonF11OptaTop5.TabIndex = 274
-    Me.ButtonF11OptaTop5.Text = "  OPTA TOP 5 F11"
-    Me.ButtonF11OptaTop5.UseSelectable = True
-    '
-    'ButtonCtlF1FullFramers
-    '
-    Me.ButtonCtlF1FullFramers.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonCtlF1FullFramers.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF1FullFramers.Location = New System.Drawing.Point(1, 61)
-    Me.ButtonCtlF1FullFramers.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF1FullFramers.Name = "ButtonCtlF1FullFramers"
-    Me.ButtonCtlF1FullFramers.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonCtlF1FullFramers.TabIndex = 277
-    Me.ButtonCtlF1FullFramers.Text = "FULL FRAMERS Ctrl+F1"
-    Me.ButtonCtlF1FullFramers.UseSelectable = True
-    '
-    'ButtonCtlF2PlayerStatsCtrlF2
-    '
-    Me.ButtonCtlF2PlayerStatsCtrlF2.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonCtlF2PlayerStatsCtrlF2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF2PlayerStatsCtrlF2.Location = New System.Drawing.Point(143, 61)
-    Me.ButtonCtlF2PlayerStatsCtrlF2.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF2PlayerStatsCtrlF2.Name = "ButtonCtlF2PlayerStatsCtrlF2"
-    Me.ButtonCtlF2PlayerStatsCtrlF2.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonCtlF2PlayerStatsCtrlF2.TabIndex = 286
-    Me.ButtonCtlF2PlayerStatsCtrlF2.Text = "PLAYER STATS Ctrl+F2"
-    Me.ButtonCtlF2PlayerStatsCtrlF2.UseSelectable = True
-    '
-    'ButtonCtlF9AddedTree
-    '
-    Me.ButtonCtlF9AddedTree.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonCtlF9AddedTree.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF9AddedTree.Location = New System.Drawing.Point(1, 101)
-    Me.ButtonCtlF9AddedTree.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF9AddedTree.Name = "ButtonCtlF9AddedTree"
-    Me.ButtonCtlF9AddedTree.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonCtlF9AddedTree.TabIndex = 279
-    Me.ButtonCtlF9AddedTree.Text = "ADDED TIME Ctrl+F9"
-    Me.ButtonCtlF9AddedTree.UseSelectable = True
-    '
-    'ButtonF7FirstTeamStuff
-    '
-    Me.ButtonF7FirstTeamStuff.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonF7FirstTeamStuff.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF7FirstTeamStuff.Location = New System.Drawing.Point(356, 21)
-    Me.ButtonF7FirstTeamStuff.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF7FirstTeamStuff.Name = "ButtonF7FirstTeamStuff"
-    Me.ButtonF7FirstTeamStuff.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonF7FirstTeamStuff.TabIndex = 273
-    Me.ButtonF7FirstTeamStuff.Tag = ""
-    Me.ButtonF7FirstTeamStuff.Text = "1st TEAM STAFF F7"
-    Me.ButtonF7FirstTeamStuff.UseSelectable = True
-    '
-    'ButtonCtlF5PlayerBio
-    '
-    Me.ButtonCtlF5PlayerBio.BackColor = System.Drawing.Color.LightSteelBlue
-    Me.ButtonCtlF5PlayerBio.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF5PlayerBio.Location = New System.Drawing.Point(1, 81)
-    Me.ButtonCtlF5PlayerBio.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF5PlayerBio.Name = "ButtonCtlF5PlayerBio"
-    Me.ButtonCtlF5PlayerBio.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonCtlF5PlayerBio.TabIndex = 278
-    Me.ButtonCtlF5PlayerBio.Text = "PLAYER BIO Ctrl+F5"
-    Me.ButtonCtlF5PlayerBio.UseSelectable = True
-    '
-    'ButtonF3L3Subs
-    '
-    Me.ButtonF3L3Subs.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonF3L3Subs.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF3L3Subs.Location = New System.Drawing.Point(356, 1)
-    Me.ButtonF3L3Subs.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF3L3Subs.Name = "ButtonF3L3Subs"
-    Me.ButtonF3L3Subs.Size = New System.Drawing.Size(140, 18)
-    Me.ButtonF3L3Subs.TabIndex = 272
-    Me.ButtonF3L3Subs.Text = "     L3 SUBS      F3"
-    Me.ButtonF3L3Subs.UseSelectable = True
-    '
-    'Panel1
-    '
-    Me.Panel1.HorizontalScrollbarBarColor = True
-    Me.Panel1.HorizontalScrollbarHighlightOnWheel = False
-    Me.Panel1.HorizontalScrollbarSize = 10
-    Me.Panel1.Location = New System.Drawing.Point(3, 564)
-    Me.Panel1.Name = "Panel1"
-    Me.Panel1.Size = New System.Drawing.Size(313, 74)
-    Me.Panel1.TabIndex = 2
-    Me.Panel1.VerticalScrollbarBarColor = True
-    Me.Panel1.VerticalScrollbarHighlightOnWheel = False
-    Me.Panel1.VerticalScrollbarSize = 10
-    '
-    'TableLayoutPanelClock
-    '
-    Me.TableLayoutPanelClock.ColumnCount = 2
-    Me.TableLayoutPanelControls.SetColumnSpan(Me.TableLayoutPanelClock, 2)
-    Me.TableLayoutPanelClock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-    Me.TableLayoutPanelClock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelClock.Controls.Add(Me.MetroTileClockControls, 0, 0)
-    Me.TableLayoutPanelClock.Controls.Add(Me.TableLayoutPanel3, 0, 1)
-    Me.TableLayoutPanelClock.Controls.Add(Me.TableLayoutPanelClockControl, 1, 1)
-    Me.TableLayoutPanelClock.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanelClock.Location = New System.Drawing.Point(3, 3)
-    Me.TableLayoutPanelClock.Name = "TableLayoutPanelClock"
-    Me.TableLayoutPanelClock.RowCount = 2
-    Me.TableLayoutPanelClock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-    Me.TableLayoutPanelClock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelClock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-    Me.TableLayoutPanelClock.Size = New System.Drawing.Size(635, 114)
-    Me.TableLayoutPanelClock.TabIndex = 4
-    '
-    'MetroTileClockControls
-    '
-    Me.MetroTileClockControls.ActiveControl = Nothing
-    Me.TableLayoutPanelClock.SetColumnSpan(Me.MetroTileClockControls, 2)
-    Me.MetroTileClockControls.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileClockControls.Location = New System.Drawing.Point(3, 3)
-    Me.MetroTileClockControls.Name = "MetroTileClockControls"
-    Me.MetroTileClockControls.Size = New System.Drawing.Size(629, 19)
-    Me.MetroTileClockControls.Style = MetroFramework.MetroColorStyle.Orange
-    Me.MetroTileClockControls.TabIndex = 0
-    Me.MetroTileClockControls.Text = "Match controls"
-    Me.MetroTileClockControls.UseSelectable = True
-    '
-    'TableLayoutPanel3
-    '
-    Me.TableLayoutPanel3.ColumnCount = 1
-    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-    Me.TableLayoutPanel3.Controls.Add(Me.MetroLabelPeriodTime, 0, 0)
-    Me.TableLayoutPanel3.Controls.Add(Me.MetroLabelPeriodName, 0, 1)
-    Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 25)
-    Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
-    Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-    Me.TableLayoutPanel3.RowCount = 2
-    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
-    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
-    Me.TableLayoutPanel3.Size = New System.Drawing.Size(100, 89)
-    Me.TableLayoutPanel3.TabIndex = 2
-    '
-    'MetroLabelPeriodTime
-    '
-    Me.MetroLabelPeriodTime.AutoSize = True
-    Me.MetroLabelPeriodTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-    Me.MetroLabelPeriodTime.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabelPeriodTime.FontSize = MetroFramework.MetroLabelSize.Tall
-    Me.MetroLabelPeriodTime.FontWeight = MetroFramework.MetroLabelWeight.Bold
-    Me.MetroLabelPeriodTime.Location = New System.Drawing.Point(3, 0)
-    Me.MetroLabelPeriodTime.Name = "MetroLabelPeriodTime"
-    Me.MetroLabelPeriodTime.Size = New System.Drawing.Size(94, 62)
-    Me.MetroLabelPeriodTime.TabIndex = 1
-    Me.MetroLabelPeriodTime.Text = "00:00"
-    Me.MetroLabelPeriodTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    '
-    'MetroLabelPeriodName
-    '
-    Me.MetroLabelPeriodName.AutoSize = True
-    Me.MetroLabelPeriodName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-    Me.MetroLabelPeriodName.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabelPeriodName.FontSize = MetroFramework.MetroLabelSize.Small
-    Me.MetroLabelPeriodName.FontWeight = MetroFramework.MetroLabelWeight.Bold
-    Me.MetroLabelPeriodName.Location = New System.Drawing.Point(3, 62)
-    Me.MetroLabelPeriodName.Name = "MetroLabelPeriodName"
-    Me.MetroLabelPeriodName.Size = New System.Drawing.Size(94, 27)
-    Me.MetroLabelPeriodName.TabIndex = 2
-    Me.MetroLabelPeriodName.Text = "1st half"
-    Me.MetroLabelPeriodName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    '
-    'TableLayoutPanelClockControl
-    '
-    Me.TableLayoutPanelClockControl.ColumnCount = 3
-    Me.TableLayoutPanelClockControl.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-    Me.TableLayoutPanelClockControl.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-    Me.TableLayoutPanelClockControl.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-    Me.TableLayoutPanelClockControl.Controls.Add(Me.MetroButtonTimeControl, 0, 0)
-    Me.TableLayoutPanelClockControl.Controls.Add(Me.ButtonAwayGoal, 1, 0)
-    Me.TableLayoutPanelClockControl.Controls.Add(Me.ButtonHomeGoal, 2, 0)
-    Me.TableLayoutPanelClockControl.Controls.Add(Me.MetroButtonManageGoals, 1, 1)
-    Me.TableLayoutPanelClockControl.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanelClockControl.Location = New System.Drawing.Point(103, 28)
-    Me.TableLayoutPanelClockControl.Name = "TableLayoutPanelClockControl"
-    Me.TableLayoutPanelClockControl.RowCount = 2
-    Me.TableLayoutPanelClockControl.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelClockControl.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelClockControl.Size = New System.Drawing.Size(529, 83)
-    Me.TableLayoutPanelClockControl.TabIndex = 3
-    '
-    'MetroButtonTimeControl
-    '
-    Me.MetroButtonTimeControl.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonTimeControl.Location = New System.Drawing.Point(3, 3)
-    Me.MetroButtonTimeControl.Name = "MetroButtonTimeControl"
-    Me.MetroButtonTimeControl.Size = New System.Drawing.Size(170, 35)
-    Me.MetroButtonTimeControl.TabIndex = 0
-    Me.MetroButtonTimeControl.Text = "Time control"
-    Me.MetroButtonTimeControl.UseSelectable = True
-    '
-    'ButtonAwayGoal
-    '
-    Me.ButtonAwayGoal.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonAwayGoal.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonAwayGoal.Location = New System.Drawing.Point(177, 1)
-    Me.ButtonAwayGoal.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonAwayGoal.Name = "ButtonAwayGoal"
-    Me.ButtonAwayGoal.Size = New System.Drawing.Size(174, 39)
-    Me.ButtonAwayGoal.TabIndex = 276
-    Me.ButtonAwayGoal.Text = "AWAY GOAL"
-    Me.ButtonAwayGoal.UseSelectable = True
-    '
-    'ButtonHomeGoal
-    '
-    Me.ButtonHomeGoal.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonHomeGoal.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonHomeGoal.Location = New System.Drawing.Point(353, 1)
-    Me.ButtonHomeGoal.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonHomeGoal.Name = "ButtonHomeGoal"
-    Me.ButtonHomeGoal.Size = New System.Drawing.Size(175, 39)
-    Me.ButtonHomeGoal.TabIndex = 275
-    Me.ButtonHomeGoal.Text = "HOME GOAL"
-    Me.ButtonHomeGoal.UseSelectable = True
-    '
-    'TableLayoutPanelMainGraphics
-    '
-    Me.TableLayoutPanelMainGraphics.ColumnCount = 4
-    Me.TableLayoutPanelControls.SetColumnSpan(Me.TableLayoutPanelMainGraphics, 2)
-    Me.TableLayoutPanelMainGraphics.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanelMainGraphics.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanelMainGraphics.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanelMainGraphics.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.MetroTileMainGraphics, 0, 0)
-    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonF1ScoreLine, 0, 1)
-    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonF2NameReporter, 1, 1)
-    Me.TableLayoutPanelMainGraphics.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanelMainGraphics.Location = New System.Drawing.Point(3, 243)
-    Me.TableLayoutPanelMainGraphics.Name = "TableLayoutPanelMainGraphics"
-    Me.TableLayoutPanelMainGraphics.RowCount = 3
-    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelMainGraphics.Size = New System.Drawing.Size(635, 114)
-    Me.TableLayoutPanelMainGraphics.TabIndex = 5
-    '
-    'MetroTileMainGraphics
-    '
-    Me.MetroTileMainGraphics.ActiveControl = Nothing
-    Me.TableLayoutPanelMainGraphics.SetColumnSpan(Me.MetroTileMainGraphics, 4)
-    Me.MetroTileMainGraphics.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileMainGraphics.Location = New System.Drawing.Point(3, 3)
-    Me.MetroTileMainGraphics.Name = "MetroTileMainGraphics"
-    Me.MetroTileMainGraphics.Size = New System.Drawing.Size(629, 19)
-    Me.MetroTileMainGraphics.TabIndex = 0
-    Me.MetroTileMainGraphics.Text = "Main graphics"
-    Me.MetroTileMainGraphics.UseSelectable = True
-    '
-    'ButtonF1ScoreLine
-    '
-    Me.ButtonF1ScoreLine.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonF1ScoreLine.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF1ScoreLine.Location = New System.Drawing.Point(1, 26)
-    Me.ButtonF1ScoreLine.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF1ScoreLine.Name = "ButtonF1ScoreLine"
-    Me.ButtonF1ScoreLine.Size = New System.Drawing.Size(156, 42)
-    Me.ButtonF1ScoreLine.TabIndex = 274
-    Me.ButtonF1ScoreLine.Text = " SCORE LINE    F1"
-    Me.ButtonF1ScoreLine.UseSelectable = True
-    '
-    'ButtonF2NameReporter
-    '
-    Me.ButtonF2NameReporter.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonF2NameReporter.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF2NameReporter.Location = New System.Drawing.Point(159, 26)
-    Me.ButtonF2NameReporter.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonF2NameReporter.Name = "ButtonF2NameReporter"
-    Me.ButtonF2NameReporter.Size = New System.Drawing.Size(156, 42)
-    Me.ButtonF2NameReporter.TabIndex = 283
-    Me.ButtonF2NameReporter.Text = "   REPORTER    F2"
-    Me.ButtonF2NameReporter.UseSelectable = True
-    '
-    'TableLayoutPanel2
-    '
-    Me.TableLayoutPanel2.ColumnCount = 2
-    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanel2.Controls.Add(Me.SplitContainerAll, 0, 0)
-    Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel2.Location = New System.Drawing.Point(20, 109)
-    Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-    Me.TableLayoutPanel2.RowCount = 1
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(1140, 647)
-    Me.TableLayoutPanel2.TabIndex = 4
-    '
-    'msmMain
-    '
-    Me.msmMain.Owner = Me
-    '
-    'TimerClock
-    '
-    Me.TimerClock.Enabled = True
-    Me.TimerClock.Interval = 250
     '
     'PlayerAwayViewer18
     '
@@ -1806,6 +845,91 @@ Partial Class frmMain
     Me.PlayerHomeViewer1.Size = New System.Drawing.Size(244, 29)
     Me.PlayerHomeViewer1.TabIndex = 3
     '
+    'TableLayoutPanelMatchInfo
+    '
+    Me.TableLayoutPanelMatchInfo.ColumnCount = 6
+    Me.TableLayoutPanel1.SetColumnSpan(Me.TableLayoutPanelMatchInfo, 2)
+    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61.0!))
+    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelHomeTeamShortName, 0, 1)
+    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelHomeTeamName, 1, 1)
+    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelHomeTeamResult, 2, 1)
+    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelAwayTeamResult, 3, 1)
+    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelAwayTeamName, 4, 1)
+    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.LabelAwayTeamShortName, 5, 1)
+    Me.TableLayoutPanelMatchInfo.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanelMatchInfo.Location = New System.Drawing.Point(3, 3)
+    Me.TableLayoutPanelMatchInfo.Name = "TableLayoutPanelMatchInfo"
+    Me.TableLayoutPanelMatchInfo.RowCount = 2
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelMatchInfo.Size = New System.Drawing.Size(483, 54)
+    Me.TableLayoutPanelMatchInfo.TabIndex = 2
+    '
+    'LabelHomeTeamShortName
+    '
+    Me.LabelHomeTeamShortName.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelHomeTeamShortName.Location = New System.Drawing.Point(3, 20)
+    Me.LabelHomeTeamShortName.Name = "LabelHomeTeamShortName"
+    Me.LabelHomeTeamShortName.Size = New System.Drawing.Size(54, 34)
+    Me.LabelHomeTeamShortName.TabIndex = 0
+    Me.LabelHomeTeamShortName.Text = "AAA"
+    Me.LabelHomeTeamShortName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'LabelHomeTeamName
+    '
+    Me.LabelHomeTeamName.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelHomeTeamName.Location = New System.Drawing.Point(63, 20)
+    Me.LabelHomeTeamName.Name = "LabelHomeTeamName"
+    Me.LabelHomeTeamName.Size = New System.Drawing.Size(135, 34)
+    Me.LabelHomeTeamName.TabIndex = 1
+    Me.LabelHomeTeamName.Text = "TEAM NAME"
+    Me.LabelHomeTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'LabelHomeTeamResult
+    '
+    Me.LabelHomeTeamResult.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelHomeTeamResult.Location = New System.Drawing.Point(204, 20)
+    Me.LabelHomeTeamResult.Name = "LabelHomeTeamResult"
+    Me.LabelHomeTeamResult.Size = New System.Drawing.Size(34, 34)
+    Me.LabelHomeTeamResult.TabIndex = 2
+    Me.LabelHomeTeamResult.Text = "00"
+    Me.LabelHomeTeamResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'LabelAwayTeamResult
+    '
+    Me.LabelAwayTeamResult.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelAwayTeamResult.Location = New System.Drawing.Point(244, 20)
+    Me.LabelAwayTeamResult.Name = "LabelAwayTeamResult"
+    Me.LabelAwayTeamResult.Size = New System.Drawing.Size(34, 34)
+    Me.LabelAwayTeamResult.TabIndex = 2
+    Me.LabelAwayTeamResult.Text = "00"
+    Me.LabelAwayTeamResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'LabelAwayTeamName
+    '
+    Me.LabelAwayTeamName.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelAwayTeamName.Location = New System.Drawing.Point(284, 20)
+    Me.LabelAwayTeamName.Name = "LabelAwayTeamName"
+    Me.LabelAwayTeamName.Size = New System.Drawing.Size(135, 34)
+    Me.LabelAwayTeamName.TabIndex = 1
+    Me.LabelAwayTeamName.Text = "TEAM NAME"
+    Me.LabelAwayTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'LabelAwayTeamShortName
+    '
+    Me.LabelAwayTeamShortName.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelAwayTeamShortName.Location = New System.Drawing.Point(425, 20)
+    Me.LabelAwayTeamShortName.Name = "LabelAwayTeamShortName"
+    Me.LabelAwayTeamShortName.Size = New System.Drawing.Size(55, 34)
+    Me.LabelAwayTeamShortName.TabIndex = 0
+    Me.LabelAwayTeamShortName.Text = "AAA"
+    Me.LabelAwayTeamShortName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
     'PlayerAwayViewer1
     '
     Me.PlayerAwayViewer1.BackColor = System.Drawing.Color.White
@@ -1819,6 +943,799 @@ Partial Class frmMain
     Me.PlayerAwayViewer1.Size = New System.Drawing.Size(245, 29)
     Me.PlayerAwayViewer1.TabIndex = 22
     '
+    'MetroTileAlternates
+    '
+    Me.MetroTileAlternates.ActiveControl = Nothing
+    Me.TableLayoutPanel1.SetColumnSpan(Me.MetroTileAlternates, 2)
+    Me.MetroTileAlternates.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTileAlternates.Location = New System.Drawing.Point(3, 382)
+    Me.MetroTileAlternates.Name = "MetroTileAlternates"
+    Me.MetroTileAlternates.Size = New System.Drawing.Size(483, 23)
+    Me.MetroTileAlternates.TabIndex = 40
+    Me.MetroTileAlternates.Text = "ALTERNATES"
+    Me.MetroTileAlternates.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+    Me.MetroTileAlternates.UseSelectable = True
+    '
+    'TableLayoutPanelControls
+    '
+    Me.TableLayoutPanelControls.ColumnCount = 2
+    Me.TableLayoutPanelControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanelControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanelControls.Controls.Add(Me.TableLayoutPanel8Clock, 0, 1)
+    Me.TableLayoutPanelControls.Controls.Add(Me.TableLayoutPanel4, 0, 3)
+    Me.TableLayoutPanelControls.Controls.Add(Me.Panel1, 1, 3)
+    Me.TableLayoutPanelControls.Controls.Add(Me.TableLayoutPanelClock, 0, 0)
+    Me.TableLayoutPanelControls.Controls.Add(Me.TableLayoutPanelMainGraphics, 0, 2)
+    Me.TableLayoutPanelControls.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanelControls.Location = New System.Drawing.Point(0, 0)
+    Me.TableLayoutPanelControls.Name = "TableLayoutPanelControls"
+    Me.TableLayoutPanelControls.RowCount = 5
+    Me.TableLayoutPanelControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
+    Me.TableLayoutPanelControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
+    Me.TableLayoutPanelControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
+    Me.TableLayoutPanelControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
+    Me.TableLayoutPanelControls.Size = New System.Drawing.Size(641, 641)
+    Me.TableLayoutPanelControls.TabIndex = 0
+    '
+    'TableLayoutPanel8Clock
+    '
+    Me.TableLayoutPanel8Clock.ColumnCount = 4
+    Me.TableLayoutPanelControls.SetColumnSpan(Me.TableLayoutPanel8Clock, 2)
+    Me.TableLayoutPanel8Clock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanel8Clock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanel8Clock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanel8Clock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroTileClock, 0, 0)
+    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockSubstitutions, 1, 1)
+    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockOUT, 0, 2)
+    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockIN, 0, 1)
+    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroTileClockBasedGraphics, 1, 0)
+    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockStats, 2, 1)
+    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockOtherScores, 1, 2)
+    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockPenalties, 2, 2)
+    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockStrapsWithIcon, 3, 1)
+    Me.TableLayoutPanel8Clock.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel8Clock.Location = New System.Drawing.Point(3, 123)
+    Me.TableLayoutPanel8Clock.Name = "TableLayoutPanel8Clock"
+    Me.TableLayoutPanel8Clock.RowCount = 3
+    Me.TableLayoutPanel8Clock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
+    Me.TableLayoutPanel8Clock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanel8Clock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanel8Clock.Size = New System.Drawing.Size(635, 114)
+    Me.TableLayoutPanel8Clock.TabIndex = 3
+    '
+    'MetroTileClock
+    '
+    Me.MetroTileClock.ActiveControl = Nothing
+    Me.MetroTileClock.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTileClock.Location = New System.Drawing.Point(3, 3)
+    Me.MetroTileClock.Name = "MetroTileClock"
+    Me.MetroTileClock.Size = New System.Drawing.Size(152, 19)
+    Me.MetroTileClock.TabIndex = 0
+    Me.MetroTileClock.Text = "Clock controls"
+    Me.MetroTileClock.UseSelectable = True
+    '
+    'MetroButtonClockSubstitutions
+    '
+    Me.MetroButtonClockSubstitutions.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroButtonClockSubstitutions.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockSubstitutions.Location = New System.Drawing.Point(161, 28)
+    Me.MetroButtonClockSubstitutions.Name = "MetroButtonClockSubstitutions"
+    Me.MetroButtonClockSubstitutions.Size = New System.Drawing.Size(152, 38)
+    Me.MetroButtonClockSubstitutions.TabIndex = 3
+    Me.MetroButtonClockSubstitutions.Text = "Substitutions F4"
+    Me.MetroButtonClockSubstitutions.UseCustomBackColor = True
+    Me.MetroButtonClockSubstitutions.UseCustomForeColor = True
+    Me.MetroButtonClockSubstitutions.UseSelectable = True
+    '
+    'MetroButtonClockOUT
+    '
+    Me.MetroButtonClockOUT.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockOUT.Location = New System.Drawing.Point(3, 72)
+    Me.MetroButtonClockOUT.Name = "MetroButtonClockOUT"
+    Me.MetroButtonClockOUT.Size = New System.Drawing.Size(152, 39)
+    Me.MetroButtonClockOUT.TabIndex = 1
+    Me.MetroButtonClockOUT.Text = "Animate clock Out"
+    Me.MetroButtonClockOUT.UseSelectable = True
+    '
+    'MetroButtonClockIN
+    '
+    Me.MetroButtonClockIN.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockIN.Location = New System.Drawing.Point(3, 28)
+    Me.MetroButtonClockIN.Name = "MetroButtonClockIN"
+    Me.MetroButtonClockIN.Size = New System.Drawing.Size(152, 38)
+    Me.MetroButtonClockIN.TabIndex = 0
+    Me.MetroButtonClockIN.Text = "Animate clock in No logo"
+    Me.MetroButtonClockIN.UseSelectable = True
+    '
+    'MetroTileClockBasedGraphics
+    '
+    Me.MetroTileClockBasedGraphics.ActiveControl = Nothing
+    Me.TableLayoutPanel8Clock.SetColumnSpan(Me.MetroTileClockBasedGraphics, 3)
+    Me.MetroTileClockBasedGraphics.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTileClockBasedGraphics.Location = New System.Drawing.Point(161, 3)
+    Me.MetroTileClockBasedGraphics.Name = "MetroTileClockBasedGraphics"
+    Me.MetroTileClockBasedGraphics.Size = New System.Drawing.Size(471, 19)
+    Me.MetroTileClockBasedGraphics.TabIndex = 2
+    Me.MetroTileClockBasedGraphics.Text = "Clock based graphics"
+    Me.MetroTileClockBasedGraphics.UseSelectable = True
+    '
+    'MetroButtonClockStats
+    '
+    Me.MetroButtonClockStats.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroButtonClockStats.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockStats.Location = New System.Drawing.Point(319, 28)
+    Me.MetroButtonClockStats.Name = "MetroButtonClockStats"
+    Me.MetroButtonClockStats.Size = New System.Drawing.Size(152, 38)
+    Me.MetroButtonClockStats.TabIndex = 4
+    Me.MetroButtonClockStats.Text = "Straps"
+    Me.MetroButtonClockStats.UseCustomBackColor = True
+    Me.MetroButtonClockStats.UseCustomForeColor = True
+    Me.MetroButtonClockStats.UseSelectable = True
+    '
+    'MetroButtonClockOtherScores
+    '
+    Me.MetroButtonClockOtherScores.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroButtonClockOtherScores.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockOtherScores.Location = New System.Drawing.Point(161, 72)
+    Me.MetroButtonClockOtherScores.Name = "MetroButtonClockOtherScores"
+    Me.MetroButtonClockOtherScores.Size = New System.Drawing.Size(152, 39)
+    Me.MetroButtonClockOtherScores.TabIndex = 5
+    Me.MetroButtonClockOtherScores.Text = "Other scores"
+    Me.MetroButtonClockOtherScores.UseCustomBackColor = True
+    Me.MetroButtonClockOtherScores.UseCustomForeColor = True
+    Me.MetroButtonClockOtherScores.UseSelectable = True
+    '
+    'MetroButtonClockPenalties
+    '
+    Me.MetroButtonClockPenalties.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroButtonClockPenalties.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockPenalties.Location = New System.Drawing.Point(319, 72)
+    Me.MetroButtonClockPenalties.Name = "MetroButtonClockPenalties"
+    Me.MetroButtonClockPenalties.Size = New System.Drawing.Size(152, 39)
+    Me.MetroButtonClockPenalties.TabIndex = 6
+    Me.MetroButtonClockPenalties.Text = "Penalties"
+    Me.MetroButtonClockPenalties.UseCustomBackColor = True
+    Me.MetroButtonClockPenalties.UseCustomForeColor = True
+    Me.MetroButtonClockPenalties.UseSelectable = True
+    '
+    'MetroButtonClockStrapsWithIcon
+    '
+    Me.MetroButtonClockStrapsWithIcon.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroButtonClockStrapsWithIcon.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClockStrapsWithIcon.Location = New System.Drawing.Point(477, 28)
+    Me.MetroButtonClockStrapsWithIcon.Name = "MetroButtonClockStrapsWithIcon"
+    Me.MetroButtonClockStrapsWithIcon.Size = New System.Drawing.Size(155, 38)
+    Me.MetroButtonClockStrapsWithIcon.TabIndex = 7
+    Me.MetroButtonClockStrapsWithIcon.Text = "Straps with icon"
+    Me.MetroButtonClockStrapsWithIcon.UseCustomBackColor = True
+    Me.MetroButtonClockStrapsWithIcon.UseCustomForeColor = True
+    Me.MetroButtonClockStrapsWithIcon.UseSelectable = True
+    '
+    'TableLayoutPanel4
+    '
+    Me.TableLayoutPanel4.ColumnCount = 5
+    Me.TableLayoutPanelControls.SetColumnSpan(Me.TableLayoutPanel4, 2)
+    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.22222!))
+    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.22222!))
+    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
+    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.22222!))
+    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.22222!))
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonAltF6HtFtBug, 4, 9)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF1PenaltyShootOut, 0, 6)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonAltF2FreeTextCrawl, 3, 9)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF12MatchScoresCrawl, 4, 8)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF10ClockCard, 1, 8)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF8TeamListsCrawlSF8, 4, 7)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF11ActionAreas, 3, 8)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonTeamListsCrawl, 4, 6)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF7L3Commons, 3, 7)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF12FFIdent, 4, 5)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF9OtherScores, 0, 8)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF8Bugs, 4, 4)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF3NameNoNumber, 3, 6)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF2Interview, 1, 6)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF4TwoWayBoxes, 4, 3)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF11AsItStands, 3, 5)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF12VideoTalkThroughts, 4, 2)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF5TeamStatsMultiline, 0, 7)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF7ScoreBugs, 3, 4)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF6PlayerName, 1, 1)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF4ClockSubs, 4, 0)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF9TeamCaptions, 0, 2)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF3ClockDropDown, 3, 3)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF10L3TeamStatsDb, 1, 5)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF10IdentClock, 1, 2)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF6Referee, 1, 4)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF11OptaTop5, 3, 2)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF1FullFramers, 0, 3)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF2PlayerStatsCtrlF2, 1, 3)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF9AddedTree, 0, 5)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF5PlayerBio, 0, 4)
+    Me.TableLayoutPanel4.Controls.Add(Me.ButtonF3L3Subs, 3, 0)
+    Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 360)
+    Me.TableLayoutPanel4.Margin = New System.Windows.Forms.Padding(0)
+    Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
+    Me.TableLayoutPanel4.RowCount = 10
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0003!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.997302!))
+    Me.TableLayoutPanel4.Size = New System.Drawing.Size(641, 201)
+    Me.TableLayoutPanel4.TabIndex = 1
+    '
+    'ButtonAltF6HtFtBug
+    '
+    Me.ButtonAltF6HtFtBug.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonAltF6HtFtBug.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonAltF6HtFtBug.Location = New System.Drawing.Point(498, 181)
+    Me.ButtonAltF6HtFtBug.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonAltF6HtFtBug.Name = "ButtonAltF6HtFtBug"
+    Me.ButtonAltF6HtFtBug.Size = New System.Drawing.Size(142, 19)
+    Me.ButtonAltF6HtFtBug.TabIndex = 291
+    Me.ButtonAltF6HtFtBug.Text = "HT FT BUG Alt+F6"
+    Me.ButtonAltF6HtFtBug.UseSelectable = True
+    '
+    'ButtonShftF1PenaltyShootOut
+    '
+    Me.ButtonShftF1PenaltyShootOut.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonShftF1PenaltyShootOut.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShftF1PenaltyShootOut.Location = New System.Drawing.Point(1, 121)
+    Me.ButtonShftF1PenaltyShootOut.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonShftF1PenaltyShootOut.Name = "ButtonShftF1PenaltyShootOut"
+    Me.ButtonShftF1PenaltyShootOut.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonShftF1PenaltyShootOut.TabIndex = 293
+    Me.ButtonShftF1PenaltyShootOut.Text = "PENALTY SHOOTOUT Shift+F1"
+    Me.ButtonShftF1PenaltyShootOut.UseSelectable = True
+    '
+    'ButtonAltF2FreeTextCrawl
+    '
+    Me.ButtonAltF2FreeTextCrawl.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonAltF2FreeTextCrawl.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonAltF2FreeTextCrawl.Location = New System.Drawing.Point(356, 181)
+    Me.ButtonAltF2FreeTextCrawl.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonAltF2FreeTextCrawl.Name = "ButtonAltF2FreeTextCrawl"
+    Me.ButtonAltF2FreeTextCrawl.Size = New System.Drawing.Size(140, 19)
+    Me.ButtonAltF2FreeTextCrawl.TabIndex = 281
+    Me.ButtonAltF2FreeTextCrawl.Text = "FREE TEXT CRAWL        Alt+F2"
+    Me.ButtonAltF2FreeTextCrawl.UseSelectable = True
+    '
+    'ButtonShftF12MatchScoresCrawl
+    '
+    Me.ButtonShftF12MatchScoresCrawl.BackColor = System.Drawing.Color.LightSteelBlue
+    Me.ButtonShftF12MatchScoresCrawl.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShftF12MatchScoresCrawl.Location = New System.Drawing.Point(498, 161)
+    Me.ButtonShftF12MatchScoresCrawl.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonShftF12MatchScoresCrawl.Name = "ButtonShftF12MatchScoresCrawl"
+    Me.ButtonShftF12MatchScoresCrawl.Size = New System.Drawing.Size(142, 18)
+    Me.ButtonShftF12MatchScoresCrawl.TabIndex = 290
+    Me.ButtonShftF12MatchScoresCrawl.Text = "MATCH SCORES CRAWL Shift+F12"
+    Me.ButtonShftF12MatchScoresCrawl.UseSelectable = True
+    '
+    'ButtonShftF10ClockCard
+    '
+    Me.ButtonShftF10ClockCard.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonShftF10ClockCard.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShftF10ClockCard.Location = New System.Drawing.Point(143, 161)
+    Me.ButtonShftF10ClockCard.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonShftF10ClockCard.Name = "ButtonShftF10ClockCard"
+    Me.ButtonShftF10ClockCard.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonShftF10ClockCard.TabIndex = 291
+    Me.ButtonShftF10ClockCard.Text = "CLOCK CARD Shift+F10"
+    Me.ButtonShftF10ClockCard.UseSelectable = True
+    '
+    'ButtonShftF8TeamListsCrawlSF8
+    '
+    Me.ButtonShftF8TeamListsCrawlSF8.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonShftF8TeamListsCrawlSF8.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShftF8TeamListsCrawlSF8.Location = New System.Drawing.Point(498, 141)
+    Me.ButtonShftF8TeamListsCrawlSF8.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonShftF8TeamListsCrawlSF8.Name = "ButtonShftF8TeamListsCrawlSF8"
+    Me.ButtonShftF8TeamListsCrawlSF8.Size = New System.Drawing.Size(142, 18)
+    Me.ButtonShftF8TeamListsCrawlSF8.TabIndex = 289
+    Me.ButtonShftF8TeamListsCrawlSF8.Text = "TEAM  CRAWL Shift+F8"
+    Me.ButtonShftF8TeamListsCrawlSF8.UseSelectable = True
+    '
+    'ButtonShftF11ActionAreas
+    '
+    Me.ButtonShftF11ActionAreas.BackColor = System.Drawing.Color.SkyBlue
+    Me.ButtonShftF11ActionAreas.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShftF11ActionAreas.Location = New System.Drawing.Point(356, 161)
+    Me.ButtonShftF11ActionAreas.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonShftF11ActionAreas.Name = "ButtonShftF11ActionAreas"
+    Me.ButtonShftF11ActionAreas.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonShftF11ActionAreas.TabIndex = 280
+    Me.ButtonShftF11ActionAreas.Text = "ACTION AREAS Shift+F11"
+    Me.ButtonShftF11ActionAreas.UseSelectable = True
+    '
+    'ButtonTeamListsCrawl
+    '
+    Me.ButtonTeamListsCrawl.BackColor = System.Drawing.Color.SlateGray
+    Me.ButtonTeamListsCrawl.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonTeamListsCrawl.Enabled = False
+    Me.ButtonTeamListsCrawl.Location = New System.Drawing.Point(498, 121)
+    Me.ButtonTeamListsCrawl.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonTeamListsCrawl.Name = "ButtonTeamListsCrawl"
+    Me.ButtonTeamListsCrawl.Size = New System.Drawing.Size(142, 18)
+    Me.ButtonTeamListsCrawl.TabIndex = 288
+    Me.ButtonTeamListsCrawl.UseSelectable = True
+    '
+    'ButtonShftF7L3Commons
+    '
+    Me.ButtonShftF7L3Commons.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonShftF7L3Commons.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShftF7L3Commons.Location = New System.Drawing.Point(356, 141)
+    Me.ButtonShftF7L3Commons.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonShftF7L3Commons.Name = "ButtonShftF7L3Commons"
+    Me.ButtonShftF7L3Commons.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonShftF7L3Commons.TabIndex = 279
+    Me.ButtonShftF7L3Commons.Text = "L3 COMMONS  Shift+F7"
+    Me.ButtonShftF7L3Commons.UseSelectable = True
+    '
+    'ButtonCtlF12FFIdent
+    '
+    Me.ButtonCtlF12FFIdent.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonCtlF12FFIdent.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF12FFIdent.Location = New System.Drawing.Point(498, 101)
+    Me.ButtonCtlF12FFIdent.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF12FFIdent.Name = "ButtonCtlF12FFIdent"
+    Me.ButtonCtlF12FFIdent.Size = New System.Drawing.Size(142, 18)
+    Me.ButtonCtlF12FFIdent.TabIndex = 287
+    Me.ButtonCtlF12FFIdent.Text = "FF IDENT Ctrl+F12"
+    Me.ButtonCtlF12FFIdent.UseSelectable = True
+    '
+    'ButtonShftF9OtherScores
+    '
+    Me.ButtonShftF9OtherScores.BackColor = System.Drawing.Color.SlateGray
+    Me.ButtonShftF9OtherScores.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShftF9OtherScores.Location = New System.Drawing.Point(1, 161)
+    Me.ButtonShftF9OtherScores.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonShftF9OtherScores.Name = "ButtonShftF9OtherScores"
+    Me.ButtonShftF9OtherScores.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonShftF9OtherScores.TabIndex = 281
+    Me.ButtonShftF9OtherScores.Text = "OTHER SCORES Shift+F9"
+    Me.ButtonShftF9OtherScores.UseSelectable = True
+    '
+    'ButtonCtlF8Bugs
+    '
+    Me.ButtonCtlF8Bugs.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonCtlF8Bugs.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF8Bugs.Location = New System.Drawing.Point(498, 81)
+    Me.ButtonCtlF8Bugs.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF8Bugs.Name = "ButtonCtlF8Bugs"
+    Me.ButtonCtlF8Bugs.Size = New System.Drawing.Size(142, 18)
+    Me.ButtonCtlF8Bugs.TabIndex = 286
+    Me.ButtonCtlF8Bugs.Text = "     BUGS      Ctrl+F8"
+    Me.ButtonCtlF8Bugs.UseSelectable = True
+    '
+    'ButtonShftF3NameNoNumber
+    '
+    Me.ButtonShftF3NameNoNumber.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonShftF3NameNoNumber.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShftF3NameNoNumber.Location = New System.Drawing.Point(356, 121)
+    Me.ButtonShftF3NameNoNumber.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonShftF3NameNoNumber.Name = "ButtonShftF3NameNoNumber"
+    Me.ButtonShftF3NameNoNumber.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonShftF3NameNoNumber.TabIndex = 278
+    Me.ButtonShftF3NameNoNumber.Text = "NAME NO NUMBER Shift+F3"
+    Me.ButtonShftF3NameNoNumber.UseSelectable = True
+    '
+    'ButtonShftF2Interview
+    '
+    Me.ButtonShftF2Interview.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonShftF2Interview.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShftF2Interview.Location = New System.Drawing.Point(143, 121)
+    Me.ButtonShftF2Interview.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonShftF2Interview.Name = "ButtonShftF2Interview"
+    Me.ButtonShftF2Interview.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonShftF2Interview.TabIndex = 289
+    Me.ButtonShftF2Interview.Text = "INTEVIEWS Shift+F2"
+    Me.ButtonShftF2Interview.UseSelectable = True
+    '
+    'ButtonCtlF4TwoWayBoxes
+    '
+    Me.ButtonCtlF4TwoWayBoxes.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonCtlF4TwoWayBoxes.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF4TwoWayBoxes.Location = New System.Drawing.Point(498, 61)
+    Me.ButtonCtlF4TwoWayBoxes.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF4TwoWayBoxes.Name = "ButtonCtlF4TwoWayBoxes"
+    Me.ButtonCtlF4TwoWayBoxes.Size = New System.Drawing.Size(142, 18)
+    Me.ButtonCtlF4TwoWayBoxes.TabIndex = 285
+    Me.ButtonCtlF4TwoWayBoxes.Text = "2 WAY BOXES Ctrl+F4"
+    Me.ButtonCtlF4TwoWayBoxes.UseSelectable = True
+    '
+    'ButtonF5TeamMatchStats
+    '
+    Me.ButtonF5TeamMatchStats.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonF5TeamMatchStats.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF5TeamMatchStats.Location = New System.Drawing.Point(1, 48)
+    Me.ButtonF5TeamMatchStats.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF5TeamMatchStats.Name = "ButtonF5TeamMatchStats"
+    Me.ButtonF5TeamMatchStats.Size = New System.Drawing.Size(156, 20)
+    Me.ButtonF5TeamMatchStats.TabIndex = 275
+    Me.ButtonF5TeamMatchStats.Text = "  TEAM STATS   F5"
+    Me.ButtonF5TeamMatchStats.UseSelectable = True
+    '
+    'ButtonCtlF11AsItStands
+    '
+    Me.ButtonCtlF11AsItStands.BackColor = System.Drawing.Color.LightSteelBlue
+    Me.ButtonCtlF11AsItStands.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF11AsItStands.Location = New System.Drawing.Point(356, 101)
+    Me.ButtonCtlF11AsItStands.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF11AsItStands.Name = "ButtonCtlF11AsItStands"
+    Me.ButtonCtlF11AsItStands.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonCtlF11AsItStands.TabIndex = 277
+    Me.ButtonCtlF11AsItStands.Text = "AS IT STANDS Ctrl+F11"
+    Me.ButtonCtlF11AsItStands.UseSelectable = True
+    '
+    'ButtonF12VideoTalkThroughts
+    '
+    Me.ButtonF12VideoTalkThroughts.BackColor = System.Drawing.Color.LightSteelBlue
+    Me.ButtonF12VideoTalkThroughts.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF12VideoTalkThroughts.Location = New System.Drawing.Point(498, 41)
+    Me.ButtonF12VideoTalkThroughts.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF12VideoTalkThroughts.Name = "ButtonF12VideoTalkThroughts"
+    Me.ButtonF12VideoTalkThroughts.Size = New System.Drawing.Size(142, 18)
+    Me.ButtonF12VideoTalkThroughts.TabIndex = 284
+    Me.ButtonF12VideoTalkThroughts.Text = "VIDEO TALKTHR. F12"
+    Me.ButtonF12VideoTalkThroughts.UseSelectable = True
+    '
+    'ButtonShftF5TeamStatsMultiline
+    '
+    Me.ButtonShftF5TeamStatsMultiline.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonShftF5TeamStatsMultiline.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShftF5TeamStatsMultiline.Location = New System.Drawing.Point(1, 141)
+    Me.ButtonShftF5TeamStatsMultiline.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonShftF5TeamStatsMultiline.Name = "ButtonShftF5TeamStatsMultiline"
+    Me.ButtonShftF5TeamStatsMultiline.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonShftF5TeamStatsMultiline.TabIndex = 280
+    Me.ButtonShftF5TeamStatsMultiline.Text = "TEAM STATS MULTI Shift+F5"
+    Me.ButtonShftF5TeamStatsMultiline.UseSelectable = True
+    '
+    'ButtonF8SecondTeamStuff
+    '
+    Me.ButtonF8SecondTeamStuff.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonF8SecondTeamStuff.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF8SecondTeamStuff.Location = New System.Drawing.Point(475, 48)
+    Me.ButtonF8SecondTeamStuff.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF8SecondTeamStuff.Name = "ButtonF8SecondTeamStuff"
+    Me.ButtonF8SecondTeamStuff.Size = New System.Drawing.Size(159, 20)
+    Me.ButtonF8SecondTeamStuff.TabIndex = 283
+    Me.ButtonF8SecondTeamStuff.Text = "2nd TEAM STAFF F8"
+    Me.ButtonF8SecondTeamStuff.UseSelectable = True
+    '
+    'ButtonCtlF7ScoreBugs
+    '
+    Me.ButtonCtlF7ScoreBugs.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonCtlF7ScoreBugs.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF7ScoreBugs.Location = New System.Drawing.Point(356, 81)
+    Me.ButtonCtlF7ScoreBugs.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF7ScoreBugs.Name = "ButtonCtlF7ScoreBugs"
+    Me.ButtonCtlF7ScoreBugs.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonCtlF7ScoreBugs.TabIndex = 276
+    Me.ButtonCtlF7ScoreBugs.Text = "SCORE BUGS Ctrl+F7"
+    Me.ButtonCtlF7ScoreBugs.UseSelectable = True
+    '
+    'ButtonF6PlayerName
+    '
+    Me.ButtonF6PlayerName.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonF6PlayerName.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF6PlayerName.Location = New System.Drawing.Point(143, 21)
+    Me.ButtonF6PlayerName.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF6PlayerName.Name = "ButtonF6PlayerName"
+    Me.ButtonF6PlayerName.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonF6PlayerName.TabIndex = 284
+    Me.ButtonF6PlayerName.Text = "PLAYER NAME   F6"
+    Me.ButtonF6PlayerName.UseSelectable = True
+    '
+    'ButtonF4ClockSubs
+    '
+    Me.ButtonF4ClockSubs.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonF4ClockSubs.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF4ClockSubs.Location = New System.Drawing.Point(498, 1)
+    Me.ButtonF4ClockSubs.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF4ClockSubs.Name = "ButtonF4ClockSubs"
+    Me.ButtonF4ClockSubs.Size = New System.Drawing.Size(142, 18)
+    Me.ButtonF4ClockSubs.TabIndex = 282
+    Me.ButtonF4ClockSubs.Text = "  CLOCK SUBS   F4"
+    Me.ButtonF4ClockSubs.UseSelectable = True
+    '
+    'ButtonF9TeamCaptions
+    '
+    Me.ButtonF9TeamCaptions.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonF9TeamCaptions.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF9TeamCaptions.Location = New System.Drawing.Point(1, 41)
+    Me.ButtonF9TeamCaptions.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF9TeamCaptions.Name = "ButtonF9TeamCaptions"
+    Me.ButtonF9TeamCaptions.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonF9TeamCaptions.TabIndex = 276
+    Me.ButtonF9TeamCaptions.Text = "TEAM CAPTIONS F9"
+    Me.ButtonF9TeamCaptions.UseSelectable = True
+    '
+    'ButtonCtlF3ClockDropDown
+    '
+    Me.ButtonCtlF3ClockDropDown.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonCtlF3ClockDropDown.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF3ClockDropDown.Location = New System.Drawing.Point(356, 61)
+    Me.ButtonCtlF3ClockDropDown.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF3ClockDropDown.Name = "ButtonCtlF3ClockDropDown"
+    Me.ButtonCtlF3ClockDropDown.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonCtlF3ClockDropDown.TabIndex = 275
+    Me.ButtonCtlF3ClockDropDown.Text = "CLOCK DROP DOWN Ctrl+F3"
+    Me.ButtonCtlF3ClockDropDown.UseSelectable = True
+    '
+    'ButtonCtlF10L3TeamStatsDb
+    '
+    Me.ButtonCtlF10L3TeamStatsDb.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonCtlF10L3TeamStatsDb.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF10L3TeamStatsDb.Location = New System.Drawing.Point(143, 101)
+    Me.ButtonCtlF10L3TeamStatsDb.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF10L3TeamStatsDb.Name = "ButtonCtlF10L3TeamStatsDb"
+    Me.ButtonCtlF10L3TeamStatsDb.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonCtlF10L3TeamStatsDb.TabIndex = 288
+    Me.ButtonCtlF10L3TeamStatsDb.Text = "L3 TEAM STATS Ctrl+F10"
+    Me.ButtonCtlF10L3TeamStatsDb.UseSelectable = True
+    '
+    'ButtonF10IdentClock
+    '
+    Me.ButtonF10IdentClock.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonF10IdentClock.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF10IdentClock.Location = New System.Drawing.Point(143, 41)
+    Me.ButtonF10IdentClock.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF10IdentClock.Name = "ButtonF10IdentClock"
+    Me.ButtonF10IdentClock.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonF10IdentClock.TabIndex = 285
+    Me.ButtonF10IdentClock.Text = "IDENT CLOCK F10"
+    Me.ButtonF10IdentClock.UseSelectable = True
+    '
+    'ButtonCtlF6Referee
+    '
+    Me.ButtonCtlF6Referee.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonCtlF6Referee.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF6Referee.Location = New System.Drawing.Point(143, 81)
+    Me.ButtonCtlF6Referee.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF6Referee.Name = "ButtonCtlF6Referee"
+    Me.ButtonCtlF6Referee.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonCtlF6Referee.TabIndex = 287
+    Me.ButtonCtlF6Referee.Text = "REFEREE  Ctrl+F6"
+    Me.ButtonCtlF6Referee.UseSelectable = True
+    '
+    'ButtonF11OptaTop5
+    '
+    Me.ButtonF11OptaTop5.BackColor = System.Drawing.Color.LightSteelBlue
+    Me.ButtonF11OptaTop5.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF11OptaTop5.Location = New System.Drawing.Point(356, 41)
+    Me.ButtonF11OptaTop5.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF11OptaTop5.Name = "ButtonF11OptaTop5"
+    Me.ButtonF11OptaTop5.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonF11OptaTop5.TabIndex = 274
+    Me.ButtonF11OptaTop5.Text = "  OPTA TOP 5 F11"
+    Me.ButtonF11OptaTop5.UseSelectable = True
+    '
+    'ButtonCtlF1FullFramers
+    '
+    Me.ButtonCtlF1FullFramers.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonCtlF1FullFramers.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF1FullFramers.Location = New System.Drawing.Point(1, 61)
+    Me.ButtonCtlF1FullFramers.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF1FullFramers.Name = "ButtonCtlF1FullFramers"
+    Me.ButtonCtlF1FullFramers.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonCtlF1FullFramers.TabIndex = 277
+    Me.ButtonCtlF1FullFramers.Text = "FULL FRAMERS Ctrl+F1"
+    Me.ButtonCtlF1FullFramers.UseSelectable = True
+    '
+    'ButtonCtlF2PlayerStatsCtrlF2
+    '
+    Me.ButtonCtlF2PlayerStatsCtrlF2.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonCtlF2PlayerStatsCtrlF2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF2PlayerStatsCtrlF2.Location = New System.Drawing.Point(143, 61)
+    Me.ButtonCtlF2PlayerStatsCtrlF2.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF2PlayerStatsCtrlF2.Name = "ButtonCtlF2PlayerStatsCtrlF2"
+    Me.ButtonCtlF2PlayerStatsCtrlF2.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonCtlF2PlayerStatsCtrlF2.TabIndex = 286
+    Me.ButtonCtlF2PlayerStatsCtrlF2.Text = "PLAYER STATS Ctrl+F2"
+    Me.ButtonCtlF2PlayerStatsCtrlF2.UseSelectable = True
+    '
+    'ButtonCtlF9AddedTree
+    '
+    Me.ButtonCtlF9AddedTree.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonCtlF9AddedTree.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF9AddedTree.Location = New System.Drawing.Point(1, 101)
+    Me.ButtonCtlF9AddedTree.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF9AddedTree.Name = "ButtonCtlF9AddedTree"
+    Me.ButtonCtlF9AddedTree.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonCtlF9AddedTree.TabIndex = 279
+    Me.ButtonCtlF9AddedTree.Text = "ADDED TIME Ctrl+F9"
+    Me.ButtonCtlF9AddedTree.UseSelectable = True
+    '
+    'ButtonF7FirstTeamStuff
+    '
+    Me.ButtonF7FirstTeamStuff.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonF7FirstTeamStuff.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF7FirstTeamStuff.Location = New System.Drawing.Point(317, 48)
+    Me.ButtonF7FirstTeamStuff.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF7FirstTeamStuff.Name = "ButtonF7FirstTeamStuff"
+    Me.ButtonF7FirstTeamStuff.Size = New System.Drawing.Size(156, 20)
+    Me.ButtonF7FirstTeamStuff.TabIndex = 273
+    Me.ButtonF7FirstTeamStuff.Tag = ""
+    Me.ButtonF7FirstTeamStuff.Text = "1st TEAM STAFF F7"
+    Me.ButtonF7FirstTeamStuff.UseSelectable = True
+    '
+    'ButtonCtlF5PlayerBio
+    '
+    Me.ButtonCtlF5PlayerBio.BackColor = System.Drawing.Color.LightSteelBlue
+    Me.ButtonCtlF5PlayerBio.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF5PlayerBio.Location = New System.Drawing.Point(1, 81)
+    Me.ButtonCtlF5PlayerBio.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF5PlayerBio.Name = "ButtonCtlF5PlayerBio"
+    Me.ButtonCtlF5PlayerBio.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonCtlF5PlayerBio.TabIndex = 278
+    Me.ButtonCtlF5PlayerBio.Text = "PLAYER BIO Ctrl+F5"
+    Me.ButtonCtlF5PlayerBio.UseSelectable = True
+    '
+    'ButtonF3L3Subs
+    '
+    Me.ButtonF3L3Subs.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonF3L3Subs.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF3L3Subs.Location = New System.Drawing.Point(356, 1)
+    Me.ButtonF3L3Subs.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF3L3Subs.Name = "ButtonF3L3Subs"
+    Me.ButtonF3L3Subs.Size = New System.Drawing.Size(140, 18)
+    Me.ButtonF3L3Subs.TabIndex = 272
+    Me.ButtonF3L3Subs.Text = "     L3 SUBS      F3"
+    Me.ButtonF3L3Subs.UseSelectable = True
+    '
+    'Panel1
+    '
+    Me.Panel1.HorizontalScrollbarBarColor = True
+    Me.Panel1.HorizontalScrollbarHighlightOnWheel = False
+    Me.Panel1.HorizontalScrollbarSize = 10
+    Me.Panel1.Location = New System.Drawing.Point(3, 564)
+    Me.Panel1.Name = "Panel1"
+    Me.Panel1.Size = New System.Drawing.Size(313, 74)
+    Me.Panel1.TabIndex = 2
+    Me.Panel1.VerticalScrollbarBarColor = True
+    Me.Panel1.VerticalScrollbarHighlightOnWheel = False
+    Me.Panel1.VerticalScrollbarSize = 10
+    '
+    'TableLayoutPanelClock
+    '
+    Me.TableLayoutPanelClock.ColumnCount = 2
+    Me.TableLayoutPanelControls.SetColumnSpan(Me.TableLayoutPanelClock, 2)
+    Me.TableLayoutPanelClock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+    Me.TableLayoutPanelClock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelClock.Controls.Add(Me.MetroTileClockControls, 0, 0)
+    Me.TableLayoutPanelClock.Controls.Add(Me.TableLayoutPanel3, 0, 1)
+    Me.TableLayoutPanelClock.Controls.Add(Me.TableLayoutPanelClockControl, 1, 1)
+    Me.TableLayoutPanelClock.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanelClock.Location = New System.Drawing.Point(3, 3)
+    Me.TableLayoutPanelClock.Name = "TableLayoutPanelClock"
+    Me.TableLayoutPanelClock.RowCount = 2
+    Me.TableLayoutPanelClock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
+    Me.TableLayoutPanelClock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelClock.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelClock.Size = New System.Drawing.Size(635, 114)
+    Me.TableLayoutPanelClock.TabIndex = 4
+    '
+    'MetroTileClockControls
+    '
+    Me.MetroTileClockControls.ActiveControl = Nothing
+    Me.TableLayoutPanelClock.SetColumnSpan(Me.MetroTileClockControls, 2)
+    Me.MetroTileClockControls.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTileClockControls.Location = New System.Drawing.Point(3, 3)
+    Me.MetroTileClockControls.Name = "MetroTileClockControls"
+    Me.MetroTileClockControls.Size = New System.Drawing.Size(629, 19)
+    Me.MetroTileClockControls.Style = MetroFramework.MetroColorStyle.Orange
+    Me.MetroTileClockControls.TabIndex = 0
+    Me.MetroTileClockControls.Text = "Match controls"
+    Me.MetroTileClockControls.UseSelectable = True
+    '
+    'TableLayoutPanel3
+    '
+    Me.TableLayoutPanel3.ColumnCount = 1
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroLabelPeriodTime, 0, 0)
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroLabelPeriodName, 0, 1)
+    Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 25)
+    Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
+    Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+    Me.TableLayoutPanel3.RowCount = 2
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+    Me.TableLayoutPanel3.Size = New System.Drawing.Size(100, 89)
+    Me.TableLayoutPanel3.TabIndex = 2
+    '
+    'MetroLabelPeriodTime
+    '
+    Me.MetroLabelPeriodTime.AutoSize = True
+    Me.MetroLabelPeriodTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.MetroLabelPeriodTime.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabelPeriodTime.FontSize = MetroFramework.MetroLabelSize.Tall
+    Me.MetroLabelPeriodTime.FontWeight = MetroFramework.MetroLabelWeight.Bold
+    Me.MetroLabelPeriodTime.Location = New System.Drawing.Point(3, 0)
+    Me.MetroLabelPeriodTime.Name = "MetroLabelPeriodTime"
+    Me.MetroLabelPeriodTime.Size = New System.Drawing.Size(94, 62)
+    Me.MetroLabelPeriodTime.TabIndex = 1
+    Me.MetroLabelPeriodTime.Text = "00:00"
+    Me.MetroLabelPeriodTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'MetroLabelPeriodName
+    '
+    Me.MetroLabelPeriodName.AutoSize = True
+    Me.MetroLabelPeriodName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.MetroLabelPeriodName.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabelPeriodName.FontSize = MetroFramework.MetroLabelSize.Small
+    Me.MetroLabelPeriodName.FontWeight = MetroFramework.MetroLabelWeight.Bold
+    Me.MetroLabelPeriodName.Location = New System.Drawing.Point(3, 62)
+    Me.MetroLabelPeriodName.Name = "MetroLabelPeriodName"
+    Me.MetroLabelPeriodName.Size = New System.Drawing.Size(94, 27)
+    Me.MetroLabelPeriodName.TabIndex = 2
+    Me.MetroLabelPeriodName.Text = "1st half"
+    Me.MetroLabelPeriodName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'TableLayoutPanelClockControl
+    '
+    Me.TableLayoutPanelClockControl.ColumnCount = 3
+    Me.TableLayoutPanelClockControl.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+    Me.TableLayoutPanelClockControl.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+    Me.TableLayoutPanelClockControl.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+    Me.TableLayoutPanelClockControl.Controls.Add(Me.MetroButtonTimeControl, 0, 0)
+    Me.TableLayoutPanelClockControl.Controls.Add(Me.ButtonAwayGoal, 1, 0)
+    Me.TableLayoutPanelClockControl.Controls.Add(Me.ButtonHomeGoal, 2, 0)
+    Me.TableLayoutPanelClockControl.Controls.Add(Me.MetroButtonManageGoals, 1, 1)
+    Me.TableLayoutPanelClockControl.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanelClockControl.Location = New System.Drawing.Point(103, 28)
+    Me.TableLayoutPanelClockControl.Name = "TableLayoutPanelClockControl"
+    Me.TableLayoutPanelClockControl.RowCount = 2
+    Me.TableLayoutPanelClockControl.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanelClockControl.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanelClockControl.Size = New System.Drawing.Size(529, 83)
+    Me.TableLayoutPanelClockControl.TabIndex = 3
+    '
+    'MetroButtonTimeControl
+    '
+    Me.MetroButtonTimeControl.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonTimeControl.Location = New System.Drawing.Point(3, 3)
+    Me.MetroButtonTimeControl.Name = "MetroButtonTimeControl"
+    Me.MetroButtonTimeControl.Size = New System.Drawing.Size(170, 35)
+    Me.MetroButtonTimeControl.TabIndex = 0
+    Me.MetroButtonTimeControl.Text = "Time control"
+    Me.MetroButtonTimeControl.UseSelectable = True
+    '
+    'ButtonAwayGoal
+    '
+    Me.ButtonAwayGoal.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonAwayGoal.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonAwayGoal.Location = New System.Drawing.Point(177, 1)
+    Me.ButtonAwayGoal.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonAwayGoal.Name = "ButtonAwayGoal"
+    Me.ButtonAwayGoal.Size = New System.Drawing.Size(174, 39)
+    Me.ButtonAwayGoal.TabIndex = 276
+    Me.ButtonAwayGoal.Text = "AWAY GOAL"
+    Me.ButtonAwayGoal.UseSelectable = True
+    '
+    'ButtonHomeGoal
+    '
+    Me.ButtonHomeGoal.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonHomeGoal.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonHomeGoal.Location = New System.Drawing.Point(353, 1)
+    Me.ButtonHomeGoal.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonHomeGoal.Name = "ButtonHomeGoal"
+    Me.ButtonHomeGoal.Size = New System.Drawing.Size(175, 39)
+    Me.ButtonHomeGoal.TabIndex = 275
+    Me.ButtonHomeGoal.Text = "HOME GOAL"
+    Me.ButtonHomeGoal.UseSelectable = True
+    '
     'MetroButtonManageGoals
     '
     Me.MetroButtonManageGoals.Location = New System.Drawing.Point(179, 44)
@@ -1827,6 +1744,91 @@ Partial Class frmMain
     Me.MetroButtonManageGoals.TabIndex = 277
     Me.MetroButtonManageGoals.Text = "Manage goals"
     Me.MetroButtonManageGoals.UseSelectable = True
+    '
+    'TableLayoutPanelMainGraphics
+    '
+    Me.TableLayoutPanelMainGraphics.ColumnCount = 4
+    Me.TableLayoutPanelControls.SetColumnSpan(Me.TableLayoutPanelMainGraphics, 2)
+    Me.TableLayoutPanelMainGraphics.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanelMainGraphics.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanelMainGraphics.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanelMainGraphics.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.MetroTileMainGraphics, 0, 0)
+    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonF1ScoreLine, 0, 1)
+    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonF2NameReporter, 1, 1)
+    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonF5TeamMatchStats, 0, 2)
+    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonF7FirstTeamStuff, 2, 2)
+    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonF8SecondTeamStuff, 3, 2)
+    Me.TableLayoutPanelMainGraphics.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanelMainGraphics.Location = New System.Drawing.Point(3, 243)
+    Me.TableLayoutPanelMainGraphics.Name = "TableLayoutPanelMainGraphics"
+    Me.TableLayoutPanelMainGraphics.RowCount = 5
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanelMainGraphics.Size = New System.Drawing.Size(635, 114)
+    Me.TableLayoutPanelMainGraphics.TabIndex = 5
+    '
+    'MetroTileMainGraphics
+    '
+    Me.MetroTileMainGraphics.ActiveControl = Nothing
+    Me.TableLayoutPanelMainGraphics.SetColumnSpan(Me.MetroTileMainGraphics, 4)
+    Me.MetroTileMainGraphics.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTileMainGraphics.Location = New System.Drawing.Point(3, 3)
+    Me.MetroTileMainGraphics.Name = "MetroTileMainGraphics"
+    Me.MetroTileMainGraphics.Size = New System.Drawing.Size(629, 19)
+    Me.MetroTileMainGraphics.TabIndex = 0
+    Me.MetroTileMainGraphics.Text = "Main graphics"
+    Me.MetroTileMainGraphics.UseSelectable = True
+    '
+    'ButtonF1ScoreLine
+    '
+    Me.ButtonF1ScoreLine.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonF1ScoreLine.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF1ScoreLine.Location = New System.Drawing.Point(1, 26)
+    Me.ButtonF1ScoreLine.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF1ScoreLine.Name = "ButtonF1ScoreLine"
+    Me.ButtonF1ScoreLine.Size = New System.Drawing.Size(156, 20)
+    Me.ButtonF1ScoreLine.TabIndex = 274
+    Me.ButtonF1ScoreLine.Text = " SCORE LINE    F1"
+    Me.ButtonF1ScoreLine.UseSelectable = True
+    '
+    'ButtonF2NameReporter
+    '
+    Me.ButtonF2NameReporter.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonF2NameReporter.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonF2NameReporter.Location = New System.Drawing.Point(159, 26)
+    Me.ButtonF2NameReporter.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonF2NameReporter.Name = "ButtonF2NameReporter"
+    Me.ButtonF2NameReporter.Size = New System.Drawing.Size(156, 20)
+    Me.ButtonF2NameReporter.TabIndex = 283
+    Me.ButtonF2NameReporter.Text = "   REPORTER    F2"
+    Me.ButtonF2NameReporter.UseSelectable = True
+    '
+    'TableLayoutPanel2
+    '
+    Me.TableLayoutPanel2.ColumnCount = 2
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanel2.Controls.Add(Me.SplitContainerAll, 0, 0)
+    Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel2.Location = New System.Drawing.Point(20, 109)
+    Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+    Me.TableLayoutPanel2.RowCount = 1
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(1140, 647)
+    Me.TableLayoutPanel2.TabIndex = 4
+    '
+    'msmMain
+    '
+    Me.msmMain.Owner = Me
+    '
+    'TimerClock
+    '
+    Me.TimerClock.Enabled = True
+    Me.TimerClock.Interval = 250
     '
     'frmMain
     '

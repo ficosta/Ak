@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Data.Odbc
 Imports System.Data.OleDb
 Imports MatchInfo
 
@@ -32,7 +33,7 @@ Public Class StatSubject
       Return _name
     End Get
     Set(value As String)
-      _Name = value
+      _name = value
     End Set
   End Property
 
@@ -74,46 +75,43 @@ Public Class StatSubject
     End Try
   End Sub
 
+
+
   Public Sub ReadStatsFromDB()
     Try
-      Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
-      conn.Open()
 
       Dim mySQL As String = "SELECT * FROM " & Me.TableName & " WHERE MatchID=" & Me.Match_ID & " AND " & Me.FieldName & "=" & Me.ID
+      ' mySQL = "SELECT * FROM " & Me.TableName & ""
 
-      Dim CmdSQL As New OleDbCommand(mySQL, conn)
+      Dim cConn As New ADODB.Connection()
+      cConn.Open(Config.Instance.LocalConnectionString)
 
-      CmdSQL.CommandType = System.Data.CommandType.Text
-      Dim myReader As OleDbDataReader = CmdSQL.ExecuteReader()
+      Dim rs As New ADODB.Recordset
 
-      If myReader.Read() Then
-        Dim colset As DataTable = myReader.GetSchemaTable()
-        For Each stat As Stat In Me.MatchStats.StatBag
-          Try
-            Dim found As Boolean = False
-            For i As Integer = 0 To colset.Rows.Count - 1
-              If colset(i).ItemArray(0).ToString = stat.Name Then
-                found = True
-                Exit For
-              End If
-            Next
-            If found AndAlso Not IsDBNull(myReader(myReader.GetOrdinal(stat.Name))) Then
-              Dim value As Double = myReader.GetInt32(myReader.GetOrdinal(stat.Name))
-              stat.Value = value
-            End If
-          Catch ex As Exception
+      rs.Open(mySQL, cConn)
 
-          End Try
-        Next
-      Else
-        Me.WriteStatsToDB()
+      If Not rs.EOF Then
+        Me.MatchStats.Assis.Value = GetRecordsetIntValue(rs, "Assis")
+        Me.MatchStats.Saves.Value = GetRecordsetIntValue(rs, "Saves")
+        Me.MatchStats.Fouls.Value = GetRecordsetIntValue(rs, "Fouls")
+        Me.MatchStats.RedCards.Value = GetRecordsetIntValue(rs, "RCard")
+        Me.MatchStats.ShotsOn.Value = GetRecordsetIntValue(rs, "Shots_on_Target")
+        Me.MatchStats.YellowCards.Value = GetRecordsetIntValue(rs, "YCard")
+        Me.MatchStats.Formation_Pos.Value = GetRecordsetIntValue(rs, "Formation_pos")
+        Me.MatchStats.Formation_X.Value = GetRecordsetDecimalValue(rs, "Formation_X")
+        Me.MatchStats.Formation_Y.Value = GetRecordsetDecimalValue(rs, "Formation_Y")
+
+
       End If
-      myReader.Close()
-      conn.Close()
+      rs.Close()
+      cConn.Close()
+
+
     Catch ex As Exception
       Throw ex
     End Try
   End Sub
+
 
   Public Sub WriteStatsToDB()
     Try
@@ -136,33 +134,20 @@ Public Class StatSubject
       If Me.FieldName = "" Then Exit Sub
       If Me.ID = "" Then Exit Sub
 
-      Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
-      conn.Open()
+      Dim conn As New ADODB.Connection()
+      conn.Open(Config.Instance.LocalConnectionString)
 
       Dim mySQL As String = "SELECT * FROM " & Me.TableName & " WHERE MatchID=" & Me.Match_ID & " AND " & Me.FieldName & "=" & Me.ID
 
-      Dim CmdSQL As New OleDbCommand(mySQL, conn)
+      Dim rs As New ADODB.Recordset
 
-      CmdSQL.CommandType = System.Data.CommandType.Text
-      Dim myReader As OleDbDataReader = CmdSQL.ExecuteReader()
-
-
-      Dim colset As DataTable = myReader.GetSchemaTable()
-      Dim found As Boolean = False
-      For i As Integer = 0 To colset.Rows.Count - 1
-        If colset(i).ItemArray(0).ToString = stat.Name Then
-          found = True
-          Exit For
-        End If
-      Next
-
-      If found Then
-        mySQL = "UPDATE " & Me.TableName & " SET " & stat.Name & " = " & stat.Value & " WHERE MatchID=" & Me.Match_ID & " AND " & Me.FieldName & "=" & Me.ID
-        CmdSQL = New OleDbCommand(mySQL, conn)
-
-        CmdSQL.CommandType = System.Data.CommandType.Text
-        CmdSQL.ExecuteNonQuery()
+      rs.Open(mySQL, conn, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic)
+      Dim found As Boolean = Not rs.EOF
+      If Not rs.EOF Then
+        rs.Fields(stat.Name).Value = stat.Value
+        rs.Update()
       End If
+      rs.Close()
       conn.Close()
 
     Catch ex As Exception

@@ -194,6 +194,7 @@ Imports MatchInfo
     GetPlayersForMatch()
     InitStats(Match_ID, "TeamMatchStats", "teamID")
     ReadStatsFromDB()
+
   End Sub
 
   Private Function GetAllPlayers() As Boolean
@@ -211,8 +212,9 @@ Imports MatchInfo
       While myReader.Read()
 
         Dim player As New Player(myReader.GetInt32(myReader.GetOrdinal("PlayerID")))
-        player.InitStats(Me.Match_ID, "PlayerStats", "PlayerID")
         player.ID = player.PlayerID
+        player.InitStats(Me.Match_ID, "PlayerStats", "PlayerID")
+        player.ReadStatsFromDB()
         AddHandler player.StatValueChanged, AddressOf player_statValueChanged
         'player.GetPlayer()
 
@@ -341,11 +343,7 @@ Imports MatchInfo
     Try
 
       For Each player As Player In Me.AllPlayers
-        If player.PlayerPosition <> "" Then
-          If player.PlayerPosition = CStr(position) Then res = player
-
-        End If
-
+        If player.MatchStats.Formation_Pos.Value = position Then res = player
       Next
     Catch ex As Exception
     End Try

@@ -46,5 +46,8 @@ Public Class UCTeamMatchSetup
     End Set
   End Property
 
+  Public Sub Save()
+    Me.UserControlTactica1.save
+  End Sub
 End Class
 

@@ -410,7 +410,7 @@ Imports MatchInfo
     Catch ex As Exception
       Debug.Print(ex.ToString)
     End Try
-
+    Return goals
   End Function
 
   Private _saving As Boolean = False

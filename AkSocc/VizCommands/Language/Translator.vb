@@ -7,7 +7,7 @@
   End Sub
 
   Public Function GetTranslation(english As String) As String
-
+    Return english
   End Function
 
   Public Function Add(translation As Translation) As Integer

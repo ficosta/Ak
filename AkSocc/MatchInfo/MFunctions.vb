@@ -90,6 +90,51 @@ Module MFuncions
     Return sAux
   End Function
 
+
+
+  Public Function GetRecordsetIntValue(rs As ADODB.Recordset, field As String) As Integer
+    Dim res As Integer = 0
+    Try
+      res = NoNullInt(rs.Fields(field).Value)
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
+  Public Function GetRecordsetDecimalValue(rs As ADODB.Recordset, field As String) As Decimal
+    Dim res As Integer = 0
+    Try
+      res = NoNullDecimal(rs.Fields(field).Value)
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
+  Public Function GetRecordsetStringValue(rs As ADODB.Recordset, field As String) As String
+    Dim res As Integer = 0
+    Try
+      res = NoNullString(rs.Fields(field).Value)
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
+
+  Public Function GetRecordsetBooleanValue(rs As ADODB.Recordset, field As String) As Boolean
+    Dim res As Integer = 0
+    Try
+      res = NoNullBool(rs.Fields(field).Value)
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
+
+
   Public Function FormatDate(ByVal diDate As Date) As String
     Dim sAux As String = ""
     Try

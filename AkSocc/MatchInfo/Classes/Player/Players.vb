@@ -71,7 +71,7 @@ Imports System.Data.OleDb
     Dim output As Player = Nothing
     Try
       For Each SearchPlayer As Player In List
-        If SearchPlayer.PlayerPosition = CStr(position) Then
+        If SearchPlayer.Formation_Pos = position Then
           output = SearchPlayer
           Exit For
         End If

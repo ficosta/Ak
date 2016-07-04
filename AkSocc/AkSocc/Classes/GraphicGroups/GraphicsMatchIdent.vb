@@ -1,7 +1,7 @@
 ﻿Imports AkSocc
 Imports VizCommands
 
-Public Class GraphicsCtlF12MatchIdent
+Public Class GraphicsMatchIdent
   Inherits GraphicGroup
 
   Public Sub New(_match As MatchInfo.Match)
