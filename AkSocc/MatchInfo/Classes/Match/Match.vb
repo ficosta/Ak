@@ -53,7 +53,11 @@ Imports MatchInfo
   Public Property home_goals As Integer
     Get
       'If Not Me.HomeTeam Is Nothing Then _home_goals = Me.HomeTeam.Goals
-      Return _home_goals
+      If Not Me.HomeTeam Is Nothing AndAlso Not Me.HomeTeam.MatchGoals Is Nothing Then
+        Return Me.HomeTeam.MatchGoals.Count
+      Else
+        Return _home_goals
+      End If
     End Get
     Set(value As Integer)
       If home_goals <> value Then
@@ -68,7 +72,11 @@ Imports MatchInfo
   Public Property away_goals As Integer
     Get
       'If Not Me.AwayTeam Is Nothing Then _away_goals = Me.AwayTeam.Goals
-      Return _away_goals
+      If Not Me.AwayTeam Is Nothing AndAlso Not Me.AwayTeam.MatchGoals Is Nothing Then
+        Return Me.AwayTeam.MatchGoals.Count
+      Else
+        Return _away_goals
+      End If
     End Get
     Set(value As Integer)
       If _away_goals <> value Then

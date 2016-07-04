@@ -191,19 +191,31 @@ Public Class GraphicsScoreLine
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Type_1_Data_02_Text", ""))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Type_1_Data_03_Text", ""))
 
-      Dim goals As MatchInfo.MatchGoals = Me.Match.MatchGoals
-
+      Dim goals As MatchInfo.MatchGoals = Me.Match.HomeTeam.MatchGoals
       goals.Sort()
-
       For i As Integer = 1 To 11
+        Dim prefix As String = "Scoreline_Side_2_Sublines_Type_2_Goals_Left_"
         If i - 1 < goals.Count Then
           Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", goal.Minute))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", goal.GoalType.ToString))
+        Else
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", " "))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", " "))
         End If
-        scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_2_Sublines_Type_2_Goals_Left_" & i & "_Score_A", "jojo " & i))
-        scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_2_Sublines_Type_2_Goals_Left_" & i & "_Text_01", "jaja " & i))
-
-        scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_2_Sublines_Type_2_Goals_Right_" & i & "_Score_A", "jojo " & i))
-        scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_2_Sublines_Type_2_Goals_Right_" & i & "_Text_01", "jaja " & i))
+      Next
+      goals = Me.Match.AwayTeam.MatchGoals
+      goals.Sort()
+      For i As Integer = 1 To 11
+        Dim prefix As String = "Scoreline_Side_2_Sublines_Type_2_Goals_Right_"
+        If i - 1 < goals.Count Then
+          Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", goal.Minute))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", goal.GoalType.ToString))
+        Else
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", " "))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", " "))
+        End If
       Next
 
 

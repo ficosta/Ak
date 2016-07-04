@@ -12,7 +12,11 @@ Module MFuncions
   Public Function NoNullInt(ByVal CiValor As Object) As Integer
     Dim nRes As Integer
     Try
-      nRes = CInt(CiValor)
+      If IsDBNull(CiValor) Then
+        nRes = 0
+      Else
+        nRes = CInt(CiValor)
+      End If
     Catch ex As Exception
       nRes = 0
     End Try

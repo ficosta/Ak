@@ -5,9 +5,9 @@
   Private Shared ReadOnly _instance As New Lazy(Of GraphicVersions)(Function() New GraphicVersions(), System.Threading.LazyThreadSafetyMode.ExecutionAndPublication)
 
   Private Sub New()
-    Me.Add(New GraphicVersion("Saudi league", "CHANNELS/MBC_SPORTS/2016/CPC_2016/Ingame_Alkamel/", "CHANNELS/MBC_SPORTS/Badges/512/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Jerseys/Pics/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/3D_LOGOS/"))
-    Me.Add(New GraphicVersion("Saudi league old", "MBC/Football/Scenes/"))
-    Me.Add(New GraphicVersion("Cup", "MBC/CUP/"))
+    Me.Add(New GraphicVersion("Saudi league", "BeInReal/MBC/Football/Scenes/", "CHANNELS/MBC_SPORTS/Badges/512/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Jerseys/Pics/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/3D_LOGOS/"))
+    Me.Add(New GraphicVersion("Saudi league old", "BeInReal/MBC/Football/Scenes/"))
+    Me.Add(New GraphicVersion("Cup", "CHANNELS/MBC_SPORTS/2016/CPC_2016/Ingame_Alkamel/"))
   End Sub
 
   Public Shared ReadOnly Property Instance() As GraphicVersions

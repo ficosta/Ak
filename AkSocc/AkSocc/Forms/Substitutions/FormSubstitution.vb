@@ -58,13 +58,13 @@ Public Class FormSubstitution
       grid.Rows.Clear()
       For Each player As Player In players
         Dim showPlayer As Boolean = False
-        If isBench = False And player.PlayerPosition <= 11 Then
+        If isBench = False And player.Formation_Pos <= 11 Then
           showPlayer = True
-        ElseIf isBench = True And player.PlayerPosition > 11 Then
+        ElseIf isBench = True And player.Formation_Pos > 11 Then
           showPlayer = True
         End If
         If showPlayer Then
-          Dim itm As Integer = grid.Rows.Add(player.PlayerID, player.PlayerName, player.SquadNo, player.PlayerPosition)
+          Dim itm As Integer = grid.Rows.Add(player.PlayerID, player.PlayerName, player.SquadNo, player.Formation_Pos)
           grid.Rows(itm).Selected = False
         End If
 

@@ -63,9 +63,9 @@ Public Class FormSubstitutions
       dlg.Team = team
       If dlg.ShowDialog(Me) = DialogResult.OK Then
         Dim subs As New Substitution() With {.Team = team, .PlayerIn = dlg.PlayerIn, .PlayerOut = dlg.PlayerOut, .part = _match.MatchPeriods.ActivePeriod.Part, .timeInSeconds = _match.MatchPeriods.ActivePeriod.PlayingTime}
-        Dim aux As Integer = subs.PlayerIn.PlayerPosition
-        subs.PlayerIn.PlayerPosition = subs.PlayerOut.PlayerPosition
-        subs.PlayerOut.PlayerPosition = aux
+        Dim aux As Integer = subs.PlayerIn.Formation_Pos
+        subs.PlayerIn.Formation_Pos = subs.PlayerOut.Formation_Pos
+        subs.PlayerOut.Formation_Pos = aux
         _substitution = subs
         team.Substitutions.Add(subs)
         Me.ShowSubstitutions()
