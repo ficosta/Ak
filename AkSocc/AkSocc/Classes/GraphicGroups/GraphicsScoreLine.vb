@@ -147,6 +147,8 @@ Public Class GraphicsScoreLine
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Control_OMO_Subline_Type_Base", "0"))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Data_Control_OMO_Data", "0"))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Type_1_Data_01_Text", period_Name))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Type_1_Data_02_Text", ""))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Type_1_Data_03_Text", ""))
 
       If show_Logo Then
         scene.SceneParameters.Add(New SceneParameter("Scoreline_show_Logo", "1"))
@@ -184,6 +186,10 @@ Public Class GraphicsScoreLine
 
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Control_OMO_Subline_Type_Base", "1"))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Data_Control_OMO_Data", "1"))
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Type_1_Data_01_Text", ""))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Type_1_Data_02_Text", ""))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_1_Bottom_Sublines_Type_1_Data_03_Text", ""))
 
       Dim goals As MatchInfo.MatchGoals = Me.Match.MatchGoals
 
