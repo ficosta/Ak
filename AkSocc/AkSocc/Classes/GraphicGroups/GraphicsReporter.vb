@@ -75,13 +75,13 @@ Public Class GraphicsReporter
 
     scene.VizLayer = SceneLayer.Middle
     scene.SceneName = "gfx_Lower3rd"
-    scene.SceneDirector = "anim_lower3rd$In_Out"
-    scene.SceneDirectorsIn.Add("anim_lower3rd$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("anim_lower3rd$In_Out", 75, DirectorAction.Dummy)
+    scene.SceneDirector = "DIR_MAIN$In_Out"
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
     scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("BottomChange", 0, DirectorAction.Rewind)
 
-    scene.SceneDirectorsOut.Add("anim_lower3rd$In_Out", 0, DirectorAction.ContinueNormal)
+    scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
     scene.SceneDirectorsChangeIn.Add("BottomChange", 0, DirectorAction.Start)
     scene.SceneDirectorsChangeIn.Add("BottomChange", 200, DirectorAction.Dummy)

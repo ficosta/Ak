@@ -24,11 +24,21 @@ Public Class Rellotge
   Public AddedTimeTotalVisible As Boolean = False
   Public nPuOffsetTime As Long
 
+  Private WithEvents _match As Match
+
+
   Public Property VizControl As VizCommands.VizControl
 
-  Public Sub ActualitzarMarcador(ByVal CiPartit As Match, Optional ByVal biForceSend As Boolean = False)
+
+
+  Public Sub UpdateClock(ByVal match As Match, Optional ByVal biForceSend As Boolean = False)
+    _match = match
+    UpdateClock(biForceSend)
+  End Sub
+
+  Public Sub UpdateClock(Optional ByVal biForceSend As Boolean = False)
     Dim COld As Rellotge
-    If CiPartit Is Nothing Then Exit Sub
+    If _match Is Nothing Then Exit Sub
     COld = CType(Me.Clone, Rellotge)
     Static nLastClockSent1 As Integer
     Static nLastClockSent2 As Integer
@@ -40,13 +50,11 @@ Public Class Rellotge
     bBusy = True
 
     Try
-
       With Me
-
-        .NomEquipLocal = UCase(CiPartit.HomeTeam.TeamAELTinyName)
-        .NomEquipVisitant = UCase(CiPartit.AwayTeam.TeamAELTinyName)
-        .ResultatEquipLocal = CiPartit.home_goals
-        .ResultatEquipVisitant = CiPartit.away_goals
+        .NomEquipLocal = UCase(_match.HomeTeam.TeamAELTinyName)
+        .NomEquipVisitant = UCase(_match.AwayTeam.TeamAELTinyName)
+        .ResultatEquipLocal = _match.home_goals
+        .ResultatEquipVisitant = _match.away_goals
 
         'If Not CiPartit.MatchPeriods.CPiPeriodeActiu Is Nothing Then
         '  .IDPart = CiPartit.MatchPeriods.CPiPeriodeActiu.Part
@@ -123,7 +131,7 @@ Public Class Rellotge
         End If
 
         If .Visible = False And .RequestVisible = True Then
-          If Not CiPartit.MatchPeriods.ActivePeriod Is Nothing Then
+          If Not _match.MatchPeriods.ActivePeriod Is Nothing Then
             Me.VizControl.DirectorStart(.CPuScene.SceneDirector, .CPuScene.VizLayer)
             .Visible = True
 
@@ -135,11 +143,11 @@ Public Class Rellotge
           'Mostrar el temps afegit!
           .AddedTimeVisible = True
           .VizControl.ClockStop(1)
-          .VizControl.ClockSet(1, CInt(CiPartit.MatchPeriods.ActivePeriod.TotalTime))
-          nLastClockSent1 = CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime)
+          .VizControl.ClockSet(1, CInt(_match.MatchPeriods.ActivePeriod.TotalTime))
+          nLastClockSent1 = CInt(_match.MatchPeriods.ActivePeriod.PlayingTime)
           dLastTimeClockSent1 = Now
-          .VizControl.ClockSet(2, CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime - CiPartit.MatchPeriods.ActivePeriod.TotalTime))
-          nLastClockSent2 = CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime - CiPartit.MatchPeriods.ActivePeriod.TotalTime)
+          .VizControl.ClockSet(2, CInt(_match.MatchPeriods.ActivePeriod.PlayingTime - _match.MatchPeriods.ActivePeriod.TotalTime))
+          nLastClockSent2 = CInt(_match.MatchPeriods.ActivePeriod.PlayingTime - _match.MatchPeriods.ActivePeriod.TotalTime)
           dLastTimeClockSent2 = Now
           .VizControl.ClockStart(2)
           .VizControl.DirectorStart("DIR_Added_Time", .CPuScene.VizLayer)
@@ -232,20 +240,20 @@ Public Class Rellotge
         End If
 
         If .nPuOffsetTime <> COld.nPuOffsetTime Or biForceSend Then
-          If Not CiPartit.MatchPeriods.ActivePeriod Is Nothing AndAlso CiPartit.MatchPeriods.ActivePeriod.PlayingTime < CiPartit.MatchPeriods.ActivePeriod.TotalTime Then
-            If DateDiff(DateInterval.Second, dLastTimeClockSent1, Now) <> CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime) - nLastClockSent1 Then
-              Debug.Print(DateDiff(DateInterval.Second, Now, dLastTimeClockSent1) & " " & CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime) - nLastClockSent1)
-              CiPartit.MatchPeriods.ActivePeriod.LoadPart()
-              .VizControl.ClockSet(1, CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime))
-              nLastClockSent1 = CInt(CiPartit.MatchPeriods.ActivePeriod.PlayingTime)
+          If Not _match.MatchPeriods.ActivePeriod Is Nothing AndAlso _match.MatchPeriods.ActivePeriod.PlayingTime < _match.MatchPeriods.ActivePeriod.TotalTime Then
+            If DateDiff(DateInterval.Second, dLastTimeClockSent1, Now) <> CInt(_match.MatchPeriods.ActivePeriod.PlayingTime) - nLastClockSent1 Then
+              Debug.Print(DateDiff(DateInterval.Second, Now, dLastTimeClockSent1) & " " & CInt(_match.MatchPeriods.ActivePeriod.PlayingTime) - nLastClockSent1)
+              _match.MatchPeriods.ActivePeriod.LoadPart()
+              .VizControl.ClockSet(1, CInt(_match.MatchPeriods.ActivePeriod.PlayingTime))
+              nLastClockSent1 = CInt(_match.MatchPeriods.ActivePeriod.PlayingTime)
               dLastTimeClockSent1 = Now
               .VizControl.ClockStart(1)
             End If
           Else
             .VizControl.ClockStop(1)
-            If Not CiPartit.MatchPeriods.ActivePeriod Is Nothing Then
-              .VizControl.ClockSet(1, CInt(CiPartit.MatchPeriods.ActivePeriod.TotalTime))
-              nLastClockSent1 = CInt(CiPartit.MatchPeriods.ActivePeriod.TotalTime)
+            If Not _match.MatchPeriods.ActivePeriod Is Nothing Then
+              .VizControl.ClockSet(1, CInt(_match.MatchPeriods.ActivePeriod.TotalTime))
+              nLastClockSent1 = CInt(_match.MatchPeriods.ActivePeriod.TotalTime)
             End If
             dLastTimeClockSent1 = Now
           End If
@@ -307,7 +315,7 @@ Public Class Rellotge
       Me.AddedTimeVisibleAuto = True
 
       If Not CiPartit.MatchPeriods.ActivePeriod Is Nothing Then
-        Me.ActualitzarMarcador(CiPartit)
+        Me.UpdateClock(CiPartit)
         'Me.VizControl.DirectorStart(Me.CPuScene.DirectorIn, Me.CPuScene.VizLayer)
         Me.RequestVisible = True
       Else
@@ -318,4 +326,11 @@ Public Class Rellotge
     End Try
   End Sub
 
+  Private Sub _match_ActivePeriodStateChanged() Handles _match.ActivePeriodStateChanged
+    UpdateClock(_match, True)
+  End Sub
+
+  Private Sub _match_ScoreChanged() Handles _match.ScoreChanged
+    UpdateClock(_match, True)
+  End Sub
 End Class

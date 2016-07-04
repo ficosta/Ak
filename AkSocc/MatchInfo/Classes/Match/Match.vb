@@ -105,6 +105,8 @@ Imports MatchInfo
     End Set
   End Property
 
+  Public Property LastGoal() As MatchGoal
+
   Public match_id As Integer
   Public competition_id As Integer
   Public match_time As Integer
@@ -496,6 +498,16 @@ Imports MatchInfo
     End If
   End Function
 
+  Public Function RemoveLastGoal() As MatchGoal
+    RaiseEvent ScoreChanged()
+    Return Me.LastGoal
+  End Function
+
+  Public Function UpdateGoal(goal As MatchGoal) As Boolean
+    RaiseEvent ScoreChanged()
+    Return True
+  End Function
+
   Private Function CreateGoal(team As Team, player As Player, own_goal As Boolean, penalty As Boolean) As MatchGoal
     Dim goal As New MatchGoal
     Try
@@ -519,6 +531,8 @@ Imports MatchInfo
         player.Goals = team.MatchGoals.GetGoalsByPlayer(player).Count
       End If
       team.Goals = team.MatchGoals.Count
+      Me.LastGoal = goal
+      RaiseEvent ScoreChanged()
     Catch ex As Exception
 
     End Try

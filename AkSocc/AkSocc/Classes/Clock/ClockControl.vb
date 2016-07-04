@@ -107,6 +107,56 @@ Public NotInheritable Class ClockControl
   End Sub
 #End Region
 
+#Region "Visibility control"
+
+  Private _request As Boolean = False
+  Private _clockVisible As Boolean = False
+  Private _clockOnAir As Boolean = False
+
+  Public Property ClockVisible As Boolean
+    Get
+      Return _clockVisible
+    End Get
+    Set(value As Boolean)
+      _clockVisible = value
+      UpdateClockVisibility()
+    End Set
+  End Property
+
+  Public ReadOnly Property ClockOnAir As Boolean
+    Get
+      Return _clockOnAir
+    End Get
+  End Property
+
+  Public Sub UpdateClockVisibility()
+    Try
+      If _match.MatchPeriods.ActivePeriod Is Nothing Then
+        _request = False
+      ElseIf _match.MatchPeriods.ActivePeriod.Activa Then
+        _request = True
+      Else
+        _request = False
+      End If
+
+      If _clockOnAir <> _request Then
+        'we must do something
+        If _clockOnAir Then
+          'we must hide it
+          Me.HideIdentClock()
+        Else
+          'we must show it
+          Me.ShowIdentClock()
+        End If
+      End If
+
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+#End Region
+
 #Region "Scene functions"
   Public Sub ShowIdentClock()
     Try

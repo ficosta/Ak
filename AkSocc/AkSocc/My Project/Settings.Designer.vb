@@ -209,6 +209,30 @@ Namespace My
                 Me("UseArabicNames") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property PreviewRemotePath() As String
+            Get
+                Return CType(Me("PreviewRemotePath"),String)
+            End Get
+            Set
+                Me("PreviewRemotePath") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property PreviewLocalPath() As String
+            Get
+                Return CType(Me("PreviewLocalPath"),String)
+            End Get
+            Set
+                Me("PreviewLocalPath") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

@@ -9,6 +9,16 @@ Module MFuncions
     Dim Nom As String
   End Structure
 
+  Public Function FormatRunningTime(seconds As Integer) As String
+    Dim res As String = seconds
+    Try
+      res = CStr(seconds \ 60) & ":" & Strings.Format(seconds Mod 60, "00")
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
   Public Function NoNullInt(ByVal CiValor As Object) As Integer
     Dim nRes As Integer
     Try
@@ -98,7 +108,6 @@ Module MFuncions
     End Try
     Return sAux
   End Function
-
 
   Public Function SerializeObjectToFile(ByVal siFile As String, ByRef CiObject As Object) As Boolean
 

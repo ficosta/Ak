@@ -81,9 +81,9 @@ Public Class GraphicsTeamStats
         Case Step0.AttempsOntarget
           Scene = PrepareTeamStat(changeStep, "Attempts on target", Me.Match.HomeTeam.MatchStats.ShotsOn.ValueText, Me.Match.AwayTeam.MatchStats.ShotsOn.ValueText)
         Case Step0.YellowCards
-          Scene = PrepareTeamCards(changeStep)
+          Scene = PrepareTeamStat(changeStep, "Yellow cards", Me.Match.HomeTeam.MatchStats.YellowCards.ValueText, Me.Match.AwayTeam.MatchStats.YellowCards.ValueText, eStatType.YellowCard)
         Case Step0.RedCards
-          Scene = PrepareTeamStat(changeStep, "Red cards", Me.Match.HomeTeam.MatchStats.RedCards.ValueText, Me.Match.AwayTeam.MatchStats.RedCards.ValueText)
+          Scene = PrepareTeamStat(changeStep, "Red cards", Me.Match.HomeTeam.MatchStats.RedCards.ValueText, Me.Match.AwayTeam.MatchStats.RedCards.ValueText, eStatType.RedCard)
         Case Step0.Offisdes
           Scene = PrepareTeamStat(changeStep, "Offsides", Me.Match.HomeTeam.MatchStats.Offsides.ValueText, Me.Match.AwayTeam.MatchStats.Offsides.ValueText)
         Case Step0.FoulsComitted
@@ -107,16 +107,16 @@ Public Class GraphicsTeamStats
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
-    scene.SceneName = "gfx_leftframer"
+    scene.SceneName = "gfx_Lower3rd"
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
-    scene.SceneDirectorsIn.Add("Change_2_1", 0, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add("Change_1_2", 0, DirectorAction.Rewind)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
-    Dim changeAnim As String = "Change_" & ((gStep) Mod 2 + 1) & "_" & ((gStep + 1) Mod 2) + 1
-    changeAnim = "Change_1_2"
+    Dim changeAnim As String = "Bottom_change_" & ((gStep + 1) Mod 2 + 1) & "_" & ((gStep) Mod 2 + 1)
+    changeAnim = "Bottom_change_1_2"
 
     'scene.SceneDirectorsChangeOut.Add(changeAnim, 0, DirectorAction.Rewind)
     'scene.SceneDirectorsChangeOut.Add(changeAnim, 50, DirectorAction.Dummy)
@@ -124,80 +124,44 @@ Public Class GraphicsTeamStats
     scene.SceneDirectorsChangeIn.Add(changeAnim, 0, DirectorAction.Start)
     scene.SceneDirectorsChangeIn.Add(changeAnim, 50, DirectorAction.Dummy)
 
-
-    scene.SceneParameters.Add("LeftFramer_Title_Bar_Side_" & gStep & "_Control_OMO_GV_Choose", "1")
-
-    Dim prefix As String = "LeftFramer_Title_Bar_Side_1_Control_OMO_GV_Choose" & gStep
-    scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
+    scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose", "3")
+    scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Control_OMO_GV_Choose", 2)
 
     Return scene
   End Function
 
+  Private Enum eStatType
+    Stat = 0
+    YellowCard = 1
+    RedCard = 2
+  End Enum
 
-  Public Function PrepareTeamStat(gSide As Integer, stat_name As String, home_team_value As String, away_team_value As String) As Scene
+
+  Private Function PrepareTeamStat(gSide As Integer, stat_name As String, home_team_value As String, away_team_value As String, Optional statType As eStatType = eStatType.Stat) As Scene
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "LeftFramer_Title_Stats_Side_" & gSide & "_"
     Dim subjectPrefix As String = ""
     Try
-      prefix = "LeftFramer_Title_Stats_Side_" & gSide & "_"
 
-      scene.SceneParameters.Add(prefix & "Text_Center", stat_name)
-      scene.SceneParameters.Add(prefix & "Text_Right", Me.Match.HomeTeam.Name)
-      scene.SceneParameters.Add(prefix & "Text_Left", Me.Match.AwayTeam.Name)
+      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_02", stat_name)
 
-      prefix = "LeftFramer_Stats_Side_" & gSide & "_"
+      scene.SceneParameters.Add("Lower3rd_Data_Team_01_Name", Me.Match.HomeTeam.Name)
+      scene.SceneParameters.Add("Lower3rd_Data_Team_02_Name", Me.Match.AwayTeam.Name)
 
-      scene.SceneParameters.Add(prefix & "Subject_01_Left_Control_OMO_GV_Chosse", 0)
-      scene.SceneParameters.Add(prefix & "Subject_01_Left_Score_Text", away_team_value)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Left_Control_OMO_GV_Chosse", 0)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Left_Score_Text", away_team_value)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Left_Yellow_Card_Number", away_team_value)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Left_Red_Card_Number", away_team_value)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Subject_01_Left_YellowRed_Card_Yellow_Number", away_team_value)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Subject_01_Left_YellowRed_Card_Red_Number", away_team_value)
 
-      scene.SceneParameters.Add(prefix & "Subject_01_Right_Control_OMO_GV_Chosse", 0)
-      scene.SceneParameters.Add(prefix & "Subject_01_Right_Score_Text", away_team_value)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Right_Control_OMO_GV_Chosse", 0)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Right_Score_Text", home_team_value)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Right_Yellow_Card_Number", home_team_value)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Right_Red_Card_Number", home_team_value)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Subject_01_Right_YellowRed_Card_Yellow_Number", home_team_value)
+      scene.SceneParameters.Add("Lower3rd_Side_1_Subject_01_Right_YellowRed_Card_Red_Number", home_team_value)
 
-      scene.SceneParameters.Add(prefix & "Subject_01_Team_Name", stat_name)
-
-      For i As Integer = 2 To 7
-        scene.SceneParameters.Add(prefix & "Text_0" & i, "")
-        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Left_Control_OMO_GV_Chosse", 0)
-        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Right_Control_OMO_GV_Chosse", 0)
-        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Left_Score_Text", "")
-        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Right_Score_Text", "")
-        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Team_Name", "r")
-      Next
-    Catch ex As Exception
-      WriteToErrorLog(ex)
-    End Try
-    Return scene
-  End Function
-
-  Public Function PrepareTeamCards(gSide As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "LeftFramer_Title_Stats_Side_" & gSide & "_"
-    Dim subjectPrefix As String = ""
-    Try
-      prefix = "LeftFramer_Title_Stats_Side_" & gSide & "_"
-
-      scene.SceneParameters.Add(prefix & "Text_Center", "cards")
-      scene.SceneParameters.Add(prefix & "Text_Right", Me.Match.HomeTeam.Name)
-      scene.SceneParameters.Add(prefix & "Text_Left", Me.Match.AwayTeam.Name)
-
-      prefix = "LeftFramer_Stats_Side_" & gSide & "_"
-
-      scene.SceneParameters.Add(prefix & "Subject_01_Left_Control_OMO_GV_Chosse", 2)
-      scene.SceneParameters.Add(prefix & "Subject_01_Left_Score_Text", Me.Match.AwayTeam.MatchStats.YellowCards.ValueText)
-
-      scene.SceneParameters.Add(prefix & "Subject_01_Right_Control_OMO_GV_Chosse", 2)
-      scene.SceneParameters.Add(prefix & "Subject_01_Left_Score_Text", Me.Match.HomeTeam.MatchStats.YellowCards.ValueText)
-
-      scene.SceneParameters.Add(prefix & "Subject_01_Team_Name", "stat name")
-
-      For i As Integer = 2 To 7
-        scene.SceneParameters.Add(prefix & "Text_0" & i, "")
-        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Left_Control_OMO_GV_Chosse", 0)
-        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Right_Control_OMO_GV_Chosse", 0)
-        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Left_Score_Text", "")
-        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Right_Score_Text", "")
-        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Team_Name", "r")
-      Next
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try

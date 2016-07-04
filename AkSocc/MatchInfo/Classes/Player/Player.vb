@@ -2,6 +2,7 @@
 
 <Serializable()> Public Class Player
   Inherits StatSubject
+  Implements IComparable
 
   Public PlayerID As Integer
   Public PlayerFirstName As String
@@ -312,7 +313,7 @@
       End If
 
       conn.Close()
-      
+
     Catch err As Exception
       Throw err
     End Try
@@ -493,6 +494,22 @@
 
   Public Overrides Function ToString() As String
     Return Convert.ToString(SquadNo.ToString() + " ") & PlayerName
+  End Function
+
+  Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+    Dim res As Integer = 0
+    Try
+      Dim aux As Player = CType(obj, Player)
+      If aux.Formation_Pos > Me.Formation_Pos Then
+        res = 1
+      ElseIf aux.Formation_Pos < Me.Formation_Pos Then
+        res = -1
+      End If
+
+    Catch ex As Exception
+
+    End Try
+    Return res
   End Function
 End Class
 

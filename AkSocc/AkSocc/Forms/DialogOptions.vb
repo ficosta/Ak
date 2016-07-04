@@ -33,6 +33,9 @@ Public Class DialogOptions
       Me.NumericUpDownPort.Value = My.Settings.VizrtPort
       Me.NumericUpDownPreviewPort.Value = My.Settings.VizrtPreviewPort
 
+      Me.MetroTextBoxLocalPreviewPath.Text = My.Settings.PreviewLocalPath
+      Me.MetroTextBoxRemotePreviewPath.Text = My.Settings.PreviewRemotePath
+
       Dim index As Integer = -1
       Me.ComboBoxSceneVersion.Items.Clear()
 
@@ -62,6 +65,9 @@ Public Class DialogOptions
       My.Settings.VizrtHost = Me.TextBoxVizrtHost.Text
       My.Settings.VizrtPort = Me.NumericUpDownPort.Value
       My.Settings.VizrtPreviewPort = Me.NumericUpDownPreviewPort.Value
+      My.Settings.PreviewLocalPath = Me.MetroTextBoxLocalPreviewPath.Text
+      My.Settings.PreviewRemotePath = Me.MetroTextBoxRemotePreviewPath.Text
+
       Dim version As GraphicVersion = CType(Me.ComboBoxSceneVersion.SelectedItem, GraphicVersion)
       GraphicVersions.Instance.SelectedGraphicVersion = version
       If Not version Is Nothing Then

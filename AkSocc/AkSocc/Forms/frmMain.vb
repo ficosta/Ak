@@ -62,7 +62,7 @@ Public Class frmMain
       pvwConfig.TCPPort = My.Settings.VizrtPreviewPort
       pvwConfig.SceneBasePath = My.Settings.ScenePath
 
-      _previewControl = New VizCommands.PreviewControl(pvwConfig)
+      _previewControl = New VizCommands.PreviewControl(pvwConfig, My.Settings.PreviewLocalPath, My.Settings.PreviewRemotePath)
 
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -446,10 +446,11 @@ Public Class frmMain
 
       If MetroFramework.MetroMessageBox.Show(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
         Dim gsList As New GraphicSteps
-        Dim gg As New ControlScoreSingleGoal(_match)
-        gg.IsLocalTeam = False
 
         _match.AddGoal(False, Nothing, False, False)
+
+        Dim gg As New ControlScoreSingleGoal(_match, _match.LastGoal)
+        gg.IsLocalTeam = False
 
         '_match.away_goals += 1
 
@@ -467,10 +468,12 @@ Public Class frmMain
 
       If MetroFramework.MetroMessageBox.Show(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
         Dim gsList As New GraphicSteps
-        Dim gg As New ControlScoreSingleGoal(_match)
-        gg.IsLocalTeam = True
 
         _match.AddGoal(True, Nothing, False, False)
+
+        Dim gg As New ControlScoreSingleGoal(_match, _match.LastGoal)
+        gg.IsLocalTeam = True
+        gg.Goal = _match.LastGoal
 
         StartGraphic(gg)
       End If
@@ -546,12 +549,26 @@ Public Class frmMain
 
 
   Private Sub MetroButtonClockIN_Click(sender As Object, e As EventArgs) Handles MetroButtonClockIN.Click
-    _clockControl.ShowIdentClock()
+    '_clockControl.ShowIdentClock()
+    _clockControl.ClockVisible = True
+    UpdateClockInterface()
   End Sub
 
   Private Sub MetroButtonClockOUT_Click(sender As Object, e As EventArgs) Handles MetroButtonClockOUT.Click
-    _clockControl.HideIdentClock()
+    '_clockControl.HideIdentClock()
+    _clockControl.ClockVisible = False
+    UpdateClockInterface()
   End Sub
+
+  Private Sub UpdateClockInterface()
+    Try
+      Me.MetroButtonClockIN.Enabled = Not _clockControl.ClockVisible
+      Me.MetroButtonClockOUT.Enabled = _clockControl.ClockVisible
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
 
   Private Sub MetroButtonClockSubstitutions_Click(sender As Object, e As EventArgs) Handles MetroButtonClockSubstitutions.Click
     'Me.StartGraphic(New ClockSubstitutes(_match))
@@ -729,6 +746,14 @@ Public Class frmMain
   End Sub
 
   Private Sub PlayerAwayViewer1_Load(sender As Object, e As EventArgs) Handles PlayerAwayViewer1.Load
+
+  End Sub
+
+  Private Sub _match_ActivePeriodStateChanged() Handles _match.ActivePeriodStateChanged
+
+  End Sub
+
+  Private Sub _match_ScoreChanged() Handles _match.ScoreChanged
 
   End Sub
 

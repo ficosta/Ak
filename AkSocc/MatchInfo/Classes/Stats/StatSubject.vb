@@ -185,6 +185,7 @@ Public Class StatSubject
       Dim stat As Stat = TryCast(sender, Stat)
       If Not stat Is Nothing Then
         ' WriteStatToDB(stat)
+        Debug.Print("_matchStats_PropertyChanged id " & Me.ID & " " & Me.ParentID & " " & Me.Name & " name " & e.PropertyName)
         RaiseEvent StatValueChanged(Me, stat)
       End If
     Catch ex As Exception
@@ -195,12 +196,42 @@ Public Class StatSubject
   Private Sub _matchStats_StatValueChanged(subjectStats As SubjectStats, stat As Stat) Handles _matchStats.StatValueChanged
     Try
       If Not stat Is Nothing Then
-        ' WriteStatToDB(stat)
+        WriteStatToDB(stat)
+        Debug.Print("_matchStats_StatValueChanged id " & Me.ID & " " & Me.ParentID & " " & Me.Name & " stat " & stat.Name & " = " & stat.Value)
         RaiseEvent StatValueChanged(Me, stat)
       End If
     Catch ex As Exception
 
     End Try
   End Sub
+
+
+  Public Function GetMatchStatByName(name As String) As Stat
+    Dim res As Stat = Nothing
+    Try
+      For Each aux As Stat In Me.MatchStats.StatBag
+        If aux.Name = name Then
+          res = aux
+          Exit For
+        End If
+      Next
+    Catch ex As Exception
+    End Try
+    Return res
+  End Function
+
+  Public Function GetSeasonStatByName(name As String) As Stat
+    Dim res As Stat = Nothing
+    Try
+      For Each aux As Stat In Me.SeasonStats.StatBag
+        If aux.Name = name Then
+          res = aux
+          Exit For
+        End If
+      Next
+    Catch ex As Exception
+    End Try
+    Return res
+  End Function
 #End Region
 End Class

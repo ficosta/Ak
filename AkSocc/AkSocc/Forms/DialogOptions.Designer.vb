@@ -29,9 +29,13 @@ Partial Class DialogOptions
     Me.TabControlOptions = New MetroFramework.Controls.MetroTabControl()
     Me.TabPage1 = New MetroFramework.Controls.MetroTabPage()
     Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+    Me.MetroButtonOtherMatchesPath = New MetroFramework.Controls.MetroButton()
+    Me.MetroTextBoxOtherMatchesFilePath = New MetroFramework.Controls.MetroTextBox()
+    Me.MetroLabelOtherMatches = New MetroFramework.Controls.MetroLabel()
     Me.MetroLabelDataBase = New MetroFramework.Controls.MetroLabel()
     Me.MetroTextBoxDataBase = New MetroFramework.Controls.MetroTextBox()
     Me.MetroButtonDataBase = New MetroFramework.Controls.MetroButton()
+    Me.MetroCheckBoxUseArabicNames = New MetroFramework.Controls.MetroCheckBox()
     Me.TabPage2 = New MetroFramework.Controls.MetroTabPage()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.NumericUpDownPreviewPort = New System.Windows.Forms.NumericUpDown()
@@ -43,11 +47,13 @@ Partial Class DialogOptions
     Me.LabelSceneVersion = New MetroFramework.Controls.MetroLabel()
     Me.ComboBoxSceneVersion = New MetroFramework.Controls.MetroComboBox()
     Me.OpenFileDialogDataBase = New System.Windows.Forms.OpenFileDialog()
-    Me.MetroLabelOtherMatches = New MetroFramework.Controls.MetroLabel()
-    Me.MetroTextBoxOtherMatchesFilePath = New MetroFramework.Controls.MetroTextBox()
-    Me.MetroButtonOtherMatchesPath = New MetroFramework.Controls.MetroButton()
     Me.OpenFileDialogXML = New System.Windows.Forms.OpenFileDialog()
-    Me.MetroCheckBoxUseArabicNames = New MetroFramework.Controls.MetroCheckBox()
+    Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
+    Me.MetroTextBoxLocalPreviewPath = New MetroFramework.Controls.MetroTextBox()
+    Me.MetroButtonLocalPreviewPath = New MetroFramework.Controls.MetroButton()
+    Me.MetroLabel2 = New MetroFramework.Controls.MetroLabel()
+    Me.MetroTextBoxRemotePreviewPath = New MetroFramework.Controls.MetroTextBox()
+    Me.MetroButtonRemotePreviewPath = New MetroFramework.Controls.MetroButton()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TabControlOptions.SuspendLayout()
     Me.TabPage1.SuspendLayout()
@@ -69,30 +75,30 @@ Partial Class DialogOptions
     Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 1, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 2, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.CheckBoxShowOptionsOnStartup, 0, 0)
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(19, 274)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(19, 373)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(566, 29)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(766, 29)
     Me.TableLayoutPanel1.TabIndex = 0
     '
     'OK_Button
     '
-    Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
-    Me.OK_Button.Location = New System.Drawing.Point(412, 3)
+    Me.OK_Button.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.OK_Button.Location = New System.Drawing.Point(609, 3)
     Me.OK_Button.Name = "OK_Button"
-    Me.OK_Button.Size = New System.Drawing.Size(67, 23)
+    Me.OK_Button.Size = New System.Drawing.Size(74, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
     Me.OK_Button.UseSelectable = True
     '
     'Cancel_Button
     '
-    Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
     Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
-    Me.Cancel_Button.Location = New System.Drawing.Point(492, 3)
+    Me.Cancel_Button.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Cancel_Button.Location = New System.Drawing.Point(689, 3)
     Me.Cancel_Button.Name = "Cancel_Button"
-    Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
+    Me.Cancel_Button.Size = New System.Drawing.Size(74, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
     Me.Cancel_Button.UseSelectable = True
@@ -103,7 +109,7 @@ Partial Class DialogOptions
     Me.CheckBoxShowOptionsOnStartup.Dock = System.Windows.Forms.DockStyle.Fill
     Me.CheckBoxShowOptionsOnStartup.Location = New System.Drawing.Point(3, 3)
     Me.CheckBoxShowOptionsOnStartup.Name = "CheckBoxShowOptionsOnStartup"
-    Me.CheckBoxShowOptionsOnStartup.Size = New System.Drawing.Size(400, 23)
+    Me.CheckBoxShowOptionsOnStartup.Size = New System.Drawing.Size(600, 23)
     Me.CheckBoxShowOptionsOnStartup.TabIndex = 2
     Me.CheckBoxShowOptionsOnStartup.Text = "Show options on application startup"
     Me.CheckBoxShowOptionsOnStartup.UseSelectable = True
@@ -117,8 +123,8 @@ Partial Class DialogOptions
     Me.TabControlOptions.Controls.Add(Me.TabPage2)
     Me.TabControlOptions.Location = New System.Drawing.Point(12, 12)
     Me.TabControlOptions.Name = "TabControlOptions"
-    Me.TabControlOptions.SelectedIndex = 0
-    Me.TabControlOptions.Size = New System.Drawing.Size(573, 256)
+    Me.TabControlOptions.SelectedIndex = 1
+    Me.TabControlOptions.Size = New System.Drawing.Size(773, 355)
     Me.TabControlOptions.TabIndex = 1
     Me.TabControlOptions.UseSelectable = True
     '
@@ -165,6 +171,57 @@ Partial Class DialogOptions
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel3.Size = New System.Drawing.Size(559, 208)
     Me.TableLayoutPanel3.TabIndex = 2
+    '
+    'MetroButtonOtherMatchesPath
+    '
+    Me.MetroButtonOtherMatchesPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonOtherMatchesPath.Location = New System.Drawing.Point(527, 33)
+    Me.MetroButtonOtherMatchesPath.Name = "MetroButtonOtherMatchesPath"
+    Me.MetroButtonOtherMatchesPath.Size = New System.Drawing.Size(29, 24)
+    Me.MetroButtonOtherMatchesPath.TabIndex = 5
+    Me.MetroButtonOtherMatchesPath.Text = "..."
+    Me.MetroButtonOtherMatchesPath.UseSelectable = True
+    '
+    'MetroTextBoxOtherMatchesFilePath
+    '
+    '
+    '
+    '
+    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Image = Nothing
+    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Location = New System.Drawing.Point(341, 2)
+    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Name = ""
+    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Size = New System.Drawing.Size(19, 19)
+    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
+    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.TabIndex = 1
+    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
+    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Visible = False
+    Me.MetroTextBoxOtherMatchesFilePath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTextBoxOtherMatchesFilePath.Lines = New String(-1) {}
+    Me.MetroTextBoxOtherMatchesFilePath.Location = New System.Drawing.Point(158, 33)
+    Me.MetroTextBoxOtherMatchesFilePath.MaxLength = 32767
+    Me.MetroTextBoxOtherMatchesFilePath.Name = "MetroTextBoxOtherMatchesFilePath"
+    Me.MetroTextBoxOtherMatchesFilePath.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+    Me.MetroTextBoxOtherMatchesFilePath.ScrollBars = System.Windows.Forms.ScrollBars.None
+    Me.MetroTextBoxOtherMatchesFilePath.SelectedText = ""
+    Me.MetroTextBoxOtherMatchesFilePath.SelectionLength = 0
+    Me.MetroTextBoxOtherMatchesFilePath.SelectionStart = 0
+    Me.MetroTextBoxOtherMatchesFilePath.Size = New System.Drawing.Size(363, 24)
+    Me.MetroTextBoxOtherMatchesFilePath.TabIndex = 4
+    Me.MetroTextBoxOtherMatchesFilePath.UseSelectable = True
+    Me.MetroTextBoxOtherMatchesFilePath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
+    Me.MetroTextBoxOtherMatchesFilePath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
+    '
+    'MetroLabelOtherMatches
+    '
+    Me.MetroLabelOtherMatches.AutoSize = True
+    Me.MetroLabelOtherMatches.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabelOtherMatches.Location = New System.Drawing.Point(3, 30)
+    Me.MetroLabelOtherMatches.Name = "MetroLabelOtherMatches"
+    Me.MetroLabelOtherMatches.Size = New System.Drawing.Size(149, 30)
+    Me.MetroLabelOtherMatches.TabIndex = 3
+    Me.MetroLabelOtherMatches.Text = "Other matches file path"
+    Me.MetroLabelOtherMatches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'MetroLabelDataBase
     '
@@ -217,210 +274,6 @@ Partial Class DialogOptions
     Me.MetroButtonDataBase.Text = "..."
     Me.MetroButtonDataBase.UseSelectable = True
     '
-    'TabPage2
-    '
-    Me.TabPage2.Controls.Add(Me.TableLayoutPanel2)
-    Me.TabPage2.HorizontalScrollbarBarColor = True
-    Me.TabPage2.HorizontalScrollbarHighlightOnWheel = False
-    Me.TabPage2.HorizontalScrollbarSize = 10
-    Me.TabPage2.Location = New System.Drawing.Point(4, 38)
-    Me.TabPage2.Name = "TabPage2"
-    Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-    Me.TabPage2.Size = New System.Drawing.Size(565, 214)
-    Me.TabPage2.TabIndex = 1
-    Me.TabPage2.Text = "Vizrt options"
-    Me.TabPage2.UseVisualStyleBackColor = True
-    Me.TabPage2.VerticalScrollbarBarColor = True
-    Me.TabPage2.VerticalScrollbarHighlightOnWheel = False
-    Me.TabPage2.VerticalScrollbarSize = 10
-    '
-    'TableLayoutPanel2
-    '
-    Me.TableLayoutPanel2.ColumnCount = 2
-    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel2.Controls.Add(Me.NumericUpDownPreviewPort, 1, 2)
-    Me.TableLayoutPanel2.Controls.Add(Me.LabelHost, 0, 0)
-    Me.TableLayoutPanel2.Controls.Add(Me.TextBoxVizrtHost, 1, 0)
-    Me.TableLayoutPanel2.Controls.Add(Me.LabelREPort, 0, 1)
-    Me.TableLayoutPanel2.Controls.Add(Me.NumericUpDownPort, 1, 1)
-    Me.TableLayoutPanel2.Controls.Add(Me.LabelPreviewPort, 0, 2)
-    Me.TableLayoutPanel2.Controls.Add(Me.LabelSceneVersion, 0, 3)
-    Me.TableLayoutPanel2.Controls.Add(Me.ComboBoxSceneVersion, 1, 3)
-    Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
-    Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-    Me.TableLayoutPanel2.RowCount = 7
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(559, 208)
-    Me.TableLayoutPanel2.TabIndex = 0
-    '
-    'NumericUpDownPreviewPort
-    '
-    Me.NumericUpDownPreviewPort.Location = New System.Drawing.Point(103, 63)
-    Me.NumericUpDownPreviewPort.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-    Me.NumericUpDownPreviewPort.Name = "NumericUpDownPreviewPort"
-    Me.NumericUpDownPreviewPort.Size = New System.Drawing.Size(68, 20)
-    Me.NumericUpDownPreviewPort.TabIndex = 5
-    '
-    'LabelHost
-    '
-    Me.LabelHost.AutoSize = True
-    Me.LabelHost.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelHost.Location = New System.Drawing.Point(3, 0)
-    Me.LabelHost.Name = "LabelHost"
-    Me.LabelHost.Size = New System.Drawing.Size(94, 30)
-    Me.LabelHost.TabIndex = 0
-    Me.LabelHost.Text = "Vizrt host"
-    Me.LabelHost.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
-    'TextBoxVizrtHost
-    '
-    '
-    '
-    '
-    Me.TextBoxVizrtHost.CustomButton.Image = Nothing
-    Me.TextBoxVizrtHost.CustomButton.Location = New System.Drawing.Point(431, 2)
-    Me.TextBoxVizrtHost.CustomButton.Name = ""
-    Me.TextBoxVizrtHost.CustomButton.Size = New System.Drawing.Size(19, 19)
-    Me.TextBoxVizrtHost.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
-    Me.TextBoxVizrtHost.CustomButton.TabIndex = 1
-    Me.TextBoxVizrtHost.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.TextBoxVizrtHost.CustomButton.UseSelectable = True
-    Me.TextBoxVizrtHost.CustomButton.Visible = False
-    Me.TextBoxVizrtHost.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TextBoxVizrtHost.Lines = New String(-1) {}
-    Me.TextBoxVizrtHost.Location = New System.Drawing.Point(103, 3)
-    Me.TextBoxVizrtHost.MaxLength = 32767
-    Me.TextBoxVizrtHost.Name = "TextBoxVizrtHost"
-    Me.TextBoxVizrtHost.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-    Me.TextBoxVizrtHost.ScrollBars = System.Windows.Forms.ScrollBars.None
-    Me.TextBoxVizrtHost.SelectedText = ""
-    Me.TextBoxVizrtHost.SelectionLength = 0
-    Me.TextBoxVizrtHost.SelectionStart = 0
-    Me.TextBoxVizrtHost.Size = New System.Drawing.Size(453, 24)
-    Me.TextBoxVizrtHost.TabIndex = 1
-    Me.TextBoxVizrtHost.UseSelectable = True
-    Me.TextBoxVizrtHost.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
-    Me.TextBoxVizrtHost.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
-    '
-    'LabelREPort
-    '
-    Me.LabelREPort.AutoSize = True
-    Me.LabelREPort.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelREPort.Location = New System.Drawing.Point(3, 30)
-    Me.LabelREPort.Name = "LabelREPort"
-    Me.LabelREPort.Size = New System.Drawing.Size(94, 30)
-    Me.LabelREPort.TabIndex = 2
-    Me.LabelREPort.Text = "RE port"
-    Me.LabelREPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
-    'NumericUpDownPort
-    '
-    Me.NumericUpDownPort.Location = New System.Drawing.Point(103, 33)
-    Me.NumericUpDownPort.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-    Me.NumericUpDownPort.Name = "NumericUpDownPort"
-    Me.NumericUpDownPort.Size = New System.Drawing.Size(68, 20)
-    Me.NumericUpDownPort.TabIndex = 3
-    '
-    'LabelPreviewPort
-    '
-    Me.LabelPreviewPort.AutoSize = True
-    Me.LabelPreviewPort.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelPreviewPort.Location = New System.Drawing.Point(3, 60)
-    Me.LabelPreviewPort.Name = "LabelPreviewPort"
-    Me.LabelPreviewPort.Size = New System.Drawing.Size(94, 30)
-    Me.LabelPreviewPort.TabIndex = 4
-    Me.LabelPreviewPort.Text = "Preview port"
-    Me.LabelPreviewPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
-    'LabelSceneVersion
-    '
-    Me.LabelSceneVersion.AutoSize = True
-    Me.LabelSceneVersion.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelSceneVersion.Location = New System.Drawing.Point(3, 90)
-    Me.LabelSceneVersion.Name = "LabelSceneVersion"
-    Me.LabelSceneVersion.Size = New System.Drawing.Size(94, 30)
-    Me.LabelSceneVersion.TabIndex = 6
-    Me.LabelSceneVersion.Text = "Scene version"
-    Me.LabelSceneVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
-    'ComboBoxSceneVersion
-    '
-    Me.ComboBoxSceneVersion.FormattingEnabled = True
-    Me.ComboBoxSceneVersion.ItemHeight = 23
-    Me.ComboBoxSceneVersion.Location = New System.Drawing.Point(103, 93)
-    Me.ComboBoxSceneVersion.Name = "ComboBoxSceneVersion"
-    Me.ComboBoxSceneVersion.Size = New System.Drawing.Size(192, 29)
-    Me.ComboBoxSceneVersion.TabIndex = 7
-    Me.ComboBoxSceneVersion.UseSelectable = True
-    '
-    'OpenFileDialogDataBase
-    '
-    Me.OpenFileDialogDataBase.FileName = "OpenFileDialog1"
-    Me.OpenFileDialogDataBase.Title = "Data base"
-    '
-    'MetroLabelOtherMatches
-    '
-    Me.MetroLabelOtherMatches.AutoSize = True
-    Me.MetroLabelOtherMatches.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabelOtherMatches.Location = New System.Drawing.Point(3, 30)
-    Me.MetroLabelOtherMatches.Name = "MetroLabelOtherMatches"
-    Me.MetroLabelOtherMatches.Size = New System.Drawing.Size(149, 30)
-    Me.MetroLabelOtherMatches.TabIndex = 3
-    Me.MetroLabelOtherMatches.Text = "Other matches file path"
-    Me.MetroLabelOtherMatches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
-    'MetroTextBoxOtherMatchesFilePath
-    '
-    '
-    '
-    '
-    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Image = Nothing
-    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Location = New System.Drawing.Point(341, 2)
-    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Name = ""
-    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Size = New System.Drawing.Size(19, 19)
-    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
-    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.TabIndex = 1
-    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.UseSelectable = True
-    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Visible = False
-    Me.MetroTextBoxOtherMatchesFilePath.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTextBoxOtherMatchesFilePath.Lines = New String(-1) {}
-    Me.MetroTextBoxOtherMatchesFilePath.Location = New System.Drawing.Point(158, 33)
-    Me.MetroTextBoxOtherMatchesFilePath.MaxLength = 32767
-    Me.MetroTextBoxOtherMatchesFilePath.Name = "MetroTextBoxOtherMatchesFilePath"
-    Me.MetroTextBoxOtherMatchesFilePath.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-    Me.MetroTextBoxOtherMatchesFilePath.ScrollBars = System.Windows.Forms.ScrollBars.None
-    Me.MetroTextBoxOtherMatchesFilePath.SelectedText = ""
-    Me.MetroTextBoxOtherMatchesFilePath.SelectionLength = 0
-    Me.MetroTextBoxOtherMatchesFilePath.SelectionStart = 0
-    Me.MetroTextBoxOtherMatchesFilePath.Size = New System.Drawing.Size(363, 24)
-    Me.MetroTextBoxOtherMatchesFilePath.TabIndex = 4
-    Me.MetroTextBoxOtherMatchesFilePath.UseSelectable = True
-    Me.MetroTextBoxOtherMatchesFilePath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
-    Me.MetroTextBoxOtherMatchesFilePath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
-    '
-    'MetroButtonOtherMatchesPath
-    '
-    Me.MetroButtonOtherMatchesPath.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonOtherMatchesPath.Location = New System.Drawing.Point(527, 33)
-    Me.MetroButtonOtherMatchesPath.Name = "MetroButtonOtherMatchesPath"
-    Me.MetroButtonOtherMatchesPath.Size = New System.Drawing.Size(29, 24)
-    Me.MetroButtonOtherMatchesPath.TabIndex = 5
-    Me.MetroButtonOtherMatchesPath.Text = "..."
-    Me.MetroButtonOtherMatchesPath.UseSelectable = True
-    '
-    'OpenFileDialogXML
-    '
-    Me.OpenFileDialogXML.FileName = "Matches file path"
-    '
     'MetroCheckBoxUseArabicNames
     '
     Me.MetroCheckBoxUseArabicNames.AutoSize = True
@@ -432,13 +285,276 @@ Partial Class DialogOptions
     Me.MetroCheckBoxUseArabicNames.Text = "Use arabic names"
     Me.MetroCheckBoxUseArabicNames.UseSelectable = True
     '
+    'TabPage2
+    '
+    Me.TabPage2.Controls.Add(Me.TableLayoutPanel2)
+    Me.TabPage2.HorizontalScrollbarBarColor = True
+    Me.TabPage2.HorizontalScrollbarHighlightOnWheel = False
+    Me.TabPage2.HorizontalScrollbarSize = 10
+    Me.TabPage2.Location = New System.Drawing.Point(4, 38)
+    Me.TabPage2.Name = "TabPage2"
+    Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+    Me.TabPage2.Size = New System.Drawing.Size(765, 313)
+    Me.TabPage2.TabIndex = 1
+    Me.TabPage2.Text = "Vizrt options"
+    Me.TabPage2.UseVisualStyleBackColor = True
+    Me.TabPage2.VerticalScrollbarBarColor = True
+    Me.TabPage2.VerticalScrollbarHighlightOnWheel = False
+    Me.TabPage2.VerticalScrollbarSize = 10
+    '
+    'TableLayoutPanel2
+    '
+    Me.TableLayoutPanel2.ColumnCount = 3
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151.0!))
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel2, 0, 6)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroTextBoxRemotePreviewPath, 0, 6)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroButtonRemotePreviewPath, 0, 6)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroLabel1, 0, 5)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroTextBoxLocalPreviewPath, 0, 5)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroButtonLocalPreviewPath, 0, 5)
+    Me.TableLayoutPanel2.Controls.Add(Me.NumericUpDownPreviewPort, 1, 2)
+    Me.TableLayoutPanel2.Controls.Add(Me.LabelHost, 0, 0)
+    Me.TableLayoutPanel2.Controls.Add(Me.TextBoxVizrtHost, 1, 0)
+    Me.TableLayoutPanel2.Controls.Add(Me.LabelREPort, 0, 1)
+    Me.TableLayoutPanel2.Controls.Add(Me.NumericUpDownPort, 1, 1)
+    Me.TableLayoutPanel2.Controls.Add(Me.LabelPreviewPort, 0, 2)
+    Me.TableLayoutPanel2.Controls.Add(Me.LabelSceneVersion, 0, 3)
+    Me.TableLayoutPanel2.Controls.Add(Me.ComboBoxSceneVersion, 1, 3)
+    Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
+    Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+    Me.TableLayoutPanel2.RowCount = 8
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(759, 307)
+    Me.TableLayoutPanel2.TabIndex = 0
+    '
+    'NumericUpDownPreviewPort
+    '
+    Me.NumericUpDownPreviewPort.Location = New System.Drawing.Point(154, 63)
+    Me.NumericUpDownPreviewPort.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+    Me.NumericUpDownPreviewPort.Name = "NumericUpDownPreviewPort"
+    Me.NumericUpDownPreviewPort.Size = New System.Drawing.Size(68, 20)
+    Me.NumericUpDownPreviewPort.TabIndex = 5
+    '
+    'LabelHost
+    '
+    Me.LabelHost.AutoSize = True
+    Me.LabelHost.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelHost.Location = New System.Drawing.Point(3, 0)
+    Me.LabelHost.Name = "LabelHost"
+    Me.LabelHost.Size = New System.Drawing.Size(145, 30)
+    Me.LabelHost.TabIndex = 0
+    Me.LabelHost.Text = "Vizrt host"
+    Me.LabelHost.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'TextBoxVizrtHost
+    '
+    '
+    '
+    '
+    Me.TextBoxVizrtHost.CustomButton.Image = Nothing
+    Me.TextBoxVizrtHost.CustomButton.Location = New System.Drawing.Point(545, 2)
+    Me.TextBoxVizrtHost.CustomButton.Name = ""
+    Me.TextBoxVizrtHost.CustomButton.Size = New System.Drawing.Size(19, 19)
+    Me.TextBoxVizrtHost.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
+    Me.TextBoxVizrtHost.CustomButton.TabIndex = 1
+    Me.TextBoxVizrtHost.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
+    Me.TextBoxVizrtHost.CustomButton.UseSelectable = True
+    Me.TextBoxVizrtHost.CustomButton.Visible = False
+    Me.TextBoxVizrtHost.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TextBoxVizrtHost.Lines = New String(-1) {}
+    Me.TextBoxVizrtHost.Location = New System.Drawing.Point(154, 3)
+    Me.TextBoxVizrtHost.MaxLength = 32767
+    Me.TextBoxVizrtHost.Name = "TextBoxVizrtHost"
+    Me.TextBoxVizrtHost.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+    Me.TextBoxVizrtHost.ScrollBars = System.Windows.Forms.ScrollBars.None
+    Me.TextBoxVizrtHost.SelectedText = ""
+    Me.TextBoxVizrtHost.SelectionLength = 0
+    Me.TextBoxVizrtHost.SelectionStart = 0
+    Me.TextBoxVizrtHost.Size = New System.Drawing.Size(567, 24)
+    Me.TextBoxVizrtHost.TabIndex = 1
+    Me.TextBoxVizrtHost.UseSelectable = True
+    Me.TextBoxVizrtHost.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
+    Me.TextBoxVizrtHost.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
+    '
+    'LabelREPort
+    '
+    Me.LabelREPort.AutoSize = True
+    Me.LabelREPort.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelREPort.Location = New System.Drawing.Point(3, 30)
+    Me.LabelREPort.Name = "LabelREPort"
+    Me.LabelREPort.Size = New System.Drawing.Size(145, 30)
+    Me.LabelREPort.TabIndex = 2
+    Me.LabelREPort.Text = "RE port"
+    Me.LabelREPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'NumericUpDownPort
+    '
+    Me.NumericUpDownPort.Location = New System.Drawing.Point(154, 33)
+    Me.NumericUpDownPort.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+    Me.NumericUpDownPort.Name = "NumericUpDownPort"
+    Me.NumericUpDownPort.Size = New System.Drawing.Size(68, 20)
+    Me.NumericUpDownPort.TabIndex = 3
+    '
+    'LabelPreviewPort
+    '
+    Me.LabelPreviewPort.AutoSize = True
+    Me.LabelPreviewPort.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelPreviewPort.Location = New System.Drawing.Point(3, 60)
+    Me.LabelPreviewPort.Name = "LabelPreviewPort"
+    Me.LabelPreviewPort.Size = New System.Drawing.Size(145, 30)
+    Me.LabelPreviewPort.TabIndex = 4
+    Me.LabelPreviewPort.Text = "Preview port"
+    Me.LabelPreviewPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'LabelSceneVersion
+    '
+    Me.LabelSceneVersion.AutoSize = True
+    Me.LabelSceneVersion.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelSceneVersion.Location = New System.Drawing.Point(3, 90)
+    Me.LabelSceneVersion.Name = "LabelSceneVersion"
+    Me.LabelSceneVersion.Size = New System.Drawing.Size(145, 30)
+    Me.LabelSceneVersion.TabIndex = 6
+    Me.LabelSceneVersion.Text = "Scene version"
+    Me.LabelSceneVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'ComboBoxSceneVersion
+    '
+    Me.ComboBoxSceneVersion.FormattingEnabled = True
+    Me.ComboBoxSceneVersion.ItemHeight = 23
+    Me.ComboBoxSceneVersion.Location = New System.Drawing.Point(154, 93)
+    Me.ComboBoxSceneVersion.Name = "ComboBoxSceneVersion"
+    Me.ComboBoxSceneVersion.Size = New System.Drawing.Size(192, 29)
+    Me.ComboBoxSceneVersion.TabIndex = 7
+    Me.ComboBoxSceneVersion.UseSelectable = True
+    '
+    'OpenFileDialogDataBase
+    '
+    Me.OpenFileDialogDataBase.FileName = "OpenFileDialog1"
+    Me.OpenFileDialogDataBase.Title = "Data base"
+    '
+    'OpenFileDialogXML
+    '
+    Me.OpenFileDialogXML.FileName = "Matches file path"
+    '
+    'MetroLabel1
+    '
+    Me.MetroLabel1.AutoSize = True
+    Me.MetroLabel1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabel1.Location = New System.Drawing.Point(3, 130)
+    Me.MetroLabel1.Name = "MetroLabel1"
+    Me.MetroLabel1.Size = New System.Drawing.Size(145, 30)
+    Me.MetroLabel1.TabIndex = 8
+    Me.MetroLabel1.Text = "Local preview path"
+    Me.MetroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'MetroTextBoxLocalPreviewPath
+    '
+    '
+    '
+    '
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Image = Nothing
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Location = New System.Drawing.Point(545, 2)
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Name = ""
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Size = New System.Drawing.Size(19, 19)
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.TabIndex = 1
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Visible = False
+    Me.MetroTextBoxLocalPreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTextBoxLocalPreviewPath.Lines = New String(-1) {}
+    Me.MetroTextBoxLocalPreviewPath.Location = New System.Drawing.Point(154, 133)
+    Me.MetroTextBoxLocalPreviewPath.MaxLength = 32767
+    Me.MetroTextBoxLocalPreviewPath.Name = "MetroTextBoxLocalPreviewPath"
+    Me.MetroTextBoxLocalPreviewPath.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+    Me.MetroTextBoxLocalPreviewPath.ScrollBars = System.Windows.Forms.ScrollBars.None
+    Me.MetroTextBoxLocalPreviewPath.SelectedText = ""
+    Me.MetroTextBoxLocalPreviewPath.SelectionLength = 0
+    Me.MetroTextBoxLocalPreviewPath.SelectionStart = 0
+    Me.MetroTextBoxLocalPreviewPath.Size = New System.Drawing.Size(567, 24)
+    Me.MetroTextBoxLocalPreviewPath.TabIndex = 9
+    Me.MetroTextBoxLocalPreviewPath.UseSelectable = True
+    Me.MetroTextBoxLocalPreviewPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
+    Me.MetroTextBoxLocalPreviewPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
+    '
+    'MetroButtonLocalPreviewPath
+    '
+    Me.MetroButtonLocalPreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonLocalPreviewPath.Location = New System.Drawing.Point(727, 133)
+    Me.MetroButtonLocalPreviewPath.Name = "MetroButtonLocalPreviewPath"
+    Me.MetroButtonLocalPreviewPath.Size = New System.Drawing.Size(29, 24)
+    Me.MetroButtonLocalPreviewPath.TabIndex = 10
+    Me.MetroButtonLocalPreviewPath.Text = "..."
+    Me.MetroButtonLocalPreviewPath.UseSelectable = True
+    '
+    'MetroLabel2
+    '
+    Me.MetroLabel2.AutoSize = True
+    Me.MetroLabel2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabel2.Location = New System.Drawing.Point(3, 160)
+    Me.MetroLabel2.Name = "MetroLabel2"
+    Me.MetroLabel2.Size = New System.Drawing.Size(145, 30)
+    Me.MetroLabel2.TabIndex = 11
+    Me.MetroLabel2.Text = "Remote preview path"
+    Me.MetroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'MetroTextBoxRemotePreviewPath
+    '
+    '
+    '
+    '
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Image = Nothing
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Location = New System.Drawing.Point(545, 2)
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Name = ""
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Size = New System.Drawing.Size(19, 19)
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.TabIndex = 1
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Visible = False
+    Me.MetroTextBoxRemotePreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTextBoxRemotePreviewPath.Lines = New String(-1) {}
+    Me.MetroTextBoxRemotePreviewPath.Location = New System.Drawing.Point(154, 163)
+    Me.MetroTextBoxRemotePreviewPath.MaxLength = 32767
+    Me.MetroTextBoxRemotePreviewPath.Name = "MetroTextBoxRemotePreviewPath"
+    Me.MetroTextBoxRemotePreviewPath.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+    Me.MetroTextBoxRemotePreviewPath.ScrollBars = System.Windows.Forms.ScrollBars.None
+    Me.MetroTextBoxRemotePreviewPath.SelectedText = ""
+    Me.MetroTextBoxRemotePreviewPath.SelectionLength = 0
+    Me.MetroTextBoxRemotePreviewPath.SelectionStart = 0
+    Me.MetroTextBoxRemotePreviewPath.Size = New System.Drawing.Size(567, 24)
+    Me.MetroTextBoxRemotePreviewPath.TabIndex = 12
+    Me.MetroTextBoxRemotePreviewPath.UseSelectable = True
+    Me.MetroTextBoxRemotePreviewPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
+    Me.MetroTextBoxRemotePreviewPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
+    '
+    'MetroButtonRemotePreviewPath
+    '
+    Me.MetroButtonRemotePreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonRemotePreviewPath.Location = New System.Drawing.Point(727, 163)
+    Me.MetroButtonRemotePreviewPath.Name = "MetroButtonRemotePreviewPath"
+    Me.MetroButtonRemotePreviewPath.Size = New System.Drawing.Size(29, 24)
+    Me.MetroButtonRemotePreviewPath.TabIndex = 13
+    Me.MetroButtonRemotePreviewPath.Text = "..."
+    Me.MetroButtonRemotePreviewPath.UseSelectable = True
+    '
     'DialogOptions
     '
     Me.AcceptButton = Me.OK_Button
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.CancelButton = Me.Cancel_Button
-    Me.ClientSize = New System.Drawing.Size(597, 315)
+    Me.ClientSize = New System.Drawing.Size(797, 414)
     Me.Controls.Add(Me.TabControlOptions)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -487,4 +603,10 @@ Partial Class DialogOptions
   Friend WithEvents MetroButtonOtherMatchesPath As MetroFramework.Controls.MetroButton
   Friend WithEvents OpenFileDialogXML As OpenFileDialog
   Friend WithEvents MetroCheckBoxUseArabicNames As MetroFramework.Controls.MetroCheckBox
+  Friend WithEvents MetroLabel2 As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroTextBoxRemotePreviewPath As MetroFramework.Controls.MetroTextBox
+  Friend WithEvents MetroButtonRemotePreviewPath As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroTextBoxLocalPreviewPath As MetroFramework.Controls.MetroTextBox
+  Friend WithEvents MetroButtonLocalPreviewPath As MetroFramework.Controls.MetroButton
 End Class

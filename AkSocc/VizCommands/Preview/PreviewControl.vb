@@ -8,7 +8,8 @@ Public Class PreviewControl
   Private _processedAssets As New List(Of PreviewAsset)
   Private _finishedAssets As New List(Of PreviewAsset)
   Private _activeAsset As PreviewAsset = Nothing
-  Private _basePath As String = "\\vaio\Shared\Snapshots"
+  Private _localBasePath As String = "\\vaio\Shared\Snapshots"
+  Private _remoteBasePath As String = "\\vaio\Shared\Snapshots"
   Private _tConfig As tyConfigVizrt
 
   Public Event AssetAdded(ByVal asset As PreviewAsset)
@@ -16,12 +17,21 @@ Public Class PreviewControl
   Public Event AssetStateChanged(ByVal asset As PreviewAsset)
 
 #Region "Properties"
-  Public Property BasePath() As String
+  Public Property LocalBasePath() As String
     Get
-      Return _basePath
+      Return _localBasePath
     End Get
     Set(ByVal value As String)
-      _basePath = value
+      _localBasePath = value
+    End Set
+  End Property
+
+  Public Property RemoteBasePath() As String
+    Get
+      Return _remoteBasePath
+    End Get
+    Set(ByVal value As String)
+      _remoteBasePath = value
     End Set
   End Property
 #End Region
@@ -32,9 +42,10 @@ Public Class PreviewControl
     Me.InitBackgroundWorker()
   End Sub
 
-  Public Sub New(ByVal tConfig As tyConfigVizrt, ByVal basePath As String)
+  Public Sub New(ByVal tConfig As tyConfigVizrt, ByVal localBasePath As String, remoteBasePath As String)
     _tConfig = tConfig
-    _basePath = basePath
+    _localBasePath = localBasePath
+    _remoteBasePath = remoteBasePath
     Me.InitBackgroundWorker()
   End Sub
 #End Region
@@ -160,7 +171,7 @@ Public Class PreviewControl
       While Not _backgroundWorker.CancellationPending
         If _pendingAssets.Count > 0 Then
           Dim asset As PreviewAsset = _pendingAssets(0)
-          Dim filePath As String = System.IO.Path.Combine(_basePath, asset.AssetFileName & ".png")
+          Dim filePath As String = System.IO.Path.Combine(_remoteBasePath, asset.AssetFileName & ".png")
 
           _backgroundWorker.ReportProgress(0, New WorkState() With {.state = eWorkState.AssetSelected, .asset = asset})
           If asset.Scene Is Nothing Then
@@ -186,7 +197,7 @@ Public Class PreviewControl
         If _processedAssets.Count > 0 Then
           For index As Integer = _processedAssets.Count - 1 To 0 Step -1
             Dim asset As PreviewAsset = _processedAssets(index)
-            Dim filePath As String = System.IO.Path.Combine(BasePath, asset.AssetFileName & ".png")
+            Dim filePath As String = System.IO.Path.Combine(_localBasePath, asset.AssetFileName & ".png")
             If System.IO.File.Exists(filePath) Then
               Try
                 'clone created image and move to finished list

@@ -41,8 +41,10 @@ Public Class FormChoose
       lbl.Dock = DockStyle.Fill
 
       _formerScene = _currentScene
+      'in case something must be done
+      Me.GraphicGroup.PreProcessingAction()
       _currentScene = Me.GraphicGroup.PrepareScene(Me.GraphicGroup.graphicStep)
-
+      Me.GraphicGroup.PostProcessingAction()
       If Not _currentScene Is Nothing Then
         If _formerScene Is Nothing Then
           'this is the first time we send a scene

@@ -28,6 +28,10 @@ Imports System.Data.OleDb
     Return Me.List.Count
   End Function
 
+  Public Sub Sort()
+    Me.InnerList.Sort()
+  End Sub
+
   Default Public Property Item(Index As Integer) As Player
     Get
       Return DirectCast(List(Index), Player)

@@ -240,6 +240,8 @@ Imports MatchInfo
   Private Function GetPlayersForMatch() As Boolean
     Dim res = True
     Try
+      _updating = True
+
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
 
@@ -252,16 +254,60 @@ Imports MatchInfo
 
       While myReader.Read()
         If Me.AllPlayers.Contains(myReader.GetInt32(myReader.GetOrdinal("PlayerID"))) Then
-          Me.MatchPlayers.Add(Me.AllPlayers.GetPlayer(myReader.GetInt32(myReader.GetOrdinal("PlayerID"))))
+          Dim player As Player = Me.AllPlayers.GetPlayer(myReader.GetInt32(myReader.GetOrdinal("PlayerID")))
+          Me.MatchPlayers.Add(player)
+          AddHandler player.StatValueChanged, AddressOf _player_StatValueChanged
         End If
       End While
       myReader.Close()
       conn.Close()
+
+      Me.MatchPlayers.Sort()
+      For Each stat As Stat In Me.MatchStats.StatBag
+        Me.UpdateStatFromPlayers(stat.Name)
+      Next
     Catch ex As Exception
 
     End Try
+    _updating = False
     Return res
   End Function
+
+#Region "Update stat from players"
+  Private _updating As Boolean = False
+  Private Sub _player_StatValueChanged(sender As StatSubject, stat As Stat)
+    Try
+      If _updating = True Then Exit Sub
+
+      UpdateStatFromPlayers(stat.Name)
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Public Function UpdateStatFromPlayers(statName As String) As Stat
+    Dim destStat As Stat = Nothing
+    Try
+      Dim value As Double = 0
+      destStat = Me.GetMatchStatByName(statName)
+      If Not destStat Is Nothing Then
+        For Each player As Player In Me.MatchPlayers
+          Dim aux As Stat = player.GetMatchStatByName(statName)
+          If Not aux Is Nothing Then
+            value += aux.Value
+            If aux.Value <> 0 Then
+              Debug.Print(player.ToString & " " & aux.Value)
+            End If
+          End If
+        Next
+        destStat.Value = value
+        Me.Update()
+      End If
+    Catch ex As Exception
+    End Try
+    Return destStat
+  End Function
+#End Region
 
   Public Sub Update()
     Try

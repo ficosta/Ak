@@ -28,8 +28,8 @@ Public Class Stat
 
         RaiseEvent PropertyChanged(Me,
                   New System.ComponentModel.PropertyChangedEventArgs("Value"))
-        RaiseEvent PropertyChanged(Me,
-                  New System.ComponentModel.PropertyChangedEventArgs("ValueText"))
+        'RaiseEvent PropertyChanged(Me,
+        '          New System.ComponentModel.PropertyChangedEventArgs("ValueText"))
         RaiseEvent StatValueChanged(Me)
       Else
         'Debug.Print ("No change " & me.Name & " = " & me.value & " ID " )
