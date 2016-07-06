@@ -8,7 +8,7 @@ Public Class DialogOptions
       Me.DialogResult = System.Windows.Forms.DialogResult.OK
       Me.Close()
     Else
-      MetroFramework.MetroMessageBox.Show(Me, "Check that all settings are correct and try again", "Options")
+      MetroFramework.MetroMessageBox.Show(Me, "Check that all settings are correct and try again", "Options", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End If
 
   End Sub

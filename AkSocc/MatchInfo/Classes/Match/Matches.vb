@@ -56,6 +56,32 @@ Public Class Matches
     Return res
   End Function
 
+  Public Shared Function GetMatchById(id As Integer)
+    Dim res As New Matches
+    Try
+      Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
+      conn.Open()
+
+      Dim SQL As [String] = "SELECT MatchId, AA, MatchDate, TeamID1, TeamID2, Score1, Score2, VenueID, Attendance, CompID, ArabicMatchDescription, ArabicMatchCommentators, OPTAID"
+      SQL += " FROM Matches "
+      SQL += " WHERE MatchId = " & id
+      SQL += " ORDER BY MatchDate DESC"
+
+      Dim CmdSQL As New OleDbCommand(SQL, conn)
+
+      CmdSQL.CommandType = System.Data.CommandType.Text
+      Dim myReader As OleDbDataReader = CmdSQL.ExecuteReader()
+      While myReader.Read()
+        res.Add(New Match(myReader.GetInt32(0)))
+      End While
+      conn.Close()
+    Catch err As Exception
+      'Throw err
+    End Try
+    res.Sort()
+    Return res
+  End Function
+
   Public Sub GetFromDB(Where As String)
     Try
       List.Clear()

@@ -175,11 +175,10 @@ End Enum
 
 
   Public Function UpdateTempsJocClock() As Long
-
     Try
       'como decía john secada, nada que hacerrrr
-      If Me.HoraInici = DEFAULT_TIME Then Exit Function
-      If Me.dPiLastUpdate = DEFAULT_TIME Then Exit Function
+      If Me.HoraInici = DEFAULT_TIME Then Return 0
+      If Me.dPiLastUpdate = DEFAULT_TIME Then Return 0
       Dim nOld As Long
 
       nOld = nPiTempsJoc
@@ -204,8 +203,8 @@ End Enum
   Public Function UpdateTempsJocManual(ByVal niTempsJoc As Long) As Long
     Try
       'como decía john secada, nada que hacerrrr
-      If Me.HoraInici = DEFAULT_TIME Then Exit Function
-      If Me.dPiLastUpdate = DEFAULT_TIME Then Exit Function
+      If Me.HoraInici = DEFAULT_TIME Then Return 0
+      If Me.dPiLastUpdate = DEFAULT_TIME Then Return 0
       Dim nOld As Long
 
       nOld = nPiTempsJoc

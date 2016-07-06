@@ -35,7 +35,7 @@ Public Class frmMain
       Me.Cursor = Cursors.WaitCursor
       DesserializeObjectFromFile(My.Settings.OtherMatchesPath, _otherMatchDays)
       InitControls()
-      MatchSetup()
+      SelectMatch()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -81,7 +81,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ToolStripButtonMatchSetup_Click(sender As Object, e As EventArgs) Handles ToolStripButtonMatchSetup.Click
-    MatchSetup()
+    SelectMatch()
   End Sub
 
 
@@ -111,6 +111,23 @@ Public Class frmMain
 #End Region
 
 #Region "Match functions"
+  Public Function SelectMatch() As Boolean
+    Try
+      Dim dlg As New FormMatchSelector
+      Dim aux As MetroFramework.Forms.MetroForm = TryCast(Me, MetroFramework.Forms.MetroForm)
+      If Not aux Is Nothing Then
+        dlg.StyleManager = aux.StyleManager
+      End If
+      If dlg.ShowDialog(Me) = DialogResult.OK Then
+        'match selected!
+        InitMatchInfo(dlg.SelectedMatchId)
+      End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+    Return True
+  End Function
+
   Public Function MatchSetup() As Boolean
     Try
       Dim dlg As New FormMatchSetup
@@ -119,14 +136,24 @@ Public Class frmMain
         dlg.StyleManager = aux.StyleManager
       End If
       If dlg.ShowDialog(Me) = DialogResult.OK Then
-        'match selected!
-        InitMatchInfo(dlg.SelectedMatch)
+        InitMatchInfo(dlg.SelectedMatchId)
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
     Return True
   End Function
+
+  Private Sub InitMatchInfo(id As Integer)
+    Try
+      'Dim matches As New MatchInfo.Matches()
+
+      Dim match As New Match(id) ' = matches.GetMatch(id)
+      InitMatchInfo(match)
+    Catch ex As Exception
+
+    End Try
+  End Sub
 
   Private Sub InitMatchInfo(match As MatchInfo.Match)
     Me.Cursor = Cursors.WaitCursor

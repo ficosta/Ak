@@ -141,10 +141,10 @@
     <Compile Include="Forms\Goals\frmGoals.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MatchSelector\frmMatchSelector.Designer.vb">
-      <DependentUpon>frmMatchSelector.vb</DependentUpon>
+    <Compile Include="Forms\MatchSelector\FormMatchSelector.Designer.vb">
+      <DependentUpon>FormMatchSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MatchSelector\frmMatchSelector.vb">
+    <Compile Include="Forms\MatchSelector\FormMatchSelector.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Waiting for director\FormWaitingForDirector.Designer.vb">
@@ -329,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Goals\frmGoals.resx">
       <DependentUpon>frmGoals.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MatchSelector\FormMatchSelector.resx">
+      <DependentUpon>FormMatchSelector.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MatchSetup\FormMatchSetup.resx">
       <DependentUpon>FormMatchSetup.vb</DependentUpon>
