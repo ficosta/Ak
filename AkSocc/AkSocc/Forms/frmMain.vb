@@ -145,14 +145,21 @@ Public Class frmMain
   End Function
 
   Private Sub InitMatchInfo(id As Integer)
+    Me.Cursor = Cursors.WaitCursor
     Try
       'Dim matches As New MatchInfo.Matches()
 
       Dim match As New Match(id) ' = matches.GetMatch(id)
+      match.GetMatch()
+
+      match.HomeTeam.GetFullMatchData()
+      match.AwayTeam.GetFullMatchData()
+
       InitMatchInfo(match)
     Catch ex As Exception
 
     End Try
+    Me.Cursor = Cursors.Default
   End Sub
 
   Private Sub InitMatchInfo(match As MatchInfo.Match)
