@@ -8,7 +8,7 @@ Public Class DialogOptions
       Me.DialogResult = System.Windows.Forms.DialogResult.OK
       Me.Close()
     Else
-      MsgBox("Check that all settings are correct and try again")
+      MetroFramework.MetroMessageBox.Show(Me, "Check that all settings are correct and try again", "Options")
     End If
 
   End Sub
@@ -58,7 +58,13 @@ Public Class DialogOptions
   Private Function AcceptSettings() As Boolean
     Dim res As Boolean = True
     Try
-      My.Settings.DataBasePath = Me.MetroTextBoxDataBase.Text
+      If Not System.IO.File.Exists(Me.MetroTextBoxDataBase.Text) Then
+        If MetroFramework.MetroMessageBox.Show(Me, "Data base file " & Me.MetroTextBoxDataBase.Text & " doesn't exist. Continue anyway?", "Data base file", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
+          Return False
+        End If
+      End If
+
+        My.Settings.DataBasePath = Me.MetroTextBoxDataBase.Text
       My.Settings.OtherMatchesPath = Me.MetroTextBoxOtherMatchesFilePath.Text
       My.Settings.ShowSettingsOnStartup = Me.CheckBoxShowOptionsOnStartup.Checked
       My.Settings.UseArabicNames = Me.MetroCheckBoxUseArabicNames.Checked

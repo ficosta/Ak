@@ -38,6 +38,12 @@ Partial Class DialogOptions
     Me.MetroCheckBoxUseArabicNames = New MetroFramework.Controls.MetroCheckBox()
     Me.TabPage2 = New MetroFramework.Controls.MetroTabPage()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+    Me.MetroLabel2 = New MetroFramework.Controls.MetroLabel()
+    Me.MetroTextBoxRemotePreviewPath = New MetroFramework.Controls.MetroTextBox()
+    Me.MetroButtonRemotePreviewPath = New MetroFramework.Controls.MetroButton()
+    Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
+    Me.MetroTextBoxLocalPreviewPath = New MetroFramework.Controls.MetroTextBox()
+    Me.MetroButtonLocalPreviewPath = New MetroFramework.Controls.MetroButton()
     Me.NumericUpDownPreviewPort = New System.Windows.Forms.NumericUpDown()
     Me.LabelHost = New MetroFramework.Controls.MetroLabel()
     Me.TextBoxVizrtHost = New MetroFramework.Controls.MetroTextBox()
@@ -48,12 +54,6 @@ Partial Class DialogOptions
     Me.ComboBoxSceneVersion = New MetroFramework.Controls.MetroComboBox()
     Me.OpenFileDialogDataBase = New System.Windows.Forms.OpenFileDialog()
     Me.OpenFileDialogXML = New System.Windows.Forms.OpenFileDialog()
-    Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
-    Me.MetroTextBoxLocalPreviewPath = New MetroFramework.Controls.MetroTextBox()
-    Me.MetroButtonLocalPreviewPath = New MetroFramework.Controls.MetroButton()
-    Me.MetroLabel2 = New MetroFramework.Controls.MetroLabel()
-    Me.MetroTextBoxRemotePreviewPath = New MetroFramework.Controls.MetroTextBox()
-    Me.MetroButtonRemotePreviewPath = New MetroFramework.Controls.MetroButton()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TabControlOptions.SuspendLayout()
     Me.TabPage1.SuspendLayout()
@@ -137,7 +137,7 @@ Partial Class DialogOptions
     Me.TabPage1.Location = New System.Drawing.Point(4, 38)
     Me.TabPage1.Name = "TabPage1"
     Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-    Me.TabPage1.Size = New System.Drawing.Size(565, 214)
+    Me.TabPage1.Size = New System.Drawing.Size(765, 313)
     Me.TabPage1.TabIndex = 0
     Me.TabPage1.Text = "General options"
     Me.TabPage1.UseVisualStyleBackColor = True
@@ -169,13 +169,13 @@ Partial Class DialogOptions
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel3.Size = New System.Drawing.Size(559, 208)
+    Me.TableLayoutPanel3.Size = New System.Drawing.Size(759, 307)
     Me.TableLayoutPanel3.TabIndex = 2
     '
     'MetroButtonOtherMatchesPath
     '
     Me.MetroButtonOtherMatchesPath.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonOtherMatchesPath.Location = New System.Drawing.Point(527, 33)
+    Me.MetroButtonOtherMatchesPath.Location = New System.Drawing.Point(727, 33)
     Me.MetroButtonOtherMatchesPath.Name = "MetroButtonOtherMatchesPath"
     Me.MetroButtonOtherMatchesPath.Size = New System.Drawing.Size(29, 24)
     Me.MetroButtonOtherMatchesPath.TabIndex = 5
@@ -188,7 +188,7 @@ Partial Class DialogOptions
     '
     '
     Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Image = Nothing
-    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Location = New System.Drawing.Point(341, 2)
+    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Location = New System.Drawing.Point(541, 2)
     Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Name = ""
     Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Size = New System.Drawing.Size(19, 19)
     Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
@@ -206,7 +206,7 @@ Partial Class DialogOptions
     Me.MetroTextBoxOtherMatchesFilePath.SelectedText = ""
     Me.MetroTextBoxOtherMatchesFilePath.SelectionLength = 0
     Me.MetroTextBoxOtherMatchesFilePath.SelectionStart = 0
-    Me.MetroTextBoxOtherMatchesFilePath.Size = New System.Drawing.Size(363, 24)
+    Me.MetroTextBoxOtherMatchesFilePath.Size = New System.Drawing.Size(563, 24)
     Me.MetroTextBoxOtherMatchesFilePath.TabIndex = 4
     Me.MetroTextBoxOtherMatchesFilePath.UseSelectable = True
     Me.MetroTextBoxOtherMatchesFilePath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
@@ -240,7 +240,7 @@ Partial Class DialogOptions
     '
     '
     Me.MetroTextBoxDataBase.CustomButton.Image = Nothing
-    Me.MetroTextBoxDataBase.CustomButton.Location = New System.Drawing.Point(341, 2)
+    Me.MetroTextBoxDataBase.CustomButton.Location = New System.Drawing.Point(541, 2)
     Me.MetroTextBoxDataBase.CustomButton.Name = ""
     Me.MetroTextBoxDataBase.CustomButton.Size = New System.Drawing.Size(19, 19)
     Me.MetroTextBoxDataBase.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
@@ -258,7 +258,7 @@ Partial Class DialogOptions
     Me.MetroTextBoxDataBase.SelectedText = ""
     Me.MetroTextBoxDataBase.SelectionLength = 0
     Me.MetroTextBoxDataBase.SelectionStart = 0
-    Me.MetroTextBoxDataBase.Size = New System.Drawing.Size(363, 24)
+    Me.MetroTextBoxDataBase.Size = New System.Drawing.Size(563, 24)
     Me.MetroTextBoxDataBase.TabIndex = 1
     Me.MetroTextBoxDataBase.UseSelectable = True
     Me.MetroTextBoxDataBase.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
@@ -267,7 +267,7 @@ Partial Class DialogOptions
     'MetroButtonDataBase
     '
     Me.MetroButtonDataBase.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonDataBase.Location = New System.Drawing.Point(527, 3)
+    Me.MetroButtonDataBase.Location = New System.Drawing.Point(727, 3)
     Me.MetroButtonDataBase.Name = "MetroButtonDataBase"
     Me.MetroButtonDataBase.Size = New System.Drawing.Size(29, 24)
     Me.MetroButtonDataBase.TabIndex = 2
@@ -280,7 +280,7 @@ Partial Class DialogOptions
     Me.MetroCheckBoxUseArabicNames.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroCheckBoxUseArabicNames.Location = New System.Drawing.Point(158, 63)
     Me.MetroCheckBoxUseArabicNames.Name = "MetroCheckBoxUseArabicNames"
-    Me.MetroCheckBoxUseArabicNames.Size = New System.Drawing.Size(363, 24)
+    Me.MetroCheckBoxUseArabicNames.Size = New System.Drawing.Size(563, 24)
     Me.MetroCheckBoxUseArabicNames.TabIndex = 6
     Me.MetroCheckBoxUseArabicNames.Text = "Use arabic names"
     Me.MetroCheckBoxUseArabicNames.UseSelectable = True
@@ -336,6 +336,108 @@ Partial Class DialogOptions
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel2.Size = New System.Drawing.Size(759, 307)
     Me.TableLayoutPanel2.TabIndex = 0
+    '
+    'MetroLabel2
+    '
+    Me.MetroLabel2.AutoSize = True
+    Me.MetroLabel2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabel2.Location = New System.Drawing.Point(3, 160)
+    Me.MetroLabel2.Name = "MetroLabel2"
+    Me.MetroLabel2.Size = New System.Drawing.Size(145, 30)
+    Me.MetroLabel2.TabIndex = 11
+    Me.MetroLabel2.Text = "Remote preview path"
+    Me.MetroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'MetroTextBoxRemotePreviewPath
+    '
+    '
+    '
+    '
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Image = Nothing
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Location = New System.Drawing.Point(545, 2)
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Name = ""
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Size = New System.Drawing.Size(19, 19)
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.TabIndex = 1
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.Visible = False
+    Me.MetroTextBoxRemotePreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTextBoxRemotePreviewPath.Lines = New String(-1) {}
+    Me.MetroTextBoxRemotePreviewPath.Location = New System.Drawing.Point(154, 163)
+    Me.MetroTextBoxRemotePreviewPath.MaxLength = 32767
+    Me.MetroTextBoxRemotePreviewPath.Name = "MetroTextBoxRemotePreviewPath"
+    Me.MetroTextBoxRemotePreviewPath.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+    Me.MetroTextBoxRemotePreviewPath.ScrollBars = System.Windows.Forms.ScrollBars.None
+    Me.MetroTextBoxRemotePreviewPath.SelectedText = ""
+    Me.MetroTextBoxRemotePreviewPath.SelectionLength = 0
+    Me.MetroTextBoxRemotePreviewPath.SelectionStart = 0
+    Me.MetroTextBoxRemotePreviewPath.Size = New System.Drawing.Size(567, 24)
+    Me.MetroTextBoxRemotePreviewPath.TabIndex = 12
+    Me.MetroTextBoxRemotePreviewPath.UseSelectable = True
+    Me.MetroTextBoxRemotePreviewPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
+    Me.MetroTextBoxRemotePreviewPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
+    '
+    'MetroButtonRemotePreviewPath
+    '
+    Me.MetroButtonRemotePreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonRemotePreviewPath.Location = New System.Drawing.Point(727, 163)
+    Me.MetroButtonRemotePreviewPath.Name = "MetroButtonRemotePreviewPath"
+    Me.MetroButtonRemotePreviewPath.Size = New System.Drawing.Size(29, 24)
+    Me.MetroButtonRemotePreviewPath.TabIndex = 13
+    Me.MetroButtonRemotePreviewPath.Text = "..."
+    Me.MetroButtonRemotePreviewPath.UseSelectable = True
+    '
+    'MetroLabel1
+    '
+    Me.MetroLabel1.AutoSize = True
+    Me.MetroLabel1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabel1.Location = New System.Drawing.Point(3, 130)
+    Me.MetroLabel1.Name = "MetroLabel1"
+    Me.MetroLabel1.Size = New System.Drawing.Size(145, 30)
+    Me.MetroLabel1.TabIndex = 8
+    Me.MetroLabel1.Text = "Local preview path"
+    Me.MetroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'MetroTextBoxLocalPreviewPath
+    '
+    '
+    '
+    '
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Image = Nothing
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Location = New System.Drawing.Point(545, 2)
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Name = ""
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Size = New System.Drawing.Size(19, 19)
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.TabIndex = 1
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.Visible = False
+    Me.MetroTextBoxLocalPreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTextBoxLocalPreviewPath.Lines = New String(-1) {}
+    Me.MetroTextBoxLocalPreviewPath.Location = New System.Drawing.Point(154, 133)
+    Me.MetroTextBoxLocalPreviewPath.MaxLength = 32767
+    Me.MetroTextBoxLocalPreviewPath.Name = "MetroTextBoxLocalPreviewPath"
+    Me.MetroTextBoxLocalPreviewPath.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+    Me.MetroTextBoxLocalPreviewPath.ScrollBars = System.Windows.Forms.ScrollBars.None
+    Me.MetroTextBoxLocalPreviewPath.SelectedText = ""
+    Me.MetroTextBoxLocalPreviewPath.SelectionLength = 0
+    Me.MetroTextBoxLocalPreviewPath.SelectionStart = 0
+    Me.MetroTextBoxLocalPreviewPath.Size = New System.Drawing.Size(567, 24)
+    Me.MetroTextBoxLocalPreviewPath.TabIndex = 9
+    Me.MetroTextBoxLocalPreviewPath.UseSelectable = True
+    Me.MetroTextBoxLocalPreviewPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
+    Me.MetroTextBoxLocalPreviewPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
+    '
+    'MetroButtonLocalPreviewPath
+    '
+    Me.MetroButtonLocalPreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonLocalPreviewPath.Location = New System.Drawing.Point(727, 133)
+    Me.MetroButtonLocalPreviewPath.Name = "MetroButtonLocalPreviewPath"
+    Me.MetroButtonLocalPreviewPath.Size = New System.Drawing.Size(29, 24)
+    Me.MetroButtonLocalPreviewPath.TabIndex = 10
+    Me.MetroButtonLocalPreviewPath.Text = "..."
+    Me.MetroButtonLocalPreviewPath.UseSelectable = True
     '
     'NumericUpDownPreviewPort
     '
@@ -445,108 +547,6 @@ Partial Class DialogOptions
     'OpenFileDialogXML
     '
     Me.OpenFileDialogXML.FileName = "Matches file path"
-    '
-    'MetroLabel1
-    '
-    Me.MetroLabel1.AutoSize = True
-    Me.MetroLabel1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel1.Location = New System.Drawing.Point(3, 130)
-    Me.MetroLabel1.Name = "MetroLabel1"
-    Me.MetroLabel1.Size = New System.Drawing.Size(145, 30)
-    Me.MetroLabel1.TabIndex = 8
-    Me.MetroLabel1.Text = "Local preview path"
-    Me.MetroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
-    'MetroTextBoxLocalPreviewPath
-    '
-    '
-    '
-    '
-    Me.MetroTextBoxLocalPreviewPath.CustomButton.Image = Nothing
-    Me.MetroTextBoxLocalPreviewPath.CustomButton.Location = New System.Drawing.Point(545, 2)
-    Me.MetroTextBoxLocalPreviewPath.CustomButton.Name = ""
-    Me.MetroTextBoxLocalPreviewPath.CustomButton.Size = New System.Drawing.Size(19, 19)
-    Me.MetroTextBoxLocalPreviewPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
-    Me.MetroTextBoxLocalPreviewPath.CustomButton.TabIndex = 1
-    Me.MetroTextBoxLocalPreviewPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxLocalPreviewPath.CustomButton.UseSelectable = True
-    Me.MetroTextBoxLocalPreviewPath.CustomButton.Visible = False
-    Me.MetroTextBoxLocalPreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTextBoxLocalPreviewPath.Lines = New String(-1) {}
-    Me.MetroTextBoxLocalPreviewPath.Location = New System.Drawing.Point(154, 133)
-    Me.MetroTextBoxLocalPreviewPath.MaxLength = 32767
-    Me.MetroTextBoxLocalPreviewPath.Name = "MetroTextBoxLocalPreviewPath"
-    Me.MetroTextBoxLocalPreviewPath.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-    Me.MetroTextBoxLocalPreviewPath.ScrollBars = System.Windows.Forms.ScrollBars.None
-    Me.MetroTextBoxLocalPreviewPath.SelectedText = ""
-    Me.MetroTextBoxLocalPreviewPath.SelectionLength = 0
-    Me.MetroTextBoxLocalPreviewPath.SelectionStart = 0
-    Me.MetroTextBoxLocalPreviewPath.Size = New System.Drawing.Size(567, 24)
-    Me.MetroTextBoxLocalPreviewPath.TabIndex = 9
-    Me.MetroTextBoxLocalPreviewPath.UseSelectable = True
-    Me.MetroTextBoxLocalPreviewPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
-    Me.MetroTextBoxLocalPreviewPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
-    '
-    'MetroButtonLocalPreviewPath
-    '
-    Me.MetroButtonLocalPreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonLocalPreviewPath.Location = New System.Drawing.Point(727, 133)
-    Me.MetroButtonLocalPreviewPath.Name = "MetroButtonLocalPreviewPath"
-    Me.MetroButtonLocalPreviewPath.Size = New System.Drawing.Size(29, 24)
-    Me.MetroButtonLocalPreviewPath.TabIndex = 10
-    Me.MetroButtonLocalPreviewPath.Text = "..."
-    Me.MetroButtonLocalPreviewPath.UseSelectable = True
-    '
-    'MetroLabel2
-    '
-    Me.MetroLabel2.AutoSize = True
-    Me.MetroLabel2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel2.Location = New System.Drawing.Point(3, 160)
-    Me.MetroLabel2.Name = "MetroLabel2"
-    Me.MetroLabel2.Size = New System.Drawing.Size(145, 30)
-    Me.MetroLabel2.TabIndex = 11
-    Me.MetroLabel2.Text = "Remote preview path"
-    Me.MetroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
-    'MetroTextBoxRemotePreviewPath
-    '
-    '
-    '
-    '
-    Me.MetroTextBoxRemotePreviewPath.CustomButton.Image = Nothing
-    Me.MetroTextBoxRemotePreviewPath.CustomButton.Location = New System.Drawing.Point(545, 2)
-    Me.MetroTextBoxRemotePreviewPath.CustomButton.Name = ""
-    Me.MetroTextBoxRemotePreviewPath.CustomButton.Size = New System.Drawing.Size(19, 19)
-    Me.MetroTextBoxRemotePreviewPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
-    Me.MetroTextBoxRemotePreviewPath.CustomButton.TabIndex = 1
-    Me.MetroTextBoxRemotePreviewPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxRemotePreviewPath.CustomButton.UseSelectable = True
-    Me.MetroTextBoxRemotePreviewPath.CustomButton.Visible = False
-    Me.MetroTextBoxRemotePreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTextBoxRemotePreviewPath.Lines = New String(-1) {}
-    Me.MetroTextBoxRemotePreviewPath.Location = New System.Drawing.Point(154, 163)
-    Me.MetroTextBoxRemotePreviewPath.MaxLength = 32767
-    Me.MetroTextBoxRemotePreviewPath.Name = "MetroTextBoxRemotePreviewPath"
-    Me.MetroTextBoxRemotePreviewPath.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-    Me.MetroTextBoxRemotePreviewPath.ScrollBars = System.Windows.Forms.ScrollBars.None
-    Me.MetroTextBoxRemotePreviewPath.SelectedText = ""
-    Me.MetroTextBoxRemotePreviewPath.SelectionLength = 0
-    Me.MetroTextBoxRemotePreviewPath.SelectionStart = 0
-    Me.MetroTextBoxRemotePreviewPath.Size = New System.Drawing.Size(567, 24)
-    Me.MetroTextBoxRemotePreviewPath.TabIndex = 12
-    Me.MetroTextBoxRemotePreviewPath.UseSelectable = True
-    Me.MetroTextBoxRemotePreviewPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
-    Me.MetroTextBoxRemotePreviewPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
-    '
-    'MetroButtonRemotePreviewPath
-    '
-    Me.MetroButtonRemotePreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonRemotePreviewPath.Location = New System.Drawing.Point(727, 163)
-    Me.MetroButtonRemotePreviewPath.Name = "MetroButtonRemotePreviewPath"
-    Me.MetroButtonRemotePreviewPath.Size = New System.Drawing.Size(29, 24)
-    Me.MetroButtonRemotePreviewPath.TabIndex = 13
-    Me.MetroButtonRemotePreviewPath.Text = "..."
-    Me.MetroButtonRemotePreviewPath.UseSelectable = True
     '
     'DialogOptions
     '
