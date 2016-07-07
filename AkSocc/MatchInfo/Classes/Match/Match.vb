@@ -498,7 +498,43 @@ Imports MatchInfo
     End If
   End Function
 
+  Public Function RemoveLastGoalByPlayer(player As Player) As MatchGoal
+    Try
+      For Each goal As MatchGoal In Me.MatchGoals
+        If goal.PlayerID = player.PlayerID Then
+          RemoveGoal(goal)
+          Exit For
+        End If
+      Next
+    Catch ex As Exception
+
+    End Try
+  End Function
+
+  Public Function RemoveGoal(id As Integer) As Boolean
+    Try
+      Me.RemoveGoal(Me.HomeTeam, id)
+      Me.RemoveGoal(Me.AwayTeam, id)
+      Return True
+    Catch ex As Exception
+      Return False
+    End Try
+  End Function
+
+  Public Function RemoveGoal(goal As MatchGoal) As Boolean
+    Try
+      Return Me.RemoveGoal(goal.GoalID)
+    Catch ex As Exception
+      Return False
+    End Try
+  End Function
+
+
   Public Function RemoveLastGoal() As MatchGoal
+    If Not LastGoal Is Nothing Then
+      Me.RemoveGoal(Me.LastGoal)
+      LastGoal = Nothing
+    End If
     RaiseEvent ScoreChanged()
     Return Me.LastGoal
   End Function
@@ -537,6 +573,34 @@ Imports MatchInfo
 
     End Try
     Return goal
+  End Function
+
+  Private Function RemoveGoal(team As Team, goalID As Integer) As Boolean
+    Dim res As Boolean = True
+    Try
+      Dim goal As MatchGoal = team.MatchGoals.GetGoal(goalID)
+      If goal Is Nothing Then Return False
+
+      Dim player As Player = team.GetPlayerById(goal.PlayerID)
+
+      team.MatchGoals.RemoveGoal(goalID)
+
+      If Not player Is Nothing Then
+        player.Goals = team.MatchGoals.GetGoalsByPlayer(player).Count
+      End If
+      team.Goals = team.MatchGoals.Count
+
+      If Not Me.LastGoal Is Nothing AndAlso Me.LastGoal.GoalID = goalID Then
+        If Me.MatchGoals.Count > 0 Then
+          Me.LastGoal = Me.MatchGoals(0)
+        Else
+          Me.LastGoal = Nothing
+        End If
+      End If
+    Catch ex As Exception
+
+    End Try
+
   End Function
 
   Public Function Clone() As Object Implements ICloneable.Clone

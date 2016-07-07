@@ -19,7 +19,15 @@ Public Class MatchGoals
   Public Shared Sub DeleteMatchGoals(Match_ID As Integer)
     Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
     conn.Open()
-    Dim myCmd As New OleDbCommand("DELETE FROM MatchGoals WHERE MatchID = " + Match_ID.ToString(), conn)
+    Dim myCmd As New OleDbCommand("DELETE FROM MatchGoals WHERE MatchID = " & Match_ID.ToString(), conn)
+    myCmd.ExecuteNonQuery()
+    conn.Close()
+  End Sub
+
+  Public Shared Sub DeleteMatchGoal(Goal_ID As Integer)
+    Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
+    conn.Open()
+    Dim myCmd As New OleDbCommand("DELETE FROM MatchGoals WHERE GoalID = " & Goal_ID.ToString(), conn)
     myCmd.ExecuteNonQuery()
     conn.Close()
   End Sub
@@ -29,10 +37,29 @@ Public Class MatchGoals
     List.Add(NewGoal)
   End Sub
 
-  Public Sub RemoveGoal(DeleteGoal As MatchGoal)
-    DeleteGoal.Delete()
-    List.Remove(DeleteGoal)
-  End Sub
+  Public Function RemoveGoal(id As Integer) As Boolean
+    Dim res As Boolean = False
+    Try
+      For i As Integer = Me.InnerList.Count - 1 To 0 Step -1
+        If CType(Me.InnerList(i), MatchGoal).GoalID = id Then
+          Me.InnerList.RemoveAt(i)
+          MatchGoals.DeleteMatchGoal(id)
+          res = True
+        End If
+      Next
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
+  Public Function RemoveGoal(DeleteGoal As MatchGoal) As Boolean
+    Try
+      Return RemoveGoal(DeleteGoal.GoalID)
+    Catch ex As Exception
+      Return False
+    End Try
+  End Function
 
   Public Sub GetFromDB(Where As String)
     Try

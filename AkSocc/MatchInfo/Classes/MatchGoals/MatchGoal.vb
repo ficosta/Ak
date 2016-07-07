@@ -30,7 +30,7 @@ Public Class MatchGoal
     End Get
     Set(value As eGoalType)
       Me.OwnGoal = (value = eGoalType.Own)
-      Me.OwnGoal = (value = eGoalType.Penalty)
+      Me.Penalty = (value = eGoalType.Penalty)
     End Set
   End Property
 
@@ -90,7 +90,7 @@ Public Class MatchGoal
   Public Sub Delete()
     Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
     conn.Open()
-    Dim SQL As String = "DELETE FROM MatchGoals WHERE GoalID = " + GoalID.ToString()
+    Dim SQL As String = "DELETE FROM MatchGoals WHERE GoalID = " & GoalID.ToString()
     Dim myCmd As New OleDbCommand(SQL, conn)
     myCmd.ExecuteNonQuery()
     conn.Close()

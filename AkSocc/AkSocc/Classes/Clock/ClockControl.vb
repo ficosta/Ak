@@ -140,8 +140,18 @@ Public NotInheritable Class ClockControl
     End Set
   End Property
 
+
+  Private _updating As Boolean = False
+
   Public Sub UpdateClockVisibility()
+    If _updating Then Exit Sub
+    _updating = True
     Try
+      If _match Is Nothing Then
+        _clockOnAir = False
+        Me.ClockVisible = False
+        Exit Sub
+      End If
 
       If _match.MatchPeriods.ActivePeriod Is Nothing Then
         _request = False
@@ -166,6 +176,7 @@ Public NotInheritable Class ClockControl
     Catch ex As Exception
 
     End Try
+    _updating = False
   End Sub
 
 #End Region
@@ -237,26 +248,29 @@ Public NotInheritable Class ClockControl
         .SceneDirectorsOut.Add("DIR_MAIN", 0, DirectorAction.ContinueNormal)
 
         'Control objects
-        .SceneParameters.Add("Clock_Home_Team_Name", _match.HomeTeam.Name)
-        .SceneParameters.Add("Clock_Away_Team_Name", _match.AwayTeam.Name)
+        If Not _match Is Nothing Then
+          .SceneParameters.Add("Clock_Home_Team_Name", _match.HomeTeam.Name)
+          .SceneParameters.Add("Clock_Away_Team_Name", _match.AwayTeam.Name)
 
-        .SceneParameters.Add("Clock_Home_Team_Score", _match.home_goals)
-        .SceneParameters.Add("Clock_Away_Team_Score", _match.away_goals)
+          .SceneParameters.Add("Clock_Home_Team_Score", _match.home_goals)
+          .SceneParameters.Add("Clock_Away_Team_Score", _match.away_goals)
 
-        .SceneParameters.Add("Clock_Home_Team_TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & _match.HomeTeam.BadgeName, paramType.Image)
-        .SceneParameters.Add("Clock_Away_Team_TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & _match.AwayTeam.BadgeName, paramType.Image)
+          .SceneParameters.Add("Clock_Home_Team_TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & _match.HomeTeam.BadgeName, paramType.Image)
+          .SceneParameters.Add("Clock_Away_Team_TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & _match.AwayTeam.BadgeName, paramType.Image)
 
-        Dim sTime As String = ""
-        If _match.MatchPeriods.ActivePeriod Is Nothing Then
-          sTime = ""
-        Else
-          sTime = EnglishToArabicTranslator.Instance.ToArabic(_match.MatchPeriods.ActivePeriod.Nom)
+          Dim sTime As String = ""
+          If _match.MatchPeriods.ActivePeriod Is Nothing Then
+            sTime = ""
+          Else
+            sTime = EnglishToArabicTranslator.Instance.ToArabic(_match.MatchPeriods.ActivePeriod.Nom)
+          End If
+
+          .SceneParameters.Add("Clock_Half_Indicator_Text", sTime)
+
+          'clock control
+          UpdateRunningClock()
         End If
 
-        .SceneParameters.Add("Clock_Half_Indicator_Text", sTime)
-
-        'clock control
-        UpdateRunningClock()
       End With
     Catch ex As Exception
       WriteToErrorLog(ex)

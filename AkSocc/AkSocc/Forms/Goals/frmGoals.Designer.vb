@@ -86,23 +86,24 @@ Partial Class frmGoals
     Me.TableLayoutPanelData.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
     Me.TableLayoutPanelData.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
     Me.TableLayoutPanelData.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-    Me.TableLayoutPanelData.Controls.Add(Me.MetroButtonAddAwayTeamSubstitition, 2, 0)
+    Me.TableLayoutPanelData.Controls.Add(Me.MetroButtonAddAwayTeamSubstitition, 0, 0)
     Me.TableLayoutPanelData.Controls.Add(Me.MetroButtonRemoveGoal, 1, 0)
     Me.TableLayoutPanelData.Controls.Add(Me.MetroGridGoals, 0, 1)
-    Me.TableLayoutPanelData.Controls.Add(Me.MetroButtonAddHomeTeamSubstitition, 0, 0)
+    Me.TableLayoutPanelData.Controls.Add(Me.MetroButtonAddHomeTeamSubstitition, 2, 0)
     Me.TableLayoutPanelData.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanelData.Location = New System.Drawing.Point(3, 33)
     Me.TableLayoutPanelData.Name = "TableLayoutPanelData"
     Me.TableLayoutPanelData.RowCount = 2
     Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
     Me.TableLayoutPanelData.Size = New System.Drawing.Size(792, 272)
     Me.TableLayoutPanelData.TabIndex = 1
     '
     'MetroButtonAddAwayTeamSubstitition
     '
     Me.MetroButtonAddAwayTeamSubstitition.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonAddAwayTeamSubstitition.Location = New System.Drawing.Point(531, 3)
+    Me.MetroButtonAddAwayTeamSubstitition.Location = New System.Drawing.Point(3, 3)
     Me.MetroButtonAddAwayTeamSubstitition.Name = "MetroButtonAddAwayTeamSubstitition"
     Me.MetroButtonAddAwayTeamSubstitition.Size = New System.Drawing.Size(258, 24)
     Me.MetroButtonAddAwayTeamSubstitition.TabIndex = 3
@@ -173,7 +174,7 @@ Partial Class frmGoals
     'MetroButtonAddHomeTeamSubstitition
     '
     Me.MetroButtonAddHomeTeamSubstitition.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonAddHomeTeamSubstitition.Location = New System.Drawing.Point(3, 3)
+    Me.MetroButtonAddHomeTeamSubstitition.Location = New System.Drawing.Point(531, 3)
     Me.MetroButtonAddHomeTeamSubstitition.Name = "MetroButtonAddHomeTeamSubstitition"
     Me.MetroButtonAddHomeTeamSubstitition.Size = New System.Drawing.Size(258, 24)
     Me.MetroButtonAddHomeTeamSubstitition.TabIndex = 1
@@ -207,7 +208,6 @@ Partial Class frmGoals
     Me.ColumnID.HeaderText = "ColumnID"
     Me.ColumnID.Name = "ColumnID"
     Me.ColumnID.ReadOnly = True
-    Me.ColumnID.Visible = False
     '
     'ColumnHomeType
     '

@@ -9,6 +9,17 @@ Module MFuncions
     Dim Nom As String
   End Structure
 
+  Public Function Clamp(value As Double, min As Double, max As Double) As Double
+    Dim res As Double = min
+    Try
+      res = Math.Max(Math.Min(min, max), value)
+      res = Math.Min(Math.Max(min, max), value)
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
   Public Function FormatRunningTime(seconds As Integer) As String
     Dim res As String = seconds
     Try

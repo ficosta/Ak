@@ -2,7 +2,7 @@
 
 Public Class UserControlTactica
   Private _size As Double = 50
-  Private _benchPlayerPictureBoxes As New List(Of PictureBox)
+  Private _benchPlayerLabels As New List(Of Label)
 #Region "Properties"
   Private _tactica As Tactic = Nothing
   Public Property Tactic() As Tactic
@@ -23,8 +23,21 @@ Public Class UserControlTactica
     Set(ByVal value As Team)
       _team = value
       If _tactica Is Nothing And Not _team Is Nothing Then _tactica = _team.Tactic
-      InicialitzarVisualitzacioPlayersTeam(_team, Me.ListViewTeam)
-      ShowTactics()
+
+      If Not _team Is Nothing Then
+        _tactica = New Tactic()
+        For Each player As Player In _team.MatchPlayers
+          Dim pos As PosicioTactic = _tactica.GetPosicioByID(player.Formation_Pos)
+          If Not pos Is Nothing Then
+            pos.X = Clamp(player.Formation_X / 200, -0.5, 0.5)
+            pos.Y = Clamp(player.Formation_Y / 200, -0.5, 0.5)
+          End If
+        Next
+        InicialitzarVisualitzacioPlayersTeam()
+        InicialitzarVisualitzacioAllPlayersTeam()
+        ShowTactics()
+      End If
+
 
     End Set
   End Property
@@ -43,6 +56,7 @@ Public Class UserControlTactica
   Private _selectedTactica As Tactic
   Private _selectedPosicio As PosicioTactic = Nothing
   Private _lastSelectedPosicio As PosicioTactic = Nothing
+  Private _lastPositionIndex As Integer = 0
   Public Property SelectedPosicio() As PosicioTactic
     Get
       Return _selectedPosicio
@@ -64,11 +78,11 @@ Public Class UserControlTactica
     End Get
     Set(ByVal value As Color)
       _color = value
+      Me.ShowTactic(_tactica, _isLocalTeam, _color)
     End Set
   End Property
 
 #End Region
-
 
 #Region "Functions"
   Public Sub ClearTactics()
@@ -96,6 +110,7 @@ Public Class UserControlTactica
         'g.DrawImage(My.Resources.CAMP_PER_OPTA_OK, New RectangleF(0, 0, Me.PictureBoxCanvas.Image.Width, Me.PictureBoxCanvas.Image.Height))
       End Using
 
+      'InicialitzarVisualitzacioPlayersTeam(_team, Me.ListViewTeamMatch)
       ShowTactic(_tactica, _isLocalTeam, Me.Color)
 
       If SelectedPosicio Is Nothing Then
@@ -130,21 +145,15 @@ Public Class UserControlTactica
             Next
           End Using
           'draw bench players
-          For i As Integer = 0 To _benchPlayerPictureBoxes.Count - 1
-            With _benchPlayerPictureBoxes(i)
-              If .Image Is Nothing Then
-                .Image = New Bitmap(.Width, .Height)
-              End If
-              Using g As Graphics = Graphics.FromImage(.Image)
-                If i + 12 >= _team.MatchPlayers.Count Then
-                  DrawPlayer(g, 0, 0, b, p, "-", isLocal, .Image.Width, .Image.Size)
-                Else
-                  DrawPlayer(g, 0, 0, b, p, _team.MatchPlayers(i + 11).SquadNo, isLocal, .Image.Width, .Image.Size)
-                End If
-              End Using
-            End With
+          For i As Integer = 0 To _benchPlayerLabels.Count - 1
+            Dim player As Player = _team.MatchPlayers.GetPlayerByPosition(12 + i)
+            _benchPlayerLabels(i).BackColor = color
+            If Not player Is Nothing Then
+              _benchPlayerLabels(i).Text = player.SquadNo
+            Else
+              _benchPlayerLabels(i).Text = ""
+            End If
           Next
-
         End Using
       End Using
     Catch ex As Exception
@@ -184,112 +193,6 @@ Public Class UserControlTactica
     End Try
   End Sub
 
-  Private Function GetPlayerRectangleF(ByVal x As Double, ByVal y As Double, ByVal size As Single, ByVal canvasSize As System.Drawing.Size, ByVal isLocal As Boolean) As RectangleF
-    Dim rect As New RectangleF(0, 0, 1, 1)
-    Try
-      Dim center As PointF = New PointF(x, y)
-      Dim nx As Double = x
-      Dim ny As Double = y
-      If isLocal = False Then
-        nx = -center.X
-        ny = -center.Y
-      End If
-
-      'center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - size / 2
-      'center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - size / 2
-      center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - size / 2
-      center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - size / 2
-
-      rect = New RectangleF(center.X, center.Y, size, size)
-    Catch ex As Exception
-    End Try
-    Return rect
-  End Function
-
-
-  Private Function GetPlayerRectangle(ByVal x As Double, ByVal y As Double, ByVal size As Single, ByVal canvasSize As System.Drawing.Size, ByVal isLocal As Boolean) As Rectangle
-    Dim rect As New Rectangle(0, 0, 1, 1)
-    Try
-      Dim center As PointF = New PointF(x, y)
-      Dim nx As Double = x
-      Dim ny As Double = y
-      If isLocal = False Then
-        nx = -center.X
-        ny = -center.Y
-      End If
-
-      'center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - size / 2
-      'center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - size / 2
-      center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - size / 2
-      center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - size / 2
-
-      rect = New Rectangle(center.X, center.Y, size, size)
-    Catch ex As Exception
-    End Try
-    Return rect
-  End Function
-
-
-  Private Function GetPlayerRect(ByVal pos As PosicioTactic, ByVal isLocal As Boolean) As RectangleF
-    Dim rect As New RectangleF(0, 0, 1, 1)
-    Try
-      Dim center As PointF
-      If isLocal Then
-        center = TranslateTacticPositionToImage(New PointF(pos.X, pos.Y), isLocal)
-      Else
-        center = TranslateTacticPositionToImage(New PointF(pos.X, pos.Y), isLocal)
-      End If
-      center = TranslateTacticPositionToImage(New PointF(pos.X, pos.Y), isLocal)
-
-      rect = New RectangleF(center.X, center.Y, _size, _size)
-    Catch ex As Exception
-    End Try
-    Return rect
-  End Function
-
-  Private _xScale As Single = 0.82
-  Private _yScale As Single = 0.78
-
-  Private Function TranslateTacticPositionToImage(ByVal p As PointF, ByVal isLocalTeam As Boolean) As PointF
-    Dim center As New PointF(p.X, p.Y)
-    Dim nx As Double = p.X
-    Dim ny As Double = p.Y
-    If isLocalTeam = False Then
-      nx = -p.X
-      ny = -p.Y
-    End If
-    Try
-      Dim canvasSize As Size = Me.PictureBoxCanvas.Image.Size
-
-
-      'center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - _size / 2
-      'center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - _size / 2
-      center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - _size / 2
-      center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - _size / 2
-    Catch ex As Exception
-    End Try
-    Return center
-  End Function
-
-  Private Function TranslateImagePositionToTactic(ByVal p As PointF, ByVal isLocalTeam As Boolean) As PointF
-    Dim center As New PointF(p.X, p.Y)
-    Dim nx As Double = p.X
-    Dim ny As Double = p.Y
-    Try
-      Dim canvasSize As Size = Me.PictureBoxCanvas.Image.Size
-      center.Y = (nx - canvasSize.Width / 2 + _size / 2) / (canvasSize.Width * _xScale)
-      center.X = (ny - canvasSize.Height / 2 + _size / 2) / (canvasSize.Height * _yScale)
-      If isLocalTeam = False Then
-        center.X = -center.X
-        center.Y = -center.Y
-      End If
-
-      Debug.Print("TranslateImagePositionToTactic " & p.X & " -> " & center.Y & "    " & p.Y & " -> " & center.X)
-      'center.X = center.Y
-    Catch ex As Exception
-    End Try
-    Return center
-  End Function
 
   Private Sub PopulateTacticWithPlayers(ByVal tactic As Tactic, ByVal team As Team)
     Try
@@ -343,6 +246,109 @@ Public Class UserControlTactica
     End Try
   End Sub
 
+#End Region
+
+#Region "Pixel conversion functions"
+
+  Private Function GetPlayerRectangleF(ByVal x As Double, ByVal y As Double, ByVal size As Single, ByVal canvasSize As System.Drawing.Size, ByVal isLocal As Boolean) As RectangleF
+    Dim rect As New RectangleF(0, 0, 1, 1)
+    Try
+      Dim center As PointF = New PointF(x, y)
+      Dim nx As Double = center.X
+      Dim ny As Double = center.Y
+      If isLocal = False Then
+        nx = -center.X
+        ny = -center.Y
+      End If
+
+      center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - size / 2
+      center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - size / 2
+
+      rect = New RectangleF(center.X, center.Y, size, size)
+    Catch ex As Exception
+    End Try
+    Return rect
+  End Function
+
+
+  Private Function GetPlayerRectangle(ByVal x As Double, ByVal y As Double, ByVal size As Single, ByVal canvasSize As System.Drawing.Size, ByVal isLocal As Boolean) As Rectangle
+    Dim rect As New Rectangle(0, 0, 1, 1)
+    Try
+      Dim center As PointF = New PointF(x, y)
+      Dim nx As Double = center.X
+      Dim ny As Double = center.Y
+      If isLocal = False Then
+        nx = -center.X
+        ny = -center.Y
+      End If
+
+      center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - size / 2
+      center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - size / 2
+
+      rect = New Rectangle(center.X, center.Y, size, size)
+    Catch ex As Exception
+    End Try
+    Return rect
+  End Function
+
+
+  Private Function GetPlayerRect(ByVal pos As PosicioTactic, ByVal isLocal As Boolean) As RectangleF
+    Dim rect As New RectangleF(0, 0, 1, 1)
+    Try
+      Dim center As PointF
+      If isLocal Then
+        center = TranslateTacticPositionToImage(New PointF(pos.X, pos.Y), isLocal)
+      Else
+        center = TranslateTacticPositionToImage(New PointF(pos.X, pos.Y), isLocal)
+      End If
+      center = TranslateTacticPositionToImage(New PointF(pos.X, pos.Y), isLocal)
+
+      rect = New RectangleF(center.X, center.Y, _size, _size)
+    Catch ex As Exception
+    End Try
+    Return rect
+  End Function
+
+  Private _xScale As Single = 0.82
+  Private _yScale As Single = 0.78
+
+  Private Function TranslateTacticPositionToImage(ByVal p As PointF, ByVal isLocalTeam As Boolean) As PointF
+    Dim center As New PointF(p.X, p.Y)
+    Dim nx As Double = center.X
+    Dim ny As Double = center.Y
+    If isLocalTeam = False Then
+      nx = -p.X
+      ny = -p.Y
+    End If
+    Try
+      Dim canvasSize As Size = Me.PictureBoxCanvas.Image.Size
+
+      center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - _size / 2
+      center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - _size / 2
+    Catch ex As Exception
+    End Try
+    Return center
+  End Function
+
+  Private Function TranslateImagePositionToTactic(ByVal p As PointF, ByVal isLocalTeam As Boolean) As PointF
+    Dim center As New PointF(p.X, p.Y)
+    Dim nx As Double = center.X
+    Dim ny As Double = center.Y
+    Try
+      Dim canvasSize As Size = Me.PictureBoxCanvas.Image.Size
+      center.Y = (nx - canvasSize.Width / 2 + _size / 2) / (canvasSize.Width * _xScale)
+      center.X = (ny - canvasSize.Height / 2 + _size / 2) / (canvasSize.Height * _yScale)
+      If isLocalTeam = False Then
+        center.X = -center.X
+        center.Y = -center.Y
+      End If
+
+      Debug.Print("TranslateImagePositionToTactic " & p.X & " -> " & center.Y & "    " & p.Y & " -> " & center.X)
+      'center.X = center.Y
+    Catch ex As Exception
+    End Try
+    Return center
+  End Function
 #End Region
 
 #Region "Mouse control"
@@ -407,8 +413,15 @@ Public Class UserControlTactica
   End Sub
 
   Private Sub PictureBoxCanvas_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles PictureBoxCanvas.MouseUp
+    If Not SelectedPosicio Is Nothing Then
+      If Not SelectedPosicio.Player Is Nothing Then
+        SelectedPosicio.Player.Formation_X = SelectedPosicio.X * 200
+        SelectedPosicio.Player.Formation_Y = SelectedPosicio.Y * 200
+      End If
+    End If
     SelectedPosicio = Nothing
     ShowTactics()
+    Me.UpdateListViewsTeamsIPlayers()
   End Sub
 #End Region
 
@@ -419,14 +432,14 @@ Public Class UserControlTactica
 
     ' Add any initialization after the InitializeComponent() call.
     Me.DoubleBuffered = True
+    _benchPlayerLabels.Add(Me.Label1)
+    _benchPlayerLabels.Add(Me.Label2)
+    _benchPlayerLabels.Add(Me.Label3)
+    _benchPlayerLabels.Add(Me.Label4)
+    _benchPlayerLabels.Add(Me.Label5)
+    _benchPlayerLabels.Add(Me.Label6)
+    _benchPlayerLabels.Add(Me.Label7)
 
-    _benchPlayerPictureBoxes.Add(Me.PictureBox1)
-    _benchPlayerPictureBoxes.Add(Me.PictureBox2)
-    _benchPlayerPictureBoxes.Add(Me.PictureBox3)
-    _benchPlayerPictureBoxes.Add(Me.PictureBox4)
-    _benchPlayerPictureBoxes.Add(Me.PictureBox5)
-    _benchPlayerPictureBoxes.Add(Me.PictureBox6)
-    _benchPlayerPictureBoxes.Add(Me.PictureBox7)
   End Sub
 
   Private Sub ContextMenuStripPlayers_Click(ByVal sender As Object, ByVal e As System.EventArgs)
@@ -444,6 +457,7 @@ Public Class UserControlTactica
       If Not player Is Nothing Then
         player.PlayerPosition = _lastSelectedPosicio.Posicio
         _lastSelectedPosicio.Player = player
+        _lastPositionIndex = _lastSelectedPosicio.Posicio
         ShowTactics()
       End If
 
@@ -454,20 +468,13 @@ Public Class UserControlTactica
 
 
 #Region "Listview Players i Teams"
-  Private Sub InicialitzarVisualitzacioPlayersTeam(ByVal CiTeam As Team, ByVal CiListView As ListView)
+
+  Private Sub InicialitzarVisualitzacioAllPlayersTeam()
     Dim sSelected As String = ""
-    Dim CItem As ListViewItem = Nothing
+    Dim CRow As DataGridViewRow = Nothing
     Try
-      With CiListView
-        If .SelectedItems.Count > 0 Then
-          sSelected = .SelectedItems(0).Name
-        End If
-        .Items.Clear()
-
-        If CiTeam Is Nothing Then Exit Sub
-
-        .Columns(1).Text = CiTeam.ToString
-
+      With MetroGridTeamAll
+        .Rows.Clear()
 
         Dim CPlayer As Player
 
@@ -477,31 +484,60 @@ Public Class UserControlTactica
         Dim sNom As String = ""
         Dim bEntrenador As Boolean = False
 
-        For index As Integer = 0 To CiTeam.MatchPlayers.Count - 1
-          CPlayer = CiTeam.MatchPlayers(index)
+        For index As Integer = 0 To _team.AllPlayers.Count - 1
+          CPlayer = _team.AllPlayers(index)
+
+          .Rows.Add("empty")
+          CRow = .Rows(.Rows.Count - 1)
+
+          CRow.Cells(ColumnAllID.Index).Value = CPlayer.PlayerID
+          CRow.Cells(ColumnAllName.Index).Value = CPlayer.PlayerName
+          CRow.Cells(ColumnAllNumber.Index).Value = CPlayer.SquadNo
+        Next
+      End With
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub InicialitzarVisualitzacioPlayersTeam()
+    Dim sSelected As String = ""
+    Dim CRow As DataGridViewRow = Nothing
+    Try
+      With MetroGridPlayers
+        .Rows.Clear()
+
+        Dim CPlayer As Player
+
+        Dim sText As String = ""
+        Dim x As Integer = 0
+        Dim y As Integer = 0
+        Dim sNom As String = ""
+        Dim bEntrenador As Boolean = False
+
+
+        For index As Integer = 0 To _team.MatchPlayers.Count - 1
+          CPlayer = _team.MatchPlayers(index)
+          While .Rows.Count <= CPlayer.Formation_Pos
+            .Rows.Add("")
+          End While
+        Next
+
+        For index As Integer = 0 To _team.MatchPlayers.Count - 1
+          CPlayer = _team.MatchPlayers(index)
           If CPlayer.Formation_Pos > 0 Then
-            While CPlayer.Formation_Pos > .Items.Count
-              .Items.Add("empty")
-            End While
-            CItem = .Items.Item(CPlayer.Formation_Pos - 1)
-            CItem.Name = CStr(CPlayer.PlayerID)
-            CItem.Text = CPlayer.SquadNo
-            CPlayer.ReadStatsFromDB()
-            CItem.SubItems.Add(CPlayer.PlayerName & " " & CPlayer.Formation_Pos & " " & CPlayer.Formation_X & "x" & CPlayer.Formation_Y)
-            If CPlayer.Formation_Pos > 0 AndAlso (CPlayer.Formation_Pos <= 11 Or CPlayer.SquadNo = 0) Then
-              CItem.ForeColor = Color.Black
-
-              If Not Tactic Is Nothing Then
-                Dim pos As PosicioTactic = Tactic.GetPosicioByID(CPlayer.Formation_Pos)
-                If Not pos Is Nothing Then
-                  pos.X = CPlayer.Formation_X
-                  pos.Y = CPlayer.Formation_Y
-                End If
-              End If
+            CRow = .Rows(CPlayer.Formation_Pos - 1)
+            CRow.Cells(ColumnPlayersID.Index).Value = CPlayer.PlayerID
+            CRow.Cells(ColumnPlayersName.Index).Value = CPlayer.PlayerName
+            CRow.Cells(ColumnPlayersNumber.Index).Value = CPlayer.SquadNo
+            CRow.Cells(ColumnPlayersFormationPos.Index).Value = CPlayer.Formation_Pos
+            CRow.Cells(ColumnPlayerFormationX.Index).Value = CPlayer.Formation_X
+            CRow.Cells(ColumnPlayerFormationY.Index).Value = CPlayer.Formation_Y
+            If CRow.Index < 11 Then
+              CRow.DefaultCellStyle.ForeColor = Color.Black
             Else
-              CItem.ForeColor = Color.DarkGray
+              CRow.DefaultCellStyle.ForeColor = Color.Gray
             End If
-
           End If
         Next
       End With
@@ -510,141 +546,46 @@ Public Class UserControlTactica
     End Try
   End Sub
 
-  Private Sub ListViewTeamLocal_ItemSelectionChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.ListViewItemSelectionChangedEventArgs) Handles ListViewTeam.ItemSelectionChanged
-    If Not _team Is Nothing Then
-      ListViewTeam_ItemSelectionChanged(_team, Me.ListViewTeam, e)
-    End If
-  End Sub
-
-  Private Sub ListViewTeam_ItemSelectionChanged(ByVal team As Team, ByVal sender As ListView, ByVal e As System.Windows.Forms.ListViewItemSelectionChangedEventArgs)
-    If team Is Nothing Then Exit Sub
-    Static busy As Boolean = False
-    If busy Then Exit Sub
-    busy = True
-
-    Try
-      'If e.Item.Name.ToUpper = "EQUIP" Then
-      '  CSubject.CPuTeam = team
-      '  CSubject.IDTeam = team.ID
-      'Else
-      '  Dim CPlayer As Player
-
-      '  CPlayer = team.GetPlayerByID(CInt(e.Item.Name))
-
-      '  If Not CPlayer Is Nothing Then
-      '    CSubject.IDTeam = CPlayer.IDTeam
-      '    CSubject.IDPlayer = CPlayer.IDPlayer
-      '    CSubject.CPuTeam = team
-      '    CSubject.CPuPlayer = CPlayer
-      '  End If
-      'End If
-      sender.SelectedIndices.Clear()
-    Catch ex As Exception
-      WriteToErrorLog(ex)
-    End Try
-    busy = False
-  End Sub
 
   Private Sub UpdateListViewsTeamsIPlayers()
     Try
-      UpdateListViewTeam(_team, Me.ListViewTeam)
+      UpdateListViewTeam()
     Catch ex As Exception
     End Try
   End Sub
 
-  Private Sub UpdateListViewTeam(ByVal team As Team, ByVal listView As ListView)
+  Private Sub UpdateListViewTeam()
     Try
       Dim colorOn As Color = Color.LightGreen
       Dim colorOff As Color = Color.Wheat
 
-      For Each item As ListViewItem In listView.Items
-        Dim isSelected As Boolean
+      InicialitzarVisualitzacioPlayersTeam()
 
-        'If item.Name.ToUpper = "EQUIP" Then
-        '  isSelected = Not (Me.CPuGraficEstadistic.GetSubject(team.IDTeam, 0) Is Nothing)
-        'Else
-        '  isSelected = Not (Me.CPuGraficEstadistic.GetSubject(team.IDTeam, CInt(item.Name)) Is Nothing)
-        'End If
+      With Me.MetroGridTeamAll
+        For Each row As DataGridViewRow In .Rows
+          Dim player As Player = _team.AllPlayers.GetPlayerByDorsal(row.Cells(ColumnAllNumber.Index).Value)
+          If Not player Is Nothing Then
+            If player.Formation_Pos > 0 Then
+              row.DefaultCellStyle.ForeColor = Color.LightGray
+            Else
+              row.DefaultCellStyle.ForeColor = Color.Black
+            End If
+          End If
+        Next
+      End With
 
-        Dim color As Color = CType(IIf(isSelected, colorOn, colorOff), Color)
-
-        If item.Index Mod 2 = 0 Then color = ControlPaint.LightLight(color)
-
-
-
-        item.BackColor = color
-      Next
     Catch ex As Exception
     End Try
   End Sub
-
-
-  Private Sub ListViewTactiques_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles ListViewTeam.DragDrop
-    Dim lvw As ListView = CType(sender, ListView)
-    'Return if the items are not selected in the ListView control.
-    If lvw.SelectedItems.Count = 0 Then Return
-    'Returns the location of the mouse pointer in the ListView control.
-    Dim p As Point = lvw.PointToClient(New Point(e.X, e.Y))
-    'Obtain the item that is located at the specified location of the mouse pointer.
-    Dim dragToItem As ListViewItem = lvw.GetItemAt(p.X, p.Y)
-    If dragToItem Is Nothing Then Return
-    'Obtain the index of the item at the mouse pointer.
-    Dim dragIndex As Integer = dragToItem.Index
-    Dim i As Integer
-    Dim sel(lvw.SelectedItems.Count) As ListViewItem
-    For i = 0 To lvw.SelectedItems.Count - 1
-      sel(i) = lvw.SelectedItems.Item(i)
-    Next
-    For i = 0 To lvw.SelectedItems.Count - 1
-      'Obtain the ListViewItem to be dragged to the target location.
-      Dim dragItem As ListViewItem = sel(i)
-      Dim itemIndex As Integer = dragIndex
-      If itemIndex = dragItem.Index Then Return
-      If dragItem.Index < itemIndex Then
-        itemIndex = itemIndex + 1
-      Else
-        itemIndex = dragIndex + i
-      End If
-      'Insert the item in the specified location.
-      Dim insertitem As ListViewItem = CType(dragItem.Clone, ListViewItem)
-      insertitem.Name = dragItem.Name
-      lvw.Items.Insert(itemIndex, insertitem)
-      'Removes the item from the initial location while 
-      'the item is moved to the new location.
-      lvw.Items.Remove(dragItem)
-    Next
-  End Sub
-
-  Private Sub ListViewTactiques_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles ListViewTeam.DragEnter
-
-    Dim i As Integer
-    For i = 0 To e.Data.GetFormats().Length - 1
-      If e.Data.GetFormats()(i).Equals("System.Windows.Forms.ListView+SelectedListViewItemCollection") Then
-        'The data from the drag source is moved to the target.
-        e.Effect = DragDropEffects.Move
-      End If
-    Next
-  End Sub
-
 #End Region
 
 #Region "Players drag-drop"
-
-  Private Sub PictureBoxCanvas_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles PictureBoxCanvas.DragEnter
-    Dim i As Integer
-    For i = 0 To e.Data.GetFormats().Length - 1
-      If e.Data.GetFormats()(i).Equals("System.Windows.Forms.ListView+SelectedListViewItemCollection") Then
-        'The data from the drag source is moved to the target.
-        e.Effect = DragDropEffects.Move
-      End If
-    Next
-  End Sub
 
   Private _dragPlayer As Player
   Private _dragTeam As Team
   Private _dragPlayerIsLocal As Boolean = False
 
-  Private Sub ListViewTactiques_ItemDrag(ByVal sender As Object, ByVal e As System.Windows.Forms.ItemDragEventArgs) Handles ListViewTeam.ItemDrag
+  Private Sub ListViewTactiques_ItemDrag(ByVal sender As Object, ByVal e As System.Windows.Forms.ItemDragEventArgs)
     Dim lvw As ListView = CType(sender, ListView)
     Try
       Dim jugador As Player = Nothing
@@ -681,14 +622,92 @@ Public Class UserControlTactica
               _lastSelectedPosicio = pos
               _dragPlayer.Formation_Pos = _lastSelectedPosicio.Posicio
               _lastSelectedPosicio.Player = _dragPlayer
+              _lastPositionIndex = _lastSelectedPosicio.Posicio
 
               ShowTactics()
             End If
           End If
         End If
+      ElseIf e.Data.GetFormats()(i).Equals("MatchInfo.Player") Then
+        'The data from the drag source is moved to the target.
+        Dim p As Point = Me.PointToClient(New Point(e.X, e.Y))
+        Dim p0 As Point = Me.PointToClient(New Point(0, 0)) - Me.PictureBoxCanvas.PointToClient(New Point(0, 0))
+        Dim p1 As Point = (p0 + New Point(Me.PictureBoxCanvas.Width, Me.PictureBoxCanvas.Height))
+
+        Dim rect As New Rectangle(p0.X, p0.Y, Me.PictureBoxCanvas.Width, Me.PictureBoxCanvas.Height)
+
+        e.Effect = DragDropEffects.None
+        If rect.Contains(p) Then
+          Dim pos As PosicioTactic = Me.HitTest(p.X - p0.X, p.Y - p0.Y)
+          If Not pos Is Nothing Then
+            If pos.Team.ID = _dragTeam.ID Then
+              pos.Player = _dragPlayer
+              For Each player As Player In _team.MatchPlayers
+                If player.Formation_Pos = pos.Posicio Then
+                  player.Formation_Pos = 0
+                End If
+              Next
+              pos.Player.Formation_Pos = pos.Posicio
+              _lastPositionIndex = pos.Posicio
+
+              ShowTactics()
+              Me.UpdateListViewsTeamsIPlayers()
+            End If
+          End If
+        Else
+          'any of the substs?
+          For Each lbl As Label In _benchPlayerLabels
+            p0 = Me.PointToClient(New Point(0, 0)) - lbl.PointToClient(New Point(0, 0))
+            p1 = (p0 + New Point(lbl.Width, lbl.Height))
+            rect = New Rectangle(p0.X, p0.Y, lbl.Width, lbl.Height)
+            If rect.Contains(p) Then
+              Dim posIndex As Integer = 11 + CInt(lbl.Name.Replace("Label", ""))
+              For Each player As Player In _team.MatchPlayers
+                If player.Formation_Pos = posIndex Then
+                  player.Formation_Pos = 0
+                End If
+              Next
+              _dragPlayer.Formation_Pos = posIndex
+              _lastPositionIndex = posIndex
+              ShowTactics()
+              Me.UpdateListViewsTeamsIPlayers()
+              Exit For
+            End If
+          Next
+        End If
 
       End If
     Next
+  End Sub
+
+  Private Sub PictureBox_DragDrop(sender As Object, e As DragEventArgs)
+    Dim i As Integer
+    Try
+      Dim pic As PictureBox = CType(sender, PictureBox)
+      Dim posIndex As Integer = 11 + CInt(pic.Name.Replace("PictureBox", ""))
+      For i = 0 To e.Data.GetFormats().Length - 1
+        If e.Data.GetFormats()(i).Equals("MatchInfo.Player") Then
+          For Each player As Player In _team.MatchPlayers
+            If player.Formation_Pos = posIndex Then
+              If Not _lastSelectedPosicio Is Nothing Then
+                player.Formation_Pos = _lastSelectedPosicio.Posicio
+              Else
+                player.Formation_Pos = 0
+              End If
+
+            End If
+          Next
+          _lastSelectedPosicio = Nothing
+          _dragPlayer.Formation_Pos = posIndex
+          _lastSelectedPosicio.Player = _dragPlayer
+          ShowTactics()
+          Me.UpdateListViewsTeamsIPlayers()
+
+        End If
+      Next
+    Catch ex As Exception
+    End Try
+
   End Sub
 
   Private Sub UserControlTactica_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles Me.DragEnter
@@ -703,7 +722,7 @@ Public Class UserControlTactica
 
         Dim rect As New Rectangle(p0.X, p0.Y, Me.PictureBoxCanvas.Width, Me.PictureBoxCanvas.Height)
 
-        e.Effect = DragDropEffects.None
+        e.Effect = DragDropEffects.Link
         If rect.Contains(p) Then
           Dim pos As PosicioTactic = Me.HitTest(e.X - p0.X, e.Y - p0.Y)
           If Not pos Is Nothing Then
@@ -715,6 +734,20 @@ Public Class UserControlTactica
     Next
   End Sub
 
+
+  Private Sub PictureBox1_DragOver(sender As Object, e As DragEventArgs)
+    Try
+      Dim i As Integer
+      For i = 0 To e.Data.GetFormats().Length - 1
+        If e.Data.GetFormats()(i).Equals("MatchInfo.Player") Then
+          e.Effect = DragDropEffects.Move
+        End If
+      Next
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
   Private Sub UserControlTactica_DragLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.DragLeave
 
   End Sub
@@ -722,26 +755,33 @@ Public Class UserControlTactica
   Private Sub UserControlTactica_DragOver(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles Me.DragOver
     Dim i As Integer
     For i = 0 To e.Data.GetFormats().Length - 1
-      If e.Data.GetFormats()(i).Equals("System.Windows.Forms.ListView+SelectedListViewItemCollection") Then
-        'The data from the drag source is moved to the target.
+      If e.Data.GetFormats()(i).Equals("MatchInfo.Player") Then
 
+        'The data from the drag source is moved to the target.
         Dim p As Point = Me.PointToClient(New Point(e.X, e.Y))
         Dim p0 As Point = Me.PointToClient(New Point(0, 0)) - Me.PictureBoxCanvas.PointToClient(New Point(0, 0))
         Dim p1 As Point = (p0 + New Point(Me.PictureBoxCanvas.Width, Me.PictureBoxCanvas.Height))
-
         Dim rect As New Rectangle(p0.X, p0.Y, Me.PictureBoxCanvas.Width, Me.PictureBoxCanvas.Height)
 
         e.Effect = DragDropEffects.None
+
         If rect.Contains(p) Then
           Dim pos As PosicioTactic = Me.HitTest(p.X - p0.X, p.Y - p0.Y)
           If Not pos Is Nothing Then
-            If pos.Team.ID = _dragTeam.ID Then
-              e.Effect = DragDropEffects.Move
-            End If
+            e.Effect = DragDropEffects.Move
           End If
+        Else
+          'any of the substs?
+          For Each lbl As Label In _benchPlayerLabels
+            p0 = Me.PointToClient(New Point(0, 0)) - lbl.PointToClient(New Point(0, 0))
+            p1 = (p0 + New Point(lbl.Width, lbl.Height))
+            rect = New Rectangle(p0.X, p0.Y, lbl.Width, lbl.Height)
+            If rect.Contains(p) Then
+              e.Effect = DragDropEffects.Move
+              Exit For
+            End If
+          Next
         End If
-
-
       End If
     Next
   End Sub
@@ -749,8 +789,8 @@ Public Class UserControlTactica
   Public Sub Save()
     Try
       For Each pos As PosicioTactic In Me.Tactic.LlistaPosicions
-        pos.Player.Formation_X = pos.X
-        pos.Player.Formation_Y = pos.Y
+        pos.Player.Formation_X = pos.X * 200
+        pos.Player.Formation_Y = pos.Y * 200
 
         pos.Player.SaveToDB = True
         pos.Player.WriteStatToDB(pos.Player.MatchStats.Formation_X)
@@ -767,4 +807,35 @@ Public Class UserControlTactica
 
     End Try
   End Sub
+
+  Private Sub ListViewTeamMatch_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+  End Sub
+
+  Private Sub MetroGridTeamAll_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridTeamAll.CellContentClick
+
+  End Sub
+
+  Private Sub MetroGridTeamAll_CellMouseDown(sender As Object, e As DataGridViewCellMouseEventArgs) Handles MetroGridTeamAll.CellMouseDown
+    Try
+      Try
+        Dim jugador As Player = Nothing
+        _dragPlayerIsLocal = True
+        _dragTeam = _team
+        _dragPlayer = _dragTeam.GetPlayerById(CInt(MetroGridTeamAll.Rows(e.RowIndex).Cells(ColumnAllID.Index).Value))
+        If Not _dragPlayer Is Nothing Then
+          Me.ToolTipDrag.Show(_dragPlayer.ToString, Me.PictureBoxCanvas)
+          'lvw.DoDragDrop(lvw.SelectedItems, DragDropEffects.Move)
+          MetroGridTeamAll.DoDragDrop(_dragPlayer, DragDropEffects.Move)
+
+        End If
+        Me.ToolTipDrag.RemoveAll()
+      Catch ex As Exception
+      End Try
+    Catch ex As Exception
+
+    End Try
+
+  End Sub
+
 End Class

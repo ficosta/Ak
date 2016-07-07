@@ -80,9 +80,6 @@ Imports System.Data.OleDb
           Exit For
         End If
       Next
-      If output Is Nothing Then
-        output = Me.List(position)
-      End If
     Catch err As Exception
       Throw err
     End Try

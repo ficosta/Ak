@@ -27,9 +27,14 @@ Public Class frmGoals
         For Each goal As MatchGoal In goals
           Dim item As Integer = .Rows.Add(CStr(goal.GoalID))
           Dim team As Team = IIf(_match.HomeTeam.ID = goal.TeamGoalID, _match.HomeTeam, _match.AwayTeam)
-          .Rows(item).Cells(ColumnTime.Index).Value = FormatRunningTime(goal.Minute) '(goal.Minute \ 60) & ":" & Strings.Format(goal.Minute Mod 60, "00")
+
+          .Rows(item).Cells(ColumnTime.Index).Value = FormatRunningTime(goal.Minute)
           If _match.HomeTeam.ID = goal.TeamGoalID Then
-            team = _match.HomeTeam
+            If goal.GoalType = MatchGoal.eGoalType.Own Then
+              team = _match.AwayTeam
+            Else
+              team = _match.HomeTeam
+            End If
             Dim player As Player = IIf(goal.PlayerID <> 0, team.GetPlayerById(goal.PlayerID), Nothing)
             .Rows(item).Cells(ColumnHomeGoal.Index).Value = "goal"
             .Rows(item).Cells(ColumnHomeType.Index).Value = goal.GoalType.ToString
@@ -42,7 +47,11 @@ Public Class frmGoals
             .Rows(item).Cells(ColumnAwayPlayer.Index).Value = ""
             .Rows(item).Cells(ColumnAwayType.Index).Value = ""
           Else
-            team = _match.AwayTeam
+            If goal.GoalType = MatchGoal.eGoalType.Own Then
+              team = _match.AwayTeam
+            Else
+              team = _match.HomeTeam
+            End If
             Dim player As Player = IIf(goal.PlayerID <> 0, team.GetPlayerById(goal.PlayerID), Nothing)
             .Rows(item).Cells(ColumnAwayGoal.Index).Value = "goal"
             .Rows(item).Cells(ColumnAwayType.Index).Value = goal.GoalType.ToString
@@ -89,6 +98,27 @@ Public Class frmGoals
 
     End Try
   End Sub
+
+#End Region
+
+#Region "Remove goal"
+  Private Sub MetroButtonRemoveGoal_Click(sender As Object, e As EventArgs) Handles MetroButtonRemoveGoal.Click
+    Try
+      Dim goal As MatchGoal
+      If MetroGridGoals.SelectedRows.Count = 0 Then Exit Sub
+
+      goal = Me.Match.MatchGoals.GetGoal(CInt(MetroGridGoals.Rows(MetroGridGoals.SelectedRows(0).Index).Cells(ColumnID.Index).Value))
+      If Not goal Is Nothing Then
+        If MetroFramework.MetroMessageBox.Show(Me, "Delete selected goal?", "Goals", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+          Me.Match.RemoveGoal(goal)
+          Me.ShowGoals()
+        End If
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+  
 
 #End Region
 End Class

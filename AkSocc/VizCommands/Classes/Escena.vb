@@ -46,6 +46,7 @@ End Enum
 
     Try
       _vizrtControl = CiControlVizrt
+      If _vizrtControl Is Nothing Then Return 0
       ' _vizrtControl.LoadScene(Me.Escena)
 
       bUcase = _vizrtControl.Config.UcaseTexts
@@ -142,20 +143,16 @@ End Enum
 
   Public Sub RewindSceneDirectors(CiControlVizrt As VizControl, sceneDirectors As SceneDirectors)
     Try
-      Dim frame As Integer = 0
-      Dim maxFrame As Integer = sceneDirectors.MaxFrame
+      If CiControlVizrt Is Nothing Then Exit Sub
 
       For Each director As SceneDirector In sceneDirectors
         Select Case director.Action
           Case DirectorAction.Start, DirectorAction.ContinueNormal
-            _vizrtControl.DirectorGoTo(director.Name, 0, Me.VizLayer)
-
+            CiControlVizrt.DirectorGoTo(director.Name, 0, Me.VizLayer)
           Case DirectorAction.Dummy, DirectorAction.JumpTo
-            _vizrtControl.DirectorGoTo(director.Name, 0, Me.VizLayer)
+            CiControlVizrt.DirectorGoTo(director.Name, 0, Me.VizLayer)
           Case Else
-            _vizrtControl.DirectorGoTo(director.Name, 0, Me.VizLayer)
-
-
+            CiControlVizrt.DirectorGoTo(director.Name, 0, Me.VizLayer)
         End Select
       Next
 
@@ -165,20 +162,18 @@ End Enum
 
   Public Sub JumpToEndFrame(CiControlVizrt As VizControl, sceneDirectors As SceneDirectors)
     Try
-      Dim frame As Integer = 0
+      If CiControlVizrt Is Nothing Then Exit Sub
+
       Dim maxFrame As Integer = sceneDirectors.MaxFrame
 
       For Each director As SceneDirector In sceneDirectors
         Select Case director.Action
           Case DirectorAction.Start, DirectorAction.ContinueNormal
-            _vizrtControl.DirectorGoTo(director.Name, maxFrame, Me.VizLayer)
-
+            CiControlVizrt.DirectorGoTo(director.Name, maxFrame, Me.VizLayer)
           Case DirectorAction.Dummy, DirectorAction.JumpTo
-            _vizrtControl.DirectorGoTo(director.Name, director.Frame, Me.VizLayer)
+            CiControlVizrt.DirectorGoTo(director.Name, director.Frame, Me.VizLayer)
           Case Else
-            _vizrtControl.DirectorGoTo(director.Name, 0, Me.VizLayer)
-
-
+            CiControlVizrt.DirectorGoTo(director.Name, 0, Me.VizLayer)
         End Select
       Next
 

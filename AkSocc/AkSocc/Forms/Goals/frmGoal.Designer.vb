@@ -62,7 +62,7 @@ Partial Class frmGoal
     Me.MetroRadioButtonOwnGoal.AutoSize = True
     Me.MetroRadioButtonOwnGoal.FontSize = MetroFramework.MetroCheckBoxSize.Tall
     Me.MetroRadioButtonOwnGoal.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold
-    Me.MetroRadioButtonOwnGoal.Location = New System.Drawing.Point(3, 68)
+    Me.MetroRadioButtonOwnGoal.Location = New System.Drawing.Point(3, 70)
     Me.MetroRadioButtonOwnGoal.Name = "MetroRadioButtonOwnGoal"
     Me.MetroRadioButtonOwnGoal.Size = New System.Drawing.Size(109, 25)
     Me.MetroRadioButtonOwnGoal.TabIndex = 1
@@ -74,7 +74,7 @@ Partial Class frmGoal
     Me.MetroRadioButtonPenalty.AutoSize = True
     Me.MetroRadioButtonPenalty.FontSize = MetroFramework.MetroCheckBoxSize.Tall
     Me.MetroRadioButtonPenalty.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold
-    Me.MetroRadioButtonPenalty.Location = New System.Drawing.Point(3, 103)
+    Me.MetroRadioButtonPenalty.Location = New System.Drawing.Point(3, 107)
     Me.MetroRadioButtonPenalty.Name = "MetroRadioButtonPenalty"
     Me.MetroRadioButtonPenalty.Size = New System.Drawing.Size(92, 25)
     Me.MetroRadioButtonPenalty.TabIndex = 2
@@ -102,11 +102,11 @@ Partial Class frmGoal
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 5
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37.0!))
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(621, 137)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(621, 158)
     Me.TableLayoutPanel1.TabIndex = 3
     '
     'TableLayoutPanel3
@@ -115,11 +115,13 @@ Partial Class frmGoal
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
     Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanel4, 0, 0)
-    Me.TableLayoutPanel3.Location = New System.Drawing.Point(504, 33)
+    Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel3.Location = New System.Drawing.Point(501, 30)
+    Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
     Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
     Me.TableLayoutPanel3.RowCount = 1
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel3.Size = New System.Drawing.Size(114, 29)
+    Me.TableLayoutPanel3.Size = New System.Drawing.Size(120, 37)
     Me.TableLayoutPanel3.TabIndex = 7
     '
     'TableLayoutPanel4
@@ -130,11 +132,12 @@ Partial Class frmGoal
     Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel4.Controls.Add(Me.NumericUpDownSeconds, 1, 0)
     Me.TableLayoutPanel4.Controls.Add(Me.NumericUpDownMinutes, 0, 0)
+    Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 3)
     Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
     Me.TableLayoutPanel4.RowCount = 1
     Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanel4.Size = New System.Drawing.Size(108, 23)
+    Me.TableLayoutPanel4.Size = New System.Drawing.Size(114, 31)
     Me.TableLayoutPanel4.TabIndex = 2
     '
     'NumericUpDownSeconds
@@ -142,9 +145,9 @@ Partial Class frmGoal
     Me.NumericUpDownSeconds.BorderStyle = System.Windows.Forms.BorderStyle.None
     Me.NumericUpDownSeconds.Dock = System.Windows.Forms.DockStyle.Fill
     Me.NumericUpDownSeconds.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.NumericUpDownSeconds.Location = New System.Drawing.Point(57, 4)
+    Me.NumericUpDownSeconds.Location = New System.Drawing.Point(60, 4)
     Me.NumericUpDownSeconds.Name = "NumericUpDownSeconds"
-    Me.NumericUpDownSeconds.Size = New System.Drawing.Size(47, 25)
+    Me.NumericUpDownSeconds.Size = New System.Drawing.Size(50, 25)
     Me.NumericUpDownSeconds.TabIndex = 1
     '
     'NumericUpDownMinutes
@@ -154,7 +157,7 @@ Partial Class frmGoal
     Me.NumericUpDownMinutes.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.NumericUpDownMinutes.Location = New System.Drawing.Point(4, 4)
     Me.NumericUpDownMinutes.Name = "NumericUpDownMinutes"
-    Me.NumericUpDownMinutes.Size = New System.Drawing.Size(46, 25)
+    Me.NumericUpDownMinutes.Size = New System.Drawing.Size(49, 25)
     Me.NumericUpDownMinutes.TabIndex = 0
     '
     'MetroTile1
@@ -209,7 +212,7 @@ Partial Class frmGoal
     Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel2.Controls.Add(Me.OK_Button, 0, 0)
     Me.TableLayoutPanel2.Controls.Add(Me.Cancel_Button, 1, 0)
-    Me.TableLayoutPanel2.Location = New System.Drawing.Point(498, 206)
+    Me.TableLayoutPanel2.Location = New System.Drawing.Point(498, 227)
     Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
     Me.TableLayoutPanel2.RowCount = 1
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -241,7 +244,7 @@ Partial Class frmGoal
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(667, 258)
+    Me.ClientSize = New System.Drawing.Size(667, 279)
     Me.Controls.Add(Me.TableLayoutPanel2)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Name = "frmGoal"

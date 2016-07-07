@@ -97,19 +97,19 @@
 
   Public Property Formation_X As Double
     Get
-      Return Me.MatchStats.Formation_X.Value / 100
+      Return Me.MatchStats.Formation_X.Value
     End Get
     Set(value As Double)
-      Me.MatchStats.Formation_X.Value = value * 100
+      Me.MatchStats.Formation_X.Value = value
     End Set
   End Property
 
   Public Property Formation_Y As Double
     Get
-      Return Me.MatchStats.Formation_Y.Value / 100
+      Return Me.MatchStats.Formation_Y.Value
     End Get
     Set(value As Double)
-      Me.MatchStats.Formation_Y.Value = value * 100
+      Me.MatchStats.Formation_Y.Value = value
     End Set
   End Property
 

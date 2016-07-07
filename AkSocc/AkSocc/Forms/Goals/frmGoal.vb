@@ -35,6 +35,9 @@ Public Class frmGoal
       Me.MetroRadioButtonOwnGoal.Checked = (_goalType = MatchGoal.eGoalType.Own)
       Me.MetroRadioButtonPenalty.Checked = (_goalType = MatchGoal.eGoalType.Penalty)
 
+      Me.NumericUpDownMinutes.Value = _matchGoal.Minute \ 60
+      Me.NumericUpDownSeconds.Value = _matchGoal.Minute Mod 60
+
       Dim team As Team
       If _matchGoal.TeamGoalID = Me.Match.HomeTeam.ID And _goalType <> eGoalType.Own Then
         team = Me.Match.HomeTeam
@@ -49,6 +52,7 @@ Public Class frmGoal
           index = Me.MetroComboBoxPlayer.Items.Count - 1
         End If
       Next
+      Me.MetroComboBoxPlayer.SelectedIndex = index
     Catch ex As Exception
 
     End Try
@@ -96,4 +100,32 @@ Public Class frmGoal
     _goalType = eGoalType.Penalty
     UpdateInterface()
   End Sub
+
+#Region "Accept / cancel"
+  Private Function Apply() As Boolean
+    Try
+      _matchGoal.PlayerID = CType(Me.MetroComboBoxPlayer.SelectedItem, Player).PlayerID
+      _matchGoal.GoalType = _goalType
+      _matchGoal.Minute = Me.NumericUpDownMinutes.Value * 60 + Me.NumericUpDownSeconds.Value
+      Return True
+    Catch ex As Exception
+      Return False
+    End Try
+  End Function
+
+  Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
+    If Apply() Then
+      Me.DialogResult = DialogResult.OK
+      Me.Close()
+    End If
+  End Sub
+
+  Private Sub Cancel_Button_Click(sender As Object, e As EventArgs) Handles Cancel_Button.Click
+    If Apply() Then
+      Me.DialogResult = DialogResult.OK
+      Me.Close()
+    End If
+  End Sub
+#End Region
+
 End Class

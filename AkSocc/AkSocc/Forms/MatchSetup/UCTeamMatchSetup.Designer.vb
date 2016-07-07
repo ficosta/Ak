@@ -29,8 +29,7 @@ Partial Class UCTeamMatchSetup
     '
     'TableLayoutPanel1
     '
-    Me.TableLayoutPanel1.ColumnCount = 2
-    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 700.0!))
+    Me.TableLayoutPanel1.ColumnCount = 1
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel1.Controls.Add(Me.UserControlTactica1, 0, 0)
     Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -46,6 +45,7 @@ Partial Class UCTeamMatchSetup
     Me.UserControlTactica1.AllowDrop = True
     Me.UserControlTactica1.Color = System.Drawing.Color.Turquoise
     Me.UserControlTactica1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UserControlTactica1.IsLocalTeam = True
     Me.UserControlTactica1.Location = New System.Drawing.Point(3, 3)
     Me.UserControlTactica1.Name = "UserControlTactica1"
     Me.UserControlTactica1.SelectedPosicio = Nothing

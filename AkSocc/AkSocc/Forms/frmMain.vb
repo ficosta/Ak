@@ -80,8 +80,12 @@ Public Class frmMain
     End Try
   End Sub
 
-  Private Sub ToolStripButtonMatchSetup_Click(sender As Object, e As EventArgs) Handles ToolStripButtonMatchSetup.Click
+  Private Sub ToolStripButtonSelectMatch_Click(sender As Object, e As EventArgs) Handles ToolStripButtonSelectMatch.Click
     SelectMatch()
+  End Sub
+
+  Private Sub ToolStripButtonMatchSetup_Click(sender As Object, e As EventArgs) Handles ToolStripButtonMatchSetup.Click
+    MatchSetup()
   End Sub
 
 
@@ -130,13 +134,14 @@ Public Class frmMain
 
   Public Function MatchSetup() As Boolean
     Try
-      Dim dlg As New FormMatchSetup
+      If _match Is Nothing Then Return False
+      Dim dlg As New FormMatchSetup(_match)
       Dim aux As MetroFramework.Forms.MetroForm = TryCast(Me, MetroFramework.Forms.MetroForm)
       If Not aux Is Nothing Then
         dlg.StyleManager = aux.StyleManager
       End If
       If dlg.ShowDialog(Me) = DialogResult.OK Then
-        InitMatchInfo(dlg.SelectedMatchId)
+        InitMatchInfo(_match)
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -750,7 +755,11 @@ Public Class frmMain
 
     Try
       If _match Is Nothing Then Exit Sub
-      _match.AddGoal(True, sender.Player, False, False)
+      If add Then
+        _match.AddGoal(True, sender.Player, False, False)
+      Else
+        _match.RemoveLastGoalByPlayer(sender.Player)
+      End If
     Catch ex As Exception
     End Try
     _updating = False
@@ -762,7 +771,12 @@ Public Class frmMain
 
     Try
       If _match Is Nothing Then Exit Sub
-      _match.AddGoal(False, sender.Player, False, False)
+      If add Then
+        _match.AddGoal(False, sender.Player, False, False)
+      Else
+        _match.RemoveLastGoalByPlayer(sender.Player)
+      End If
+
     Catch ex As Exception
     End Try
 
@@ -794,6 +808,7 @@ Public Class frmMain
   Private Sub _match_ScoreChanged() Handles _match.ScoreChanged
 
   End Sub
+
 
 #End Region
 End Class

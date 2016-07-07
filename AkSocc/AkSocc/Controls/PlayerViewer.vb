@@ -245,7 +245,12 @@ Public Class PlayerViewer
             rect = New Rectangle(2 * pieceWidth + span, span, pieceWidth - 2 * span, pieceHeight - 2 * span)
             g.FillEllipse(Brushes.LightGray, rect)
             g.DrawEllipse(Pens.Gray, rect)
-            g.DrawString(Me.Player.Goals, Me.Font, Brushes.Black, rect)
+
+            Dim stringFormat As New StringFormat()
+            stringFormat.Alignment = StringAlignment.Center
+            stringFormat.LineAlignment = StringAlignment.Center
+
+            g.DrawString(Me.Player.Goals, Me.Font, Brushes.Black, rect, stringFormat)
           End If
         End If
       End Using
