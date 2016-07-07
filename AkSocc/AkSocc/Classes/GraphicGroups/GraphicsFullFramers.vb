@@ -93,7 +93,7 @@ Public Class GraphicGroupCtlF1FullFramers
     Dim changeStep As Integer = 1
     Try
       Scene.VizLayer = SceneLayer.Middle
-      Scene.SceneName = "cfx_Full_Frame_Work"
+      Scene.SceneName = "gcfx_Full_Frame_Work"
       Scene.SceneDirector = "DIR_MAIN"
 
       Select Case gs.ChildGraphicStep.Name
@@ -147,6 +147,7 @@ Public Class GraphicGroupCtlF1FullFramers
   Public Function PrepareMatchIdent(gStep As Integer) As Scene
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "TeamList_Step_" & gStep & "_"
+    scene.SceneParameters.Add("Side_" & gStep & "_ _Match_Ident_Vis.active", "1")
     Try
       scene.SceneParameters.Add("Side_" & gStep & "_Control_Omo", 0)
     Catch ex As Exception
@@ -159,6 +160,7 @@ Public Class GraphicGroupCtlF1FullFramers
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "TeamList_Step_" & gStep & "_"
     Try
+      scene.SceneParameters.Add("Side_" & gStep & "_TeamList_Vis.active", "1")
       scene.SceneParameters.Add(prefix & "TeamList_Vis.active", 1)
     Catch ex As Exception
 
@@ -170,6 +172,7 @@ Public Class GraphicGroupCtlF1FullFramers
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "TeamList_Step_" & gStep & "_"
     Try
+      scene.SceneParameters.Add("Side_" & gStep & "_Double_teams_Vis.active", "1")
       scene.SceneParameters.Add(prefix & "Double_teams_Vis.active", 1)
     Catch ex As Exception
 
@@ -181,6 +184,7 @@ Public Class GraphicGroupCtlF1FullFramers
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "Side_" & gStep & "_"
     Try
+      scene.SceneParameters.Add("Side_" & gStep & "_Table_Vis.active", "1")
       scene.SceneParameters.Add(prefix & "Table_Vis.active", 1)
     Catch ex As Exception
 

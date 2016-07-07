@@ -35,6 +35,7 @@ Public Class UCPeriod
   Private Sub MetroButtonStart_Click(sender As Object, e As EventArgs) Handles MetroButtonStart.Click
     If Not _period Is Nothing Then
       _match.MatchPeriods.StartPeriod(Me.Period, 0)
+
     End If
   End Sub
 

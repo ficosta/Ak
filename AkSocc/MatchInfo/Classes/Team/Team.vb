@@ -78,7 +78,11 @@ Imports MatchInfo
 
   Public Property Goals As Integer
     Get
-      Return Me.MatchStats.GoalStat.Value
+      If Not Me.MatchGoals Is Nothing Then
+        Return Me.MatchGoals.Count
+      Else
+        Return Me.MatchStats.GoalStat.Value
+      End If
     End Get
     Set(value As Integer)
       Me.MatchStats.GoalStat.Value = value

@@ -3,11 +3,14 @@
 Public Class Periods
   Inherits CollectionBase
 
+  Public Event ActivePeriodStateChanged(period As Period)
+
   Public Sub New()
     Me.List.Add(New Period(0, 1, False) With {.TotalTime = 45 * 60, .Nom = "1st half", .StartOffset = 0})
     Me.List.Add(New Period(0, 2, False) With {.TotalTime = 45 * 60, .Nom = "2nd half", .StartOffset = 45 * 60})
     Me.List.Add(New Period(0, 3, False) With {.TotalTime = 20 * 60, .Nom = "1st overtime", .StartOffset = 90 * 60})
     Me.List.Add(New Period(0, 4, False) With {.TotalTime = 20 * 60, .Nom = "2nd overtime", .StartOffset = 110 * 60})
+    RaiseEvent ActivePeriodStateChanged(Nothing)
   End Sub
 
   Public Function Add(period As Period) As Integer
@@ -40,6 +43,7 @@ Public Class Periods
       For Each p As Period In Me.InnerList
 
       Next
+      RaiseEvent ActivePeriodStateChanged(Me.ActivePeriod)
 
     End Set
   End Property
@@ -180,6 +184,8 @@ Public Class Periods
         res.Activa = True
       End If
       Me.ActivePeriod = res
+      RaiseEvent ActivePeriodStateChanged(Me.ActivePeriod)
+
     Catch ex As Exception
     End Try
     Return Me.ActivePeriod
@@ -236,6 +242,8 @@ Public Class Periods
       End If
       Me.ActivePeriod = res
       res.IsSelected = True
+      RaiseEvent ActivePeriodStateChanged(Me.ActivePeriod)
+
     Catch ex As Exception
     End Try
     Return Me.ActivePeriod
@@ -329,6 +337,7 @@ Public Class Periods
         ActivePeriod.ManualOffset = newTime - ActivePeriod.StartOffset
         ActivePeriod.Activa = True
         ActivePeriod.IsSelected = True
+        RaiseEvent ActivePeriodStateChanged(Nothing)
       End If
     Catch ex As Exception
       Throw ex

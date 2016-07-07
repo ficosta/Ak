@@ -27,14 +27,16 @@ Partial Class FormMatchSelector
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanelGlobal = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroGridMatches = New MetroFramework.Controls.MetroGrid()
-    Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnResult = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.cboCompetition = New MetroFramework.Controls.MetroComboBox()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.OK_Button = New MetroFramework.Controls.MetroButton()
     Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnHomeTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnAwayTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnResult = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.TableLayoutPanelGlobal.SuspendLayout()
     CType(Me.MetroGridMatches, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
@@ -55,7 +57,7 @@ Partial Class FormMatchSelector
     Me.TableLayoutPanelGlobal.RowCount = 2
     Me.TableLayoutPanelGlobal.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
     Me.TableLayoutPanelGlobal.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelGlobal.Size = New System.Drawing.Size(1357, 530)
+    Me.TableLayoutPanelGlobal.Size = New System.Drawing.Size(794, 530)
     Me.TableLayoutPanelGlobal.TabIndex = 2
     '
     'MetroGridMatches
@@ -77,7 +79,7 @@ Partial Class FormMatchSelector
     DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
     Me.MetroGridMatches.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
     Me.MetroGridMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-    Me.MetroGridMatches.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnID, Me.ColumnDate, Me.ColumnDescription, Me.ColumnResult})
+    Me.MetroGridMatches.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnID, Me.ColumnDate, Me.ColumnDescription, Me.ColumnHomeTeam, Me.ColumnAwayTeam, Me.ColumnResult})
     DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
     DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
     DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -110,35 +112,8 @@ Partial Class FormMatchSelector
     Me.MetroGridMatches.ShowCellToolTips = False
     Me.MetroGridMatches.ShowEditingIcon = False
     Me.MetroGridMatches.ShowRowErrors = False
-    Me.MetroGridMatches.Size = New System.Drawing.Size(1351, 489)
+    Me.MetroGridMatches.Size = New System.Drawing.Size(788, 489)
     Me.MetroGridMatches.TabIndex = 47
-    '
-    'ColumnID
-    '
-    Me.ColumnID.HeaderText = "ColumnID"
-    Me.ColumnID.Name = "ColumnID"
-    Me.ColumnID.Visible = False
-    Me.ColumnID.Width = 60
-    '
-    'ColumnDate
-    '
-    Me.ColumnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnDate.HeaderText = "Date"
-    Me.ColumnDate.Name = "ColumnDate"
-    Me.ColumnDate.Width = 64
-    '
-    'ColumnDescription
-    '
-    Me.ColumnDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnDescription.HeaderText = "Description"
-    Me.ColumnDescription.Name = "ColumnDescription"
-    Me.ColumnDescription.Width = 108
-    '
-    'ColumnResult
-    '
-    Me.ColumnResult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnResult.HeaderText = "Result"
-    Me.ColumnResult.Name = "ColumnResult"
     '
     'cboCompetition
     '
@@ -147,7 +122,7 @@ Partial Class FormMatchSelector
     Me.cboCompetition.ItemHeight = 23
     Me.cboCompetition.Location = New System.Drawing.Point(3, 3)
     Me.cboCompetition.Name = "cboCompetition"
-    Me.cboCompetition.Size = New System.Drawing.Size(1351, 29)
+    Me.cboCompetition.Size = New System.Drawing.Size(788, 29)
     Me.cboCompetition.TabIndex = 1
     Me.cboCompetition.UseSelectable = True
     '
@@ -159,7 +134,7 @@ Partial Class FormMatchSelector
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(1219, 600)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(656, 600)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -187,11 +162,54 @@ Partial Class FormMatchSelector
     Me.Cancel_Button.Text = "Cancel"
     Me.Cancel_Button.UseSelectable = True
     '
+    'ColumnID
+    '
+    Me.ColumnID.HeaderText = "ID"
+    Me.ColumnID.Name = "ColumnID"
+    Me.ColumnID.ReadOnly = True
+    Me.ColumnID.Width = 60
+    '
+    'ColumnDate
+    '
+    Me.ColumnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnDate.HeaderText = "Date"
+    Me.ColumnDate.Name = "ColumnDate"
+    Me.ColumnDate.ReadOnly = True
+    Me.ColumnDate.Width = 64
+    '
+    'ColumnDescription
+    '
+    Me.ColumnDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnDescription.HeaderText = "Description"
+    Me.ColumnDescription.Name = "ColumnDescription"
+    Me.ColumnDescription.ReadOnly = True
+    Me.ColumnDescription.Visible = False
+    Me.ColumnDescription.Width = 108
+    '
+    'ColumnHomeTeam
+    '
+    Me.ColumnHomeTeam.HeaderText = "Home team"
+    Me.ColumnHomeTeam.Name = "ColumnHomeTeam"
+    Me.ColumnHomeTeam.ReadOnly = True
+    '
+    'ColumnAwayTeam
+    '
+    Me.ColumnAwayTeam.HeaderText = "Away team"
+    Me.ColumnAwayTeam.Name = "ColumnAwayTeam"
+    Me.ColumnAwayTeam.ReadOnly = True
+    '
+    'ColumnResult
+    '
+    Me.ColumnResult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnResult.HeaderText = "Result"
+    Me.ColumnResult.Name = "ColumnResult"
+    Me.ColumnResult.ReadOnly = True
+    '
     'FormMatchSelector
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1388, 652)
+    Me.ClientSize = New System.Drawing.Size(825, 652)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Controls.Add(Me.TableLayoutPanelGlobal)
     Me.Name = "FormMatchSelector"
@@ -213,5 +231,7 @@ Partial Class FormMatchSelector
   Friend WithEvents ColumnID As DataGridViewTextBoxColumn
   Friend WithEvents ColumnDate As DataGridViewTextBoxColumn
   Friend WithEvents ColumnDescription As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnHomeTeam As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnAwayTeam As DataGridViewTextBoxColumn
   Friend WithEvents ColumnResult As DataGridViewTextBoxColumn
 End Class

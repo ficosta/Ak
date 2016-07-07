@@ -219,6 +219,7 @@ Public Class frmMain
       _clockControl = ClockControl.Instance
       _clockControl.VizControl = _vizControl
       _clockControl.Match = _match
+      UpdateClockInterface()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -603,6 +604,9 @@ Public Class frmMain
     End Try
   End Sub
 
+  Private Sub _clockControl_Updated() Handles _clockControl.Updated
+    Me.UpdateClockInterface()
+  End Sub
 
   Private Sub MetroButtonClockSubstitutions_Click(sender As Object, e As EventArgs) Handles MetroButtonClockSubstitutions.Click
     'Me.StartGraphic(New ClockSubstitutes(_match))

@@ -73,7 +73,9 @@ Public Class FormMatchSelector
           Dim sResult As String = IIf(myMatch.away_goals >= 0 And myMatch.home_goals >= 0, myMatch.away_goals & "-" & myMatch.home_goals, "")
           .Rows.Add(myMatch.match_id, myMatch.match_date.ToShortDateString, myMatch.Description, sResult)
           'If myMatch.match_id = My.Settings.LastMatchId Then
-
+          .Rows(.Rows.Count - 1).Cells(ColumnAwayTeam.Index).Value = myMatch.AwayTeam.TeamAELCaption1Name
+          .Rows(.Rows.Count - 1).Cells(ColumnHomeTeam.Index).Value = myMatch.HomeTeam.TeamAELCaption1Name
+          .Rows(.Rows.Count - 1).Cells(ColumnResult.Index).Value = myMatch.HomeTeam.Goals & "-" & myMatch.AwayTeam.Goals
           If Not SelectedMatch Is Nothing AndAlso SelectedMatch.match_id = myMatch.match_id Then
             .Rows(.Rows.Count - 1).Selected = True
           Else

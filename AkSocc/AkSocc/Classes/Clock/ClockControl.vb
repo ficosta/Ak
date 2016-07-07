@@ -36,6 +36,7 @@ Public NotInheritable Class ClockControl
     Set(value As Match)
       _match = value
       _matchPeriod = _match.MatchPeriods.ActivePeriod
+      Me.InitScene()
     End Set
   End Property
 
@@ -62,6 +63,7 @@ Public NotInheritable Class ClockControl
 
 #End Region
 
+  Public Event Updated()
 
 
 #Region "Initialization"
@@ -78,6 +80,12 @@ Public NotInheritable Class ClockControl
 
   Private Sub InitScene()
     Me.Scene = GetClockBaseScene()
+    UpdateAndSendScene()
+    Me.Scene.RewindSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
+    ClockVisible = False
+    _request = False
+    _clockOnAir = False
+    RaiseEvent Updated()
   End Sub
 #End Region
 
@@ -123,14 +131,18 @@ Public NotInheritable Class ClockControl
     End Set
   End Property
 
-  Public ReadOnly Property ClockOnAir As Boolean
+  Public Property ClockOnAir As Boolean
     Get
       Return _clockOnAir
     End Get
+    Set(value As Boolean)
+      _clockOnAir = value
+    End Set
   End Property
 
   Public Sub UpdateClockVisibility()
     Try
+
       If _match.MatchPeriods.ActivePeriod Is Nothing Then
         _request = False
       ElseIf _match.MatchPeriods.ActivePeriod.Activa Then
@@ -139,12 +151,13 @@ Public NotInheritable Class ClockControl
         _request = False
       End If
 
-      If _clockOnAir <> _request Then
+
+      If _clockVisible <> _clockOnAir Or _request <> _clockOnAir Then
         'we must do something
-        If _clockOnAir Then
+        If _clockOnAir = True And (_clockVisible = False Or _request = False) Then
           'we must hide it
           Me.HideIdentClock()
-        Else
+        ElseIf _clockOnAir = False And _request = True And _clockVisible = True Then
           'we must show it
           Me.ShowIdentClock()
         End If
@@ -160,10 +173,11 @@ Public NotInheritable Class ClockControl
 #Region "Scene functions"
   Public Sub ShowIdentClock()
     Try
+      _clockOnAir = True
       UpdateAndSendScene()
       '_vizControl.DirectorStart("DIR_MAIN", Me.Scene.VizLayer)
       Me.Scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
-
+      RaiseEvent Updated()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -171,10 +185,10 @@ Public NotInheritable Class ClockControl
 
   Public Sub HideIdentClock()
     Try
-
+      _clockOnAir = False
       '_vizControl.DirectorContinue("DIR_MAIN", Me.Scene.VizLayer)  
       Me.Scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
-
+      RaiseEvent Updated()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -256,6 +270,11 @@ Public NotInheritable Class ClockControl
 
   Private Sub _match_ScoreChanged() Handles _match.ScoreChanged
     UpdateAndSendScene()
+  End Sub
+
+  Private Sub _match_ActivePeriodStateChanged() Handles _match.ActivePeriodStateChanged
+    UpdateAndSendScene()
+    Me.UpdateClockVisibility()
   End Sub
 
 #End Region

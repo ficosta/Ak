@@ -27,7 +27,7 @@ Imports MatchInfo
   End Property
 
   Public Event ScoreChanged()
-  Public Event ActivePeriodStateChanged()
+  Public Event ActivePeriodStateChanged(perio As Period)
 
   Public ReadOnly Property Substitutions As Substitutions
     Get
@@ -124,7 +124,7 @@ Imports MatchInfo
   Public ArabicMatchCommentators As String
   Public OPTAID As Integer
 
-  Public MatchPeriods As New Periods
+  Public WithEvents MatchPeriods As New Periods
 
 
   Public AA As String
@@ -571,6 +571,10 @@ Imports MatchInfo
     End Try
     Return res
   End Function
+
+  Private Sub MatchPeriods_ActivePeriodStateChanged(period As Period) Handles MatchPeriods.ActivePeriodStateChanged
+    RaiseEvent ActivePeriodStateChanged(period)
+  End Sub
 #End Region
 End Class
 
