@@ -78,4 +78,12 @@ Public Class UCPeriod
 
   End Sub
 
+  Private _updating As Boolean
+  Private Sub NumericUpDownMinutes_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDownMinutes.ValueChanged
+    If _updating Then Exit Sub
+    _updating = True
+    _match.MatchPeriods.UpdatePeriodExtraTime(Me.Period, Me.NumericUpDownMinutes.Value)
+    'Me.Period.ExtraTime = Me.NumericUpDownMinutes.Value
+    _updating = False
+  End Sub
 End Class

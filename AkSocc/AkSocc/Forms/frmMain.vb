@@ -339,7 +339,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonF6PlayerName_Click(sender As Object, e As EventArgs) Handles ButtonF6PlayerName.Click
-    Me.StartGraphic(New GraphicsPlayerStats(_match, _selectedPlayer))
+    Me.StartGraphic(New GraphicsPlayerName(_match, _selectedPlayer))
   End Sub
 
   Private Sub ButtonF7FirstTeamStuff_Click(sender As Object, e As EventArgs) Handles ButtonF7FirstTeamStuff.Click
@@ -737,6 +737,7 @@ Public Class frmMain
     _updating = True
     Try
       If _match Is Nothing Then Exit Sub
+      Me._selectedPlayer = sender.Player
       For Each ctl As PlayerViewer In _homePlayerControls
         ctl.IsSelected = (ctl.Player.ID = sender.Player.ID)
       Next

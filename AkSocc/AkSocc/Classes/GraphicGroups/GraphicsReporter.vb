@@ -87,8 +87,8 @@ Public Class GraphicsReporter
     scene.SceneDirectorsChangeIn.Add("BottomChange", 200, DirectorAction.Dummy)
 
     scene.SceneParameters.Add("Lower3rd_Data_Single_Subject_Control_OMO_Icon", "1")
-    scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Control_OMO_GV_Choose", "0")
-    scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Control_OMO_GV_Choose", "0")
+    scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Control_OMO_GV_Choose", "0")
+    'scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Control_OMO_GV_Choose", "0")
 
     Return scene
   End Function
@@ -103,10 +103,10 @@ Public Class GraphicsReporter
       prefix = "Lower3rd_Side_" & gSide & "_"
 
       If Not nameDotText Is Nothing Then
-        scene.SceneParameters.Add("Lower3rd_Single_Text_Subject_Name", nameDotText.ArabicTopLineText)
-        scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", nameDotText.ArabicSubLineText)
-        scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", nameDotText.ArabicSubLineText)
-        scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", nameDotText.ArabicSubLineText)
+        scene.SceneParameters.Add("Lower3rd_Single_Text_Subject_Name", VizEncoding(nameDotText.ArabicTopLineText))
+        scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", VizEncoding(nameDotText.ArabicSubLineText))
+        scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", VizEncoding(nameDotText.ArabicSubLineText))
+        scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", VizEncoding(nameDotText.ArabicSubLineText))
       End If
 
     Catch ex As Exception

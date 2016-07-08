@@ -1,7 +1,6 @@
-﻿
-Imports AkSocc
+﻿Imports AkSocc
 Imports MatchInfo
-Imports VizCommands
+  Imports VizCommands
 
 
 Public Class GraphicsPlayerStats
@@ -21,13 +20,8 @@ Public Class GraphicsPlayerStats
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
 
-    Public Shared ReadOnly NameAndTeam As Step0 = New Step0("Name and team")
-    Public Shared ReadOnly YellowCard As Step0 = New Step0("Yellow card")
-    Public Shared ReadOnly YellowCardMisses As Step0 = New Step0("Yellow card - misses next match")
-    Public Shared ReadOnly YellowCard2 As Step0 = New Step0("Second yellow card")
-    Public Shared ReadOnly RedCard As Step0 = New Step0("Red Card")
-    Public Shared ReadOnly GoalsInMatch As Step0 = New Step0(" goals in match")
-    Public Shared ReadOnly GoalsInSeasson As Step0 = New Step0(" goals in seasson")
+
+    Public Shared ReadOnly AttemptsOnGoal As Step0 = New Step0("Attempts On Goal")
 
     Public Sub New(key As String)
       MyBase.Key = key
@@ -51,13 +45,7 @@ Public Class GraphicsPlayerStats
       gs.GraphicSteps.Clear()
 
       If graphicStep Is Nothing Then
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.NameAndTeam, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCard, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCardMisses, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCard2, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.RedCard, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.GoalsInMatch, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.GoalsInSeasson, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AttemptsOnGoal, True, True))
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -71,21 +59,10 @@ Public Class GraphicsPlayerStats
     Dim changeStep As Integer = 1
     Try
       Select Case gs.ChildGraphicStep.Name
-        Case Step0.NameAndTeam
-          Scene = PrepareNameAndTeam(changeStep)
-        Case Step0.YellowCard
-          Scene = PrepareYellowCard(changeStep, False)
-        Case Step0.YellowCardMisses
-          Scene = PrepareYellowCard(changeStep, True)
-        Case Step0.YellowCard2
-          Scene = Prepare2YellowCards(changeStep)
-        Case Step0.RedCard
-          Scene = PrepareRedCard(changeStep)
-        Case Step0.GoalsInMatch
-          Scene = PrepareGoals(changeStep, False)
-        Case Step0.GoalsInSeasson
-          Scene = PrepareGoals(changeStep, True)
+        Case Step0.AttemptsOnGoal
+          Scene = PrepareTeamStat(changeStep, "Attempts on Goal", Me.Match.HomeTeam.MatchStats.Shots.ValueText, Me.Match.AwayTeam.MatchStats.Shots.ValueText)
       End Select
+
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -97,79 +74,61 @@ Public Class GraphicsPlayerStats
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
-    scene.SceneName = "gfx_lower_third"
-    scene.SceneDirector = "DIR_MAIN$In_Out"
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
-    scene.SceneDirectorsIn.Add("Change_2_1", 0, DirectorAction.Rewind)
+    scene.SceneName = "gfx_Lower3rd"
+    scene.SceneDirector = "anim_lower3rd$In_Out"
+    scene.SceneDirectorsIn.Add("anim_lower3rd$In_Out", 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("anim_lower3rd$In_Out", 75, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("BottomChange", 0, DirectorAction.Rewind)
 
-    scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
+    scene.SceneDirectorsOut.Add("anim_lower3rd$In_Out", 0, DirectorAction.ContinueNormal)
 
-    Dim changeAnim As String = "Change_" & ((gStep) Mod 2 + 1) & "_" & ((gStep + 1) Mod 2) + 1
-    changeAnim = "Change_1_2"
-    'scene.SceneDirectorsChangeOut.Add(changeAnim, 0, DirectorAction.Rewind)
-    'scene.SceneDirectorsChangeOut.Add(changeAnim, 50, DirectorAction.Dummy)
+    scene.SceneDirectorsChangeIn.Add("BottomChange", 0, DirectorAction.Start)
+    scene.SceneDirectorsChangeIn.Add("BottomChange", 200, DirectorAction.Dummy)
 
-    scene.SceneDirectorsChangeIn.Add(changeAnim, 0, DirectorAction.Start)
-    scene.SceneDirectorsChangeIn.Add(changeAnim, 50, DirectorAction.Dummy)
-
-    'player data
-    scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", "")
-    scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name", Player.Name)
-    scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Number", Player.SquadNo)
+    scene.SceneParameters.Add("Lower3rd_Data_Single_Subject_Control_OMO_Icon", "1")
+    scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Control_OMO_GV_Choose", "0")
+    scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Control_OMO_GV_Choose", "0")
 
     Return scene
   End Function
 
-  Private Function PrepareNameAndTeam(gSide As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene(gSide)
-    Try
 
+  Public Function PrepareTeamStat(gSide As Integer, stat_name As String, home_team_value As String, away_team_value As String) As Scene
+    Dim scene As Scene = InitDefaultScene()
+    Dim prefix As String = "LeftFramer_Title_Stats_Side_" & gSide & "_"
+    Dim subjectPrefix As String = ""
+    Try
+      prefix = "LeftFramer_Title_Stats_Side_" & gSide & "_"
+
+      scene.SceneParameters.Add(prefix & "Text_Center", stat_name)
+      scene.SceneParameters.Add(prefix & "Text_Right", Me.Match.HomeTeam.Name)
+      scene.SceneParameters.Add(prefix & "Text_Left", Me.Match.AwayTeam.Name)
+
+      prefix = "LeftFramer_Stats_Side_" & gSide & "_"
+
+      scene.SceneParameters.Add(prefix & "Subject_01_Left_Control_OMO_GV_Chosse", 0)
+      scene.SceneParameters.Add(prefix & "Subject_01_Left_Score_Text", away_team_value)
+
+      scene.SceneParameters.Add(prefix & "Subject_01_Right_Control_OMO_GV_Chosse", 0)
+      scene.SceneParameters.Add(prefix & "Subject_01_Right_Score_Text", away_team_value)
+
+      scene.SceneParameters.Add(prefix & "Subject_01_Team_Name", stat_name)
+
+      For i As Integer = 2 To 7
+        scene.SceneParameters.Add(prefix & "Text_0" & i, "")
+        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Left_Control_OMO_GV_Chosse", 0)
+        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Right_Control_OMO_GV_Chosse", 0)
+        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Left_Score_Text", "")
+        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Right_Score_Text", "")
+        scene.SceneParameters.Add(prefix & "Subject_0" & i & "_Team_Name", "r")
+      Next
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
     Return scene
   End Function
 
-  Private Function PrepareYellowCard(gSide As Integer, missesNextMatch As Boolean) As Scene
-    Dim scene As Scene = InitDefaultScene(gSide)
-    Try
-
-    Catch ex As Exception
-      WriteToErrorLog(ex)
-    End Try
-    Return scene
-  End Function
-
-  Private Function Prepare2YellowCards(gSide As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene(gSide)
-    Try
-
-    Catch ex As Exception
-      WriteToErrorLog(ex)
-    End Try
-    Return scene
-  End Function
-
-  Private Function PrepareRedCard(gSide As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene(gSide)
-    Try
-
-    Catch ex As Exception
-      WriteToErrorLog(ex)
-    End Try
-    Return scene
-  End Function
-
-  Private Function PrepareGoals(gSide As Integer, seasonGoals As Boolean) As Scene
-    Dim scene As Scene = InitDefaultScene(gSide)
-    Try
-
-    Catch ex As Exception
-      WriteToErrorLog(ex)
-    End Try
-    Return scene
-  End Function
 #End Region
 End Class
 

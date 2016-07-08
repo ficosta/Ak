@@ -69,10 +69,10 @@ Public Class Periods
 
   Public Property Afegit As Integer
     Get
-      Return ActivePeriod.Afegit
+      Return ActivePeriod.ExtraTime
     End Get
     Set(value As Integer)
-      ActivePeriod.Afegit = value
+      ActivePeriod.ExtraTime = value
     End Set
   End Property
 
@@ -248,9 +248,20 @@ Public Class Periods
     End Try
     Return Me.ActivePeriod
   End Function
+
+  Public Function UpdatePeriodExtraTime(period As Period, extraTime As Integer) As Period
+    Dim res As Period = period
+    Try
+      If Not res Is Nothing Then
+        res.ExtraTime = extraTime
+      End If
+      RaiseEvent ActivePeriodStateChanged(Me.ActivePeriod)
+    Catch ex As Exception
+    End Try
+    Return Me.ActivePeriod
+
+  End Function
 #End Region
-
-
 
   Default Public Property Item(Index As Integer) As Period
     Get

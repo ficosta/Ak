@@ -106,8 +106,8 @@
     <Compile Include="Classes\GraphicGroups\GraphicsFullFramers.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsCrawlTeam.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsReporter.vb" />
-    <Compile Include="Classes\GraphicGroups\GraphicsPlayerName.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsPlayerStats.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsPlayerName.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsTeamStaff.vb" />
     <Compile Include="Classes\Graphics\GraphicScoreLine.vb" />
     <Compile Include="Classes\GraphicVersions\GraphicVersion.vb" />

@@ -27,7 +27,7 @@ End Enum
   Private dPiLastUpdate As Date
   Private nPiTempsJoc As Long = 0
   Public ManualOffset As Long = 0
-  Public Afegit As Integer = 0
+  Public ExtraTime As Integer = 0
   Public Assistencia As Integer = 0
   Public Temperatura As Integer = 0
   Private bPiActiva As Boolean = False
@@ -230,7 +230,7 @@ End Enum
     Dim bChange As Boolean = False
     Try
       'ha canviat algo?
-      bChange = bChange Or (Me.Afegit <> niAfegit)
+      bChange = bChange Or (Me.ExtraTime <> niAfegit)
       bChange = bChange Or (Me.HoraInici <> diHoraInici)
       bChange = bChange Or (Me.Temperatura <> niTemperatura)
       bChange = bChange Or (Me.Activa <> biActiva)
@@ -239,7 +239,7 @@ End Enum
 
       'si ha canviat algo, que es vegi
       If bChange Then
-        Me.Afegit = niAfegit
+        Me.ExtraTime = niAfegit
         Me.HoraInici = diHoraInici
         Me.Temperatura = niTemperatura
         Me.Activa = biActiva

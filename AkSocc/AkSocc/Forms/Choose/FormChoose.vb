@@ -34,6 +34,7 @@ Public Class FormChoose
 
     If Not gstep Is Nothing Then
       Dim lbl As New MetroFramework.Controls.MetroLabel
+      Dim fWait As frmWait
       lbl.Text = "Wating for animation..."
       lbl.FontSize = MetroFramework.MetroLabelSize.Tall
       lbl.FontWeight = MetroFramework.MetroLabelWeight.Bold
@@ -54,8 +55,8 @@ Public Class FormChoose
           _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
 
           'wait for animation to end
-          Dim frm As New frmWait(1000 * _currentScene.SceneDirectorsChangeOut.MaxFrame / 40)
-          frm.ShowDialog()
+          fWait = New frmWait(1000 * _currentScene.SceneDirectorsChangeOut.MaxFrame / 40)
+          fWait.ShowDialog()
         Else
           'we are changing!
 
@@ -64,8 +65,8 @@ Public Class FormChoose
             _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeOutDirectors)
             Application.DoEvents()
 
-            Dim frm As New frmWait(1000 * _currentScene.SceneDirectorsChangeOut.MaxFrame / 40)
-            frm.ShowDialog()
+            fWait = New frmWait(1000 * _currentScene.SceneDirectorsChangeOut.MaxFrame / 40)
+            fWait.ShowDialog()
           End If
 
           'Send parameter on side 1 to side 2
@@ -78,13 +79,22 @@ Public Class FormChoose
           _formerScene.SendSceneToEngine(_vizControl)
           Application.DoEvents()
 
+          fWait = New frmWait(500)
+          fWait.ShowDialog()
+
           'rewind change animation to initial step
           _formerScene.RewindSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeInDirectors)
           Application.DoEvents()
 
+          fWait = New frmWait(500)
+          fWait.ShowDialog()
+
           'send new parameters
           _currentScene.SendSceneToEngine(_vizControl)
           Application.DoEvents()
+
+          fWait = New frmWait(500)
+          fWait.ShowDialog()
 
           If _currentScene.SceneDirectorsChangeIn.Count > 0 Then
             'send scene to render and start animation

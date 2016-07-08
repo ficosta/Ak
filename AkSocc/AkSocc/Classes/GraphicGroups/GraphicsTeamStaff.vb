@@ -73,19 +73,19 @@ Public Class GraphicsTeamStaff
     Return Me.Scene
   End Function
 
-#Region "Crawl scenes"
+#Region "Lower 3rd"
   Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
-    scene.SceneName = "gfx_Lower3rd"
-    scene.SceneDirector = "anim_lower3rd$In_Out"
-    scene.SceneDirectorsIn.Add("anim_lower3rd$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("anim_lower3rd$In_Out", 75, DirectorAction.Dummy)
+    scene.SceneName = "DIR_MAIN"
+    scene.SceneDirector = "DIR_MAIN$In_Out"
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
     scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("BottomChange", 0, DirectorAction.Rewind)
 
-    scene.SceneDirectorsOut.Add("anim_lower3rd$In_Out", 0, DirectorAction.ContinueNormal)
+    scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
     ' scene.SceneDirectorsChangeOut.Add("Change", 0, DirectorAction.Rewind)
 
@@ -95,6 +95,7 @@ Public Class GraphicsTeamStaff
     scene.SceneParameters.Add("Lower3rd_Data_Single_Subject_Control_OMO_Icon", "1")
     scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Control_OMO_GV_Choose", "0")
     scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Control_OMO_GV_Choose", "0")
+    scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose", "2")
 
     Dim prefix As String = "Side_" & gStep
     scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
@@ -111,14 +112,13 @@ Public Class GraphicsTeamStaff
 
   Public Function PrepareMatchScores(gSide As Integer, teamStaff As TeamStaff) As Scene
     Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "Lower3rd_Side_1" & gSide & "_"
+    Dim prefix As String = ""
     Dim subjectPrefix As String = ""
     Try
-      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 2)
       prefix = "Lower3rd_Side_" & gSide & "_"
 
       If Not teamStaff Is Nothing Then
-        scene.SceneParameters.Add("Lower3rd_Single_Text_Subject_Name", teamStaff.ArabicStaffTitle)
+        scene.SceneParameters.Add("Lower3rd_Player_Badge_Subject_Name", teamStaff.ArabicStaffTitle)
         scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", teamStaff.ArabicName)
         scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", teamStaff.ArabicName)
         scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", teamStaff.ArabicName)
