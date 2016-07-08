@@ -79,7 +79,6 @@ Public NotInheritable Class ClockControl
   End Function
 
   Private Sub InitScene()
-    Me.Scene = GetClockBaseScene()
     UpdateAndSendScene()
     Me.Scene.RewindSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
     ClockVisible = False
@@ -301,6 +300,8 @@ Public NotInheritable Class ClockControl
 
       _vizControl.ClockSet(overtimeClockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime - _match.MatchPeriods.ActivePeriod.TotalTime)
       If _match.MatchPeriods.ActivePeriod.IsPeriodDone Then
+        _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.TotalTime + _match.MatchPeriods.ActivePeriod.StartOffset)
+        _vizControl.ClockStop(clockIndex)
         _vizControl.ClockStart(overtimeClockIndex)
       Else
         _vizControl.ClockStop(overtimeClockIndex)
@@ -312,7 +313,7 @@ Public NotInheritable Class ClockControl
 
   Private Sub UpdateScene()
     Try
-      Dim myScene As New Scene
+      Dim myScene As Scene = GetClockBaseScene()
 
       With myScene
         'Directors
@@ -397,8 +398,15 @@ Public NotInheritable Class ClockControl
   End Sub
 
   Private Sub _match_ActivePeriodStateChanged() Handles _match.ActivePeriodStateChanged
-    UpdateAndSendScene()
-    Me.UpdateClockVisibility()
+    Try
+      If _match.MatchPeriods.ActivePeriod.Activa Then
+        UpdateAndSendScene()
+      End If
+      Me.UpdateClockVisibility()
+
+    Catch ex As Exception
+
+    End Try
   End Sub
 
   Private Sub _addedTimeTimer_Tick(sender As Object, e As EventArgs) Handles _addedTimeTimer.Tick
@@ -407,7 +415,9 @@ Public NotInheritable Class ClockControl
       If _match.MatchPeriods.ActivePeriod Is Nothing Then Exit Sub
       If _match.MatchPeriods.ActivePeriod.IsPeriodDone <> Me.OverTimeClockVisible Then
         Me.OverTimeClockVisible = _match.MatchPeriods.ActivePeriod.IsPeriodDone
-        UpdateAndSendScene()
+        If _match.MatchPeriods.ActivePeriod.Activa Then
+          UpdateAndSendScene()
+        End If
       End If
     Catch ex As Exception
 

@@ -339,7 +339,11 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonF6PlayerName_Click(sender As Object, e As EventArgs) Handles ButtonF6PlayerName.Click
-    Me.StartGraphic(New GraphicsPlayerName(_match, _selectedPlayer))
+    If _selectedPlayer Is Nothing Then
+      MetroFramework.MetroMessageBox.Show(Me, "You must choose a player first", "Player name")
+    Else
+      Me.StartGraphic(New GraphicsPlayerName(_match, _selectedPlayer))
+    End If
   End Sub
 
   Private Sub ButtonF7FirstTeamStuff_Click(sender As Object, e As EventArgs) Handles ButtonF7FirstTeamStuff.Click

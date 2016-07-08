@@ -344,11 +344,10 @@ Public Class Periods
           ActivePeriod.Activa = False
           ActivePeriod.IsSelected = False
         End If
+        newPeriod.ManualOffset = newTime - ActivePeriod.StartOffset
+        newPeriod.Activa = True
+        newPeriod.IsSelected = True
         ActivePeriod = newPeriod
-        ActivePeriod.ManualOffset = newTime - ActivePeriod.StartOffset
-        ActivePeriod.Activa = True
-        ActivePeriod.IsSelected = True
-        RaiseEvent ActivePeriodStateChanged(Nothing)
       End If
     Catch ex As Exception
       Throw ex
