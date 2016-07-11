@@ -11,12 +11,23 @@ Public Class GraphicsPlayerName
   Public Sub New(_match As MatchInfo.Match, player As Player)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicsPlayerStats"
+    MyBase.Name = "GraphicsPlayerName"
     Me.Player = player
     MyBase.ID = 1
+    If Not Me.Match Is Nothing And Not Me.Player Is Nothing Then
+      Select Case Me.Player.TeamID
+        Case Me.Match.HomeTeam.ID
+          Me.Team = Me.Match.HomeTeam
+        Case Me.Match.AwayTeam.ID
+          Me.Team = Me.Match.AwayTeam
+        Case Else
+          Me.Team = Nothing
+      End Select
+    End If
   End Sub
 
   Public Property Player As Player
+  Public Property Team As Team
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
@@ -51,13 +62,13 @@ Public Class GraphicsPlayerName
       gs.GraphicSteps.Clear()
 
       If graphicStep Is Nothing Then
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.NameAndTeam, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCard, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCardMisses, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCard2, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.RedCard, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.GoalsInMatch, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.GoalsInSeasson, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.NameAndTeam, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCard, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCardMisses, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCard2, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.RedCard, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.GoalsInMatch, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.GoalsInSeasson, True, False))
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -93,20 +104,21 @@ Public Class GraphicsPlayerName
   End Function
 
 #Region "Crawl scenes"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
     scene.SceneName = "gfx_Lower3rd"
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
-    scene.SceneDirectorsIn.Add("Change_2_1", 0, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 100, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("Bottom_change_1_2", 0, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add(New SceneDirector("DIR_MAIN$In_Out$Cards", 0, DirectorAction.Rewind))
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
-    Dim changeAnim As String = "Change_" & ((gStep) Mod 2 + 1) & "_" & ((gStep + 1) Mod 2) + 1
-    changeAnim = "Change_1_2"
+    Dim changeAnim As String = "Bottom_change_" & ((gSide) Mod 2 + 1) & "_" & ((gSide + 1) Mod 2) + 1
+    changeAnim = "Bottom_change_1_2"
     'scene.SceneDirectorsChangeOut.Add(changeAnim, 0, DirectorAction.Rewind)
     'scene.SceneDirectorsChangeOut.Add(changeAnim, 50, DirectorAction.Dummy)
 
@@ -115,15 +127,29 @@ Public Class GraphicsPlayerName
 
 
     'player data
-    scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", "")
     If Player Is Nothing Then
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", "")
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name", "")
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name_Cards ", "")
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Number", "")
     Else
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & "\" & Team.BadgeName)
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name", Player.Name)
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name_Cards ", Player.Name)
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Number", Player.SquadNo)
     End If
 
+    'team data
+    If Team Is Nothing Then
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", "")
+      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01 ", "")
+    Else
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Team.BadgeName, paramType.Image)
+      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01 ", Team.Name)
+    End If
+
+    scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose ", "1")
+    scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Control_OMO_GV_Choose ", "0")
 
     Return scene
   End Function
@@ -133,10 +159,12 @@ Public Class GraphicsPlayerName
     Try
       Dim team As Team = IIf(_Player.TeamID = Me.Match.home_team_id, Me.Match.HomeTeam, Me.Match.AwayTeam)
 
-      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose", 0)
-      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Control_OMO_GV_Choose", 0)
-      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01", team.Name)
-      scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", "xxx")
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose", "0")
+      If team Is Nothing Then
+        scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01 ", "")
+      Else
+        scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01 ", team.Name)
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -146,10 +174,14 @@ Public Class GraphicsPlayerName
   Private Function PrepareYellowCard(gSide As Integer, missesNextMatch As Boolean) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Try
-      scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", "xxx")
-      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose", 0)
-      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Control_OMO_GV_Choose", 0)
-      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01", "yellow card text?!")
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose ", "1")
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_Icon ", "0")
+      If Not missesNextMatch Then
+        scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01", VizEncoding(Arabic("YELLOW CARD")))
+      Else
+        scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01", VizEncoding(Arabic("MISSES NEXT MATCH")))
+      End If
+
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -159,7 +191,10 @@ Public Class GraphicsPlayerName
   Private Function Prepare2YellowCards(gSide As Integer) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Try
-
+      scene.SceneDirectorsIn.Add(New SceneDirector("DIR_MAIN$In_Out$Cards", 50, DirectorAction.Start))
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose ", "2")
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_Icon ", "1")
+      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01", VizEncoding(Arabic("SECOND YELLOW CARD")))
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -169,6 +204,10 @@ Public Class GraphicsPlayerName
   Private Function PrepareRedCard(gSide As Integer) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Try
+      scene.SceneDirectorsIn.Add(New SceneDirector("DIR_MAIN$In_Out$Cards", 1, DirectorAction.JumpTo, 250))
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose ", "2")
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_Icon ", "1")
+      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01", VizEncoding(Arabic("RED CARD")))
 
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -179,6 +218,40 @@ Public Class GraphicsPlayerName
   Private Function PrepareGoals(gSide As Integer, seasonGoals As Boolean) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Try
+      Dim goals As Integer
+      Dim strGoals As String = Team.Name
+      If seasonGoals = False Then
+        goals = Player.Goals
+
+        If goals = 0 Then
+          strGoals = Team.Name
+        ElseIf goals = 1 Then
+          strGoals = Arabic("ONE GOAL IN THE MATCH")
+        ElseIf goals <= 5 Then
+          strGoals = Arabic(NumberToWord(goals) & " GOALS IN THE MATCH")
+        Else
+          strGoals = Team.Name
+        End If
+      Else
+        goals = Player.Goals & Player.SeasonGoals
+
+        If goals = 0 Then
+          strGoals = Team.Name
+        ElseIf goals = 1 Then
+          strGoals = Arabic("ONE GOAL IN THE SEASON")
+        ElseIf goals = 2 Then
+          strGoals = Arabic("TWO GOALS IN THE SEASON")
+        ElseIf goals <= 10 Then
+          strGoals = Arabic(NumberToWord(goals)) & " " & Arabic("GOALS IN THE SEASON")
+        ElseIf goals < 40 Then
+          strGoals = Arabic(NumberToWord(goals)) & " " & Arabic("Goals for the season")
+        Else
+          strGoals = goals & " " & Arabic("Goals for the season")
+        End If
+      End If
+
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose", "0")
+      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01", strGoals)
 
     Catch ex As Exception
       WriteToErrorLog(ex)

@@ -1,6 +1,6 @@
 ﻿Imports MatchInfo
 
-Public Class frmMatchDay
+Public Class frmMatchDay_new
 #Region "Other matches"
   Private _matchDay As MatchDay
   Public Property MatchDay As MatchDay
@@ -20,9 +20,9 @@ Public Class frmMatchDay
     Set(value As Competition)
       _competition = value
 
-      For Each ctl As UCOtherMatch In _controls
-        ctl.Competition = _competition
-      Next
+      ''For Each ctl As UCOtherMatch In _controls
+      ''  ctl.Competition = _competition
+      ''Next
     End Set
   End Property
 #End Region
@@ -39,33 +39,28 @@ Public Class frmMatchDay
   End Property
 
   Private _selectedMatchDay As MatchDay = Nothing
-  Private _controls As New List(Of UCOtherMatch)
+  Private _controls As New List(Of Label)
 
   Private Sub frmMatchDay_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     Try
       _controls.Clear()
-      _controls.Add(Me.UcOtherMatch1)
-      _controls.Add(Me.UcOtherMatch2)
-      _controls.Add(Me.UcOtherMatch3)
-      _controls.Add(Me.UcOtherMatch4)
-      _controls.Add(Me.UcOtherMatch5)
-      _controls.Add(Me.UcOtherMatch6)
-      _controls.Add(Me.UcOtherMatch7)
-      _controls.Add(Me.UcOtherMatch8)
-      _controls.Add(Me.UcOtherMatch9)
+      _controls.Add(Me.Label1)
+      _controls.Add(Me.Label2)
+      _controls.Add(Me.Label3)
+      _controls.Add(Me.Label4)
+      _controls.Add(Me.Label5)
+      _controls.Add(Me.Label6)
+      _controls.Add(Me.Label7)
+      _controls.Add(Me.Label8)
+      _controls.Add(Me.Label9)
 
-      Dim _matches As Matches = Nothing
-      If Not _competition Is Nothing Then
-        _matches = Matches.GetMatchesForCompetition(_competition.CompID)
-      End If
-
-      For Each ctl As UCOtherMatch In _controls
-        AddHandler ctl.MoveUp, AddressOf Me.UCOtherMatch_MoveUp
-        AddHandler ctl.MoveDown, AddressOf Me.UCOtherMatch_MoveDown
-        AddHandler ctl.Delete, AddressOf Me.UCOtherMatch_Delete
-        AddHandler ctl.AddNew, AddressOf Me.UCOtherMatch_AddNew
-        ctl.Matches = _matches
-      Next
+      'For Each ctl As UCOtherMatch In _controls
+      '  AddHandler ctl.MoveUp, AddressOf Me.UCOtherMatch_MoveUp
+      '  AddHandler ctl.MoveDown, AddressOf Me.UCOtherMatch_MoveDown
+      '  AddHandler ctl.Delete, AddressOf Me.UCOtherMatch_Delete
+      '  AddHandler ctl.AddNew, AddressOf Me.UCOtherMatch_AddNew
+      '  ctl.Competition = Me.Competition
+      'Next
     Catch ex As Exception
 
     End Try
@@ -127,35 +122,28 @@ Public Class frmMatchDay
 
   Private Sub MostrarMatchDay()
     Try
-      ' Exit Sub
-      'Me.TableLayoutPanelUCOtherMatches.SuspendLayout()
+      Me.TableLayoutPanelUCOtherMatches.SuspendLayout()
       'Me.TableLayoutPanelUCOtherMatches.Visible = False
       Try
         Dim maxItems As Integer = Math.Min(_controls.Count, _selectedMatchDay.OtherMatches.Count)
         For index As Integer = 0 To maxItems - 1
-          Dim update As Boolean = False
-          If _controls(index).OtherMatchInfo Is Nothing Then
-            update = True
-          ElseIf Not _selectedMatchDay(index) Is Nothing AndAlso _controls(index).OtherMatchInfo.OtherMatchID <> _selectedMatchDay(index).OtherMatchID Then
-            update = True
-          End If
-          If update Then
-            _controls(index).OtherMatchInfo = _selectedMatchDay(index)
-            _controls(index).ArrowUpVisible = (index > 0)
-            _controls(index).ArrowDownVisible = (index < maxItems - 1)
-            _controls(index).ButtonActionEnum = UCOtherMatch.eButtonAction.Delete
-          End If
+          _controls(index).Text = _selectedMatchDay(index).ToString
+          '_controls(index).OtherMatchInfo = _selectedMatchDay(index)
+          '_controls(index).ArrowUpVisible = (index > 0)
+          '_controls(index).ArrowDownVisible = (index < maxItems - 1)
+          '_controls(index).ButtonActionEnum = UCOtherMatch.eButtonAction.Delete
         Next
         For index As Integer = maxItems To _controls.Count - 1
-          _controls(index).OtherMatchInfo = Nothing
-          _controls(index).ArrowUpVisible = False
-          _controls(index).ArrowDownVisible = False
-          _controls(index).ButtonActionEnum = IIf(index = maxItems, UCOtherMatch.eButtonAction.AddNew, UCOtherMatch.eButtonAction.None)
+          _controls(index).Text = "empty"
+          '_controls(index).OtherMatchInfo = Nothing
+          '_controls(index).ArrowUpVisible = False
+          '_controls(index).ArrowDownVisible = False
+          '_controls(index).ButtonActionEnum = IIf(index = maxItems, UCOtherMatch.eButtonAction.AddNew, UCOtherMatch.eButtonAction.None)
         Next
       Catch ex As Exception
 
       End Try
-      '  Me.TableLayoutPanelUCOtherMatches.ResumeLayout()
+      Me.TableLayoutPanelUCOtherMatches.ResumeLayout()
       'Me.TableLayoutPanelUCOtherMatches.Visible = True
     Catch ex As Exception
 
@@ -185,16 +173,17 @@ Public Class frmMatchDay
         CControl.ArrowDownVisible = False
         If Not CiPagina Is Nothing Then
           If _controls.Count > 0 Then
-            If Not _controls.Last.OtherMatchInfo Is Nothing Then
-              CControl.ArrowUpVisible = True
-              _controls.Last.ArrowDownVisible = True
-            Else
-              '_controls.Last.ArrowDownVisible = True
+            'If Not _controls.Last.OtherMatchInfo Is Nothing Then
+            '  CControl.ArrowUpVisible = True
+            '  _controls.Last.ArrowDownVisible = True
+            'Else
+            '  '_controls.Last.ArrowDownVisible = True
 
-            End If
+            'End If
           End If
         End If
-        _controls.Add(CControl)
+
+        '_controls.Add(CControl)
         'AddHandler CControl.ValueChanged, AddressOf Me.ValueChanged
       End If
       CControl.OtherMatchInfo = CiPagina
@@ -289,5 +278,8 @@ Public Class frmMatchDay
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
+  End Sub
+
+  Private Sub Label1_Load(sender As Object, e As EventArgs)
   End Sub
 End Class

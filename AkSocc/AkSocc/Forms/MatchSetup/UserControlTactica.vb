@@ -605,30 +605,7 @@ Public Class UserControlTactica
   Private Sub UserControlTactica_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles Me.DragDrop
     Dim i As Integer
     For i = 0 To e.Data.GetFormats().Length - 1
-      If e.Data.GetFormats()(i).Equals("System.Windows.Forms.ListView+SelectedListViewItemCollection") Then
-        'The data from the drag source is moved to the target.
-        Dim p As Point = Me.PointToClient(New Point(e.X, e.Y))
-        Dim p0 As Point = Me.PointToClient(New Point(0, 0)) - Me.PictureBoxCanvas.PointToClient(New Point(0, 0))
-        Dim p1 As Point = (p0 + New Point(Me.PictureBoxCanvas.Width, Me.PictureBoxCanvas.Height))
-
-        Dim rect As New Rectangle(p0.X, p0.Y, Me.PictureBoxCanvas.Width, Me.PictureBoxCanvas.Height)
-
-        e.Effect = DragDropEffects.None
-        If rect.Contains(p) Then
-          Dim pos As PosicioTactic = Me.HitTest(p.X - p0.X, p.Y - p0.Y)
-          If Not pos Is Nothing Then
-            If pos.Team.ID = _dragTeam.ID Then
-              pos.Player = _dragPlayer
-              _lastSelectedPosicio = pos
-              _dragPlayer.Formation_Pos = _lastSelectedPosicio.Posicio
-              _lastSelectedPosicio.Player = _dragPlayer
-              _lastPositionIndex = _lastSelectedPosicio.Posicio
-
-              ShowTactics()
-            End If
-          End If
-        End If
-      ElseIf e.Data.GetFormats()(i).Equals("MatchInfo.Player") Then
+      If e.Data.GetFormats()(i).Equals("MatchInfo.Player") Then
         'The data from the drag source is moved to the target.
         Dim p As Point = Me.PointToClient(New Point(e.X, e.Y))
         Dim p0 As Point = Me.PointToClient(New Point(0, 0)) - Me.PictureBoxCanvas.PointToClient(New Point(0, 0))
@@ -645,15 +622,16 @@ Public Class UserControlTactica
               For Each player As Player In _team.MatchPlayers
                 If player.Formation_Pos = pos.Posicio Then
                   player.Formation_Pos = 0
+                  If Me.Team.MatchPlayers.Contains(player) Then Me.Team.MatchPlayers.Remove(player)
                 End If
               Next
+              If Not Me.Team.MatchPlayers.Contains(_dragPlayer) Then Me.Team.MatchPlayers.Add(_dragPlayer)
               pos.Player.Formation_Pos = pos.Posicio
               _lastPositionIndex = pos.Posicio
-
               ShowTactics()
-              Me.UpdateListViewsTeamsIPlayers()
+                Me.UpdateListViewsTeamsIPlayers()
+              End If
             End If
-          End If
         Else
           'any of the substs?
           For Each lbl As Label In _benchPlayerLabels
@@ -662,11 +640,15 @@ Public Class UserControlTactica
             rect = New Rectangle(p0.X, p0.Y, lbl.Width, lbl.Height)
             If rect.Contains(p) Then
               Dim posIndex As Integer = 11 + CInt(lbl.Name.Replace("Label", ""))
+
               For Each player As Player In _team.MatchPlayers
                 If player.Formation_Pos = posIndex Then
                   player.Formation_Pos = 0
+                  If Me.Team.MatchPlayers.Contains(player) Then Me.Team.MatchPlayers.Remove(player)
                 End If
               Next
+              If Not Me.Team.MatchPlayers.Contains(_dragPlayer) Then Me.Team.MatchPlayers.Add(_dragPlayer)
+
               _dragPlayer.Formation_Pos = posIndex
               _lastPositionIndex = posIndex
               ShowTactics()

@@ -276,6 +276,12 @@
     </Compile>
     <Compile Include="OtherMatches\Classification.vb" />
     <Compile Include="OtherMatches\ClassificationForMatchDay.vb" />
+    <Compile Include="OtherMatches\frmOtherMatches_new.Designer.vb">
+      <DependentUpon>frmOtherMatches_new.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OtherMatches\frmOtherMatches_new.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="OtherMatches\frmOtherMatches.Designer.vb">
       <DependentUpon>frmOtherMatches.vb</DependentUpon>
     </Compile>
@@ -368,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PlayerViewer.resx">
       <DependentUpon>PlayerViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherMatches\frmOtherMatches_new.resx">
+      <DependentUpon>frmOtherMatches_new.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherMatches\frmOtherMatches.resx">
       <DependentUpon>frmOtherMatches.vb</DependentUpon>

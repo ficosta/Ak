@@ -29,8 +29,25 @@ Public Class UCOtherMatch
       _competition = value
       Me.MetroComboBoxMatch.Items.Clear()
       If Not _competition Is Nothing Then
-        Dim _matches As Matches = Matches.GetMatchesForCompetition(_competition.CompID)
+        'Dim _matches As Matches = Matches.GetMatchesForCompetition(_competition.CompID)
 
+        'For Each match As Match In _matches
+        '  Me.MetroComboBoxMatch.Items.Add(match)
+        'Next
+      End If
+    End Set
+  End Property
+
+  Private _matches As Matches
+  Public Property Matches As Matches
+    Get
+      Return _matches
+    End Get
+    Set(value As Matches)
+      _matches = value
+      Me.MetroComboBoxMatch.Items.Clear()
+
+      If Not _matches Is Nothing Then
         For Each match As Match In _matches
           Me.MetroComboBoxMatch.Items.Add(match)
         Next
@@ -145,34 +162,36 @@ Public Class UCOtherMatch
         Me.MetroTextBoxScoreAway.Text = ""
       Else
         MetroTabControlLineType.Visible = True
+        Dim tabPage As TabPage = Nothing
         Select Case _otherMatch.LineType
           Case OtherMatch.eOtherMatchLineType.Blank
-            Me.MetroTabControlLineType.SelectedTab = TabPageBlank
+            tabPage = TabPageBlank
           Case OtherMatch.eOtherMatchLineType.Result
-            Me.MetroTabControlLineType.SelectedTab = TabPageTitle
+            tabPage = TabPageMatch
           Case OtherMatch.eOtherMatchLineType.Title
-            Me.MetroTabControlLineType.SelectedTab = TabPageMatch
+            tabPage = TabPageTitle
         End Select
+        If tabPage.Name <> Me.MetroTabControlLineType.SelectedTab.Name Then Me.MetroTabControlLineType.SelectedTab = tabPage
         Me.MetroCheckBoxAddToCrawl.Checked = _otherMatch.IsCrawl
-        Me.MetroCheckBoxAddToTable.Checked = _otherMatch.IsTable
-        MetroTabControlLineType.SelectedIndex = CInt(_otherMatch.LineType)
-        Me.MetroTextBoxTitle.Text = _otherMatch.MatchTitle
-        Me.MetroTextBoxScoreHome.Text = _otherMatch.HomeScore
-        Me.MetroTextBoxScoreAway.Text = _otherMatch.AwayScore
-        If _otherMatch.Match Is Nothing Then
-          Me.MetroComboBoxMatch.Text = ""
-        Else
-          Me.MetroComboBoxMatch.Text = _otherMatch.Match.Description
-          'Me.MetroComboBoxMatch.SelectedItem = Me.MetroComboBoxMatch.Items(0)
-          For index As Integer = 0 To Me.MetroComboBoxMatch.Items.Count - 1
-            Dim aux As Match = Me.MetroComboBoxMatch.Items(index)
-            If aux.match_id = _otherMatch.Match.match_id Then
-              Me.MetroComboBoxMatch.SelectedItem = Me.MetroComboBoxMatch.Items(index)
-            End If
-          Next
+          Me.MetroCheckBoxAddToTable.Checked = _otherMatch.IsTable
+          MetroTabControlLineType.SelectedIndex = CInt(_otherMatch.LineType)
+          Me.MetroTextBoxTitle.Text = _otherMatch.MatchTitle
+          Me.MetroTextBoxScoreHome.Text = _otherMatch.HomeScore
+          Me.MetroTextBoxScoreAway.Text = _otherMatch.AwayScore
+          If _otherMatch.Match Is Nothing Then
+            Me.MetroComboBoxMatch.Text = ""
+          Else
+            Me.MetroComboBoxMatch.Text = _otherMatch.Match.Description
+            'Me.MetroComboBoxMatch.SelectedItem = Me.MetroComboBoxMatch.Items(0)
+            For index As Integer = 0 To Me.MetroComboBoxMatch.Items.Count - 1
+              Dim aux As Match = Me.MetroComboBoxMatch.Items(index)
+              If aux.match_id = _otherMatch.Match.match_id Then
+                Me.MetroComboBoxMatch.SelectedItem = Me.MetroComboBoxMatch.Items(index)
+              End If
+            Next
+          End If
         End If
-      End If
-      TableLayoutPanelCheckboxes.Visible = MetroTabControlLineType.Visible
+        TableLayoutPanelCheckboxes.Visible = MetroTabControlLineType.Visible
     Catch ex As Exception
 
     End Try

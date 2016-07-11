@@ -79,26 +79,27 @@ Public Class FormChoose
           _formerScene.SendSceneToEngine(_vizControl)
           Application.DoEvents()
 
-          fWait = New frmWait(500)
+          fWait = New frmWait(50)
           fWait.ShowDialog()
 
           'rewind change animation to initial step
           _formerScene.RewindSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeInDirectors)
           Application.DoEvents()
 
-          fWait = New frmWait(500)
+          fWait = New frmWait(50)
           fWait.ShowDialog()
 
           'send new parameters
           _currentScene.SendSceneToEngine(_vizControl)
           Application.DoEvents()
 
-          fWait = New frmWait(500)
+          fWait = New frmWait(150)
           fWait.ShowDialog()
+          Application.DoEvents()
 
           If _currentScene.SceneDirectorsChangeIn.Count > 0 Then
             'send scene to render and start animation
-            _currentScene.SendSceneToEngine(_vizControl)
+            '_currentScene.SendSceneToEngine(_vizControl)
             _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeInDirectors)
             Application.DoEvents()
             'wait for animation to end

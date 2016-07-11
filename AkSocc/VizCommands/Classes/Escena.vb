@@ -170,8 +170,10 @@ End Enum
         Select Case director.Action
           Case DirectorAction.Start, DirectorAction.ContinueNormal
             CiControlVizrt.DirectorGoTo(director.Name, maxFrame, Me.VizLayer)
-          Case DirectorAction.Dummy, DirectorAction.JumpTo
+          Case DirectorAction.Dummy
             CiControlVizrt.DirectorGoTo(director.Name, director.Frame, Me.VizLayer)
+          Case DirectorAction.Dummy, DirectorAction.JumpTo
+            CiControlVizrt.DirectorGoTo(director.Name, director.JumpToFrame, Me.VizLayer)
           Case Else
             CiControlVizrt.DirectorGoTo(director.Name, 0, Me.VizLayer)
         End Select
@@ -218,6 +220,8 @@ End Enum
             _vizrtControl.DirectorStop(director.Name, Me.VizLayer)
           Case DirectorAction.Rewind
             _vizrtControl.DirectorGoTo(director.Name, 0, Me.VizLayer)
+          Case DirectorAction.JumpTo
+            _vizrtControl.DirectorGoTo(director.Name, director.JumpToFrame, Me.VizLayer)
         End Select
       Next
 

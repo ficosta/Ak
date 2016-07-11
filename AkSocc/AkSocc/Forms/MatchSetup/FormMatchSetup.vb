@@ -67,6 +67,7 @@ Public Class FormMatchSetup
 
         'match.HomeTeam.GetFullMatchData()
         'match.AwayTeam.GetFullMatchData()
+        'save referee
 
         Me.UcTeamMatchSetupHome.Team = match.HomeTeam
         Me.UcTeamMatchSetupAway.Team = match.AwayTeam

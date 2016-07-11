@@ -24,7 +24,7 @@ Public Class frmMain
 
 #Region "Form events"
   Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+    Me.ToolStripStatusLabelVersion.Text = "v " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Revision & "   "
   End Sub
 
   Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
@@ -375,7 +375,11 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF2PlayerStatsCtrlF2_Click(sender As Object, e As EventArgs) Handles ButtonCtlF2PlayerStatsCtrlF2.Click
-
+    If _selectedPlayer Is Nothing Then
+      MetroFramework.MetroMessageBox.Show(Me, "You must choose a player first", "Player name")
+    Else
+      Me.StartGraphic(New GraphicsPlayerStats(_match, _selectedPlayer))
+    End If
   End Sub
 
   Private Sub ButtonCtlF3ClockDropDown_Click(sender As Object, e As EventArgs) Handles ButtonCtlF3ClockDropDown.Click
@@ -646,6 +650,7 @@ Public Class frmMain
   Private WithEvents _frmMatchDay As frmMatchDay
   Public Sub ShowOtherMatches()
     Try
+      Me.Cursor = Cursors.WaitCursor
       _frmMatchDay = New frmMatchDay()
       Dim mps As New Competitions()
       mps.GetFromDB("")
@@ -659,6 +664,7 @@ Public Class frmMain
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
+    Me.Cursor = Cursors.Default
   End Sub
 #End Region
 

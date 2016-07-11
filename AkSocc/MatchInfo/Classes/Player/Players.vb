@@ -100,4 +100,39 @@ Imports System.Data.OleDb
     End Try
     Return (output)
   End Function
+
+  Public Function Contains(player As Player) As Boolean
+    Dim output As Boolean = False
+    Try
+      output = Me.Contains(player.ID)
+    Catch err As Exception
+      Throw err
+    End Try
+    Return (output)
+  End Function
+
+  Public Function Remove(ID As Integer) As Boolean
+    Dim output As Boolean = False
+    Try
+      For i As Integer = List.Count - 1 To 0 Step -1
+        If List(i).PlayerID = ID Then
+          List.RemoveAt(i)
+          output = True
+        End If
+      Next
+    Catch err As Exception
+      Throw err
+    End Try
+    Return (output)
+  End Function
+
+  Public Function Remove(player As Player) As Boolean
+    Dim output As Boolean = False
+    Try
+      output = Me.Remove(player.ID)
+    Catch err As Exception
+      Throw err
+    End Try
+    Return (output)
+  End Function
 End Class

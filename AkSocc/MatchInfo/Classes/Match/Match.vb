@@ -49,11 +49,22 @@ Imports MatchInfo
   Public Property HomeTeamName As String
   Public Property AwayTeamName As String
 
+  Private _db_home_goals As Integer = 0
+  Public Property db_home_goals As Integer
+    Get
+      Return _db_home_goals
+    End Get
+    Set(value As Integer)
+      _db_home_goals = value
+      _home_goals = value
+    End Set
+  End Property
+
   Private _home_goals As Integer = 0
   Public Property home_goals As Integer
     Get
-      'If Not Me.HomeTeam Is Nothing Then _home_goals = Me.HomeTeam.Goals
-      If Not Me.HomeTeam Is Nothing AndAlso Not Me.HomeTeam.MatchGoals Is Nothing Then
+      'If Not Me.HomeTeam Is Nothing Then _home_goals = Me.home_goals
+      If Not Me.HomeTeam Is Nothing AndAlso (Not Me.HomeTeam.MatchGoals Is Nothing AndAlso Me.HomeTeam.MatchGoals.UpToDate) Then
         Return Me.HomeTeam.MatchGoals.Count
       Else
         Return _home_goals
@@ -68,11 +79,22 @@ Imports MatchInfo
     End Set
   End Property
 
+  Private _db_away_goals As Integer = 0
+  Public Property db_away_goals As Integer
+    Get
+      Return _db_away_goals
+    End Get
+    Set(value As Integer)
+      _db_away_goals = value
+      _away_goals = value
+    End Set
+  End Property
+
   Private _away_goals As Integer = 0
   Public Property away_goals As Integer
     Get
-      'If Not Me.AwayTeam Is Nothing Then _away_goals = Me.AwayTeam.Goals
-      If Not Me.AwayTeam Is Nothing AndAlso Not Me.AwayTeam.MatchGoals Is Nothing Then
+      'If Not Me.AwayTeam Is Nothing Then _away_goals = Me.away_goals
+      If Not Me.AwayTeam Is Nothing AndAlso (Not Me.AwayTeam.MatchGoals Is Nothing AndAlso Me.AwayTeam.MatchGoals.UpToDate) Then
         Return Me.AwayTeam.MatchGoals.Count
       Else
         Return _away_goals
@@ -81,7 +103,7 @@ Imports MatchInfo
     Set(value As Integer)
       If _away_goals <> value Then
         _away_goals = value
-        If Not Me.AwayTeam Is Nothing Then Me.AwayTeam.Goals = value
+        If Not Me.AwayTeam Is Nothing Then Me.away_goals = value
         RaiseEvent ScoreChanged()
       End If
     End Set
@@ -163,12 +185,19 @@ Imports MatchInfo
     last_update = New DateTime
   End Sub
 
+  Public ReadOnly Property match_date_string As String
+    Get
+      Return match_date.Year & "-" & Strings.Format(CStr(match_date.Month), "00") & "-" & Strings.Format(CStr(match_date.Day), "00")
+    End Get
+  End Property
+
+
   Public Overrides Function ToString() As String
-    Return Me.match_id & " " & Me.match_date.ToShortDateString & " " & Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString
+    Return Me.match_date_string & " " & Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString
   End Function
 
   Public Function Description() As String
-    Return Me.match_id & " " & Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString & " --- " & Me.HomeTeam.MatchGoals.Count & " -" & Me.AwayTeam.MatchGoals.Count
+    Return Me.match_date_string & " " & Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString & " --- " & Me.HomeTeam.MatchGoals.Count & " -" & Me.AwayTeam.MatchGoals.Count
   End Function
 
   Public Sub New()
@@ -213,11 +242,14 @@ Imports MatchInfo
         If Not myReader.IsDBNull(2) Then Me.match_date = myReader.GetDateTime(2)
         If Not myReader.IsDBNull(3) Then
           Me.home_team_id = myReader.GetInt32(3)
-          Me.HomeTeam = New Team(Me.match_id, Me.home_team_id, True)
+          'Me.HomeTeam = New Team(Me.match_id, Me.home_team_id, True)
+          Me.HomeTeam = New Team(Me.match_id, Me.home_team_id, False)
+
         End If
         If Not myReader.IsDBNull(4) Then
           Me.away_team_id = myReader.GetInt32(4)
-          Me.AwayTeam = New Team(Me.match_id, Me.away_team_id, True)
+          ' Me.AwayTeam = New Team(Me.match_id, Me.away_team_id, True)
+          Me.AwayTeam = New Team(Me.match_id, Me.away_team_id, False)
         End If
         If Not myReader.IsDBNull(5) Then Me.home_goals = myReader.GetInt32(5)
         If Not myReader.IsDBNull(6) Then Me.away_goals = myReader.GetInt32(6)
@@ -325,11 +357,11 @@ Imports MatchInfo
         If _actualDB.away_team_id <> away_team_id AndAlso away_team_id <> -1 Then
           SQL &= " away_team_id=@away_team_id,"
         End If
-        If _actualDB.home_goals <> home_goals AndAlso home_goals <> -1 Then
-          '  SQL &= " home_goals=@home_goals,"
+        If _actualDB.db_home_goals <> home_goals AndAlso home_goals <> -1 Then
+          SQL &= " Score1=@home_goals,"
         End If
-        If _actualDB.away_goals <> away_goals AndAlso away_goals <> -1 Then
-          ' SQL &= " away_goals=@away_goals,"
+        If _actualDB.db_away_goals <> away_goals AndAlso away_goals <> -1 Then
+          SQL &= " Score2=@away_goals,"
         End If
         If _actualDB.venue_id <> venue_id AndAlso venue_id <> -1 Then
           SQL &= " venue_id=@venue_id,"
@@ -449,13 +481,25 @@ Imports MatchInfo
         goal.Update()
       Next
       Me.home_goals = Me.HomeTeam.MatchGoals.Count
-      Me.HomeTeam.Goals = Me.HomeTeam.MatchGoals.Count
+      Me.home_goals = Me.HomeTeam.MatchGoals.Count
 
       For Each goal As MatchGoal In Me.AwayTeam.MatchGoals
         goal.Update()
       Next
       Me.away_goals = Me.AwayTeam.MatchGoals.Count
-      Me.AwayTeam.Goals = Me.HomeTeam.MatchGoals.Count
+      Me.away_goals = Me.HomeTeam.MatchGoals.Count
+
+      HomeTeam.WriteStatsToDB()
+      AwayTeam.WriteStatsToDB()
+
+
+      Dim sql As String
+      Dim cCon As New ADODB.Connection()
+      cCon.Open(Config.Instance.LocalConnectionString)
+
+      sql = "UPDATE Matches SET Score1 = " & Me.home_goals & ", Score2 = " & Me.away_goals & " WHERE MatchId = " & Me.match_id
+
+      cCon.Execute(sql)
 
     Catch ex As Exception
       Debug.Print(ex.ToString)
@@ -479,7 +523,7 @@ Imports MatchInfo
   Private Sub Team_GoalScored(team As Team, player As Player, own_goal As Boolean, penalty As Boolean) Handles _homeTeam.GoalScored, _awayTeam.GoalScored
     Try
       Dim goal As MatchGoal = CreateGoal(team, player, own_goal, penalty)
-      team.MatchGoals.Add(goal)
+      'team.MatchGoals.Add(goal)
       'Me.MatchGoals.Add(goal)
       ' SaveMatch()
 
@@ -488,7 +532,6 @@ Imports MatchInfo
 
     End Try
   End Sub
-
 
   Public Function AddGoal(isHomeTeam As Boolean, player As Player, own_goal As Boolean, penalty As Boolean) As MatchGoal
     If isHomeTeam Then
@@ -515,6 +558,7 @@ Imports MatchInfo
     Try
       Me.RemoveGoal(Me.HomeTeam, id)
       Me.RemoveGoal(Me.AwayTeam, id)
+      SaveMatchGoalsToDB()
       Return True
     Catch ex As Exception
       Return False
@@ -529,7 +573,6 @@ Imports MatchInfo
     End Try
   End Function
 
-
   Public Function RemoveLastGoal() As MatchGoal
     If Not LastGoal Is Nothing Then
       Me.RemoveGoal(Me.LastGoal)
@@ -540,6 +583,7 @@ Imports MatchInfo
   End Function
 
   Public Function UpdateGoal(goal As MatchGoal) As Boolean
+    SaveMatchGoalsToDB()
     RaiseEvent ScoreChanged()
     Return True
   End Function
@@ -568,6 +612,8 @@ Imports MatchInfo
       End If
       team.Goals = team.MatchGoals.Count
       Me.LastGoal = goal
+      Me.SaveMatchGoalsToDB()
+      Me.Update()
       RaiseEvent ScoreChanged()
     Catch ex As Exception
 

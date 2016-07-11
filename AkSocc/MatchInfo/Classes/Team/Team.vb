@@ -112,11 +112,11 @@ Imports MatchInfo
     TeamID = ID
     Me.ID = ID
     Me.InitStats(match_id, "TeamMatchStats", "TeamID")
-    If Not Me.MatchGoals Is Nothing Then Me.MatchGoals.GetMatchGoals(match_id, Me.ID)
+    GetTeam()
     If GetData Then
-      GetTeam()
+      If Not Me.MatchGoals Is Nothing Then Me.MatchGoals.GetMatchGoals(match_id, Me.ID)
     Else
-      InitTeam(ID)
+      '  InitTeam(ID)
     End If
   End Sub
 

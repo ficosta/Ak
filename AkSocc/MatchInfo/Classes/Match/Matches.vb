@@ -36,7 +36,7 @@ Public Class Matches
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
 
-      Dim SQL As [String] = "SELECT MatchId, AA, MatchDate, TeamID1, TeamID2, Score1, Score2, VenueID, Attendance, CompID, ArabicMatchDescription, ArabicMatchCommentators, OPTAID"
+      Dim SQL As [String] = "SELECT MatchId "
       SQL += " FROM Matches "
       SQL += " WHERE CompID = " & compId
       SQL += " ORDER BY MatchDate DESC"

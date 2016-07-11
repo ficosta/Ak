@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("AkSocc")>
+<Assembly: AssemblyTitle("Soccer")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("Hewlett-Packard Company")>
-<Assembly: AssemblyProduct("AkSocc")>
-<Assembly: AssemblyCopyright("Copyright © Hewlett-Packard Company 2016")>
+<Assembly: AssemblyCompany("Al-Kamel Technologies")>
+<Assembly: AssemblyProduct("Soccer")>
+<Assembly: AssemblyCopyright("Copyright © Al-Kamel Technologies 2016")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("0.5.10.0")>
+<Assembly: AssemblyFileVersion("0.5.0.0")>

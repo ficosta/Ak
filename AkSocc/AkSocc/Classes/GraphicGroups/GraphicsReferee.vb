@@ -42,6 +42,7 @@ Public Class GraphicsReferee
       _reporters.GetFromDB("WHERE Priority > 0")
 
       If graphicStep Is Nothing Then
+
         For Each name As NameDotText In _reporters
           gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(name.ID, name.EnglishDescription), True, False))
         Next
@@ -70,18 +71,18 @@ Public Class GraphicsReferee
   End Function
 
 #Region "Crawl scenes"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
     scene.SceneName = "gfx_Lower3rd"
-    scene.SceneDirector = "anim_lower3rd$In_Out"
-    scene.SceneDirectorsIn.Add("anim_lower3rd$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("anim_lower3rd$In_Out", 75, DirectorAction.Dummy)
-    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
+    scene.SceneDirector = "DIR_MAIN$In_Out"
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gSide, 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("BottomChange", 0, DirectorAction.Rewind)
 
-    scene.SceneDirectorsOut.Add("anim_lower3rd$In_Out", 0, DirectorAction.ContinueNormal)
+    scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
     scene.SceneDirectorsChangeIn.Add("BottomChange", 0, DirectorAction.Start)
     scene.SceneDirectorsChangeIn.Add("BottomChange", 200, DirectorAction.Dummy)
@@ -90,6 +91,8 @@ Public Class GraphicsReferee
     scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Control_OMO_GV_Choose", "0")
     scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Control_OMO_GV_Choose", "0")
 
+    scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose ", "0")
+    scene.SceneParameters.Add("Lower3rd_Data_Single_Subject_Control_OMO_Icon ", "0")
     Return scene
   End Function
 

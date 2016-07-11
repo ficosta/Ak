@@ -45,6 +45,10 @@ Public Class Stat
 
   Public Property FromDataBase As Boolean = True
 
+  Public Overrides Function ToString() As String
+    Return Me.ValueText
+  End Function
+
 #Region "Constructors"
   Public Sub New()
 

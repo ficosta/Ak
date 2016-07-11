@@ -4,7 +4,10 @@ Imports System.Data.OleDb
 Public Class MatchGoals
   Inherits CollectionBase
 
+  Public Property UpToDate As Boolean = False
+
   Public Sub New()
+    UpToDate = False
   End Sub
 
   Public Sub GetMatchGoals(Match_ID As Integer)
@@ -97,6 +100,7 @@ Public Class MatchGoals
         List.Add(NewItem)
       End While
       conn.Close()
+      UpToDate = True
     Catch err As Exception
       Throw err
     End Try
