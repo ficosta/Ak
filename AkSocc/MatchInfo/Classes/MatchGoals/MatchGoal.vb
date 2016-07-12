@@ -7,7 +7,7 @@ Public Class MatchGoal
   Public GoalID As Integer
   Public MatchID As Integer
   Public TeamGoalID As Integer
-  Public Minute As Integer
+  Public TimeSecond As Integer
   Public PlayerID As Integer
   Public Penalty As Boolean
   Public OwnGoal As Boolean
@@ -38,7 +38,7 @@ Public Class MatchGoal
     GoalID = -1
     MatchID = -1
     TeamGoalID = -1
-    Minute = -1
+    TimeSecond = -1
     PlayerID = -1
     Penalty = False
     OwnGoal = False
@@ -48,7 +48,7 @@ Public Class MatchGoal
     GoalID = Goal
     MatchID = -1
     TeamGoalID = -1
-    Minute = -1
+    TimeSecond = -1
     PlayerID = -1
     Penalty = False
     OwnGoal = False
@@ -77,7 +77,7 @@ Public Class MatchGoal
       GoalID = Source.GoalID
       MatchID = Source.MatchID
       TeamGoalID = Source.TeamGoalID
-      Minute = Source.Minute
+      TimeSecond = Source.TimeSecond
       PlayerID = Source.PlayerID
       Penalty = Source.Penalty
       OwnGoal = Source.OwnGoal
@@ -109,8 +109,8 @@ Public Class MatchGoal
         If ActualDb.TeamGoalID <> TeamGoalID AndAlso TeamGoalID <> -1 Then
           SQL += " [TeamGoalID]=" + TeamGoalID.ToString() + ","
         End If
-        If ActualDb.Minute <> Minute AndAlso Minute <> -1 Then
-          SQL += " [Minute]=" + Minute.ToString() + ","
+        If ActualDb.TimeSecond <> TimeSecond AndAlso TimeSecond <> -1 Then
+          SQL += " [TimeSecond]=" + TimeSecond.ToString() + ","
         End If
         If ActualDb.PlayerID <> PlayerID AndAlso PlayerID <> -1 Then
           SQL += " [PlayerID]=" + PlayerID.ToString() + ","
@@ -134,8 +134,8 @@ Public Class MatchGoal
       Else
         Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
         conn.Open()
-        Dim SQL As String = "INSERT INTO MatchGoals ([MatchID], [TeamGoalID], [Minute], [PlayerID], [Penalty], [OwnGoal])"
-        SQL += " VALUES (" + MatchID.ToString() + ", " + TeamGoalID.ToString() + ", " + Minute.ToString() + ", " + PlayerID.ToString() + ", " + (If(Penalty, "1", "0")) + ", " + (If(OwnGoal, "1", "0")) + ")"
+        Dim SQL As String = "INSERT INTO MatchGoals ([MatchID], [TeamGoalID], [TimeSecond], [PlayerID], [Penalty], [OwnGoal])"
+        SQL += " VALUES (" + MatchID.ToString() + ", " + TeamGoalID.ToString() + ", " + TimeSecond.ToString() + ", " + PlayerID.ToString() + ", " + (If(Penalty, "1", "0")) + ", " + (If(OwnGoal, "1", "0")) + ")"
         Dim myCmd As New OleDbCommand(SQL, conn)
         myCmd.ExecuteNonQuery()
 
@@ -156,9 +156,9 @@ Public Class MatchGoal
     Dim res As Integer = 0
     Try
       Dim aux As MatchGoal = CType(obj, MatchGoal)
-      If aux.Minute > Me.Minute Then
+      If aux.TimeSecond > Me.TimeSecond Then
         Return 1
-      ElseIf aux.Minute < Me.Minute Then
+      ElseIf aux.TimeSecond < Me.TimeSecond Then
         Return -1
       Else
         Return 0

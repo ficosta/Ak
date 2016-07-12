@@ -29,8 +29,8 @@ Public Class UserControlTactica
         For Each player As Player In _team.MatchPlayers
           Dim pos As PosicioTactic = _tactica.GetPosicioByID(player.Formation_Pos)
           If Not pos Is Nothing Then
-            pos.X = Clamp(player.Formation_X / 200, -0.5, 0.5)
-            pos.Y = Clamp(player.Formation_Y / 200, -0.5, 0.5)
+            pos.X = Clamp(player.Formation_X, -_scale, _scale)
+            pos.Y = Clamp(player.Formation_Y, -_scale, _scale)
           End If
         Next
         InicialitzarVisualitzacioPlayersTeam()
@@ -70,6 +70,7 @@ Public Class UserControlTactica
 
   Private _lastMousePosition As New PointF
   Private _deltaPosition As New PointF
+  Private _scale As Double = 400
 
   Private _color As Color = Color.AliceBlue
   Public Property Color() As Color
@@ -177,6 +178,7 @@ Public Class UserControlTactica
   Private Sub DrawPlayer(ByRef g As Graphics, ByVal x As Double, ByVal y As Double, ByVal brush As Brush, pen As Pen, ByVal text As String, ByVal isLocal As Boolean, ByVal size As Single, ByVal canvasSize As System.Drawing.Size)
     Try
       Dim rect As RectangleF = GetPlayerRectangleF(x, y, size, canvasSize, isLocal)
+      Dim aux As PointF = TranslateImagePositionToTactic(New PointF(rect.X, rect.Y), True)
       Dim stringFormat As New StringFormat()
       Dim font As New Font("Tahoma", 20, FontStyle.Bold, GraphicsUnit.Pixel, 0)
       stringFormat.Alignment = StringAlignment.Center
@@ -253,7 +255,7 @@ Public Class UserControlTactica
   Private Function GetPlayerRectangleF(ByVal x As Double, ByVal y As Double, ByVal size As Single, ByVal canvasSize As System.Drawing.Size, ByVal isLocal As Boolean) As RectangleF
     Dim rect As New RectangleF(0, 0, 1, 1)
     Try
-      Dim center As PointF = New PointF(x, y)
+      Dim center As PointF = New PointF(x / _scale, y / _scale)
       Dim nx As Double = center.X
       Dim ny As Double = center.Y
       If isLocal = False Then
@@ -274,7 +276,7 @@ Public Class UserControlTactica
   Private Function GetPlayerRectangle(ByVal x As Double, ByVal y As Double, ByVal size As Single, ByVal canvasSize As System.Drawing.Size, ByVal isLocal As Boolean) As Rectangle
     Dim rect As New Rectangle(0, 0, 1, 1)
     Try
-      Dim center As PointF = New PointF(x, y)
+      Dim center As PointF = New PointF(x / _scale, y / _scale)
       Dim nx As Double = center.X
       Dim ny As Double = center.Y
       If isLocal = False Then
@@ -296,11 +298,6 @@ Public Class UserControlTactica
     Dim rect As New RectangleF(0, 0, 1, 1)
     Try
       Dim center As PointF
-      If isLocal Then
-        center = TranslateTacticPositionToImage(New PointF(pos.X, pos.Y), isLocal)
-      Else
-        center = TranslateTacticPositionToImage(New PointF(pos.X, pos.Y), isLocal)
-      End If
       center = TranslateTacticPositionToImage(New PointF(pos.X, pos.Y), isLocal)
 
       rect = New RectangleF(center.X, center.Y, _size, _size)
@@ -309,22 +306,23 @@ Public Class UserControlTactica
     Return rect
   End Function
 
-  Private _xScale As Single = 0.82
-  Private _yScale As Single = 0.78
+  Private _xScale As Single = 0.82 * 2
+  Private _yScale As Single = 0.78 * 2
 
   Private Function TranslateTacticPositionToImage(ByVal p As PointF, ByVal isLocalTeam As Boolean) As PointF
-    Dim center As New PointF(p.X, p.Y)
+    Dim center As New PointF(p.X / _scale, p.Y / _scale)
     Dim nx As Double = center.X
     Dim ny As Double = center.Y
     If isLocalTeam = False Then
-      nx = -p.X
-      ny = -p.Y
+      nx = -center.X
+      ny = -center.Y
     End If
     Try
       Dim canvasSize As Size = Me.PictureBoxCanvas.Image.Size
 
       center.X = canvasSize.Width / 2 + ny * canvasSize.Width * _xScale - _size / 2
       center.Y = canvasSize.Height / 2 + nx * canvasSize.Height * _yScale - _size / 2
+
     Catch ex As Exception
     End Try
     Return center
@@ -343,7 +341,9 @@ Public Class UserControlTactica
         center.Y = -center.Y
       End If
 
-      Debug.Print("TranslateImagePositionToTactic " & p.X & " -> " & center.Y & "    " & p.Y & " -> " & center.X)
+      center.X = _scale * center.X
+      center.Y = _scale * center.Y
+      'Debug.Print("TranslateImagePositionToTactic " & p.X & " -> " & center.Y & "    " & p.Y & " -> " & center.X)
       'center.X = center.Y
     Catch ex As Exception
     End Try
@@ -361,7 +361,9 @@ Public Class UserControlTactica
           If rect.Contains(x, y) Then
             pos = aux
             _isLocalTeam = True
+            Debug.Print("HitTest " & CStr(x) & " x " & CStr(y))
           End If
+
         Next
       End If
     Catch ex As Exception
@@ -390,13 +392,17 @@ Public Class UserControlTactica
   End Sub
 
   Private Sub PictureBoxCanvas_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles PictureBoxCanvas.MouseMove
+    Dim nextMousePosition As PointF
+    nextMousePosition = New PointF(e.X + _deltaPosition.X, e.Y + _deltaPosition.Y) 'TranslateZoomMousePosition(e.X, e.Y)
+
+    Dim isLocal As Boolean = _isLocalTeam
+
+    Dim pos As PointF = TranslateImagePositionToTactic(nextMousePosition, isLocal)
+
+    Debug.Print(Now.ToString() & " PictureBoxCanvas_MouseMove " & pos.ToString)
+
     Try
       If Not SelectedPosicio Is Nothing Then
-        Dim nextMousePosition As PointF
-        nextMousePosition = New PointF(e.X + _deltaPosition.X, e.Y + _deltaPosition.Y) 'TranslateZoomMousePosition(e.X, e.Y)
-
-        Dim isLocal As Boolean = _isLocalTeam
-        Dim pos As PointF = TranslateImagePositionToTactic(nextMousePosition, isLocal)
 
         If _isLocalTeam Then
           SelectedPosicio.Y = pos.Y
@@ -771,12 +777,13 @@ Public Class UserControlTactica
   Public Sub Save()
     Try
       For Each pos As PosicioTactic In Me.Tactic.LlistaPosicions
-        pos.Player.Formation_X = pos.X * 200
-        pos.Player.Formation_Y = pos.Y * 200
+        pos.Player.Formation_X = pos.X
+        pos.Player.Formation_Y = pos.Y
 
         pos.Player.SaveToDB = True
         pos.Player.WriteStatToDB(pos.Player.MatchStats.Formation_X)
         pos.Player.WriteStatToDB(pos.Player.MatchStats.Formation_Y)
+        pos.Player.ReadStatsFromDB()
         pos.Player.SaveToDB = False
 
       Next
@@ -785,6 +792,7 @@ Public Class UserControlTactica
         player.WriteStatToDB(player.MatchStats.Formation_Pos)
         player.SaveToDB = False
       Next
+
     Catch ex As Exception
 
     End Try
@@ -820,4 +828,26 @@ Public Class UserControlTactica
 
   End Sub
 
+  Private Sub ButtonRandom_Click(sender As Object, e As EventArgs) Handles ButtonRandom.Click
+    Try
+      For posIndex As Integer = 1 To Math.Min(Me.Team.AllPlayers.Count, 18)
+        Dim selectedPlayer As Player = Me.Team.AllPlayers(posIndex - 1)
+        For i As Integer = _team.MatchPlayers.Count - 1 To 0 Step -1
+          Dim player As Player = _team.MatchPlayers(i)
+          If player.Formation_Pos = posIndex Then
+            player.Formation_Pos = 0
+            If Me.Team.MatchPlayers.Contains(player) Then Me.Team.MatchPlayers.RemoveAt(i)
+          End If
+        Next
+        If Not Me.Team.MatchPlayers.Contains(selectedPlayer) Then Me.Team.MatchPlayers.Add(selectedPlayer)
+
+        selectedPlayer.Formation_Pos = posIndex
+        _lastPositionIndex = posIndex
+      Next
+      _tactica.CreateEmptyTactic()
+      ShowTactics()
+    Catch ex As Exception
+      Debug.Print(ex.ToString)
+    End Try
+  End Sub
 End Class

@@ -118,13 +118,13 @@ Public Class frmMain
   Public Function SelectMatch() As Boolean
     Try
       Dim dlg As New FormMatchSelector
-      Dim aux As MetroFramework.Forms.MetroForm = TryCast(Me, MetroFramework.Forms.MetroForm)
-      If Not aux Is Nothing Then
-        dlg.StyleManager = aux.StyleManager
-      End If
+      'Dim aux As MetroFramework.Forms.MetroForm = TryCast(Me, MetroFramework.Forms.MetroForm)
+      Dim aux As System.Windows.Forms.Form = TryCast(Me, System.Windows.Forms.Form)
+
       If dlg.ShowDialog(Me) = DialogResult.OK Then
         'match selected!
         InitMatchInfo(dlg.SelectedMatchId)
+        MatchSetup()
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -136,10 +136,9 @@ Public Class frmMain
     Try
       If _match Is Nothing Then Return False
       Dim dlg As New FormMatchSetup(_match)
-      Dim aux As MetroFramework.Forms.MetroForm = TryCast(Me, MetroFramework.Forms.MetroForm)
-      If Not aux Is Nothing Then
-        dlg.StyleManager = aux.StyleManager
-      End If
+      'Dim aux As MetroFramework.Forms.MetroForm = TryCast(Me, MetroFramework.Forms.MetroForm)
+      Dim aux As System.Windows.Forms.Form = TryCast(Me, System.Windows.Forms.Form)
+
       If dlg.ShowDialog(Me) = DialogResult.OK Then
         InitMatchInfo(_match)
       End If
@@ -162,7 +161,7 @@ Public Class frmMain
 
       InitMatchInfo(match)
     Catch ex As Exception
-
+      WriteToErrorLog(ex)
     End Try
     Me.Cursor = Cursors.Default
   End Sub
@@ -271,7 +270,7 @@ Public Class frmMain
     InitializeComponent()
 
     ' Add any initialization after the InitializeComponent() call.
-    Me.StyleManager = msmMain
+    'Me.StyleManager = msmMain
     msmMain.Theme = MetroFramework.MetroThemeStyle.Light
 
   End Sub
@@ -355,7 +354,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonF9TeamCaptions_Click(sender As Object, e As EventArgs) Handles ButtonF9TeamCaptions.Click
-    Me.StartGraphic(New GrapchicsTeamCaptions(_match))
+    Me.StartGraphic(New GraphicsTeamCaptions(_match))
   End Sub
 
   Private Sub ButtonF10IdentClock_Click(sender As Object, e As EventArgs) Handles ButtonF10IdentClock.Click

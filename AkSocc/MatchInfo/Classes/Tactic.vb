@@ -27,17 +27,19 @@ End Class
 
   Public Sub CreateEmptyTactic()
     Try
-      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 1, .X = 0.0, .Y = -0.4})
-      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 2, .X = -0.4, .Y = -0.25})
-      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 3, .X = -0.1, .Y = -0.25})
-      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 4, .X = 0.1, .Y = -0.25})
-      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 5, .X = 0.4, .Y = -0.25})
-      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 6, .X = -0.4, .Y = 0})
-      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 7, .X = -0.1, .Y = 0})
-      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 8, .X = 0.1, .Y = 0})
-      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 9, .X = 0.4, .Y = 0})
-      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 10, .X = -0.2, .Y = 0.25})
-      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 11, .X = 0.2, .Y = 0.25})
+      Dim scale As Double = 200
+      Me.LlistaPosicions.Clear()
+      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 1, .X = scale * 0.0, .Y = scale * -0.4})
+      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 2, .X = scale * -0.4, .Y = scale * -0.25})
+      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 3, .X = scale * -0.1, .Y = scale * -0.25})
+      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 4, .X = scale * 0.1, .Y = scale * -0.25})
+      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 5, .X = scale * 0.4, .Y = scale * -0.25})
+      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 6, .X = scale * -0.4, .Y = scale * 0})
+      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 7, .X = scale * -0.1, .Y = scale * 0})
+      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 8, .X = scale * +0.1, .Y = scale * 0})
+      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 9, .X = scale * +0.4, .Y = scale * 0})
+      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 10, .X = scale * -0.2, .Y = scale * 0.25})
+      Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 11, .X = scale * +0.2, .Y = scale * 0.25})
     Catch ex As Exception
 
     End Try

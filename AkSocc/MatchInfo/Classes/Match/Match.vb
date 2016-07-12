@@ -103,7 +103,7 @@ Imports MatchInfo
     Set(value As Integer)
       If _away_goals <> value Then
         _away_goals = value
-        If Not Me.AwayTeam Is Nothing Then Me.away_goals = value
+        If Not Me.AwayTeam Is Nothing Then Me.AwayTeam.Goals = value
         RaiseEvent ScoreChanged()
       End If
     End Set
@@ -146,6 +146,11 @@ Imports MatchInfo
   Public ArabicMatchCommentators As String
   Public OPTAID As Integer
 
+  Public Official1 As Official
+  Public Official2 As Official
+  Public Official3 As Official
+
+
   Public WithEvents MatchPeriods As New Periods
 
 
@@ -187,7 +192,9 @@ Imports MatchInfo
 
   Public ReadOnly Property match_date_string As String
     Get
-      Return match_date.Year & "-" & Strings.Format(CStr(match_date.Month), "00") & "-" & Strings.Format(CStr(match_date.Day), "00")
+      Dim format As String = "yyyy MM dd"
+
+      Return match_date.ToString(format)
     End Get
   End Property
 
@@ -601,9 +608,9 @@ Imports MatchInfo
         goal.PlayerID = 0
       End If
       If Me.MatchPeriods.ActivePeriod Is Nothing Then
-        goal.Minute = 0
+        goal.TimeSecond = 0
       Else
-        goal.Minute = Me.MatchPeriods.ActivePeriod.PlayingTime + Me.MatchPeriods.ActivePeriod.StartOffset
+        goal.TimeSecond = Me.MatchPeriods.ActivePeriod.PlayingTime + Me.MatchPeriods.ActivePeriod.StartOffset
       End If
       team.MatchGoals.Add(goal)
       Me.MatchGoals.Add(goal)

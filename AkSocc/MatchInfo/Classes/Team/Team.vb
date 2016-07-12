@@ -109,15 +109,20 @@ Imports MatchInfo
   End Sub
 
   Public Sub New(match_id As Integer, ID As Integer, GetData As Boolean)
-    TeamID = ID
-    Me.ID = ID
-    Me.InitStats(match_id, "TeamMatchStats", "TeamID")
-    GetTeam()
-    If GetData Then
-      If Not Me.MatchGoals Is Nothing Then Me.MatchGoals.GetMatchGoals(match_id, Me.ID)
-    Else
-      '  InitTeam(ID)
-    End If
+    Try
+      TeamID = ID
+      Me.ID = ID
+      Me.InitStats(match_id, "TeamMatchStats", "TeamID")
+      GetTeam()
+      If GetData Then
+        If Not Me.MatchGoals Is Nothing Then Me.MatchGoals.GetMatchGoals(match_id, Me.ID)
+      Else
+        '  InitTeam(ID)
+      End If
+    Catch ex As Exception
+      Debug.Print(ex.ToString)
+    End Try
+
   End Sub
 
 #End Region

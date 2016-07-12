@@ -134,7 +134,7 @@ Public Class GraphicsPlayerStats
     scene.SceneName = "gfx_Lower3rd"
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 100, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
     scene.SceneDirectorsIn.Add("Bottom_change_1_2", 0, DirectorAction.Rewind)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)

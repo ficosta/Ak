@@ -10,7 +10,7 @@ Module MFuncions
   End Structure
 
   Public Function NoNullInt(ByVal CiValor As Object) As Integer
-    Dim nRes As Integer
+    Dim nRes As Integer = 0
     Try
       If IsDBNull(CiValor) Then
         nRes = 0
@@ -24,9 +24,12 @@ Module MFuncions
   End Function
 
   Public Function NoNullLong(ByVal CiValor As Object) As Long
-    Dim nRes As Long
+    Dim nRes As Long = 0
     Try
-      nRes = CLng(CiValor)
+
+      If Not IsDBNull(CiValor) Then
+        nRes = CLng(CiValor)
+      End If
     Catch ex As Exception
       nRes = 0
     End Try
@@ -34,9 +37,12 @@ Module MFuncions
   End Function
 
   Public Function NoNullBool(ByVal CiValor As Object) As Boolean
-    Dim bRes As Boolean
+    Dim bRes As Boolean = False
     Try
-      bRes = CBool(CiValor)
+
+      If Not IsDBNull(CiValor) Then
+        bRes = CBool(CiValor)
+      End If
     Catch ex As Exception
       bRes = False
     End Try
@@ -44,9 +50,11 @@ Module MFuncions
   End Function
 
   Public Function NoNullString(ByVal CiValor As Object) As String
-    Dim sRes As String
+    Dim sRes As String = ""
     Try
-      sRes = CStr(CiValor)
+      If Not IsDBNull(CiValor) Then
+        sRes = CStr(CiValor)
+      End If
     Catch ex As Exception
       sRes = ""
     End Try
@@ -54,9 +62,11 @@ Module MFuncions
   End Function
 
   Public Function NoNullDecimal(ByVal CiValor As Object) As Decimal
-    Dim fRes As Decimal
+    Dim fRes As Decimal = 0D
     Try
-      fRes = CDec(CiValor)
+      If Not IsDBNull(CiValor) Then
+        fRes = CDec(CiValor)
+      End If
     Catch ex As Exception
       fRes = 0D
     End Try
@@ -66,7 +76,9 @@ Module MFuncions
   Public Function NoNullDate(ByVal CiValor As Object) As Date
     Dim dRes As Date = #1/1/1980#
     Try
-      dRes = CDate(CiValor)
+      If Not IsDBNull(CiValor) Then
+        dRes = CDate(CiValor)
+      End If
     Catch ex As Exception
 
     End Try

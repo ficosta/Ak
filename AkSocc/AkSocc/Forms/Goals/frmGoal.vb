@@ -35,8 +35,8 @@ Public Class frmGoal
       Me.MetroRadioButtonOwnGoal.Checked = (_goalType = MatchGoal.eGoalType.Own)
       Me.MetroRadioButtonPenalty.Checked = (_goalType = MatchGoal.eGoalType.Penalty)
 
-      Me.NumericUpDownMinutes.Value = _matchGoal.Minute \ 60
-      Me.NumericUpDownSeconds.Value = _matchGoal.Minute Mod 60
+      Me.NumericUpDownMinutes.Value = _matchGoal.TimeSecond \ 60
+      Me.NumericUpDownSeconds.Value = _matchGoal.TimeSecond Mod 60
 
       Dim team As Team
       If _matchGoal.TeamGoalID = Me.Match.HomeTeam.ID And _goalType <> eGoalType.Own Then
@@ -106,7 +106,7 @@ Public Class frmGoal
     Try
       _matchGoal.PlayerID = CType(Me.MetroComboBoxPlayer.SelectedItem, Player).PlayerID
       _matchGoal.GoalType = _goalType
-      _matchGoal.Minute = Me.NumericUpDownMinutes.Value * 60 + Me.NumericUpDownSeconds.Value
+      _matchGoal.TimeSecond = Me.NumericUpDownMinutes.Value * 60 + Me.NumericUpDownSeconds.Value
       Return True
     Catch ex As Exception
       Return False

@@ -98,12 +98,12 @@ Public Class GraphicGroupCtlF1FullFramers
 
       Select Case gs.ChildGraphicStep.Name
         Case Step0.LeagueTableTop
-          Scene = PrepareLeagueTable(changeStep, True)
+          Scene = PrepareLeagueTable(changeStep, True, graphicStep.Name = StepArrows.Arrows)
         Case Step0.OtherMatchScores
           Dim matchDay As MatchDay = _otherMatchDays.GetMatchDay(graphicStep.UID)
           Scene = PrepareMatchScores(changeStep, matchDay)
         Case Step0.LeagueTableBottom
-          Scene = PrepareLeagueTable(changeStep, False)
+          Scene = PrepareLeagueTable(changeStep, False, graphicStep.Name = StepArrows.Arrows)
         Case Step0.FullFrameStats
         Case Step0.LeagueComparison
       End Select
@@ -121,13 +121,14 @@ Public Class GraphicGroupCtlF1FullFramers
     scene.SceneName = "gfx_Full_Frame"
     scene.SceneDirector = "anim_Full_Frame$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("Change", 0, DirectorAction.Rewind)
-    scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 100, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("Change_1_2", 0, DirectorAction.Rewind)
 
-    ' scene.SceneDirectorsChangeOut.Add("Change", 0, DirectorAction.Rewind)
+    scene.SceneDirectorsChangeOut.Add("Change_1_2", 0, DirectorAction.Rewind)
+    scene.SceneDirectorsChangeOut.Add("Change_1_2", 100, DirectorAction.Dummy)
 
-    scene.SceneDirectorsChangeIn.Add("Change", 0, DirectorAction.Start)
-    scene.SceneDirectorsChangeIn.Add("Change", 200, DirectorAction.Dummy)
+    scene.SceneDirectorsChangeIn.Add("Change_1_2", 0, DirectorAction.Start)
+    scene.SceneDirectorsChangeIn.Add("Change_1_2", 200, DirectorAction.Dummy)
 
     scene.SceneParameters.Add("Veil_On_Off_Vis", "1")
     scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
@@ -180,12 +181,36 @@ Public Class GraphicGroupCtlF1FullFramers
     Return scene
   End Function
 
-  Public Function PrepareLeagueTable(gStep As Integer, isTop As Boolean) As Scene
+  Public Function PrepareLeagueTable(gStep As Integer, isTop As Boolean, showArrows As Boolean) As Scene
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "Side_" & gStep & "_"
+    Dim posIndex As Integer = 0
+    Dim linesPerPage As Integer = 7
     Try
       scene.SceneParameters.Add("Side_" & gStep & "_Table_Vis.active", "1")
       scene.SceneParameters.Add(prefix & "Table_Vis.active", 1)
+
+      For index As Integer = 0 To linesPerPage - 1
+        posIndex = linesPerPage * IIf(isTop, 0, 1) + index
+        prefix = "Table_Side_" & gStep & "_Subject_" & Strings.Format(index + 1, "00") & "_"
+
+        scene.SceneParameters.Add(prefix & "Number", (posIndex + 1))
+        '0 down
+        '1 up
+        '2 line
+        If showArrows Then
+          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "0")
+        Else
+          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "2")
+        End If
+
+        scene.SceneParameters.Add(prefix & "Data_01_Text", (posIndex + 1) & ".1")
+        scene.SceneParameters.Add(prefix & "Data_02_Text", (posIndex + 1) & ".2")
+        scene.SceneParameters.Add(prefix & "Data_03_Text", (posIndex + 1) & ".3")
+        scene.SceneParameters.Add(prefix & "Data_04_Text", (posIndex + 1) & ".4")
+        scene.SceneParameters.Add(prefix & "Data_05_Text", (posIndex + 1) & ".5")
+        scene.SceneParameters.Add(prefix & "Data_06_Text", (posIndex + 1) & ".6")
+      Next
     Catch ex As Exception
 
     End Try

@@ -96,7 +96,7 @@
     <Compile Include="Classes\Clock\Graphics\ClockStrapsWithIcon.vb" />
     <Compile Include="Classes\Clock\Graphics\ClockSubstitutes.vb" />
     <Compile Include="Classes\Clock\ControlScoreSingleGoal.vb" />
-    <Compile Include="Classes\GraphicGroups\GrapchicsTeamCaptions.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsTeamCaptions.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsReferee.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsScoreLine.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsTeamStats.vb" />

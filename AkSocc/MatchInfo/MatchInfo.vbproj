@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Additional data\TeamStaff.vb" />
+    <Compile Include="Classes\ClassDatabase\DataBase.vb" />
     <Compile Include="Classes\Competition\Competition.vb" />
     <Compile Include="Classes\Competition\Competitions.vb" />
     <Compile Include="Classes\Additional data\FreeText.vb" />

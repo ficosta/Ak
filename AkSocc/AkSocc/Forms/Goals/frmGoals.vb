@@ -28,7 +28,7 @@ Public Class frmGoals
           Dim item As Integer = .Rows.Add(CStr(goal.GoalID))
           Dim team As Team = IIf(_match.HomeTeam.ID = goal.TeamGoalID, _match.HomeTeam, _match.AwayTeam)
 
-          .Rows(item).Cells(ColumnTime.Index).Value = FormatRunningTime(goal.Minute)
+          .Rows(item).Cells(ColumnTime.Index).Value = FormatRunningTime(goal.TimeSecond)
           If _match.HomeTeam.ID = goal.TeamGoalID Then
             If goal.GoalType = MatchGoal.eGoalType.Own Then
               team = _match.AwayTeam

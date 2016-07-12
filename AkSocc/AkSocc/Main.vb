@@ -109,7 +109,7 @@ Module Main
 #End Region
 
 
-  Public Sub ShowOptions(frm As Form)
+  Friend Sub ShowOptions(frm As Form)
     Try
       Dim dlg As New DialogOptions()
       Dim aux As MetroFramework.Forms.MetroForm = TryCast(frm, MetroFramework.Forms.MetroForm)
@@ -123,6 +123,10 @@ Module Main
       MatchInfo.Config.Instance.LocalODBCConnectionString = LocalODBCConnectionString
       MatchInfo.Config.Instance.OptaConnectionString = OptaConnectionString
       MatchInfo.Config.Instance.UseArabicNames = My.Settings.UseArabicNames
+
+      If MatchInfo.DataBase.CreateTables() = False Then
+        'why?
+      End If
 
     Catch ex As Exception
 

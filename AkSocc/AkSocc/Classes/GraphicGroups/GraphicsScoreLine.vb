@@ -197,7 +197,7 @@ Public Class GraphicsScoreLine
 
         If i - 1 < goals.Count Then
           Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
-          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", FormatRunningTime(goal.Minute)))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", FormatRunningTime(goal.TimeSecond)))
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", goal.GoalType.ToString))
         Else
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", " "))
@@ -210,7 +210,7 @@ Public Class GraphicsScoreLine
         Dim prefix As String = "Scoreline_Side_" & gSide & "_Sublines_Type_2_Goals_Right_"
         If i - 1 < goals.Count Then
           Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
-          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", FormatRunningTime(goal.Minute)))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", FormatRunningTime(goal.TimeSecond)))
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", goal.GoalType.ToString))
         Else
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", " "))

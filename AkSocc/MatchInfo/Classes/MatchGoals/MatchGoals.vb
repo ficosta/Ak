@@ -70,7 +70,7 @@ Public Class MatchGoals
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
 
-      Dim SQL As [String] = "SELECT GoalID, MatchID, TeamGoalID, Minute, PlayerID, Penalty, OwnGoal"
+      Dim SQL As [String] = "SELECT GoalID, MatchID, TeamGoalID, TimeSecond, PlayerID, Penalty, OwnGoal"
       SQL += " FROM MatchGoals "
       SQL += Where.Trim()
       Dim CmdSQL As New OleDbCommand(SQL, conn)
@@ -86,7 +86,7 @@ Public Class MatchGoals
           NewItem.TeamGoalID = myReader.GetInt32(2)
         End If
         If Not myReader.IsDBNull(3) Then
-          NewItem.Minute = myReader.GetInt32(3)
+          NewItem.TimeSecond = myReader.GetInt32(3)
         End If
         If Not myReader.IsDBNull(4) Then
           NewItem.PlayerID = myReader.GetInt32(4)

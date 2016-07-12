@@ -25,10 +25,16 @@ Public Class FormMatchSetup
   End Property
 
   Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
-    Me.DialogResult = System.Windows.Forms.DialogResult.OK
-    Me.UcTeamMatchSetupHome.Save()
-    Me.UcTeamMatchSetupAway.Save()
-    Me.Close()
+    Try
+      Me.Cursor = Cursors.WaitCursor
+      Me.DialogResult = System.Windows.Forms.DialogResult.OK
+      Me.UcTeamMatchSetupHome.Save()
+      Me.UcTeamMatchSetupAway.Save()
+      Me.Close()
+    Catch ex As Exception
+
+    End Try
+    Me.Cursor = Cursors.Default
   End Sub
 
   Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click

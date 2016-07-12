@@ -146,8 +146,16 @@ Public Class StatSubject
       If Not rs.EOF Then
         rs.Fields(stat.Name).Value = stat.Value
         rs.Update()
+        rs.Close()
+      Else
+        Dim insertSQL As String = "INSERT INTO " & Me.TableName & " (MatchID, " & Me.FieldName & ") VALUES (" & Me.Match_ID & ", " & Me.ID & ")"
+        conn.Execute(insertSQL)
+        rs.Close()
+        rs.Open(mySQL, conn, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic)
+        rs.Fields(stat.Name).Value = stat.Value
+        rs.Update()
+        rs.Close()
       End If
-      rs.Close()
       conn.Close()
 
     Catch ex As Exception

@@ -13,7 +13,7 @@ Module MFuncions
     Dim res As Double = min
     Try
       res = Math.Max(Math.Min(min, max), value)
-      res = Math.Min(Math.Max(min, max), value)
+      res = Math.Min(Math.Max(min, max), res)
     Catch ex As Exception
 
     End Try
