@@ -69,6 +69,7 @@ Public Class frmMatchDay
     Catch ex As Exception
 
     End Try
+    _otherMatchDays = New OtherMatchDays
     ShowMatchDays()
   End Sub
 
@@ -273,7 +274,8 @@ Public Class frmMatchDay
 
   Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
     Try
-      SerializeObjectToFile(My.Settings.OtherMatchesPath, _otherMatchDays)
+      ' SerializeObjectToFile(My.Settings.OtherMatchesPath, _otherMatchDays)
+      _otherMatchDays.SaveXML()
       Me.DialogResult = DialogResult.OK
       Me.Close()
     Catch ex As Exception

@@ -654,7 +654,7 @@ Public Class frmMain
       Dim mps As New Competitions()
       mps.GetFromDB("")
       _frmMatchDay.Competition = mps.GetCompetition(_match.competition_id)
-      _frmMatchDay.OtherMatchDays = _otherMatchDays
+      '_frmMatchDay.OtherMatchDays = _otherMatchDays
       If _frmMatchDay.ShowDialog(Me) = DialogResult.OK Then
         _otherMatchDays = _frmMatchDay.OtherMatchDays
       End If

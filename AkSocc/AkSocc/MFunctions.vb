@@ -198,5 +198,59 @@ Module MFuncions
     End Try
     Return bRes
   End Function
+
+#Region "XML"
+
+  Public Function ReadAttribute(Node As System.Xml.XmlNode, Son As String, Attribute As String) As String
+    Dim strReturn As String
+    Try
+      strReturn = Node.SelectSingleNode(Son).Attributes(Attribute).InnerText
+    Catch
+      strReturn = ""
+    End Try
+    Return strReturn
+  End Function
+
+  Public Function ReadAttribute(Node As System.Xml.XmlNode, Son As String, GrandSon As String, Attribute As String) As String
+    Dim strReturn As String
+    Try
+      strReturn = Node.SelectSingleNode(Son).SelectSingleNode(GrandSon).Attributes(Attribute).InnerText
+    Catch
+      strReturn = ""
+    End Try
+    Return strReturn
+  End Function
+
+  Public Function ReadSon(Node As System.Xml.XmlNode, Son As String) As String
+    Dim strReturn As String
+    Try
+      strReturn = Node.SelectSingleNode(Son).InnerText
+    Catch
+      strReturn = ""
+    End Try
+    Return strReturn
+  End Function
+
+  Public Function ReadSon(Node As System.Xml.XmlNode, Son As String, GrandSon As String) As String
+    Dim strReturn As String
+    Try
+      strReturn = Node.SelectSingleNode(Son).SelectSingleNode(GrandSon).InnerText
+    Catch
+      strReturn = ""
+    End Try
+    Return strReturn
+  End Function
+
+  Public Function ReadAttribute(Node As System.Xml.XmlNode, Attribute As String) As String
+    Dim strReturn As String
+    Try
+      strReturn = Node.Attributes(Attribute).InnerText
+    Catch
+      strReturn = ""
+    End Try
+    Return strReturn
+  End Function
+
+#End Region
 End Module
 
