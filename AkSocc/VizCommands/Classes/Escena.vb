@@ -169,7 +169,7 @@ End Enum
       For Each director As SceneDirector In sceneDirectors
         Select Case director.Action
           Case DirectorAction.Start, DirectorAction.ContinueNormal
-            CiControlVizrt.DirectorGoTo(director.Name, maxFrame, Me.VizLayer)
+           ' CiControlVizrt.DirectorGoTo(director.Name, maxFrame, Me.VizLayer)
           Case DirectorAction.Dummy
             CiControlVizrt.DirectorGoTo(director.Name, director.Frame, Me.VizLayer)
           Case DirectorAction.Dummy, DirectorAction.JumpTo
