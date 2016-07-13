@@ -1,4 +1,6 @@
-﻿<Serializable()> Public Class MatchDay
+﻿Imports MatchInfo
+
+<Serializable()> Public Class MatchDay
   Implements IComparable
 
   Public Property MatchDayID As String = Guid.NewGuid().ToString
@@ -38,8 +40,6 @@
     Return Me.OtherMatches.Count
   End Function
 
-
-
   Public Sub Remove(OtherMatch As OtherMatch)
     Try
       If Not OtherMatch Is Nothing Then
@@ -53,7 +53,6 @@
     Catch ex As Exception
     End Try
   End Sub
-
 
   Default Public Property Item(Index As Integer) As OtherMatch
     Get
@@ -90,6 +89,33 @@
           res = match
         End If
       Next
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
+  Public Function GetMatchByTeam(id As Integer) As OtherMatch
+    Dim res As OtherMatch = Nothing
+    Try
+      For Each match As OtherMatch In Me.OtherMatches
+        If Not match Is Nothing Then
+          If match.Match.home_team_id = id Or match.Match.away_team_id = id Then
+            res = match
+          End If
+        End If
+      Next
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
+
+  Public Function GetMatchByTeam(team As Team) As OtherMatch
+    Dim res As OtherMatch = Nothing
+    Try
+      res = GetMatchByTeam(team)
     Catch ex As Exception
 
     End Try

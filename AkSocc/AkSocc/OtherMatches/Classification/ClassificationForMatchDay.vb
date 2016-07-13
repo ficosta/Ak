@@ -6,8 +6,16 @@ Public Class ClassificationForMatchDay
   Public Property MatchDay As MatchDay
   Public Property TeamClassificationList As New List(Of TeamClassificationForMatchDay)
 
-  Public Sub New(matchDay As MatchDay)
-    Me.MatchDay = matchDay
+  Public Sub New(matchDay As MatchDay, teams As List(Of Team))
+    Try
+      Me.MatchDay = matchDay
+      For Each team As Team In teams
+        Me.TeamClassificationList.Add(New TeamClassificationForMatchDay(team, matchDay.Index, matchDay.GetMatchByTeam(team)))
+      Next
+    Catch ex As Exception
+
+    End Try
+
   End Sub
 
   Public Function UpdateClassification() As Boolean

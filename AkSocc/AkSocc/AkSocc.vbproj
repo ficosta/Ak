@@ -274,8 +274,8 @@
     <Compile Include="Controls\PlayerViewer.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OtherMatches\Classification.vb" />
-    <Compile Include="OtherMatches\ClassificationForMatchDay.vb" />
+    <Compile Include="OtherMatches\Classification\Classification.vb" />
+    <Compile Include="OtherMatches\Classification\ClassificationForMatchDay.vb" />
     <Compile Include="OtherMatches\frmOtherMatches_new.Designer.vb">
       <DependentUpon>frmOtherMatches_new.vb</DependentUpon>
     </Compile>
@@ -291,7 +291,7 @@
     <Compile Include="OtherMatches\OtherMatch.vb" />
     <Compile Include="OtherMatches\OtherMatchDays.vb" />
     <Compile Include="OtherMatches\MatchDay.vb" />
-    <Compile Include="OtherMatches\TeamClassification.vb" />
+    <Compile Include="OtherMatches\Classification\TeamClassification.vb" />
     <Compile Include="OtherMatches\UCOtherMatch.Designer.vb">
       <DependentUpon>UCOtherMatch.vb</DependentUpon>
     </Compile>

@@ -61,7 +61,7 @@
 
   Public Sub ComputeClassification()
     Try
-      Classification = New Classification
+      Classification = New Classification(Me)
       'order by match day
       Me.Sort()
 
