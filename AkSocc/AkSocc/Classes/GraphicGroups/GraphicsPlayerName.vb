@@ -39,6 +39,7 @@ Public Class GraphicsPlayerName
     Public Shared ReadOnly RedCard As Step0 = New Step0("Red Card")
     Public Shared ReadOnly GoalsInMatch As Step0 = New Step0(" goals in match")
     Public Shared ReadOnly GoalsInSeasson As Step0 = New Step0(" goals in seasson")
+    Public Shared ReadOnly ManOfTheMatch As Step0 = New Step0("Man of the match")
 
     Public Sub New(key As String)
       MyBase.Key = key
@@ -67,8 +68,9 @@ Public Class GraphicsPlayerName
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCardMisses, True, False))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.YellowCard2, True, False))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.RedCard, True, False))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.GoalsInMatch, True, False))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.GoalsInSeasson, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Player.MatchStats.Goals & " goals in match", Step0.GoalsInMatch, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Player.SeasonStats.Goals & " goals in season", Step0.GoalsInSeasson, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.ManOfTheMatch, True, False))
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)

@@ -410,7 +410,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF10L3TeamStatsDb_Click(sender As Object, e As EventArgs) Handles ButtonCtlF10L3TeamStatsDb.Click
-
+    Me.StartGraphic(New GraphicsTeamStatsL3(_match))
   End Sub
 
   Private Sub ButtonCtlF11AsItStands_Click(sender As Object, e As EventArgs) Handles ButtonCtlF11AsItStands.Click
@@ -753,7 +753,9 @@ Public Class frmMain
       For Each ctl As PlayerViewer In _awayPlayerControls
         ctl.IsSelected = (ctl.Player.ID = sender.Player.ID)
       Next
-
+      If Not _match Is Nothing And Not _selectedPlayer Is Nothing Then
+        Me.StartGraphic(New GraphicsPlayerName(_match, _selectedPlayer))
+      End If
     Catch ex As Exception
     End Try
     _updating = False

@@ -54,13 +54,13 @@ Public Class GraphicsTeamCaptions
       _teamStaffs = New TeamStaffs
 
       If graphicStep Is Nothing Then
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Home11AndSubs, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Home11MiniFormation, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Home11Formation, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 ans subs", Step0.Home11AndSubs, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 mini formation", Step0.Home11MiniFormation, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 formation", Step0.Home11Formation, True, True))
 
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Away11AndSubs, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Away11MiniFormation, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Away11Formation, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 ans subs", Step0.Away11AndSubs, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 mini formation", Step0.Away11MiniFormation, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 formation", Step0.Away11Formation, True, True))
 
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.DoubleTeams, True, True))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.DoubleSubs, True, True))
@@ -77,7 +77,7 @@ Public Class GraphicsTeamCaptions
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Dim changeStep As Integer = 1
     Try
-      Select Case gs.ChildGraphicStep.Name
+      Select Case gs.ChildGraphicStep.UID
         Case Step0.Home11AndSubs
           Scene = PrepareTeam(changeStep, Me.Match.HomeTeam)
         Case Step0.Away11AndSubs

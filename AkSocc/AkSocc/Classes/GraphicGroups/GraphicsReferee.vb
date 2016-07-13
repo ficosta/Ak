@@ -13,10 +13,12 @@ Public Class GraphicsReferee
     MyBase.ID = 1
   End Sub
 
-  Public Property _reporters As NameDotTexts
-
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
+
+    Public Shared ReadOnly Official1 As Step0 = New Step0("Official1")
+    Public Shared ReadOnly Official2 As Step0 = New Step0("Official2")
+    Public Shared ReadOnly Official3 As Step0 = New Step0("Official3")
 
     Public Sub New(key As String)
       MyBase.Key = key
@@ -38,14 +40,11 @@ Public Class GraphicsReferee
 
     Try
       gs.GraphicSteps.Clear()
-      _reporters = New NameDotTexts
-      _reporters.GetFromDB("WHERE Priority > 0")
 
       If graphicStep Is Nothing Then
-
-        For Each name As NameDotText In _reporters
-          gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(name.ID, name.EnglishDescription), True, False))
-        Next
+        If Not Me.Match.Official1 Is Nothing Then gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.Official1.ToString, Step0.Official1, True, False))
+        If Not Me.Match.Official2 Is Nothing Then gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.Official2.ToString, Step0.Official2, True, False))
+        If Not Me.Match.Official3 Is Nothing Then gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.Official3.ToString, Step0.Official3, True, False))
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -57,12 +56,21 @@ Public Class GraphicsReferee
     Me.Scene = New Scene
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Dim changeStep As Integer = 1
+    Dim official As Official = Nothing
     Try
       Scene = InitDefaultScene()
 
-
-      Dim matchDay As NameDotText = _reporters.GetName(CInt(graphicStep.UID))
-      Scene = PrepareReporters(changeStep, matchDay)
+      Select Case graphicStep.UID
+        Case Step0.Official1
+          official = Me.Match.Official1
+        Case Step0.Official2
+          official = Me.Match.Official2
+        Case Step0.Official3
+          official = Me.Match.Official3
+      End Select
+      If Not official Is Nothing Then
+        Scene = PrepareReporters(changeStep, official)
+      End If
 
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -97,7 +105,7 @@ Public Class GraphicsReferee
   End Function
 
 
-  Public Function PrepareReporters(gSide As Integer, nameDotText As NameDotText) As Scene
+  Public Function PrepareReporters(gSide As Integer, official As Official) As Scene
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "Lower3rd_Side_1" & gSide & "_"
     Dim subjectPrefix As String = ""
@@ -105,11 +113,11 @@ Public Class GraphicsReferee
       scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 2)
       prefix = "Lower3rd_Side_" & gSide & "_"
 
-      If Not nameDotText Is Nothing Then
-        scene.SceneParameters.Add("Lower3rd_Single_Text_Subject_Name", nameDotText.ArabicTopLineText)
-        scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", nameDotText.ArabicSubLineText)
-        scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", nameDotText.ArabicSubLineText)
-        scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", nameDotText.ArabicSubLineText)
+      If Not official Is Nothing Then
+        scene.SceneParameters.Add("Lower3rd_Single_Text_Subject_Name", official.OfficialArabicName)
+        scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", Arabic("REFEREE"))
+        scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", Arabic("REFEREE"))
+        scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", Arabic("REFEREE"))
       End If
 
     Catch ex As Exception

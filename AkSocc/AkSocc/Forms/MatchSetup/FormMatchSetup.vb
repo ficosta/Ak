@@ -28,6 +28,9 @@ Public Class FormMatchSetup
     Try
       Me.Cursor = Cursors.WaitCursor
       Me.DialogResult = System.Windows.Forms.DialogResult.OK
+      Me.Match.Official1 = Me.MetroComboBoxReferee1.SelectedItem
+      Me.Match.Official2 = Me.MetroComboBoxReferee2.SelectedItem
+      Me.Match.Official3 = Me.MetroComboBoxReferee3.SelectedItem
       Me.UcTeamMatchSetupHome.Save()
       Me.UcTeamMatchSetupAway.Save()
       Me.Close()

@@ -1,33 +1,32 @@
-﻿Imports AkSocc
-Imports VizCommands
+﻿
+Imports AkSocc
+  Imports VizCommands
 
-Public Class GraphicsScoreLine
+Public Class GraphicsTeamStatsL3
   Inherits GraphicGroup
 
   Public Sub New(_match As MatchInfo.Match)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicsScoreLine"
+    MyBase.Name = "GraphicsTeamStatsL3"
     MyBase.ID = 1
   End Sub
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
 
-    Public Shared ReadOnly FirstHalf As Step0 = New Step0("First half")
-    Public Shared ReadOnly HalfTime As Step0 = New Step0("Half time")
-    Public Shared ReadOnly SecondHalf As Step0 = New Step0("Second half")
-    Public Shared ReadOnly FullTime As Step0 = New Step0("Full time")
+    Public Shared ReadOnly MatchStats As Step0 = New Step0("Match stats")
+    Public Shared ReadOnly SeasonStats As Step0 = New Step0("Season stats")
 
-    Public Shared ReadOnly ETFirstHalf As Step0 = New Step0("First half (extra time)")
-    Public Shared ReadOnly ETHalfTime As Step0 = New Step0("Half time (extra time)")
-    Public Shared ReadOnly ETSecondHalf As Step0 = New Step0("Second half (extra time)")
-    Public Shared ReadOnly ETFullTime As Step0 = New Step0("Full time (extra time)")
+    Public Shared ReadOnly MatchesPlayed As Step0 = New Step0("Matches played")
+    Public Shared ReadOnly HomeTeamWins As Step0 = New Step0("Home team wins")
+    Public Shared ReadOnly DrawMatches As Step0 = New Step0("Draw matches")
+    Public Shared ReadOnly AwayTeamWins As Step0 = New Step0("Away team wins")
+    Public Shared ReadOnly HomeTeamSeasonRecord As Step0 = New Step0("Home Team Season Record")
+    Public Shared ReadOnly AwayTeamSeasonRecord As Step0 = New Step0("Away Team Season Record")
+    Public Shared ReadOnly HomeTeamSeasonPosition As Step0 = New Step0("Home Team Season Position")
+    Public Shared ReadOnly AwayTeamSeasonPosition As Step0 = New Step0("Away Team Season Position")
 
-
-    Public Shared ReadOnly WithLastScorer As Step0 = New Step0("With last scorer")
-    Public Shared ReadOnly WithIDentDescription As Step0 = New Step0("With ident description")
-    Public Shared ReadOnly WithhAllScorers As Step0 = New Step0("With all scorers")
 
     Public Sub New(key As String)
       MyBase.Key = key
@@ -50,29 +49,25 @@ Public Class GraphicsScoreLine
       gs = graphicStep
     End If
 
-
     Try
       gs.GraphicSteps.Clear()
 
       If graphicStep Is Nothing Then
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FirstHalf))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HalfTime))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.SecondHalf))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FullTime))
-        gs.GraphicSteps.Add(New GraphicStep(gs, "Extra time", False, False, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.ETFirstHalf))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.ETHalfTime))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.ETSecondHalf))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.ETFullTime))
-        gs.GraphicSteps.Add(New GraphicStep(gs, "Oher stats", False, False, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.WithLastScorer))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.WithIDentDescription))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.WithhAllScorers))
+        gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.SponsorLogo, False, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.NoLogo, False, False))
       Else
         Select Case graphicStep.Depth
           Case 0
-            gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.SponsorLogo, True, False))
-            gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.NoLogo, True, False))
+
+            gs.GraphicSteps.Add(New GraphicStep(gs, Step0.MatchStats, True, True))
+            gs.GraphicSteps.Add(New GraphicStep(gs, Step0.SeasonStats, True, True))
+            gs.GraphicSteps.Add(New GraphicStep(gs, Step0.MatchesPlayed, True, True))
+            gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeTeamWins, True, True))
+            gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeamWins, True, True))
+            gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeTeamSeasonRecord, True, True))
+            gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeamSeasonRecord, True, True))
+            gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeTeamSeasonPosition, True, True))
+            gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeamSeasonPosition, True, True))
           Case 1
             'graphic is ready
 
@@ -96,25 +91,36 @@ Public Class GraphicsScoreLine
       Scene.SceneDirectorsChangeIn.Add("Change", 0, DirectorAction.Start)
       Scene.SceneDirectorsChangeIn.Add("Change", 200, DirectorAction.Dummy)
 
-      Select Case gs.ChildGraphicStep.Name
-        Case Step0.FirstHalf
+      gs.GraphicSteps.Add(New GraphicStep(gs, Step0.MatchStats))
+      gs.GraphicSteps.Add(New GraphicStep(gs, Step0.SeasonStats))
+      gs.GraphicSteps.Add(New GraphicStep(gs, Step0.MatchesPlayed))
+      gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeTeamWins))
+      gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeamWins))
+      gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeTeamSeasonRecord))
+      gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeamSeasonRecord))
+      gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeTeamSeasonPosition))
+      gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeamSeasonPosition))
+
+
+      Select Case gs.ChildGraphicStep.UID
+        Case Step0.MatchStats
           PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
-        Case Step0.SecondHalf
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Second half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
-        Case Step0.HalfTime
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Half time", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
-        Case Step0.FullTime
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Full time", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
-        Case Step0.ETFirstHalf
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half (extra time)", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
-        Case Step0.ETSecondHalf
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Second half (extra time)", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
-        Case Step0.ETHalfTime
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Half time (extra time)", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
-        Case Step0.ETFullTime
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Full time (extra time)", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
-        Case Step0.WithhAllScorers
-          PrepareResultSceneWithScorerCrawl(Scene, Match.home_goals, Match.away_goals, gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+        Case Step0.SeasonStats
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+        Case Step0.MatchesPlayed
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+        Case Step0.HomeTeamWins
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+        Case Step0.AwayTeamWins
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+        Case Step0.HomeTeamSeasonRecord
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+        Case Step0.AwayTeamSeasonRecord
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+        Case Step0.HomeTeamSeasonPosition
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+        Case Step0.AwayTeamSeasonPosition
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
 
       End Select
     Catch ex As Exception
