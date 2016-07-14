@@ -94,7 +94,7 @@ Public Class FormSubstitutions
 
   End Sub
 
-  Private Sub MetroGridSubstitutions_SelectionChanged(sender As Object, e As EventArgs) Handles MetroGridSubstitutions.SelectionChanged
+  Private Sub MetroGridSubstitutions_SelectionChanged(sender As Object, e As EventArgs)
     If _initializing Then Exit Sub
     Dim inID As Integer = CType(Me.MetroGridSubstitutions.Rows(Me.MetroGridSubstitutions.SelectedRows(0).Index).Cells(ColumnPlayerInID.Index).Value, Integer)
     Dim outID As Integer = CType(Me.MetroGridSubstitutions.Rows(Me.MetroGridSubstitutions.SelectedRows(0).Index).Cells(ColumnPlayerOutID.Index).Value, Integer)

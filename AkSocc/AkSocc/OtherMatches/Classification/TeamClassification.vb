@@ -1,9 +1,11 @@
-﻿Public Class TeamClassificationForMatchDay
+﻿Imports MatchInfo
+
+Public Class TeamClassificationForMatchDay
   Implements IComparable
 
   Public Property Team As MatchInfo.Team
   Public Property MatchDayIndex As Integer = 0
-  Public Property Match As OtherMatch = Nothing
+  Public Property Match As Match = Nothing
 
   Public Property Points As Integer = 0
   Public Property Position As Integer = 0
@@ -20,7 +22,7 @@
     End Get
   End Property
 
-  Public Sub New(team As MatchInfo.Team, matchDayIndex As Integer, match As OtherMatch)
+  Public Sub New(team As MatchInfo.Team, matchDayIndex As Integer, match As Match)
     Try
       Me.Team = team
       Me.MatchDayIndex = matchDayIndex
@@ -30,7 +32,17 @@
   End Sub
 
   Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
-    Throw New NotImplementedException()
+    Dim aux As TeamClassificationForMatchDay = CType(obj, TeamClassificationForMatchDay)
+    Dim res As Integer = 0
+    If aux.Points > Me.Points Then
+      res = 1
+    ElseIf aux.points < Me.points Then
+      res = -1
+    Else
+      'empat, como lo rompemos??
+      res = 0
+    End If
+    Return res
   End Function
 
 End Class
@@ -40,11 +52,11 @@ Public Class TeamClassificationForCompetition
 
   Public Property Team As MatchInfo.Team
 
+  Public Property ClassificationsForMatchDay As New List(Of TeamClassificationForMatchDay)
+
   Public Sub New(team As MatchInfo.Team)
     Me.Team = team
   End Sub
-
-  Public Property ClassificationsForMatchDay As New List(Of TeamClassificationForMatchDay)
 
 #Region "Compare functions"
   Public Property ComparisionMatchDay As Integer
@@ -98,30 +110,30 @@ Public Class TeamClassificationForCompetition
       End If
 
       If Not current.Match Is Nothing Then
-        Select Case current.Match.MatchStatus
-          Case OtherMatch.otherMatchStatus.Idle
+        Select Case current.Match.home_goals
+          Case -1
             'nothing to add
           Case Else
             current.MatchesPlayed += 1
             Dim goalsFor As Integer = 0
-            Dim goalsAgaint As Integer = 0
-            If current.Match.Match.HomeTeam.ID = Me.Team.ID Then
-              Integer.TryParse(current.Match.HomeScore, goalsFor)
-              Integer.TryParse(current.Match.AwayScore, goalsAgaint)
+            Dim goalsAgainst As Integer = 0
+            If current.Match.HomeTeam.ID = Team.ID Then
+              goalsFor = current.Match.home_goals
+              goalsAgainst = current.Match.away_goals
             Else
-              Integer.TryParse(current.Match.AwayScore, goalsFor)
-              Integer.TryParse(current.Match.HomeScore, goalsAgaint)
+              goalsAgainst = current.Match.home_goals
+              goalsFor = current.Match.away_goals
             End If
 
             current.GoalsFor += goalsFor
-            current.GoalsAgainst += goalsAgaint
-            If goalsFor > goalsAgaint Then
+            current.GoalsAgainst += goalsAgainst
+            If goalsFor > goalsAgainst Then
               current.MatchesWon += 1
               current.Points += pointsForWonMatch
-            ElseIf goalsFor < goalsAgaint Then
+            ElseIf goalsFor < goalsAgainst Then
               current.MatchesLost += 1
               current.Points += pointsForLostMatch
-            ElseIf goalsFor = goalsAgaint Then
+            ElseIf goalsFor = goalsAgainst Then
               current.MatchesDrawn += 1
               current.Points += pointsForTiedMatch
             End If

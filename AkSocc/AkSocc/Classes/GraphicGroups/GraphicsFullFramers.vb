@@ -181,12 +181,26 @@ Public Class GraphicGroupCtlF1FullFramers
     Return scene
   End Function
 
+  Private _classification As Classification = Nothing
+  Private Sub ComputeClassification()
+    If Me.Match Is Nothing Then Exit Sub
+    If _classification Is Nothing Then
+      Dim _matches As MatchInfo.Matches
+      _matches = MatchInfo.Matches.GetMatchesForCompetition(Me.Match.competition_id)
+      Dim _classification As New Classification(_matches)
+    End If
+
+  End Sub
+
   Public Function PrepareLeagueTable(gStep As Integer, isTop As Boolean, showArrows As Boolean) As Scene
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "Side_" & gStep & "_"
     Dim posIndex As Integer = 0
     Dim linesPerPage As Integer = 7
     Try
+
+      ComputeClassification()
+
       scene.SceneParameters.Add("Side_" & gStep & "_Table_Vis.active", "1")
       scene.SceneParameters.Add(prefix & "Table_Vis.active", 1)
 
@@ -203,8 +217,8 @@ Public Class GraphicGroupCtlF1FullFramers
         Else
           scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "2")
         End If
-
-        scene.SceneParameters.Add(prefix & "Data_01_Text", (posIndex + 1) & ".1")
+        Dim teamClassification As TeamClassificationForMatchDay = _classification.LastAvailableClassificationForMatchDay.TeamClassificationList(posIndex)
+        scene.SceneParameters.Add(prefix & "Data_01_Text", teamClassification.Team.Name)
         scene.SceneParameters.Add(prefix & "Data_02_Text", (posIndex + 1) & ".2")
         scene.SceneParameters.Add(prefix & "Data_03_Text", (posIndex + 1) & ".3")
         scene.SceneParameters.Add(prefix & "Data_04_Text", (posIndex + 1) & ".4")

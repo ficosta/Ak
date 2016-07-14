@@ -830,6 +830,7 @@ Public Class UserControlTactica
 
   Private Sub ButtonRandom_Click(sender As Object, e As EventArgs) Handles ButtonRandom.Click
     Try
+      Me.Cursor = Cursors.WaitCursor
       For posIndex As Integer = 1 To Math.Min(Me.Team.AllPlayers.Count, 18)
         Dim selectedPlayer As Player = Me.Team.AllPlayers(posIndex - 1)
         For i As Integer = _team.MatchPlayers.Count - 1 To 0 Step -1
@@ -846,8 +847,11 @@ Public Class UserControlTactica
       Next
       _tactica.CreateEmptyTactic()
       ShowTactics()
+      Me.UpdateListViewsTeamsIPlayers()
     Catch ex As Exception
       Debug.Print(ex.ToString)
     End Try
+    Me.Cursor = Cursors.Default
   End Sub
+
 End Class

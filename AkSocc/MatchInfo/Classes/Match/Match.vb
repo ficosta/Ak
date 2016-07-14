@@ -423,7 +423,7 @@ Imports MatchInfo
       Throw New Exception("Object is not of type Match")
     End If
 
-    Return Date.Compare(obj.match_date, Me.match_date)
+    Return Date.Compare(Me.match_date, obj.match_date)
   End Function
 
 #Region "Match goals"

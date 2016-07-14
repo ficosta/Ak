@@ -141,10 +141,10 @@ Public Class ControlScoreSingleGoal
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
-    Return MyBase.PostProcessingAction()
+    Return MyBase.PostProcessingAction(Nothing)
   End Function
 
-  Public Overrides Function PostProcessingAction() As Boolean
+  Public Overrides Function PostProcessingAction(frm As MetroFramework.Forms.MetroForm) As Boolean
     Me.Scene = Nothing
     Me.graphicStep = graphicStep
 

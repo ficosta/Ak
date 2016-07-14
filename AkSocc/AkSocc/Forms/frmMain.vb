@@ -99,6 +99,10 @@ Public Class frmMain
 
   Private Sub ToolStripButtonClassification_Click(sender As Object, e As EventArgs) Handles ToolStripButtonClassification.Click
     Try
+      If _match Is Nothing Then Exit Sub
+      Dim _matches As New Matches()
+      _matches = Matches.GetMatchesForCompetition(_match.competition_id)
+      Dim classification As New Classification(_matches)
       If Not _otherMatchDays Is Nothing Then
         _otherMatchDays.ComputeClassification()
       End If

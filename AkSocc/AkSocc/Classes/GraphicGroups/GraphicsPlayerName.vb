@@ -78,6 +78,8 @@ Public Class GraphicsPlayerName
     Return gs
   End Function
 
+  Private _lastPreparedStep As GraphicStep = Nothing
+
   Public Overrides Function PrepareScene(graphicStep As GraphicStep) As Scene
     Me.Scene = New Scene
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
@@ -99,6 +101,7 @@ Public Class GraphicsPlayerName
         Case Step0.GoalsInSeasson
           Scene = PrepareGoals(changeStep, True)
       End Select
+      _lastPreparedStep = graphicStep
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -259,6 +262,39 @@ Public Class GraphicsPlayerName
       WriteToErrorLog(ex)
     End Try
     Return scene
+  End Function
+#End Region
+
+#Region "Processing"
+  Public Overrides Function PostProcessingAction(frm As MetroFramework.Forms.MetroForm) As Boolean
+
+    Try
+      If _lastPreparedStep Is Nothing Then Return False
+
+      Select Case _lastPreparedStep.UID
+        Case Step0.NameAndTeam
+        Case Step0.YellowCard
+          If MetroFramework.MetroMessageBox.Show(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            Me.Player.YellowCards = 1
+          End If
+        Case Step0.YellowCardMisses
+          If MetroFramework.MetroMessageBox.Show(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            Me.Player.YellowCards = 1
+          End If
+        Case Step0.YellowCard2
+          If MetroFramework.MetroMessageBox.Show(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            Me.Player.YellowCards = 2
+          End If
+        Case Step0.RedCard
+          If MetroFramework.MetroMessageBox.Show(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            Me.Player.RedCards = 1
+          End If
+        Case Step0.GoalsInMatch
+        Case Step0.GoalsInSeasson
+      End Select
+    Catch ex As Exception
+
+    End Try
   End Function
 #End Region
 End Class

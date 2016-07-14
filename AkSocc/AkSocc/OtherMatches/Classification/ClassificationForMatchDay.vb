@@ -3,19 +3,16 @@
 Public Class ClassificationForMatchDay
   Implements IComparable
 
-  Public Property MatchDay As MatchDay
+  Public Property MatchDay As Integer
   Public Property TeamClassificationList As New List(Of TeamClassificationForMatchDay)
 
-  Public Sub New(matchDay As MatchDay, teams As List(Of Team))
+  Public Sub New(matchDay As Integer)
     Try
       Me.MatchDay = matchDay
-      For Each team As Team In teams
-        Me.TeamClassificationList.Add(New TeamClassificationForMatchDay(team, matchDay.Index, matchDay.GetMatchByTeam(team)))
-      Next
+
     Catch ex As Exception
 
     End Try
-
   End Sub
 
   Public Function UpdateClassification() As Boolean
@@ -50,9 +47,9 @@ Public Class ClassificationForMatchDay
     Dim aux As ClassificationForMatchDay = CType(obj, ClassificationForMatchDay)
     Dim res As Integer = 0
     Try
-      If aux.MatchDay.Index > Me.MatchDay.Index Then
+      If aux.MatchDay > Me.MatchDay Then
         res = 1
-      ElseIf aux.MatchDay.Index < Me.MatchDay.Index Then
+      ElseIf aux.MatchDay < Me.MatchDay Then
         res = -1
       Else
         res = 0

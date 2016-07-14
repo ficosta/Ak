@@ -45,7 +45,6 @@ Public Class FormChoose
       'in case something must be done
       Me.GraphicGroup.PreProcessingAction()
       _currentScene = Me.GraphicGroup.PrepareScene(Me.GraphicGroup.graphicStep)
-      Me.GraphicGroup.PostProcessingAction()
       If Not _currentScene Is Nothing Then
         If _formerScene Is Nothing Then
           'this is the first time we send a scene
@@ -113,6 +112,8 @@ Public Class FormChoose
           MetroMessageBox.Show(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
 
           _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
+
+          Me.GraphicGroup.PostProcessingAction(Me)
           Me.DialogResult = System.Windows.Forms.DialogResult.OK
           Me.Close()
         Else
@@ -120,10 +121,12 @@ Public Class FormChoose
           ' _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
         End If
       Else
+        Me.GraphicGroup.PostProcessingAction(Me)
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
       End If
     Else
+      Me.GraphicGroup.PostProcessingAction(Me)
       Me.DialogResult = System.Windows.Forms.DialogResult.OK
       Me.Close()
     End If

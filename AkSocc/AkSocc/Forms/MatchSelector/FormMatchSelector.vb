@@ -69,7 +69,8 @@ Public Class FormMatchSelector
         Dim index As Integer = 0
         'myMatches.GetFromDB("WHERE CompID = " + comp.CompID.ToString() + " ORDER BY MatchDate ASC")
         _matches = Matches.GetMatchesForCompetition(comp.CompID)
-        For Each myMatch As Match In _matches
+        For iMatch As Integer = _matches.Count - 1 To 0 Step -1
+          Dim myMatch As Match = _matches(iMatch)
           Dim sResult As String = IIf(myMatch.away_goals >= 0 And myMatch.home_goals >= 0, myMatch.home_goals & "-" & myMatch.away_goals, "")
           .Rows.Add(myMatch.match_id, myMatch.match_date.ToShortDateString, myMatch.Description, sResult)
           'If myMatch.match_id = My.Settings.LastMatchId Then

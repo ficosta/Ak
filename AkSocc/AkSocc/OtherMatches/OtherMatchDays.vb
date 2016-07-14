@@ -1,4 +1,5 @@
 ﻿Imports System.Xml
+Imports MatchInfo
 
 <Serializable()> Public Class OtherMatchDays
   Inherits CollectionBase
@@ -59,17 +60,62 @@
     Return res
   End Function
 
+  Public ReadOnly Property AllMatches() As List(Of OtherMatch)
+    Get
+      Dim res As New List(Of OtherMatch)
+      For Each matchDay As MatchDay In Me.List
+        For Each match As OtherMatch In matchDay.OtherMatches
+          res.Add(match)
+        Next
+      Next
+      res.Sort()
+      Return res
+    End Get
+  End Property
+
+  Public ReadOnly Property AllMatchesByTeam(team As Team) As List(Of OtherMatch)
+    Get
+      Return AllMatchesByTeam(team.ID)
+    End Get
+  End Property
+
+  Public ReadOnly Property AllMatchesByTeam(idTeam As Integer) As List(Of OtherMatch)
+    Get
+      Dim res As New List(Of OtherMatch)
+      For Each matchDay As MatchDay In Me.List
+        For Each match As OtherMatch In matchDay.OtherMatches
+          If match.Match.HomeTeam.ID = idTeam Or match.Match.AwayTeam.ID = idTeam Then
+            res.Add(match)
+          End If
+        Next
+      Next
+      res.Sort()
+      Return res
+    End Get
+  End Property
+
 #Region "Classification"
   Public Property Classification As Classification
+  Public Property Competition As Competition
 
   Public Sub ComputeClassification()
     Try
-      Classification = New Classification(Me)
+      Dim _matches As New Matches
+      _matches = Matches.GetMatchesForCompetition(Competition.CompID)
+      _matches.Sort()
+
+      Classification = New Classification(_matches)
+
       'order by match day
       Me.Sort()
 
       'Get all the teams
       Dim _teams As New MatchInfo.Teams()
+      For Each match As Match In _matches
+        If Not _teams.Contains(match.HomeTeam) Then _teams.Add(match.HomeTeam)
+        If Not _teams.Contains(match.AwayTeam) Then _teams.Add(match.AwayTeam)
+      Next
+
       For Each matchDay As MatchDay In Me.List
         For Each match As OtherMatch In matchDay.OtherMatches
           If Not match.Match Is Nothing Then
@@ -80,19 +126,22 @@
       Next
 
       'for each team, populate its helper class
+      Dim matchDayIndex As Integer = 1
       For Each team As MatchInfo.Team In _teams
         Dim teamForCompetition As New TeamClassificationForCompetition(team)
-        For Each matchDay As MatchDay In Me.List
-          Dim teamClassificationForMatchDay As New TeamClassificationForMatchDay(team, matchDay.Index, Nothing)
-          For Each match As OtherMatch In matchDay.OtherMatches
-            If Not match.Match Is Nothing Then
-              If match.Match.HomeTeam.ID = team.ID Or match.Match.AwayTeam.ID = team.ID Then
-                teamClassificationForMatchDay.Match = match
-              End If
-            End If
-          Next
-          teamForCompetition.ClassificationsForMatchDay.Add(teamClassificationForMatchDay)
-        Next
+        _matches.Sort()
+        Dim teamMatches As List(Of Match) = _matches.GetMatchesForTeam(team.ID)
+        'For Each matchDay As MatchDay In Me.List
+        '  Dim teamClassificationForMatchDay As New TeamClassificationForMatchDay(team, matchDay.Index, Nothing)
+        '  For Each match As OtherMatch In matchDay.OtherMatches
+        '    If Not match.Match Is Nothing Then
+        '      If match.Match.HomeTeam.ID = team.ID Or match.Match.AwayTeam.ID = team.ID Then
+        '        teamClassificationForMatchDay.Match = match
+        '      End If
+        '    End If
+        '  Next
+        '  teamForCompetition.ClassificationsForMatchDay.Add(teamClassificationForMatchDay)
+        'Next
         Classification.TeamClassificationsForCompetition.Add(teamForCompetition)
       Next
 
@@ -217,7 +266,7 @@
         End If
       Next
     Catch err As Exception
-      WriteToErrorLog(Err)
+      WriteToErrorLog(err)
     End Try
   End Sub
 

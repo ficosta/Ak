@@ -82,6 +82,18 @@ Public Class Matches
     Return res
   End Function
 
+  Public Function GetMatchesForTeam(teamId As Integer) As List(Of Match)
+    Dim res As New List(Of Match)
+    Try
+      For Each match As Match In Me
+        If Not match.HomeTeam Is Nothing AndAlso match.HomeTeam.ID = teamId Then res.Add(match)
+        If Not match.AwayTeam Is Nothing AndAlso match.AwayTeam.ID = teamId Then res.Add(match)
+      Next
+    Catch ex As Exception
+    End Try
+    Return res
+  End Function
+
   Public Sub GetFromDB(Where As String)
     Try
       List.Clear()
