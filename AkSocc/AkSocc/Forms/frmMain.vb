@@ -29,11 +29,12 @@ Public Class frmMain
 
   Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
     Try
-      If My.Settings.ShowSettingsOnStartup Then
+
+      If AppSettings.Instance.ShowSettingsOnStartup Then
         ShowOptions(Me)
       End If
       Me.Cursor = Cursors.WaitCursor
-      DesserializeObjectFromFile(My.Settings.OtherMatchesPath, _otherMatchDays)
+      DesserializeObjectFromFile(AppSettings.Instance.OtherMatchesPath, _otherMatchDays)
       InitControls()
       SelectMatch()
     Catch ex As Exception
@@ -52,17 +53,17 @@ Public Class frmMain
       Me.UpdateStatusLabel()
       _vizControl = New VizCommands.VizControl
       _vizControl.Config = New VizCommands.tyConfigVizrt
-      _vizControl.Config.TCPHost = My.Settings.VizrtHost
-      _vizControl.Config.TCPPort = My.Settings.VizrtPort
-      _vizControl.Config.SceneBasePath = My.Settings.ScenePath
+      _vizControl.Config.TCPHost = AppSettings.Instance.VizrtHost
+      _vizControl.Config.TCPPort = AppSettings.Instance.VizrtPort
+      _vizControl.Config.SceneBasePath = AppSettings.Instance.ScenePath
       _vizControl.InitializeSockets()
 
       Dim pvwConfig As New VizCommands.tyConfigVizrt
-      pvwConfig.TCPHost = My.Settings.VizrtHost
-      pvwConfig.TCPPort = My.Settings.VizrtPreviewPort
-      pvwConfig.SceneBasePath = My.Settings.ScenePath
+      pvwConfig.TCPHost = AppSettings.Instance.VizrtHost
+      pvwConfig.TCPPort = AppSettings.Instance.VizrtPreviewPort
+      pvwConfig.SceneBasePath = AppSettings.Instance.ScenePath
 
-      _previewControl = New VizCommands.PreviewControl(pvwConfig, My.Settings.PreviewLocalPath, My.Settings.PreviewRemotePath)
+      _previewControl = New VizCommands.PreviewControl(pvwConfig, AppSettings.Instance.PreviewLocalPath, AppSettings.Instance.PreviewRemotePath)
 
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -209,8 +210,10 @@ Public Class frmMain
 
   Private Sub ReleaseDataBinding()
     Try
-      Me.LabelHomeTeamResult.DataBindings.Clear()
-      Me.LabelAwayTeamResult.DataBindings.Clear()
+      ' Me.LabelHomeTeamResult.DataBindings.Clear()
+      ' Me.LabelAwayTeamResult.DataBindings.Clear()
+      Me.LabelHomeTeamResult.Text = ""
+      Me.LabelAwayTeamResult.Text = ""
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -218,11 +221,13 @@ Public Class frmMain
 
   Private Sub EngageDataBinding()
     Try
-      Me.LabelHomeTeamResult.DataBindings.Clear()
-      Me.LabelAwayTeamResult.DataBindings.Clear()
+      ' Me.LabelHomeTeamResult.DataBindings.Clear()
+      'Me.LabelAwayTeamResult.DataBindings.Clear()
 
-      Me.LabelHomeTeamResult.DataBindings.Add("Text", _match.HomeTeam.MatchStats.GoalStat, "Value")
-      Me.LabelAwayTeamResult.DataBindings.Add("Text", _match.AwayTeam.MatchStats.GoalStat, "Value")
+      ' Me.LabelHomeTeamResult.DataBindings.Add("Text", _match.HomeTeam.MatchStats.GoalStat, "Value")
+      ' Me.LabelAwayTeamResult.DataBindings.Add("Text", _match.AwayTeam.MatchStats.GoalStat, "Value")
+      Me.LabelHomeTeamResult.Text = _match.home_goals
+      Me.LabelAwayTeamResult.Text = _match.away_goals
 
       _clockControl = ClockControl.Instance
       _clockControl.VizControl = _vizControl
@@ -430,7 +435,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonShftF2Interview_Click(sender As Object, e As EventArgs) Handles ButtonShftF2Interview.Click
-
+    Me.StartGraphic(New GraphicsInterviews(_match))
   End Sub
 
   Private Sub ButtonShftF3NameNoNumber_Click(sender As Object, e As EventArgs) Handles ButtonShftF3NameNoNumber.Click
@@ -822,7 +827,19 @@ Public Class frmMain
   End Sub
 
   Private Sub _match_ScoreChanged() Handles _match.ScoreChanged
+    Try
+      Me.LabelHomeTeamResult.Text = _match.home_goals
+      Me.LabelAwayTeamResult.Text = _match.away_goals
 
+      For Each ctl As PlayerViewer In _homePlayerControls
+        ctl.UpdateStatInterface()
+      Next
+      For Each ctl As PlayerViewer In _awayPlayerControls
+        ctl.UpdateStatInterface()
+      Next
+    Catch ex As Exception
+
+    End Try
   End Sub
 
 

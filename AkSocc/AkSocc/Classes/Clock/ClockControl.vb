@@ -11,7 +11,6 @@ Public NotInheritable Class ClockControl
 
   Public Shared ReadOnly Property Instance() As ClockControl
     Get
-
       Return _instance.Value
     End Get
   End Property

@@ -591,7 +591,6 @@ Partial Class frmMain
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF9OtherScores, 0, 8)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF8Bugs, 4, 4)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF3NameNoNumber, 3, 6)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF2Interview, 1, 6)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF4TwoWayBoxes, 4, 3)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF11AsItStands, 3, 5)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonF12VideoTalkThroughts, 4, 2)
@@ -782,12 +781,12 @@ Partial Class frmMain
     '
     Me.ButtonShftF2Interview.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonShftF2Interview.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF2Interview.Location = New System.Drawing.Point(148, 121)
+    Me.ButtonShftF2Interview.Location = New System.Drawing.Point(165, 145)
     Me.ButtonShftF2Interview.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonShftF2Interview.Name = "ButtonShftF2Interview"
-    Me.ButtonShftF2Interview.Size = New System.Drawing.Size(145, 18)
+    Me.ButtonShftF2Interview.Size = New System.Drawing.Size(162, 16)
     Me.ButtonShftF2Interview.TabIndex = 289
-    Me.ButtonShftF2Interview.Text = "INTEVIEWS Shift+F2"
+    Me.ButtonShftF2Interview.Text = "INTERVIEWS Shift+F2"
     Me.ButtonShftF2Interview.UseSelectable = True
     '
     'ButtonCtlF4TwoWayBoxes
@@ -1184,18 +1183,20 @@ Partial Class frmMain
     Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonF9TeamCaptions, 0, 5)
     Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonCtlF1FullFramers, 0, 6)
     Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonCtlF10L3TeamStatsDb, 1, 7)
+    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonShftF2Interview, 1, 8)
     Me.TableLayoutPanelMainGraphics.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanelMainGraphics.Location = New System.Drawing.Point(3, 153)
     Me.TableLayoutPanelMainGraphics.Name = "TableLayoutPanelMainGraphics"
-    Me.TableLayoutPanelMainGraphics.RowCount = 8
+    Me.TableLayoutPanelMainGraphics.RowCount = 9
     Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571!))
-    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571!))
-    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571!))
-    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571!))
-    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571!))
-    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571!))
-    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
+    Me.TableLayoutPanelMainGraphics.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
     Me.TableLayoutPanelMainGraphics.Size = New System.Drawing.Size(658, 162)
     Me.TableLayoutPanelMainGraphics.TabIndex = 5
     '
@@ -1218,7 +1219,7 @@ Partial Class frmMain
     Me.ButtonF1ScoreLine.Location = New System.Drawing.Point(1, 26)
     Me.ButtonF1ScoreLine.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonF1ScoreLine.Name = "ButtonF1ScoreLine"
-    Me.ButtonF1ScoreLine.Size = New System.Drawing.Size(162, 17)
+    Me.ButtonF1ScoreLine.Size = New System.Drawing.Size(162, 15)
     Me.ButtonF1ScoreLine.TabIndex = 274
     Me.ButtonF1ScoreLine.Text = " SCORE LINE    F1"
     Me.ButtonF1ScoreLine.UseSelectable = True
@@ -1230,7 +1231,7 @@ Partial Class frmMain
     Me.ButtonF2NameReporter.Location = New System.Drawing.Point(165, 26)
     Me.ButtonF2NameReporter.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonF2NameReporter.Name = "ButtonF2NameReporter"
-    Me.ButtonF2NameReporter.Size = New System.Drawing.Size(162, 17)
+    Me.ButtonF2NameReporter.Size = New System.Drawing.Size(162, 15)
     Me.ButtonF2NameReporter.TabIndex = 283
     Me.ButtonF2NameReporter.Text = "   REPORTER    F2"
     Me.ButtonF2NameReporter.UseSelectable = True
@@ -1239,10 +1240,10 @@ Partial Class frmMain
     '
     Me.ButtonF5TeamMatchStats.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonF5TeamMatchStats.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF5TeamMatchStats.Location = New System.Drawing.Point(1, 45)
+    Me.ButtonF5TeamMatchStats.Location = New System.Drawing.Point(1, 43)
     Me.ButtonF5TeamMatchStats.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonF5TeamMatchStats.Name = "ButtonF5TeamMatchStats"
-    Me.ButtonF5TeamMatchStats.Size = New System.Drawing.Size(162, 17)
+    Me.ButtonF5TeamMatchStats.Size = New System.Drawing.Size(162, 15)
     Me.ButtonF5TeamMatchStats.TabIndex = 275
     Me.ButtonF5TeamMatchStats.Text = "  TEAM STATS   F5"
     Me.ButtonF5TeamMatchStats.UseSelectable = True
@@ -1251,10 +1252,10 @@ Partial Class frmMain
     '
     Me.ButtonF7FirstTeamStuff.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonF7FirstTeamStuff.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF7FirstTeamStuff.Location = New System.Drawing.Point(329, 45)
+    Me.ButtonF7FirstTeamStuff.Location = New System.Drawing.Point(329, 43)
     Me.ButtonF7FirstTeamStuff.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonF7FirstTeamStuff.Name = "ButtonF7FirstTeamStuff"
-    Me.ButtonF7FirstTeamStuff.Size = New System.Drawing.Size(162, 17)
+    Me.ButtonF7FirstTeamStuff.Size = New System.Drawing.Size(162, 15)
     Me.ButtonF7FirstTeamStuff.TabIndex = 273
     Me.ButtonF7FirstTeamStuff.Tag = ""
     Me.ButtonF7FirstTeamStuff.Text = "1st TEAM STAFF F7"
@@ -1264,10 +1265,10 @@ Partial Class frmMain
     '
     Me.ButtonF8SecondTeamStuff.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonF8SecondTeamStuff.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF8SecondTeamStuff.Location = New System.Drawing.Point(493, 45)
+    Me.ButtonF8SecondTeamStuff.Location = New System.Drawing.Point(493, 43)
     Me.ButtonF8SecondTeamStuff.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonF8SecondTeamStuff.Name = "ButtonF8SecondTeamStuff"
-    Me.ButtonF8SecondTeamStuff.Size = New System.Drawing.Size(164, 17)
+    Me.ButtonF8SecondTeamStuff.Size = New System.Drawing.Size(164, 15)
     Me.ButtonF8SecondTeamStuff.TabIndex = 283
     Me.ButtonF8SecondTeamStuff.Text = "2nd TEAM STAFF F8"
     Me.ButtonF8SecondTeamStuff.UseSelectable = True
@@ -1276,10 +1277,10 @@ Partial Class frmMain
     '
     Me.ButtonF6PlayerName.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonF6PlayerName.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF6PlayerName.Location = New System.Drawing.Point(165, 45)
+    Me.ButtonF6PlayerName.Location = New System.Drawing.Point(165, 43)
     Me.ButtonF6PlayerName.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonF6PlayerName.Name = "ButtonF6PlayerName"
-    Me.ButtonF6PlayerName.Size = New System.Drawing.Size(162, 17)
+    Me.ButtonF6PlayerName.Size = New System.Drawing.Size(162, 15)
     Me.ButtonF6PlayerName.TabIndex = 284
     Me.ButtonF6PlayerName.Text = "PLAYER NAME   F6"
     Me.ButtonF6PlayerName.UseSelectable = True
@@ -1288,10 +1289,10 @@ Partial Class frmMain
     '
     Me.ButtonCtlF2PlayerStatsCtrlF2.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonCtlF2PlayerStatsCtrlF2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF2PlayerStatsCtrlF2.Location = New System.Drawing.Point(165, 64)
+    Me.ButtonCtlF2PlayerStatsCtrlF2.Location = New System.Drawing.Point(165, 60)
     Me.ButtonCtlF2PlayerStatsCtrlF2.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonCtlF2PlayerStatsCtrlF2.Name = "ButtonCtlF2PlayerStatsCtrlF2"
-    Me.ButtonCtlF2PlayerStatsCtrlF2.Size = New System.Drawing.Size(162, 17)
+    Me.ButtonCtlF2PlayerStatsCtrlF2.Size = New System.Drawing.Size(162, 15)
     Me.ButtonCtlF2PlayerStatsCtrlF2.TabIndex = 286
     Me.ButtonCtlF2PlayerStatsCtrlF2.Text = "PLAYER STATS Ctrl+F2"
     Me.ButtonCtlF2PlayerStatsCtrlF2.UseSelectable = True
@@ -1300,10 +1301,10 @@ Partial Class frmMain
     '
     Me.ButtonCtlF6Referee.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonCtlF6Referee.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF6Referee.Location = New System.Drawing.Point(165, 121)
+    Me.ButtonCtlF6Referee.Location = New System.Drawing.Point(165, 111)
     Me.ButtonCtlF6Referee.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonCtlF6Referee.Name = "ButtonCtlF6Referee"
-    Me.ButtonCtlF6Referee.Size = New System.Drawing.Size(162, 17)
+    Me.ButtonCtlF6Referee.Size = New System.Drawing.Size(162, 15)
     Me.ButtonCtlF6Referee.TabIndex = 287
     Me.ButtonCtlF6Referee.Text = "REFEREE  Ctrl+F6"
     Me.ButtonCtlF6Referee.UseSelectable = True
@@ -1312,10 +1313,10 @@ Partial Class frmMain
     '
     Me.ButtonF9TeamCaptions.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonF9TeamCaptions.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonF9TeamCaptions.Location = New System.Drawing.Point(1, 102)
+    Me.ButtonF9TeamCaptions.Location = New System.Drawing.Point(1, 94)
     Me.ButtonF9TeamCaptions.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonF9TeamCaptions.Name = "ButtonF9TeamCaptions"
-    Me.ButtonF9TeamCaptions.Size = New System.Drawing.Size(162, 17)
+    Me.ButtonF9TeamCaptions.Size = New System.Drawing.Size(162, 15)
     Me.ButtonF9TeamCaptions.TabIndex = 276
     Me.ButtonF9TeamCaptions.Text = "TEAM CAPTIONS F9"
     Me.ButtonF9TeamCaptions.UseSelectable = True
@@ -1324,10 +1325,10 @@ Partial Class frmMain
     '
     Me.ButtonCtlF1FullFramers.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonCtlF1FullFramers.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF1FullFramers.Location = New System.Drawing.Point(1, 121)
+    Me.ButtonCtlF1FullFramers.Location = New System.Drawing.Point(1, 111)
     Me.ButtonCtlF1FullFramers.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonCtlF1FullFramers.Name = "ButtonCtlF1FullFramers"
-    Me.ButtonCtlF1FullFramers.Size = New System.Drawing.Size(162, 17)
+    Me.ButtonCtlF1FullFramers.Size = New System.Drawing.Size(162, 15)
     Me.ButtonCtlF1FullFramers.TabIndex = 277
     Me.ButtonCtlF1FullFramers.Text = "FULL FRAMERS Ctrl+F1"
     Me.ButtonCtlF1FullFramers.UseSelectable = True
@@ -1336,10 +1337,10 @@ Partial Class frmMain
     '
     Me.ButtonCtlF10L3TeamStatsDb.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonCtlF10L3TeamStatsDb.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF10L3TeamStatsDb.Location = New System.Drawing.Point(165, 140)
+    Me.ButtonCtlF10L3TeamStatsDb.Location = New System.Drawing.Point(165, 128)
     Me.ButtonCtlF10L3TeamStatsDb.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonCtlF10L3TeamStatsDb.Name = "ButtonCtlF10L3TeamStatsDb"
-    Me.ButtonCtlF10L3TeamStatsDb.Size = New System.Drawing.Size(162, 21)
+    Me.ButtonCtlF10L3TeamStatsDb.Size = New System.Drawing.Size(162, 15)
     Me.ButtonCtlF10L3TeamStatsDb.TabIndex = 288
     Me.ButtonCtlF10L3TeamStatsDb.Text = "L3 TEAM STATS Ctrl+F10"
     Me.ButtonCtlF10L3TeamStatsDb.UseSelectable = True

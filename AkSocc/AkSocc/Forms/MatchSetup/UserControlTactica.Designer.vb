@@ -53,8 +53,9 @@ Partial Class UserControlTactica
     Me.Label5 = New System.Windows.Forms.Label()
     Me.Label6 = New System.Windows.Forms.Label()
     Me.Label7 = New System.Windows.Forms.Label()
-    Me.ToolTipDrag = New System.Windows.Forms.ToolTip(Me.components)
     Me.ButtonRandom = New System.Windows.Forms.Button()
+    Me.MetroComboBoxFormation = New MetroFramework.Controls.MetroComboBox()
+    Me.ToolTipDrag = New System.Windows.Forms.ToolTip(Me.components)
     Me.TableLayoutPanelTot.SuspendLayout()
     CType(Me.MetroGridPlayers, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.MetroGridTeamAll, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,23 +66,24 @@ Partial Class UserControlTactica
     '
     'TableLayoutPanelTot
     '
-    Me.TableLayoutPanelTot.ColumnCount = 3
+    Me.TableLayoutPanelTot.ColumnCount = 4
     Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 480.0!))
+    Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 240.0!))
+    Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 240.0!))
     Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelTot.Controls.Add(Me.MetroGridPlayers, 2, 0)
+    Me.TableLayoutPanelTot.Controls.Add(Me.MetroGridPlayers, 3, 0)
     Me.TableLayoutPanelTot.Controls.Add(Me.MetroGridTeamAll, 0, 0)
     Me.TableLayoutPanelTot.Controls.Add(Me.PanelCanvas, 1, 0)
     Me.TableLayoutPanelTot.Controls.Add(Me.LabelSelectedPlayer, 1, 2)
     Me.TableLayoutPanelTot.Controls.Add(Me.TableLayoutPanel1, 1, 1)
+    Me.TableLayoutPanelTot.Controls.Add(Me.MetroComboBoxFormation, 2, 2)
     Me.TableLayoutPanelTot.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanelTot.Location = New System.Drawing.Point(0, 0)
     Me.TableLayoutPanelTot.Name = "TableLayoutPanelTot"
     Me.TableLayoutPanelTot.RowCount = 3
     Me.TableLayoutPanelTot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanelTot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
-    Me.TableLayoutPanelTot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-    Me.TableLayoutPanelTot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelTot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33.0!))
     Me.TableLayoutPanelTot.Size = New System.Drawing.Size(1050, 423)
     Me.TableLayoutPanelTot.TabIndex = 1
     '
@@ -138,7 +140,7 @@ Partial Class UserControlTactica
     Me.MetroGridPlayers.ShowCellToolTips = False
     Me.MetroGridPlayers.ShowEditingIcon = False
     Me.MetroGridPlayers.ShowRowErrors = False
-    Me.MetroGridPlayers.Size = New System.Drawing.Size(279, 387)
+    Me.MetroGridPlayers.Size = New System.Drawing.Size(279, 384)
     Me.MetroGridPlayers.TabIndex = 49
     '
     'ColumnPlayersID
@@ -240,7 +242,7 @@ Partial Class UserControlTactica
     Me.MetroGridTeamAll.ShowCellToolTips = False
     Me.MetroGridTeamAll.ShowEditingIcon = False
     Me.MetroGridTeamAll.ShowRowErrors = False
-    Me.MetroGridTeamAll.Size = New System.Drawing.Size(279, 387)
+    Me.MetroGridTeamAll.Size = New System.Drawing.Size(279, 384)
     Me.MetroGridTeamAll.TabIndex = 48
     '
     'ColumnAllID
@@ -267,11 +269,12 @@ Partial Class UserControlTactica
     '
     'PanelCanvas
     '
+    Me.TableLayoutPanelTot.SetColumnSpan(Me.PanelCanvas, 2)
     Me.PanelCanvas.Controls.Add(Me.PictureBoxCanvas)
     Me.PanelCanvas.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelCanvas.Location = New System.Drawing.Point(288, 3)
     Me.PanelCanvas.Name = "PanelCanvas"
-    Me.PanelCanvas.Size = New System.Drawing.Size(474, 337)
+    Me.PanelCanvas.Size = New System.Drawing.Size(474, 334)
     Me.PanelCanvas.TabIndex = 1
     '
     'PictureBoxCanvas
@@ -280,7 +283,7 @@ Partial Class UserControlTactica
     Me.PictureBoxCanvas.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PictureBoxCanvas.Location = New System.Drawing.Point(0, 0)
     Me.PictureBoxCanvas.Name = "PictureBoxCanvas"
-    Me.PictureBoxCanvas.Size = New System.Drawing.Size(474, 337)
+    Me.PictureBoxCanvas.Size = New System.Drawing.Size(474, 334)
     Me.PictureBoxCanvas.TabIndex = 1
     Me.PictureBoxCanvas.TabStop = False
     Me.ToolTipDrag.SetToolTip(Me.PictureBoxCanvas, "feels like it should")
@@ -293,9 +296,9 @@ Partial Class UserControlTactica
     'LabelSelectedPlayer
     '
     Me.LabelSelectedPlayer.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelSelectedPlayer.Location = New System.Drawing.Point(288, 393)
+    Me.LabelSelectedPlayer.Location = New System.Drawing.Point(288, 390)
     Me.LabelSelectedPlayer.Name = "LabelSelectedPlayer"
-    Me.LabelSelectedPlayer.Size = New System.Drawing.Size(474, 30)
+    Me.LabelSelectedPlayer.Size = New System.Drawing.Size(234, 33)
     Me.LabelSelectedPlayer.TabIndex = 2
     Me.LabelSelectedPlayer.Text = "Selected player..."
     Me.LabelSelectedPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -303,6 +306,7 @@ Partial Class UserControlTactica
     'TableLayoutPanel1
     '
     Me.TableLayoutPanel1.ColumnCount = 9
+    Me.TableLayoutPanelTot.SetColumnSpan(Me.TableLayoutPanel1, 2)
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
@@ -321,7 +325,7 @@ Partial Class UserControlTactica
     Me.TableLayoutPanel1.Controls.Add(Me.Label7, 7, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.ButtonRandom, 0, 0)
     Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(288, 346)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(288, 343)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -429,6 +433,18 @@ Partial Class UserControlTactica
     Me.ButtonRandom.Text = "Random"
     Me.ButtonRandom.UseVisualStyleBackColor = True
     '
+    'MetroComboBoxFormation
+    '
+    Me.MetroComboBoxFormation.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroComboBoxFormation.FormattingEnabled = True
+    Me.MetroComboBoxFormation.ItemHeight = 23
+    Me.MetroComboBoxFormation.Location = New System.Drawing.Point(528, 393)
+    Me.MetroComboBoxFormation.Name = "MetroComboBoxFormation"
+    Me.MetroComboBoxFormation.Size = New System.Drawing.Size(234, 29)
+    Me.MetroComboBoxFormation.TabIndex = 50
+    Me.MetroComboBoxFormation.UseSelectable = True
+    Me.MetroComboBoxFormation.Visible = False
+    '
     'UserControlTactica
     '
     Me.AllowDrop = True
@@ -473,4 +489,5 @@ Partial Class UserControlTactica
   Friend WithEvents ColumnPlayerFormationX As DataGridViewTextBoxColumn
   Friend WithEvents ColumnPlayerFormationY As DataGridViewTextBoxColumn
   Friend WithEvents ButtonRandom As Button
+  Friend WithEvents MetroComboBoxFormation As MetroFramework.Controls.MetroComboBox
 End Class

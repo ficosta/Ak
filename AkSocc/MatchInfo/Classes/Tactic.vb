@@ -29,6 +29,7 @@ End Class
     Try
       Dim scale As Double = 200
       Me.LlistaPosicions.Clear()
+      Me.Descripcio = "4-4-2"
       Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 1, .X = scale * 0.0, .Y = scale * -0.4})
       Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 2, .X = scale * -0.4, .Y = scale * -0.25})
       Me.LlistaPosicions.Add(New PosicioTactic() With {.IDTactic = Me.IDTactic, .Posicio = 3, .X = scale * -0.1, .Y = scale * -0.25})
@@ -59,12 +60,19 @@ End Class
     Return CPosicioTactic
   End Function
 
+  Public Overrides Function ToString() As String
+    Return Me.Descripcio
+  End Function
 
 End Class
 
 <Serializable()> Public Class Tactiques
   Public IDEsport As Integer
   Public LlistaTactiques As New List(Of Tactic)
+
+  Public Sub New()
+
+  End Sub
 
 End Class
 

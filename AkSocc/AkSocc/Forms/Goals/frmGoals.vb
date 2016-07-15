@@ -48,9 +48,9 @@ Public Class frmGoals
             .Rows(item).Cells(ColumnAwayType.Index).Value = ""
           Else
             If goal.GoalType = MatchGoal.eGoalType.Own Then
-              team = _match.AwayTeam
-            Else
               team = _match.HomeTeam
+            Else
+              team = _match.AwayTeam
             End If
             Dim player As Player = IIf(goal.PlayerID <> 0, team.GetPlayerById(goal.PlayerID), Nothing)
             .Rows(item).Cells(ColumnAwayGoal.Index).Value = "goal"
@@ -91,6 +91,7 @@ Public Class frmGoals
         Dim frm As New frmGoal(Me.Match, goal)
         If frm.ShowDialog(Me) = DialogResult.OK Then
           'do something
+          _match.Update()
           Me.ShowGoals()
         End If
       End If

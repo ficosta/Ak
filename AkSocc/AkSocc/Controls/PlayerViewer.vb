@@ -193,7 +193,7 @@ Public Class PlayerViewer
 #Region "Interface functions"
   Private _updating As Boolean = False
 
-  Private Sub UpdateStatInterface()
+  Public Sub UpdateStatInterface()
     If _updating Then Exit Sub
     _updating = True
     UpdateCardControls()

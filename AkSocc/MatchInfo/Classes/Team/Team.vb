@@ -206,7 +206,7 @@ Imports MatchInfo
 
   End Sub
 
-  Private Function GetAllPlayers() As Boolean
+  Public Function GetAllPlayers() As Boolean
     Try
 
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
@@ -246,7 +246,7 @@ Imports MatchInfo
     End Try
   End Sub
 
-  Private Function GetPlayersForMatch() As Boolean
+  Public Function GetPlayersForMatch() As Boolean
     Dim res = True
     Try
       _updating = True

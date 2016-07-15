@@ -25,7 +25,7 @@ Public Class FormMatchSelector
 
   Private Sub DialogMatchSetup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     Try
-      InitCompetitions(My.Settings.LastCompetitionId)
+      InitCompetitions(AppSettings.Instance.LastCompetitionId)
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -73,7 +73,7 @@ Public Class FormMatchSelector
           Dim myMatch As Match = _matches(iMatch)
           Dim sResult As String = IIf(myMatch.away_goals >= 0 And myMatch.home_goals >= 0, myMatch.home_goals & "-" & myMatch.away_goals, "")
           .Rows.Add(myMatch.match_id, myMatch.match_date.ToShortDateString, myMatch.Description, sResult)
-          'If myMatch.match_id = My.Settings.LastMatchId Then
+          'If myMatch.match_id = AppSettings.Instance.LastMatchId Then
           .Rows(.Rows.Count - 1).Cells(ColumnAwayTeam.Index).Value = myMatch.AwayTeam.TeamAELCaption1Name
           .Rows(.Rows.Count - 1).Cells(ColumnHomeTeam.Index).Value = myMatch.HomeTeam.TeamAELCaption1Name
           .Rows(.Rows.Count - 1).Cells(ColumnResult.Index).Value = sResult

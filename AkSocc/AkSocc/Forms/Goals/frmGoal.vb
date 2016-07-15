@@ -58,7 +58,6 @@ Public Class frmGoal
     End Try
   End Sub
 
-
   Private Sub UpdateComboPlayers()
     Try
 
@@ -77,11 +76,9 @@ Public Class frmGoal
     Me.MatchGoal = matchGoal
   End Sub
 
-
   Private Sub frmGoal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
   End Sub
-
 
   Private Sub MetroRadioButtonNormal_Click(sender As Object, e As EventArgs) Handles MetroRadioButtonNormal.Click
     If _updating Then Exit Sub
@@ -107,6 +104,7 @@ Public Class frmGoal
       _matchGoal.PlayerID = CType(Me.MetroComboBoxPlayer.SelectedItem, Player).PlayerID
       _matchGoal.GoalType = _goalType
       _matchGoal.TimeSecond = Me.NumericUpDownMinutes.Value * 60 + Me.NumericUpDownSeconds.Value
+      _Match.UpdateGoal(_matchGoal)
       Return True
     Catch ex As Exception
       Return False

@@ -11,7 +11,7 @@ Public Class ClockOtherScores
     MyBase.New(match)
 
     _otherMatchDays = New OtherMatchDays
-    DesserializeObjectFromFile(My.Settings.OtherMatchesPath, _otherMatchDays)
+    DesserializeObjectFromFile(AppSettings.Instance.OtherMatchesPath, _otherMatchDays)
   End Sub
 
   Class Step0

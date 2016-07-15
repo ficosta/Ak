@@ -31,7 +31,7 @@ Namespace My
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
     Private Shared Sub AutoSaveSettings(ByVal sender As Global.System.Object, ByVal e As Global.System.EventArgs)
         If My.Application.SaveMySettingsOnExit Then
-            My.Settings.Save()
+            AppSettings.Instance.Save()
         End If
     End Sub
 #End If
@@ -77,20 +77,20 @@ Namespace My
                 Me("VizrtHost") = value
             End Set
         End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("6400")>  _
-        Public Property VizrtPort() As Double
-            Get
-                Return CType(Me("VizrtPort"),Double)
-            End Get
-            Set
-                Me("VizrtPort") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+
+    <Global.System.Configuration.UserScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("6100")>
+    Public Property VizrtPort() As Double
+      Get
+        Return CType(Me("VizrtPort"), Double)
+      End Get
+      Set
+        Me("VizrtPort") = Value
+      End Set
+    End Property
+
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("localhost")>  _
         Public Property LoggerHost() As String

@@ -25,15 +25,9 @@ Partial Class FormSubstitutions
     Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanelData = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroButtonAddAwayTeamSubstitition = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonRemoveSubstitution = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonAddHomeTeamSubstitition = New MetroFramework.Controls.MetroButton()
-    Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroTileGraphics = New MetroFramework.Controls.MetroTile()
-    Me.MetroButtonShowSelectedSubstitution = New MetroFramework.Controls.MetroButton()
-    Me.MetroTileData = New MetroFramework.Controls.MetroTile()
     Me.MetroGridSubstitutions = New MetroFramework.Controls.MetroGrid()
     Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -42,9 +36,16 @@ Partial Class FormSubstitutions
     Me.ColumnPlayerInID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnPlayerOutID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.MetroButtonAddAwayTeamSubstitition = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonRemoveSubstitution = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonAddHomeTeamSubstitition = New MetroFramework.Controls.MetroButton()
+    Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+    Me.MetroTileGraphics = New MetroFramework.Controls.MetroTile()
+    Me.MetroButtonShowSelectedSubstitution = New MetroFramework.Controls.MetroButton()
+    Me.MetroTileData = New MetroFramework.Controls.MetroTile()
     Me.TableLayoutPanelData.SuspendLayout()
-    Me.TableLayoutPanel2.SuspendLayout()
     CType(Me.MetroGridSubstitutions, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.TableLayoutPanel2.SuspendLayout()
     Me.SuspendLayout()
     '
     'TableLayoutPanelData
@@ -65,6 +66,116 @@ Partial Class FormSubstitutions
     Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanelData.Size = New System.Drawing.Size(792, 231)
     Me.TableLayoutPanelData.TabIndex = 1
+    '
+    'MetroGridSubstitutions
+    '
+    Me.MetroGridSubstitutions.AllowUserToAddRows = False
+    Me.MetroGridSubstitutions.AllowUserToDeleteRows = False
+    Me.MetroGridSubstitutions.AllowUserToResizeColumns = False
+    Me.MetroGridSubstitutions.AllowUserToResizeRows = False
+    Me.MetroGridSubstitutions.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroGridSubstitutions.BorderStyle = System.Windows.Forms.BorderStyle.None
+    Me.MetroGridSubstitutions.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+    Me.MetroGridSubstitutions.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+    DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
+    DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
+    DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.MetroGridSubstitutions.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+    Me.MetroGridSubstitutions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+    Me.MetroGridSubstitutions.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnID, Me.ColumnTime, Me.ColumnInPlayer, Me.ColumnOutPlayer, Me.ColumnPlayerInID, Me.ColumnPlayerOutID, Me.ColumnTeam})
+    Me.TableLayoutPanelData.SetColumnSpan(Me.MetroGridSubstitutions, 2)
+    DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
+    DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
+    DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+    Me.MetroGridSubstitutions.DefaultCellStyle = DataGridViewCellStyle3
+    Me.MetroGridSubstitutions.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroGridSubstitutions.EnableHeadersVisualStyles = False
+    Me.MetroGridSubstitutions.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    Me.MetroGridSubstitutions.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroGridSubstitutions.Location = New System.Drawing.Point(3, 73)
+    Me.MetroGridSubstitutions.MultiSelect = False
+    Me.MetroGridSubstitutions.Name = "MetroGridSubstitutions"
+    Me.MetroGridSubstitutions.ReadOnly = True
+    Me.MetroGridSubstitutions.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+    DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
+    DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
+    DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.MetroGridSubstitutions.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+    Me.MetroGridSubstitutions.RowHeadersVisible = False
+    Me.MetroGridSubstitutions.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+    DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.MetroGridSubstitutions.RowsDefaultCellStyle = DataGridViewCellStyle5
+    Me.MetroGridSubstitutions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+    Me.MetroGridSubstitutions.Size = New System.Drawing.Size(786, 155)
+    Me.MetroGridSubstitutions.Style = MetroFramework.MetroColorStyle.Orange
+    Me.MetroGridSubstitutions.TabIndex = 4
+    '
+    'ColumnID
+    '
+    Me.ColumnID.HeaderText = "ColumnID"
+    Me.ColumnID.Name = "ColumnID"
+    Me.ColumnID.ReadOnly = True
+    Me.ColumnID.Visible = False
+    '
+    'ColumnTime
+    '
+    Me.ColumnTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnTime.HeaderText = "Time"
+    Me.ColumnTime.Name = "ColumnTime"
+    Me.ColumnTime.ReadOnly = True
+    Me.ColumnTime.Width = 53
+    '
+    'ColumnInPlayer
+    '
+    Me.ColumnInPlayer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnInPlayer.HeaderText = "IN"
+    Me.ColumnInPlayer.Name = "ColumnInPlayer"
+    Me.ColumnInPlayer.ReadOnly = True
+    Me.ColumnInPlayer.Width = 41
+    '
+    'ColumnOutPlayer
+    '
+    Me.ColumnOutPlayer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnOutPlayer.HeaderText = "OUT"
+    Me.ColumnOutPlayer.Name = "ColumnOutPlayer"
+    Me.ColumnOutPlayer.ReadOnly = True
+    '
+    'ColumnPlayerInID
+    '
+    Me.ColumnPlayerInID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnPlayerInID.HeaderText = "In ID"
+    Me.ColumnPlayerInID.Name = "ColumnPlayerInID"
+    Me.ColumnPlayerInID.ReadOnly = True
+    Me.ColumnPlayerInID.Visible = False
+    '
+    'ColumnPlayerOutID
+    '
+    Me.ColumnPlayerOutID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+    Me.ColumnPlayerOutID.DefaultCellStyle = DataGridViewCellStyle2
+    Me.ColumnPlayerOutID.HeaderText = "Out ID"
+    Me.ColumnPlayerOutID.Name = "ColumnPlayerOutID"
+    Me.ColumnPlayerOutID.ReadOnly = True
+    Me.ColumnPlayerOutID.Visible = False
+    '
+    'ColumnTeam
+    '
+    Me.ColumnTeam.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnTeam.HeaderText = "Team"
+    Me.ColumnTeam.Name = "ColumnTeam"
+    Me.ColumnTeam.ReadOnly = True
     '
     'MetroButtonAddAwayTeamSubstitition
     '
@@ -154,111 +265,6 @@ Partial Class FormSubstitutions
     Me.MetroTileData.Text = "Data"
     Me.MetroTileData.UseSelectable = True
     '
-    'MetroGridSubstitutions
-    '
-    Me.MetroGridSubstitutions.AllowUserToAddRows = False
-    Me.MetroGridSubstitutions.AllowUserToDeleteRows = False
-    Me.MetroGridSubstitutions.AllowUserToResizeColumns = False
-    Me.MetroGridSubstitutions.AllowUserToResizeRows = False
-    Me.MetroGridSubstitutions.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridSubstitutions.BorderStyle = System.Windows.Forms.BorderStyle.None
-    Me.MetroGridSubstitutions.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-    Me.MetroGridSubstitutions.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-    DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
-    DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
-    DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridSubstitutions.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-    Me.MetroGridSubstitutions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-    Me.MetroGridSubstitutions.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnID, Me.ColumnTime, Me.ColumnInPlayer, Me.ColumnOutPlayer, Me.ColumnPlayerInID, Me.ColumnPlayerOutID, Me.ColumnTeam})
-    Me.TableLayoutPanelData.SetColumnSpan(Me.MetroGridSubstitutions, 2)
-    DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
-    DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
-    DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-    Me.MetroGridSubstitutions.DefaultCellStyle = DataGridViewCellStyle3
-    Me.MetroGridSubstitutions.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroGridSubstitutions.EnableHeadersVisualStyles = False
-    Me.MetroGridSubstitutions.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    Me.MetroGridSubstitutions.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridSubstitutions.Location = New System.Drawing.Point(3, 73)
-    Me.MetroGridSubstitutions.Name = "MetroGridSubstitutions"
-    Me.MetroGridSubstitutions.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-    DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
-    DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
-    DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridSubstitutions.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
-    Me.MetroGridSubstitutions.RowHeadersVisible = False
-    Me.MetroGridSubstitutions.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-    Me.MetroGridSubstitutions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridSubstitutions.Size = New System.Drawing.Size(786, 155)
-    Me.MetroGridSubstitutions.Style = MetroFramework.MetroColorStyle.Orange
-    Me.MetroGridSubstitutions.TabIndex = 4
-    '
-    'ColumnID
-    '
-    Me.ColumnID.HeaderText = "ColumnID"
-    Me.ColumnID.Name = "ColumnID"
-    Me.ColumnID.ReadOnly = True
-    Me.ColumnID.Visible = False
-    '
-    'ColumnTime
-    '
-    Me.ColumnTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnTime.HeaderText = "Time"
-    Me.ColumnTime.Name = "ColumnTime"
-    Me.ColumnTime.ReadOnly = True
-    Me.ColumnTime.Width = 53
-    '
-    'ColumnInPlayer
-    '
-    Me.ColumnInPlayer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnInPlayer.HeaderText = "IN"
-    Me.ColumnInPlayer.Name = "ColumnInPlayer"
-    Me.ColumnInPlayer.ReadOnly = True
-    Me.ColumnInPlayer.Width = 41
-    '
-    'ColumnOutPlayer
-    '
-    Me.ColumnOutPlayer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnOutPlayer.HeaderText = "OUT"
-    Me.ColumnOutPlayer.Name = "ColumnOutPlayer"
-    Me.ColumnOutPlayer.ReadOnly = True
-    '
-    'ColumnPlayerInID
-    '
-    Me.ColumnPlayerInID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnPlayerInID.HeaderText = "In ID"
-    Me.ColumnPlayerInID.Name = "ColumnPlayerInID"
-    Me.ColumnPlayerInID.ReadOnly = True
-    Me.ColumnPlayerInID.Visible = False
-    '
-    'ColumnPlayerOutID
-    '
-    Me.ColumnPlayerOutID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-    Me.ColumnPlayerOutID.DefaultCellStyle = DataGridViewCellStyle2
-    Me.ColumnPlayerOutID.HeaderText = "Out ID"
-    Me.ColumnPlayerOutID.Name = "ColumnPlayerOutID"
-    Me.ColumnPlayerOutID.ReadOnly = True
-    Me.ColumnPlayerOutID.Visible = False
-    '
-    'ColumnTeam
-    '
-    Me.ColumnTeam.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnTeam.HeaderText = "Team"
-    Me.ColumnTeam.Name = "ColumnTeam"
-    '
     'FormSubstitutions
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -268,8 +274,8 @@ Partial Class FormSubstitutions
     Me.Name = "FormSubstitutions"
     Me.Text = "Substitutions"
     Me.TableLayoutPanelData.ResumeLayout(False)
-    Me.TableLayoutPanel2.ResumeLayout(False)
     CType(Me.MetroGridSubstitutions, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.TableLayoutPanel2.ResumeLayout(False)
     Me.ResumeLayout(False)
 
   End Sub

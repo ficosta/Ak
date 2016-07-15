@@ -86,6 +86,10 @@ Public Class GraphicsTeamCaptions
           Scene = PrepareTeamFormation(changeStep, Me.Match.HomeTeam)
         Case Step0.Away11Formation
           Scene = PrepareTeamFormation(changeStep, Me.Match.AwayTeam)
+        Case Step0.DoubleTeams
+          Scene = PrepareDoubleTeam(changeStep)
+        Case Step0.DoubleSubs
+          Scene = PrepareDoubleTeam(changeStep)
         Case Else
           Scene = PrepareTeam(changeStep, Me.Match.HomeTeam)
       End Select
@@ -96,7 +100,7 @@ Public Class GraphicsTeamCaptions
     Return Me.Scene
   End Function
 
-#Region "Crawl scenes"
+#Region "Team scenes"
   Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
     Dim scene As New Scene()
 
@@ -116,6 +120,8 @@ Public Class GraphicsTeamCaptions
 
     scene.SceneParameters.Add("Veil_On_Off_Vis", "1")
     scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
+
+
 
     Dim prefix As String = "Side_" & gStep
     scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
@@ -137,6 +143,8 @@ Public Class GraphicsTeamCaptions
       scene.SceneParameters.Add("Side_" & gSide & "_TeamList_Vis.active", "1")
       scene.SceneParameters.Add("TeamList_Side_" & gSide & "_Substitutes_Title", Arabic("Substitutes"))
 
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Left", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & "\" & team.BadgeName, paramType.Image)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Right", "", paramType.Image)
 
       For i As Integer = 1 To 11
         Dim player As Player = team.MatchPlayers.GetPlayerByPosition(i)
@@ -148,7 +156,7 @@ Public Class GraphicsTeamCaptions
           scene.SceneParameters.Add(prefix & "Name", "")
           scene.SceneParameters.Add(prefix & "Number", "")
         End If
-        scene.SceneParameters.Add(prefix & "Card_Vis", "0")
+        scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
       Next
 
       For i As Integer = 12 To 18
@@ -161,7 +169,7 @@ Public Class GraphicsTeamCaptions
           scene.SceneParameters.Add(prefix & "Name", "")
           scene.SceneParameters.Add(prefix & "Number", "")
         End If
-        scene.SceneParameters.Add(prefix & "Card_Vis", "0")
+        scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
       Next
 
     Catch ex As Exception
@@ -189,7 +197,13 @@ Public Class GraphicsTeamCaptions
           scene.SceneParameters.Add(prefix & "Name", "")
           scene.SceneParameters.Add(prefix & "Number", "")
         End If
-        scene.SceneParameters.Add(prefix & "Card_Vis", "0")
+        scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
+        Dim pos As PosicioTactic = team.Tactic.GetPosicioByID(i)
+        If Not pos Is Nothing Then
+          scene.SceneParameters.Add(prefix & "Position.X", pos.X)
+          scene.SceneParameters.Add(prefix & "Position.Y", pos.Y)
+        End If
+
       Next
 
     Catch ex As Exception
@@ -197,6 +211,77 @@ Public Class GraphicsTeamCaptions
     End Try
     Return scene
   End Function
+
+  Public Function PrepareTeamMiniFormation(gSide As Integer, team As Team) As Scene
+    Dim scene As Scene = InitDefaultScene()
+    Dim prefix As String = ""
+    Dim subjectPrefix As String = ""
+    Try
+      scene.SceneParameters.Add("Side_" & gSide & "_Formation_Vis.active", "1")
+      scene.SceneParameters.Add("Formation_Side_" & gSide & "_Substitutes_Title", Arabic("Substitutes"))
+
+
+      For i As Integer = 1 To 11
+        Dim player As Player = team.MatchPlayers.GetPlayerByPosition(i)
+        prefix = "Formation_Side_" & gSide & "_Subject_" & Strings.Format(i, "00") & "_"
+        If Not player Is Nothing Then
+          scene.SceneParameters.Add(prefix & "Name", player.Name)
+          scene.SceneParameters.Add(prefix & "Number", player.SquadNo)
+        Else
+          scene.SceneParameters.Add(prefix & "Name", "")
+          scene.SceneParameters.Add(prefix & "Number", "")
+        End If
+        scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
+        Dim pos As PosicioTactic = team.Tactic.GetPosicioByID(i)
+        If Not pos Is Nothing Then
+          scene.SceneParameters.Add(prefix & "Position.X", pos.X)
+          scene.SceneParameters.Add(prefix & "Position.Y", pos.Y)
+        End If
+
+      Next
+
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+    Return scene
+  End Function
+
+  Public Function PrepareDoubleTeam(gSide As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene()
+    Dim prefix As String = ""
+    Dim subjectPrefix As String = ""
+    Try
+      scene.SceneParameters.Add("Side_" & gSide & "_Double_teams_Vis.active", "1")
+      scene.SceneParameters.Add("Double_teams_Side_" & gSide & "_Substitutes_Title", Arabic("Substitutes"))
+
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Left", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & "\" & Match.AwayTeam.BadgeName, paramType.Image)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Right", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & "\" & Match.HomeTeam.BadgeName, paramType.Image)
+
+      Dim teams() As Team = {Me.Match.HomeTeam, Me.Match.AwayTeam}
+      Dim sideName() As String = {"Right", "Left"}
+
+      For iTeam As Integer = 0 To teams.Count - 1
+        Dim team As Team = teams(iTeam)
+        For nSubject As Integer = 1 To 11
+          Dim player As Player = team.MatchPlayers.GetPlayerByPosition(nSubject)
+          prefix = "Double_teams_" & sideName(iTeam) & "_Side_" & gSide & "_Subject_" & Strings.Format(nSubject, "00") & "_"
+          If Not player Is Nothing Then
+            scene.SceneParameters.Add(prefix & "Name", player.Name)
+            scene.SceneParameters.Add(prefix & "Number", player.SquadNo)
+          Else
+            scene.SceneParameters.Add(prefix & "Name", "")
+            scene.SceneParameters.Add(prefix & "Number", "")
+          End If
+          scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
+        Next
+      Next
+
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+    Return scene
+  End Function
+
 
 #End Region
 End Class

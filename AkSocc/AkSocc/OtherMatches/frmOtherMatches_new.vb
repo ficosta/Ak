@@ -262,7 +262,7 @@ Public Class frmMatchDay_new
 
   Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
     Try
-      SerializeObjectToFile(My.Settings.OtherMatchesPath, _otherMatchDays)
+      SerializeObjectToFile(AppSettings.Instance.OtherMatchesPath, _otherMatchDays)
       Me.DialogResult = DialogResult.OK
       Me.Close()
     Catch ex As Exception

@@ -546,6 +546,7 @@ Imports MatchInfo
     Else
       Return Me.CreateGoal(AwayTeam, player, own_goal, penalty)
     End If
+    RaiseEvent ScoreChanged()
   End Function
 
   Public Function RemoveLastGoalByPlayer(player As Player) As MatchGoal
@@ -590,6 +591,12 @@ Imports MatchInfo
   End Function
 
   Public Function UpdateGoal(goal As MatchGoal) As Boolean
+    SaveMatchGoalsToDB()
+    RaiseEvent ScoreChanged()
+    Return True
+  End Function
+
+  Public Function UpdateGoals() As Boolean
     SaveMatchGoalsToDB()
     RaiseEvent ScoreChanged()
     Return True
@@ -650,6 +657,7 @@ Imports MatchInfo
           Me.LastGoal = Nothing
         End If
       End If
+      RaiseEvent ScoreChanged()
     Catch ex As Exception
 
     End Try

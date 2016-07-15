@@ -6,7 +6,7 @@ Module MTranslator
     Try
       Dim trans As New MatchInfo.EnglishToArabicTranslation(Term.ToUpper())
       If Not trans Is Nothing Then
-        If My.Settings.UseArabicNames Then
+        If AppSettings.Instance.UseArabicNames Then
           output = trans.ArabicWord
         Else
           output = Term

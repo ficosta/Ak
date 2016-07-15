@@ -9,21 +9,21 @@ Module Main
 
   Public ReadOnly Property LocalConnectionString As String
     Get
-      Dim path As String = System.IO.Path.Combine(My.Settings.DataBasePath)
+      Dim path As String = System.IO.Path.Combine(AppSettings.Instance.DataBasePath)
       Return "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & path
     End Get
   End Property
 
   Public ReadOnly Property LocalODBCConnectionString As String
     Get
-      Dim path As String = System.IO.Path.Combine(My.Settings.DataBasePath)
+      Dim path As String = System.IO.Path.Combine(AppSettings.Instance.DataBasePath)
       Return "Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq='" & path & "';"
     End Get
   End Property
 
   Public ReadOnly Property OptaConnectionString As String
     Get
-      Dim path As String = System.IO.Path.Combine(My.Settings.DataBasePath)
+      Dim path As String = System.IO.Path.Combine(AppSettings.Instance.DataBasePath)
       Return "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & path
     End Get
   End Property
@@ -33,6 +33,7 @@ Module Main
     Try
       Application.EnableVisualStyles()
       ReadCommandLine()
+      AppSettings.Instance.LlegirConfiguracio(0)
 
     Catch ex As Exception
       MsgBox(ex.ToString)
@@ -117,12 +118,12 @@ Module Main
         dlg.StyleManager = aux.StyleManager
       End If
       If dlg.ShowDialog(frm) = DialogResult.OK Then
-
+        AppSettings.Instance.Save()
       End If
       MatchInfo.Config.Instance.LocalConnectionString = LocalConnectionString
       MatchInfo.Config.Instance.LocalODBCConnectionString = LocalODBCConnectionString
       MatchInfo.Config.Instance.OptaConnectionString = OptaConnectionString
-      MatchInfo.Config.Instance.UseArabicNames = My.Settings.UseArabicNames
+      MatchInfo.Config.Instance.UseArabicNames = AppSettings.Instance.UseArabicNames
 
       If MatchInfo.DataBase.CreateTables() = False Then
         'why?

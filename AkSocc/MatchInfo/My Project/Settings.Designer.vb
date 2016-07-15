@@ -31,7 +31,7 @@ Namespace My
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
         Private Shared Sub AutoSaveSettings(ByVal sender As Global.System.Object, ByVal e As Global.System.EventArgs)
             If My.Application.SaveMySettingsOnExit Then
-                My.Settings.Save()
+                AppSettings.Instance.Save()
             End If
         End Sub
 #End If

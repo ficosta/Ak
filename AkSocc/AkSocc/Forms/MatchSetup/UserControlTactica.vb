@@ -15,6 +15,8 @@ Public Class UserControlTactica
     End Set
   End Property
 
+  Private _tactiques As New Tactiques
+
   Private _team As Team = Nothing
   Public Property Team() As Team
     Get
@@ -25,22 +27,30 @@ Public Class UserControlTactica
       If _tactica Is Nothing And Not _team Is Nothing Then _tactica = _team.Tactic
 
       If Not _team Is Nothing Then
-        _tactica = New Tactic()
-        For Each player As Player In _team.MatchPlayers
-          Dim pos As PosicioTactic = _tactica.GetPosicioByID(player.Formation_Pos)
-          If Not pos Is Nothing Then
-            pos.X = Clamp(player.Formation_X, -_scale, _scale)
-            pos.Y = Clamp(player.Formation_Y, -_scale, _scale)
-          End If
-        Next
-        InicialitzarVisualitzacioPlayersTeam()
-        InicialitzarVisualitzacioAllPlayersTeam()
-        ShowTactics()
+        UpdateSelectedTactic(New Tactic)
       End If
 
+      UpdateComboBox()
 
     End Set
   End Property
+
+  Private Sub UpdateSelectedTactic(tactic As Tactic)
+    Try
+      For Each player As Player In _team.MatchPlayers
+        Dim pos As PosicioTactic = _tactica.GetPosicioByID(player.Formation_Pos)
+        If Not pos Is Nothing Then
+          pos.X = Clamp(player.Formation_X, -_scale, _scale)
+          pos.Y = Clamp(player.Formation_Y, -_scale, _scale)
+        End If
+      Next
+      InicialitzarVisualitzacioPlayersTeam()
+      InicialitzarVisualitzacioAllPlayersTeam()
+      ShowTactics()
+    Catch ex As Exception
+
+    End Try
+  End Sub
 
 
   Public _isLocalTeam As Boolean = True
@@ -853,5 +863,33 @@ Public Class UserControlTactica
     End Try
     Me.Cursor = Cursors.Default
   End Sub
+
+#Region "Combo tactics"
+  Private _updating As Boolean = False
+  Private Sub UpdateComboBox()
+    Try
+      _updating = True
+      _tactiques = New Tactiques()
+      With Me.MetroComboBoxFormation
+        .Items.Clear()
+
+        .Items.Add(_team.Tactic)
+        For Each tactic As Tactic In _tactiques.LlistaTactiques
+          .Items.Add(tactic)
+        Next
+      End With
+    Catch ex As Exception
+
+    End Try
+    _updating = False
+  End Sub
+
+  Private Sub MetroComboBoxFormation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MetroComboBoxFormation.SelectedIndexChanged
+    If _updating Then Exit Sub
+
+    Dim _tactic As Tactic = MetroComboBoxFormation.SelectedItem
+    UpdateSelectedTactic(_tactic)
+  End Sub
+#End Region
 
 End Class

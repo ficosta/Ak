@@ -25,23 +25,23 @@ Public Class DialogOptions
 #Region "Settings"
   Private Sub InitializeSettings()
     Try
-      Me.MetroTextBoxDataBase.Text = My.Settings.DataBasePath
-      Me.MetroTextBoxOtherMatchesFilePath.Text = My.Settings.OtherMatchesPath
-      Me.CheckBoxShowOptionsOnStartup.Checked = My.Settings.ShowSettingsOnStartup
-      Me.MetroCheckBoxUseArabicNames.Checked = My.Settings.UseArabicNames
-      Me.TextBoxVizrtHost.Text = My.Settings.VizrtHost
-      Me.NumericUpDownPort.Value = My.Settings.VizrtPort
-      Me.NumericUpDownPreviewPort.Value = My.Settings.VizrtPreviewPort
+      Me.MetroTextBoxDataBase.Text = AppSettings.Instance.DataBasePath
+      Me.MetroTextBoxOtherMatchesFilePath.Text = AppSettings.Instance.OtherMatchesPath
+      Me.CheckBoxShowOptionsOnStartup.Checked = AppSettings.Instance.ShowSettingsOnStartup
+      Me.MetroCheckBoxUseArabicNames.Checked = AppSettings.Instance.UseArabicNames
+      Me.TextBoxVizrtHost.Text = AppSettings.Instance.VizrtHost
+      Me.NumericUpDownPort.Value = AppSettings.Instance.VizrtPort
+      Me.NumericUpDownPreviewPort.Value = AppSettings.Instance.VizrtPreviewPort
 
-      Me.MetroTextBoxLocalPreviewPath.Text = My.Settings.PreviewLocalPath
-      Me.MetroTextBoxRemotePreviewPath.Text = My.Settings.PreviewRemotePath
+      Me.MetroTextBoxLocalPreviewPath.Text = AppSettings.Instance.PreviewLocalPath
+      Me.MetroTextBoxRemotePreviewPath.Text = AppSettings.Instance.PreviewRemotePath
 
       Dim index As Integer = -1
       Me.ComboBoxSceneVersion.Items.Clear()
 
       For Each version As GraphicVersion In _graphicVersions
         Me.ComboBoxSceneVersion.Items.Add(version)
-        If version.Path = My.Settings.ScenePath Then
+        If version.Path = AppSettings.Instance.ScenePath Then
           index = Me.ComboBoxSceneVersion.Items.Count - 1
         End If
       Next
@@ -64,22 +64,22 @@ Public Class DialogOptions
         End If
       End If
 
-        My.Settings.DataBasePath = Me.MetroTextBoxDataBase.Text
-      My.Settings.OtherMatchesPath = Me.MetroTextBoxOtherMatchesFilePath.Text
-      My.Settings.ShowSettingsOnStartup = Me.CheckBoxShowOptionsOnStartup.Checked
-      My.Settings.UseArabicNames = Me.MetroCheckBoxUseArabicNames.Checked
-      My.Settings.VizrtHost = Me.TextBoxVizrtHost.Text
-      My.Settings.VizrtPort = Me.NumericUpDownPort.Value
-      My.Settings.VizrtPreviewPort = Me.NumericUpDownPreviewPort.Value
-      My.Settings.PreviewLocalPath = Me.MetroTextBoxLocalPreviewPath.Text
-      My.Settings.PreviewRemotePath = Me.MetroTextBoxRemotePreviewPath.Text
+        AppSettings.Instance.DataBasePath = Me.MetroTextBoxDataBase.Text
+      AppSettings.Instance.OtherMatchesPath = Me.MetroTextBoxOtherMatchesFilePath.Text
+      AppSettings.Instance.ShowSettingsOnStartup = Me.CheckBoxShowOptionsOnStartup.Checked
+      AppSettings.Instance.UseArabicNames = Me.MetroCheckBoxUseArabicNames.Checked
+      AppSettings.Instance.VizrtHost = Me.TextBoxVizrtHost.Text
+      AppSettings.Instance.VizrtPort = Me.NumericUpDownPort.Value
+      AppSettings.Instance.VizrtPreviewPort = Me.NumericUpDownPreviewPort.Value
+      AppSettings.Instance.PreviewLocalPath = Me.MetroTextBoxLocalPreviewPath.Text
+      AppSettings.Instance.PreviewRemotePath = Me.MetroTextBoxRemotePreviewPath.Text
 
       Dim version As GraphicVersion = CType(Me.ComboBoxSceneVersion.SelectedItem, GraphicVersion)
       GraphicVersions.Instance.SelectedGraphicVersion = version
       If Not version Is Nothing Then
-        My.Settings.ScenePath = version.Path
+        AppSettings.Instance.ScenePath = version.Path
       End If
-      My.Settings.Save()
+      AppSettings.Instance.Save()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
