@@ -8,6 +8,12 @@ Public Class GraphicsPlayerName
 
   Inherits GraphicGroup
 
+  Public Sub New(_match As Match)
+    MyBase.New(_match)
+
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F6, False, False, False, False)
+  End Sub
+
   Public Sub New(_match As MatchInfo.Match, player As Player)
     MyBase.New(_match)
 
@@ -26,8 +32,11 @@ Public Class GraphicsPlayerName
     End If
   End Sub
 
-  Public Property Player As Player
-  Public Property Team As Team
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
@@ -162,7 +171,7 @@ Public Class GraphicsPlayerName
   Private Function PrepareNameAndTeam(gSide As Integer) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Try
-      Dim team As Team = IIf(_Player.TeamID = Me.Match.home_team_id, Me.Match.HomeTeam, Me.Match.AwayTeam)
+      Dim team As Team = IIf(Player.TeamID = Me.Match.home_team_id, Me.Match.HomeTeam, Me.Match.AwayTeam)
 
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose", "0")
       If team Is Nothing Then

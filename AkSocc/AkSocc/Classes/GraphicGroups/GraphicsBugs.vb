@@ -3,15 +3,15 @@ Imports MatchInfo
 Imports VizCommands
 
 
-Public Class GraphicsInterviews
+Public Class GraphicsBugs
   Inherits GraphicGroup
 
   Public Sub New(_match As MatchInfo.Match)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicsF2Interviews"
+    MyBase.Name = "GraphicsBugs"
     MyBase.ID = 1
-    MyBase.KeyCombination = New KeyCombination(Description, Keys.F2, True, False, False, False)
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F8, False, True, False, False)
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String
@@ -20,11 +20,7 @@ Public Class GraphicsInterviews
     End Get
   End Property
 
-  Private _teams As Teams = Nothing
-  Private _players As Players = Nothing
-  Private _selectedTeam As Team = Nothing
-  Private _selectedPlayer As Player = Nothing
-
+  Public Property _bugs As BugDotTexts
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
@@ -36,6 +32,7 @@ Public Class GraphicsInterviews
     Public Sub New(key As String, name As String)
       MyBase.Key = key
       MyBase.Name = name
+
     End Sub
   End Class
 
@@ -49,22 +46,13 @@ Public Class GraphicsInterviews
 
     Try
       gs.GraphicSteps.Clear()
+      _bugs = New BugDotTexts
+      _bugs.GetFromDB("WHERE Priority > 0")
 
       If graphicStep Is Nothing Then
-        _teams = New Teams()
-        _teams.GetFromDB("")
-
-        For Each team As Team In _teams
-          gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(team.TeamID, team.TeamAELCaption1Name), False, True))
-
+        For Each name As BugDotText In _bugs
+          gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(name.ID, name.EnglishDescription), True, False))
         Next
-      Else
-        _selectedTeam = _teams.GetTeam(CInt(gs.UID))
-        _selectedTeam.GetAllPlayers()
-        For Each player As Player In _selectedTeam.AllPlayers
-          gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(player.PlayerID, player.ToString), True, False))
-        Next
-
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -79,8 +67,9 @@ Public Class GraphicsInterviews
     Try
       Scene = InitDefaultScene()
 
-      _selectedPlayer = _selectedTeam.AllPlayers.GetPlayer(CInt(graphicStep.UID))
-      Scene = Me.PreparePlayer(changeStep, _selectedPlayer, _selectedTeam)
+
+      Dim bug As BugDotText = _bugs.GetName(CInt(graphicStep.UID))
+      Scene = PrepareReporters(changeStep, bug)
 
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -113,21 +102,19 @@ Public Class GraphicsInterviews
   End Function
 
 
-  Public Function PreparePlayer(gSide As Integer, player As Player, team As Team) As Scene
+  Public Function PrepareReporters(gSide As Integer, bugDotText As BugDotText) As Scene
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "Lower3rd_Side_1" & gSide & "_"
     Dim subjectPrefix As String = ""
     Try
-      scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose ", "1")
+      scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose ", "0")
       prefix = "Lower3rd_Side_" & gSide & "_"
 
-      If Not player Is Nothing Then
-        scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name ", player.ArabicName)
-        scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Number ", player.SquadNo)
-        scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName, paramType.Image)
-        scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", VizEncoding(team.Name))
-        scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", team.Name)
-        scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", team.Name)
+      If Not bugDotText Is Nothing Then
+        scene.SceneParameters.Add("Lower3rd_Single_Text_Subject_Name", VizEncoding(bugDotText.ArabicTopLineText))
+        scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", VizEncoding(bugDotText.ArabicSubLineText))
+        scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", VizEncoding(bugDotText.ArabicSubLineText))
+        scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", VizEncoding(bugDotText.ArabicSubLineText))
       End If
 
     Catch ex As Exception

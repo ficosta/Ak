@@ -7,6 +7,24 @@ Public Class GraphicsPlayerStats
 
   Inherits GraphicGroup
 
+  Public Sub New(_match As MatchInfo.Match)
+    MyBase.New(_match)
+
+    MyBase.Name = "GraphicsPlayerStats"
+    MyBase.ID = 1
+    If Not Me.Match Is Nothing And Not Me.Player Is Nothing Then
+      Select Case Me.Player.TeamID
+        Case Me.Match.HomeTeam.ID
+          Me.Team = Me.Match.HomeTeam
+        Case Me.Match.AwayTeam.ID
+          Me.Team = Me.Match.AwayTeam
+        Case Else
+          Me.Team = Nothing
+      End Select
+    End If
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F2, False, True, False, False)
+  End Sub
+
   Public Sub New(_match As MatchInfo.Match, player As Player)
     MyBase.New(_match)
 
@@ -23,10 +41,14 @@ Public Class GraphicsPlayerStats
           Me.Team = Nothing
       End Select
     End If
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F2, False, True, False, False)
   End Sub
 
-  Public Property Player As Player
-  Public Property Team As Team
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition

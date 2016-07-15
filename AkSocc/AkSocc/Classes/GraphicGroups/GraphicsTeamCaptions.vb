@@ -12,8 +12,15 @@ Public Class GraphicsTeamCaptions
 
     MyBase.Name = "GrapchisTeamCaptions"
     MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F9, False, False, False, False)
 
   End Sub
+
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
 
   Public Property _teamStaffs As TeamStaffs
 
@@ -200,9 +207,9 @@ Public Class GraphicsTeamCaptions
         scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
         Dim pos As PosicioTactic = team.Tactic.GetPosicioByID(i)
         If Not pos Is Nothing Then
-          scene.SceneParameters.Add(prefix & "Position.X", pos.X)
-          scene.SceneParameters.Add(prefix & "Position.Y", pos.Y)
+          scene.SceneParameters.Add(prefix & "Position.positio n", CInt(pos.X) & " " & CInt(pos.Y) & " 0")
         End If
+
 
       Next
 
@@ -234,8 +241,7 @@ Public Class GraphicsTeamCaptions
         scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
         Dim pos As PosicioTactic = team.Tactic.GetPosicioByID(i)
         If Not pos Is Nothing Then
-          scene.SceneParameters.Add(prefix & "Position.X", pos.X)
-          scene.SceneParameters.Add(prefix & "Position.Y", pos.Y)
+          scene.SceneParameters.Add(prefix & "Position.positio n", CInt(pos.X) & " " & CInt(pos.Y) & " 0")
         End If
 
       Next

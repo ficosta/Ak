@@ -10,14 +10,29 @@ Public Class GraphicsTeamStaff
 
   Public Property Team As Team
 
+  Public Sub New(_match As MatchInfo.Match)
+    MyBase.New(_match)
+
+    MyBase.Name = "GraphicsTeamStaff"
+    MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F7, False, False, False, False)
+  End Sub
+
+
   Public Sub New(_match As MatchInfo.Match, team As Team)
     MyBase.New(_match)
 
     MyBase.Name = "GraphicsTeamStaff"
-    Me.team = team
+    Me.Team = team
     MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F7, False, False, False, False)
   End Sub
 
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
   Public Property _teamStaffs As TeamStaffs
 
   Class Step0

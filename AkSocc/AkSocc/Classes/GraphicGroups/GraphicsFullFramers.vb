@@ -1,16 +1,31 @@
 ﻿Imports AkSocc
 Imports VizCommands
 
-Public Class GraphicGroupCtlF1FullFramers
+Public Class GraphicGroupFullFramers
   Inherits GraphicGroup
+
+  Public Sub New(_match As MatchInfo.Match)
+    MyBase.New(_match)
+
+    MyBase.Name = "GraphicGroupFullFramers"
+    MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F1, False, True, False, False)
+  End Sub
 
   Public Sub New(_match As MatchInfo.Match, otherMatchDays As OtherMatchDays)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicsCtlF1FullFramers"
+    MyBase.Name = "GraphicGroupFullFramers"
     Me.OtherMatchDays = otherMatchDays
     MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F1, False, True, False, False)
   End Sub
+
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition

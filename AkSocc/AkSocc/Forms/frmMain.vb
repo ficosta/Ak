@@ -4,14 +4,37 @@ Imports MatchInfo
 Public Class frmMain
 #Region "Properties and variables"
   Private WithEvents _match As MatchInfo.Match
+  Public ReadOnly Property Match As Match
+    Get
+      Return _match
+    End Get
+  End Property
+
   Private WithEvents _statGraphic As GraphicStep
   Private WithEvents _dlgChoosWithPreview As FormChoose
   Private WithEvents _vizControl As VizCommands.VizControl
   Private WithEvents _previewControl As VizCommands.PreviewControl
 
+  Private WithEvents _keyCapture As KeyCapture
+
   Private WithEvents _otherMatchDays As New OtherMatchDays
 
   Private WithEvents _clockControl As ClockControl = ClockControl.Instance
+
+  Private _selectedPlayer As Player = Nothing
+  Public ReadOnly Property SelectedPlayer As Player
+    Get
+      Return _selectedPlayer
+    End Get
+  End Property
+
+  Private _selectedTeam As Team = Nothing
+  Public ReadOnly Property SelectedTeam As Team
+    Get
+      Return _selectedTeam
+    End Get
+  End Property
+
 #End Region
 
 #Region "Constructor"
@@ -129,6 +152,7 @@ Public Class frmMain
       If dlg.ShowDialog(Me) = DialogResult.OK Then
         'match selected!
         InitMatchInfo(dlg.SelectedMatchId)
+        InitializeKeyCapture()
         MatchSetup()
       End If
     Catch ex As Exception
@@ -304,6 +328,7 @@ Public Class frmMain
 #End Region
 
 #Region "Graphics"
+
   Private Sub StartGraphic(statGraphic As GraphicGroup)
     Try
       _dlgChoosWithPreview = New FormChoose(_vizControl, _previewControl, statGraphic)
@@ -326,12 +351,40 @@ Public Class frmMain
 #End Region
 
 #Region "Graphic buttons"
+  Private Sub StartGraphic(name As String)
+    Try
+      For Each myType As Type In GraphicGroup.GetMyAllSubclassesOf()
+        If myType.Name = name Then
+          Dim instance As GraphicGroup = CType(Activator.CreateInstance(myType, _match), GraphicGroup)
+          instance.Player = _selectedPlayer
+          instance.Team = _selectedTeam
+          Me.StartGraphic(instance)
+        End If
+      Next
+    Catch ex As Exception
+    End Try
+  End Sub
+
+  Private Sub StartGraphic(keyCombination As KeyCombination)
+    Try
+      For Each myType As Type In GraphicGroup.GetMyAllSubclassesOf()
+        Dim instance As GraphicGroup = CType(Activator.CreateInstance(myType, _match), GraphicGroup)
+        If instance.KeyCombination = keyCombination Then
+          instance.Player = _selectedPlayer
+          instance.Team = _selectedTeam
+          Me.StartGraphic(instance)
+        End If
+      Next
+    Catch ex As Exception
+    End Try
+  End Sub
+
   Private Sub ButtonF1ScoreLine_Click(sender As Object, e As EventArgs) Handles ButtonF1ScoreLine.Click
-    Me.StartGraphic(New GraphicsScoreLine(_match))
+    StartGraphic(GraphicsScoreLine.Description)
   End Sub
 
   Private Sub ButtonF2NameReporter_Click(sender As Object, e As EventArgs) Handles ButtonF2NameReporter.Click
-    Me.StartGraphic(New GraphicsReporter(_match))
+    StartGraphic(GraphicsReporter.Description)
   End Sub
 
   Private Sub ButtonF3L3Subs_Click(sender As Object, e As EventArgs) Handles ButtonF3L3Subs.Click
@@ -379,7 +432,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF1FullFramers_Click(sender As Object, e As EventArgs) Handles ButtonCtlF1FullFramers.Click
-    Me.StartGraphic(New GraphicGroupCtlF1FullFramers(_match, _otherMatchDays))
+    Me.StartGraphic(New GraphicGroupFullFramers(_match, _otherMatchDays))
   End Sub
 
   Private Sub ButtonCtlF2PlayerStatsCtrlF2_Click(sender As Object, e As EventArgs) Handles ButtonCtlF2PlayerStatsCtrlF2.Click
@@ -411,7 +464,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF8Bugs_Click(sender As Object, e As EventArgs) Handles ButtonCtlF8Bugs.Click
-
+    Me.StartGraphic(GraphicsBugs.Description)
   End Sub
 
   Private Sub ButtonCtlF9AddedTree_Click(sender As Object, e As EventArgs) Handles ButtonCtlF9AddedTree.Click
@@ -677,7 +730,6 @@ Public Class frmMain
 #End Region
 
 #Region "Team viewer"
-  Private _selectedPlayer As Player = Nothing
   Private _homePlayerControls As New List(Of PlayerViewer)
   Private _awayPlayerControls As New List(Of PlayerViewer)
 
@@ -841,7 +893,41 @@ Public Class frmMain
 
     End Try
   End Sub
+#End Region
 
+#Region "Key capture"
+  Private Sub InitializeKeyCapture()
+
+    Try
+      _keyCapture = New KeyCapture()
+      _keyCapture.LlistaCombinations.Clear()
+
+      For Each myType As Type In GraphicGroup.GetMyAllSubclassesOf()
+        Debug.Print(myType.Name)
+        Dim instance As GraphicGroup = CType(Activator.CreateInstance(myType, _match), GraphicGroup)
+        If Not instance.KeyCombination Is Nothing Then
+          _keyCapture.LlistaCombinations.Add(instance.KeyCombination)
+
+        End If
+      Next
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+
+  End Sub
+
+  Private Sub _keyCapture_Keycaptured() Handles _keyCapture.Keycaptured
+    Debug.Print("_keyCapture_Keycaptured")
+  End Sub
+
+  Private Sub _keyCapture_KeyCombinationCaptured(CKeyCombination As KeyCombination) Handles _keyCapture.KeyCombinationCaptured
+    Debug.Print("_keyCapture_KeyCombinationCaptured")
+    Me.StartGraphic(CKeyCombination.Name)
+  End Sub
+
+  Private Sub _keyCapture_UndefinedKeyCombinationCaptured(CKeyCombination As KeyCombination) Handles _keyCapture.UndefinedKeyCombinationCaptured
+    Debug.Print("_keyCapture_UndefinedKeyCombinationCaptured")
+  End Sub
 
 #End Region
 End Class

@@ -9,9 +9,16 @@ Public Class GraphicsCrawlFreeText
   Public Sub New(_match As MatchInfo.Match)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicsCrawlResults"
+    MyBase.Name = "GraphicsCrawlFreeText"
     MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F2, False, False, True, False)
   End Sub
+
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
 
   Private _crawlTexts As New FreeTexts()
 

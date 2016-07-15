@@ -43,7 +43,7 @@ Partial Class FormChoose
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(962, 498)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(1088, 498)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -81,7 +81,7 @@ Partial Class FormChoose
     Me.TableLayoutPanelAll.Name = "TableLayoutPanelAll"
     Me.TableLayoutPanelAll.RowCount = 1
     Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelAll.Size = New System.Drawing.Size(635, 429)
+    Me.TableLayoutPanelAll.Size = New System.Drawing.Size(702, 429)
     Me.TableLayoutPanelAll.TabIndex = 6
     '
     'SplitContainerAll
@@ -100,8 +100,8 @@ Partial Class FormChoose
     'SplitContainerAll.Panel2
     '
     Me.SplitContainerAll.Panel2.Controls.Add(Me._ucPreview)
-    Me.SplitContainerAll.Size = New System.Drawing.Size(1082, 429)
-    Me.SplitContainerAll.SplitterDistance = 635
+    Me.SplitContainerAll.Size = New System.Drawing.Size(1208, 429)
+    Me.SplitContainerAll.SplitterDistance = 702
     Me.SplitContainerAll.TabIndex = 7
     '
     '_ucPreview
@@ -112,7 +112,7 @@ Partial Class FormChoose
     Me._ucPreview.PreviewControl = Nothing
     Me._ucPreview.Scene = Nothing
     Me._ucPreview.ShowAdvancedControls = True
-    Me._ucPreview.Size = New System.Drawing.Size(443, 429)
+    Me._ucPreview.Size = New System.Drawing.Size(502, 429)
     Me._ucPreview.TabIndex = 0
     Me._ucPreview.Title = "Title"
     Me._ucPreview.VizControl = Nothing
@@ -123,7 +123,7 @@ Partial Class FormChoose
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.CancelButton = Me.Cancel_Button
-    Me.ClientSize = New System.Drawing.Size(1131, 550)
+    Me.ClientSize = New System.Drawing.Size(1257, 550)
     Me.Controls.Add(Me.SplitContainerAll)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Name = "FormChoose"

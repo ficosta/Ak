@@ -589,7 +589,6 @@ Partial Class frmMain
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF7L3Commons, 3, 7)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF12FFIdent, 4, 5)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF9OtherScores, 0, 8)
-    Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF8Bugs, 4, 4)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonShftF3NameNoNumber, 3, 6)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF4TwoWayBoxes, 4, 3)
     Me.TableLayoutPanel4.Controls.Add(Me.ButtonCtlF11AsItStands, 3, 5)
@@ -757,10 +756,10 @@ Partial Class frmMain
     '
     Me.ButtonCtlF8Bugs.BackColor = System.Drawing.Color.DeepSkyBlue
     Me.ButtonCtlF8Bugs.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF8Bugs.Location = New System.Drawing.Point(515, 81)
+    Me.ButtonCtlF8Bugs.Location = New System.Drawing.Point(493, 111)
     Me.ButtonCtlF8Bugs.Margin = New System.Windows.Forms.Padding(1)
     Me.ButtonCtlF8Bugs.Name = "ButtonCtlF8Bugs"
-    Me.ButtonCtlF8Bugs.Size = New System.Drawing.Size(148, 18)
+    Me.ButtonCtlF8Bugs.Size = New System.Drawing.Size(164, 15)
     Me.ButtonCtlF8Bugs.TabIndex = 286
     Me.ButtonCtlF8Bugs.Text = "     BUGS      Ctrl+F8"
     Me.ButtonCtlF8Bugs.UseSelectable = True
@@ -1182,6 +1181,7 @@ Partial Class frmMain
     Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonCtlF6Referee, 1, 6)
     Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonF9TeamCaptions, 0, 5)
     Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonCtlF1FullFramers, 0, 6)
+    Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonCtlF8Bugs, 3, 6)
     Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonCtlF10L3TeamStatsDb, 1, 7)
     Me.TableLayoutPanelMainGraphics.Controls.Add(Me.ButtonShftF2Interview, 1, 8)
     Me.TableLayoutPanelMainGraphics.Dock = System.Windows.Forms.DockStyle.Fill

@@ -13,9 +13,8 @@ Public Class GraphicsTeamStats
 
     MyBase.Name = "GraphicsF5TeamStats"
     MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F5, False, False, False, False)
   End Sub
-
-  Public Property _teamStaffs As TeamStaffs
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
@@ -41,6 +40,12 @@ Public Class GraphicsTeamStats
     End Sub
   End Class
 
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
+
 
   Public Overrides Function PrepareNextGraphicStep(Optional graphicStep As GraphicStep = Nothing) As GraphicStep
     Dim gsList As New GraphicSteps
@@ -51,7 +56,6 @@ Public Class GraphicsTeamStats
 
     Try
       gs.GraphicSteps.Clear()
-      _teamStaffs = New TeamStaffs
 
       If graphicStep Is Nothing Then
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AttemptsOnGoal, True, True))

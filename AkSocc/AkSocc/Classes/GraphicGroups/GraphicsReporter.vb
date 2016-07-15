@@ -9,9 +9,17 @@ Public Class GraphicsReporter
   Public Sub New(_match As MatchInfo.Match)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicsF2Reporter"
+    MyBase.Name = "GraphicsReporter"
     MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F2, False, False, False, False)
   End Sub
+
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
+
 
   Public Property _reporters As NameDotTexts
 
@@ -99,7 +107,7 @@ Public Class GraphicsReporter
     Dim prefix As String = "Lower3rd_Side_1" & gSide & "_"
     Dim subjectPrefix As String = ""
     Try
-      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 2)
+      scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose ", "0")
       prefix = "Lower3rd_Side_" & gSide & "_"
 
       If Not nameDotText Is Nothing Then

@@ -6,12 +6,21 @@ Imports AkSocc
 Public Class GraphicsCrawlResults
   Inherits GraphicGroup
 
+  Public Sub New(_match As MatchInfo.Match)
+    MyBase.New(_match)
+
+    MyBase.Name = "GraphicsCrawlResults"
+    MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(MyBase.Name, Keys.F8, False, True, False, False)
+  End Sub
+
   Public Sub New(_match As MatchInfo.Match, otherMatchDays As OtherMatchDays)
     MyBase.New(_match)
 
     MyBase.Name = "GraphicsCrawlResults"
     Me.OtherMatchDays = otherMatchDays
     MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(MyBase.Name, Keys.F8, False, True, False, False)
   End Sub
 
   Private _otherMatchDays As OtherMatchDays
@@ -38,6 +47,11 @@ Public Class GraphicsCrawlResults
     End Sub
   End Class
 
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
 
   Public Overrides Function PrepareNextGraphicStep(Optional graphicStep As GraphicStep = Nothing) As GraphicStep
     Dim gsList As New GraphicSteps

@@ -254,8 +254,8 @@ Public Class FormChoose
           'End If
           If _ucPreview.VizControl Is Nothing Then _ucPreview.VizControl = Me._vizControl
           _ucPreview.GetPreview(_graphicGroup.PrepareScene(gs))
-            _ucPreview.ShowAdvancedControls = True
-            _ucPreview.Title = gs.ToString
+          _ucPreview.ShowAdvancedControls = False
+          _ucPreview.Title = gs.ToString
           End If
 
           Me.OK_Button.Enabled = True

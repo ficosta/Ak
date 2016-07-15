@@ -1,4 +1,5 @@
-﻿Imports MatchInfo
+﻿Imports System.Reflection
+Imports MatchInfo
 
 Public MustInherit Class GraphicGroup
   Private WithEvents _match As MatchInfo.Match
@@ -11,8 +12,30 @@ Public MustInherit Class GraphicGroup
     End Set
   End Property
 
-  Public Property Name As String
+  Private WithEvents _player As MatchInfo.Player
+  Public Property Player As MatchInfo.Player
+    Get
+      Return _player
+    End Get
+    Set(value As MatchInfo.Player)
+      _player = value
+    End Set
+  End Property
+
+  Private WithEvents _team As MatchInfo.Team
+  Public Property Team As MatchInfo.Team
+    Get
+      Return _team
+    End Get
+    Set(value As MatchInfo.Team)
+      _team = value
+    End Set
+  End Property
+
+
+  Public Property Name As String = ""
   Public Property ID As Integer
+  Public Shared Property Definition As String = ""
 
   Public Property GraphicStepTree As New GraphicSteps
 
@@ -28,6 +51,13 @@ Public MustInherit Class GraphicGroup
   Public Sub New(match As Match)
     _match = match
   End Sub
+
+  Public Sub New(match As Match, player As Player, team As Team)
+    _match = match
+    _player = player
+    _team = team
+  End Sub
+
 
   Public MustOverride Function PrepareNextGraphicStep(Optional graphicStep As GraphicStep = Nothing) As GraphicStep
 
@@ -74,4 +104,15 @@ Public MustInherit Class GraphicGroup
     Return MyBase.ToString()
   End Function
 
+  Public Function FindDerivedTypes(assembly As Assembly, baseType As Type) As IEnumerable(Of Type)
+    Return assembly.GetTypes().Where(Function(t) t <> baseType AndAlso baseType.IsAssignableFrom(t))
+  End Function
+
+  Public Shared Function GetAllSubclassesOf(baseType As Type) As List(Of Type)
+    Return Assembly.GetAssembly(baseType).GetTypes().Where(Function(type) type.IsSubclassOf(baseType)).ToList()
+  End Function
+
+  Public Shared Function GetMyAllSubclassesOf() As List(Of Type)
+    Return Assembly.GetAssembly(GetType(GraphicGroup)).GetTypes().Where(Function(type) type.IsSubclassOf(GetType(GraphicGroup))).ToList()
+  End Function
 End Class

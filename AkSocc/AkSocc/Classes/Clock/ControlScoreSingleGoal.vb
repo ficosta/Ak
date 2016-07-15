@@ -12,6 +12,14 @@ Public Class ControlScoreSingleGoal
   Private _goalType As MatchGoal.eGoalType = MatchGoal.eGoalType.Normal
   Private _playerID As Integer
 
+  Public Sub New(_match As MatchInfo.Match)
+    MyBase.New(_match)
+
+    MyBase.Name = "ControlScoreSingleGoal"
+    Me.Goal = Nothing
+    MyBase.ID = 1000
+  End Sub
+
   Public Sub New(_match As MatchInfo.Match, goal As MatchGoal)
     MyBase.New(_match)
 

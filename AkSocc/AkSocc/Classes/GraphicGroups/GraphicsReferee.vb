@@ -11,6 +11,7 @@ Public Class GraphicsReferee
 
     MyBase.Name = "GraphicsReferee"
     MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F6, False, True, False, False)
   End Sub
 
   Class Step0
@@ -29,6 +30,12 @@ Public Class GraphicsReferee
       MyBase.Name = name
     End Sub
   End Class
+
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
 
 
   Public Overrides Function PrepareNextGraphicStep(Optional graphicStep As GraphicStep = Nothing) As GraphicStep

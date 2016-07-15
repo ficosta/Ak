@@ -1,6 +1,8 @@
 ﻿Imports System.Windows.Forms
+Imports AkSocc
 
 Public Class KeyCombination
+  Implements IEquatable(Of KeyCombination)
 
   Public Name As String
 
@@ -22,20 +24,6 @@ Public Class KeyCombination
     Me.Windows = False
   End Sub
 
-  Public Sub New(ByVal eiKeyCode As Keys, ByVal biShift As Boolean, ByVal biControl As Boolean, ByVal biAlt As Boolean, ByVal biWindows As Boolean)
-    Me.KeyCode = eiKeyCode
-    Me.Shift = biShift
-    Me.Control = biControl
-    Me.Alt = biAlt
-    Me.Windows = biWindows
-
-    Me.Name = ""
-    If Me.Shift Then Me.Name = Me.Name & "Shift "
-    If Me.Control Then Me.Name = Me.Name & "Control "
-    If Me.Alt Then Me.Name = Me.Name & "Alt "
-    If Me.Windows Then Me.Name = Me.Name & "Windows "
-    Me.Name = Me.Name & Me.KeyCode.ToString
-  End Sub
 
   Public Sub New(ByVal siName As String, ByVal eiKeyCode As Keys, ByVal biShift As Boolean, ByVal biControl As Boolean, ByVal biAlt As Boolean, ByVal biWindows As Boolean)
     Me.Name = siName
@@ -47,15 +35,32 @@ Public Class KeyCombination
   End Sub
 
 
-  Public Overloads Overrides Function Equals(ByVal obj As Object) As Boolean
+  'Public Overloads Overrides Function Equals(ByVal obj As Object) As Boolean
 
-    If obj Is Nothing OrElse Not Me.GetType() Is obj.GetType() Then
+  '  If obj Is Nothing OrElse Not Me.GetType() Is obj.GetType() Then
+  '    Return False
+  '  End If
+
+  '  Dim k As KeyCombination = CType(obj, KeyCombination)
+  '  Return Me.KeyCode = k.KeyCode And Me.Alt = k.Alt And Me.Control = k.Control And Me.Shift = k.Shift And Me.Windows = k.Windows
+  'End Function
+
+  Public Overloads Function Equals(other As KeyCombination) As Boolean Implements IEquatable(Of KeyCombination).Equals
+    If other Is Nothing OrElse Not Me.GetType() Is other.GetType() Then
       Return False
     End If
 
-    Dim k As KeyCombination = CType(obj, KeyCombination)
+    Dim k As KeyCombination = CType(other, KeyCombination)
     Return Me.KeyCode = k.KeyCode And Me.Alt = k.Alt And Me.Control = k.Control And Me.Shift = k.Shift And Me.Windows = k.Windows
   End Function
+
+  Public Shared Operator =(ByVal point1 As KeyCombination, ByVal point2 As KeyCombination) As Boolean
+    Return point1.Equals(point2)
+  End Operator
+
+  Public Shared Operator <>(ByVal point1 As KeyCombination, ByVal point2 As KeyCombination) As Boolean
+    Return Not (point1 = point2)
+  End Operator
 End Class
 
 Public Class KeyCapture
@@ -98,24 +103,24 @@ Public Class KeyCapture
 
     'Mode chyron
     Me.LlistaCombinations.Add(New KeyCombination("Read", Keys.Return))
-      Me.LlistaCombinations.Add(New KeyCombination("Read", Keys.F4))
-      Me.LlistaCombinations.Add(New KeyCombination("Read next", Keys.Add))
-      Me.LlistaCombinations.Add(New KeyCombination("Take", Keys.F5))
-      Me.LlistaCombinations.Add(New KeyCombination("Continue", Keys.F8))
-      Me.LlistaCombinations.Add(New KeyCombination("TakeOut", Keys.F6))
-      Me.LlistaCombinations.Add(New KeyCombination("Record", Keys.Subtract))
-      Me.LlistaCombinations.Add(New KeyCombination("Read+Take", Keys.Return, False, True, False, False))
+    Me.LlistaCombinations.Add(New KeyCombination("Read", Keys.F4))
+    Me.LlistaCombinations.Add(New KeyCombination("Read next", Keys.Add))
+    Me.LlistaCombinations.Add(New KeyCombination("Take", Keys.F5))
+    Me.LlistaCombinations.Add(New KeyCombination("Continue", Keys.F8))
+    Me.LlistaCombinations.Add(New KeyCombination("TakeOut", Keys.F6))
+    Me.LlistaCombinations.Add(New KeyCombination("Record", Keys.Subtract))
+    Me.LlistaCombinations.Add(New KeyCombination("Read+Take", Keys.Return, False, True, False, False))
 
-      Me.LlistaCombinations.Add(New KeyCombination("0", Keys.NumPad0))
-      Me.LlistaCombinations.Add(New KeyCombination("1", Keys.NumPad1))
-      Me.LlistaCombinations.Add(New KeyCombination("2", Keys.NumPad2))
-      Me.LlistaCombinations.Add(New KeyCombination("3", Keys.NumPad3))
-      Me.LlistaCombinations.Add(New KeyCombination("4", Keys.NumPad4))
-      Me.LlistaCombinations.Add(New KeyCombination("5", Keys.NumPad5))
-      Me.LlistaCombinations.Add(New KeyCombination("6", Keys.NumPad6))
-      Me.LlistaCombinations.Add(New KeyCombination("7", Keys.NumPad7))
-      Me.LlistaCombinations.Add(New KeyCombination("8", Keys.NumPad8))
-      Me.LlistaCombinations.Add(New KeyCombination("9", Keys.NumPad9))
+    Me.LlistaCombinations.Add(New KeyCombination("0", Keys.NumPad0))
+    Me.LlistaCombinations.Add(New KeyCombination("1", Keys.NumPad1))
+    Me.LlistaCombinations.Add(New KeyCombination("2", Keys.NumPad2))
+    Me.LlistaCombinations.Add(New KeyCombination("3", Keys.NumPad3))
+    Me.LlistaCombinations.Add(New KeyCombination("4", Keys.NumPad4))
+    Me.LlistaCombinations.Add(New KeyCombination("5", Keys.NumPad5))
+    Me.LlistaCombinations.Add(New KeyCombination("6", Keys.NumPad6))
+    Me.LlistaCombinations.Add(New KeyCombination("7", Keys.NumPad7))
+    Me.LlistaCombinations.Add(New KeyCombination("8", Keys.NumPad8))
+    Me.LlistaCombinations.Add(New KeyCombination("9", Keys.NumPad9))
 
 
   End Sub
@@ -139,7 +144,7 @@ Public Class KeyCapture
             Me.Windows = True
             Return True
           Case Else
-            Return CheckAndFireCombination(New KeyCombination(CType(m.WParam.ToInt32, Keys), Me.Shift, Me.Control, Me.Alt, Me.Windows))
+            Return CheckAndFireCombination(New KeyCombination("", CType(m.WParam.ToInt32, Keys), Me.Shift, Me.Control, Me.Alt, Me.Windows))
         End Select
 
       Case WM_KEYUP

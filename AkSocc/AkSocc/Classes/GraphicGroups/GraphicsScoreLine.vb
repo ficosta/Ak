@@ -9,7 +9,15 @@ Public Class GraphicsScoreLine
 
     MyBase.Name = "GraphicsScoreLine"
     MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F1, False, False, False, False)
   End Sub
+
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
+
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition

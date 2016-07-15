@@ -10,7 +10,14 @@ Public Class GraphicsTeamStatsL3
 
     MyBase.Name = "GraphicsTeamStatsL3"
     MyBase.ID = 1
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F10, False, True, False, False)
   End Sub
+
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
