@@ -134,6 +134,24 @@
     <Compile Include="Forms\AboutBoxAk.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Auxiliar forms\frmWaitForInput.Designer.vb">
+      <DependentUpon>frmWaitForInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Auxiliar forms\frmWaitForInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clock\FormAddedTime.Designer.vb">
+      <DependentUpon>FormAddedTime.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\FormAddedTime.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clock\FormPeriodControl_new.Designer.vb">
+      <DependentUpon>FormPeriodControl_new.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\FormPeriodControl_new.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Goals\frmGoal.Designer.vb">
       <DependentUpon>frmGoal.vb</DependentUpon>
     </Compile>
@@ -152,10 +170,10 @@
     <Compile Include="Forms\MatchSelector\FormMatchSelector.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Waiting for director\FormWaitingForDirector.Designer.vb">
+    <Compile Include="Forms\Auxiliar forms\FormWaitingForDirector.Designer.vb">
       <DependentUpon>FormWaitingForDirector.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Waiting for director\FormWaitingForDirector.vb">
+    <Compile Include="Forms\Auxiliar forms\FormWaitingForDirector.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Choose\FormChoose.Designer.vb">
@@ -249,10 +267,10 @@
     <Compile Include="Forms\Substitutions\FormSubstitutions.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Waiting for director\frmWait.Designer.vb">
+    <Compile Include="Forms\Auxiliar forms\frmWait.Designer.vb">
       <DependentUpon>frmWait.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Waiting for director\frmWait.vb">
+    <Compile Include="Forms\Auxiliar forms\frmWait.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Main.vb" />
@@ -311,14 +329,23 @@
     <EmbeddedResource Include="Forms\AboutBoxAk.resx">
       <DependentUpon>AboutBoxAk.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Auxiliar forms\frmWaitForInput.resx">
+      <DependentUpon>frmWaitForInput.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Choose\FormChoose.resx">
       <DependentUpon>FormChoose.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Choose\UserControlChoose.resx">
       <DependentUpon>UserControlChoose.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\FormAddedTime.resx">
+      <DependentUpon>FormAddedTime.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Clock\FormOvewriteClock.resx">
       <DependentUpon>FormOvewriteClock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\FormPeriodControl_new.resx">
+      <DependentUpon>FormPeriodControl_new.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Clock\FormPeriodControl.resx">
       <DependentUpon>FormPeriodControl.vb</DependentUpon>
@@ -365,10 +392,10 @@
     <EmbeddedResource Include="Forms\Substitutions\FormSubstitutions.resx">
       <DependentUpon>FormSubstitutions.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Waiting for director\FormWaitingForDirector.resx">
+    <EmbeddedResource Include="Forms\Auxiliar forms\FormWaitingForDirector.resx">
       <DependentUpon>FormWaitingForDirector.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Waiting for director\frmWait.resx">
+    <EmbeddedResource Include="Forms\Auxiliar forms\frmWait.resx">
       <DependentUpon>frmWait.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">

@@ -32,6 +32,8 @@ Public MustInherit Class GraphicGroup
     End Set
   End Property
 
+  Public Property OtherMatchDays As OtherMatchDays
+
 
   Public Property Name As String = ""
   Public Property ID As Integer

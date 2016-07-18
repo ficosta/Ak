@@ -1,6 +1,6 @@
 ﻿Imports MatchInfo
 
-Public Class FormPeriodControl
+Public Class FormPeriodControl_new
 
   Private WithEvents _match As MatchInfo.Match
   Public Property Match As MatchInfo.Match
@@ -9,9 +9,23 @@ Public Class FormPeriodControl
     End Get
     Set(value As MatchInfo.Match)
       _match = value
-      PopulateGrid()
+      InitPeriod(_match, 1)
     End Set
   End Property
+
+  Public Sub InitPeriod(match As MatchInfo.Match, part As Integer)
+    Try
+      _match = match
+      Me.UcPeriod1.InitPeriod(_match, 1)
+      Me.UcPeriod2.InitPeriod(_match, 2)
+      Me.UcPeriod3.InitPeriod(_match, 3)
+      Me.UcPeriod4.InitPeriod(_match, 4)
+
+      PopulateGrid()
+    Catch ex As Exception
+
+    End Try
+  End Sub
 
   Public Sub PopulateGrid()
     Try
@@ -26,7 +40,7 @@ Public Class FormPeriodControl
         For i As Integer = 0 To _match.MatchPeriods.Count - 1
 
           itemIndex = .Rows.Add("separator")
-          .Rows(itemIndex).Cells(ColumnText.Index).Value = "___________"
+          .Rows(itemIndex).Cells(ColumnText.Index).Value = "---------"
           .Rows(itemIndex).Frozen = True
 
           itemIndex = .Rows.Add("START:" & i)
@@ -38,9 +52,6 @@ Public Class FormPeriodControl
           .Rows(itemIndex).Cells(ColumnID.Index).Value = CStr(i)
           .Rows(itemIndex).Cells(ColumnText.Index).Value = _match.MatchPeriods(i).Nom & " (stop clock)"
         Next
-        itemIndex = .Rows.Add("separator")
-        .Rows(itemIndex).Cells(ColumnText.Index).Value = "___________"
-        .Rows(itemIndex).Frozen = True
         itemIndex = .Rows.Add("Overwrite clock")
         .Rows(itemIndex).Cells(ColumnType.Index).Value = "OVERWRITE"
         .Rows(itemIndex).Cells(ColumnID.Index).Value = "0"
@@ -55,6 +66,13 @@ Public Class FormPeriodControl
 
   End Sub
 
+  Private Sub MetroButtonResetMatch_Click(sender As Object, e As EventArgs) Handles MetroButtonResetMatch.Click
+    ResetMatch()
+  End Sub
+
+  Private Sub MetroButtonOverwriteClock_Click(sender As Object, e As EventArgs) Handles MetroButtonOverwriteClock.Click
+    OverWriteClock()
+  End Sub
 
   Private Sub ResetMatch()
 
@@ -120,7 +138,6 @@ Public Class FormPeriodControl
     Try
       Select Case _selectedAction
         Case "RESET"
-          ResetMatch()
         Case "OVERWRITE"
           OverWriteClock()
         Case "START"
@@ -157,14 +174,6 @@ Public Class FormPeriodControl
     If _match Is Nothing Then Exit Sub
     If _match.MatchPeriods.ActivePeriod Is Nothing Then Exit Sub
     _match.MatchPeriods.UpdatePeriodExtraTime(_match.MatchPeriods.ActivePeriod, Me.NumericUpDownMinutes.Value)
-  End Sub
-
-  Private Sub MetroGridPeriods_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridPeriods.CellContentClick
-
-  End Sub
-
-  Private Sub MetroGridPeriods_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MetroGridPeriods.KeyPress
-
   End Sub
 
 

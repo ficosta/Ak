@@ -14,6 +14,13 @@ Public Class ClockOtherScores
     DesserializeObjectFromFile(AppSettings.Instance.OtherMatchesPath, _otherMatchDays)
   End Sub
 
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
+
+
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
 

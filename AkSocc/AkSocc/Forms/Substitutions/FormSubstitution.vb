@@ -15,7 +15,7 @@ Public Class FormSubstitution
       ShowFieldPlayers()
       ShowBenchPlayers()
       If Not _team Is Nothing Then
-        Me.Text = "Substitutions " & _team.Name
+        Me.Text = "Substitutions " & _team.TeamAELCaption1Name
       Else
         Me.Text = "Substitutions"
       End If
@@ -80,7 +80,7 @@ Public Class FormSubstitution
 #End Region
 
 
-  Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
+  Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles ButtonAdvancedOK.Click
     Try
       If _playerIn Is Nothing Then
         MsgBox("You must select a player to enter the field")
@@ -97,7 +97,7 @@ Public Class FormSubstitution
     End Try
   End Sub
 
-  Private Sub Cancel_Button_Click(sender As Object, e As EventArgs) Handles Cancel_Button.Click
+  Private Sub Cancel_Button_Click(sender As Object, e As EventArgs) Handles ButtonAdvancedCancel.Click
     Try
       Me.DialogResult = DialogResult.Cancel
       Me.Close()
@@ -133,7 +133,86 @@ Public Class FormSubstitution
   End Sub
 
   Private Sub FormSubstitution_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    UpdateControlSize()
     Me.ShowFieldPlayers()
     Me.ShowBenchPlayers()
+    Me.MetroTextBoxPlayers.Focus()
+  End Sub
+
+
+  Private Sub UpdateControlSize()
+    Select Case Me.MetroTabControl1.SelectedIndex
+      Case 0
+        Me.Height = 250
+        Me.MetroTextBoxPlayers.Focus()
+      Case 1
+        Me.Height = 500
+    End Select
+  End Sub
+
+  Private Sub MetroTextBoxPlayers_TextChanged(sender As Object, e As EventArgs) Handles MetroTextBoxPlayers.TextChanged
+    Try
+      Dim aux As String = Me.MetroTextBoxPlayers.Text
+      Dim nAux As Integer
+      Dim aAux() As String = aux.Split(" ")
+      If Integer.TryParse(aAux(0), nAux) Then
+        _playerOut = _team.AllPlayers.GetPlayerByDorsal(nAux)
+      Else
+        _playerOut = Nothing
+      End If
+      If aAux.Length > 1 Then
+        If Integer.TryParse(aAux(1), nAux) Then
+          _playerIn = _team.AllPlayers.GetPlayerByDorsal(nAux)
+        Else
+          _playerIn = Nothing
+        End If
+      Else
+        _playerIn = Nothing
+      End If
+      If Not _playerIn Is Nothing Then
+        Me.MetroLabelINPlayer.Text = "IN " & _playerIn.ToString
+      Else
+        Me.MetroLabelINPlayer.Text = ""
+      End If
+      If Not _playerOut Is Nothing Then
+        Me.MetroLabelOUTPlayer.Text = "OUT " & _playerOut.ToString
+      Else
+        Me.MetroLabelOUTPlayer.Text = ""
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub MetroTextBoxPlayers_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MetroTextBoxPlayers.KeyPress
+    Try
+      Dim aux As String = Me.MetroTextBoxPlayers.Text
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub MetroTabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MetroTabControl1.SelectedIndexChanged
+    UpdateControlSize()
+  End Sub
+
+  Private Sub MetroButton1_Click(sender As Object, e As EventArgs)
+
+  End Sub
+
+  Private Sub MetroButton2_Click(sender As Object, e As EventArgs)
+
+  End Sub
+
+  Private Sub MetroTextBoxPlayers_Click(sender As Object, e As EventArgs) Handles MetroTextBoxPlayers.Click
+
+  End Sub
+
+  Private Sub FormSubstitution_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+    Me.MetroTextBoxPlayers.Focus()
+  End Sub
+
+  Private Sub MetroGridField_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridField.CellContentClick
+
   End Sub
 End Class

@@ -351,33 +351,34 @@ Public Class frmMain
 #End Region
 
 #Region "Graphic buttons"
-  Private Sub StartGraphic(name As String)
+  Private Function StartGraphic(name As String) As Boolean
+    Dim res As Boolean = False
     Try
-      For Each myType As Type In GraphicGroup.GetMyAllSubclassesOf()
-        If myType.Name = name Then
-          Dim instance As GraphicGroup = CType(Activator.CreateInstance(myType, _match), GraphicGroup)
-          instance.Player = _selectedPlayer
-          instance.Team = _selectedTeam
-          Me.StartGraphic(instance)
-        End If
-      Next
-    Catch ex As Exception
-    End Try
-  End Sub
+      Select Case name
+        Case "ToggleClockControl"
+          Me.ToggleClockControl()
+        Case Else
+          'this may be a graphic 
+          For Each myType As Type In GraphicGroup.GetMyAllSubclassesOf()
+            If myType.Name = name Then
+              Dim instance As GraphicGroup = CType(Activator.CreateInstance(myType, _match), GraphicGroup)
+              instance.Player = _selectedPlayer
+              instance.Team = _selectedTeam
+              instance.OtherMatchDays = _otherMatchDays
+              Me.StartGraphic(instance)
+              res = True
+            End If
+          Next
+      End Select
 
-  Private Sub StartGraphic(keyCombination As KeyCombination)
-    Try
-      For Each myType As Type In GraphicGroup.GetMyAllSubclassesOf()
-        Dim instance As GraphicGroup = CType(Activator.CreateInstance(myType, _match), GraphicGroup)
-        If instance.KeyCombination = keyCombination Then
-          instance.Player = _selectedPlayer
-          instance.Team = _selectedTeam
-          Me.StartGraphic(instance)
-        End If
-      Next
     Catch ex As Exception
+      res = False
+      WriteToErrorLog(ex)
     End Try
-  End Sub
+    Return res
+  End Function
+
+
 
   Private Sub ButtonF1ScoreLine_Click(sender As Object, e As EventArgs) Handles ButtonF1ScoreLine.Click
     StartGraphic(GraphicsScoreLine.Description)
@@ -396,27 +397,33 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonF5TeamMatchStats_Click(sender As Object, e As EventArgs) Handles ButtonF5TeamMatchStats.Click
-    Me.StartGraphic(New GraphicsTeamStats(_match))
+    StartGraphic(GraphicsTeamStats.Description)
   End Sub
 
   Private Sub ButtonF6PlayerName_Click(sender As Object, e As EventArgs) Handles ButtonF6PlayerName.Click
     If _selectedPlayer Is Nothing Then
-      MetroFramework.MetroMessageBox.Show(Me, "You must choose a player first", "Player name")
+      frmWaitForInput.ShowWaitDialog(Me, "You must choose a player first", "Player name")
     Else
-      Me.StartGraphic(New GraphicsPlayerName(_match, _selectedPlayer))
+      StartGraphic(GraphicsPlayerName.Description)
     End If
   End Sub
 
   Private Sub ButtonF7FirstTeamStuff_Click(sender As Object, e As EventArgs) Handles ButtonF7FirstTeamStuff.Click
-    Me.StartGraphic(New GraphicsTeamStaff(_match, _match.HomeTeam))
+    If Not _match Is Nothing Then
+      _selectedTeam = _match.HomeTeam
+      StartGraphic(GraphicsTeamStaff.Description)
+    End If
   End Sub
 
   Private Sub ButtonF8SecondTeamStuff_Click(sender As Object, e As EventArgs) Handles ButtonF8SecondTeamStuff.Click
-    Me.StartGraphic(New GraphicsTeamStaff(_match, _match.AwayTeam))
+    If Not _match Is Nothing Then
+      _selectedTeam = _match.AwayTeam
+      StartGraphic(GraphicsTeamStaff.Description)
+    End If
   End Sub
 
   Private Sub ButtonF9TeamCaptions_Click(sender As Object, e As EventArgs) Handles ButtonF9TeamCaptions.Click
-    Me.StartGraphic(New GraphicsTeamCaptions(_match))
+    StartGraphic(GraphicsTeamCaptions.Description)
   End Sub
 
   Private Sub ButtonF10IdentClock_Click(sender As Object, e As EventArgs) Handles ButtonF10IdentClock.Click
@@ -432,14 +439,14 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF1FullFramers_Click(sender As Object, e As EventArgs) Handles ButtonCtlF1FullFramers.Click
-    Me.StartGraphic(New GraphicGroupFullFramers(_match, _otherMatchDays))
+    StartGraphic(GraphicGroupFullFramers.Description)
   End Sub
 
   Private Sub ButtonCtlF2PlayerStatsCtrlF2_Click(sender As Object, e As EventArgs) Handles ButtonCtlF2PlayerStatsCtrlF2.Click
     If _selectedPlayer Is Nothing Then
-      MetroFramework.MetroMessageBox.Show(Me, "You must choose a player first", "Player name")
+      frmWaitForInput.ShowWaitDialog(Me, "You must choose a player first", "Player name")
     Else
-      Me.StartGraphic(New GraphicsPlayerStats(_match, _selectedPlayer))
+      StartGraphic(GraphicsPlayerStats.Description)
     End If
   End Sub
 
@@ -456,7 +463,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF6Referee_Click(sender As Object, e As EventArgs) Handles ButtonCtlF6Referee.Click
-    Me.StartGraphic(New GraphicsReferee(_match))
+    StartGraphic(GraphicsReferee.Description)
   End Sub
 
   Private Sub ButtonCtlF7ScoreBugs_Click(sender As Object, e As EventArgs) Handles ButtonCtlF7ScoreBugs.Click
@@ -472,7 +479,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF10L3TeamStatsDb_Click(sender As Object, e As EventArgs) Handles ButtonCtlF10L3TeamStatsDb.Click
-    Me.StartGraphic(New GraphicsTeamStatsL3(_match))
+    StartGraphic(GraphicsTeamStatsL3.Description)
   End Sub
 
   Private Sub ButtonCtlF11AsItStands_Click(sender As Object, e As EventArgs) Handles ButtonCtlF11AsItStands.Click
@@ -480,7 +487,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF12FFIdent_Click(sender As Object, e As EventArgs) Handles ButtonCtlF12FFIdent.Click
-    Me.StartGraphic(New GraphicsMatchIdent(_match))
+    StartGraphic(GraphicsMatchIdent.Description)
   End Sub
 
   Private Sub ButtonShftF1PenaltyShootOut_Click(sender As Object, e As EventArgs) Handles ButtonShftF1PenaltyShootOut.Click
@@ -488,7 +495,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonShftF2Interview_Click(sender As Object, e As EventArgs) Handles ButtonShftF2Interview.Click
-    Me.StartGraphic(New GraphicsInterviews(_match))
+    StartGraphic(GraphicsInterviews.Description)
   End Sub
 
   Private Sub ButtonShftF3NameNoNumber_Click(sender As Object, e As EventArgs) Handles ButtonShftF3NameNoNumber.Click
@@ -508,7 +515,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonShftF8TeamListsCrawlSF8_Click(sender As Object, e As EventArgs) Handles ButtonShftF8TeamListsCrawlSF8.Click
-    Me.StartGraphic(New GraphicGroupCrawlTeams(_match))
+    StartGraphic(GraphicGroupCrawlTeams.Description)
   End Sub
 
   Private Sub ButtonShftF9OtherScores_Click(sender As Object, e As EventArgs) Handles ButtonShftF9OtherScores.Click
@@ -524,11 +531,11 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonShftF12MatchScoresCrawl_Click(sender As Object, e As EventArgs) Handles ButtonShftF12MatchScoresCrawl.Click
-    Me.StartGraphic(New GraphicsCrawlResults(_match, _otherMatchDays))
+    StartGraphic(GraphicsCrawlResults.Description)
   End Sub
 
   Private Sub ButtonAltF2FreeTextCrawl_Click(sender As Object, e As EventArgs) Handles ButtonAltF2FreeTextCrawl.Click
-    Me.StartGraphic(New GraphicsCrawlFreeText(_match))
+    StartGraphic(GraphicsCrawlFreeText.Description)
   End Sub
 
   Private Sub ButtonAltF6HtFtBug_Click(sender As Object, e As EventArgs) Handles ButtonAltF6HtFtBug.Click
@@ -553,7 +560,7 @@ Public Class frmMain
       If _match Is Nothing Then Exit Sub
       Dim team As Team = _match.AwayTeam
 
-      If MetroFramework.MetroMessageBox.Show(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
+      If frmWaitForInput.ShowWaitDialog(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
         Dim gsList As New GraphicSteps
 
         _match.AddGoal(False, Nothing, False, False)
@@ -575,7 +582,7 @@ Public Class frmMain
       If _match Is Nothing Then Exit Sub
       Dim team As Team = _match.HomeTeam
 
-      If MetroFramework.MetroMessageBox.Show(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
+      If frmWaitForInput.ShowWaitDialog(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
         Dim gsList As New GraphicSteps
 
         _match.AddGoal(True, Nothing, False, False)
@@ -657,22 +664,44 @@ Public Class frmMain
   End Sub
 
 
-  Private Sub MetroButtonClockIN_Click(sender As Object, e As EventArgs) Handles MetroButtonClockIN.Click
-    '_clockControl.ShowIdentClock()
-    _clockControl.ClockVisible = True
+  Private Sub MetroButtonClockIN_Click(sender As Object, e As EventArgs) Handles MetroButtonClock.Click
+    ToggleClockControl()
+  End Sub
+
+  Private Sub ToggleClockControl()
+    _clockControl.ClockVisible = Not _clockControl.ClockVisible
     UpdateClockInterface()
   End Sub
 
-  Private Sub MetroButtonClockOUT_Click(sender As Object, e As EventArgs) Handles MetroButtonClockOUT.Click
-    '_clockControl.HideIdentClock()
-    _clockControl.ClockVisible = False
+  Private Sub SetClockControl(clockVisible As Boolean)
+    _clockControl.ClockVisible = clockVisible
     UpdateClockInterface()
   End Sub
 
   Private Sub UpdateClockInterface()
     Try
-      Me.MetroButtonClockIN.Enabled = Not _clockControl.ClockVisible
-      Me.MetroButtonClockOUT.Enabled = _clockControl.ClockVisible
+      If _clockControl.ClockVisible Then
+        Me.MetroButtonClock.Text = "HIDE CLOCK" & vbCrLf & "F10"
+        Me.MetroButtonClock.BackColor = Color.LightSalmon
+      Else
+        Me.MetroButtonClock.Text = "SHOW CLOCK" & vbCrLf & "F10"
+        Me.MetroButtonClock.BackColor = Color.LightGreen
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub MetroButtonAddedTime_Click(sender As Object, e As EventArgs) Handles MetroButtonAddedTime.Click
+    Try
+      If _match Is Nothing Then Exit Sub
+      If _match.MatchPeriods.ActivePeriod Is Nothing Then Exit Sub
+
+      Dim frm As New FormAddedTime
+      frm.Minutes = _match.MatchPeriods.ActivePeriod.ExtraTime
+      If frm.ShowDialog(Me) = DialogResult.OK Then
+        _match.MatchPeriods.UpdatePeriodExtraTime(_match.MatchPeriods.ActivePeriod, frm.Minutes)
+      End If
     Catch ex As Exception
 
     End Try
@@ -690,19 +719,19 @@ Public Class frmMain
   End Sub
 
   Private Sub MetroButtonClockStats_Click(sender As Object, e As EventArgs) Handles MetroButtonClockStats.Click
-    Me.StartGraphic(New ClockGenericStraps(_match))
+    StartGraphic(ClockGenericStraps.Description)
   End Sub
 
   Private Sub MetroButtonClockStrapsWithIcon_Click(sender As Object, e As EventArgs) Handles MetroButtonClockStrapsWithIcon.Click
-    Me.StartGraphic(New ClockStrapsWithIcon(_match))
+    StartGraphic(ClockStrapsWithIcon.Description)
   End Sub
 
   Private Sub MetroButtonClockOtherScores_Click(sender As Object, e As EventArgs) Handles MetroButtonClockOtherScores.Click
-    Me.StartGraphic(New ClockOtherScores(_match))
+    StartGraphic(ClockOtherScores.Description)
   End Sub
 
   Private Sub MetroButtonClockPenalties_Click(sender As Object, e As EventArgs) Handles MetroButtonClockPenalties.Click
-    Me.StartGraphic(New ClockPenalties(_match))
+    StartGraphic(ClockPenalties.Description)
   End Sub
 
 #End Region
@@ -815,7 +844,7 @@ Public Class frmMain
         ctl.IsSelected = (ctl.Player.ID = sender.Player.ID)
       Next
       If Not _match Is Nothing And Not _selectedPlayer Is Nothing Then
-        Me.StartGraphic(New GraphicsPlayerName(_match, _selectedPlayer))
+        StartGraphic(GraphicsPlayerName.Description)
       End If
     Catch ex As Exception
     End Try
@@ -902,6 +931,10 @@ Public Class frmMain
       _keyCapture = New KeyCapture()
       _keyCapture.LlistaCombinations.Clear()
 
+      'Add keys
+      _keyCapture.LlistaCombinations.Add(New KeyCombination("ToggleClockControl", Keys.F10, False, False, False, False))
+
+      'Add keys for graphics
       For Each myType As Type In GraphicGroup.GetMyAllSubclassesOf()
         Debug.Print(myType.Name)
         Dim instance As GraphicGroup = CType(Activator.CreateInstance(myType, _match), GraphicGroup)
@@ -917,17 +950,16 @@ Public Class frmMain
   End Sub
 
   Private Sub _keyCapture_Keycaptured() Handles _keyCapture.Keycaptured
-    Debug.Print("_keyCapture_Keycaptured")
   End Sub
 
   Private Sub _keyCapture_KeyCombinationCaptured(CKeyCombination As KeyCombination) Handles _keyCapture.KeyCombinationCaptured
-    Debug.Print("_keyCapture_KeyCombinationCaptured")
     Me.StartGraphic(CKeyCombination.Name)
   End Sub
 
   Private Sub _keyCapture_UndefinedKeyCombinationCaptured(CKeyCombination As KeyCombination) Handles _keyCapture.UndefinedKeyCombinationCaptured
-    Debug.Print("_keyCapture_UndefinedKeyCombinationCaptured")
+
   End Sub
+
 
 #End Region
 End Class

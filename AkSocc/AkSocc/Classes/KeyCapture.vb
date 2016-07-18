@@ -129,7 +129,7 @@ Public Class KeyCapture
     If Not _enabled Then Return False
     Select Case m.Msg
       Case WM_KEYDOWN
-        Debug.Print(m.LParam.ToString & " " & m.WParam.ToString)
+        ' Debug.Print(m.LParam.ToString & " " & m.WParam.ToString)
         Select Case m.WParam.ToInt32
           Case Keys.Shift, Keys.ShiftKey
             Me.Shift = True
@@ -148,7 +148,7 @@ Public Class KeyCapture
         End Select
 
       Case WM_KEYUP
-        Debug.Print(m.LParam.ToString & " " & m.WParam.ToString)
+        ' Debug.Print(m.LParam.ToString & " " & m.WParam.ToString)
         Select Case m.WParam.ToInt32
           Case Keys.Shift, Keys.ShiftKey
             Me.Shift = False

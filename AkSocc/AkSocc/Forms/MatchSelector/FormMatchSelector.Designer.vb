@@ -27,16 +27,16 @@ Partial Class FormMatchSelector
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanelGlobal = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroGridMatches = New MetroFramework.Controls.MetroGrid()
-    Me.cboCompetition = New MetroFramework.Controls.MetroComboBox()
-    Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New MetroFramework.Controls.MetroButton()
-    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
     Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnHomeTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnAwayTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnResult = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.cboCompetition = New MetroFramework.Controls.MetroComboBox()
+    Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+    Me.OK_Button = New MetroFramework.Controls.MetroButton()
+    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
     Me.TableLayoutPanelGlobal.SuspendLayout()
     CType(Me.MetroGridMatches, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
@@ -115,6 +115,48 @@ Partial Class FormMatchSelector
     Me.MetroGridMatches.Size = New System.Drawing.Size(788, 489)
     Me.MetroGridMatches.TabIndex = 47
     '
+    'ColumnID
+    '
+    Me.ColumnID.HeaderText = "ID"
+    Me.ColumnID.Name = "ColumnID"
+    Me.ColumnID.ReadOnly = True
+    Me.ColumnID.Width = 60
+    '
+    'ColumnDate
+    '
+    Me.ColumnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnDate.HeaderText = "Date"
+    Me.ColumnDate.Name = "ColumnDate"
+    Me.ColumnDate.ReadOnly = True
+    Me.ColumnDate.Width = 64
+    '
+    'ColumnDescription
+    '
+    Me.ColumnDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnDescription.HeaderText = "Description"
+    Me.ColumnDescription.Name = "ColumnDescription"
+    Me.ColumnDescription.ReadOnly = True
+    Me.ColumnDescription.Visible = False
+    '
+    'ColumnHomeTeam
+    '
+    Me.ColumnHomeTeam.HeaderText = "Home team"
+    Me.ColumnHomeTeam.Name = "ColumnHomeTeam"
+    Me.ColumnHomeTeam.ReadOnly = True
+    '
+    'ColumnAwayTeam
+    '
+    Me.ColumnAwayTeam.HeaderText = "Away team"
+    Me.ColumnAwayTeam.Name = "ColumnAwayTeam"
+    Me.ColumnAwayTeam.ReadOnly = True
+    '
+    'ColumnResult
+    '
+    Me.ColumnResult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnResult.HeaderText = "Result"
+    Me.ColumnResult.Name = "ColumnResult"
+    Me.ColumnResult.ReadOnly = True
+    '
     'cboCompetition
     '
     Me.cboCompetition.Dock = System.Windows.Forms.DockStyle.Fill
@@ -162,53 +204,12 @@ Partial Class FormMatchSelector
     Me.Cancel_Button.Text = "Cancel"
     Me.Cancel_Button.UseSelectable = True
     '
-    'ColumnID
-    '
-    Me.ColumnID.HeaderText = "ID"
-    Me.ColumnID.Name = "ColumnID"
-    Me.ColumnID.ReadOnly = True
-    Me.ColumnID.Width = 60
-    '
-    'ColumnDate
-    '
-    Me.ColumnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnDate.HeaderText = "Date"
-    Me.ColumnDate.Name = "ColumnDate"
-    Me.ColumnDate.ReadOnly = True
-    Me.ColumnDate.Width = 64
-    '
-    'ColumnDescription
-    '
-    Me.ColumnDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnDescription.HeaderText = "Description"
-    Me.ColumnDescription.Name = "ColumnDescription"
-    Me.ColumnDescription.ReadOnly = True
-    Me.ColumnDescription.Visible = False
-    Me.ColumnDescription.Width = 108
-    '
-    'ColumnHomeTeam
-    '
-    Me.ColumnHomeTeam.HeaderText = "Home team"
-    Me.ColumnHomeTeam.Name = "ColumnHomeTeam"
-    Me.ColumnHomeTeam.ReadOnly = True
-    '
-    'ColumnAwayTeam
-    '
-    Me.ColumnAwayTeam.HeaderText = "Away team"
-    Me.ColumnAwayTeam.Name = "ColumnAwayTeam"
-    Me.ColumnAwayTeam.ReadOnly = True
-    '
-    'ColumnResult
-    '
-    Me.ColumnResult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnResult.HeaderText = "Result"
-    Me.ColumnResult.Name = "ColumnResult"
-    Me.ColumnResult.ReadOnly = True
-    '
     'FormMatchSelector
     '
+    Me.AcceptButton = Me.OK_Button
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+    Me.CancelButton = Me.Cancel_Button
     Me.ClientSize = New System.Drawing.Size(825, 652)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Controls.Add(Me.TableLayoutPanelGlobal)

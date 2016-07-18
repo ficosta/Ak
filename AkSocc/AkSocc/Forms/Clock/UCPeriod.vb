@@ -86,4 +86,8 @@ Public Class UCPeriod
     'Me.Period.ExtraTime = Me.NumericUpDownMinutes.Value
     _updating = False
   End Sub
+
+  Private Sub LabelExtraHome_Click(sender As Object, e As EventArgs) Handles LabelExtraHome.Click
+
+  End Sub
 End Class

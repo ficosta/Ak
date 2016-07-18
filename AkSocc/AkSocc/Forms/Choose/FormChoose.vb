@@ -1,4 +1,5 @@
-﻿Imports MetroFramework
+﻿Imports AkSocc
+Imports MetroFramework
 Imports MetroFramework.Forms
 Imports VizCommands
 
@@ -13,6 +14,7 @@ Public Class FormChoose
       If Not _graphicGroup Is Nothing Then
 
         ShowNextGraphicSteps()
+        Me.UserControlChoose1.SelectFirst()
       End If
     End Set
   End Property
@@ -23,6 +25,9 @@ Public Class FormChoose
 
   Private WithEvents _dlgPreview As New DialogPreview
 
+  Private _lastControlIndex As Integer = 0
+  Private _chooseControls As New List(Of UserControlChoose)
+
   Private _currentScene As Scene = Nothing
   Private _formerScene As Scene = Nothing
 
@@ -31,6 +36,8 @@ Public Class FormChoose
   Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
     Dim gstep As GraphicStep = Me.GraphicGroup.graphicStep
 
+    ' If MsgBox("Start graphic?", MsgBoxStyle.YesNo, gstep.ToString) = MsgBoxResult.No Then Exit Sub
+    If frmWaitForInput.ShowWaitDialog(Me, "Start graphic?", gstep.ToString, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
 
     If Not gstep Is Nothing Then
       Dim lbl As New MetroFramework.Controls.MetroLabel
@@ -109,7 +116,7 @@ Public Class FormChoose
 
         If gstep.IsTransitionalStep = False Then
           'there's nothing else: we wait for the "out" confirmation and close the dialog
-          MetroMessageBox.Show(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
+          frmWaitForInput.ShowWaitDialog(Me, "Waiting for your input to take out the graphic.", gstep.ToString, MessageBoxButtons.OK, MessageBoxIcon.Hand)
 
           _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
 
@@ -117,7 +124,7 @@ Public Class FormChoose
           Me.DialogResult = System.Windows.Forms.DialogResult.OK
           Me.Close()
         Else
-          'MetroMessageBox.Show(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
+          'frmWaitForInput.ShowWaitDialog(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
           ' _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
         End If
       Else
@@ -147,6 +154,8 @@ Public Class FormChoose
   Private Sub DialogChooseWithPreview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     Try
 
+      UpdateTableGrids()
+
     Catch ex As Exception
 
     End Try
@@ -159,6 +168,11 @@ Public Class FormChoose
     InitializeComponent()
 
     ' Add any initialization after the InitializeComponent() call.
+    _chooseControls.Add(Me.UserControlChoose1)
+    _chooseControls.Add(Me.UserControlChoose2)
+    _chooseControls.Add(Me.UserControlChoose3)
+    _chooseControls.Add(Me.UserControlChoose4)
+
     _vizControl = vizControl
     _previewControl = previewControl
     _ucPreview.PreviewControl = previewControl
@@ -177,7 +191,57 @@ Public Class FormChoose
     End Try
   End Sub
 
-  Private Sub GraphicStepSelected(sender As UserControlChoose, gs As GraphicStep)
+  Private Sub GraphicStepSelected(sender As UserControlChoose, gs As GraphicStep) Handles UserControlChoose1.GraphicStepSelected, UserControlChoose2.GraphicStepSelected, UserControlChoose3.GraphicStepSelected, UserControlChoose4.GraphicStepSelected
+    Try
+      _lastControlIndex = 0
+      Dim lastLeft As Integer = 0
+      'eliminar els següents
+      
+      Me.GraphicGroup.graphicStep = gs
+
+      Dim bNextStep As Boolean = False
+      If gs Is Nothing Then
+        bNextStep = True
+      ElseIf gs.IsFinalStep = False Then
+        bNextStep = True
+      Else
+        bNextStep = False
+      End If
+
+      If bNextStep Then
+        If Not sender Is Nothing Then _lastControlIndex = sender.Index + 1
+
+
+        Dim uc As UserControlChoose = CType(_chooseControls(_lastControlIndex), UserControlChoose)
+        uc.GraphicStep = Me.GraphicGroup.PrepareNextGraphicStep(gs)
+        Me.OK_Button.Enabled = False
+
+      Else
+        If Not sender Is Nothing Then _lastControlIndex = sender.Index
+
+
+        Dim scene As Scene = _graphicGroup.PrepareScene(gs)
+
+        If Not scene Is Nothing Then
+          If _ucPreview.VizControl Is Nothing Then _ucPreview.VizControl = Me._vizControl
+          _ucPreview.GetPreview(_graphicGroup.PrepareScene(gs))
+          _ucPreview.ShowAdvancedControls = False
+          _ucPreview.Title = gs.ToString
+        End If
+        Me.OK_Button.Enabled = True
+        'preview
+      End If
+      MetroLabelTitle.Text = gs.ToString
+      'ShowNextGraphicSteps()
+    Catch ex As Exception
+
+    End Try
+    UpdateTableGrids()
+    _firstControl = False
+  End Sub
+
+
+  Private Sub GraphicStepSelected_old(sender As UserControlChoose, gs As GraphicStep)
     Try
       Dim lastIndex As Integer = 0
       Dim lastLeft As Integer = 0
@@ -208,6 +272,7 @@ Public Class FormChoose
           If Me.TableLayoutPanelAll.ColumnStyles.Count > i Then Me.TableLayoutPanelAll.ColumnStyles.RemoveAt(i)
           If Not uc Is Nothing Then
             RemoveHandler uc.GraphicStepSelected, AddressOf Me.GraphicStepSelected
+            RemoveHandler uc.JumpToNext, AddressOf Me.JumpToNextGraphicSetp
           End If
           Me.TableLayoutPanelAll.Controls.RemoveAt(i)
         Next
@@ -239,6 +304,7 @@ Public Class FormChoose
         uc.GraphicStep = Me.GraphicGroup.PrepareNextGraphicStep(gs)
 
         AddHandler uc.GraphicStepSelected, AddressOf Me.GraphicStepSelected
+        AddHandler uc.JumpToNext, AddressOf Me.JumpToNextGraphicSetp
 
         Me.TableLayoutPanelAll.HorizontalScroll.Value = Math.Min(uc.Left, Me.TableLayoutPanelAll.HorizontalScroll.Maximum)
 
@@ -256,9 +322,9 @@ Public Class FormChoose
           _ucPreview.GetPreview(_graphicGroup.PrepareScene(gs))
           _ucPreview.ShowAdvancedControls = False
           _ucPreview.Title = gs.ToString
-          End If
+        End If
 
-          Me.OK_Button.Enabled = True
+        Me.OK_Button.Enabled = True
         'preview
 
       End If
@@ -268,7 +334,46 @@ Public Class FormChoose
     Catch ex As Exception
 
     End Try
+    UpdateTableGrids()
     _firstControl = False
+  End Sub
+
+  Private Sub UpdateTableGrids()
+    Try
+      Dim controlCount As Integer = _lastControlIndex + 1
+      For i As Integer = 0 To controlCount - 1
+        Me.TableLayoutPanelAll.ColumnStyles(i).Width = 50
+      Next
+      For i As Integer = controlCount To Me.TableLayoutPanelAll.ColumnStyles.Count - 1
+        Me.TableLayoutPanelAll.ColumnStyles(i).Width = 0
+      Next
+    Catch ex As Exception
+    End Try
+  End Sub
+
+  Private Sub JumpToNextGraphicSetp(sender As UserControlChoose) Handles UserControlChoose1.JumpToNext, UserControlChoose2.JumpToNext, UserControlChoose3.JumpToNext, UserControlChoose4.JumpToNext
+    Try
+      Dim nextIndex As Integer = sender.Index + 1
+      If nextIndex < Me.TableLayoutPanelAll.Controls.Count Then
+        Dim uc As UserControlChoose = _chooseControls(nextIndex)
+        _chooseControls(nextIndex).Select()
+        uc.Focus()
+        uc.SelectFirst()
+      End If
+    Catch ex As Exception
+    End Try
+  End Sub
+
+  Private Sub JumpToPreivousGraphicSetp(sender As UserControlChoose) Handles UserControlChoose1.JumpToPrevious, UserControlChoose2.JumpToPrevious, UserControlChoose3.JumpToPrevious, UserControlChoose4.JumpToPrevious
+    Try
+      Dim nextIndex As Integer = sender.Index - 1
+      If nextIndex >= 0 Then
+        Dim uc As UserControlChoose = _chooseControls(nextIndex)
+        _chooseControls(nextIndex).Select()
+        uc.Focus()
+      End If
+    Catch ex As Exception
+    End Try
   End Sub
 
   Private Function SelectStep() As GraphicStep
@@ -308,37 +413,12 @@ Public Class FormChoose
     _llistaPreviewRequests.Add(New PreviewRequest(_previewControl.NewAsset(escena), pic))
   End Sub
 
-  Private Sub _previewControl_ActiveAssetChanged(ByVal asset As VizCommands.PreviewAsset, ByVal former_asset As VizCommands.PreviewAsset)
+  Private Sub FormChoose_Shown(sender As Object, e As EventArgs) Handles Me.Shown
     Try
+      Me.UserControlChoose1.SelectFirst()
     Catch ex As Exception
+      WriteToErrorLog(ex)
     End Try
   End Sub
-
-  Private Sub _previewControl_AssetAdded(ByVal asset As VizCommands.PreviewAsset)
-    Try
-    Catch ex As Exception
-    End Try
-  End Sub
-
-  Private Sub _previewControl_AssetStateChanged(ByVal asset As VizCommands.PreviewAsset)
-    Try
-      'Dim pic As PictureBox = Me.PictureBoxPreview
-
-      'For Each request As PreviewRequest In _llistaPreviewRequests
-      '  If request.ID = asset.ID Then
-      '    pic = request.Picturebox
-      '    Exit For
-      '  End If
-      'Next
-
-      'Select Case asset.AssetSate
-      '  Case ePreviewAssetState.Done
-      '    pic.Image = asset.AssetImage
-      'End Select
-    Catch ex As Exception
-
-    End Try
-  End Sub
-
 #End Region
 End Class

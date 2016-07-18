@@ -283,19 +283,19 @@ Public Class GraphicsPlayerName
       Select Case _lastPreparedStep.UID
         Case Step0.NameAndTeam
         Case Step0.YellowCard
-          If MetroFramework.MetroMessageBox.Show(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
+          If frmWaitForInput.ShowWaitDialog(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
             Me.Player.YellowCards = 1
           End If
         Case Step0.YellowCardMisses
-          If MetroFramework.MetroMessageBox.Show(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
+          If frmWaitForInput.ShowWaitDialog(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
             Me.Player.YellowCards = 1
           End If
         Case Step0.YellowCard2
-          If MetroFramework.MetroMessageBox.Show(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
+          If frmWaitForInput.ShowWaitDialog(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
             Me.Player.YellowCards = 2
           End If
         Case Step0.RedCard
-          If MetroFramework.MetroMessageBox.Show(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
+          If frmWaitForInput.ShowWaitDialog(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
             Me.Player.RedCards = 1
           End If
         Case Step0.GoalsInMatch

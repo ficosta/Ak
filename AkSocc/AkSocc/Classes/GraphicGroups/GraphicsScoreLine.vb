@@ -149,6 +149,8 @@ Public Class GraphicsScoreLine
 
       scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
+      scene.SceneParameters.Add("Scoreline_Control_OMO_Score", "1")
+
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Name", Match.HomeTeam.ArabicCaption1Name))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Name", Match.AwayTeam.ArabicCaption1Name))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.HomeTeam.BadgeName, paramType.Image))
@@ -158,6 +160,8 @@ Public Class GraphicsScoreLine
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Score", away_Result))
 
       scene.SceneParameters.Add(New SceneParameter("Scoreline_period_Name", period_Name))
+
+      scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_01_Text", period_Name)
 
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Control_OMO_Subline_Type_Base", "0"))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Data_Control_OMO_Data", "0"))
@@ -187,6 +191,8 @@ Public Class GraphicsScoreLine
 
       scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
+      scene.SceneParameters.Add("Scoreline_Control_OMO_Score", "1")
+
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Name", Match.HomeTeam.ArabicCaption1Name))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Name", Match.AwayTeam.ArabicCaption1Name))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.HomeTeam.BadgeName, paramType.Image))
@@ -195,6 +201,7 @@ Public Class GraphicsScoreLine
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Score", home_Result))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Score", away_Result))
 
+      scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_01_Text", "")
 
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Control_OMO_Subline_Type_Base", "1"))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_2_Control_OMO_GV_Choose", "0"))

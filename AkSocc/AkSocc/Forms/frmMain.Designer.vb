@@ -39,11 +39,6 @@ Partial Class frmMain
     Me.ToolStripStatusLabelVizConnection = New System.Windows.Forms.ToolStripStatusLabel()
     Me.ToolStripStatusLabelLoggerConnection = New System.Windows.Forms.ToolStripStatusLabel()
     Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-    Me.ToolStripButtonSettings = New System.Windows.Forms.ToolStripButton()
-    Me.ToolStripButtonSelectMatch = New System.Windows.Forms.ToolStripButton()
-    Me.ToolStripButtonMatchSetup = New System.Windows.Forms.ToolStripButton()
-    Me.ToolStripButtonMatchDay = New System.Windows.Forms.ToolStripButton()
-    Me.ToolStripButtonClassification = New System.Windows.Forms.ToolStripButton()
     Me.SplitContainerAll = New System.Windows.Forms.SplitContainer()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.TableLayoutPanelMatchInfo = New System.Windows.Forms.TableLayoutPanel()
@@ -70,9 +65,7 @@ Partial Class frmMain
     Me.ButtonShftF7L3Commons = New MetroFramework.Controls.MetroButton()
     Me.ButtonCtlF12FFIdent = New MetroFramework.Controls.MetroButton()
     Me.ButtonShftF9OtherScores = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF8Bugs = New MetroFramework.Controls.MetroButton()
     Me.ButtonShftF3NameNoNumber = New MetroFramework.Controls.MetroButton()
-    Me.ButtonShftF2Interview = New MetroFramework.Controls.MetroButton()
     Me.ButtonCtlF4TwoWayBoxes = New MetroFramework.Controls.MetroButton()
     Me.ButtonCtlF11AsItStands = New MetroFramework.Controls.MetroButton()
     Me.ButtonF12VideoTalkThroughts = New MetroFramework.Controls.MetroButton()
@@ -90,8 +83,7 @@ Partial Class frmMain
     Me.TableLayoutPanel8Clock = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroTileClock = New MetroFramework.Controls.MetroTile()
     Me.MetroButtonClockSubstitutions = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonClockOUT = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonClockIN = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonClock = New MetroFramework.Controls.MetroButton()
     Me.MetroTileClockBasedGraphics = New MetroFramework.Controls.MetroTile()
     Me.MetroButtonClockStats = New MetroFramework.Controls.MetroButton()
     Me.MetroButtonClockOtherScores = New MetroFramework.Controls.MetroButton()
@@ -113,10 +105,17 @@ Partial Class frmMain
     Me.ButtonCtlF6Referee = New MetroFramework.Controls.MetroButton()
     Me.ButtonF9TeamCaptions = New MetroFramework.Controls.MetroButton()
     Me.ButtonCtlF1FullFramers = New MetroFramework.Controls.MetroButton()
+    Me.ButtonCtlF8Bugs = New MetroFramework.Controls.MetroButton()
     Me.ButtonCtlF10L3TeamStatsDb = New MetroFramework.Controls.MetroButton()
+    Me.ButtonShftF2Interview = New MetroFramework.Controls.MetroButton()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.msmMain = New MetroFramework.Components.MetroStyleManager(Me.components)
     Me.TimerClock = New System.Windows.Forms.Timer(Me.components)
+    Me.ToolStripButtonSettings = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStripButtonSelectMatch = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStripButtonMatchSetup = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStripButtonMatchDay = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStripButtonClassification = New System.Windows.Forms.ToolStripButton()
     Me.PlayerAwayViewer18 = New AkSocc.PlayerViewer()
     Me.PlayerAwayViewer17 = New AkSocc.PlayerViewer()
     Me.PlayerAwayViewer16 = New AkSocc.PlayerViewer()
@@ -153,6 +152,7 @@ Partial Class frmMain
     Me.PlayerHomeViewer2 = New AkSocc.PlayerViewer()
     Me.PlayerHomeViewer1 = New AkSocc.PlayerViewer()
     Me.PlayerAwayViewer1 = New AkSocc.PlayerViewer()
+    Me.MetroButtonAddedTime = New MetroFramework.Controls.MetroButton()
     Me.MenuStrip1.SuspendLayout()
     Me.StatusStrip1.SuspendLayout()
     Me.ToolStrip1.SuspendLayout()
@@ -275,51 +275,6 @@ Partial Class frmMain
     Me.ToolStrip1.Size = New System.Drawing.Size(1180, 25)
     Me.ToolStrip1.TabIndex = 2
     Me.ToolStrip1.Text = "ToolStrip1"
-    '
-    'ToolStripButtonSettings
-    '
-    Me.ToolStripButtonSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-    Me.ToolStripButtonSettings.Image = CType(resources.GetObject("ToolStripButtonSettings.Image"), System.Drawing.Image)
-    Me.ToolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButtonSettings.Name = "ToolStripButtonSettings"
-    Me.ToolStripButtonSettings.Size = New System.Drawing.Size(53, 22)
-    Me.ToolStripButtonSettings.Text = "Settings"
-    '
-    'ToolStripButtonSelectMatch
-    '
-    Me.ToolStripButtonSelectMatch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-    Me.ToolStripButtonSelectMatch.Image = CType(resources.GetObject("ToolStripButtonSelectMatch.Image"), System.Drawing.Image)
-    Me.ToolStripButtonSelectMatch.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButtonSelectMatch.Name = "ToolStripButtonSelectMatch"
-    Me.ToolStripButtonSelectMatch.Size = New System.Drawing.Size(79, 22)
-    Me.ToolStripButtonSelectMatch.Text = "Select match"
-    '
-    'ToolStripButtonMatchSetup
-    '
-    Me.ToolStripButtonMatchSetup.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-    Me.ToolStripButtonMatchSetup.Image = CType(resources.GetObject("ToolStripButtonMatchSetup.Image"), System.Drawing.Image)
-    Me.ToolStripButtonMatchSetup.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButtonMatchSetup.Name = "ToolStripButtonMatchSetup"
-    Me.ToolStripButtonMatchSetup.Size = New System.Drawing.Size(77, 22)
-    Me.ToolStripButtonMatchSetup.Text = "Match setup"
-    '
-    'ToolStripButtonMatchDay
-    '
-    Me.ToolStripButtonMatchDay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-    Me.ToolStripButtonMatchDay.Image = CType(resources.GetObject("ToolStripButtonMatchDay.Image"), System.Drawing.Image)
-    Me.ToolStripButtonMatchDay.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButtonMatchDay.Name = "ToolStripButtonMatchDay"
-    Me.ToolStripButtonMatchDay.Size = New System.Drawing.Size(89, 22)
-    Me.ToolStripButtonMatchDay.Text = "Other matches"
-    '
-    'ToolStripButtonClassification
-    '
-    Me.ToolStripButtonClassification.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-    Me.ToolStripButtonClassification.Image = CType(resources.GetObject("ToolStripButtonClassification.Image"), System.Drawing.Image)
-    Me.ToolStripButtonClassification.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButtonClassification.Name = "ToolStripButtonClassification"
-    Me.ToolStripButtonClassification.Size = New System.Drawing.Size(81, 22)
-    Me.ToolStripButtonClassification.Text = "Classification"
     '
     'SplitContainerAll
     '
@@ -752,18 +707,6 @@ Partial Class frmMain
     Me.ButtonShftF9OtherScores.Text = "OTHER SCORES Shift+F9"
     Me.ButtonShftF9OtherScores.UseSelectable = True
     '
-    'ButtonCtlF8Bugs
-    '
-    Me.ButtonCtlF8Bugs.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonCtlF8Bugs.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonCtlF8Bugs.Location = New System.Drawing.Point(493, 111)
-    Me.ButtonCtlF8Bugs.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonCtlF8Bugs.Name = "ButtonCtlF8Bugs"
-    Me.ButtonCtlF8Bugs.Size = New System.Drawing.Size(164, 15)
-    Me.ButtonCtlF8Bugs.TabIndex = 286
-    Me.ButtonCtlF8Bugs.Text = "     BUGS      Ctrl+F8"
-    Me.ButtonCtlF8Bugs.UseSelectable = True
-    '
     'ButtonShftF3NameNoNumber
     '
     Me.ButtonShftF3NameNoNumber.BackColor = System.Drawing.Color.DeepSkyBlue
@@ -775,18 +718,6 @@ Partial Class frmMain
     Me.ButtonShftF3NameNoNumber.TabIndex = 278
     Me.ButtonShftF3NameNoNumber.Text = "NAME NO NUMBER Shift+F3"
     Me.ButtonShftF3NameNoNumber.UseSelectable = True
-    '
-    'ButtonShftF2Interview
-    '
-    Me.ButtonShftF2Interview.BackColor = System.Drawing.Color.DeepSkyBlue
-    Me.ButtonShftF2Interview.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonShftF2Interview.Location = New System.Drawing.Point(165, 145)
-    Me.ButtonShftF2Interview.Margin = New System.Windows.Forms.Padding(1)
-    Me.ButtonShftF2Interview.Name = "ButtonShftF2Interview"
-    Me.ButtonShftF2Interview.Size = New System.Drawing.Size(162, 16)
-    Me.ButtonShftF2Interview.TabIndex = 289
-    Me.ButtonShftF2Interview.Text = "INTERVIEWS Shift+F2"
-    Me.ButtonShftF2Interview.UseSelectable = True
     '
     'ButtonCtlF4TwoWayBoxes
     '
@@ -972,10 +903,10 @@ Partial Class frmMain
     Me.TableLayoutPanel8Clock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
     Me.TableLayoutPanel8Clock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
     Me.TableLayoutPanel8Clock.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonAddedTime, 0, 2)
     Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroTileClock, 0, 0)
     Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockSubstitutions, 1, 1)
-    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockOUT, 0, 2)
-    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockIN, 0, 1)
+    Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClock, 0, 1)
     Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroTileClockBasedGraphics, 1, 0)
     Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockStats, 2, 1)
     Me.TableLayoutPanel8Clock.Controls.Add(Me.MetroButtonClockOtherScores, 1, 2)
@@ -1016,29 +947,18 @@ Partial Class frmMain
     Me.MetroButtonClockSubstitutions.UseCustomForeColor = True
     Me.MetroButtonClockSubstitutions.UseSelectable = True
     '
-    'MetroButtonClockOUT
+    'MetroButtonClock
     '
-    Me.MetroButtonClockOUT.BackColor = System.Drawing.Color.Salmon
-    Me.MetroButtonClockOUT.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonClockOUT.Location = New System.Drawing.Point(3, 84)
-    Me.MetroButtonClockOUT.Name = "MetroButtonClockOUT"
-    Me.MetroButtonClockOUT.Size = New System.Drawing.Size(132, 51)
-    Me.MetroButtonClockOUT.TabIndex = 1
-    Me.MetroButtonClockOUT.Text = "No clock"
-    Me.MetroButtonClockOUT.UseCustomBackColor = True
-    Me.MetroButtonClockOUT.UseSelectable = True
-    '
-    'MetroButtonClockIN
-    '
-    Me.MetroButtonClockIN.BackColor = System.Drawing.Color.PaleGreen
-    Me.MetroButtonClockIN.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonClockIN.Location = New System.Drawing.Point(3, 28)
-    Me.MetroButtonClockIN.Name = "MetroButtonClockIN"
-    Me.MetroButtonClockIN.Size = New System.Drawing.Size(132, 50)
-    Me.MetroButtonClockIN.TabIndex = 0
-    Me.MetroButtonClockIN.Text = "Clock visible"
-    Me.MetroButtonClockIN.UseCustomBackColor = True
-    Me.MetroButtonClockIN.UseSelectable = True
+    Me.MetroButtonClock.BackColor = System.Drawing.Color.PaleGreen
+    Me.MetroButtonClock.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonClock.FontSize = MetroFramework.MetroButtonSize.Medium
+    Me.MetroButtonClock.Location = New System.Drawing.Point(3, 28)
+    Me.MetroButtonClock.Name = "MetroButtonClock"
+    Me.MetroButtonClock.Size = New System.Drawing.Size(132, 50)
+    Me.MetroButtonClock.TabIndex = 0
+    Me.MetroButtonClock.Text = "SHOW CLOCK F10"
+    Me.MetroButtonClock.UseCustomBackColor = True
+    Me.MetroButtonClock.UseSelectable = True
     '
     'MetroTileClockBasedGraphics
     '
@@ -1333,6 +1253,18 @@ Partial Class frmMain
     Me.ButtonCtlF1FullFramers.Text = "FULL FRAMERS Ctrl+F1"
     Me.ButtonCtlF1FullFramers.UseSelectable = True
     '
+    'ButtonCtlF8Bugs
+    '
+    Me.ButtonCtlF8Bugs.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonCtlF8Bugs.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonCtlF8Bugs.Location = New System.Drawing.Point(493, 111)
+    Me.ButtonCtlF8Bugs.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonCtlF8Bugs.Name = "ButtonCtlF8Bugs"
+    Me.ButtonCtlF8Bugs.Size = New System.Drawing.Size(164, 15)
+    Me.ButtonCtlF8Bugs.TabIndex = 286
+    Me.ButtonCtlF8Bugs.Text = "     BUGS      Ctrl+F8"
+    Me.ButtonCtlF8Bugs.UseSelectable = True
+    '
     'ButtonCtlF10L3TeamStatsDb
     '
     Me.ButtonCtlF10L3TeamStatsDb.BackColor = System.Drawing.Color.DeepSkyBlue
@@ -1344,6 +1276,18 @@ Partial Class frmMain
     Me.ButtonCtlF10L3TeamStatsDb.TabIndex = 288
     Me.ButtonCtlF10L3TeamStatsDb.Text = "L3 TEAM STATS Ctrl+F10"
     Me.ButtonCtlF10L3TeamStatsDb.UseSelectable = True
+    '
+    'ButtonShftF2Interview
+    '
+    Me.ButtonShftF2Interview.BackColor = System.Drawing.Color.DeepSkyBlue
+    Me.ButtonShftF2Interview.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShftF2Interview.Location = New System.Drawing.Point(165, 145)
+    Me.ButtonShftF2Interview.Margin = New System.Windows.Forms.Padding(1)
+    Me.ButtonShftF2Interview.Name = "ButtonShftF2Interview"
+    Me.ButtonShftF2Interview.Size = New System.Drawing.Size(162, 16)
+    Me.ButtonShftF2Interview.TabIndex = 289
+    Me.ButtonShftF2Interview.Text = "INTERVIEWS Shift+F2"
+    Me.ButtonShftF2Interview.UseSelectable = True
     '
     'TableLayoutPanel2
     '
@@ -1367,6 +1311,51 @@ Partial Class frmMain
     '
     Me.TimerClock.Enabled = True
     Me.TimerClock.Interval = 250
+    '
+    'ToolStripButtonSettings
+    '
+    Me.ToolStripButtonSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+    Me.ToolStripButtonSettings.Image = CType(resources.GetObject("ToolStripButtonSettings.Image"), System.Drawing.Image)
+    Me.ToolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButtonSettings.Name = "ToolStripButtonSettings"
+    Me.ToolStripButtonSettings.Size = New System.Drawing.Size(53, 22)
+    Me.ToolStripButtonSettings.Text = "Settings"
+    '
+    'ToolStripButtonSelectMatch
+    '
+    Me.ToolStripButtonSelectMatch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+    Me.ToolStripButtonSelectMatch.Image = CType(resources.GetObject("ToolStripButtonSelectMatch.Image"), System.Drawing.Image)
+    Me.ToolStripButtonSelectMatch.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButtonSelectMatch.Name = "ToolStripButtonSelectMatch"
+    Me.ToolStripButtonSelectMatch.Size = New System.Drawing.Size(79, 22)
+    Me.ToolStripButtonSelectMatch.Text = "Select match"
+    '
+    'ToolStripButtonMatchSetup
+    '
+    Me.ToolStripButtonMatchSetup.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+    Me.ToolStripButtonMatchSetup.Image = CType(resources.GetObject("ToolStripButtonMatchSetup.Image"), System.Drawing.Image)
+    Me.ToolStripButtonMatchSetup.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButtonMatchSetup.Name = "ToolStripButtonMatchSetup"
+    Me.ToolStripButtonMatchSetup.Size = New System.Drawing.Size(77, 22)
+    Me.ToolStripButtonMatchSetup.Text = "Match setup"
+    '
+    'ToolStripButtonMatchDay
+    '
+    Me.ToolStripButtonMatchDay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+    Me.ToolStripButtonMatchDay.Image = CType(resources.GetObject("ToolStripButtonMatchDay.Image"), System.Drawing.Image)
+    Me.ToolStripButtonMatchDay.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButtonMatchDay.Name = "ToolStripButtonMatchDay"
+    Me.ToolStripButtonMatchDay.Size = New System.Drawing.Size(89, 22)
+    Me.ToolStripButtonMatchDay.Text = "Other matches"
+    '
+    'ToolStripButtonClassification
+    '
+    Me.ToolStripButtonClassification.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+    Me.ToolStripButtonClassification.Image = CType(resources.GetObject("ToolStripButtonClassification.Image"), System.Drawing.Image)
+    Me.ToolStripButtonClassification.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButtonClassification.Name = "ToolStripButtonClassification"
+    Me.ToolStripButtonClassification.Size = New System.Drawing.Size(81, 22)
+    Me.ToolStripButtonClassification.Text = "Classification"
     '
     'PlayerAwayViewer18
     '
@@ -1836,6 +1825,19 @@ Partial Class frmMain
     Me.PlayerAwayViewer1.Size = New System.Drawing.Size(253, 26)
     Me.PlayerAwayViewer1.TabIndex = 22
     '
+    'MetroButtonAddedTime
+    '
+    Me.MetroButtonAddedTime.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroButtonAddedTime.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonAddedTime.Location = New System.Drawing.Point(3, 84)
+    Me.MetroButtonAddedTime.Name = "MetroButtonAddedTime"
+    Me.MetroButtonAddedTime.Size = New System.Drawing.Size(132, 51)
+    Me.MetroButtonAddedTime.TabIndex = 8
+    Me.MetroButtonAddedTime.Text = "Added time"
+    Me.MetroButtonAddedTime.UseCustomBackColor = True
+    Me.MetroButtonAddedTime.UseCustomForeColor = True
+    Me.MetroButtonAddedTime.UseSelectable = True
+    '
     'frmMain
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1948,8 +1950,7 @@ Partial Class frmMain
   Friend WithEvents TimerClock As Timer
   Friend WithEvents MetroTileClock As MetroFramework.Controls.MetroTile
   Friend WithEvents TableLayoutPanel8Clock As TableLayoutPanel
-  Friend WithEvents MetroButtonClockOUT As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonClockIN As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonClock As MetroFramework.Controls.MetroButton
   Friend WithEvents MetroTileClockBasedGraphics As MetroFramework.Controls.MetroTile
   Friend WithEvents MetroButtonClockSubstitutions As MetroFramework.Controls.MetroButton
   Friend WithEvents MetroButtonClockStats As MetroFramework.Controls.MetroButton
@@ -2004,4 +2005,5 @@ Partial Class frmMain
   Friend WithEvents MetroButtonManageGoals As MetroFramework.Controls.MetroButton
   Friend WithEvents ToolStripButtonSelectMatch As ToolStripButton
   Friend WithEvents ToolStripStatusLabelVersion As ToolStripStatusLabel
+  Friend WithEvents MetroButtonAddedTime As MetroFramework.Controls.MetroButton
 End Class

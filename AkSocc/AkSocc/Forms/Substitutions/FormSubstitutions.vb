@@ -46,7 +46,7 @@ Public Class FormSubstitutions
 
 #Region "Buttons"
   Private Sub MetroButtonAddHomeTeamSubstitition_Click(sender As Object, e As EventArgs) Handles MetroButtonAddHomeTeamSubstitition.Click
-    Me.AddSubstitution(_match.HomeTeam)
+    Me.AddSubstitution(_match.AwayTeam)
   End Sub
 
   Private Sub MetroButtonRemoveSubstitution_Click(sender As Object, e As EventArgs) Handles MetroButtonRemoveSubstitution.Click
@@ -54,7 +54,7 @@ Public Class FormSubstitutions
   End Sub
 
   Private Sub MetroButtonAddAwayTeamSubstitition_Click(sender As Object, e As EventArgs) Handles MetroButtonAddAwayTeamSubstitition.Click
-    Me.AddSubstitution(_match.AwayTeam)
+    Me.AddSubstitution(_match.HomeTeam)
   End Sub
 
   Private Function AddSubstitution(team As Team) As Substitution
@@ -85,7 +85,7 @@ Public Class FormSubstitutions
     Try
       Dim graphic As New ClockSubstitution()
       graphic.ShowSubstitution(_substitution)
-      MetroFramework.MetroMessageBox.Show(Me, "Waiting")
+      frmWaitForInput.ShowWaitDialog(Me, "Waiting")
       graphic.HideSubstitution()
 
     Catch ex As Exception
@@ -94,11 +94,11 @@ Public Class FormSubstitutions
 
   End Sub
 
-  Private Sub MetroGridSubstitutions_SelectionChanged(sender As Object, e As EventArgs)
+  Private Sub MetroGridSubstitutions_SelectionChanged(sender As Object, e As EventArgs) Handles MetroGridSubstitutions.SelectionChanged
     If _initializing Then Exit Sub
     Dim inID As Integer = CType(Me.MetroGridSubstitutions.Rows(Me.MetroGridSubstitutions.SelectedRows(0).Index).Cells(ColumnPlayerInID.Index).Value, Integer)
     Dim outID As Integer = CType(Me.MetroGridSubstitutions.Rows(Me.MetroGridSubstitutions.SelectedRows(0).Index).Cells(ColumnPlayerOutID.Index).Value, Integer)
-    _substitution = _match.Substitutions.GetSubstitutionByPlayerIn(inID)
+    _substitution = _match.Substitutions.GetSubstitutionByPlayers(inID, outID)
 
     ShowSelecteSubstitiution()
   End Sub

@@ -11,7 +11,7 @@ Public Class FormMatchSelector
   Public Property SelectedMatch As Match = Nothing
   Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
     If SelectedMatchId = 0 Then
-      MetroFramework.MetroMessageBox.Show(Me, "No match selected", "Options", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+      frmWaitForInput.ShowWaitDialog(Me, "No match selected", "Options", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     Else
       Me.DialogResult = System.Windows.Forms.DialogResult.OK
       Me.Close()
@@ -266,4 +266,18 @@ Public Class FormMatchSelector
     Me.Cursor = Cursors.Default
   End Sub
 
+  Private Sub MetroGridMatches_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridMatches.CellContentClick
+
+  End Sub
+
+  Private Sub MetroGridMatches_KeyDown(sender As Object, e As KeyEventArgs) Handles MetroGridMatches.KeyDown
+    Select Case e.KeyCode
+      Case Keys.Return
+        e.Handled = True
+    End Select
+  End Sub
+
+  Private Sub MetroGridMatches_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles MetroGridMatches.PreviewKeyDown
+
+  End Sub
 End Class

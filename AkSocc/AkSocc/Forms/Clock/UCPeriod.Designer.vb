@@ -23,11 +23,11 @@ Partial Class UCPeriod
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.TableLayoutPanelControls = New System.Windows.Forms.TableLayoutPanel()
+    Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
+    Me.LabelExtraHome = New MetroFramework.Controls.MetroLabel()
     Me.MetroButtonEndPeriod = New MetroFramework.Controls.MetroButton()
     Me.MetroButtonStart = New MetroFramework.Controls.MetroButton()
     Me.MetroTilePeriodName = New MetroFramework.Controls.MetroTile()
-    Me.LabelExtraHome = New MetroFramework.Controls.MetroLabel()
-    Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
     Me.TableLayoutPanelControls.SuspendLayout()
     CType(Me.NumericUpDownMinutes, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
@@ -53,6 +53,27 @@ Partial Class UCPeriod
     Me.TableLayoutPanelControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanelControls.Size = New System.Drawing.Size(144, 126)
     Me.TableLayoutPanelControls.TabIndex = 0
+    '
+    'NumericUpDownMinutes
+    '
+    Me.NumericUpDownMinutes.BorderStyle = System.Windows.Forms.BorderStyle.None
+    Me.NumericUpDownMinutes.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.NumericUpDownMinutes.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.NumericUpDownMinutes.Location = New System.Drawing.Point(75, 98)
+    Me.NumericUpDownMinutes.Name = "NumericUpDownMinutes"
+    Me.NumericUpDownMinutes.Size = New System.Drawing.Size(66, 25)
+    Me.NumericUpDownMinutes.TabIndex = 4
+    '
+    'LabelExtraHome
+    '
+    Me.LabelExtraHome.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelExtraHome.FontSize = MetroFramework.MetroLabelSize.Small
+    Me.LabelExtraHome.Location = New System.Drawing.Point(3, 95)
+    Me.LabelExtraHome.Name = "LabelExtraHome"
+    Me.LabelExtraHome.Size = New System.Drawing.Size(66, 31)
+    Me.LabelExtraHome.TabIndex = 3
+    Me.LabelExtraHome.Text = "Extra time"
+    Me.LabelExtraHome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
     '
     'MetroButtonEndPeriod
     '
@@ -88,27 +109,6 @@ Partial Class UCPeriod
     Me.MetroTilePeriodName.Text = "Period name"
     Me.MetroTilePeriodName.TextAlign = System.Drawing.ContentAlignment.BottomCenter
     Me.MetroTilePeriodName.UseSelectable = True
-    '
-    'LabelExtraHome
-    '
-    Me.LabelExtraHome.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelExtraHome.FontSize = MetroFramework.MetroLabelSize.Small
-    Me.LabelExtraHome.Location = New System.Drawing.Point(3, 95)
-    Me.LabelExtraHome.Name = "LabelExtraHome"
-    Me.LabelExtraHome.Size = New System.Drawing.Size(66, 31)
-    Me.LabelExtraHome.TabIndex = 3
-    Me.LabelExtraHome.Text = "Extra time"
-    Me.LabelExtraHome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    '
-    'NumericUpDownMinutes
-    '
-    Me.NumericUpDownMinutes.BorderStyle = System.Windows.Forms.BorderStyle.None
-    Me.NumericUpDownMinutes.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.NumericUpDownMinutes.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.NumericUpDownMinutes.Location = New System.Drawing.Point(75, 98)
-    Me.NumericUpDownMinutes.Name = "NumericUpDownMinutes"
-    Me.NumericUpDownMinutes.Size = New System.Drawing.Size(66, 25)
-    Me.NumericUpDownMinutes.TabIndex = 4
     '
     'UCPeriod
     '

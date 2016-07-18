@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormPeriodControl
+Partial Class FormPeriodControl_new
   Inherits MetroFramework.Forms.MetroForm
 
   'Form overrides dispose to clean up the component list.
@@ -26,19 +26,151 @@ Partial Class FormPeriodControl
     Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+    Me.UcPeriod4 = New AkSocc.UCPeriod()
+    Me.TableLayoutPanelOtherOptions = New System.Windows.Forms.TableLayoutPanel()
+    Me.MetroButtonResetMatch = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonOverwriteClock = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonReloadDataBase = New MetroFramework.Controls.MetroButton()
+    Me.UcPeriod3 = New AkSocc.UCPeriod()
+    Me.UcPeriod2 = New AkSocc.UCPeriod()
+    Me.UcPeriod1 = New AkSocc.UCPeriod()
     Me.msmPeriodControl = New MetroFramework.Components.MetroStyleManager(Me.components)
     Me.MetroGridPeriods = New MetroFramework.Controls.MetroGrid()
-    Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-    Me.LabelOverTime = New MetroFramework.Controls.MetroLabel()
-    Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
     Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnType = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnText = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+    Me.LabelOverTime = New MetroFramework.Controls.MetroLabel()
+    Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
+    Me.TableLayoutPanel1.SuspendLayout()
+    Me.TableLayoutPanelOtherOptions.SuspendLayout()
     CType(Me.msmPeriodControl, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.MetroGridPeriods, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel2.SuspendLayout()
     CType(Me.NumericUpDownMinutes, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
+    '
+    'TableLayoutPanel1
+    '
+    Me.TableLayoutPanel1.ColumnCount = 5
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+    Me.TableLayoutPanel1.Controls.Add(Me.UcPeriod4, 3, 0)
+    Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanelOtherOptions, 4, 0)
+    Me.TableLayoutPanel1.Controls.Add(Me.UcPeriod3, 2, 0)
+    Me.TableLayoutPanel1.Controls.Add(Me.UcPeriod2, 1, 0)
+    Me.TableLayoutPanel1.Controls.Add(Me.UcPeriod1, 0, 0)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(293, 63)
+    Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+    Me.TableLayoutPanel1.RowCount = 1
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(484, 104)
+    Me.TableLayoutPanel1.TabIndex = 2
+    '
+    'UcPeriod4
+    '
+    Me.UcPeriod4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod4.Location = New System.Drawing.Point(291, 3)
+    Me.UcPeriod4.Match = Nothing
+    Me.UcPeriod4.Name = "UcPeriod4"
+    Me.UcPeriod4.Period = Nothing
+    Me.UcPeriod4.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod4.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod4.TabIndex = 3
+    Me.UcPeriod4.UseSelectable = True
+    '
+    'TableLayoutPanelOtherOptions
+    '
+    Me.TableLayoutPanelOtherOptions.ColumnCount = 1
+    Me.TableLayoutPanelOtherOptions.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelOtherOptions.Controls.Add(Me.MetroButtonResetMatch, 0, 0)
+    Me.TableLayoutPanelOtherOptions.Controls.Add(Me.MetroButtonOverwriteClock, 0, 1)
+    Me.TableLayoutPanelOtherOptions.Controls.Add(Me.MetroButtonReloadDataBase, 0, 2)
+    Me.TableLayoutPanelOtherOptions.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanelOtherOptions.Location = New System.Drawing.Point(387, 3)
+    Me.TableLayoutPanelOtherOptions.Name = "TableLayoutPanelOtherOptions"
+    Me.TableLayoutPanelOtherOptions.RowCount = 3
+    Me.TableLayoutPanelOtherOptions.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+    Me.TableLayoutPanelOtherOptions.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+    Me.TableLayoutPanelOtherOptions.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+    Me.TableLayoutPanelOtherOptions.Size = New System.Drawing.Size(94, 98)
+    Me.TableLayoutPanelOtherOptions.TabIndex = 3
+    '
+    'MetroButtonResetMatch
+    '
+    Me.MetroButtonResetMatch.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonResetMatch.FontSize = MetroFramework.MetroButtonSize.Medium
+    Me.MetroButtonResetMatch.Location = New System.Drawing.Point(3, 3)
+    Me.MetroButtonResetMatch.Name = "MetroButtonResetMatch"
+    Me.MetroButtonResetMatch.Size = New System.Drawing.Size(88, 26)
+    Me.MetroButtonResetMatch.Style = MetroFramework.MetroColorStyle.Red
+    Me.MetroButtonResetMatch.TabIndex = 0
+    Me.MetroButtonResetMatch.Text = "Reset Match"
+    Me.MetroButtonResetMatch.UseSelectable = True
+    '
+    'MetroButtonOverwriteClock
+    '
+    Me.MetroButtonOverwriteClock.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonOverwriteClock.FontSize = MetroFramework.MetroButtonSize.Medium
+    Me.MetroButtonOverwriteClock.Location = New System.Drawing.Point(3, 35)
+    Me.MetroButtonOverwriteClock.Name = "MetroButtonOverwriteClock"
+    Me.MetroButtonOverwriteClock.Size = New System.Drawing.Size(88, 26)
+    Me.MetroButtonOverwriteClock.Style = MetroFramework.MetroColorStyle.Red
+    Me.MetroButtonOverwriteClock.TabIndex = 1
+    Me.MetroButtonOverwriteClock.Text = "Overwrite clock"
+    Me.MetroButtonOverwriteClock.UseSelectable = True
+    '
+    'MetroButtonReloadDataBase
+    '
+    Me.MetroButtonReloadDataBase.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonReloadDataBase.FontSize = MetroFramework.MetroButtonSize.Medium
+    Me.MetroButtonReloadDataBase.Location = New System.Drawing.Point(3, 67)
+    Me.MetroButtonReloadDataBase.Name = "MetroButtonReloadDataBase"
+    Me.MetroButtonReloadDataBase.Size = New System.Drawing.Size(88, 28)
+    Me.MetroButtonReloadDataBase.Style = MetroFramework.MetroColorStyle.Red
+    Me.MetroButtonReloadDataBase.TabIndex = 2
+    Me.MetroButtonReloadDataBase.Text = "Reload data base"
+    Me.MetroButtonReloadDataBase.UseSelectable = True
+    '
+    'UcPeriod3
+    '
+    Me.UcPeriod3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod3.Location = New System.Drawing.Point(195, 3)
+    Me.UcPeriod3.Match = Nothing
+    Me.UcPeriod3.Name = "UcPeriod3"
+    Me.UcPeriod3.Period = Nothing
+    Me.UcPeriod3.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod3.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod3.TabIndex = 2
+    Me.UcPeriod3.UseSelectable = True
+    '
+    'UcPeriod2
+    '
+    Me.UcPeriod2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod2.Location = New System.Drawing.Point(99, 3)
+    Me.UcPeriod2.Match = Nothing
+    Me.UcPeriod2.Name = "UcPeriod2"
+    Me.UcPeriod2.Period = Nothing
+    Me.UcPeriod2.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod2.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod2.TabIndex = 1
+    Me.UcPeriod2.UseSelectable = True
+    '
+    'UcPeriod1
+    '
+    Me.UcPeriod1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod1.Location = New System.Drawing.Point(3, 3)
+    Me.UcPeriod1.Match = Nothing
+    Me.UcPeriod1.Name = "UcPeriod1"
+    Me.UcPeriod1.Period = Nothing
+    Me.UcPeriod1.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod1.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod1.TabIndex = 0
+    Me.UcPeriod1.UseSelectable = True
     '
     'msmPeriodControl
     '
@@ -48,7 +180,6 @@ Partial Class FormPeriodControl
     '
     Me.MetroGridPeriods.AllowUserToAddRows = False
     Me.MetroGridPeriods.AllowUserToDeleteRows = False
-    Me.MetroGridPeriods.AllowUserToResizeColumns = False
     Me.MetroGridPeriods.AllowUserToResizeRows = False
     Me.MetroGridPeriods.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
     Me.MetroGridPeriods.BorderStyle = System.Windows.Forms.BorderStyle.None
@@ -78,7 +209,6 @@ Partial Class FormPeriodControl
     Me.MetroGridPeriods.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
     Me.MetroGridPeriods.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
     Me.MetroGridPeriods.Location = New System.Drawing.Point(3, 3)
-    Me.MetroGridPeriods.MultiSelect = False
     Me.MetroGridPeriods.Name = "MetroGridPeriods"
     Me.MetroGridPeriods.ReadOnly = True
     Me.MetroGridPeriods.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -90,17 +220,36 @@ Partial Class FormPeriodControl
     DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
     Me.MetroGridPeriods.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-    Me.MetroGridPeriods.RowHeadersVisible = False
     Me.MetroGridPeriods.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridPeriods.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridPeriods.Size = New System.Drawing.Size(350, 424)
+    Me.MetroGridPeriods.Size = New System.Drawing.Size(258, 343)
     Me.MetroGridPeriods.TabIndex = 3
+    '
+    'ColumnID
+    '
+    Me.ColumnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnID.HeaderText = "ID"
+    Me.ColumnID.Name = "ColumnID"
+    Me.ColumnID.ReadOnly = True
+    Me.ColumnID.Width = 41
+    '
+    'ColumnType
+    '
+    Me.ColumnType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnType.HeaderText = "Type"
+    Me.ColumnType.Name = "ColumnType"
+    Me.ColumnType.ReadOnly = True
+    Me.ColumnType.Width = 53
+    '
+    'ColumnText
+    '
+    Me.ColumnText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnText.HeaderText = "Text"
+    Me.ColumnText.Name = "ColumnText"
+    Me.ColumnText.ReadOnly = True
     '
     'TableLayoutPanel2
     '
-    Me.TableLayoutPanel2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.TableLayoutPanel2.ColumnCount = 2
     Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -112,16 +261,16 @@ Partial Class FormPeriodControl
     Me.TableLayoutPanel2.RowCount = 2
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(356, 465)
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(264, 384)
     Me.TableLayoutPanel2.TabIndex = 4
     '
     'LabelOverTime
     '
     Me.LabelOverTime.Dock = System.Windows.Forms.DockStyle.Fill
     Me.LabelOverTime.FontSize = MetroFramework.MetroLabelSize.Small
-    Me.LabelOverTime.Location = New System.Drawing.Point(3, 430)
+    Me.LabelOverTime.Location = New System.Drawing.Point(3, 349)
     Me.LabelOverTime.Name = "LabelOverTime"
-    Me.LabelOverTime.Size = New System.Drawing.Size(172, 35)
+    Me.LabelOverTime.Size = New System.Drawing.Size(126, 35)
     Me.LabelOverTime.TabIndex = 5
     Me.LabelOverTime.Text = "Over time"
     Me.LabelOverTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -131,48 +280,26 @@ Partial Class FormPeriodControl
     Me.NumericUpDownMinutes.BorderStyle = System.Windows.Forms.BorderStyle.None
     Me.NumericUpDownMinutes.Dock = System.Windows.Forms.DockStyle.Fill
     Me.NumericUpDownMinutes.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.NumericUpDownMinutes.Location = New System.Drawing.Point(181, 433)
+    Me.NumericUpDownMinutes.Location = New System.Drawing.Point(135, 352)
     Me.NumericUpDownMinutes.Name = "NumericUpDownMinutes"
-    Me.NumericUpDownMinutes.Size = New System.Drawing.Size(172, 25)
+    Me.NumericUpDownMinutes.Size = New System.Drawing.Size(126, 25)
     Me.NumericUpDownMinutes.TabIndex = 6
-    '
-    'ColumnID
-    '
-    Me.ColumnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnID.HeaderText = "ID"
-    Me.ColumnID.Name = "ColumnID"
-    Me.ColumnID.ReadOnly = True
-    Me.ColumnID.Visible = False
-    Me.ColumnID.Width = 41
-    '
-    'ColumnType
-    '
-    Me.ColumnType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnType.HeaderText = "Type"
-    Me.ColumnType.Name = "ColumnType"
-    Me.ColumnType.ReadOnly = True
-    Me.ColumnType.Visible = False
-    Me.ColumnType.Width = 53
-    '
-    'ColumnText
-    '
-    Me.ColumnText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnText.HeaderText = "Clock control actions"
-    Me.ColumnText.Name = "ColumnText"
-    Me.ColumnText.ReadOnly = True
     '
     'FormPeriodControl
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(402, 551)
+    Me.ClientSize = New System.Drawing.Size(800, 470)
     Me.Controls.Add(Me.TableLayoutPanel2)
+    Me.Controls.Add(Me.TableLayoutPanel1)
     Me.MaximizeBox = False
     Me.MinimizeBox = False
     Me.Name = "FormPeriodControl"
     Me.Resizable = False
     Me.Style = MetroFramework.MetroColorStyle.Orange
     Me.Text = "Match control"
+    Me.TableLayoutPanel1.ResumeLayout(False)
+    Me.TableLayoutPanelOtherOptions.ResumeLayout(False)
     CType(Me.msmPeriodControl, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.MetroGridPeriods, System.ComponentModel.ISupportInitialize).EndInit()
     Me.TableLayoutPanel2.ResumeLayout(False)
@@ -180,12 +307,21 @@ Partial Class FormPeriodControl
     Me.ResumeLayout(False)
 
   End Sub
+  Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+  Friend WithEvents UcPeriod4 As UCPeriod
+  Friend WithEvents UcPeriod3 As UCPeriod
+  Friend WithEvents UcPeriod2 As UCPeriod
+  Friend WithEvents UcPeriod1 As UCPeriod
   Friend WithEvents msmPeriodControl As MetroFramework.Components.MetroStyleManager
+  Friend WithEvents TableLayoutPanelOtherOptions As TableLayoutPanel
+  Friend WithEvents MetroButtonResetMatch As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonOverwriteClock As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonReloadDataBase As MetroFramework.Controls.MetroButton
   Friend WithEvents MetroGridPeriods As MetroFramework.Controls.MetroGrid
-  Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
-  Friend WithEvents LabelOverTime As MetroFramework.Controls.MetroLabel
-  Friend WithEvents NumericUpDownMinutes As NumericUpDown
   Friend WithEvents ColumnID As DataGridViewTextBoxColumn
   Friend WithEvents ColumnType As DataGridViewTextBoxColumn
   Friend WithEvents ColumnText As DataGridViewTextBoxColumn
+  Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+  Friend WithEvents LabelOverTime As MetroFramework.Controls.MetroLabel
+  Friend WithEvents NumericUpDownMinutes As NumericUpDown
 End Class

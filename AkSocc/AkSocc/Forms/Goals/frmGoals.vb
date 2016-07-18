@@ -110,7 +110,7 @@ Public Class frmGoals
 
       goal = Me.Match.MatchGoals.GetGoal(CInt(MetroGridGoals.Rows(MetroGridGoals.SelectedRows(0).Index).Cells(ColumnID.Index).Value))
       If Not goal Is Nothing Then
-        If MetroFramework.MetroMessageBox.Show(Me, "Delete selected goal?", "Goals", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+        If frmWaitForInput.ShowWaitDialog(Me, "Delete selected goal?", "Goals", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
           Me.Match.RemoveGoal(goal)
           Me.ShowGoals()
         End If
@@ -119,7 +119,11 @@ Public Class frmGoals
 
     End Try
   End Sub
-  
+
+  Private Sub MetroGridGoals_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridGoals.CellContentClick
+
+  End Sub
+
 
 #End Region
 End Class

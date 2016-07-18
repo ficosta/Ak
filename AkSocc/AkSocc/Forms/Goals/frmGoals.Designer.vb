@@ -32,9 +32,6 @@ Partial Class frmGoals
     Me.MetroButtonAddAwayTeamSubstitition = New MetroFramework.Controls.MetroButton()
     Me.MetroButtonRemoveGoal = New MetroFramework.Controls.MetroButton()
     Me.MetroGridGoals = New MetroFramework.Controls.MetroGrid()
-    Me.MetroButtonAddHomeTeamSubstitition = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonShowSelectedGoal = New MetroFramework.Controls.MetroButton()
-    Me.MetroTileData = New MetroFramework.Controls.MetroTile()
     Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnHomeType = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnHomePlayer = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -43,6 +40,9 @@ Partial Class frmGoals
     Me.ColumnAwayGoal = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnAwayPlayer = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnAwayType = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.MetroButtonAddHomeTeamSubstitition = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonShowSelectedGoal = New MetroFramework.Controls.MetroButton()
+    Me.MetroTileData = New MetroFramework.Controls.MetroTile()
     Me.TableLayoutPanel2.SuspendLayout()
     Me.TableLayoutPanelData.SuspendLayout()
     CType(Me.MetroGridGoals, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,38 +171,6 @@ Partial Class frmGoals
     Me.MetroGridGoals.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroGridGoals.TabIndex = 0
     '
-    'MetroButtonAddHomeTeamSubstitition
-    '
-    Me.MetroButtonAddHomeTeamSubstitition.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonAddHomeTeamSubstitition.Location = New System.Drawing.Point(531, 3)
-    Me.MetroButtonAddHomeTeamSubstitition.Name = "MetroButtonAddHomeTeamSubstitition"
-    Me.MetroButtonAddHomeTeamSubstitition.Size = New System.Drawing.Size(258, 24)
-    Me.MetroButtonAddHomeTeamSubstitition.TabIndex = 1
-    Me.MetroButtonAddHomeTeamSubstitition.Text = "Add away team GOAL"
-    Me.MetroButtonAddHomeTeamSubstitition.UseSelectable = True
-    '
-    'MetroButtonShowSelectedGoal
-    '
-    Me.MetroButtonShowSelectedGoal.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonShowSelectedGoal.Location = New System.Drawing.Point(3, 341)
-    Me.MetroButtonShowSelectedGoal.Name = "MetroButtonShowSelectedGoal"
-    Me.MetroButtonShowSelectedGoal.Size = New System.Drawing.Size(792, 29)
-    Me.MetroButtonShowSelectedGoal.TabIndex = 1
-    Me.MetroButtonShowSelectedGoal.Text = "Selected goal..."
-    Me.MetroButtonShowSelectedGoal.UseSelectable = True
-    '
-    'MetroTileData
-    '
-    Me.MetroTileData.ActiveControl = Nothing
-    Me.MetroTileData.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileData.Location = New System.Drawing.Point(3, 3)
-    Me.MetroTileData.Name = "MetroTileData"
-    Me.MetroTileData.Size = New System.Drawing.Size(792, 24)
-    Me.MetroTileData.Style = MetroFramework.MetroColorStyle.Orange
-    Me.MetroTileData.TabIndex = 2
-    Me.MetroTileData.Text = "Data"
-    Me.MetroTileData.UseSelectable = True
-    '
     'ColumnID
     '
     Me.ColumnID.HeaderText = "ColumnID"
@@ -251,6 +219,38 @@ Partial Class frmGoals
     '
     Me.ColumnAwayType.HeaderText = "Type"
     Me.ColumnAwayType.Name = "ColumnAwayType"
+    '
+    'MetroButtonAddHomeTeamSubstitition
+    '
+    Me.MetroButtonAddHomeTeamSubstitition.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonAddHomeTeamSubstitition.Location = New System.Drawing.Point(531, 3)
+    Me.MetroButtonAddHomeTeamSubstitition.Name = "MetroButtonAddHomeTeamSubstitition"
+    Me.MetroButtonAddHomeTeamSubstitition.Size = New System.Drawing.Size(258, 24)
+    Me.MetroButtonAddHomeTeamSubstitition.TabIndex = 1
+    Me.MetroButtonAddHomeTeamSubstitition.Text = "Add away team GOAL"
+    Me.MetroButtonAddHomeTeamSubstitition.UseSelectable = True
+    '
+    'MetroButtonShowSelectedGoal
+    '
+    Me.MetroButtonShowSelectedGoal.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonShowSelectedGoal.Location = New System.Drawing.Point(3, 341)
+    Me.MetroButtonShowSelectedGoal.Name = "MetroButtonShowSelectedGoal"
+    Me.MetroButtonShowSelectedGoal.Size = New System.Drawing.Size(792, 29)
+    Me.MetroButtonShowSelectedGoal.TabIndex = 1
+    Me.MetroButtonShowSelectedGoal.Text = "Selected goal..."
+    Me.MetroButtonShowSelectedGoal.UseSelectable = True
+    '
+    'MetroTileData
+    '
+    Me.MetroTileData.ActiveControl = Nothing
+    Me.MetroTileData.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTileData.Location = New System.Drawing.Point(3, 3)
+    Me.MetroTileData.Name = "MetroTileData"
+    Me.MetroTileData.Size = New System.Drawing.Size(792, 24)
+    Me.MetroTileData.Style = MetroFramework.MetroColorStyle.Orange
+    Me.MetroTileData.TabIndex = 2
+    Me.MetroTileData.Text = "Data"
+    Me.MetroTileData.UseSelectable = True
     '
     'frmGoals
     '

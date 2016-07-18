@@ -7,6 +7,13 @@ Public Class ClockGenericStraps
     MyBase.New(match)
   End Sub
 
+  Public Overloads Shared ReadOnly Property Description As String
+    Get
+      Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
+    End Get
+  End Property
+
+
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
 

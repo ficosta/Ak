@@ -262,14 +262,14 @@ Public Class PlayerViewer
 
   Private Sub GoalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GoalToolStripMenuItem.Click
 
-    If MetroMessageBox.Show(Me, "Add goal to player " & Me.Player.PlayerName & "?", "Goal", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.OK Then
+    If frmWaitForInput.ShowWaitDialog(Nothing, "Add goal to player " & Me.Player.PlayerName & "?", "Goal", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.OK Then
       RaiseEvent GoalScored(Me, True)
     End If
   End Sub
 
   Private Sub RemoveGoalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveGoalToolStripMenuItem.Click
 
-    If MetroMessageBox.Show(Me, "Remove goal from player " & Me.Player.PlayerName & "?", "Goal", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.OK Then
+    If frmWaitForInput.ShowWaitDialog(Nothing, "Remove goal from player " & Me.Player.PlayerName & "?", "Goal", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.OK Then
       RaiseEvent GoalScored(Me, False)
     End If
   End Sub

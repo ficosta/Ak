@@ -37,11 +37,13 @@ Public Class UserControlTactica
 
   Private Sub UpdateSelectedTactic(tactic As Tactic)
     Try
+      _team.Tactic = tactic
       For Each player As Player In _team.MatchPlayers
-        Dim pos As PosicioTactic = _tactica.GetPosicioByID(player.Formation_Pos)
+        Dim pos As PosicioTactic = _team.Tactic.GetPosicioByID(player.Formation_Pos)
         If Not pos Is Nothing Then
-          pos.X = Clamp(player.Formation_X, -_scale, _scale)
-          pos.Y = Clamp(player.Formation_Y, -_scale, _scale)
+
+          player.Formation_X = Clamp(pos.X, -_scale, _scale)
+          player.Formation_Y = Clamp(pos.Y, -_scale, _scale)
         End If
       Next
       InicialitzarVisualitzacioPlayersTeam()
@@ -80,7 +82,9 @@ Public Class UserControlTactica
 
   Private _lastMousePosition As New PointF
   Private _deltaPosition As New PointF
-  Private _scale As Double = 400
+  Private _scale As Double = 1200
+  Private _offsetX As Double = 0
+  Private _offsetY As Double = 30
 
   Private _color As Color = Color.AliceBlue
   Public Property Color() As Color
@@ -265,7 +269,7 @@ Public Class UserControlTactica
   Private Function GetPlayerRectangleF(ByVal x As Double, ByVal y As Double, ByVal size As Single, ByVal canvasSize As System.Drawing.Size, ByVal isLocal As Boolean) As RectangleF
     Dim rect As New RectangleF(0, 0, 1, 1)
     Try
-      Dim center As PointF = New PointF(x / _scale, y / _scale)
+      Dim center As PointF = New PointF((x - _offsetX) / _scale, (y - _offsetY) / _scale)
       Dim nx As Double = center.X
       Dim ny As Double = center.Y
       If isLocal = False Then
@@ -286,7 +290,7 @@ Public Class UserControlTactica
   Private Function GetPlayerRectangle(ByVal x As Double, ByVal y As Double, ByVal size As Single, ByVal canvasSize As System.Drawing.Size, ByVal isLocal As Boolean) As Rectangle
     Dim rect As New Rectangle(0, 0, 1, 1)
     Try
-      Dim center As PointF = New PointF(x / _scale, y / _scale)
+      Dim center As PointF = New PointF((x - _offsetX) / _scale, (y - _offsetY) / _scale)
       Dim nx As Double = center.X
       Dim ny As Double = center.Y
       If isLocal = False Then
@@ -320,7 +324,7 @@ Public Class UserControlTactica
   Private _yScale As Single = 0.78 * 2
 
   Private Function TranslateTacticPositionToImage(ByVal p As PointF, ByVal isLocalTeam As Boolean) As PointF
-    Dim center As New PointF(p.X / _scale, p.Y / _scale)
+    Dim center As New PointF((p.X - _offsetX) / _scale, (p.Y - _offsetY) / _scale)
     Dim nx As Double = center.X
     Dim ny As Double = center.Y
     If isLocalTeam = False Then
@@ -351,8 +355,8 @@ Public Class UserControlTactica
         center.Y = -center.Y
       End If
 
-      center.X = _scale * center.X
-      center.Y = _scale * center.Y
+      center.X = _scale * center.X + _offsetX
+      center.Y = _scale * center.Y + _offsetY
       'Debug.Print("TranslateImagePositionToTactic " & p.X & " -> " & center.Y & "    " & p.Y & " -> " & center.X)
       'center.X = center.Y
     Catch ex As Exception
@@ -870,6 +874,7 @@ Public Class UserControlTactica
     Try
       _updating = True
       _tactiques = New Tactiques()
+
       With Me.MetroComboBoxFormation
         .Items.Clear()
 
@@ -887,8 +892,8 @@ Public Class UserControlTactica
   Private Sub MetroComboBoxFormation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MetroComboBoxFormation.SelectedIndexChanged
     If _updating Then Exit Sub
 
-    Dim _tactic As Tactic = MetroComboBoxFormation.SelectedItem
-    UpdateSelectedTactic(_tactic)
+    _tactica = MetroComboBoxFormation.SelectedItem
+    UpdateSelectedTactic(_tactica)
   End Sub
 #End Region
 

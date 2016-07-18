@@ -443,7 +443,6 @@ Partial Class UserControlTactica
     Me.MetroComboBoxFormation.Size = New System.Drawing.Size(234, 29)
     Me.MetroComboBoxFormation.TabIndex = 50
     Me.MetroComboBoxFormation.UseSelectable = True
-    Me.MetroComboBoxFormation.Visible = False
     '
     'UserControlTactica
     '

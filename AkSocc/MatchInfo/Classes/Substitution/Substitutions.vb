@@ -41,6 +41,22 @@ Public Class Substitutions
     End Set
   End Property
 
+  Public Function GetSubstitutionByPlayers(IDplayerIn As Integer, IDplayerOut As Integer) As Substitution
+    Dim output As Substitution = Nothing
+    Try
+      For Each SearchSubstitution As Substitution In List
+        If SearchSubstitution.PlayerIn.ID = IDplayerIn And SearchSubstitution.PlayerOut.ID = IDplayerOut Then
+          output = SearchSubstitution
+          Exit For
+        End If
+      Next
+
+    Catch err As Exception
+      Throw err
+    End Try
+    Return (output)
+  End Function
+
   Public Function GetSubstitutionByPlayerIn(ID As Integer) As Substitution
     Dim output As Substitution = Nothing
     Try
