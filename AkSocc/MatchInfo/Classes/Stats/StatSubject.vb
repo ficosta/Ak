@@ -127,8 +127,17 @@ Public Class StatSubject
   End Sub
 
   Public Sub WriteStatToDB(stat As Stat)
+    If SaveToDB = False Then Exit Sub
+    If Config.Instance.AsyncDataWrites Then
+      Dim t As Threading.Thread = New Threading.Thread(Sub() WriteStatToDB_Sync(stat))
+      t.Start()
+    Else
+      WriteStatToDB_Sync(stat)
+    End If
+  End Sub
+
+  Public Sub WriteStatToDB_Sync(stat As Stat)
     Try
-      If SaveToDB = False Then Exit Sub
       If Me.TableName = "" Then Exit Sub
       If Me.Match_ID = "-1" Then Exit Sub
       If Me.FieldName = "" Then Exit Sub

@@ -158,10 +158,11 @@ Public Class frmMain
   Public Function SelectMatch() As Boolean
     Try
       Config.Instance.Silent = True
+      Config.Instance.AsyncDataWrites = False
+      _updating = True
       Dim dlg As New FormMatchSelector
       'Dim aux As MetroFramework.Forms.MetroForm = TryCast(Me, MetroFramework.Forms.MetroForm)
       Dim aux As System.Windows.Forms.Form = TryCast(Me, System.Windows.Forms.Form)
-
       If dlg.ShowDialog(Me) = DialogResult.OK Then
         'match selected!
         InitMatchInfo(dlg.SelectedMatchId)
@@ -171,11 +172,13 @@ Public Class frmMain
       WriteToErrorLog(ex)
     End Try
     Config.Instance.Silent = False
+    _updating = False
     Return True
   End Function
 
   Public Function MatchSetup() As Boolean
     Try
+
       If _match Is Nothing Then Return False
       Dim dlg As New FormMatchSetup(_match)
       'Dim aux As MetroFramework.Forms.MetroForm = TryCast(Me, MetroFramework.Forms.MetroForm)

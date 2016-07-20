@@ -139,7 +139,7 @@ Public Class MatchGoals
     Try
       If Not player Is Nothing Then
         For Each Search As MatchGoal In List
-          If Search.PlayerID = player.ID Then
+          If Search.PlayerID = player.ID And Search.GoalType <> MatchGoal.eGoalType.Own Then
             output.Add(Search)
           End If
         Next

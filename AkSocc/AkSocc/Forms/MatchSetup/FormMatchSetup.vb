@@ -35,6 +35,7 @@ Public Class FormMatchSetup
       Me.Match.Official1 = Me.MetroComboBoxReferee1.SelectedItem
       Me.Match.Official2 = Me.MetroComboBoxReferee2.SelectedItem
       Me.Match.Official3 = Me.MetroComboBoxReferee3.SelectedItem
+      Config.Instance.AsyncDataWrites = True
       Me.UcTeamMatchSetupHome.Save()
       Me.UcTeamMatchSetupAway.Save()
       Me.Close()
