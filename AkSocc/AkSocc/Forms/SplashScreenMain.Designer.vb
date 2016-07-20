@@ -13,9 +13,9 @@ Partial Class SplashScreenMain
       MyBase.Dispose(disposing)
     End Try
   End Sub
-  Friend WithEvents ApplicationTitle As MetroFramework.Controls.MetroLabel
-  Friend WithEvents Version As MetroFramework.Controls.MetroLabel
-  Friend WithEvents Copyright As MetroFramework.Controls.MetroLabel
+  Friend WithEvents ApplicationTitle As System.Windows.Forms.Label
+  Friend WithEvents Version As System.Windows.Forms.Label
+  Friend WithEvents Copyright As System.Windows.Forms.Label
   Friend WithEvents MainLayoutPanel As System.Windows.Forms.TableLayoutPanel
   Friend WithEvents DetailsLayoutPanel As System.Windows.Forms.TableLayoutPanel
 
@@ -30,9 +30,9 @@ Partial Class SplashScreenMain
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SplashScreenMain))
     Me.MainLayoutPanel = New System.Windows.Forms.TableLayoutPanel
     Me.DetailsLayoutPanel = New System.Windows.Forms.TableLayoutPanel
-    Me.Version = New MetroFramework.Controls.MetroLabel
-    Me.Copyright = New MetroFramework.Controls.MetroLabel
-    Me.ApplicationTitle = New MetroFramework.Controls.MetroLabel
+    Me.Version = New System.Windows.Forms.Label
+    Me.Copyright = New System.Windows.Forms.Label
+    Me.ApplicationTitle = New System.Windows.Forms.Label
     Me.MainLayoutPanel.SuspendLayout()
     Me.DetailsLayoutPanel.SuspendLayout()
     Me.SuspendLayout()

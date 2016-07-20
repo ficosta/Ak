@@ -44,11 +44,9 @@ Public Class FormChoose
     If frmWaitForInput.ShowWaitDialog(Me, "Start graphic?", gstep.ToString, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
 
     If Not gstep Is Nothing Then
-      Dim lbl As New MetroFramework.Controls.MetroLabel
+      Dim lbl As New System.Windows.Forms.Label
       Dim fWait As frmWait
       lbl.Text = "Wating for animation..."
-      lbl.FontSize = MetroFramework.MetroLabelSize.Tall
-      lbl.FontWeight = MetroFramework.MetroLabelWeight.Bold
       lbl.TextAlign = ContentAlignment.MiddleCenter
       lbl.Dock = DockStyle.Fill
 

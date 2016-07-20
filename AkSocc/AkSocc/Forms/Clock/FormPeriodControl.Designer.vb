@@ -32,7 +32,7 @@ Partial Class FormPeriodControl
     Me.ColumnType = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnText = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-    Me.LabelOverTime = New MetroFramework.Controls.MetroLabel()
+    Me.LabelOverTime = New System.Windows.Forms.Label()
     Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.OK_Button = New Button()
@@ -145,7 +145,6 @@ Partial Class FormPeriodControl
     'LabelOverTime
     '
     Me.LabelOverTime.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelOverTime.FontSize = MetroFramework.MetroLabelSize.Small
     Me.LabelOverTime.Location = New System.Drawing.Point(3, 377)
     Me.LabelOverTime.Name = "LabelOverTime"
     Me.LabelOverTime.Size = New System.Drawing.Size(172, 35)
@@ -224,7 +223,7 @@ Partial Class FormPeriodControl
   Friend WithEvents msmPeriodControl As MetroFramework.Components.MetroStyleManager
   Friend WithEvents MetroGridPeriods As MetroFramework.Controls.MetroGrid
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
-  Friend WithEvents LabelOverTime As MetroFramework.Controls.MetroLabel
+  Friend WithEvents LabelOverTime As System.Windows.Forms.Label
   Friend WithEvents NumericUpDownMinutes As NumericUpDown
   Friend WithEvents ColumnID As DataGridViewTextBoxColumn
   Friend WithEvents ColumnType As DataGridViewTextBoxColumn

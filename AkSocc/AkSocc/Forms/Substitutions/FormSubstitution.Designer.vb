@@ -37,10 +37,10 @@ Partial Class FormSubstitution
     Me.MetroTabControl1 = New MetroFramework.Controls.MetroTabControl()
     Me.MetroTabPage1 = New MetroFramework.Controls.MetroTabPage()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroLabelINPlayer = New MetroFramework.Controls.MetroLabel()
-    Me.MetroLabelInfo = New MetroFramework.Controls.MetroLabel()
-    Me.MetroTextBoxPlayers = New MetroFramework.Controls.MetroTextBox()
-    Me.MetroLabelOUTPlayer = New MetroFramework.Controls.MetroLabel()
+    Me.MetroLabelINPlayer = New System.Windows.Forms.Label()
+    Me.MetroLabelInfo = New System.Windows.Forms.Label()
+    Me.MetroTextBoxPlayers = New System.Windows.Forms.TextBox()
+    Me.MetroLabelOUTPlayer = New System.Windows.Forms.Label()
     Me.MetroTabPage2 = New MetroFramework.Controls.MetroTabPage()
     Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -287,15 +287,6 @@ Partial Class FormSubstitution
     '
     '
     '
-    Me.MetroTextBoxPlayers.CustomButton.Image = Nothing
-    Me.MetroTextBoxPlayers.CustomButton.Location = New System.Drawing.Point(657, 2)
-    Me.MetroTextBoxPlayers.CustomButton.Name = ""
-    Me.MetroTextBoxPlayers.CustomButton.Size = New System.Drawing.Size(19, 19)
-    Me.MetroTextBoxPlayers.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
-    Me.MetroTextBoxPlayers.CustomButton.TabIndex = 1
-    Me.MetroTextBoxPlayers.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxPlayers.CustomButton.FlatStyle = FlatStyle.Flat
-    Me.MetroTextBoxPlayers.CustomButton.Visible = False
     Me.MetroTextBoxPlayers.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTextBoxPlayers.Lines = New String(-1) {}
     Me.MetroTextBoxPlayers.Location = New System.Drawing.Point(3, 33)
@@ -308,8 +299,6 @@ Partial Class FormSubstitution
     Me.MetroTextBoxPlayers.SelectionStart = 0
     Me.MetroTextBoxPlayers.Size = New System.Drawing.Size(679, 24)
     Me.MetroTextBoxPlayers.TabIndex = 3
-    Me.MetroTextBoxPlayers.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
-    Me.MetroTextBoxPlayers.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
     'MetroLabelOUTPlayer
     '
@@ -432,10 +421,10 @@ Partial Class FormSubstitution
   Friend WithEvents MetroTabPage1 As MetroFramework.Controls.MetroTabPage
   Friend WithEvents MetroTabPage2 As MetroFramework.Controls.MetroTabPage
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-  Friend WithEvents MetroLabelINPlayer As MetroFramework.Controls.MetroLabel
-  Friend WithEvents MetroLabelInfo As MetroFramework.Controls.MetroLabel
-  Friend WithEvents MetroTextBoxPlayers As MetroFramework.Controls.MetroTextBox
-  Friend WithEvents MetroLabelOUTPlayer As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroLabelINPlayer As System.Windows.Forms.Label
+  Friend WithEvents MetroLabelInfo As System.Windows.Forms.Label
+  Friend WithEvents MetroTextBoxPlayers As System.Windows.Forms.TextBox
+  Friend WithEvents MetroLabelOUTPlayer As System.Windows.Forms.Label
   Friend WithEvents ColumnID As DataGridViewTextBoxColumn
   Friend WithEvents ColumnNumber As DataGridViewTextBoxColumn
   Friend WithEvents ColumnName As DataGridViewTextBoxColumn

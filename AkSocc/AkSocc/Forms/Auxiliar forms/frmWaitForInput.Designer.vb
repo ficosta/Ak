@@ -23,7 +23,7 @@ Partial Class frmWaitForInput
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroLabelPrompt = New MetroFramework.Controls.MetroLabel()
+    Me.MetroLabelPrompt = New System.Windows.Forms.Label()
     Me.MetroButtonOK = New System.Windows.Forms.Button()
     Me.ButtonCancel = New System.Windows.Forms.Button()
     Me.TableLayoutPanel1.SuspendLayout()
@@ -97,7 +97,7 @@ Partial Class frmWaitForInput
   End Sub
 
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-  Friend WithEvents MetroLabelPrompt As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroLabelPrompt As System.Windows.Forms.Label
   Friend WithEvents MetroButtonOK As Button
   Friend WithEvents ButtonCancel As Button
 End Class

@@ -16,12 +16,12 @@ Partial Class AboutBoxAk
 
   Friend WithEvents TableLayoutPanel As System.Windows.Forms.TableLayoutPanel
   Friend WithEvents LogoPictureBox As System.Windows.Forms.PictureBox
-  Friend WithEvents LabelProductName As MetroFramework.Controls.MetroLabel
-  Friend WithEvents LabelVersion As MetroFramework.Controls.MetroLabel
-  Friend WithEvents LabelCompanyName As MetroFramework.Controls.MetroLabel
-  Friend WithEvents TextBoxDescription As MetroFramework.Controls.MetroTextBox
+  Friend WithEvents LabelProductName As System.Windows.Forms.Label
+  Friend WithEvents LabelVersion As System.Windows.Forms.Label
+  Friend WithEvents LabelCompanyName As System.Windows.Forms.Label
+  Friend WithEvents TextBoxDescription As System.Windows.Forms.TextBox
   Friend WithEvents OKButton As Button
-  Friend WithEvents LabelCopyright As MetroFramework.Controls.MetroLabel
+  Friend WithEvents LabelCopyright As System.Windows.Forms.Label
 
   'Required by the Windows Form Designer
   Private components As System.ComponentModel.IContainer
@@ -34,11 +34,11 @@ Partial Class AboutBoxAk
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AboutBoxAk))
     Me.TableLayoutPanel = New System.Windows.Forms.TableLayoutPanel()
     Me.LogoPictureBox = New System.Windows.Forms.PictureBox()
-    Me.LabelProductName = New MetroFramework.Controls.MetroLabel()
-    Me.LabelVersion = New MetroFramework.Controls.MetroLabel()
-    Me.LabelCopyright = New MetroFramework.Controls.MetroLabel()
-    Me.LabelCompanyName = New MetroFramework.Controls.MetroLabel()
-    Me.TextBoxDescription = New MetroFramework.Controls.MetroTextBox()
+    Me.LabelProductName = New System.Windows.Forms.Label()
+    Me.LabelVersion = New System.Windows.Forms.Label()
+    Me.LabelCopyright = New System.Windows.Forms.Label()
+    Me.LabelCompanyName = New System.Windows.Forms.Label()
+    Me.TextBoxDescription = New System.Windows.Forms.TextBox()
     Me.OKButton = New Button()
     Me.TableLayoutPanel.SuspendLayout()
     CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,15 +134,6 @@ Partial Class AboutBoxAk
     '
     '
     '
-    Me.TextBoxDescription.CustomButton.Image = Nothing
-    Me.TextBoxDescription.CustomButton.Location = New System.Drawing.Point(161, 1)
-    Me.TextBoxDescription.CustomButton.Name = ""
-    Me.TextBoxDescription.CustomButton.Size = New System.Drawing.Size(95, 95)
-    Me.TextBoxDescription.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
-    Me.TextBoxDescription.CustomButton.TabIndex = 1
-    Me.TextBoxDescription.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.TextBoxDescription.CustomButton.FlatStyle = FlatStyle.Flat
-    Me.TextBoxDescription.CustomButton.Visible = False
     Me.TextBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TextBoxDescription.Lines = New String() {"Description :", "", "(At runtime, the labels' text will be replaced with the application's assembly in" &
             "formation.", "Customize the application's assembly information in the Application pane of Proje" &
@@ -162,8 +153,6 @@ Partial Class AboutBoxAk
     Me.TextBoxDescription.TabIndex = 0
     Me.TextBoxDescription.TabStop = False
     Me.TextBoxDescription.Text = resources.GetString("TextBoxDescription.Text")
-    Me.TextBoxDescription.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
-    Me.TextBoxDescription.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
     'OKButton
     '

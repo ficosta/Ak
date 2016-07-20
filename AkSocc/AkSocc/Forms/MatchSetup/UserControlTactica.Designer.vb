@@ -54,7 +54,7 @@ Partial Class UserControlTactica
     Me.Label6 = New System.Windows.Forms.Label()
     Me.Label7 = New System.Windows.Forms.Label()
     Me.ButtonRandom = New System.Windows.Forms.Button()
-    Me.MetroComboBoxFormation = New MetroFramework.Controls.MetroComboBox()
+    Me.MetroComboBoxFormation = New System.Windows.Forms.ComboBox()
     Me.ToolTipDrag = New System.Windows.Forms.ToolTip(Me.components)
     Me.TableLayoutPanelTot.SuspendLayout()
     CType(Me.MetroGridPlayers, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -488,5 +488,5 @@ Partial Class UserControlTactica
   Friend WithEvents ColumnPlayerFormationX As DataGridViewTextBoxColumn
   Friend WithEvents ColumnPlayerFormationY As DataGridViewTextBoxColumn
   Friend WithEvents ButtonRandom As Button
-  Friend WithEvents MetroComboBoxFormation As MetroFramework.Controls.MetroComboBox
+  Friend WithEvents MetroComboBoxFormation As System.Windows.Forms.ComboBox
 End Class

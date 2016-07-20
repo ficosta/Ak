@@ -27,17 +27,17 @@ Partial Class FormMatchSetup
     Me.TabPageMatchSetup = New System.Windows.Forms.TabPage()
     Me.TableLayoutPanelMatchInfo = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroTileGeneralMatchInfo = New MetroFramework.Controls.MetroTile()
-    Me.MetroLabel4 = New MetroFramework.Controls.MetroLabel()
+    Me.MetroLabel4 = New System.Windows.Forms.Label()
     Me.MetroTileMatchInfo = New MetroFramework.Controls.MetroTile()
-    Me.MetroLabelSceneVersion = New MetroFramework.Controls.MetroLabel()
-    Me.MetroComboBoxSceneVersion = New MetroFramework.Controls.MetroComboBox()
+    Me.MetroLabelSceneVersion = New System.Windows.Forms.Label()
+    Me.MetroComboBoxSceneVersion = New System.Windows.Forms.ComboBox()
     Me.MetroTileReferees = New MetroFramework.Controls.MetroTile()
-    Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
-    Me.MetroLabel3 = New MetroFramework.Controls.MetroLabel()
-    Me.MetroComboBoxReferee1 = New MetroFramework.Controls.MetroComboBox()
-    Me.MetroComboBoxReferee2 = New MetroFramework.Controls.MetroComboBox()
-    Me.MetroComboBoxReferee3 = New MetroFramework.Controls.MetroComboBox()
-    Me.MetroLabel2 = New MetroFramework.Controls.MetroLabel()
+    Me.MetroLabel1 = New System.Windows.Forms.Label()
+    Me.MetroLabel3 = New System.Windows.Forms.Label()
+    Me.MetroComboBoxReferee1 = New System.Windows.Forms.ComboBox()
+    Me.MetroComboBoxReferee2 = New System.Windows.Forms.ComboBox()
+    Me.MetroComboBoxReferee3 = New System.Windows.Forms.ComboBox()
+    Me.MetroLabel2 = New System.Windows.Forms.Label()
     Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
     Me.PictureBoxClockUp = New System.Windows.Forms.PictureBox()
     Me.PictureBoxClockLeft = New System.Windows.Forms.PictureBox()
@@ -45,7 +45,7 @@ Partial Class FormMatchSetup
     Me.PictureBoxClockDown = New System.Windows.Forms.PictureBox()
     Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
     Me.TableLayoutPanel6 = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroLabelAwayTeam = New MetroFramework.Controls.MetroLabel()
+    Me.MetroLabelAwayTeam = New System.Windows.Forms.Label()
     Me.imgAwayClockColour = New System.Windows.Forms.PictureBox()
     Me.label199 = New System.Windows.Forms.Label()
     Me.lblAwayClockColour = New System.Windows.Forms.Label()
@@ -53,7 +53,7 @@ Partial Class FormMatchSetup
     Me.imgAwayGoalKeeperJersey = New System.Windows.Forms.PictureBox()
     Me.label97 = New System.Windows.Forms.Label()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroLabelHomeTeam = New MetroFramework.Controls.MetroLabel()
+    Me.MetroLabelHomeTeam = New System.Windows.Forms.Label()
     Me.imgHomeClockColour = New System.Windows.Forms.PictureBox()
     Me.lblHomeClockColour = New System.Windows.Forms.Label()
     Me.label200 = New System.Windows.Forms.Label()
@@ -61,13 +61,13 @@ Partial Class FormMatchSetup
     Me.label198 = New System.Windows.Forms.Label()
     Me.imgHomePlayerJersey = New System.Windows.Forms.PictureBox()
     Me.TabPageHome = New System.Windows.Forms.TabPage()
-    Me.TabPageAway = New System.Windows.Forms.TabPage()
-    Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New Button()
-    Me.Cancel_Button = New Button()
-    Me.ofdSelectFile = New System.Windows.Forms.OpenFileDialog()
     Me.UcTeamMatchSetupHome = New AkSocc.UCTeamMatchSetup()
+    Me.TabPageAway = New System.Windows.Forms.TabPage()
     Me.UcTeamMatchSetupAway = New AkSocc.UCTeamMatchSetup()
+    Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+    Me.OK_Button = New System.Windows.Forms.Button()
+    Me.Cancel_Button = New System.Windows.Forms.Button()
+    Me.ofdSelectFile = New System.Windows.Forms.OpenFileDialog()
     Me.TableLayoutPanelGlobal.SuspendLayout()
     Me.MetroTabControl1.SuspendLayout()
     Me.TabPageMatchSetup.SuspendLayout()
@@ -117,10 +117,10 @@ Partial Class FormMatchSetup
     Me.MetroTabControl1.Location = New System.Drawing.Point(3, 3)
     Me.MetroTabControl1.Name = "MetroTabControl1"
     Me.TableLayoutPanelGlobal.SetRowSpan(Me.MetroTabControl1, 2)
-    Me.MetroTabControl1.SelectedIndex = 1
+    Me.MetroTabControl1.SelectedIndex = 0
     Me.MetroTabControl1.Size = New System.Drawing.Size(1101, 524)
     Me.MetroTabControl1.TabIndex = 48
-
+    Me.MetroTabControl1.UseSelectable = True
     '
     'TabPageMatchSetup
     '
@@ -182,7 +182,7 @@ Partial Class FormMatchSetup
     Me.MetroTileGeneralMatchInfo.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileGeneralMatchInfo.TabIndex = 13
     Me.MetroTileGeneralMatchInfo.Text = "GeneralMatchInfo"
-    Me.MetroTileGeneralMatchInfo.FlatStyle = FlatStyle.Flat
+    Me.MetroTileGeneralMatchInfo.UseSelectable = True
     '
     'MetroLabel4
     '
@@ -206,7 +206,7 @@ Partial Class FormMatchSetup
     Me.MetroTileMatchInfo.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileMatchInfo.TabIndex = 0
     Me.MetroTileMatchInfo.Text = "General match info"
-    Me.MetroTileMatchInfo.FlatStyle = FlatStyle.Flat
+    Me.MetroTileMatchInfo.UseSelectable = True
     '
     'MetroLabelSceneVersion
     '
@@ -223,14 +223,14 @@ Partial Class FormMatchSetup
     'MetroComboBoxSceneVersion
     '
     Me.MetroComboBoxSceneVersion.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroComboBoxSceneVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.MetroComboBoxSceneVersion.FormattingEnabled = True
-    Me.MetroComboBoxSceneVersion.ItemHeight = 23
+    Me.MetroComboBoxSceneVersion.ItemHeight = 13
     Me.MetroComboBoxSceneVersion.Items.AddRange(New Object() {"Saudi league", "Cup"})
     Me.MetroComboBoxSceneVersion.Location = New System.Drawing.Point(203, 323)
     Me.MetroComboBoxSceneVersion.Name = "MetroComboBoxSceneVersion"
-    Me.MetroComboBoxSceneVersion.Size = New System.Drawing.Size(887, 29)
+    Me.MetroComboBoxSceneVersion.Size = New System.Drawing.Size(887, 21)
     Me.MetroComboBoxSceneVersion.TabIndex = 2
-    Me.MetroComboBoxSceneVersion.FlatStyle = FlatStyle.Flat
     Me.MetroComboBoxSceneVersion.Visible = False
     '
     'MetroTileReferees
@@ -244,7 +244,7 @@ Partial Class FormMatchSetup
     Me.MetroTileReferees.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileReferees.TabIndex = 3
     Me.MetroTileReferees.Text = "Referees"
-    Me.MetroTileReferees.FlatStyle = FlatStyle.Flat
+    Me.MetroTileReferees.UseSelectable = True
     '
     'MetroLabel1
     '
@@ -271,38 +271,38 @@ Partial Class FormMatchSetup
     'MetroComboBoxReferee1
     '
     Me.MetroComboBoxReferee1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroComboBoxReferee1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.MetroComboBoxReferee1.FormattingEnabled = True
-    Me.MetroComboBoxReferee1.ItemHeight = 23
+    Me.MetroComboBoxReferee1.ItemHeight = 13
     Me.MetroComboBoxReferee1.Items.AddRange(New Object() {"Varcas Adam", "Abdul aziz Al funaitar", "Khaled Al Threes"})
     Me.MetroComboBoxReferee1.Location = New System.Drawing.Point(203, 193)
     Me.MetroComboBoxReferee1.Name = "MetroComboBoxReferee1"
-    Me.MetroComboBoxReferee1.Size = New System.Drawing.Size(887, 29)
+    Me.MetroComboBoxReferee1.Size = New System.Drawing.Size(887, 21)
     Me.MetroComboBoxReferee1.TabIndex = 8
-    Me.MetroComboBoxReferee1.FlatStyle = FlatStyle.Flat
     '
     'MetroComboBoxReferee2
     '
     Me.MetroComboBoxReferee2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroComboBoxReferee2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.MetroComboBoxReferee2.FormattingEnabled = True
-    Me.MetroComboBoxReferee2.ItemHeight = 23
+    Me.MetroComboBoxReferee2.ItemHeight = 13
     Me.MetroComboBoxReferee2.Items.AddRange(New Object() {"Varcas Adam", "Abdul aziz Al funaitar", "Khaled Al Threes"})
     Me.MetroComboBoxReferee2.Location = New System.Drawing.Point(203, 228)
     Me.MetroComboBoxReferee2.Name = "MetroComboBoxReferee2"
-    Me.MetroComboBoxReferee2.Size = New System.Drawing.Size(887, 29)
+    Me.MetroComboBoxReferee2.Size = New System.Drawing.Size(887, 21)
     Me.MetroComboBoxReferee2.TabIndex = 9
-    Me.MetroComboBoxReferee2.FlatStyle = FlatStyle.Flat
     '
     'MetroComboBoxReferee3
     '
     Me.MetroComboBoxReferee3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroComboBoxReferee3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.MetroComboBoxReferee3.FormattingEnabled = True
-    Me.MetroComboBoxReferee3.ItemHeight = 23
+    Me.MetroComboBoxReferee3.ItemHeight = 13
     Me.MetroComboBoxReferee3.Items.AddRange(New Object() {"Varcas Adam", "Abdul aziz Al funaitar", "Khaled Al Threes"})
     Me.MetroComboBoxReferee3.Location = New System.Drawing.Point(203, 263)
     Me.MetroComboBoxReferee3.Name = "MetroComboBoxReferee3"
-    Me.MetroComboBoxReferee3.Size = New System.Drawing.Size(887, 29)
+    Me.MetroComboBoxReferee3.Size = New System.Drawing.Size(887, 21)
     Me.MetroComboBoxReferee3.TabIndex = 10
-    Me.MetroComboBoxReferee3.FlatStyle = FlatStyle.Flat
     '
     'MetroLabel2
     '
@@ -441,8 +441,6 @@ Partial Class FormMatchSetup
     Me.MetroLabelAwayTeam.TabIndex = 3
     Me.MetroLabelAwayTeam.Text = "AWAY TEAM"
     Me.MetroLabelAwayTeam.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    Me.MetroLabelAwayTeam.UseCustomBackColor = True
-    Me.MetroLabelAwayTeam.UseCustomForeColor = True
     '
     'imgAwayClockColour
     '
@@ -550,8 +548,6 @@ Partial Class FormMatchSetup
     Me.MetroLabelHomeTeam.TabIndex = 1
     Me.MetroLabelHomeTeam.Text = "HOME TEAM"
     Me.MetroLabelHomeTeam.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    Me.MetroLabelHomeTeam.UseCustomBackColor = True
-    Me.MetroLabelHomeTeam.UseCustomForeColor = True
     '
     'imgHomeClockColour
     '
@@ -631,14 +627,38 @@ Partial Class FormMatchSetup
     Me.TabPageHome.TabIndex = 0
     Me.TabPageHome.Text = "Home team"
     '
+    'UcTeamMatchSetupHome
+    '
+    Me.UcTeamMatchSetupHome.Color = System.Drawing.Color.AliceBlue
+    Me.UcTeamMatchSetupHome.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcTeamMatchSetupHome.IsLocalTeam = True
+    Me.UcTeamMatchSetupHome.Location = New System.Drawing.Point(0, 0)
+    Me.UcTeamMatchSetupHome.Name = "UcTeamMatchSetupHome"
+    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(1093, 482)
+    Me.UcTeamMatchSetupHome.TabIndex = 0
+    Me.UcTeamMatchSetupHome.Tactic = Nothing
+    Me.UcTeamMatchSetupHome.Team = Nothing
+    '
     'TabPageAway
     '
     Me.TabPageAway.Controls.Add(Me.UcTeamMatchSetupAway)
     Me.TabPageAway.Location = New System.Drawing.Point(4, 38)
     Me.TabPageAway.Name = "TabPageAway"
-    Me.TabPageAway.Size = New System.Drawing.Size(1328, 482)
+    Me.TabPageAway.Size = New System.Drawing.Size(1093, 482)
     Me.TabPageAway.TabIndex = 1
     Me.TabPageAway.Text = "Away team"
+    '
+    'UcTeamMatchSetupAway
+    '
+    Me.UcTeamMatchSetupAway.Color = System.Drawing.Color.AliceBlue
+    Me.UcTeamMatchSetupAway.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcTeamMatchSetupAway.IsLocalTeam = True
+    Me.UcTeamMatchSetupAway.Location = New System.Drawing.Point(0, 0)
+    Me.UcTeamMatchSetupAway.Name = "UcTeamMatchSetupAway"
+    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(1093, 482)
+    Me.UcTeamMatchSetupAway.TabIndex = 0
+    Me.UcTeamMatchSetupAway.Tactic = Nothing
+    Me.UcTeamMatchSetupAway.Team = Nothing
     '
     'TableLayoutPanel1
     '
@@ -658,51 +678,27 @@ Partial Class FormMatchSetup
     'OK_Button
     '
     Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
+    Me.OK_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.OK_Button.Location = New System.Drawing.Point(3, 3)
     Me.OK_Button.Name = "OK_Button"
     Me.OK_Button.Size = New System.Drawing.Size(67, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
-    Me.OK_Button.FlatStyle = FlatStyle.Flat
     '
     'Cancel_Button
     '
     Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
     Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
+    Me.Cancel_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.Cancel_Button.Location = New System.Drawing.Point(76, 3)
     Me.Cancel_Button.Name = "Cancel_Button"
     Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
-    Me.Cancel_Button.FlatStyle = FlatStyle.Flat
     '
     'ofdSelectFile
     '
     Me.ofdSelectFile.FileName = "OpenFileDialog1"
-    '
-    'UcTeamMatchSetupHome
-    '
-    Me.UcTeamMatchSetupHome.Color = System.Drawing.Color.AliceBlue
-    Me.UcTeamMatchSetupHome.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcTeamMatchSetupHome.IsLocalTeam = True
-    Me.UcTeamMatchSetupHome.Location = New System.Drawing.Point(0, 0)
-    Me.UcTeamMatchSetupHome.Name = "UcTeamMatchSetupHome"
-    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(1093, 482)
-    Me.UcTeamMatchSetupHome.TabIndex = 0
-    Me.UcTeamMatchSetupHome.Tactic = Nothing
-    Me.UcTeamMatchSetupHome.Team = Nothing
-    '
-    'UcTeamMatchSetupAway
-    '
-    Me.UcTeamMatchSetupAway.Color = System.Drawing.Color.AliceBlue
-    Me.UcTeamMatchSetupAway.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcTeamMatchSetupAway.IsLocalTeam = True
-    Me.UcTeamMatchSetupAway.Location = New System.Drawing.Point(0, 0)
-    Me.UcTeamMatchSetupAway.Name = "UcTeamMatchSetupAway"
-    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(1328, 482)
-    Me.UcTeamMatchSetupAway.TabIndex = 0
-    Me.UcTeamMatchSetupAway.Tactic = Nothing
-    Me.UcTeamMatchSetupAway.Team = Nothing
     '
     'FormMatchSetup
     '
@@ -754,16 +750,16 @@ Partial Class FormMatchSetup
   Friend WithEvents TabPageMatchSetup As TabPage
   Friend WithEvents TableLayoutPanelMatchInfo As TableLayoutPanel
   Friend WithEvents MetroTileMatchInfo As MetroFramework.Controls.MetroTile
-  Friend WithEvents MetroLabelSceneVersion As MetroFramework.Controls.MetroLabel
-  Friend WithEvents MetroComboBoxSceneVersion As MetroFramework.Controls.MetroComboBox
+  Friend WithEvents MetroLabelSceneVersion As System.Windows.Forms.Label
+  Friend WithEvents MetroComboBoxSceneVersion As System.Windows.Forms.ComboBox
   Friend WithEvents MetroTileReferees As MetroFramework.Controls.MetroTile
-  Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
-  Friend WithEvents MetroLabel3 As MetroFramework.Controls.MetroLabel
-  Friend WithEvents MetroLabel4 As MetroFramework.Controls.MetroLabel
-  Friend WithEvents MetroComboBoxReferee1 As MetroFramework.Controls.MetroComboBox
-  Friend WithEvents MetroComboBoxReferee2 As MetroFramework.Controls.MetroComboBox
-  Friend WithEvents MetroComboBoxReferee3 As MetroFramework.Controls.MetroComboBox
-  Friend WithEvents MetroLabel2 As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroLabel1 As System.Windows.Forms.Label
+  Friend WithEvents MetroLabel3 As System.Windows.Forms.Label
+  Friend WithEvents MetroLabel4 As System.Windows.Forms.Label
+  Friend WithEvents MetroComboBoxReferee1 As System.Windows.Forms.ComboBox
+  Friend WithEvents MetroComboBoxReferee2 As System.Windows.Forms.ComboBox
+  Friend WithEvents MetroComboBoxReferee3 As System.Windows.Forms.ComboBox
+  Friend WithEvents MetroLabel2 As System.Windows.Forms.Label
   Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
   Friend WithEvents PictureBoxClockUp As PictureBox
   Friend WithEvents PictureBoxClockLeft As PictureBox
@@ -784,8 +780,8 @@ Partial Class FormMatchSetup
   Private WithEvents imgAwayClockColour As PictureBox
   Private WithEvents imgHomeClockColour As PictureBox
   Friend WithEvents ofdSelectFile As OpenFileDialog
-  Friend WithEvents MetroLabelAwayTeam As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroLabelAwayTeam As System.Windows.Forms.Label
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
-  Friend WithEvents MetroLabelHomeTeam As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroLabelHomeTeam As System.Windows.Forms.Label
   Friend WithEvents TableLayoutPanel6 As TableLayoutPanel
 End Class

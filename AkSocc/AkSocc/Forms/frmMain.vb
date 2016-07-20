@@ -689,18 +689,17 @@ Public Class frmMain
         Me.MetroLabelPeriodName.Text = _match.MatchPeriods.Nom
 
         Dim XX As New MetroFramework.Components.MetroStyleManager()
-        Me.MetroLabelPeriodTime.StyleManager = XX
 
         If _match.MatchPeriods.ActivePeriod.PlayingTime > _match.MatchPeriods.ActivePeriod.TotalTime Then
           labelColor = colorOn
           XX.Theme = MetroFramework.MetroThemeStyle.Dark
-          Me.MetroLabelPeriodTime.Style = MetroFramework.MetroColorStyle.Red
+          Me.MetroLabelPeriodTime.BackColor = Color.Red
           Me.MetroLabelPeriodTime.Invalidate()
         Else
           labelColor = colorOff
           XX.Theme = MetroFramework.MetroThemeStyle.Light
 
-          Me.MetroLabelPeriodTime.Style = MetroFramework.MetroColorStyle.Blue
+          Me.MetroLabelPeriodTime.BackColor = Color.Blue
         End If
       End If
       Me.MetroLabelPeriodTime.BackColor = labelColor

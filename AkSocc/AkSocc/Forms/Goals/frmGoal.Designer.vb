@@ -33,7 +33,7 @@ Partial Class frmGoal
     Me.MetroTile1 = New MetroFramework.Controls.MetroTile()
     Me.MetroTile2 = New MetroFramework.Controls.MetroTile()
     Me.MetroTile3 = New MetroFramework.Controls.MetroTile()
-    Me.MetroComboBoxPlayer = New MetroFramework.Controls.MetroComboBox()
+    Me.MetroComboBoxPlayer = New System.Windows.Forms.ComboBox()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.OK_Button = New Button()
     Me.Cancel_Button = New Button()
@@ -267,7 +267,7 @@ Partial Class frmGoal
   Friend WithEvents MetroTile1 As MetroFramework.Controls.MetroTile
   Friend WithEvents MetroTile2 As MetroFramework.Controls.MetroTile
   Friend WithEvents MetroTile3 As MetroFramework.Controls.MetroTile
-  Friend WithEvents MetroComboBoxPlayer As MetroFramework.Controls.MetroComboBox
+  Friend WithEvents MetroComboBoxPlayer As System.Windows.Forms.ComboBox
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
   Friend WithEvents OK_Button As Button
   Friend WithEvents Cancel_Button As Button

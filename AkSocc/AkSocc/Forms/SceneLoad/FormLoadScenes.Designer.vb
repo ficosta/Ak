@@ -22,7 +22,7 @@ Partial Class FormLoadScenes
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Me.MetroLabelScene = New MetroFramework.Controls.MetroLabel()
+    Me.MetroLabelScene = New System.Windows.Forms.Label()
     Me.MetroCheckBoxCloseWhenDone = New MetroFramework.Controls.MetroCheckBox()
     Me.SuspendLayout()
     '
@@ -63,6 +63,6 @@ Partial Class FormLoadScenes
 
   End Sub
 
-  Friend WithEvents MetroLabelScene As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroLabelScene As System.Windows.Forms.Label
   Friend WithEvents MetroCheckBoxCloseWhenDone As MetroFramework.Controls.MetroCheckBox
 End Class

@@ -24,7 +24,7 @@ Partial Class UCPreview
   Private Sub InitializeComponent()
     Me.SplitContainerPreview = New System.Windows.Forms.SplitContainer()
     Me.TableLayoutPanelPreview = New System.Windows.Forms.TableLayoutPanel()
-    Me.LabelTitle = New MetroFramework.Controls.MetroLabel()
+    Me.LabelTitle = New System.Windows.Forms.Label()
     Me.PictureBoxCanvas = New System.Windows.Forms.PictureBox()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.DataGridViewParameters = New MetroFramework.Controls.MetroGrid()
@@ -153,7 +153,7 @@ Partial Class UCPreview
 
   Friend WithEvents SplitContainerPreview As System.Windows.Forms.SplitContainer
   Friend WithEvents TableLayoutPanelPreview As System.Windows.Forms.TableLayoutPanel
-  Friend WithEvents LabelTitle As MetroFramework.Controls.MetroLabel
+  Friend WithEvents LabelTitle As System.Windows.Forms.Label
   Friend WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
   Friend WithEvents DataGridViewParameters As MetroFramework.Controls.MetroGrid
   Friend WithEvents ButtonPreview As System.Windows.Forms.Button

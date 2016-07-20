@@ -23,7 +23,7 @@ Partial Class TeamViewer
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.Label1 = New MetroFramework.Controls.MetroLabel()
+    Me.Label1 = New System.Windows.Forms.Label()
     Me.PlayerViewer18 = New AkSocc.PlayerViewer()
     Me.PlayerViewer17 = New AkSocc.PlayerViewer()
     Me.PlayerViewer16 = New AkSocc.PlayerViewer()
@@ -371,5 +371,5 @@ Partial Class TeamViewer
   Friend WithEvents PlayerViewer3 As PlayerViewer
   Friend WithEvents PlayerViewer2 As PlayerViewer
   Friend WithEvents PlayerViewer1 As PlayerViewer
-  Friend WithEvents Label1 As MetroFramework.Controls.MetroLabel
+  Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

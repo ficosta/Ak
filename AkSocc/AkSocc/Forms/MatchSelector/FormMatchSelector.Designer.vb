@@ -33,10 +33,10 @@ Partial Class FormMatchSelector
     Me.ColumnHomeTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnAwayTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnResult = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.cboCompetition = New MetroFramework.Controls.MetroComboBox()
+    Me.cboCompetition = New System.Windows.Forms.ComboBox()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New Button()
-    Me.Cancel_Button = New Button()
+    Me.OK_Button = New System.Windows.Forms.Button()
+    Me.Cancel_Button = New System.Windows.Forms.Button()
     Me.TableLayoutPanelGlobal.SuspendLayout()
     CType(Me.MetroGridMatches, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
@@ -160,13 +160,14 @@ Partial Class FormMatchSelector
     'cboCompetition
     '
     Me.cboCompetition.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.cboCompetition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+    Me.cboCompetition.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.cboCompetition.FormattingEnabled = True
-    Me.cboCompetition.ItemHeight = 23
+    Me.cboCompetition.ItemHeight = 17
     Me.cboCompetition.Location = New System.Drawing.Point(3, 3)
     Me.cboCompetition.Name = "cboCompetition"
-    Me.cboCompetition.Size = New System.Drawing.Size(788, 29)
+    Me.cboCompetition.Size = New System.Drawing.Size(788, 25)
     Me.cboCompetition.TabIndex = 1
-    Me.cboCompetition.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanel1
     '
@@ -186,23 +187,23 @@ Partial Class FormMatchSelector
     'OK_Button
     '
     Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
+    Me.OK_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.OK_Button.Location = New System.Drawing.Point(3, 3)
     Me.OK_Button.Name = "OK_Button"
     Me.OK_Button.Size = New System.Drawing.Size(67, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
-    Me.OK_Button.FlatStyle = FlatStyle.Flat
     '
     'Cancel_Button
     '
     Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
     Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
+    Me.Cancel_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.Cancel_Button.Location = New System.Drawing.Point(76, 3)
     Me.Cancel_Button.Name = "Cancel_Button"
     Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
-    Me.Cancel_Button.FlatStyle = FlatStyle.Flat
     '
     'FormMatchSelector
     '
@@ -224,7 +225,7 @@ Partial Class FormMatchSelector
   End Sub
 
   Friend WithEvents TableLayoutPanelGlobal As TableLayoutPanel
-  Private WithEvents cboCompetition As MetroFramework.Controls.MetroComboBox
+  Private WithEvents cboCompetition As System.Windows.Forms.ComboBox
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
   Friend WithEvents OK_Button As Button
   Friend WithEvents Cancel_Button As Button

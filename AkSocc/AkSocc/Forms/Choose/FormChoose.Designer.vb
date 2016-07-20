@@ -32,7 +32,7 @@ Partial Class FormChoose
     Me.UserControlChoose3 = New AkSocc.UserControlChoose()
     Me.UserControlChoose2 = New AkSocc.UserControlChoose()
     Me.UserControlChoose1 = New AkSocc.UserControlChoose()
-    Me.MetroLabelTitle = New MetroFramework.Controls.MetroLabel()
+    Me.MetroLabelTitle = New System.Windows.Forms.Label()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TableLayoutPanelAll.SuspendLayout()
     CType(Me.SplitContainerAll, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -211,5 +211,5 @@ Partial Class FormChoose
   Friend WithEvents UserControlChoose3 As UserControlChoose
   Friend WithEvents UserControlChoose2 As UserControlChoose
   Friend WithEvents UserControlChoose1 As UserControlChoose
-  Friend WithEvents MetroLabelTitle As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroLabelTitle As System.Windows.Forms.Label
 End Class

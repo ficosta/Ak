@@ -29,7 +29,7 @@ Partial Class FormOvewriteClock
     Me.NumericUpDownSeconds = New System.Windows.Forms.NumericUpDown()
     Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
     Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroLabelTime = New MetroFramework.Controls.MetroLabel()
+    Me.MetroLabelTime = New System.Windows.Forms.Label()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TableLayoutPanel2.SuspendLayout()
     CType(Me.NumericUpDownSeconds, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,8 +127,6 @@ Partial Class FormOvewriteClock
     '
     Me.MetroLabelTime.AutoSize = True
     Me.MetroLabelTime.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabelTime.FontSize = MetroFramework.MetroLabelSize.Tall
-    Me.MetroLabelTime.FontWeight = MetroFramework.MetroLabelWeight.Regular
     Me.MetroLabelTime.Location = New System.Drawing.Point(3, 0)
     Me.MetroLabelTime.Name = "MetroLabelTime"
     Me.MetroLabelTime.Size = New System.Drawing.Size(193, 39)
@@ -165,5 +163,5 @@ Partial Class FormOvewriteClock
   Friend WithEvents NumericUpDownSeconds As NumericUpDown
   Friend WithEvents NumericUpDownMinutes As NumericUpDown
   Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
-  Friend WithEvents MetroLabelTime As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroLabelTime As System.Windows.Forms.Label
 End Class

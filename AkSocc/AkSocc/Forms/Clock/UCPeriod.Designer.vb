@@ -24,7 +24,7 @@ Partial Class UCPeriod
   Private Sub InitializeComponent()
     Me.TableLayoutPanelControls = New System.Windows.Forms.TableLayoutPanel()
     Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
-    Me.LabelExtraHome = New MetroFramework.Controls.MetroLabel()
+    Me.LabelExtraHome = New System.Windows.Forms.Label()
     Me.MetroButtonEndPeriod = New Button()
     Me.MetroButtonStart = New Button()
     Me.MetroTilePeriodName = New MetroFramework.Controls.MetroTile()
@@ -67,7 +67,6 @@ Partial Class UCPeriod
     'LabelExtraHome
     '
     Me.LabelExtraHome.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelExtraHome.FontSize = MetroFramework.MetroLabelSize.Small
     Me.LabelExtraHome.Location = New System.Drawing.Point(3, 95)
     Me.LabelExtraHome.Name = "LabelExtraHome"
     Me.LabelExtraHome.Size = New System.Drawing.Size(66, 31)
@@ -127,6 +126,6 @@ Partial Class UCPeriod
   Friend WithEvents MetroButtonEndPeriod As Button
   Friend WithEvents MetroButtonStart As Button
   Friend WithEvents MetroTilePeriodName As MetroFramework.Controls.MetroTile
-  Friend WithEvents LabelExtraHome As MetroFramework.Controls.MetroLabel
+  Friend WithEvents LabelExtraHome As System.Windows.Forms.Label
   Friend WithEvents NumericUpDownMinutes As NumericUpDown
 End Class
