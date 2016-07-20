@@ -30,6 +30,9 @@ Public NotInheritable Class AppSettings
   Public Property VizrtHost As String = ""
   Public Property VizrtPort As Integer = 6100
   Public Property VizrtPreviewPort As Integer = 0
+  Public Property TeamImageInfoList As String = ""
+  Public Property ColorsDefaultPath As String = "C:\Alamiya\Colors"
+  Public Property KitsDefaultPath As String = "C:\Alamiya\kits"
 
 #End Region
 
@@ -52,6 +55,9 @@ Public NotInheritable Class AppSettings
     AppSettings.Instance.VizrtHost = CStr(CMyRegConfig.ReadValue("VizrtHost", AppSettings.Instance.VizrtHost, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
     AppSettings.Instance.VizrtPort = CInt(CMyRegConfig.ReadValue("VizrtPort", AppSettings.Instance.VizrtPort, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
     AppSettings.Instance.VizrtPreviewPort = CInt(CMyRegConfig.ReadValue("VizrtPreviewPort", AppSettings.Instance.VizrtPreviewPort, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.TeamImageInfoList = CStr(CMyRegConfig.ReadValue("TeamImageInfoList", AppSettings.Instance.TeamImageInfoList, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.ColorsDefaultPath = CStr(CMyRegConfig.ReadValue("ColorsDefaultPath", AppSettings.Instance.ColorsDefaultPath, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.KitsDefaultPath = CStr(CMyRegConfig.ReadValue("KitsDefaultPath", AppSettings.Instance.KitsDefaultPath, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
 
     Return AppSettings.Instance
   End Function
@@ -82,6 +88,10 @@ Public NotInheritable Class AppSettings
     CMyRegConfig.WriteValue("VizrtHost", tiConfig.VizrtHost, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
     CMyRegConfig.WriteValue("VizrtPort", tiConfig.VizrtPort, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
     CMyRegConfig.WriteValue("VizrtPreviewPort", tiConfig.VizrtPreviewPort, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
+    CMyRegConfig.WriteValue("TeamImageInfoList", tiConfig.TeamImageInfoList, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("ColorsDefaultPath", tiConfig.ColorsDefaultPath, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("KitsDefaultPath", tiConfig.KitsDefaultPath, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+
     CMyRegConfig = Nothing
   End Sub
 

@@ -24,5 +24,6 @@
   Public Property LocalDataBasePath As String
   Public Property MatchDaysPath As String
   Public Property UseArabicNames As Boolean = False
+  Public Property Silent As Boolean = False
 #End Region
 End Class

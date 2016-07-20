@@ -12,6 +12,7 @@ Public Class GraphicsReferee
     MyBase.Name = "GraphicsReferee"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F6, False, True, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Class Step0

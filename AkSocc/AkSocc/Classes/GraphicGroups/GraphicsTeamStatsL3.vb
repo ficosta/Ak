@@ -11,6 +11,7 @@ Public Class GraphicsTeamStatsL3
     MyBase.Name = "GraphicsTeamStatsL3"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F10, False, True, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String
@@ -86,6 +87,17 @@ Public Class GraphicsTeamStatsL3
     Return gs
   End Function
 
+  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+    Dim scene As New Scene()
+
+    scene.VizLayer = SceneLayer.Middle
+    scene.SceneName = "gfx_ScoreLine"
+
+    scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
+
+    Return scene
+  End Function
+
   Public Overrides Function PrepareScene(graphicStep As GraphicStep) As Scene
     Me.Scene = New Scene
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
@@ -109,25 +121,25 @@ Public Class GraphicsTeamStatsL3
       gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeamSeasonPosition))
 
 
-      Select Case gs.ChildGraphicStep.UID
+      Select Case gs.ChildGraphicStep.ChildGraphicStep.Name
         Case Step0.MatchStats
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Match stats", gs.ChildGraphicStep.UID = StepMatch.SponsorLogo)
         Case Step0.SeasonStats
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Season stats", gs.ChildGraphicStep.UID = StepMatch.SponsorLogo)
         Case Step0.MatchesPlayed
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Matches played", gs.ChildGraphicStep.UID = StepMatch.SponsorLogo)
         Case Step0.HomeTeamWins
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Home team wins", gs.ChildGraphicStep.UID = StepMatch.SponsorLogo)
         Case Step0.AwayTeamWins
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Away team wins", gs.ChildGraphicStep.UID = StepMatch.SponsorLogo)
         Case Step0.HomeTeamSeasonRecord
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Home tam season record", gs.ChildGraphicStep.UID = StepMatch.SponsorLogo)
         Case Step0.AwayTeamSeasonRecord
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Away team season record", gs.ChildGraphicStep.UID = StepMatch.SponsorLogo)
         Case Step0.HomeTeamSeasonPosition
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Home team season position", gs.ChildGraphicStep.UID = StepMatch.SponsorLogo)
         Case Step0.AwayTeamSeasonPosition
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "First half", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Away team season position", gs.ChildGraphicStep.UID = StepMatch.SponsorLogo)
 
       End Select
     Catch ex As Exception

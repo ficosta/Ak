@@ -275,6 +275,20 @@ Imports MatchInfo
       For Each stat As Stat In Me.MatchStats.StatBag
         Me.UpdateStatFromPlayers(stat.Name)
       Next
+
+      'update tactic
+      Me.Tactic = New Tactic()
+      Me.Tactic.NomTactic = "Custom"
+      Me.Tactic.Descripcio = Me.TeamAELCaption1Name
+
+      For Each pos As PosicioTactic In Me.Tactic.LlistaPosicions
+        Dim player As Player = Me.GetPlayerByPosicio(pos.Posicio)
+        If Not player Is Nothing Then
+          pos.X = player.Formation_X
+          pos.Y = player.Formation_Y
+          pos.Player = player
+        End If
+      Next
     Catch ex As Exception
 
     End Try
@@ -410,7 +424,7 @@ Imports MatchInfo
       Me.ReadStatsFromDB()
       Me.MatchGoals.GetMatchGoals(Me.Match_ID, Me.ID)
       For Each player As Player In Me.AllPlayers
-        player.ReadStatsFromDB()
+     '   player.ReadStatsFromDB()
         player.Goals = Me.MatchGoals.GetGoalsByPlayer(player).Count
       Next
       Me.Goals = Me.MatchGoals.Count

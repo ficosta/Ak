@@ -12,6 +12,7 @@ Public Class GraphicsReporter
     MyBase.Name = "GraphicsReporter"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F2, False, False, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String
@@ -68,7 +69,7 @@ Public Class GraphicsReporter
       Scene = InitDefaultScene()
 
 
-      Dim matchDay As NameDotText = _reporters.GetName(CInt(graphicStep.UID))
+      Dim matchDay As NameDotText = _reporters.GetName(CInt(graphicStep.ChildGraphicStep.UID))
       Scene = PrepareReporters(changeStep, matchDay)
 
     Catch ex As Exception
@@ -96,7 +97,11 @@ Public Class GraphicsReporter
 
     scene.SceneParameters.Add("Lower3rd_Data_Single_Subject_Control_OMO_Icon", "1")
     scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Control_OMO_GV_Choose", "0")
+    
+    scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose ", "0")
     'scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Control_OMO_GV_Choose", "0")
+    scene.SceneParameters.Add("Lower3rd_Single_Text_Subject_Name ", "xxxxxxxxxxxx")
+    scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", "yyyyyyyyyyyyyyyyy")
 
     Return scene
   End Function
@@ -115,6 +120,7 @@ Public Class GraphicsReporter
         scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", VizEncoding(nameDotText.ArabicSubLineText))
         scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", VizEncoding(nameDotText.ArabicSubLineText))
         scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", VizEncoding(nameDotText.ArabicSubLineText))
+        scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01 ", VizEncoding(nameDotText.ArabicSubLineText))
       End If
 
     Catch ex As Exception

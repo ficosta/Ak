@@ -91,8 +91,8 @@ Public Class frmGoals
         Dim frm As New frmGoal(Me.Match, goal)
         If frm.ShowDialog(Me) = DialogResult.OK Then
           'do something
-          _match.Update()
           Me.ShowGoals()
+          _match.SaveMatchGoalsToDB()
         End If
       End If
     Catch ex As Exception

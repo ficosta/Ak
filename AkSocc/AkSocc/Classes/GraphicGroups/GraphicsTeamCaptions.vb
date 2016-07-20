@@ -13,6 +13,7 @@ Public Class GraphicsTeamCaptions
     MyBase.Name = "GrapchisTeamCaptions"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F9, False, False, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
 
   End Sub
 
@@ -200,6 +201,11 @@ Public Class GraphicsTeamCaptions
         If Not player Is Nothing Then
           scene.SceneParameters.Add(prefix & "Name", player.Name)
           scene.SceneParameters.Add(prefix & "Number", player.SquadNo)
+          If player.Formation_Pos = 1 Then
+            scene.SceneParameters.Add(prefix & "TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & team.GoalKeeperJersey, paramType.Image)
+          Else
+            scene.SceneParameters.Add(prefix & "TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & team.PlayerJersey, paramType.Image)
+          End If
         Else
           scene.SceneParameters.Add(prefix & "Name", "")
           scene.SceneParameters.Add(prefix & "Number", "")
@@ -207,7 +213,13 @@ Public Class GraphicsTeamCaptions
         scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
         Dim pos As PosicioTactic = team.Tactic.GetPosicioByID(i)
         If Not pos Is Nothing Then
-          scene.SceneParameters.Add(prefix & "Position.positio n", CInt(pos.X) & " " & CInt(pos.Y) & " 0")
+          Dim NewY As Double = player.Formation_Y / 5 - 20 ' (((165 * player.Formation_Y) / 280) + 9) * -1
+          Dim NewX As Double = player.Formation_X / 2  ' ((170 * player.Formation_X) / 280) - 195
+
+          '    NewX = 0
+          '     NewY = 0
+
+          scene.SceneParameters.Add(prefix & "Position.position ", CInt(NewX) & " " & CInt(NewY) & " 0")
         End If
 
 

@@ -79,12 +79,12 @@
   End Sub
 
 
-  Private Sub MetroButtonOK_Click(sender As Object, e As EventArgs) Handles MetroButtonOK.Click
+  Private Sub MetroButtonOK_Click(sender As Object, e As EventArgs)
     Me.DialogResult = _dialogResults(0)
     Me.Close()
   End Sub
 
-  Private Sub MetroButtonCancel_Click(sender As Object, e As EventArgs) Handles MetroButtonCancel.Click
+  Private Sub MetroButtonCancel_Click(sender As Object, e As EventArgs)
     Me.DialogResult = _dialogResults(1)
     Me.Close()
   End Sub
@@ -114,5 +114,15 @@
     End Try
     Return res
   End Function
+
+  Private Sub ButtonAccept_Click(sender As Object, e As EventArgs) Handles MetroButtonOK.Click
+    Me.DialogResult = _dialogResults(0)
+    Me.Close()
+  End Sub
+
+  Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
+    Me.DialogResult = _dialogResults(1)
+    Me.Close()
+  End Sub
 #End Region
 End Class

@@ -241,5 +241,19 @@ Public Class StatSubject
     End Try
     Return res
   End Function
+
+#End Region
+
+#Region "For comunication"
+  Public Function ToSocketFormat() As String
+    Dim res As String = ""
+    Return res
+  End Function
+
+  Public Function GetFromSocketFormat(data As String) As Boolean
+    Dim res As Boolean = False
+    Return res
+  End Function
+
 #End Region
 End Class

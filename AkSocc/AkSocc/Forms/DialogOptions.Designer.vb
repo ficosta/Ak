@@ -54,6 +54,13 @@ Partial Class DialogOptions
     Me.ComboBoxSceneVersion = New MetroFramework.Controls.MetroComboBox()
     Me.OpenFileDialogDataBase = New System.Windows.Forms.OpenFileDialog()
     Me.OpenFileDialogXML = New System.Windows.Forms.OpenFileDialog()
+    Me.MetroTextBoxDefaultColorPath = New MetroFramework.Controls.MetroTextBox()
+    Me.MetroTextBoxDefaultKitsPath = New MetroFramework.Controls.MetroTextBox()
+    Me.MetroButtonDefaultColorsPath = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonDefaultkitsPath = New MetroFramework.Controls.MetroButton()
+    Me.MetroLabel3 = New MetroFramework.Controls.MetroLabel()
+    Me.MetroLabel4 = New MetroFramework.Controls.MetroLabel()
+    Me.FolderBrowserDialogPaths = New System.Windows.Forms.FolderBrowserDialog()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TabControlOptions.SuspendLayout()
     Me.TabPage1.SuspendLayout()
@@ -123,7 +130,7 @@ Partial Class DialogOptions
     Me.TabControlOptions.Controls.Add(Me.TabPage2)
     Me.TabControlOptions.Location = New System.Drawing.Point(12, 12)
     Me.TabControlOptions.Name = "TabControlOptions"
-    Me.TabControlOptions.SelectedIndex = 1
+    Me.TabControlOptions.SelectedIndex = 0
     Me.TabControlOptions.Size = New System.Drawing.Size(773, 355)
     Me.TabControlOptions.TabIndex = 1
     Me.TabControlOptions.UseSelectable = True
@@ -157,7 +164,13 @@ Partial Class DialogOptions
     Me.TableLayoutPanel3.Controls.Add(Me.MetroLabelDataBase, 0, 0)
     Me.TableLayoutPanel3.Controls.Add(Me.MetroTextBoxDataBase, 1, 0)
     Me.TableLayoutPanel3.Controls.Add(Me.MetroButtonDataBase, 2, 0)
-    Me.TableLayoutPanel3.Controls.Add(Me.MetroCheckBoxUseArabicNames, 1, 2)
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroCheckBoxUseArabicNames, 1, 5)
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroTextBoxDefaultColorPath, 1, 2)
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroTextBoxDefaultKitsPath, 1, 3)
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroButtonDefaultColorsPath, 2, 2)
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroButtonDefaultkitsPath, 2, 3)
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroLabel3, 0, 2)
+    Me.TableLayoutPanel3.Controls.Add(Me.MetroLabel4, 0, 3)
     Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 3)
     Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
@@ -278,7 +291,7 @@ Partial Class DialogOptions
     '
     Me.MetroCheckBoxUseArabicNames.AutoSize = True
     Me.MetroCheckBoxUseArabicNames.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroCheckBoxUseArabicNames.Location = New System.Drawing.Point(158, 63)
+    Me.MetroCheckBoxUseArabicNames.Location = New System.Drawing.Point(158, 153)
     Me.MetroCheckBoxUseArabicNames.Name = "MetroCheckBoxUseArabicNames"
     Me.MetroCheckBoxUseArabicNames.Size = New System.Drawing.Size(563, 24)
     Me.MetroCheckBoxUseArabicNames.TabIndex = 6
@@ -548,6 +561,108 @@ Partial Class DialogOptions
     '
     Me.OpenFileDialogXML.FileName = "Matches file path"
     '
+    'MetroTextBoxDefaultColorPath
+    '
+    '
+    '
+    '
+    Me.MetroTextBoxDefaultColorPath.CustomButton.Image = Nothing
+    Me.MetroTextBoxDefaultColorPath.CustomButton.Location = New System.Drawing.Point(541, 2)
+    Me.MetroTextBoxDefaultColorPath.CustomButton.Name = ""
+    Me.MetroTextBoxDefaultColorPath.CustomButton.Size = New System.Drawing.Size(19, 19)
+    Me.MetroTextBoxDefaultColorPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
+    Me.MetroTextBoxDefaultColorPath.CustomButton.TabIndex = 1
+    Me.MetroTextBoxDefaultColorPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
+    Me.MetroTextBoxDefaultColorPath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxDefaultColorPath.CustomButton.Visible = False
+    Me.MetroTextBoxDefaultColorPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTextBoxDefaultColorPath.Lines = New String(-1) {}
+    Me.MetroTextBoxDefaultColorPath.Location = New System.Drawing.Point(158, 63)
+    Me.MetroTextBoxDefaultColorPath.MaxLength = 32767
+    Me.MetroTextBoxDefaultColorPath.Name = "MetroTextBoxDefaultColorPath"
+    Me.MetroTextBoxDefaultColorPath.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+    Me.MetroTextBoxDefaultColorPath.ScrollBars = System.Windows.Forms.ScrollBars.None
+    Me.MetroTextBoxDefaultColorPath.SelectedText = ""
+    Me.MetroTextBoxDefaultColorPath.SelectionLength = 0
+    Me.MetroTextBoxDefaultColorPath.SelectionStart = 0
+    Me.MetroTextBoxDefaultColorPath.Size = New System.Drawing.Size(563, 24)
+    Me.MetroTextBoxDefaultColorPath.TabIndex = 7
+    Me.MetroTextBoxDefaultColorPath.UseSelectable = True
+    Me.MetroTextBoxDefaultColorPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
+    Me.MetroTextBoxDefaultColorPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
+    '
+    'MetroTextBoxDefaultKitsPath
+    '
+    '
+    '
+    '
+    Me.MetroTextBoxDefaultKitsPath.CustomButton.Image = Nothing
+    Me.MetroTextBoxDefaultKitsPath.CustomButton.Location = New System.Drawing.Point(541, 2)
+    Me.MetroTextBoxDefaultKitsPath.CustomButton.Name = ""
+    Me.MetroTextBoxDefaultKitsPath.CustomButton.Size = New System.Drawing.Size(19, 19)
+    Me.MetroTextBoxDefaultKitsPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
+    Me.MetroTextBoxDefaultKitsPath.CustomButton.TabIndex = 1
+    Me.MetroTextBoxDefaultKitsPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
+    Me.MetroTextBoxDefaultKitsPath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxDefaultKitsPath.CustomButton.Visible = False
+    Me.MetroTextBoxDefaultKitsPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroTextBoxDefaultKitsPath.Lines = New String(-1) {}
+    Me.MetroTextBoxDefaultKitsPath.Location = New System.Drawing.Point(158, 93)
+    Me.MetroTextBoxDefaultKitsPath.MaxLength = 32767
+    Me.MetroTextBoxDefaultKitsPath.Name = "MetroTextBoxDefaultKitsPath"
+    Me.MetroTextBoxDefaultKitsPath.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+    Me.MetroTextBoxDefaultKitsPath.ScrollBars = System.Windows.Forms.ScrollBars.None
+    Me.MetroTextBoxDefaultKitsPath.SelectedText = ""
+    Me.MetroTextBoxDefaultKitsPath.SelectionLength = 0
+    Me.MetroTextBoxDefaultKitsPath.SelectionStart = 0
+    Me.MetroTextBoxDefaultKitsPath.Size = New System.Drawing.Size(563, 24)
+    Me.MetroTextBoxDefaultKitsPath.TabIndex = 8
+    Me.MetroTextBoxDefaultKitsPath.UseSelectable = True
+    Me.MetroTextBoxDefaultKitsPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
+    Me.MetroTextBoxDefaultKitsPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
+    '
+    'MetroButtonDefaultColorsPath
+    '
+    Me.MetroButtonDefaultColorsPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonDefaultColorsPath.Location = New System.Drawing.Point(727, 63)
+    Me.MetroButtonDefaultColorsPath.Name = "MetroButtonDefaultColorsPath"
+    Me.MetroButtonDefaultColorsPath.Size = New System.Drawing.Size(29, 24)
+    Me.MetroButtonDefaultColorsPath.TabIndex = 9
+    Me.MetroButtonDefaultColorsPath.Text = "..."
+    Me.MetroButtonDefaultColorsPath.UseSelectable = True
+    '
+    'MetroButtonDefaultkitsPath
+    '
+    Me.MetroButtonDefaultkitsPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonDefaultkitsPath.Location = New System.Drawing.Point(727, 93)
+    Me.MetroButtonDefaultkitsPath.Name = "MetroButtonDefaultkitsPath"
+    Me.MetroButtonDefaultkitsPath.Size = New System.Drawing.Size(29, 24)
+    Me.MetroButtonDefaultkitsPath.TabIndex = 10
+    Me.MetroButtonDefaultkitsPath.Text = "..."
+    Me.MetroButtonDefaultkitsPath.UseSelectable = True
+    '
+    'MetroLabel3
+    '
+    Me.MetroLabel3.AutoSize = True
+    Me.MetroLabel3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabel3.Location = New System.Drawing.Point(3, 60)
+    Me.MetroLabel3.Name = "MetroLabel3"
+    Me.MetroLabel3.Size = New System.Drawing.Size(149, 30)
+    Me.MetroLabel3.TabIndex = 11
+    Me.MetroLabel3.Text = "Default colors path"
+    Me.MetroLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'MetroLabel4
+    '
+    Me.MetroLabel4.AutoSize = True
+    Me.MetroLabel4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabel4.Location = New System.Drawing.Point(3, 90)
+    Me.MetroLabel4.Name = "MetroLabel4"
+    Me.MetroLabel4.Size = New System.Drawing.Size(149, 30)
+    Me.MetroLabel4.TabIndex = 12
+    Me.MetroLabel4.Text = "Default kits path"
+    Me.MetroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
     'DialogOptions
     '
     Me.AcceptButton = Me.OK_Button
@@ -609,4 +724,11 @@ Partial Class DialogOptions
   Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
   Friend WithEvents MetroTextBoxLocalPreviewPath As MetroFramework.Controls.MetroTextBox
   Friend WithEvents MetroButtonLocalPreviewPath As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroTextBoxDefaultColorPath As MetroFramework.Controls.MetroTextBox
+  Friend WithEvents MetroTextBoxDefaultKitsPath As MetroFramework.Controls.MetroTextBox
+  Friend WithEvents MetroButtonDefaultColorsPath As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonDefaultkitsPath As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroLabel3 As MetroFramework.Controls.MetroLabel
+  Friend WithEvents MetroLabel4 As MetroFramework.Controls.MetroLabel
+  Friend WithEvents FolderBrowserDialogPaths As FolderBrowserDialog
 End Class

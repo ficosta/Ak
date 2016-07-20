@@ -33,6 +33,7 @@ Imports MatchInfo
     End Get
     Set(value As Integer)
       _matchIndex = value
+
       RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("MatchIndex"))
     End Set
   End Property

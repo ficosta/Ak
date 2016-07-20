@@ -35,6 +35,7 @@ Partial Class frmWait
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.ClientSize = New System.Drawing.Size(636, 225)
     Me.Name = "frmWait"
+    Me.Opacity = 0.85R
     Me.Text = "Wait"
     Me.ResumeLayout(False)
 

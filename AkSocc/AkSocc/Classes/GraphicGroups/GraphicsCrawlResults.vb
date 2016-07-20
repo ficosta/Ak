@@ -12,6 +12,7 @@ Public Class GraphicsCrawlResults
     MyBase.Name = "GraphicsCrawlResults"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(MyBase.Name, Keys.F8, False, True, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Public Sub New(_match As MatchInfo.Match, otherMatchDays As OtherMatchDays)

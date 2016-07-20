@@ -29,11 +29,13 @@ Public Class Rellotge
 
   Public Property VizControl As VizCommands.VizControl
 
-
-
   Public Sub UpdateClock(ByVal match As Match, Optional ByVal biForceSend As Boolean = False)
     _match = match
-    UpdateClock(biForceSend)
+    Try
+      UpdateClock(biForceSend)
+    Catch ex As Exception
+
+    End Try
   End Sub
 
   Public Sub UpdateClock(Optional ByVal biForceSend As Boolean = False)
@@ -333,4 +335,5 @@ Public Class Rellotge
   Private Sub _match_ScoreChanged() Handles _match.ScoreChanged
     UpdateClock(_match, True)
   End Sub
+
 End Class

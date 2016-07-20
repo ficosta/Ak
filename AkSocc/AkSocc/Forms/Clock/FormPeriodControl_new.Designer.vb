@@ -285,7 +285,7 @@ Partial Class FormPeriodControl_new
     Me.NumericUpDownMinutes.Size = New System.Drawing.Size(126, 25)
     Me.NumericUpDownMinutes.TabIndex = 6
     '
-    'FormPeriodControl
+    'FormPeriodControl_new
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -294,7 +294,7 @@ Partial Class FormPeriodControl_new
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.MaximizeBox = False
     Me.MinimizeBox = False
-    Me.Name = "FormPeriodControl"
+    Me.Name = "FormPeriodControl_new"
     Me.Resizable = False
     Me.Style = MetroFramework.MetroColorStyle.Orange
     Me.Text = "Match control"

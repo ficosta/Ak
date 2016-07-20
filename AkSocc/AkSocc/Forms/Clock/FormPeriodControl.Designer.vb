@@ -28,16 +28,20 @@ Partial Class FormPeriodControl
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.msmPeriodControl = New MetroFramework.Components.MetroStyleManager(Me.components)
     Me.MetroGridPeriods = New MetroFramework.Controls.MetroGrid()
-    Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-    Me.LabelOverTime = New MetroFramework.Controls.MetroLabel()
-    Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
     Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnType = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnText = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+    Me.LabelOverTime = New MetroFramework.Controls.MetroLabel()
+    Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
+    Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+    Me.OK_Button = New MetroFramework.Controls.MetroButton()
+    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
     CType(Me.msmPeriodControl, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.MetroGridPeriods, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel2.SuspendLayout()
     CType(Me.NumericUpDownMinutes, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.TableLayoutPanel1.SuspendLayout()
     Me.SuspendLayout()
     '
     'msmPeriodControl
@@ -93,8 +97,31 @@ Partial Class FormPeriodControl
     Me.MetroGridPeriods.RowHeadersVisible = False
     Me.MetroGridPeriods.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridPeriods.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridPeriods.Size = New System.Drawing.Size(350, 424)
+    Me.MetroGridPeriods.Size = New System.Drawing.Size(350, 371)
     Me.MetroGridPeriods.TabIndex = 3
+    '
+    'ColumnID
+    '
+    Me.ColumnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnID.HeaderText = "ID"
+    Me.ColumnID.Name = "ColumnID"
+    Me.ColumnID.ReadOnly = True
+    Me.ColumnID.Visible = False
+    '
+    'ColumnType
+    '
+    Me.ColumnType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnType.HeaderText = "Type"
+    Me.ColumnType.Name = "ColumnType"
+    Me.ColumnType.ReadOnly = True
+    Me.ColumnType.Visible = False
+    '
+    'ColumnText
+    '
+    Me.ColumnText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnText.HeaderText = "Clock control actions"
+    Me.ColumnText.Name = "ColumnText"
+    Me.ColumnText.ReadOnly = True
     '
     'TableLayoutPanel2
     '
@@ -112,14 +139,14 @@ Partial Class FormPeriodControl
     Me.TableLayoutPanel2.RowCount = 2
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(356, 465)
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(356, 412)
     Me.TableLayoutPanel2.TabIndex = 4
     '
     'LabelOverTime
     '
     Me.LabelOverTime.Dock = System.Windows.Forms.DockStyle.Fill
     Me.LabelOverTime.FontSize = MetroFramework.MetroLabelSize.Small
-    Me.LabelOverTime.Location = New System.Drawing.Point(3, 430)
+    Me.LabelOverTime.Location = New System.Drawing.Point(3, 377)
     Me.LabelOverTime.Name = "LabelOverTime"
     Me.LabelOverTime.Size = New System.Drawing.Size(172, 35)
     Me.LabelOverTime.TabIndex = 5
@@ -131,41 +158,54 @@ Partial Class FormPeriodControl
     Me.NumericUpDownMinutes.BorderStyle = System.Windows.Forms.BorderStyle.None
     Me.NumericUpDownMinutes.Dock = System.Windows.Forms.DockStyle.Fill
     Me.NumericUpDownMinutes.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.NumericUpDownMinutes.Location = New System.Drawing.Point(181, 433)
+    Me.NumericUpDownMinutes.Location = New System.Drawing.Point(181, 380)
     Me.NumericUpDownMinutes.Name = "NumericUpDownMinutes"
     Me.NumericUpDownMinutes.Size = New System.Drawing.Size(172, 25)
     Me.NumericUpDownMinutes.TabIndex = 6
     '
-    'ColumnID
+    'TableLayoutPanel1
     '
-    Me.ColumnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnID.HeaderText = "ID"
-    Me.ColumnID.Name = "ColumnID"
-    Me.ColumnID.ReadOnly = True
-    Me.ColumnID.Visible = False
-    Me.ColumnID.Width = 41
+    Me.TableLayoutPanel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.TableLayoutPanel1.ColumnCount = 2
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
+    Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(219, 481)
+    Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+    Me.TableLayoutPanel1.RowCount = 1
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(160, 29)
+    Me.TableLayoutPanel1.TabIndex = 5
     '
-    'ColumnType
+    'OK_Button
     '
-    Me.ColumnType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnType.HeaderText = "Type"
-    Me.ColumnType.Name = "ColumnType"
-    Me.ColumnType.ReadOnly = True
-    Me.ColumnType.Visible = False
-    Me.ColumnType.Width = 53
+    Me.OK_Button.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.OK_Button.Location = New System.Drawing.Point(3, 3)
+    Me.OK_Button.Name = "OK_Button"
+    Me.OK_Button.Size = New System.Drawing.Size(74, 23)
+    Me.OK_Button.TabIndex = 0
+    Me.OK_Button.Text = "OK"
+    Me.OK_Button.UseSelectable = True
     '
-    'ColumnText
+    'Cancel_Button
     '
-    Me.ColumnText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnText.HeaderText = "Clock control actions"
-    Me.ColumnText.Name = "ColumnText"
-    Me.ColumnText.ReadOnly = True
+    Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
+    Me.Cancel_Button.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Cancel_Button.Location = New System.Drawing.Point(83, 3)
+    Me.Cancel_Button.Name = "Cancel_Button"
+    Me.Cancel_Button.Size = New System.Drawing.Size(74, 23)
+    Me.Cancel_Button.TabIndex = 1
+    Me.Cancel_Button.Text = "Cancel"
+    Me.Cancel_Button.UseSelectable = True
     '
     'FormPeriodControl
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.ClientSize = New System.Drawing.Size(402, 551)
+    Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Controls.Add(Me.TableLayoutPanel2)
     Me.MaximizeBox = False
     Me.MinimizeBox = False
@@ -177,6 +217,7 @@ Partial Class FormPeriodControl
     CType(Me.MetroGridPeriods, System.ComponentModel.ISupportInitialize).EndInit()
     Me.TableLayoutPanel2.ResumeLayout(False)
     CType(Me.NumericUpDownMinutes, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.TableLayoutPanel1.ResumeLayout(False)
     Me.ResumeLayout(False)
 
   End Sub
@@ -188,4 +229,7 @@ Partial Class FormPeriodControl
   Friend WithEvents ColumnID As DataGridViewTextBoxColumn
   Friend WithEvents ColumnType As DataGridViewTextBoxColumn
   Friend WithEvents ColumnText As DataGridViewTextBoxColumn
+  Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
 End Class

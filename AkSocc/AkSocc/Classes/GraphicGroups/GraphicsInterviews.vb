@@ -12,6 +12,7 @@ Public Class GraphicsInterviews
     MyBase.Name = "GraphicsF2Interviews"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F2, True, False, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String

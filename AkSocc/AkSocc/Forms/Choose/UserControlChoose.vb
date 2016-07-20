@@ -44,7 +44,7 @@
     _init = True
   End Sub
 
-  Public Sub SelectFirst()
+  Public Sub SelectFirst(Optional forceSelection As Boolean = False)
     Try
       _init = False
       For row As Integer = 0 To Me.MetroGridOptions.Rows.Count - 1
@@ -55,6 +55,9 @@
       End If
       'Me.MetroGridOptions.Invalidate()
       Me.MetroGridOptions.Focus()
+      If forceSelection Then
+        Me.SelectItemAtrow(0)
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -73,6 +76,27 @@
         RaiseEvent GraphicStepSelected(Me, gStep)
 
       End If
+
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub SelectItemAtrow(row As Integer)
+    Dim gStep As GraphicStep = Nothing
+    Try
+      Dim lastInit As Boolean = _init
+      _init = False
+      For i As Integer = 0 To MetroGridOptions.Rows.Count - 1
+        '  MetroGridOptions.Rows(i).Selected = (i = row)
+      Next
+      _init = lastInit
+
+
+      gStep = Me.GraphicStep.GraphicSteps(row)
+      gStep.ParentGraphicStep.ChildGraphicStep = gStep
+      RaiseEvent GraphicStepSelected(Me, gStep)
+
 
     Catch ex As Exception
       WriteToErrorLog(ex)

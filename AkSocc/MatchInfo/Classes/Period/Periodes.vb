@@ -236,7 +236,7 @@ Public Class Periods
         Me.ActivePeriod.IsSelected = False
       End If
       If Not res Is Nothing Then
-        res.UpdateTempsJocManual(period.TotalTime)
+        'res.UpdateTempsJocManual(period.TotalTime)
         res.Activa = False
         res.IsSelected = False
       End If

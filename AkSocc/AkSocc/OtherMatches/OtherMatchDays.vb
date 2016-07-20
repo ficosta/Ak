@@ -5,7 +5,15 @@ Imports MatchInfo
   Inherits CollectionBase
 
   Public Sub New()
-    Me.LoadOthers()
+    Try
+      Dim silent As Boolean = Config.Instance.Silent
+      Config.Instance.Silent = True
+      Me.LoadOthers()
+      Config.Instance.Silent = silent
+
+    Catch ex As Exception
+
+    End Try
   End Sub
 
   Public Function Add(MatchDay As MatchDay) As Integer
@@ -188,7 +196,11 @@ Imports MatchInfo
           xmlLine.AppendChild(addTables)
 
           Dim matchID As XmlElement = xmlDoc.CreateElement("MatchID")
-          matchID.InnerText = myOtherMatch.OtherMatchID.ToString()
+          If myOtherMatch.Match Is Nothing Then
+            matchID.InnerText = "0"
+          Else
+            matchID.InnerText = myOtherMatch.Match.match_id
+          End If
           xmlLine.AppendChild(matchID)
 
           Dim homeGoals As XmlElement = xmlDoc.CreateElement("HomeGoals")
@@ -226,7 +238,14 @@ Imports MatchInfo
         For Each myXmlLines As XmlNode In myXmlHeaders.SelectNodes("Line")
           Dim myOtherMatch As New OtherMatch
           myOtherMatch.MatchTitle = ReadSon(myXmlLines, "Title")
-          myOtherMatch.LineType = Val(ReadSon(myXmlLines, "LineType"))
+          Select Case ReadSon(myXmlLines, "LineType")
+            Case OtherMatch.eOtherMatchLineType.Result.ToString
+              myOtherMatch.LineType = OtherMatch.eOtherMatchLineType.Result
+            Case OtherMatch.eOtherMatchLineType.Title.ToString
+              myOtherMatch.LineType = OtherMatch.eOtherMatchLineType.Title
+            Case Else
+              myOtherMatch.LineType = OtherMatch.eOtherMatchLineType.Blank
+          End Select
           myOtherMatch.IsCrawl = (ReadSon(myXmlLines, "AddCrawl") = "True")
           myOtherMatch.IsTable = (ReadSon(myXmlLines, "AddTables") = "True")
           myOtherMatch.OtherMatchID = Val(ReadSon(myXmlLines, "MatchID"))
@@ -235,19 +254,24 @@ Imports MatchInfo
           End If
           myOtherMatch.HomeScore = Val(ReadSon(myXmlLines, "HomeGoals"))
           myOtherMatch.AwayScore = Val(ReadSon(myXmlLines, "AwayGoals"))
+
           Dim aux As String = ReadSon(myXmlLines, "LogoChannel")
           Dim logoChannel As Integer = 0
+          Integer.TryParse(aux, logoChannel)
           myOtherMatch.LogoChannel = logoChannel
+
           aux = ReadSon(myXmlLines, "MatchStatus")
-          myOtherMatch.MatchStatus = 0
+          Dim nStatus As Integer = 0
+          Integer.TryParse(aux, nStatus)
+          myOtherMatch.MatchStatus = nStatus
           myMatchDay.Add(myOtherMatch)
         Next
         Me.Add(myMatchDay)
       Next
-      CreateEmptyOthers()
     Catch err As Exception
       WriteToErrorLog(err)
     End Try
+    CreateEmptyOthers()
 
 
   End Sub
@@ -259,7 +283,7 @@ Imports MatchInfo
       Dim totallMatchDays As Integer = 26
 
       For i As Integer = 1 To totallMatchDays
-        Dim name As String = "ROUND " + i + " FIXTURES"
+        Dim name As String = "ROUND " & i & " FIXTURES"
         If Me.GetMatchDay(name) Is Nothing Then
           Dim myMatchDay As New MatchDay(name)
           Me.Add(myMatchDay)

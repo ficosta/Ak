@@ -162,6 +162,12 @@ Public Class PreviewControl
     Dim asset As PreviewAsset
   End Structure
 
+  Private _clearScreenRequest As Boolean = False
+  Public Function ClearOutput()
+    _clearScreenRequest = True
+  End Function
+
+
   Private Sub _backgroundWorker_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles _backgroundWorker.DoWork
     Try
       Dim controlVizrt As New VizControl()
@@ -169,6 +175,12 @@ Public Class PreviewControl
       controlVizrt.InitializeSockets(_tConfig)
 
       While Not _backgroundWorker.CancellationPending
+        If _clearScreenRequest Then
+          controlVizrt.ActivateScene("", eRendererLayers.BackLayer)
+          controlVizrt.ActivateScene("", eRendererLayers.FrontLayer)
+          controlVizrt.ActivateScene("", eRendererLayers.MidleLayer)
+          _clearScreenRequest = False
+        End If
         If _pendingAssets.Count > 0 Then
           Dim asset As PreviewAsset = _pendingAssets(0)
           Dim filePath As String = System.IO.Path.Combine(_remoteBasePath, asset.AssetFileName & ".png")

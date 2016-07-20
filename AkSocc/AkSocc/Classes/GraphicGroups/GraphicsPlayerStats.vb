@@ -23,6 +23,7 @@ Public Class GraphicsPlayerStats
       End Select
     End If
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F2, False, True, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Public Sub New(_match As MatchInfo.Match, player As Player)

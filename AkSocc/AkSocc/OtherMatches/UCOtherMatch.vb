@@ -47,6 +47,8 @@ Public Class UCOtherMatch
       _matches = value
       Me.MetroComboBoxMatch.Items.Clear()
 
+      Me.MetroComboBoxMatch.Items.Add("")
+
       If Not _matches Is Nothing Then
         For Each match As Match In _matches
           Me.MetroComboBoxMatch.Items.Add(match)
@@ -149,8 +151,31 @@ Public Class UCOtherMatch
 
 #Region "Controls"
   Private _initializing As Boolean = False
+
+  Public Sub New()
+
+    ' This call is required by the designer.
+    InitializeComponent()
+
+    ' Add any initialization after the InitializeComponent() call.
+    Me.MetroComboBoxChannelLogo.Items.Clear()
+    Me.MetroComboBoxChannelLogo.Items.Add("")
+    For i As Integer = 1 To 10
+      Me.MetroComboBoxChannelLogo.Items.Add("Logo " & i)
+    Next
+
+    Me.MetroComboBoxMatchStatus.Items.Clear()
+    Me.MetroComboBoxMatchStatus.Items.Add("")
+    Me.MetroComboBoxMatchStatus.Items.Add(OtherMatch.otherMatchStatus.HalfTime)
+    Me.MetroComboBoxMatchStatus.Items.Add(OtherMatch.otherMatchStatus.FullTime)
+    Me.MetroComboBoxMatchStatus.Items.Add(OtherMatch.otherMatchStatus.LatestResult)
+
+  End Sub
+
   Private Sub UpdateControls()
+    If _initializing Then Exit Sub
     _initializing = True
+
     Try
       If _otherMatch Is Nothing Then
         Me.MetroTabControlLineType.SelectedTab = TabPageBlank
@@ -173,27 +198,45 @@ Public Class UCOtherMatch
         End Select
         If tabPage.Name <> Me.MetroTabControlLineType.SelectedTab.Name Then Me.MetroTabControlLineType.SelectedTab = tabPage
         Me.MetroCheckBoxAddToCrawl.Checked = _otherMatch.IsCrawl
-          Me.MetroCheckBoxAddToTable.Checked = _otherMatch.IsTable
-          MetroTabControlLineType.SelectedIndex = CInt(_otherMatch.LineType)
-          Me.MetroTextBoxTitle.Text = _otherMatch.MatchTitle
+        Me.MetroCheckBoxAddToTable.Checked = _otherMatch.IsTable
+        MetroTabControlLineType.SelectedIndex = CInt(_otherMatch.LineType)
+        Me.MetroTextBoxTitle.Text = _otherMatch.MatchTitle
+        If _otherMatch.Match Is Nothing Then
+          Me.MetroComboBoxMatch.Text = ""
+          Me.MetroTextBoxScoreHome.Text = ""
+          Me.MetroTextBoxScoreAway.Text = ""
+          Me.MetroComboBoxChannelLogo.Text = ""
+          Me.MetroComboBoxMatchStatus.Text = ""
+        Else
           Me.MetroTextBoxScoreHome.Text = _otherMatch.HomeScore
           Me.MetroTextBoxScoreAway.Text = _otherMatch.AwayScore
-          If _otherMatch.Match Is Nothing Then
-            Me.MetroComboBoxMatch.Text = ""
+          Me.MetroComboBoxMatch.Text = _otherMatch.Match.ToString
+
+          If _otherMatch.LogoChannel = 0 Then
+            Me.MetroComboBoxChannelLogo.Text = ""
           Else
-            Me.MetroComboBoxMatch.Text = _otherMatch.Match.Description
-            'Me.MetroComboBoxMatch.SelectedItem = Me.MetroComboBoxMatch.Items(0)
-            For index As Integer = 0 To Me.MetroComboBoxMatch.Items.Count - 1
+            Me.MetroComboBoxChannelLogo.Text = "Logo " & _otherMatch.LogoChannel
+          End If
+          Select Case _otherMatch.MatchStatus
+            Case OtherMatch.otherMatchStatus.Idle
+              Me.MetroComboBoxMatchStatus.Text = ""
+            Case Else
+              Me.MetroComboBoxMatchStatus.Text = _otherMatch.MatchStatus.ToString
+          End Select
+          For index As Integer = 0 To Me.MetroComboBoxMatch.Items.Count - 1
+            Dim obj As Object = Me.MetroComboBoxMatch.Items(index)
+            If obj.GetType().ToString = "MatchInfo.Match" Then
               Dim aux As Match = Me.MetroComboBoxMatch.Items(index)
               If aux.match_id = _otherMatch.Match.match_id Then
                 Me.MetroComboBoxMatch.SelectedItem = Me.MetroComboBoxMatch.Items(index)
               End If
-            Next
-          End If
+            End If
+          Next
         End If
-        TableLayoutPanelCheckboxes.Visible = MetroTabControlLineType.Visible
+      End If
+      TableLayoutPanelCheckboxes.Visible = MetroTabControlLineType.Visible
     Catch ex As Exception
-
+      WriteToErrorLog (ex)
     End Try
     _initializing = False
   End Sub
@@ -239,6 +282,13 @@ Public Class UCOtherMatch
     Try
       If Not _otherMatch Is Nothing Then
         _otherMatch.Match = CType(MetroComboBoxMatch.SelectedItem, Match)
+        If _otherMatch.Match Is Nothing Then
+          Me.MetroTextBoxScoreHome.Text = ""
+          Me.MetroTextBoxScoreAway.Text = ""
+        Else
+          Me.MetroTextBoxScoreHome.Text = _otherMatch.Match.home_goals
+          Me.MetroTextBoxScoreAway.Text = _otherMatch.Match.away_goals
+        End If
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -288,7 +338,16 @@ Public Class UCOtherMatch
   Private Sub MetroComboBoxMatchStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MetroComboBoxMatchStatus.SelectedIndexChanged
     Try
       If Not _otherMatch Is Nothing Then
-        _otherMatch.MatchStatus = Me.MetroComboBoxMatchStatus.SelectedIndex
+        Select Case Me.MetroComboBoxMatchStatus.Text
+          Case OtherMatch.otherMatchStatus.HalfTime.ToString
+            _otherMatch.MatchStatus = OtherMatch.otherMatchStatus.HalfTime
+          Case OtherMatch.otherMatchStatus.FullTime.ToString
+            _otherMatch.MatchStatus = OtherMatch.otherMatchStatus.FullTime
+          Case OtherMatch.otherMatchStatus.LatestResult.ToString
+            _otherMatch.MatchStatus = OtherMatch.otherMatchStatus.LatestResult
+          Case Else
+            _otherMatch.MatchStatus = OtherMatch.otherMatchStatus.Idle
+        End Select
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)

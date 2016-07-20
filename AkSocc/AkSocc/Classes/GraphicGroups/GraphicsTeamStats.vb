@@ -14,6 +14,7 @@ Public Class GraphicsTeamStats
     MyBase.Name = "GraphicsF5TeamStats"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F5, False, False, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Class Step0
@@ -106,6 +107,8 @@ Public Class GraphicsTeamStats
     Return Me.Scene
   End Function
 
+
+
 #Region "Crawl scenes"
   Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
     Dim scene As New Scene()
@@ -150,6 +153,7 @@ Public Class GraphicsTeamStats
     Try
 
       scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Text_Text_02", VizEncoding(Arabic(stat_name)))
+      scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Control_OMO_GV_Choose ", "2")
 
       scene.SceneParameters.Add("Lower3rd_Data_Team_01_Name", Me.Match.HomeTeam.Name)
       scene.SceneParameters.Add("Lower3rd_Data_Team_02_Name", Me.Match.AwayTeam.Name)

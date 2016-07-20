@@ -26,13 +26,13 @@ Public Class Stat
       If _value <> value Then
         _value = value
 
-        RaiseEvent PropertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs("Value"))
+        If Config.Instance.Silent = False Then RaiseEvent PropertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs("Value"))
         'RaiseEvent PropertyChanged(Me,
         '          New System.ComponentModel.PropertyChangedEventArgs("ValueText"))
-        'RaiseEvent StatValueChanged(Me)
+        If Config.Instance.Silent = False Then RaiseEvent StatValueChanged(Me)
       Else
-        'Debug.Print ("No change " & me.Name & " = " & me.value & " ID " )
-      End If
+          'Debug.Print ("No change " & me.Name & " = " & me.value & " ID " )
+        End If
     End Set
   End Property
 

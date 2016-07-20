@@ -11,6 +11,7 @@ Public Class GraphicGroupCrawlTeams
     MyBase.Name = "GraphicGroupCrawlTeams"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F8, True, False, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String

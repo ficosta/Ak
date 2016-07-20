@@ -511,5 +511,16 @@
     End Try
     Return res
   End Function
+
+  Public Sub Copy(source As Player)
+    Try
+      Me.ArabicName = source.ArabicName
+
+
+    Catch ex As Exception
+
+    End Try
+
+  End Sub
 End Class
 

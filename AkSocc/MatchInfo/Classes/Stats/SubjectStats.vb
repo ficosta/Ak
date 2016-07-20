@@ -20,8 +20,7 @@ Public Class SubjectStats
       If _goals.Value <> value Then
         _goals.Value = value
 
-        RaiseEvent PropertyChanged(Me,
-                  New System.ComponentModel.PropertyChangedEventArgs("Goals"))
+        If Config.Instance.Silent = False Then RaiseEvent PropertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs("Goals"))
       End If
     End Set
   End Property
@@ -79,6 +78,62 @@ Public Class SubjectStats
   Public ReadOnly Property Possession As Stat
     Get
       Return _possession
+    End Get
+  End Property
+
+  Private WithEvents _possession1st As New Stat("Possession1st", eDataType.PercentageValue)
+  Public ReadOnly Property Possession1st As Stat
+    Get
+      Return _possession1st
+    End Get
+  End Property
+
+  Private WithEvents _possession2nd As New Stat("Possession2nd", eDataType.PercentageValue)
+  Public ReadOnly Property Possession2nd As Stat
+    Get
+      Return _possession2nd
+    End Get
+  End Property
+
+  Private WithEvents _possessionAttack As New Stat("PossessionAttack", eDataType.PercentageValue)
+  Public ReadOnly Property PossessionAttack As Stat
+    Get
+      Return _possessionAttack
+    End Get
+  End Property
+
+  Private WithEvents _possessionMid As New Stat("PossessionMid", eDataType.PercentageValue)
+  Public ReadOnly Property PossessionMid As Stat
+    Get
+      Return _possessionMid
+    End Get
+  End Property
+
+  Private WithEvents _possessionOwn As New Stat("PossessionOwn", eDataType.PercentageValue)
+  Public ReadOnly Property PossessionOwn As Stat
+    Get
+      Return _possessionOwn
+    End Get
+  End Property
+
+  Private WithEvents _possessionMatch As New Stat("PossessionMatch", eDataType.PercentageValue)
+  Public ReadOnly Property PossessionMatch As Stat
+    Get
+      Return _possessionMatch
+    End Get
+  End Property
+
+  Private WithEvents _possessionLast5 As New Stat("PossessionLast5", eDataType.PercentageValue)
+  Public ReadOnly Property PossessionLast5 As Stat
+    Get
+      Return _possessionLast5
+    End Get
+  End Property
+
+  Private WithEvents _possessionLast10 As New Stat("PossessionLast10", eDataType.PercentageValue)
+  Public ReadOnly Property PossessionLast10 As Stat
+    Get
+      Return _possessionLast10
     End Get
   End Property
 
@@ -154,12 +209,18 @@ Public Class SubjectStats
   End Sub
 
   Private Sub _PropertyChanged(sender As Object, e As PropertyChangedEventArgs)
-    RaiseEvent PropertyChanged(Me,
-              New System.ComponentModel.PropertyChangedEventArgs("Value"))
-    RaiseEvent StatValueChanged(Me, sender)
+    If Config.Instance.Silent = False Then RaiseEvent PropertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs("Value"))
+    If Config.Instance.Silent = False Then RaiseEvent StatValueChanged(Me, sender)
   End Sub
 
   Private Sub _StatValueChanged(sender As Stat)
-    RaiseEvent StatValueChanged(Me, sender)
+    If Config.Instance.Silent = False Then RaiseEvent StatValueChanged(Me, sender)
   End Sub
+
+#Region "Socket helpers"
+  Public Function ToSocketFormat() As String
+    Dim res As String = ""
+    Return res
+  End Function
+#End Region
 End Class

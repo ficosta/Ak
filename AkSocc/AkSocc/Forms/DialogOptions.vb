@@ -36,6 +36,13 @@ Public Class DialogOptions
       Me.MetroTextBoxLocalPreviewPath.Text = AppSettings.Instance.PreviewLocalPath
       Me.MetroTextBoxRemotePreviewPath.Text = AppSettings.Instance.PreviewRemotePath
 
+      Me.MetroTextBoxDefaultColorPath.Text = AppSettings.Instance.ColorsDefaultPath
+      Me.MetroTextBoxDefaultKitsPath.Text = AppSettings.Instance.KitsDefaultPath
+
+
+      'Me.colors= AppSettings.Instance.ColorsDefaultPath
+      '  Me.MetroTextBoxDataBase.Text = AppSettings.Instance.KitsDefaultPath
+
       Dim index As Integer = -1
       Me.ComboBoxSceneVersion.Items.Clear()
 
@@ -73,6 +80,11 @@ Public Class DialogOptions
       AppSettings.Instance.VizrtPreviewPort = Me.NumericUpDownPreviewPort.Value
       AppSettings.Instance.PreviewLocalPath = Me.MetroTextBoxLocalPreviewPath.Text
       AppSettings.Instance.PreviewRemotePath = Me.MetroTextBoxRemotePreviewPath.Text
+
+      AppSettings.Instance.ColorsDefaultPath = Me.MetroTextBoxDefaultColorPath.Text
+      AppSettings.Instance.KitsDefaultPath = Me.MetroTextBoxDefaultKitsPath.Text
+
+      AppSettings.Instance.ColorsDefaultPath = Me.MetroTextBoxDefaultColorPath.Text
 
       Dim version As GraphicVersion = CType(Me.ComboBoxSceneVersion.SelectedItem, GraphicVersion)
       GraphicVersions.Instance.SelectedGraphicVersion = version
@@ -113,6 +125,28 @@ Public Class DialogOptions
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub MetroButtonDefaultColorsPath_Click(sender As Object, e As EventArgs) Handles MetroButtonDefaultColorsPath.Click
+    Try
+      Me.FolderBrowserDialogPaths.SelectedPath = Me.MetroTextBoxDefaultColorPath.Text
+      If Me.FolderBrowserDialogPaths.ShowDialog(Me) = DialogResult.OK Then
+        Me.MetroTextBoxDefaultColorPath.Text = Me.FolderBrowserDialogPaths.SelectedPath
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub MetroButtonDefaultkitsPath_Click(sender As Object, e As EventArgs) Handles MetroButtonDefaultkitsPath.Click
+    Try
+      Me.FolderBrowserDialogPaths.SelectedPath = Me.MetroTextBoxDefaultKitsPath.Text
+      If Me.FolderBrowserDialogPaths.ShowDialog(Me) = DialogResult.OK Then
+        Me.MetroTextBoxDefaultKitsPath.Text = Me.FolderBrowserDialogPaths.SelectedPath
+      End If
+    Catch ex As Exception
+
     End Try
   End Sub
 #End Region

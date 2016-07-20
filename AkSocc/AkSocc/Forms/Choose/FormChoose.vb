@@ -34,6 +34,10 @@ Public Class FormChoose
   Private _firstControl As Boolean = True
 
   Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
+    AcceptGraphic()
+  End Sub
+
+  Private Sub AcceptGraphic()
     Dim gstep As GraphicStep = Me.GraphicGroup.graphicStep
 
     ' If MsgBox("Start graphic?", MsgBoxStyle.YesNo, gstep.ToString) = MsgBoxResult.No Then Exit Sub
@@ -185,18 +189,24 @@ Public Class FormChoose
   Private Sub ShowNextGraphicSteps()
     Try
       GraphicStepSelected(Nothing, Me.GraphicGroup.graphicStep)
+      Me.UserControlChoose1.SelectFirst(True)
 
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
   End Sub
 
+  Private _selecting As Boolean = False
   Private Sub GraphicStepSelected(sender As UserControlChoose, gs As GraphicStep) Handles UserControlChoose1.GraphicStepSelected, UserControlChoose2.GraphicStepSelected, UserControlChoose3.GraphicStepSelected, UserControlChoose4.GraphicStepSelected
+    If _selecting Then Exit Sub
+    _selecting = True
     Try
       _lastControlIndex = 0
       Dim lastLeft As Integer = 0
+      Dim isFirstControl As Boolean = _firstControl
+      _firstControl = False
       'eliminar els següents
-      
+
       Me.GraphicGroup.graphicStep = gs
 
       Dim bNextStep As Boolean = False
@@ -209,22 +219,40 @@ Public Class FormChoose
       End If
 
       If bNextStep Then
+        Me.OK_Button.Enabled = False
         If Not sender Is Nothing Then _lastControlIndex = sender.Index + 1
 
 
         Dim uc As UserControlChoose = CType(_chooseControls(_lastControlIndex), UserControlChoose)
         uc.GraphicStep = Me.GraphicGroup.PrepareNextGraphicStep(gs)
-        Me.OK_Button.Enabled = False
+        If uc.GraphicStep.GraphicSteps.Count = 1 Or isFirstControl Then
+          uc.SelectFirst(True)
+          If uc.GraphicStep.ChildGraphicStep.IsFinalStep Then
+            Me.GraphicGroup.graphicStep = uc.GraphicStep
+            gs = uc.GraphicStep.ChildGraphicStep
+            Dim scene As Scene = _graphicGroup.PrepareScene(gs)
+
+            If Not scene Is Nothing Then
+              If _ucPreview.VizControl Is Nothing Then _ucPreview.VizControl = Me._vizControl
+              _ucPreview.GetPreview(scene)
+              _ucPreview.ShowAdvancedControls = False
+              _ucPreview.Title = gs.ToString
+            End If
+            Me.OK_Button.Enabled = True
+
+          End If
+        Else
+          'uc.SelectFirst(True)
+        End If
 
       Else
         If Not sender Is Nothing Then _lastControlIndex = sender.Index
-
 
         Dim scene As Scene = _graphicGroup.PrepareScene(gs)
 
         If Not scene Is Nothing Then
           If _ucPreview.VizControl Is Nothing Then _ucPreview.VizControl = Me._vizControl
-          _ucPreview.GetPreview(_graphicGroup.PrepareScene(gs))
+          _ucPreview.GetPreview(scene)
           _ucPreview.ShowAdvancedControls = False
           _ucPreview.Title = gs.ToString
         End If
@@ -238,6 +266,7 @@ Public Class FormChoose
     End Try
     UpdateTableGrids()
     _firstControl = False
+    _selecting = False
   End Sub
 
 
@@ -353,13 +382,33 @@ Public Class FormChoose
 
   Private Sub JumpToNextGraphicSetp(sender As UserControlChoose) Handles UserControlChoose1.JumpToNext, UserControlChoose2.JumpToNext, UserControlChoose3.JumpToNext, UserControlChoose4.JumpToNext
     Try
-      Dim nextIndex As Integer = sender.Index + 1
-      If nextIndex < Me.TableLayoutPanelAll.Controls.Count Then
-        Dim uc As UserControlChoose = _chooseControls(nextIndex)
-        _chooseControls(nextIndex).Select()
-        uc.Focus()
-        uc.SelectFirst()
+
+      If Not sender.GraphicStep.ChildGraphicStep Is Nothing AndAlso sender.GraphicStep.ChildGraphicStep.IsFinalStep = True Then
+        AcceptGraphic()
+      ElseIf sender.GraphicStep.ChildGraphicStep Is Nothing Then
+        sender.SelectFirst(True)
+        'sender.GraphicStep.ChildGraphicStep = sender.GraphicStep.GraphicSteps(0)
+        Dim nextIndex As Integer = sender.Index + 1
+
+        If nextIndex < Me.TableLayoutPanelAll.Controls.Count Then
+          Dim uc As UserControlChoose = _chooseControls(nextIndex)
+          _chooseControls(nextIndex).Select()
+          uc.Focus()
+          uc.SelectFirst()
+        End If
+      Else
+
+
+        Dim nextIndex As Integer = sender.Index + 1
+
+        If nextIndex < Me.TableLayoutPanelAll.Controls.Count Then
+          Dim uc As UserControlChoose = _chooseControls(nextIndex)
+          _chooseControls(nextIndex).Select()
+          uc.Focus()
+          uc.SelectFirst()
+        End If
       End If
+
     Catch ex As Exception
     End Try
   End Sub

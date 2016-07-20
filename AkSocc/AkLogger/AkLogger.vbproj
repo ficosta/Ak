@@ -72,13 +72,30 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\frmMain.vb">
+    <Compile Include="Classes\AppSettings.vb" />
+    <Compile Include="Classes\ErrorHandling.vb" />
+    <Compile Include="Classes\GlobalProperties.vb" />
+    <Compile Include="Classes\RegistryHelper.vb" />
+    <Compile Include="Classes\Utils.vb" />
+    <Compile Include="Forms\DialogOptions.Designer.vb">
+      <DependentUpon>DialogOptions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogOptions.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmNewTime.Designer.vb">
+      <DependentUpon>frmNewTime.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmNewTime.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MMain.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -96,6 +113,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmNewTime.resx">
+      <DependentUpon>frmNewTime.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -115,9 +138,7 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\MatchInfo\MatchInfo.vbproj">
       <Project>{358b286c-8a11-4853-8ea0-415bcc4002cd}</Project>

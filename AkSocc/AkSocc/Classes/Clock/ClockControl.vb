@@ -35,6 +35,8 @@ Public NotInheritable Class ClockControl
     Set(value As Match)
       _match = value
       _matchPeriod = _match.MatchPeriods.ActivePeriod
+      _homeTeam = _match.HomeTeam
+      _awayTeam = _match.AwayTeam
       Me.InitScene()
     End Set
   End Property
@@ -58,7 +60,20 @@ Public NotInheritable Class ClockControl
   Public Property AddedTimeTotalVisible As Boolean = False
   Public Property nPuOffsetTime As Long
 
-  Public Property ShowRedCards As Boolean = False
+  Private _showRedCards As Boolean
+  Public Property ShowRedCards As Boolean
+    Get
+      Return _ShowRedCards
+    End Get
+    Set(value As Boolean)
+      _ShowRedCards = value
+    End Set
+  End Property
+
+  Private WithEvents _homeTeam As Team
+  Private WithEvents _awayTeam As Team
+  Private HomeRedCards As Integer = 0
+  Private AwayRedCards As Integer = 0
 
 #End Region
 
@@ -78,7 +93,7 @@ Public NotInheritable Class ClockControl
   End Function
 
   Private Sub InitScene()
-    UpdateAndSendScene()
+    UpdateAndSendScene(True)
     Me.Scene.RewindSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
     ClockVisible = False
     _request = False
@@ -131,6 +146,9 @@ Public NotInheritable Class ClockControl
       Return _clockVisible
     End Get
     Set(value As Boolean)
+      If value Then
+        _showRedCards = (MsgBox("Show red cards?", Buttons:=MsgBoxStyle.YesNo) = MsgBoxResult.Yes)
+      End If
       _clockVisible = value
       UpdateClockVisibility()
     End Set
@@ -236,7 +254,7 @@ Public NotInheritable Class ClockControl
   Public Sub ShowIdentClock()
     Try
       _clockOnAir = True
-      UpdateAndSendScene()
+      UpdateAndSendScene(True)
       '_vizControl.DirectorStart("DIR_MAIN", Me.Scene.VizLayer)
       Me.Scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
       RaiseEvent Updated()
@@ -260,7 +278,7 @@ Public NotInheritable Class ClockControl
     Try
       If _clockOnAir = False Then Exit Sub
       _overtimeClockOnAir = True
-      UpdateAndSendScene()
+      UpdateAndSendScene(False)
       '_vizControl.DirectorStart("DIR_MAIN", Me.Scene.VizLayer)
       Me.Scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.ChangeInDirectors)
       RaiseEvent Updated()
@@ -281,8 +299,9 @@ Public NotInheritable Class ClockControl
     End Try
   End Sub
 
+  Private _clockIsRunning() As Boolean = {False, False, False, False, False, False, False}
 
-  Private Sub UpdateRunningClock()
+  Private Sub UpdateRunningClock(forceSend As Boolean)
     Try
       If _match Is Nothing Then Exit Sub
       If _match.MatchPeriods.ActivePeriod Is Nothing Then Exit Sub
@@ -290,9 +309,11 @@ Public NotInheritable Class ClockControl
       Dim clockIndex As Integer = 0
       Dim overtimeClockIndex As Integer = 1
 
-      _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime + _match.MatchPeriods.ActivePeriod.StartOffset)
       If _match.MatchPeriods.ActivePeriod.Activa And Not _match.MatchPeriods.ActivePeriod.IsPeriodDone Then
-        _vizControl.ClockStart(clockIndex)
+        If _clockIsRunning(clockIndex) = False Or forceSend Then
+          _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime + _match.MatchPeriods.ActivePeriod.StartOffset)
+          _vizControl.ClockStart(clockIndex)
+        End If
       Else
         _vizControl.ClockStop(clockIndex)
       End If
@@ -302,6 +323,9 @@ Public NotInheritable Class ClockControl
         _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.TotalTime + _match.MatchPeriods.ActivePeriod.StartOffset)
         _vizControl.ClockStop(clockIndex)
         _vizControl.ClockStart(overtimeClockIndex)
+        If _clockIsRunning(overtimeClockIndex) = False Or forceSend Then
+          _vizControl.ClockStart(overtimeClockIndex)
+        End If
       Else
         _vizControl.ClockStop(overtimeClockIndex)
       End If
@@ -310,7 +334,7 @@ Public NotInheritable Class ClockControl
     End Try
   End Sub
 
-  Private Sub UpdateScene()
+  Private Sub UpdateScene(forceSend As Boolean)
     Try
       Dim myScene As Scene = GetClockBaseScene()
 
@@ -324,8 +348,8 @@ Public NotInheritable Class ClockControl
         .SceneDirectorsIn.Add("Added_time", 0, DirectorAction.Rewind)
         .SceneDirectorsIn.Add("Clock_Added_Time", 0, DirectorAction.Rewind)
 
-        .SceneDirectorsIn.Add("Team_Left_Cards", 0, DirectorAction.Rewind)
-        .SceneDirectorsIn.Add("Team_Right_Cards", 0, DirectorAction.Rewind)
+        '.SceneDirectorsIn.Add("Team_Left_Cards", 0, DirectorAction.Rewind)
+        '.SceneDirectorsIn.Add("Team_Right_Cards", 0, DirectorAction.Rewind)
 
         .SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
 
@@ -361,23 +385,31 @@ Public NotInheritable Class ClockControl
           .SceneParameters.Add("Clock_Home_Team_TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & _match.HomeTeam.BadgeName, paramType.Image)
           .SceneParameters.Add("Clock_Away_Team_TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & _match.AwayTeam.BadgeName, paramType.Image)
 
+          .SceneParameters.Add("Clock_Home_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathColors & _match.HomeTeam.BadgeName, paramType.Image)
+          .SceneParameters.Add("Clock_Away_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathColors & _match.AwayTeam.BadgeName, paramType.Image)
+
           Dim sTime As String = ""
           If _match.MatchPeriods.ActivePeriod Is Nothing Then
             sTime = ""
             .SceneParameters.Add("Clock_Clock_Added_Time_Text", "")
+            .SceneParameters.Add("Clock_Added_Time_Text", "")
           Else
             sTime = EnglishToArabicTranslator.Instance.ToArabic(_match.MatchPeriods.ActivePeriod.Nom)
             If _match.MatchPeriods.ActivePeriod.ExtraTime = 0 Then
               .SceneParameters.Add("Clock_Clock_Added_Time_Text", "")
+              .SceneParameters.Add("Clock_Added_Time_Text", "")
             Else
-              .SceneParameters.Add("Clock_Clock_Added_Time_Text", "+" & _match.MatchPeriods.ActivePeriod.ExtraTime)
+              ' .SceneParameters.Add("Clock_Clock_Added_Time_Text", "+" & _match.MatchPeriods.ActivePeriod.ExtraTime)
+              .SceneParameters.Add("Clock_Added_Time_Text", "+" & _match.MatchPeriods.ActivePeriod.ExtraTime)
             End If
           End If
 
           .SceneParameters.Add("Clock_Half_Indicator_Text", sTime)
 
           'clock control
-          UpdateRunningClock()
+          UpdateRunningClock(forceSend)
+          'red cards
+          UpdateRedCards()
         End If
 
       End With
@@ -387,19 +419,24 @@ Public NotInheritable Class ClockControl
     End Try
   End Sub
 
-  Private Sub UpdateAndSendScene()
-    UpdateScene()
+  Public Sub UpdateClock()
+
+  End Sub
+
+  Private Sub UpdateAndSendScene(forceSend As Boolean)
+    UpdateScene(forceSend)
     Me.Scene.SendSceneToEngine(_vizControl)
   End Sub
 
   Private Sub _match_ScoreChanged() Handles _match.ScoreChanged
-    UpdateAndSendScene()
+    UpdateAndSendScene(False)
   End Sub
 
   Private Sub _match_ActivePeriodStateChanged() Handles _match.ActivePeriodStateChanged
     Try
       If _match.MatchPeriods.ActivePeriod.Activa Then
-        UpdateAndSendScene()
+        Me.ClockVisible = True
+        UpdateAndSendScene(True)
       End If
       Me.UpdateClockVisibility()
 
@@ -408,6 +445,54 @@ Public NotInheritable Class ClockControl
     End Try
   End Sub
 
+#Region "red cards"
+  Private _shownHomeRedCards As Integer = 0
+  Private _shownAwayRedCards As Integer = 0
+
+
+
+  Public Sub UpdateRedCards()
+    Try
+      If _showRedCards Then
+
+        Dim RedTime As Double = 1.5
+        If _match.HomeTeam.MatchStats.RedCards.Value = 0 Then
+          RedTime = 0.0
+        ElseIf _match.HomeTeam.MatchStats.RedCards.Value = 1 Then
+          RedTime = 0.5
+        ElseIf _match.HomeTeam.MatchStats.RedCards.Value = 2 Then
+          RedTime = 1.0
+        Else
+          RedTime = 1.5
+        End If
+
+        _vizControl.DirectorGoTo("Team_Right_Cards", 40 * RedTime, eRendererLayers.FrontLayer)
+
+
+        If _match.AwayTeam.MatchStats.RedCards.Value = 0 Then
+          RedTime = 0.0
+        ElseIf _match.AwayTeam.MatchStats.RedCards.Value = 1 Then
+          RedTime = 0.5
+        ElseIf _match.AwayTeam.MatchStats.RedCards.Value = 2 Then
+          RedTime = 1.0
+        Else
+          RedTime = 1.5
+        End If
+        _vizControl.DirectorGoTo("Team_Left_Cards", 40 * RedTime, eRendererLayers.FrontLayer)
+
+      Else
+        _vizControl.DirectorGoTo("Team_Right_Cards", 0, eRendererLayers.FrontLayer)
+        _vizControl.DirectorGoTo("Team_Left_Cards", 0, eRendererLayers.FrontLayer)
+
+      End If
+
+
+    Catch ex As Exception
+
+    End Try
+  End Sub
+#End Region
+
   Private Sub _addedTimeTimer_Tick(sender As Object, e As EventArgs) Handles _addedTimeTimer.Tick
     Try
       If _match Is Nothing Then Exit Sub
@@ -415,12 +500,16 @@ Public NotInheritable Class ClockControl
       If _match.MatchPeriods.ActivePeriod.IsPeriodDone <> Me.OverTimeClockVisible Then
         Me.OverTimeClockVisible = _match.MatchPeriods.ActivePeriod.IsPeriodDone
         If _match.MatchPeriods.ActivePeriod.Activa Then
-          UpdateAndSendScene()
+          UpdateAndSendScene(False)
         End If
       End If
     Catch ex As Exception
 
     End Try
+  End Sub
+
+  Private Sub Team_StatValueChanged(sender As StatSubject, stat As Stat) Handles _homeTeam.StatValueChanged, _awayTeam.StatValueChanged
+    UpdateRedCards()
   End Sub
 
 #End Region

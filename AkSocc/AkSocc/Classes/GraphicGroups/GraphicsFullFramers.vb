@@ -10,6 +10,7 @@ Public Class GraphicGroupFullFramers
     MyBase.Name = "GraphicGroupFullFramers"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F1, False, True, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Public Sub New(_match As MatchInfo.Match, otherMatchDays As OtherMatchDays)
@@ -108,7 +109,7 @@ Public Class GraphicGroupFullFramers
     Dim changeStep As Integer = 1
     Try
       Scene.VizLayer = SceneLayer.Middle
-      Scene.SceneName = "gcfx_Full_Frame_Work"
+      Scene.SceneName = "gfx_Full_Frame"
       Scene.SceneDirector = "DIR_MAIN"
 
       Select Case gs.ChildGraphicStep.Name
@@ -136,7 +137,7 @@ Public Class GraphicGroupFullFramers
     scene.SceneName = "gfx_Full_Frame"
     scene.SceneDirector = "anim_Full_Frame$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 100, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 95, DirectorAction.Dummy)
     scene.SceneDirectorsIn.Add("Change_1_2", 0, DirectorAction.Rewind)
 
     scene.SceneDirectorsChangeOut.Add("Change_1_2", 0, DirectorAction.Rewind)
@@ -202,7 +203,7 @@ Public Class GraphicGroupFullFramers
     If _classification Is Nothing Then
       Dim _matches As MatchInfo.Matches
       _matches = MatchInfo.Matches.GetMatchesForCompetition(Me.Match.competition_id)
-      Dim _classification As New Classification(_matches)
+      _classification = New Classification(_matches)
     End If
 
   End Sub
@@ -221,24 +222,25 @@ Public Class GraphicGroupFullFramers
 
       For index As Integer = 0 To linesPerPage - 1
         posIndex = linesPerPage * IIf(isTop, 0, 1) + index
+        Dim teamClassification As TeamClassificationForMatchDay = _classification.LastAvailableClassificationForMatchDay.TeamClassificationList(posIndex)
         prefix = "Table_Side_" & gStep & "_Subject_" & Strings.Format(index + 1, "00") & "_"
 
         scene.SceneParameters.Add(prefix & "Number", (posIndex + 1))
+        scene.SceneParameters.Add(prefix & "Name", teamClassification.Team.Name)
         '0 down
         '1 up
         '2 line
         If showArrows Then
-          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "0")
+          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "2")
         Else
           scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "2")
         End If
-        Dim teamClassification As TeamClassificationForMatchDay = _classification.LastAvailableClassificationForMatchDay.TeamClassificationList(posIndex)
-        scene.SceneParameters.Add(prefix & "Data_01_Text", teamClassification.Team.Name)
-        scene.SceneParameters.Add(prefix & "Data_02_Text", (posIndex + 1) & ".2")
-        scene.SceneParameters.Add(prefix & "Data_03_Text", (posIndex + 1) & ".3")
-        scene.SceneParameters.Add(prefix & "Data_04_Text", (posIndex + 1) & ".4")
-        scene.SceneParameters.Add(prefix & "Data_05_Text", (posIndex + 1) & ".5")
-        scene.SceneParameters.Add(prefix & "Data_06_Text", (posIndex + 1) & ".6")
+        scene.SceneParameters.Add(prefix & "Data_01_Text", teamClassification.MatchesPlayed)
+        scene.SceneParameters.Add(prefix & "Data_02_Text", teamClassification.MatchesWon)
+        scene.SceneParameters.Add(prefix & "Data_03_Text", teamClassification.MatchesDrawn)
+        scene.SceneParameters.Add(prefix & "Data_04_Text", teamClassification.MatchesLost)
+        scene.SceneParameters.Add(prefix & "Data_05_Text", teamClassification.GoalAverage)
+        scene.SceneParameters.Add(prefix & "Data_06_Text", teamClassification.Points)
       Next
     Catch ex As Exception
 

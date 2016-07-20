@@ -110,7 +110,8 @@ Module Main
 #End Region
 
 
-  Friend Sub ShowOptions(frm As Form)
+  Friend Function ShowOptions(frm As Form) As Boolean
+    Dim res As Boolean = False
     Try
       Dim dlg As New DialogOptions()
       Dim aux As MetroFramework.Forms.MetroForm = TryCast(frm, MetroFramework.Forms.MetroForm)
@@ -118,6 +119,7 @@ Module Main
         dlg.StyleManager = aux.StyleManager
       End If
       If dlg.ShowDialog(frm) = DialogResult.OK Then
+        res = True
         AppSettings.Instance.Save()
       End If
       MatchInfo.Config.Instance.LocalConnectionString = LocalConnectionString
@@ -132,5 +134,6 @@ Module Main
     Catch ex As Exception
 
     End Try
-  End Sub
+    Return res
+  End Function
 End Module

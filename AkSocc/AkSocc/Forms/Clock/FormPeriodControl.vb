@@ -83,25 +83,35 @@ Public Class FormPeriodControl
   Private _selectedIndex As Integer = 0
 
   Private Sub MetroGridPeriods_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridPeriods.CellClick
+    Debug.Print("Clock control " & Me.MetroGridPeriods.Rows(e.RowIndex).Cells(ColumnID.Index).Value)
     Try
-      Debug.Print("Clock control " & Me.MetroGridPeriods.Rows(e.RowIndex).Cells(ColumnID.Index).Value)
-      ExecuteSelectedAction()
+      Select Case _selectedAction ' Me.MetroGridPeriods.Rows(e.RowIndex).Cells(ColumnID.Index).Value
+        Case "RESET"
+          ResetMatch()
+        Case "OVERWRITE"
+          OverWriteClock()
+      End Select
+
+      ' ExecuteSelectedAction()
     Catch ex As Exception
 
     End Try
   End Sub
 
-  Private Sub MetroGridPeriods_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles MetroGridPeriods.PreviewKeyDown
+  Private Sub MetroGridPeriods_KeyDown(sender As Object, e As KeyEventArgs) Handles MetroGridPeriods.KeyDown
     Try
       Select Case e.KeyCode
         Case Keys.Return
-          Debug.Print("Return key")
+          e.Handled = True
           ExecuteSelectedAction()
       End Select
     Catch ex As Exception
 
     End Try
+
   End Sub
+
+
 
   Private Sub MetroGridPeriods_SelectionChanged(sender As Object, e As EventArgs) Handles MetroGridPeriods.SelectionChanged
     Try
@@ -163,8 +173,13 @@ Public Class FormPeriodControl
 
   End Sub
 
-  Private Sub MetroGridPeriods_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MetroGridPeriods.KeyPress
+  Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
+    ExecuteSelectedAction()
+    Me.Close()
+  End Sub
 
+  Private Sub Cancel_Button_Click(sender As Object, e As EventArgs) Handles Cancel_Button.Click
+    Me.Close()
   End Sub
 
 

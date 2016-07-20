@@ -8,6 +8,15 @@ Imports System.Data.OleDb
   Public Sub New()
   End Sub
 
+  Public Sub New(count As Integer)
+    For i As Integer = 1 To count
+      Dim player As New Player(i)
+      player.PlayerUniqueName = "Player " & i
+      player.PlayerSurname = "Player " & i
+      Me.Add(player)
+    Next
+  End Sub
+
   Public Function Add(player As Player) As Integer
     Try
       If Not player Is Nothing Then

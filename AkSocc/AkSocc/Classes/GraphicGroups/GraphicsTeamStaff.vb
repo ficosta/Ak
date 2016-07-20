@@ -8,7 +8,6 @@ Imports AkSocc
 Public Class GraphicsTeamStaff
   Inherits GraphicGroup
 
-  Public Property Team As Team
 
   Public Sub New(_match As MatchInfo.Match)
     MyBase.New(_match)
@@ -26,6 +25,7 @@ Public Class GraphicsTeamStaff
     Me.Team = team
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F7, False, False, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String

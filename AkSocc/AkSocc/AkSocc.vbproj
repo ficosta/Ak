@@ -99,6 +99,7 @@
     <Compile Include="Classes\Clock\ControlScoreSingleGoal.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsBugs.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsInterviews.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsPlayerNameNoNumber.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsTeamCaptions.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsReferee.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsScoreLine.vb" />
@@ -237,6 +238,8 @@
       <DependentUpon>frmMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\MatchSetup\SerializableMatchInfo.vb" />
+    <Compile Include="Forms\MatchSetup\TeamImageInfos.vb" />
     <Compile Include="Forms\MatchSetup\UCTeamMatchSetup.Designer.vb">
       <DependentUpon>UCTeamMatchSetup.vb</DependentUpon>
     </Compile>
@@ -248,6 +251,12 @@
     </Compile>
     <Compile Include="Forms\MatchSetup\UserControlTactica.vb">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SceneLoad\FormLoadScenes.Designer.vb">
+      <DependentUpon>FormLoadScenes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SceneLoad\FormLoadScenes.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\SplashScreenMain.Designer.vb">
       <DependentUpon>SplashScreenMain.vb</DependentUpon>
@@ -382,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MatchSetup\UserControlTactica.resx">
       <DependentUpon>UserControlTactica.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SceneLoad\FormLoadScenes.resx">
+      <DependentUpon>FormLoadScenes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SplashScreenMain.resx">
       <DependentUpon>SplashScreenMain.vb</DependentUpon>

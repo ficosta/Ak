@@ -12,6 +12,7 @@ Public Class GraphicsPlayerName
     MyBase.New(_match)
 
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F6, False, False, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Public Sub New(_match As MatchInfo.Match, player As Player)
@@ -276,7 +277,7 @@ Public Class GraphicsPlayerName
 
 #Region "Processing"
   Public Overrides Function PostProcessingAction(frm As MetroFramework.Forms.MetroForm) As Boolean
-
+    Dim res As Boolean = False
     Try
       If _lastPreparedStep Is Nothing Then Return False
 
@@ -285,25 +286,31 @@ Public Class GraphicsPlayerName
         Case Step0.YellowCard
           If frmWaitForInput.ShowWaitDialog(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
             Me.Player.YellowCards = 1
+            Me.Team.UpdateStatFromPlayers(Me.Team.MatchStats.YellowCards.Name)
           End If
         Case Step0.YellowCardMisses
           If frmWaitForInput.ShowWaitDialog(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
             Me.Player.YellowCards = 1
+            Me.Team.UpdateStatFromPlayers(Me.Team.MatchStats.YellowCards.Name)
           End If
         Case Step0.YellowCard2
           If frmWaitForInput.ShowWaitDialog(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
             Me.Player.YellowCards = 2
+            Me.Team.UpdateStatFromPlayers(Me.Team.MatchStats.YellowCards.Name)
           End If
         Case Step0.RedCard
-          If frmWaitForInput.ShowWaitDialog(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
+          If frmWaitForInput.ShowWaitDialog(frm, "Add red card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
             Me.Player.RedCards = 1
+            Me.Team.UpdateStatFromPlayers(Me.Team.MatchStats.RedCards.Name)
           End If
         Case Step0.GoalsInMatch
         Case Step0.GoalsInSeasson
       End Select
+      res = True
     Catch ex As Exception
 
     End Try
+    Return Res
   End Function
 #End Region
 End Class

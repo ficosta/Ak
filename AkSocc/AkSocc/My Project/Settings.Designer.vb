@@ -31,7 +31,7 @@ Namespace My
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
     Private Shared Sub AutoSaveSettings(ByVal sender As Global.System.Object, ByVal e As Global.System.EventArgs)
         If My.Application.SaveMySettingsOnExit Then
-            AppSettings.Instance.Save()
+            My.Settings.Save()
         End If
     End Sub
 #End If
@@ -77,20 +77,20 @@ Namespace My
                 Me("VizrtHost") = value
             End Set
         End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.Configuration.DefaultSettingValueAttribute("6100")>
-    Public Property VizrtPort() As Double
-      Get
-        Return CType(Me("VizrtPort"), Double)
-      End Get
-      Set
-        Me("VizrtPort") = Value
-      End Set
-    End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("6100")>  _
+        Public Property VizrtPort() As Double
+            Get
+                Return CType(Me("VizrtPort"),Double)
+            End Get
+            Set
+                Me("VizrtPort") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("localhost")>  _
         Public Property LoggerHost() As String
@@ -231,6 +231,78 @@ Namespace My
             End Get
             Set
                 Me("PreviewLocalPath") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property HomeColor() As String
+            Get
+                Return CType(Me("HomeColor"),String)
+            End Get
+            Set
+                Me("HomeColor") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property AwayColor() As String
+            Get
+                Return CType(Me("AwayColor"),String)
+            End Get
+            Set
+                Me("AwayColor") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property AwayGKJersey() As String
+            Get
+                Return CType(Me("AwayGKJersey"),String)
+            End Get
+            Set
+                Me("AwayGKJersey") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property HomeGKJersey() As String
+            Get
+                Return CType(Me("HomeGKJersey"),String)
+            End Get
+            Set
+                Me("HomeGKJersey") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property AwayPJersey() As String
+            Get
+                Return CType(Me("AwayPJersey"),String)
+            End Get
+            Set
+                Me("AwayPJersey") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property HomePJersey() As String
+            Get
+                Return CType(Me("HomePJersey"),String)
+            End Get
+            Set
+                Me("HomePJersey") = value
             End Set
         End Property
     End Class

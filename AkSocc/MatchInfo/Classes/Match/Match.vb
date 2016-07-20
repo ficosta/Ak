@@ -27,7 +27,8 @@ Imports MatchInfo
   End Property
 
   Public Event ScoreChanged()
-  Public Event ActivePeriodStateChanged(perio As Period)
+  Public Event ActivePeriodStateChanged(period As Period)
+  Public Event TeamStatValueChanged(team As Team, stat As Stat)
 
   Public ReadOnly Property Substitutions As Substitutions
     Get
@@ -204,7 +205,7 @@ Imports MatchInfo
   End Function
 
   Public Function Description() As String
-    Return Me.match_date_string & " " & Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString & " --- " & Me.HomeTeam.MatchGoals.Count & " -" & Me.AwayTeam.MatchGoals.Count
+    Return Me.match_date_string & " " & Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString & "     " & Me.HomeTeam.MatchGoals.Count & " - " & Me.AwayTeam.MatchGoals.Count
   End Function
 
   Public Sub New()
@@ -516,6 +517,7 @@ Imports MatchInfo
   Private Sub _team_StatValueChanged(sender As StatSubject, stat As Stat) Handles _homeTeam.StatValueChanged, _awayTeam.StatValueChanged
     'SaveMatch()
     Debug.Print(sender.ID & " " & stat.Name & " = " & stat.Value)
+    RaiseEvent TeamStatValueChanged(sender, stat)
   End Sub
 
   Private Sub _team_PlayerStatValueChanged(team As Team, player As Player, stat As Stat) Handles _homeTeam.PlayerStatValueChanged, _awayTeam.PlayerStatValueChanged

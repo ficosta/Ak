@@ -16,6 +16,7 @@ Public Class frmMain
   Private WithEvents _previewControl As VizCommands.PreviewControl
 
   Private WithEvents _keyCapture As KeyCapture
+  Private _scenes As New List(Of String)
 
   Private WithEvents _otherMatchDays As New OtherMatchDays
 
@@ -47,7 +48,7 @@ Public Class frmMain
 
 #Region "Form events"
   Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    Me.ToolStripStatusLabelVersion.Text = "v " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Revision & "   "
+    Me.ToolStripStatusLabelVersion.Text = "v " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "   "
   End Sub
 
   Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
@@ -72,6 +73,15 @@ Public Class frmMain
   Private Sub InitControls()
     Try
       InitPlayerControls()
+      InitRender()
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+    Me.UpdateStatusLabel()
+  End Sub
+
+  Private Sub InitRender()
+    Try
 
       Me.UpdateStatusLabel()
       _vizControl = New VizCommands.VizControl
@@ -98,7 +108,9 @@ Public Class frmMain
 #Region "Tool strip"
   Private Sub ToolStripButtonSettings_Click(sender As Object, e As EventArgs) Handles ToolStripButtonSettings.Click
     Try
-      ShowOptions(Me)
+      If ShowOptions(Me) Then
+        Me.InitRender()
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -145,6 +157,7 @@ Public Class frmMain
 #Region "Match functions"
   Public Function SelectMatch() As Boolean
     Try
+      Config.Instance.Silent = True
       Dim dlg As New FormMatchSelector
       'Dim aux As MetroFramework.Forms.MetroForm = TryCast(Me, MetroFramework.Forms.MetroForm)
       Dim aux As System.Windows.Forms.Form = TryCast(Me, System.Windows.Forms.Form)
@@ -152,12 +165,12 @@ Public Class frmMain
       If dlg.ShowDialog(Me) = DialogResult.OK Then
         'match selected!
         InitMatchInfo(dlg.SelectedMatchId)
-        InitializeKeyCapture()
         MatchSetup()
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
+    Config.Instance.Silent = False
     Return True
   End Function
 
@@ -265,7 +278,7 @@ Public Class frmMain
 
 #Region "Status label"
   Private Sub ToolStripStatusLabelVizConnection_Click(sender As Object, e As EventArgs) Handles ToolStripStatusLabelVizConnection.Click
-
+    Me.InitRender()
   End Sub
 
   Private Sub ToolStripStatusLabelLoggerConnection_Click(sender As Object, e As EventArgs) Handles ToolStripStatusLabelLoggerConnection.Click
@@ -499,7 +512,11 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonShftF3NameNoNumber_Click(sender As Object, e As EventArgs) Handles ButtonShftF3NameNoNumber.Click
-
+    If _selectedPlayer Is Nothing Then
+      frmWaitForInput.ShowWaitDialog(Me, "You must choose a player first", "Player name")
+    Else
+      StartGraphic(GraphicsPlayerNameNoNumber.Description)
+    End If
   End Sub
 
   Private Sub ButtonTeamListsCrawl_Click(sender As Object, e As EventArgs) Handles ButtonTeamListsCrawl.Click
@@ -547,10 +564,31 @@ Public Class frmMain
 #Region "Vizcontrol"
   Private Sub _vizControl_TCPSocketConnected() Handles _vizControl.TCPSocketConnected
     Me.UpdateStatusLabel()
+    LoadAllScenes()
   End Sub
 
   Private Sub _vizControl_TCPSocketDisconnected() Handles _vizControl.TCPSocketDisconnected
     Me.UpdateStatusLabel()
+  End Sub
+
+  Private Sub LoadAllScenes()
+    Try
+      'Add keys for graphics
+      For Each myType As Type In GraphicGroup.GetMyAllSubclassesOf()
+        Debug.Print(myType.Name)
+        Dim instance As GraphicGroup = CType(Activator.CreateInstance(myType, _match), GraphicGroup)
+        If Not instance.Scene Is Nothing Then
+          If Not instance.Scene.SceneName Is Nothing AndAlso Not _scenes.Contains(instance.Scene.SceneName) Then
+            _scenes.Add(instance.Scene.SceneName)
+          End If
+        End If
+      Next
+      Dim frm As New FormLoadScenes(_scenes, _vizControl.Config)
+      frm.Show(Me)
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+
   End Sub
 #End Region
 
@@ -570,7 +608,11 @@ Public Class frmMain
 
         '_match.away_goals += 1
 
-        Me.StartGraphic(gg)
+        _dlgChoosWithPreview = New FormChoose(_vizControl, _previewControl, gg)
+
+        If _dlgChoosWithPreview.ShowDialog(Me) = DialogResult.Cancel Then
+          _match.RemoveLastGoal()
+        End If
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -591,7 +633,11 @@ Public Class frmMain
         gg.IsLocalTeam = True
         gg.Goal = _match.LastGoal
 
-        StartGraphic(gg)
+        _dlgChoosWithPreview = New FormChoose(_vizControl, _previewControl, gg)
+
+        If _dlgChoosWithPreview.ShowDialog(Me) = DialogResult.Cancel Then
+          _match.RemoveLastGoal()
+        End If
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -837,6 +883,12 @@ Public Class frmMain
     Try
       If _match Is Nothing Then Exit Sub
       Me._selectedPlayer = sender.Player
+      Select Case _selectedPlayer.TeamID
+        Case _match.HomeTeam.ID
+          _selectedTeam = _match.HomeTeam
+        Case _match.AwayTeam.ID
+          _selectedTeam = _match.AwayTeam
+      End Select
       For Each ctl As PlayerViewer In _homePlayerControls
         ctl.IsSelected = (ctl.Player.ID = sender.Player.ID)
       Next
@@ -926,7 +978,6 @@ Public Class frmMain
 
 #Region "Key capture"
   Private Sub InitializeKeyCapture()
-
     Try
       _keyCapture = New KeyCapture()
       _keyCapture.LlistaCombinations.Clear()
@@ -940,7 +991,6 @@ Public Class frmMain
         Dim instance As GraphicGroup = CType(Activator.CreateInstance(myType, _match), GraphicGroup)
         If Not instance.KeyCombination Is Nothing Then
           _keyCapture.LlistaCombinations.Add(instance.KeyCombination)
-
         End If
       Next
     Catch ex As Exception
@@ -948,6 +998,7 @@ Public Class frmMain
     End Try
 
   End Sub
+
 
   Private Sub _keyCapture_Keycaptured() Handles _keyCapture.Keycaptured
   End Sub
@@ -958,6 +1009,28 @@ Public Class frmMain
 
   Private Sub _keyCapture_UndefinedKeyCombinationCaptured(CKeyCombination As KeyCombination) Handles _keyCapture.UndefinedKeyCombinationCaptured
 
+  End Sub
+
+  Private Sub _match_TeamStatValueChanged(team As Team, stat As Stat) Handles _match.TeamStatValueChanged
+    Try
+      If stat.Name = "RCard" Then
+        _clockControl.UpdateRedCards()
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub ButtonPANIC_Click(sender As Object, e As EventArgs) Handles ButtonPANIC.Click
+    Try
+      _vizControl.ActivateScene("", VizCommands.eRendererLayers.BackLayer)
+      _vizControl.ActivateScene("", VizCommands.eRendererLayers.FrontLayer)
+      _vizControl.ActivateScene("", VizCommands.eRendererLayers.MidleLayer)
+
+      _previewControl.ClearOutput()
+    Catch ex As Exception
+
+    End Try
   End Sub
 
 

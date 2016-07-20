@@ -10,6 +10,7 @@ Public Class GraphicsMatchIdent
     MyBase.Name = "GraphicsCtlF1FullFramers"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F12, False, True, False, False)
+    Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String
@@ -75,7 +76,7 @@ Public Class GraphicsMatchIdent
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Try
       Scene.VizLayer = SceneLayer.Middle
-      Scene.SceneName = "cfx_Full_Frame_Work"
+      Scene.SceneName = "gfx_Full_Frame"
       Scene.SceneDirector = "anim_Full_Frame$In_Out"
 
       Scene.SceneDirectorsIn.Add(New SceneDirector("anim_Full_Frame$In_Out", 0, DirectorAction.Start))
@@ -100,17 +101,17 @@ Public Class GraphicsMatchIdent
   End Function
 
 #Region "Full frame scenes"
-  Private Function InitDefaultScene() As Scene
+  Private Function InitDefaultScene(gStep As Integer) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
-    scene.SceneName = "cfx_Full_Frame_Work"
+    scene.SceneName = "gfx_Full_Frame"
     scene.SceneDirector = "anim_Full_Frame$In_Out"
 
     Return scene
   End Function
   Public Function PrepareMatchIdent(gStep As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene()
+    Dim scene As Scene = InitDefaultScene(gStep)
     Dim prefix As String = "Match_Ident_Side_" & gStep & "_"
     Try
 

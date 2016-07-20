@@ -24,14 +24,15 @@ Public Class UserControlTactica
     End Get
     Set(ByVal value As Team)
       _team = value
-      If _tactica Is Nothing And Not _team Is Nothing Then _tactica = _team.Tactic
-
       If Not _team Is Nothing Then
-        UpdateSelectedTactic(New Tactic)
+        If _tactica Is Nothing And Not _team Is Nothing Then _tactica = _team.Tactic
+
+        If Not _team Is Nothing Then
+          UpdateSelectedTactic(New Tactic)
+        End If
+
+        UpdateComboBox()
       End If
-
-      UpdateComboBox()
-
     End Set
   End Property
 
@@ -639,7 +640,8 @@ Public Class UserControlTactica
           If Not pos Is Nothing Then
             If pos.Team.ID = _dragTeam.ID Then
               pos.Player = _dragPlayer
-              For Each player As Player In _team.MatchPlayers
+              For iPlayer As Integer = _team.MatchPlayers.Count - 1 To 0 Step -1
+                Dim player As Player = _team.MatchPlayers(iPlayer)
                 If player.Formation_Pos = pos.Posicio Then
                   player.Formation_Pos = 0
                   If Me.Team.MatchPlayers.Contains(player) Then Me.Team.MatchPlayers.Remove(player)
@@ -661,7 +663,8 @@ Public Class UserControlTactica
             If rect.Contains(p) Then
               Dim posIndex As Integer = 11 + CInt(lbl.Name.Replace("Label", ""))
 
-              For Each player As Player In _team.MatchPlayers
+              For iPlayer As Integer = _team.MatchPlayers.Count - 1 To 0 Step -1
+                Dim player As Player = _team.MatchPlayers(iPlayer)
                 If player.Formation_Pos = posIndex Then
                   player.Formation_Pos = 0
                   If Me.Team.MatchPlayers.Contains(player) Then Me.Team.MatchPlayers.Remove(player)
@@ -797,7 +800,7 @@ Public Class UserControlTactica
         pos.Player.SaveToDB = True
         pos.Player.WriteStatToDB(pos.Player.MatchStats.Formation_X)
         pos.Player.WriteStatToDB(pos.Player.MatchStats.Formation_Y)
-        pos.Player.ReadStatsFromDB()
+        'pos.Player.ReadStatsFromDB()
         pos.Player.SaveToDB = False
 
       Next
