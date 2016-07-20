@@ -32,8 +32,8 @@ Partial Class FormSubstitution
     Me.MetroGridField = New MetroFramework.Controls.MetroGrid()
     Me.MetroGridBench = New MetroFramework.Controls.MetroGrid()
     Me.TableLayoutPanelAdvancedControls = New System.Windows.Forms.TableLayoutPanel()
-    Me.ButtonAdvancedOK = New MetroFramework.Controls.MetroButton()
-    Me.ButtonAdvancedCancel = New MetroFramework.Controls.MetroButton()
+    Me.ButtonAdvancedOK = New Button()
+    Me.ButtonAdvancedCancel = New Button()
     Me.MetroTabControl1 = New MetroFramework.Controls.MetroTabControl()
     Me.MetroTabPage1 = New MetroFramework.Controls.MetroTabPage()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -199,7 +199,7 @@ Partial Class FormSubstitution
     Me.ButtonAdvancedOK.Size = New System.Drawing.Size(67, 18)
     Me.ButtonAdvancedOK.TabIndex = 0
     Me.ButtonAdvancedOK.Text = "OK"
-    Me.ButtonAdvancedOK.UseSelectable = True
+    Me.ButtonAdvancedOK.FlatStyle = FlatStyle.Flat
     '
     'ButtonAdvancedCancel
     '
@@ -210,7 +210,7 @@ Partial Class FormSubstitution
     Me.ButtonAdvancedCancel.Size = New System.Drawing.Size(67, 18)
     Me.ButtonAdvancedCancel.TabIndex = 1
     Me.ButtonAdvancedCancel.Text = "Cancel"
-    Me.ButtonAdvancedCancel.UseSelectable = True
+    Me.ButtonAdvancedCancel.FlatStyle = FlatStyle.Flat
     '
     'MetroTabControl1
     '
@@ -224,7 +224,6 @@ Partial Class FormSubstitution
     Me.MetroTabControl1.SelectedIndex = 1
     Me.MetroTabControl1.Size = New System.Drawing.Size(699, 364)
     Me.MetroTabControl1.TabIndex = 1
-    Me.MetroTabControl1.UseSelectable = True
     '
     'MetroTabPage1
     '
@@ -295,7 +294,7 @@ Partial Class FormSubstitution
     Me.MetroTextBoxPlayers.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.MetroTextBoxPlayers.CustomButton.TabIndex = 1
     Me.MetroTextBoxPlayers.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxPlayers.CustomButton.UseSelectable = True
+    Me.MetroTextBoxPlayers.CustomButton.FlatStyle = FlatStyle.Flat
     Me.MetroTextBoxPlayers.CustomButton.Visible = False
     Me.MetroTextBoxPlayers.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTextBoxPlayers.Lines = New String(-1) {}
@@ -309,7 +308,6 @@ Partial Class FormSubstitution
     Me.MetroTextBoxPlayers.SelectionStart = 0
     Me.MetroTextBoxPlayers.Size = New System.Drawing.Size(679, 24)
     Me.MetroTextBoxPlayers.TabIndex = 3
-    Me.MetroTextBoxPlayers.UseSelectable = True
     Me.MetroTextBoxPlayers.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.MetroTextBoxPlayers.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -428,8 +426,8 @@ Partial Class FormSubstitution
   Friend WithEvents MetroGridField As MetroFramework.Controls.MetroGrid
   Friend WithEvents MetroGridBench As MetroFramework.Controls.MetroGrid
   Friend WithEvents TableLayoutPanelAdvancedControls As TableLayoutPanel
-  Friend WithEvents ButtonAdvancedOK As MetroFramework.Controls.MetroButton
-  Friend WithEvents ButtonAdvancedCancel As MetroFramework.Controls.MetroButton
+  Friend WithEvents ButtonAdvancedOK As Button
+  Friend WithEvents ButtonAdvancedCancel As Button
   Friend WithEvents MetroTabControl1 As MetroFramework.Controls.MetroTabControl
   Friend WithEvents MetroTabPage1 As MetroFramework.Controls.MetroTabPage
   Friend WithEvents MetroTabPage2 As MetroFramework.Controls.MetroTabPage

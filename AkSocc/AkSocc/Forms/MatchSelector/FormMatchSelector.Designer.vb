@@ -35,8 +35,8 @@ Partial Class FormMatchSelector
     Me.ColumnResult = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.cboCompetition = New MetroFramework.Controls.MetroComboBox()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New MetroFramework.Controls.MetroButton()
-    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.OK_Button = New Button()
+    Me.Cancel_Button = New Button()
     Me.TableLayoutPanelGlobal.SuspendLayout()
     CType(Me.MetroGridMatches, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
@@ -166,7 +166,7 @@ Partial Class FormMatchSelector
     Me.cboCompetition.Name = "cboCompetition"
     Me.cboCompetition.Size = New System.Drawing.Size(788, 29)
     Me.cboCompetition.TabIndex = 1
-    Me.cboCompetition.UseSelectable = True
+    Me.cboCompetition.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanel1
     '
@@ -191,7 +191,7 @@ Partial Class FormMatchSelector
     Me.OK_Button.Size = New System.Drawing.Size(67, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
-    Me.OK_Button.UseSelectable = True
+    Me.OK_Button.FlatStyle = FlatStyle.Flat
     '
     'Cancel_Button
     '
@@ -202,7 +202,7 @@ Partial Class FormMatchSelector
     Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
-    Me.Cancel_Button.UseSelectable = True
+    Me.Cancel_Button.FlatStyle = FlatStyle.Flat
     '
     'FormMatchSelector
     '
@@ -226,8 +226,8 @@ Partial Class FormMatchSelector
   Friend WithEvents TableLayoutPanelGlobal As TableLayoutPanel
   Private WithEvents cboCompetition As MetroFramework.Controls.MetroComboBox
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
-  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents OK_Button As Button
+  Friend WithEvents Cancel_Button As Button
   Friend WithEvents MetroGridMatches As MetroFramework.Controls.MetroGrid
   Friend WithEvents ColumnID As DataGridViewTextBoxColumn
   Friend WithEvents ColumnDate As DataGridViewTextBoxColumn

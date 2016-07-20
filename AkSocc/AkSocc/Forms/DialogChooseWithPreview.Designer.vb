@@ -23,8 +23,8 @@ Partial Class DialogChooseWithPreview
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New MetroFramework.Controls.MetroButton()
-    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.OK_Button = New Button()
+    Me.Cancel_Button = New Button()
     Me.SplitContainerOptions = New System.Windows.Forms.SplitContainer()
     Me.ListViewOptions = New System.Windows.Forms.ListView()
     Me.lstColOptions1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -163,8 +163,8 @@ Partial Class DialogChooseWithPreview
 
   End Sub
   Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
-  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents OK_Button As Button
+  Friend WithEvents Cancel_Button As Button
   Friend WithEvents SplitContainerOptions As SplitContainer
   Private WithEvents ListViewOptions As ListView
   Private WithEvents lstColOptions1 As ColumnHeader

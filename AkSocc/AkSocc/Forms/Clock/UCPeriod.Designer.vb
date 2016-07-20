@@ -25,8 +25,8 @@ Partial Class UCPeriod
     Me.TableLayoutPanelControls = New System.Windows.Forms.TableLayoutPanel()
     Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
     Me.LabelExtraHome = New MetroFramework.Controls.MetroLabel()
-    Me.MetroButtonEndPeriod = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonStart = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonEndPeriod = New Button()
+    Me.MetroButtonStart = New Button()
     Me.MetroTilePeriodName = New MetroFramework.Controls.MetroTile()
     Me.TableLayoutPanelControls.SuspendLayout()
     CType(Me.NumericUpDownMinutes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,7 +84,7 @@ Partial Class UCPeriod
     Me.MetroButtonEndPeriod.Size = New System.Drawing.Size(138, 29)
     Me.MetroButtonEndPeriod.TabIndex = 1
     Me.MetroButtonEndPeriod.Text = "END PERIOD"
-    Me.MetroButtonEndPeriod.UseSelectable = True
+    Me.MetroButtonEndPeriod.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonStart
     '
@@ -95,7 +95,7 @@ Partial Class UCPeriod
     Me.MetroButtonStart.Size = New System.Drawing.Size(138, 29)
     Me.MetroButtonStart.TabIndex = 0
     Me.MetroButtonStart.Text = "START PERIOD"
-    Me.MetroButtonStart.UseSelectable = True
+    Me.MetroButtonStart.FlatStyle = FlatStyle.Flat
     '
     'MetroTilePeriodName
     '
@@ -108,7 +108,7 @@ Partial Class UCPeriod
     Me.MetroTilePeriodName.TabIndex = 2
     Me.MetroTilePeriodName.Text = "Period name"
     Me.MetroTilePeriodName.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-    Me.MetroTilePeriodName.UseSelectable = True
+    Me.MetroTilePeriodName.FlatStyle = FlatStyle.Flat
     '
     'UCPeriod
     '
@@ -124,8 +124,8 @@ Partial Class UCPeriod
   End Sub
 
   Friend WithEvents TableLayoutPanelControls As TableLayoutPanel
-  Friend WithEvents MetroButtonEndPeriod As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonStart As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonEndPeriod As Button
+  Friend WithEvents MetroButtonStart As Button
   Friend WithEvents MetroTilePeriodName As MetroFramework.Controls.MetroTile
   Friend WithEvents LabelExtraHome As MetroFramework.Controls.MetroLabel
   Friend WithEvents NumericUpDownMinutes As NumericUpDown

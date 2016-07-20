@@ -24,8 +24,8 @@ Partial Class DialogPreview
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New MetroFramework.Controls.MetroButton()
-    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.OK_Button = New Button()
+    Me.Cancel_Button = New Button()
     Me.UcPreview1 = New VizCommands.UCPreview()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.SuspendLayout()
@@ -94,7 +94,7 @@ Partial Class DialogPreview
 
   End Sub
   Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
-  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents OK_Button As Button
+  Friend WithEvents Cancel_Button As Button
   Friend WithEvents UcPreview1 As VizCommands.UCPreview
 End Class

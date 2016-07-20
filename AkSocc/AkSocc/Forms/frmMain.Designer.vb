@@ -48,10 +48,10 @@ Partial Class frmMain
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.TableLayoutPanelMatchInfo = New System.Windows.Forms.TableLayoutPanel()
     Me.LabelHomeTeamShortName = New MetroFramework.Controls.MetroLabel()
-    Me.MetroButtonManageGoals = New MetroFramework.Controls.MetroButton()
-    Me.ButtonAwayGoal = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonManageGoals = New Button()
+    Me.ButtonAwayGoal = New Button()
     Me.LabelHomeTeamName = New MetroFramework.Controls.MetroLabel()
-    Me.ButtonHomeGoal = New MetroFramework.Controls.MetroButton()
+    Me.ButtonHomeGoal = New Button()
     Me.LabelHomeTeamResult = New MetroFramework.Controls.MetroLabel()
     Me.LabelAwayTeamResult = New MetroFramework.Controls.MetroLabel()
     Me.LabelAwayTeamName = New MetroFramework.Controls.MetroLabel()
@@ -59,60 +59,60 @@ Partial Class frmMain
     Me.MetroTileAlternates = New MetroFramework.Controls.MetroTile()
     Me.TableLayoutPanelControls = New System.Windows.Forms.TableLayoutPanel()
     Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
-    Me.ButtonAltF6HtFtBug = New MetroFramework.Controls.MetroButton()
-    Me.ButtonShftF1PenaltyShootOut = New MetroFramework.Controls.MetroButton()
-    Me.ButtonAltF2FreeTextCrawl = New MetroFramework.Controls.MetroButton()
-    Me.ButtonShftF12MatchScoresCrawl = New MetroFramework.Controls.MetroButton()
-    Me.ButtonShftF10ClockCard = New MetroFramework.Controls.MetroButton()
-    Me.ButtonShftF8TeamListsCrawlSF8 = New MetroFramework.Controls.MetroButton()
-    Me.ButtonShftF11ActionAreas = New MetroFramework.Controls.MetroButton()
-    Me.ButtonTeamListsCrawl = New MetroFramework.Controls.MetroButton()
-    Me.ButtonShftF7L3Commons = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF12FFIdent = New MetroFramework.Controls.MetroButton()
-    Me.ButtonShftF9OtherScores = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF4TwoWayBoxes = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF11AsItStands = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF12VideoTalkThroughts = New MetroFramework.Controls.MetroButton()
-    Me.ButtonShftF5TeamStatsMultiline = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF7ScoreBugs = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF4ClockSubs = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF3ClockDropDown = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF10IdentClock = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF11OptaTop5 = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF9AddedTree = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF5PlayerBio = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF3L3Subs = New MetroFramework.Controls.MetroButton()
+    Me.ButtonAltF6HtFtBug = New Button()
+    Me.ButtonShftF1PenaltyShootOut = New Button()
+    Me.ButtonAltF2FreeTextCrawl = New Button()
+    Me.ButtonShftF12MatchScoresCrawl = New Button()
+    Me.ButtonShftF10ClockCard = New Button()
+    Me.ButtonShftF8TeamListsCrawlSF8 = New Button()
+    Me.ButtonShftF11ActionAreas = New Button()
+    Me.ButtonTeamListsCrawl = New Button()
+    Me.ButtonShftF7L3Commons = New Button()
+    Me.ButtonCtlF12FFIdent = New Button()
+    Me.ButtonShftF9OtherScores = New Button()
+    Me.ButtonCtlF4TwoWayBoxes = New Button()
+    Me.ButtonCtlF11AsItStands = New Button()
+    Me.ButtonF12VideoTalkThroughts = New Button()
+    Me.ButtonShftF5TeamStatsMultiline = New Button()
+    Me.ButtonCtlF7ScoreBugs = New Button()
+    Me.ButtonF4ClockSubs = New Button()
+    Me.ButtonCtlF3ClockDropDown = New Button()
+    Me.ButtonF10IdentClock = New Button()
+    Me.ButtonF11OptaTop5 = New Button()
+    Me.ButtonCtlF9AddedTree = New Button()
+    Me.ButtonCtlF5PlayerBio = New Button()
+    Me.ButtonF3L3Subs = New Button()
     Me.TableLayoutPanelClock = New System.Windows.Forms.TableLayoutPanel()
     Me.TableLayoutPanel8Clock = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroButtonAddedTime = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonAddedTime = New Button()
     Me.MetroTileClock = New MetroFramework.Controls.MetroTile()
-    Me.MetroButtonClockSubstitutions = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonClock = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonClockSubstitutions = New Button()
+    Me.MetroButtonClock = New Button()
     Me.MetroTileClockBasedGraphics = New MetroFramework.Controls.MetroTile()
-    Me.MetroButtonClockStats = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonClockOtherScores = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonClockPenalties = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonClockStrapsWithIcon = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonTimeControl = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonClockStats = New Button()
+    Me.MetroButtonClockOtherScores = New Button()
+    Me.MetroButtonClockPenalties = New Button()
+    Me.MetroButtonClockStrapsWithIcon = New Button()
+    Me.MetroButtonTimeControl = New Button()
     Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroLabelPeriodTime = New MetroFramework.Controls.MetroLabel()
     Me.MetroLabelPeriodName = New MetroFramework.Controls.MetroLabel()
     Me.TableLayoutPanelMainGraphics = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroTileMainGraphics = New MetroFramework.Controls.MetroTile()
-    Me.ButtonF1ScoreLine = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF2NameReporter = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF5TeamMatchStats = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF7FirstTeamStuff = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF8SecondTeamStuff = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF6PlayerName = New MetroFramework.Controls.MetroButton()
-    Me.ButtonF9TeamCaptions = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF1FullFramers = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF8Bugs = New MetroFramework.Controls.MetroButton()
-    Me.ButtonShftF3NameNoNumber = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF2PlayerStatsCtrlF2 = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF6Referee = New MetroFramework.Controls.MetroButton()
-    Me.ButtonCtlF10L3TeamStatsDb = New MetroFramework.Controls.MetroButton()
-    Me.ButtonShftF2Interview = New MetroFramework.Controls.MetroButton()
+    Me.ButtonF1ScoreLine = New Button()
+    Me.ButtonF2NameReporter = New Button()
+    Me.ButtonF5TeamMatchStats = New Button()
+    Me.ButtonF7FirstTeamStuff = New Button()
+    Me.ButtonF8SecondTeamStuff = New Button()
+    Me.ButtonF6PlayerName = New Button()
+    Me.ButtonF9TeamCaptions = New Button()
+    Me.ButtonCtlF1FullFramers = New Button()
+    Me.ButtonCtlF8Bugs = New Button()
+    Me.ButtonShftF3NameNoNumber = New Button()
+    Me.ButtonCtlF2PlayerStatsCtrlF2 = New Button()
+    Me.ButtonCtlF6Referee = New Button()
+    Me.ButtonCtlF10L3TeamStatsDb = New Button()
+    Me.ButtonShftF2Interview = New Button()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.msmMain = New MetroFramework.Components.MetroStyleManager(Me.components)
     Me.TimerClock = New System.Windows.Forms.Timer(Me.components)
@@ -460,8 +460,7 @@ Partial Class frmMain
     Me.MetroButtonManageGoals.Size = New System.Drawing.Size(94, 28)
     Me.MetroButtonManageGoals.TabIndex = 277
     Me.MetroButtonManageGoals.Text = "Manage goals"
-    Me.MetroButtonManageGoals.UseCustomBackColor = True
-    Me.MetroButtonManageGoals.UseSelectable = True
+    Me.MetroButtonManageGoals.FlatStyle = FlatStyle.Flat
     '
     'ButtonAwayGoal
     '
@@ -473,7 +472,7 @@ Partial Class frmMain
     Me.ButtonAwayGoal.Size = New System.Drawing.Size(137, 32)
     Me.ButtonAwayGoal.TabIndex = 276
     Me.ButtonAwayGoal.Text = "AWAY GOAL"
-    Me.ButtonAwayGoal.UseSelectable = True
+    Me.ButtonAwayGoal.FlatStyle = FlatStyle.Flat
     '
     'LabelHomeTeamName
     '
@@ -495,7 +494,7 @@ Partial Class frmMain
     Me.ButtonHomeGoal.Size = New System.Drawing.Size(137, 32)
     Me.ButtonHomeGoal.TabIndex = 275
     Me.ButtonHomeGoal.Text = "HOME GOAL"
-    Me.ButtonHomeGoal.UseSelectable = True
+    Me.ButtonHomeGoal.FlatStyle = FlatStyle.Flat
     '
     'LabelHomeTeamResult
     '
@@ -548,7 +547,7 @@ Partial Class frmMain
     Me.MetroTileAlternates.TabIndex = 40
     Me.MetroTileAlternates.Text = "ALTERNATES"
     Me.MetroTileAlternates.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-    Me.MetroTileAlternates.UseSelectable = True
+    Me.MetroTileAlternates.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanelControls
     '
@@ -632,7 +631,7 @@ Partial Class frmMain
     Me.ButtonAltF6HtFtBug.Size = New System.Drawing.Size(148, 15)
     Me.ButtonAltF6HtFtBug.TabIndex = 291
     Me.ButtonAltF6HtFtBug.Text = "HT FT BUG Alt+F6"
-    Me.ButtonAltF6HtFtBug.UseSelectable = True
+    Me.ButtonAltF6HtFtBug.FlatStyle = FlatStyle.Flat
     '
     'ButtonShftF1PenaltyShootOut
     '
@@ -644,7 +643,7 @@ Partial Class frmMain
     Me.ButtonShftF1PenaltyShootOut.Size = New System.Drawing.Size(145, 13)
     Me.ButtonShftF1PenaltyShootOut.TabIndex = 293
     Me.ButtonShftF1PenaltyShootOut.Text = "PENALTY SHOOTOUT Shift+F1"
-    Me.ButtonShftF1PenaltyShootOut.UseSelectable = True
+    Me.ButtonShftF1PenaltyShootOut.FlatStyle = FlatStyle.Flat
     Me.ButtonShftF1PenaltyShootOut.Visible = False
     '
     'ButtonAltF2FreeTextCrawl
@@ -657,7 +656,7 @@ Partial Class frmMain
     Me.ButtonAltF2FreeTextCrawl.Size = New System.Drawing.Size(145, 15)
     Me.ButtonAltF2FreeTextCrawl.TabIndex = 281
     Me.ButtonAltF2FreeTextCrawl.Text = "FREE TEXT CRAWL        Alt+F2"
-    Me.ButtonAltF2FreeTextCrawl.UseSelectable = True
+    Me.ButtonAltF2FreeTextCrawl.FlatStyle = FlatStyle.Flat
     '
     'ButtonShftF12MatchScoresCrawl
     '
@@ -669,7 +668,7 @@ Partial Class frmMain
     Me.ButtonShftF12MatchScoresCrawl.Size = New System.Drawing.Size(148, 13)
     Me.ButtonShftF12MatchScoresCrawl.TabIndex = 290
     Me.ButtonShftF12MatchScoresCrawl.Text = "MATCH SCORES CRAWL Shift+F12"
-    Me.ButtonShftF12MatchScoresCrawl.UseSelectable = True
+    Me.ButtonShftF12MatchScoresCrawl.FlatStyle = FlatStyle.Flat
     '
     'ButtonShftF10ClockCard
     '
@@ -681,7 +680,7 @@ Partial Class frmMain
     Me.ButtonShftF10ClockCard.Size = New System.Drawing.Size(145, 13)
     Me.ButtonShftF10ClockCard.TabIndex = 291
     Me.ButtonShftF10ClockCard.Text = "CLOCK CARD Shift+F10"
-    Me.ButtonShftF10ClockCard.UseSelectable = True
+    Me.ButtonShftF10ClockCard.FlatStyle = FlatStyle.Flat
     '
     'ButtonShftF8TeamListsCrawlSF8
     '
@@ -693,7 +692,7 @@ Partial Class frmMain
     Me.ButtonShftF8TeamListsCrawlSF8.Size = New System.Drawing.Size(148, 13)
     Me.ButtonShftF8TeamListsCrawlSF8.TabIndex = 289
     Me.ButtonShftF8TeamListsCrawlSF8.Text = "TEAM  CRAWL Shift+F8"
-    Me.ButtonShftF8TeamListsCrawlSF8.UseSelectable = True
+    Me.ButtonShftF8TeamListsCrawlSF8.FlatStyle = FlatStyle.Flat
     '
     'ButtonShftF11ActionAreas
     '
@@ -705,7 +704,7 @@ Partial Class frmMain
     Me.ButtonShftF11ActionAreas.Size = New System.Drawing.Size(145, 13)
     Me.ButtonShftF11ActionAreas.TabIndex = 280
     Me.ButtonShftF11ActionAreas.Text = "ACTION AREAS Shift+F11"
-    Me.ButtonShftF11ActionAreas.UseSelectable = True
+    Me.ButtonShftF11ActionAreas.FlatStyle = FlatStyle.Flat
     '
     'ButtonTeamListsCrawl
     '
@@ -717,7 +716,7 @@ Partial Class frmMain
     Me.ButtonTeamListsCrawl.Name = "ButtonTeamListsCrawl"
     Me.ButtonTeamListsCrawl.Size = New System.Drawing.Size(148, 13)
     Me.ButtonTeamListsCrawl.TabIndex = 288
-    Me.ButtonTeamListsCrawl.UseSelectable = True
+    Me.ButtonTeamListsCrawl.FlatStyle = FlatStyle.Flat
     '
     'ButtonShftF7L3Commons
     '
@@ -729,7 +728,7 @@ Partial Class frmMain
     Me.ButtonShftF7L3Commons.Size = New System.Drawing.Size(145, 13)
     Me.ButtonShftF7L3Commons.TabIndex = 279
     Me.ButtonShftF7L3Commons.Text = "L3 COMMONS  Shift+F7"
-    Me.ButtonShftF7L3Commons.UseSelectable = True
+    Me.ButtonShftF7L3Commons.FlatStyle = FlatStyle.Flat
     '
     'ButtonCtlF12FFIdent
     '
@@ -741,7 +740,7 @@ Partial Class frmMain
     Me.ButtonCtlF12FFIdent.Size = New System.Drawing.Size(148, 13)
     Me.ButtonCtlF12FFIdent.TabIndex = 287
     Me.ButtonCtlF12FFIdent.Text = "FF IDENT Ctrl+F12"
-    Me.ButtonCtlF12FFIdent.UseSelectable = True
+    Me.ButtonCtlF12FFIdent.FlatStyle = FlatStyle.Flat
     '
     'ButtonShftF9OtherScores
     '
@@ -753,7 +752,7 @@ Partial Class frmMain
     Me.ButtonShftF9OtherScores.Size = New System.Drawing.Size(145, 13)
     Me.ButtonShftF9OtherScores.TabIndex = 281
     Me.ButtonShftF9OtherScores.Text = "OTHER SCORES Shift+F9"
-    Me.ButtonShftF9OtherScores.UseSelectable = True
+    Me.ButtonShftF9OtherScores.FlatStyle = FlatStyle.Flat
     '
     'ButtonCtlF4TwoWayBoxes
     '
@@ -765,7 +764,7 @@ Partial Class frmMain
     Me.ButtonCtlF4TwoWayBoxes.Size = New System.Drawing.Size(148, 13)
     Me.ButtonCtlF4TwoWayBoxes.TabIndex = 285
     Me.ButtonCtlF4TwoWayBoxes.Text = "2 WAY BOXES Ctrl+F4"
-    Me.ButtonCtlF4TwoWayBoxes.UseSelectable = True
+    Me.ButtonCtlF4TwoWayBoxes.FlatStyle = FlatStyle.Flat
     '
     'ButtonCtlF11AsItStands
     '
@@ -777,7 +776,7 @@ Partial Class frmMain
     Me.ButtonCtlF11AsItStands.Size = New System.Drawing.Size(145, 13)
     Me.ButtonCtlF11AsItStands.TabIndex = 277
     Me.ButtonCtlF11AsItStands.Text = "AS IT STANDS Ctrl+F11"
-    Me.ButtonCtlF11AsItStands.UseSelectable = True
+    Me.ButtonCtlF11AsItStands.FlatStyle = FlatStyle.Flat
     Me.ButtonCtlF11AsItStands.Visible = False
     '
     'ButtonF12VideoTalkThroughts
@@ -790,7 +789,7 @@ Partial Class frmMain
     Me.ButtonF12VideoTalkThroughts.Size = New System.Drawing.Size(148, 13)
     Me.ButtonF12VideoTalkThroughts.TabIndex = 284
     Me.ButtonF12VideoTalkThroughts.Text = "VIDEO TALKTHR. F12"
-    Me.ButtonF12VideoTalkThroughts.UseSelectable = True
+    Me.ButtonF12VideoTalkThroughts.FlatStyle = FlatStyle.Flat
     '
     'ButtonShftF5TeamStatsMultiline
     '
@@ -802,7 +801,7 @@ Partial Class frmMain
     Me.ButtonShftF5TeamStatsMultiline.Size = New System.Drawing.Size(145, 13)
     Me.ButtonShftF5TeamStatsMultiline.TabIndex = 280
     Me.ButtonShftF5TeamStatsMultiline.Text = "TEAM STATS MULTI Shift+F5"
-    Me.ButtonShftF5TeamStatsMultiline.UseSelectable = True
+    Me.ButtonShftF5TeamStatsMultiline.FlatStyle = FlatStyle.Flat
     '
     'ButtonCtlF7ScoreBugs
     '
@@ -814,7 +813,7 @@ Partial Class frmMain
     Me.ButtonCtlF7ScoreBugs.Size = New System.Drawing.Size(145, 13)
     Me.ButtonCtlF7ScoreBugs.TabIndex = 276
     Me.ButtonCtlF7ScoreBugs.Text = "SCORE BUGS Ctrl+F7"
-    Me.ButtonCtlF7ScoreBugs.UseSelectable = True
+    Me.ButtonCtlF7ScoreBugs.FlatStyle = FlatStyle.Flat
     '
     'ButtonF4ClockSubs
     '
@@ -826,7 +825,7 @@ Partial Class frmMain
     Me.ButtonF4ClockSubs.Size = New System.Drawing.Size(148, 13)
     Me.ButtonF4ClockSubs.TabIndex = 282
     Me.ButtonF4ClockSubs.Text = "  CLOCK SUBS   F4"
-    Me.ButtonF4ClockSubs.UseSelectable = True
+    Me.ButtonF4ClockSubs.FlatStyle = FlatStyle.Flat
     '
     'ButtonCtlF3ClockDropDown
     '
@@ -838,7 +837,7 @@ Partial Class frmMain
     Me.ButtonCtlF3ClockDropDown.Size = New System.Drawing.Size(145, 13)
     Me.ButtonCtlF3ClockDropDown.TabIndex = 275
     Me.ButtonCtlF3ClockDropDown.Text = "CLOCK DROP DOWN Ctrl+F3"
-    Me.ButtonCtlF3ClockDropDown.UseSelectable = True
+    Me.ButtonCtlF3ClockDropDown.FlatStyle = FlatStyle.Flat
     Me.ButtonCtlF3ClockDropDown.Visible = False
     '
     'ButtonF10IdentClock
@@ -851,7 +850,7 @@ Partial Class frmMain
     Me.ButtonF10IdentClock.Size = New System.Drawing.Size(145, 13)
     Me.ButtonF10IdentClock.TabIndex = 285
     Me.ButtonF10IdentClock.Text = "IDENT CLOCK F10"
-    Me.ButtonF10IdentClock.UseSelectable = True
+    Me.ButtonF10IdentClock.FlatStyle = FlatStyle.Flat
     Me.ButtonF10IdentClock.Visible = False
     '
     'ButtonF11OptaTop5
@@ -864,7 +863,7 @@ Partial Class frmMain
     Me.ButtonF11OptaTop5.Size = New System.Drawing.Size(145, 13)
     Me.ButtonF11OptaTop5.TabIndex = 274
     Me.ButtonF11OptaTop5.Text = "  OPTA TOP 5 F11"
-    Me.ButtonF11OptaTop5.UseSelectable = True
+    Me.ButtonF11OptaTop5.FlatStyle = FlatStyle.Flat
     Me.ButtonF11OptaTop5.Visible = False
     '
     'ButtonCtlF9AddedTree
@@ -877,7 +876,7 @@ Partial Class frmMain
     Me.ButtonCtlF9AddedTree.Size = New System.Drawing.Size(145, 13)
     Me.ButtonCtlF9AddedTree.TabIndex = 279
     Me.ButtonCtlF9AddedTree.Text = "ADDED TIME Ctrl+F9"
-    Me.ButtonCtlF9AddedTree.UseSelectable = True
+    Me.ButtonCtlF9AddedTree.FlatStyle = FlatStyle.Flat
     '
     'ButtonCtlF5PlayerBio
     '
@@ -889,7 +888,7 @@ Partial Class frmMain
     Me.ButtonCtlF5PlayerBio.Size = New System.Drawing.Size(145, 13)
     Me.ButtonCtlF5PlayerBio.TabIndex = 278
     Me.ButtonCtlF5PlayerBio.Text = "PLAYER BIO Ctrl+F5"
-    Me.ButtonCtlF5PlayerBio.UseSelectable = True
+    Me.ButtonCtlF5PlayerBio.FlatStyle = FlatStyle.Flat
     '
     'ButtonF3L3Subs
     '
@@ -901,7 +900,7 @@ Partial Class frmMain
     Me.ButtonF3L3Subs.Size = New System.Drawing.Size(145, 13)
     Me.ButtonF3L3Subs.TabIndex = 272
     Me.ButtonF3L3Subs.Text = "     L3 SUBS      F3"
-    Me.ButtonF3L3Subs.UseSelectable = True
+    Me.ButtonF3L3Subs.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanelClock
     '
@@ -958,9 +957,7 @@ Partial Class frmMain
     Me.MetroButtonAddedTime.Size = New System.Drawing.Size(132, 51)
     Me.MetroButtonAddedTime.TabIndex = 8
     Me.MetroButtonAddedTime.Text = "ADDED TIME Ctrl+F9"
-    Me.MetroButtonAddedTime.UseCustomBackColor = True
-    Me.MetroButtonAddedTime.UseCustomForeColor = True
-    Me.MetroButtonAddedTime.UseSelectable = True
+    Me.MetroButtonAddedTime.FlatStyle = FlatStyle.Flat
     '
     'MetroTileClock
     '
@@ -971,7 +968,7 @@ Partial Class frmMain
     Me.MetroTileClock.Size = New System.Drawing.Size(132, 19)
     Me.MetroTileClock.TabIndex = 0
     Me.MetroTileClock.Text = "Clock controls"
-    Me.MetroTileClock.UseSelectable = True
+    Me.MetroTileClock.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonClockSubstitutions
     '
@@ -982,22 +979,18 @@ Partial Class frmMain
     Me.MetroButtonClockSubstitutions.Size = New System.Drawing.Size(132, 50)
     Me.MetroButtonClockSubstitutions.TabIndex = 3
     Me.MetroButtonClockSubstitutions.Text = "Substitutions F4"
-    Me.MetroButtonClockSubstitutions.UseCustomBackColor = True
-    Me.MetroButtonClockSubstitutions.UseCustomForeColor = True
-    Me.MetroButtonClockSubstitutions.UseSelectable = True
+    Me.MetroButtonClockSubstitutions.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonClock
     '
     Me.MetroButtonClock.BackColor = System.Drawing.Color.PaleGreen
     Me.MetroButtonClock.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonClock.FontSize = MetroFramework.MetroButtonSize.Medium
     Me.MetroButtonClock.Location = New System.Drawing.Point(3, 28)
     Me.MetroButtonClock.Name = "MetroButtonClock"
     Me.MetroButtonClock.Size = New System.Drawing.Size(132, 50)
     Me.MetroButtonClock.TabIndex = 0
     Me.MetroButtonClock.Text = "SHOW CLOCK F10"
-    Me.MetroButtonClock.UseCustomBackColor = True
-    Me.MetroButtonClock.UseSelectable = True
+    Me.MetroButtonClock.FlatStyle = FlatStyle.Flat
     '
     'MetroTileClockBasedGraphics
     '
@@ -1009,7 +1002,7 @@ Partial Class frmMain
     Me.MetroTileClockBasedGraphics.Size = New System.Drawing.Size(408, 19)
     Me.MetroTileClockBasedGraphics.TabIndex = 2
     Me.MetroTileClockBasedGraphics.Text = "Clock based graphics"
-    Me.MetroTileClockBasedGraphics.UseSelectable = True
+    Me.MetroTileClockBasedGraphics.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonClockStats
     '
@@ -1020,9 +1013,7 @@ Partial Class frmMain
     Me.MetroButtonClockStats.Size = New System.Drawing.Size(132, 50)
     Me.MetroButtonClockStats.TabIndex = 4
     Me.MetroButtonClockStats.Text = "Straps"
-    Me.MetroButtonClockStats.UseCustomBackColor = True
-    Me.MetroButtonClockStats.UseCustomForeColor = True
-    Me.MetroButtonClockStats.UseSelectable = True
+    Me.MetroButtonClockStats.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonClockOtherScores
     '
@@ -1033,9 +1024,7 @@ Partial Class frmMain
     Me.MetroButtonClockOtherScores.Size = New System.Drawing.Size(132, 51)
     Me.MetroButtonClockOtherScores.TabIndex = 5
     Me.MetroButtonClockOtherScores.Text = "SCORE BUGS Ctrl+F7"
-    Me.MetroButtonClockOtherScores.UseCustomBackColor = True
-    Me.MetroButtonClockOtherScores.UseCustomForeColor = True
-    Me.MetroButtonClockOtherScores.UseSelectable = True
+    Me.MetroButtonClockOtherScores.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonClockPenalties
     '
@@ -1046,9 +1035,7 @@ Partial Class frmMain
     Me.MetroButtonClockPenalties.Size = New System.Drawing.Size(132, 51)
     Me.MetroButtonClockPenalties.TabIndex = 6
     Me.MetroButtonClockPenalties.Text = "Penalties"
-    Me.MetroButtonClockPenalties.UseCustomBackColor = True
-    Me.MetroButtonClockPenalties.UseCustomForeColor = True
-    Me.MetroButtonClockPenalties.UseSelectable = True
+    Me.MetroButtonClockPenalties.FlatStyle = FlatStyle.Flat
     Me.MetroButtonClockPenalties.Visible = False
     '
     'MetroButtonClockStrapsWithIcon
@@ -1060,9 +1047,7 @@ Partial Class frmMain
     Me.MetroButtonClockStrapsWithIcon.Size = New System.Drawing.Size(132, 50)
     Me.MetroButtonClockStrapsWithIcon.TabIndex = 7
     Me.MetroButtonClockStrapsWithIcon.Text = "Straps with icon"
-    Me.MetroButtonClockStrapsWithIcon.UseCustomBackColor = True
-    Me.MetroButtonClockStrapsWithIcon.UseCustomForeColor = True
-    Me.MetroButtonClockStrapsWithIcon.UseSelectable = True
+    Me.MetroButtonClockStrapsWithIcon.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonTimeControl
     '
@@ -1073,8 +1058,7 @@ Partial Class frmMain
     Me.MetroButtonTimeControl.Size = New System.Drawing.Size(94, 24)
     Me.MetroButtonTimeControl.TabIndex = 0
     Me.MetroButtonTimeControl.Text = "Time control"
-    Me.MetroButtonTimeControl.UseCustomBackColor = True
-    Me.MetroButtonTimeControl.UseSelectable = True
+    Me.MetroButtonTimeControl.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanel3
     '
@@ -1171,7 +1155,7 @@ Partial Class frmMain
     Me.MetroTileMainGraphics.Size = New System.Drawing.Size(652, 19)
     Me.MetroTileMainGraphics.TabIndex = 0
     Me.MetroTileMainGraphics.Text = "Main graphics"
-    Me.MetroTileMainGraphics.UseSelectable = True
+    Me.MetroTileMainGraphics.FlatStyle = FlatStyle.Flat
     '
     'ButtonF1ScoreLine
     '
@@ -1183,7 +1167,7 @@ Partial Class frmMain
     Me.ButtonF1ScoreLine.Size = New System.Drawing.Size(150, 21)
     Me.ButtonF1ScoreLine.TabIndex = 274
     Me.ButtonF1ScoreLine.Text = " SCORE LINE    F1"
-    Me.ButtonF1ScoreLine.UseSelectable = True
+    Me.ButtonF1ScoreLine.FlatStyle = FlatStyle.Flat
     '
     'ButtonF2NameReporter
     '
@@ -1195,7 +1179,7 @@ Partial Class frmMain
     Me.ButtonF2NameReporter.Size = New System.Drawing.Size(150, 21)
     Me.ButtonF2NameReporter.TabIndex = 283
     Me.ButtonF2NameReporter.Text = "   REPORTER    F2"
-    Me.ButtonF2NameReporter.UseSelectable = True
+    Me.ButtonF2NameReporter.FlatStyle = FlatStyle.Flat
     '
     'ButtonF5TeamMatchStats
     '
@@ -1207,7 +1191,7 @@ Partial Class frmMain
     Me.ButtonF5TeamMatchStats.Size = New System.Drawing.Size(150, 21)
     Me.ButtonF5TeamMatchStats.TabIndex = 275
     Me.ButtonF5TeamMatchStats.Text = "  TEAM STATS   F5"
-    Me.ButtonF5TeamMatchStats.UseSelectable = True
+    Me.ButtonF5TeamMatchStats.FlatStyle = FlatStyle.Flat
     '
     'ButtonF7FirstTeamStuff
     '
@@ -1220,7 +1204,7 @@ Partial Class frmMain
     Me.ButtonF7FirstTeamStuff.TabIndex = 273
     Me.ButtonF7FirstTeamStuff.Tag = ""
     Me.ButtonF7FirstTeamStuff.Text = "1st TEAM STAFF F7"
-    Me.ButtonF7FirstTeamStuff.UseSelectable = True
+    Me.ButtonF7FirstTeamStuff.FlatStyle = FlatStyle.Flat
     '
     'ButtonF8SecondTeamStuff
     '
@@ -1232,7 +1216,7 @@ Partial Class frmMain
     Me.ButtonF8SecondTeamStuff.Size = New System.Drawing.Size(150, 21)
     Me.ButtonF8SecondTeamStuff.TabIndex = 283
     Me.ButtonF8SecondTeamStuff.Text = "2nd TEAM STAFF F8"
-    Me.ButtonF8SecondTeamStuff.UseSelectable = True
+    Me.ButtonF8SecondTeamStuff.FlatStyle = FlatStyle.Flat
     '
     'ButtonF6PlayerName
     '
@@ -1244,7 +1228,7 @@ Partial Class frmMain
     Me.ButtonF6PlayerName.Size = New System.Drawing.Size(150, 21)
     Me.ButtonF6PlayerName.TabIndex = 284
     Me.ButtonF6PlayerName.Text = "PLAYER NAME   F6"
-    Me.ButtonF6PlayerName.UseSelectable = True
+    Me.ButtonF6PlayerName.FlatStyle = FlatStyle.Flat
     '
     'ButtonF9TeamCaptions
     '
@@ -1256,7 +1240,7 @@ Partial Class frmMain
     Me.ButtonF9TeamCaptions.Size = New System.Drawing.Size(150, 21)
     Me.ButtonF9TeamCaptions.TabIndex = 276
     Me.ButtonF9TeamCaptions.Text = "TEAM CAPTIONS F9"
-    Me.ButtonF9TeamCaptions.UseSelectable = True
+    Me.ButtonF9TeamCaptions.FlatStyle = FlatStyle.Flat
     '
     'ButtonCtlF1FullFramers
     '
@@ -1268,7 +1252,7 @@ Partial Class frmMain
     Me.ButtonCtlF1FullFramers.Size = New System.Drawing.Size(150, 21)
     Me.ButtonCtlF1FullFramers.TabIndex = 277
     Me.ButtonCtlF1FullFramers.Text = "FULL FRAMERS Ctrl+F1"
-    Me.ButtonCtlF1FullFramers.UseSelectable = True
+    Me.ButtonCtlF1FullFramers.FlatStyle = FlatStyle.Flat
     '
     'ButtonCtlF8Bugs
     '
@@ -1280,7 +1264,7 @@ Partial Class frmMain
     Me.ButtonCtlF8Bugs.Size = New System.Drawing.Size(150, 21)
     Me.ButtonCtlF8Bugs.TabIndex = 286
     Me.ButtonCtlF8Bugs.Text = "     BUGS      Ctrl+F8"
-    Me.ButtonCtlF8Bugs.UseSelectable = True
+    Me.ButtonCtlF8Bugs.FlatStyle = FlatStyle.Flat
     '
     'ButtonShftF3NameNoNumber
     '
@@ -1292,7 +1276,7 @@ Partial Class frmMain
     Me.ButtonShftF3NameNoNumber.Size = New System.Drawing.Size(150, 23)
     Me.ButtonShftF3NameNoNumber.TabIndex = 278
     Me.ButtonShftF3NameNoNumber.Text = "NAME NO NUMBER Shift+F3"
-    Me.ButtonShftF3NameNoNumber.UseSelectable = True
+    Me.ButtonShftF3NameNoNumber.FlatStyle = FlatStyle.Flat
     '
     'ButtonCtlF2PlayerStatsCtrlF2
     '
@@ -1304,7 +1288,7 @@ Partial Class frmMain
     Me.ButtonCtlF2PlayerStatsCtrlF2.Size = New System.Drawing.Size(150, 21)
     Me.ButtonCtlF2PlayerStatsCtrlF2.TabIndex = 286
     Me.ButtonCtlF2PlayerStatsCtrlF2.Text = "PLAYER STATS Ctrl+F2"
-    Me.ButtonCtlF2PlayerStatsCtrlF2.UseSelectable = True
+    Me.ButtonCtlF2PlayerStatsCtrlF2.FlatStyle = FlatStyle.Flat
     '
     'ButtonCtlF6Referee
     '
@@ -1316,7 +1300,7 @@ Partial Class frmMain
     Me.ButtonCtlF6Referee.Size = New System.Drawing.Size(150, 21)
     Me.ButtonCtlF6Referee.TabIndex = 287
     Me.ButtonCtlF6Referee.Text = "REFEREE  Ctrl+F6"
-    Me.ButtonCtlF6Referee.UseSelectable = True
+    Me.ButtonCtlF6Referee.FlatStyle = FlatStyle.Flat
     '
     'ButtonCtlF10L3TeamStatsDb
     '
@@ -1328,7 +1312,7 @@ Partial Class frmMain
     Me.ButtonCtlF10L3TeamStatsDb.Size = New System.Drawing.Size(150, 21)
     Me.ButtonCtlF10L3TeamStatsDb.TabIndex = 288
     Me.ButtonCtlF10L3TeamStatsDb.Text = "L3 TEAM STATS Ctrl+F10"
-    Me.ButtonCtlF10L3TeamStatsDb.UseSelectable = True
+    Me.ButtonCtlF10L3TeamStatsDb.FlatStyle = FlatStyle.Flat
     '
     'ButtonShftF2Interview
     '
@@ -1340,7 +1324,7 @@ Partial Class frmMain
     Me.ButtonShftF2Interview.Size = New System.Drawing.Size(150, 21)
     Me.ButtonShftF2Interview.TabIndex = 289
     Me.ButtonShftF2Interview.Text = "INTERVIEWS Shift+F2"
-    Me.ButtonShftF2Interview.UseSelectable = True
+    Me.ButtonShftF2Interview.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanel2
     '
@@ -1923,61 +1907,61 @@ Partial Class frmMain
   Friend WithEvents TableLayoutPanelMatchInfo As TableLayoutPanel
   Friend WithEvents TableLayoutPanelControls As TableLayoutPanel
   Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
-  Private WithEvents ButtonAltF6HtFtBug As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonShftF1PenaltyShootOut As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonAltF2FreeTextCrawl As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonShftF12MatchScoresCrawl As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonShftF10ClockCard As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonShftF8TeamListsCrawlSF8 As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonShftF11ActionAreas As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF1ScoreLine As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonTeamListsCrawl As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF2NameReporter As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonShftF7L3Commons As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF12FFIdent As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonShftF9OtherScores As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF8Bugs As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonShftF3NameNoNumber As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonShftF2Interview As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF4TwoWayBoxes As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF5TeamMatchStats As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF11AsItStands As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF12VideoTalkThroughts As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonShftF5TeamStatsMultiline As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF8SecondTeamStuff As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF7ScoreBugs As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF6PlayerName As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF4ClockSubs As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF9TeamCaptions As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF3ClockDropDown As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF10L3TeamStatsDb As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF10IdentClock As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF6Referee As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF11OptaTop5 As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF1FullFramers As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF2PlayerStatsCtrlF2 As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF9AddedTree As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF7FirstTeamStuff As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonCtlF5PlayerBio As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonF3L3Subs As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonAwayGoal As MetroFramework.Controls.MetroButton
-  Private WithEvents ButtonHomeGoal As MetroFramework.Controls.MetroButton
+  Private WithEvents ButtonAltF6HtFtBug As Button
+  Private WithEvents ButtonShftF1PenaltyShootOut As Button
+  Private WithEvents ButtonAltF2FreeTextCrawl As Button
+  Private WithEvents ButtonShftF12MatchScoresCrawl As Button
+  Private WithEvents ButtonShftF10ClockCard As Button
+  Private WithEvents ButtonShftF8TeamListsCrawlSF8 As Button
+  Private WithEvents ButtonShftF11ActionAreas As Button
+  Private WithEvents ButtonF1ScoreLine As Button
+  Private WithEvents ButtonTeamListsCrawl As Button
+  Private WithEvents ButtonF2NameReporter As Button
+  Private WithEvents ButtonShftF7L3Commons As Button
+  Private WithEvents ButtonCtlF12FFIdent As Button
+  Private WithEvents ButtonShftF9OtherScores As Button
+  Private WithEvents ButtonCtlF8Bugs As Button
+  Private WithEvents ButtonShftF3NameNoNumber As Button
+  Private WithEvents ButtonShftF2Interview As Button
+  Private WithEvents ButtonCtlF4TwoWayBoxes As Button
+  Private WithEvents ButtonF5TeamMatchStats As Button
+  Private WithEvents ButtonCtlF11AsItStands As Button
+  Private WithEvents ButtonF12VideoTalkThroughts As Button
+  Private WithEvents ButtonShftF5TeamStatsMultiline As Button
+  Private WithEvents ButtonF8SecondTeamStuff As Button
+  Private WithEvents ButtonCtlF7ScoreBugs As Button
+  Private WithEvents ButtonF6PlayerName As Button
+  Private WithEvents ButtonF4ClockSubs As Button
+  Private WithEvents ButtonF9TeamCaptions As Button
+  Private WithEvents ButtonCtlF3ClockDropDown As Button
+  Private WithEvents ButtonCtlF10L3TeamStatsDb As Button
+  Private WithEvents ButtonF10IdentClock As Button
+  Private WithEvents ButtonCtlF6Referee As Button
+  Private WithEvents ButtonF11OptaTop5 As Button
+  Private WithEvents ButtonCtlF1FullFramers As Button
+  Private WithEvents ButtonCtlF2PlayerStatsCtrlF2 As Button
+  Private WithEvents ButtonCtlF9AddedTree As Button
+  Private WithEvents ButtonF7FirstTeamStuff As Button
+  Private WithEvents ButtonCtlF5PlayerBio As Button
+  Private WithEvents ButtonF3L3Subs As Button
+  Private WithEvents ButtonAwayGoal As Button
+  Private WithEvents ButtonHomeGoal As Button
   Friend WithEvents msmMain As MetroFramework.Components.MetroStyleManager
   Friend WithEvents TableLayoutPanelClock As TableLayoutPanel
   Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
   Friend WithEvents MetroLabelPeriodTime As MetroFramework.Controls.MetroLabel
   Friend WithEvents MetroLabelPeriodName As MetroFramework.Controls.MetroLabel
-  Friend WithEvents MetroButtonTimeControl As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonTimeControl As Button
   Friend WithEvents TimerClock As Timer
   Friend WithEvents MetroTileClock As MetroFramework.Controls.MetroTile
   Friend WithEvents TableLayoutPanel8Clock As TableLayoutPanel
-  Friend WithEvents MetroButtonClock As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonClock As Button
   Friend WithEvents MetroTileClockBasedGraphics As MetroFramework.Controls.MetroTile
-  Friend WithEvents MetroButtonClockSubstitutions As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonClockStats As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonClockOtherScores As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonClockPenalties As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonClockStrapsWithIcon As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonClockSubstitutions As Button
+  Friend WithEvents MetroButtonClockStats As Button
+  Friend WithEvents MetroButtonClockOtherScores As Button
+  Friend WithEvents MetroButtonClockPenalties As Button
+  Friend WithEvents MetroButtonClockStrapsWithIcon As Button
   Friend WithEvents TableLayoutPanelMainGraphics As TableLayoutPanel
   Friend WithEvents MetroTileMainGraphics As MetroFramework.Controls.MetroTile
   Friend WithEvents PlayerHomeViewer1 As PlayerViewer
@@ -2023,10 +2007,10 @@ Partial Class frmMain
   Friend WithEvents LabelAwayTeamName As MetroFramework.Controls.MetroLabel
   Friend WithEvents LabelAwayTeamShortName As MetroFramework.Controls.MetroLabel
   Friend WithEvents MetroTileAlternates As MetroFramework.Controls.MetroTile
-  Friend WithEvents MetroButtonManageGoals As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonManageGoals As Button
   Friend WithEvents ToolStripButtonSelectMatch As ToolStripButton
   Friend WithEvents ToolStripStatusLabelVersion As ToolStripStatusLabel
-  Friend WithEvents MetroButtonAddedTime As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonAddedTime As Button
   Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
   Friend WithEvents ButtonPANIC As Button
 End Class

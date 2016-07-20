@@ -96,7 +96,7 @@ Partial Class UCOtherMatch
     Me.MetroTextBoxScoreAway.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.MetroTextBoxScoreAway.CustomButton.TabIndex = 1
     Me.MetroTextBoxScoreAway.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxScoreAway.CustomButton.UseSelectable = True
+    Me.MetroTextBoxScoreAway.CustomButton.FlatStyle = FlatStyle.Flat
     Me.MetroTextBoxScoreAway.CustomButton.Visible = False
     Me.MetroTextBoxScoreAway.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTextBoxScoreAway.FontSize = MetroFramework.MetroTextBoxSize.Medium
@@ -113,7 +113,6 @@ Partial Class UCOtherMatch
     Me.MetroTextBoxScoreAway.TabIndex = 8
     Me.MetroTextBoxScoreAway.Text = "0"
     Me.MetroTextBoxScoreAway.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-    Me.MetroTextBoxScoreAway.UseSelectable = True
     Me.MetroTextBoxScoreAway.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.MetroTextBoxScoreAway.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -127,7 +126,7 @@ Partial Class UCOtherMatch
     Me.MetroTileLogo.TabIndex = 2
     Me.MetroTileLogo.Text = "Channel logo"
     Me.MetroTileLogo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    Me.MetroTileLogo.UseSelectable = True
+    Me.MetroTileLogo.FlatStyle = FlatStyle.Flat
     '
     'MetroTileMatchStatus
     '
@@ -139,7 +138,7 @@ Partial Class UCOtherMatch
     Me.MetroTileMatchStatus.TabIndex = 3
     Me.MetroTileMatchStatus.Text = "Match status"
     Me.MetroTileMatchStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    Me.MetroTileMatchStatus.UseSelectable = True
+    Me.MetroTileMatchStatus.FlatStyle = FlatStyle.Flat
     '
     'MetroComboBoxChannelLogo
     '
@@ -151,7 +150,7 @@ Partial Class UCOtherMatch
     Me.MetroComboBoxChannelLogo.Name = "MetroComboBoxChannelLogo"
     Me.MetroComboBoxChannelLogo.Size = New System.Drawing.Size(84, 25)
     Me.MetroComboBoxChannelLogo.TabIndex = 4
-    Me.MetroComboBoxChannelLogo.UseSelectable = True
+    Me.MetroComboBoxChannelLogo.FlatStyle = FlatStyle.Flat
     '
     'MetroComboBoxMatchStatus
     '
@@ -163,7 +162,7 @@ Partial Class UCOtherMatch
     Me.MetroComboBoxMatchStatus.Name = "MetroComboBoxMatchStatus"
     Me.MetroComboBoxMatchStatus.Size = New System.Drawing.Size(84, 25)
     Me.MetroComboBoxMatchStatus.TabIndex = 5
-    Me.MetroComboBoxMatchStatus.UseSelectable = True
+    Me.MetroComboBoxMatchStatus.FlatStyle = FlatStyle.Flat
     '
     'MetroComboBoxMatch
     '
@@ -175,7 +174,7 @@ Partial Class UCOtherMatch
     Me.MetroComboBoxMatch.Name = "MetroComboBoxMatch"
     Me.MetroComboBoxMatch.Size = New System.Drawing.Size(242, 25)
     Me.MetroComboBoxMatch.TabIndex = 6
-    Me.MetroComboBoxMatch.UseSelectable = True
+    Me.MetroComboBoxMatch.FlatStyle = FlatStyle.Flat
     '
     'MetroTextBoxScoreHome
     '
@@ -189,7 +188,7 @@ Partial Class UCOtherMatch
     Me.MetroTextBoxScoreHome.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.MetroTextBoxScoreHome.CustomButton.TabIndex = 1
     Me.MetroTextBoxScoreHome.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxScoreHome.CustomButton.UseSelectable = True
+    Me.MetroTextBoxScoreHome.CustomButton.FlatStyle = FlatStyle.Flat
     Me.MetroTextBoxScoreHome.CustomButton.Visible = False
     Me.MetroTextBoxScoreHome.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTextBoxScoreHome.FontSize = MetroFramework.MetroTextBoxSize.Medium
@@ -206,7 +205,6 @@ Partial Class UCOtherMatch
     Me.MetroTextBoxScoreHome.TabIndex = 7
     Me.MetroTextBoxScoreHome.Text = "0"
     Me.MetroTextBoxScoreHome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-    Me.MetroTextBoxScoreHome.UseSelectable = True
     Me.MetroTextBoxScoreHome.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.MetroTextBoxScoreHome.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -266,7 +264,6 @@ Partial Class UCOtherMatch
     Me.MetroTabControlLineType.SelectedIndex = 1
     Me.MetroTabControlLineType.Size = New System.Drawing.Size(786, 57)
     Me.MetroTabControlLineType.TabIndex = 1
-    Me.MetroTabControlLineType.UseSelectable = True
     '
     'TabPageBlank
     '
@@ -316,7 +313,7 @@ Partial Class UCOtherMatch
     Me.MetroTextBoxTitle.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.MetroTextBoxTitle.CustomButton.TabIndex = 1
     Me.MetroTextBoxTitle.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxTitle.CustomButton.UseSelectable = True
+    Me.MetroTextBoxTitle.CustomButton.FlatStyle = FlatStyle.Flat
     Me.MetroTextBoxTitle.CustomButton.Visible = False
     Me.MetroTextBoxTitle.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTextBoxTitle.Lines = New String() {"MetroTextBox1"}
@@ -331,7 +328,6 @@ Partial Class UCOtherMatch
     Me.MetroTextBoxTitle.Size = New System.Drawing.Size(680, 23)
     Me.MetroTextBoxTitle.TabIndex = 0
     Me.MetroTextBoxTitle.Text = "MetroTextBox1"
-    Me.MetroTextBoxTitle.UseSelectable = True
     Me.MetroTextBoxTitle.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.MetroTextBoxTitle.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -388,7 +384,7 @@ Partial Class UCOtherMatch
     Me.MetroCheckBoxAddToTable.Size = New System.Drawing.Size(100, 14)
     Me.MetroCheckBoxAddToTable.TabIndex = 1
     Me.MetroCheckBoxAddToTable.Text = "Add to table"
-    Me.MetroCheckBoxAddToTable.UseSelectable = True
+    Me.MetroCheckBoxAddToTable.FlatStyle = FlatStyle.Flat
     '
     'MetroCheckBoxAddToCrawl
     '
@@ -399,7 +395,7 @@ Partial Class UCOtherMatch
     Me.MetroCheckBoxAddToCrawl.Size = New System.Drawing.Size(100, 14)
     Me.MetroCheckBoxAddToCrawl.TabIndex = 0
     Me.MetroCheckBoxAddToCrawl.Text = "Add to crawl"
-    Me.MetroCheckBoxAddToCrawl.UseSelectable = True
+    Me.MetroCheckBoxAddToCrawl.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanelControlButton
     '

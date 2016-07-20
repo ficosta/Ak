@@ -23,8 +23,8 @@ Partial Class FormAddedTime
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New MetroFramework.Controls.MetroButton()
-    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.OK_Button = New Button()
+    Me.Cancel_Button = New Button()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
     Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
@@ -59,7 +59,7 @@ Partial Class FormAddedTime
     Me.OK_Button.Size = New System.Drawing.Size(74, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
-    Me.OK_Button.UseSelectable = True
+    Me.OK_Button.FlatStyle = FlatStyle.Flat
     '
     'Cancel_Button
     '
@@ -70,7 +70,7 @@ Partial Class FormAddedTime
     Me.Cancel_Button.Size = New System.Drawing.Size(74, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
-    Me.Cancel_Button.UseSelectable = True
+    Me.Cancel_Button.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanel2
     '
@@ -147,8 +147,8 @@ Partial Class FormAddedTime
   End Sub
 
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
-  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents OK_Button As Button
+  Friend WithEvents Cancel_Button As Button
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
   Friend WithEvents NumericUpDownMinutes As NumericUpDown
   Friend WithEvents TableLayoutPanel3 As TableLayoutPanel

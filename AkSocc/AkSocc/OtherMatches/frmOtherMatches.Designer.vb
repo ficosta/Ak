@@ -27,8 +27,8 @@ Partial Class frmMatchDay
     Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New MetroFramework.Controls.MetroButton()
-    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.OK_Button = New Button()
+    Me.Cancel_Button = New Button()
     Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
     Me.MetroGridMatchDay = New MetroFramework.Controls.MetroGrid()
     Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -81,7 +81,7 @@ Partial Class frmMatchDay
     Me.OK_Button.Size = New System.Drawing.Size(67, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
-    Me.OK_Button.UseSelectable = True
+    Me.OK_Button.FlatStyle = FlatStyle.Flat
     '
     'Cancel_Button
     '
@@ -92,7 +92,7 @@ Partial Class frmMatchDay
     Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
-    Me.Cancel_Button.UseSelectable = True
+    Me.Cancel_Button.FlatStyle = FlatStyle.Flat
     '
     'SplitContainer1
     '
@@ -247,7 +247,6 @@ Partial Class frmMatchDay
     Me.UcOtherMatch9.OtherMatchInfo = Nothing
     Me.UcOtherMatch9.Size = New System.Drawing.Size(1047, 67)
     Me.UcOtherMatch9.TabIndex = 8
-    Me.UcOtherMatch9.UseSelectable = True
     '
     'UcOtherMatch8
     '
@@ -261,7 +260,6 @@ Partial Class frmMatchDay
     Me.UcOtherMatch8.OtherMatchInfo = Nothing
     Me.UcOtherMatch8.Size = New System.Drawing.Size(1047, 67)
     Me.UcOtherMatch8.TabIndex = 7
-    Me.UcOtherMatch8.UseSelectable = True
     '
     'UcOtherMatch7
     '
@@ -275,7 +273,6 @@ Partial Class frmMatchDay
     Me.UcOtherMatch7.OtherMatchInfo = Nothing
     Me.UcOtherMatch7.Size = New System.Drawing.Size(1047, 67)
     Me.UcOtherMatch7.TabIndex = 6
-    Me.UcOtherMatch7.UseSelectable = True
     '
     'UcOtherMatch6
     '
@@ -289,7 +286,6 @@ Partial Class frmMatchDay
     Me.UcOtherMatch6.OtherMatchInfo = Nothing
     Me.UcOtherMatch6.Size = New System.Drawing.Size(1047, 67)
     Me.UcOtherMatch6.TabIndex = 5
-    Me.UcOtherMatch6.UseSelectable = True
     '
     'UcOtherMatch5
     '
@@ -303,7 +299,6 @@ Partial Class frmMatchDay
     Me.UcOtherMatch5.OtherMatchInfo = Nothing
     Me.UcOtherMatch5.Size = New System.Drawing.Size(1047, 67)
     Me.UcOtherMatch5.TabIndex = 4
-    Me.UcOtherMatch5.UseSelectable = True
     '
     'UcOtherMatch4
     '
@@ -317,7 +312,6 @@ Partial Class frmMatchDay
     Me.UcOtherMatch4.OtherMatchInfo = Nothing
     Me.UcOtherMatch4.Size = New System.Drawing.Size(1047, 67)
     Me.UcOtherMatch4.TabIndex = 3
-    Me.UcOtherMatch4.UseSelectable = True
     '
     'UcOtherMatch3
     '
@@ -331,7 +325,6 @@ Partial Class frmMatchDay
     Me.UcOtherMatch3.OtherMatchInfo = Nothing
     Me.UcOtherMatch3.Size = New System.Drawing.Size(1047, 67)
     Me.UcOtherMatch3.TabIndex = 2
-    Me.UcOtherMatch3.UseSelectable = True
     '
     'UcOtherMatch2
     '
@@ -345,7 +338,6 @@ Partial Class frmMatchDay
     Me.UcOtherMatch2.OtherMatchInfo = Nothing
     Me.UcOtherMatch2.Size = New System.Drawing.Size(1047, 67)
     Me.UcOtherMatch2.TabIndex = 1
-    Me.UcOtherMatch2.UseSelectable = True
     '
     'UcOtherMatch1
     '
@@ -359,7 +351,6 @@ Partial Class frmMatchDay
     Me.UcOtherMatch1.OtherMatchInfo = Nothing
     Me.UcOtherMatch1.Size = New System.Drawing.Size(1047, 67)
     Me.UcOtherMatch1.TabIndex = 0
-    Me.UcOtherMatch1.UseSelectable = True
     '
     'frmMatchDay
     '
@@ -385,8 +376,8 @@ Partial Class frmMatchDay
   End Sub
 
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
-  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents OK_Button As Button
+  Friend WithEvents Cancel_Button As Button
   Friend WithEvents SplitContainer1 As SplitContainer
   Friend WithEvents MetroGridMatchDay As MetroFramework.Controls.MetroGrid
   Friend WithEvents Column1 As DataGridViewTextBoxColumn

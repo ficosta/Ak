@@ -48,16 +48,6 @@ Public Class GraphicGroupFullFramers
     End Sub
   End Class
 
-  Private _otherMatchDays As OtherMatchDays
-  Public Property OtherMatchDays As OtherMatchDays
-    Get
-      Return _otherMatchDays
-    End Get
-    Set(value As OtherMatchDays)
-      _otherMatchDays = value
-    End Set
-  End Property
-
   Class StepArrows
     Inherits GraphicStep.GraphicStepDefinition
 
@@ -90,7 +80,7 @@ Public Class GraphicGroupFullFramers
                 gs.GraphicSteps.Add(New GraphicStep(gs, StepArrows.Arrows, True, True))
                 gs.GraphicSteps.Add(New GraphicStep(gs, StepArrows.NoArrows, True, True))
               Case Step0.OtherMatchScores
-                For Each matchDays As MatchDay In _otherMatchDays
+                For Each matchDays As MatchDay In Me.OtherMatchDays
                   gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(matchDays.MatchDayID, matchDays.MatchDayName), True, True))
                 Next
             End Select
@@ -116,7 +106,7 @@ Public Class GraphicGroupFullFramers
         Case Step0.LeagueTableTop
           Scene = PrepareLeagueTable(changeStep, True, graphicStep.Name = StepArrows.Arrows)
         Case Step0.OtherMatchScores
-          Dim matchDay As MatchDay = _otherMatchDays.GetMatchDay(graphicStep.UID)
+          Dim matchDay As MatchDay = Me.OtherMatchDays.GetMatchDay(graphicStep.UID)
           Scene = PrepareMatchScores(changeStep, matchDay)
         Case Step0.LeagueTableBottom
           Scene = PrepareLeagueTable(changeStep, False, graphicStep.Name = StepArrows.Arrows)

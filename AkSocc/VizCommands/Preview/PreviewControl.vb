@@ -163,9 +163,9 @@ Public Class PreviewControl
   End Structure
 
   Private _clearScreenRequest As Boolean = False
-  Public Function ClearOutput()
+  Public Sub ClearOutput()
     _clearScreenRequest = True
-  End Function
+  End Sub
 
 
   Private Sub _backgroundWorker_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles _backgroundWorker.DoWork

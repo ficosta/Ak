@@ -36,12 +36,12 @@ Partial Class FormSubstitutions
     Me.ColumnPlayerInID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnPlayerOutID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.MetroButtonAddAwayTeamSubstitition = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonRemoveSubstitution = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonAddHomeTeamSubstitition = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonAddAwayTeamSubstitition = New Button()
+    Me.MetroButtonRemoveSubstitution = New Button()
+    Me.MetroButtonAddHomeTeamSubstitition = New Button()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroTileGraphics = New MetroFramework.Controls.MetroTile()
-    Me.MetroButtonShowSelectedSubstitution = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonShowSelectedSubstitution = New Button()
     Me.MetroTileData = New MetroFramework.Controls.MetroTile()
     Me.TableLayoutPanelData.SuspendLayout()
     CType(Me.MetroGridSubstitutions, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,13 +180,12 @@ Partial Class FormSubstitutions
     'MetroButtonAddAwayTeamSubstitition
     '
     Me.MetroButtonAddAwayTeamSubstitition.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonAddAwayTeamSubstitition.FontSize = MetroFramework.MetroButtonSize.Medium
     Me.MetroButtonAddAwayTeamSubstitition.Location = New System.Drawing.Point(398, 3)
     Me.MetroButtonAddAwayTeamSubstitition.Name = "MetroButtonAddAwayTeamSubstitition"
     Me.MetroButtonAddAwayTeamSubstitition.Size = New System.Drawing.Size(391, 29)
     Me.MetroButtonAddAwayTeamSubstitition.TabIndex = 3
     Me.MetroButtonAddAwayTeamSubstitition.Text = "Add home team substitiution"
-    Me.MetroButtonAddAwayTeamSubstitition.UseSelectable = True
+    Me.MetroButtonAddAwayTeamSubstitition.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonRemoveSubstitution
     '
@@ -197,19 +196,17 @@ Partial Class FormSubstitutions
     Me.MetroButtonRemoveSubstitution.Size = New System.Drawing.Size(389, 29)
     Me.MetroButtonRemoveSubstitution.TabIndex = 2
     Me.MetroButtonRemoveSubstitution.Text = "Remove substitition"
-    Me.MetroButtonRemoveSubstitution.UseCustomBackColor = True
-    Me.MetroButtonRemoveSubstitution.UseSelectable = True
+    Me.MetroButtonRemoveSubstitution.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonAddHomeTeamSubstitition
     '
     Me.MetroButtonAddHomeTeamSubstitition.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonAddHomeTeamSubstitition.FontSize = MetroFramework.MetroButtonSize.Medium
     Me.MetroButtonAddHomeTeamSubstitition.Location = New System.Drawing.Point(398, 38)
     Me.MetroButtonAddHomeTeamSubstitition.Name = "MetroButtonAddHomeTeamSubstitition"
     Me.MetroButtonAddHomeTeamSubstitition.Size = New System.Drawing.Size(391, 29)
     Me.MetroButtonAddHomeTeamSubstitition.TabIndex = 1
     Me.MetroButtonAddHomeTeamSubstitition.Text = "Add away team substitiution"
-    Me.MetroButtonAddHomeTeamSubstitition.UseSelectable = True
+    Me.MetroButtonAddHomeTeamSubstitition.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanel2
     '
@@ -241,7 +238,7 @@ Partial Class FormSubstitutions
     Me.MetroTileGraphics.Size = New System.Drawing.Size(792, 24)
     Me.MetroTileGraphics.TabIndex = 0
     Me.MetroTileGraphics.Text = "Graphics"
-    Me.MetroTileGraphics.UseSelectable = True
+    Me.MetroTileGraphics.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonShowSelectedSubstitution
     '
@@ -251,7 +248,7 @@ Partial Class FormSubstitutions
     Me.MetroButtonShowSelectedSubstitution.Size = New System.Drawing.Size(792, 29)
     Me.MetroButtonShowSelectedSubstitution.TabIndex = 1
     Me.MetroButtonShowSelectedSubstitution.Text = "Selected substitution..."
-    Me.MetroButtonShowSelectedSubstitution.UseSelectable = True
+    Me.MetroButtonShowSelectedSubstitution.FlatStyle = FlatStyle.Flat
     '
     'MetroTileData
     '
@@ -263,7 +260,7 @@ Partial Class FormSubstitutions
     Me.MetroTileData.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileData.TabIndex = 2
     Me.MetroTileData.Text = "Data"
-    Me.MetroTileData.UseSelectable = True
+    Me.MetroTileData.FlatStyle = FlatStyle.Flat
     '
     'FormSubstitutions
     '
@@ -280,12 +277,12 @@ Partial Class FormSubstitutions
 
   End Sub
   Friend WithEvents TableLayoutPanelData As TableLayoutPanel
-  Friend WithEvents MetroButtonAddAwayTeamSubstitition As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonRemoveSubstitution As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonAddHomeTeamSubstitition As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonAddAwayTeamSubstitition As Button
+  Friend WithEvents MetroButtonRemoveSubstitution As Button
+  Friend WithEvents MetroButtonAddHomeTeamSubstitition As Button
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
   Friend WithEvents MetroTileGraphics As MetroFramework.Controls.MetroTile
-  Friend WithEvents MetroButtonShowSelectedSubstitution As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonShowSelectedSubstitution As Button
   Friend WithEvents MetroTileData As MetroFramework.Controls.MetroTile
   Friend WithEvents MetroGridSubstitutions As MetroFramework.Controls.MetroGrid
   Friend WithEvents ColumnID As DataGridViewTextBoxColumn

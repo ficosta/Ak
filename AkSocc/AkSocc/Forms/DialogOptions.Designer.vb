@@ -23,27 +23,27 @@ Partial Class DialogOptions
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New MetroFramework.Controls.MetroButton()
-    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.OK_Button = New Button()
+    Me.Cancel_Button = New Button()
     Me.CheckBoxShowOptionsOnStartup = New MetroFramework.Controls.MetroCheckBox()
     Me.TabControlOptions = New MetroFramework.Controls.MetroTabControl()
     Me.TabPage1 = New MetroFramework.Controls.MetroTabPage()
     Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroButtonOtherMatchesPath = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonOtherMatchesPath = New Button()
     Me.MetroTextBoxOtherMatchesFilePath = New MetroFramework.Controls.MetroTextBox()
     Me.MetroLabelOtherMatches = New MetroFramework.Controls.MetroLabel()
     Me.MetroLabelDataBase = New MetroFramework.Controls.MetroLabel()
     Me.MetroTextBoxDataBase = New MetroFramework.Controls.MetroTextBox()
-    Me.MetroButtonDataBase = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonDataBase = New Button()
     Me.MetroCheckBoxUseArabicNames = New MetroFramework.Controls.MetroCheckBox()
     Me.TabPage2 = New MetroFramework.Controls.MetroTabPage()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroLabel2 = New MetroFramework.Controls.MetroLabel()
     Me.MetroTextBoxRemotePreviewPath = New MetroFramework.Controls.MetroTextBox()
-    Me.MetroButtonRemotePreviewPath = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonRemotePreviewPath = New Button()
     Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
     Me.MetroTextBoxLocalPreviewPath = New MetroFramework.Controls.MetroTextBox()
-    Me.MetroButtonLocalPreviewPath = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonLocalPreviewPath = New Button()
     Me.NumericUpDownPreviewPort = New System.Windows.Forms.NumericUpDown()
     Me.LabelHost = New MetroFramework.Controls.MetroLabel()
     Me.TextBoxVizrtHost = New MetroFramework.Controls.MetroTextBox()
@@ -56,8 +56,8 @@ Partial Class DialogOptions
     Me.OpenFileDialogXML = New System.Windows.Forms.OpenFileDialog()
     Me.MetroTextBoxDefaultColorPath = New MetroFramework.Controls.MetroTextBox()
     Me.MetroTextBoxDefaultKitsPath = New MetroFramework.Controls.MetroTextBox()
-    Me.MetroButtonDefaultColorsPath = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonDefaultkitsPath = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonDefaultColorsPath = New Button()
+    Me.MetroButtonDefaultkitsPath = New Button()
     Me.MetroLabel3 = New MetroFramework.Controls.MetroLabel()
     Me.MetroLabel4 = New MetroFramework.Controls.MetroLabel()
     Me.FolderBrowserDialogPaths = New System.Windows.Forms.FolderBrowserDialog()
@@ -97,7 +97,7 @@ Partial Class DialogOptions
     Me.OK_Button.Size = New System.Drawing.Size(74, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
-    Me.OK_Button.UseSelectable = True
+    Me.OK_Button.FlatStyle = FlatStyle.Flat
     '
     'Cancel_Button
     '
@@ -108,7 +108,7 @@ Partial Class DialogOptions
     Me.Cancel_Button.Size = New System.Drawing.Size(74, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
-    Me.Cancel_Button.UseSelectable = True
+    Me.Cancel_Button.FlatStyle = FlatStyle.Flat
     '
     'CheckBoxShowOptionsOnStartup
     '
@@ -119,7 +119,7 @@ Partial Class DialogOptions
     Me.CheckBoxShowOptionsOnStartup.Size = New System.Drawing.Size(600, 23)
     Me.CheckBoxShowOptionsOnStartup.TabIndex = 2
     Me.CheckBoxShowOptionsOnStartup.Text = "Show options on application startup"
-    Me.CheckBoxShowOptionsOnStartup.UseSelectable = True
+    Me.CheckBoxShowOptionsOnStartup.FlatStyle = FlatStyle.Flat
     '
     'TabControlOptions
     '
@@ -133,7 +133,6 @@ Partial Class DialogOptions
     Me.TabControlOptions.SelectedIndex = 0
     Me.TabControlOptions.Size = New System.Drawing.Size(773, 355)
     Me.TabControlOptions.TabIndex = 1
-    Me.TabControlOptions.UseSelectable = True
     '
     'TabPage1
     '
@@ -193,7 +192,7 @@ Partial Class DialogOptions
     Me.MetroButtonOtherMatchesPath.Size = New System.Drawing.Size(29, 24)
     Me.MetroButtonOtherMatchesPath.TabIndex = 5
     Me.MetroButtonOtherMatchesPath.Text = "..."
-    Me.MetroButtonOtherMatchesPath.UseSelectable = True
+    Me.MetroButtonOtherMatchesPath.FlatStyle = FlatStyle.Flat
     '
     'MetroTextBoxOtherMatchesFilePath
     '
@@ -207,7 +206,7 @@ Partial Class DialogOptions
     Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.MetroTextBoxOtherMatchesFilePath.CustomButton.TabIndex = 1
     Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxOtherMatchesFilePath.CustomButton.FlatStyle = FlatStyle.Flat
     Me.MetroTextBoxOtherMatchesFilePath.CustomButton.Visible = False
     Me.MetroTextBoxOtherMatchesFilePath.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTextBoxOtherMatchesFilePath.Lines = New String(-1) {}
@@ -221,7 +220,6 @@ Partial Class DialogOptions
     Me.MetroTextBoxOtherMatchesFilePath.SelectionStart = 0
     Me.MetroTextBoxOtherMatchesFilePath.Size = New System.Drawing.Size(563, 24)
     Me.MetroTextBoxOtherMatchesFilePath.TabIndex = 4
-    Me.MetroTextBoxOtherMatchesFilePath.UseSelectable = True
     Me.MetroTextBoxOtherMatchesFilePath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.MetroTextBoxOtherMatchesFilePath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -259,7 +257,7 @@ Partial Class DialogOptions
     Me.MetroTextBoxDataBase.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.MetroTextBoxDataBase.CustomButton.TabIndex = 1
     Me.MetroTextBoxDataBase.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxDataBase.CustomButton.UseSelectable = True
+    Me.MetroTextBoxDataBase.CustomButton.FlatStyle = FlatStyle.Flat
     Me.MetroTextBoxDataBase.CustomButton.Visible = False
     Me.MetroTextBoxDataBase.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTextBoxDataBase.Lines = New String(-1) {}
@@ -273,7 +271,6 @@ Partial Class DialogOptions
     Me.MetroTextBoxDataBase.SelectionStart = 0
     Me.MetroTextBoxDataBase.Size = New System.Drawing.Size(563, 24)
     Me.MetroTextBoxDataBase.TabIndex = 1
-    Me.MetroTextBoxDataBase.UseSelectable = True
     Me.MetroTextBoxDataBase.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.MetroTextBoxDataBase.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -285,7 +282,7 @@ Partial Class DialogOptions
     Me.MetroButtonDataBase.Size = New System.Drawing.Size(29, 24)
     Me.MetroButtonDataBase.TabIndex = 2
     Me.MetroButtonDataBase.Text = "..."
-    Me.MetroButtonDataBase.UseSelectable = True
+    Me.MetroButtonDataBase.FlatStyle = FlatStyle.Flat
     '
     'MetroCheckBoxUseArabicNames
     '
@@ -296,7 +293,7 @@ Partial Class DialogOptions
     Me.MetroCheckBoxUseArabicNames.Size = New System.Drawing.Size(563, 24)
     Me.MetroCheckBoxUseArabicNames.TabIndex = 6
     Me.MetroCheckBoxUseArabicNames.Text = "Use arabic names"
-    Me.MetroCheckBoxUseArabicNames.UseSelectable = True
+    Me.MetroCheckBoxUseArabicNames.FlatStyle = FlatStyle.Flat
     '
     'TabPage2
     '
@@ -373,7 +370,7 @@ Partial Class DialogOptions
     Me.MetroTextBoxRemotePreviewPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.MetroTextBoxRemotePreviewPath.CustomButton.TabIndex = 1
     Me.MetroTextBoxRemotePreviewPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxRemotePreviewPath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxRemotePreviewPath.CustomButton.FlatStyle = FlatStyle.Flat
     Me.MetroTextBoxRemotePreviewPath.CustomButton.Visible = False
     Me.MetroTextBoxRemotePreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTextBoxRemotePreviewPath.Lines = New String(-1) {}
@@ -387,7 +384,6 @@ Partial Class DialogOptions
     Me.MetroTextBoxRemotePreviewPath.SelectionStart = 0
     Me.MetroTextBoxRemotePreviewPath.Size = New System.Drawing.Size(567, 24)
     Me.MetroTextBoxRemotePreviewPath.TabIndex = 12
-    Me.MetroTextBoxRemotePreviewPath.UseSelectable = True
     Me.MetroTextBoxRemotePreviewPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.MetroTextBoxRemotePreviewPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -399,7 +395,7 @@ Partial Class DialogOptions
     Me.MetroButtonRemotePreviewPath.Size = New System.Drawing.Size(29, 24)
     Me.MetroButtonRemotePreviewPath.TabIndex = 13
     Me.MetroButtonRemotePreviewPath.Text = "..."
-    Me.MetroButtonRemotePreviewPath.UseSelectable = True
+    Me.MetroButtonRemotePreviewPath.FlatStyle = FlatStyle.Flat
     '
     'MetroLabel1
     '
@@ -424,7 +420,7 @@ Partial Class DialogOptions
     Me.MetroTextBoxLocalPreviewPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.MetroTextBoxLocalPreviewPath.CustomButton.TabIndex = 1
     Me.MetroTextBoxLocalPreviewPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxLocalPreviewPath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxLocalPreviewPath.CustomButton.FlatStyle = FlatStyle.Flat
     Me.MetroTextBoxLocalPreviewPath.CustomButton.Visible = False
     Me.MetroTextBoxLocalPreviewPath.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTextBoxLocalPreviewPath.Lines = New String(-1) {}
@@ -438,7 +434,6 @@ Partial Class DialogOptions
     Me.MetroTextBoxLocalPreviewPath.SelectionStart = 0
     Me.MetroTextBoxLocalPreviewPath.Size = New System.Drawing.Size(567, 24)
     Me.MetroTextBoxLocalPreviewPath.TabIndex = 9
-    Me.MetroTextBoxLocalPreviewPath.UseSelectable = True
     Me.MetroTextBoxLocalPreviewPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.MetroTextBoxLocalPreviewPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -450,7 +445,7 @@ Partial Class DialogOptions
     Me.MetroButtonLocalPreviewPath.Size = New System.Drawing.Size(29, 24)
     Me.MetroButtonLocalPreviewPath.TabIndex = 10
     Me.MetroButtonLocalPreviewPath.Text = "..."
-    Me.MetroButtonLocalPreviewPath.UseSelectable = True
+    Me.MetroButtonLocalPreviewPath.FlatStyle = FlatStyle.Flat
     '
     'NumericUpDownPreviewPort
     '
@@ -483,7 +478,7 @@ Partial Class DialogOptions
     Me.TextBoxVizrtHost.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.TextBoxVizrtHost.CustomButton.TabIndex = 1
     Me.TextBoxVizrtHost.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.TextBoxVizrtHost.CustomButton.UseSelectable = True
+    Me.TextBoxVizrtHost.CustomButton.FlatStyle = FlatStyle.Flat
     Me.TextBoxVizrtHost.CustomButton.Visible = False
     Me.TextBoxVizrtHost.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TextBoxVizrtHost.Lines = New String(-1) {}
@@ -497,7 +492,6 @@ Partial Class DialogOptions
     Me.TextBoxVizrtHost.SelectionStart = 0
     Me.TextBoxVizrtHost.Size = New System.Drawing.Size(567, 24)
     Me.TextBoxVizrtHost.TabIndex = 1
-    Me.TextBoxVizrtHost.UseSelectable = True
     Me.TextBoxVizrtHost.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.TextBoxVizrtHost.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -550,7 +544,7 @@ Partial Class DialogOptions
     Me.ComboBoxSceneVersion.Name = "ComboBoxSceneVersion"
     Me.ComboBoxSceneVersion.Size = New System.Drawing.Size(192, 29)
     Me.ComboBoxSceneVersion.TabIndex = 7
-    Me.ComboBoxSceneVersion.UseSelectable = True
+    Me.ComboBoxSceneVersion.FlatStyle = FlatStyle.Flat
     '
     'OpenFileDialogDataBase
     '
@@ -573,7 +567,7 @@ Partial Class DialogOptions
     Me.MetroTextBoxDefaultColorPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.MetroTextBoxDefaultColorPath.CustomButton.TabIndex = 1
     Me.MetroTextBoxDefaultColorPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxDefaultColorPath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxDefaultColorPath.CustomButton.FlatStyle = FlatStyle.Flat
     Me.MetroTextBoxDefaultColorPath.CustomButton.Visible = False
     Me.MetroTextBoxDefaultColorPath.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTextBoxDefaultColorPath.Lines = New String(-1) {}
@@ -587,7 +581,6 @@ Partial Class DialogOptions
     Me.MetroTextBoxDefaultColorPath.SelectionStart = 0
     Me.MetroTextBoxDefaultColorPath.Size = New System.Drawing.Size(563, 24)
     Me.MetroTextBoxDefaultColorPath.TabIndex = 7
-    Me.MetroTextBoxDefaultColorPath.UseSelectable = True
     Me.MetroTextBoxDefaultColorPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.MetroTextBoxDefaultColorPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -603,7 +596,7 @@ Partial Class DialogOptions
     Me.MetroTextBoxDefaultKitsPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.MetroTextBoxDefaultKitsPath.CustomButton.TabIndex = 1
     Me.MetroTextBoxDefaultKitsPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.MetroTextBoxDefaultKitsPath.CustomButton.UseSelectable = True
+    Me.MetroTextBoxDefaultKitsPath.CustomButton.FlatStyle = FlatStyle.Flat
     Me.MetroTextBoxDefaultKitsPath.CustomButton.Visible = False
     Me.MetroTextBoxDefaultKitsPath.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTextBoxDefaultKitsPath.Lines = New String(-1) {}
@@ -617,7 +610,6 @@ Partial Class DialogOptions
     Me.MetroTextBoxDefaultKitsPath.SelectionStart = 0
     Me.MetroTextBoxDefaultKitsPath.Size = New System.Drawing.Size(563, 24)
     Me.MetroTextBoxDefaultKitsPath.TabIndex = 8
-    Me.MetroTextBoxDefaultKitsPath.UseSelectable = True
     Me.MetroTextBoxDefaultKitsPath.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.MetroTextBoxDefaultKitsPath.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -629,7 +621,7 @@ Partial Class DialogOptions
     Me.MetroButtonDefaultColorsPath.Size = New System.Drawing.Size(29, 24)
     Me.MetroButtonDefaultColorsPath.TabIndex = 9
     Me.MetroButtonDefaultColorsPath.Text = "..."
-    Me.MetroButtonDefaultColorsPath.UseSelectable = True
+    Me.MetroButtonDefaultColorsPath.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonDefaultkitsPath
     '
@@ -639,7 +631,7 @@ Partial Class DialogOptions
     Me.MetroButtonDefaultkitsPath.Size = New System.Drawing.Size(29, 24)
     Me.MetroButtonDefaultkitsPath.TabIndex = 10
     Me.MetroButtonDefaultkitsPath.Text = "..."
-    Me.MetroButtonDefaultkitsPath.UseSelectable = True
+    Me.MetroButtonDefaultkitsPath.FlatStyle = FlatStyle.Flat
     '
     'MetroLabel3
     '
@@ -693,8 +685,8 @@ Partial Class DialogOptions
 
   End Sub
   Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
-  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents OK_Button As Button
+  Friend WithEvents Cancel_Button As Button
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
   Friend WithEvents TextBoxVizrtHost As MetroFramework.Controls.MetroTextBox
   Friend WithEvents NumericUpDownPort As NumericUpDown
@@ -702,7 +694,7 @@ Partial Class DialogOptions
   Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
   Friend WithEvents MetroLabelDataBase As MetroFramework.Controls.MetroLabel
   Friend WithEvents MetroTextBoxDataBase As MetroFramework.Controls.MetroTextBox
-  Friend WithEvents MetroButtonDataBase As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonDataBase As Button
   Friend WithEvents CheckBoxShowOptionsOnStartup As MetroFramework.Controls.MetroCheckBox
   Friend WithEvents TabControlOptions As MetroFramework.Controls.MetroTabControl
   Friend WithEvents TabPage1 As MetroFramework.Controls.MetroTabPage
@@ -715,19 +707,19 @@ Partial Class DialogOptions
   Friend WithEvents OpenFileDialogDataBase As OpenFileDialog
   Friend WithEvents MetroTextBoxOtherMatchesFilePath As MetroFramework.Controls.MetroTextBox
   Friend WithEvents MetroLabelOtherMatches As MetroFramework.Controls.MetroLabel
-  Friend WithEvents MetroButtonOtherMatchesPath As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonOtherMatchesPath As Button
   Friend WithEvents OpenFileDialogXML As OpenFileDialog
   Friend WithEvents MetroCheckBoxUseArabicNames As MetroFramework.Controls.MetroCheckBox
   Friend WithEvents MetroLabel2 As MetroFramework.Controls.MetroLabel
   Friend WithEvents MetroTextBoxRemotePreviewPath As MetroFramework.Controls.MetroTextBox
-  Friend WithEvents MetroButtonRemotePreviewPath As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonRemotePreviewPath As Button
   Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
   Friend WithEvents MetroTextBoxLocalPreviewPath As MetroFramework.Controls.MetroTextBox
-  Friend WithEvents MetroButtonLocalPreviewPath As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonLocalPreviewPath As Button
   Friend WithEvents MetroTextBoxDefaultColorPath As MetroFramework.Controls.MetroTextBox
   Friend WithEvents MetroTextBoxDefaultKitsPath As MetroFramework.Controls.MetroTextBox
-  Friend WithEvents MetroButtonDefaultColorsPath As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonDefaultkitsPath As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonDefaultColorsPath As Button
+  Friend WithEvents MetroButtonDefaultkitsPath As Button
   Friend WithEvents MetroLabel3 As MetroFramework.Controls.MetroLabel
   Friend WithEvents MetroLabel4 As MetroFramework.Controls.MetroLabel
   Friend WithEvents FolderBrowserDialogPaths As FolderBrowserDialog

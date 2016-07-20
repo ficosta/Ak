@@ -20,7 +20,7 @@ Partial Class AboutBoxAk
   Friend WithEvents LabelVersion As MetroFramework.Controls.MetroLabel
   Friend WithEvents LabelCompanyName As MetroFramework.Controls.MetroLabel
   Friend WithEvents TextBoxDescription As MetroFramework.Controls.MetroTextBox
-  Friend WithEvents OKButton As MetroFramework.Controls.MetroButton
+  Friend WithEvents OKButton As Button
   Friend WithEvents LabelCopyright As MetroFramework.Controls.MetroLabel
 
   'Required by the Windows Form Designer
@@ -39,7 +39,7 @@ Partial Class AboutBoxAk
     Me.LabelCopyright = New MetroFramework.Controls.MetroLabel()
     Me.LabelCompanyName = New MetroFramework.Controls.MetroLabel()
     Me.TextBoxDescription = New MetroFramework.Controls.MetroTextBox()
-    Me.OKButton = New MetroFramework.Controls.MetroButton()
+    Me.OKButton = New Button()
     Me.TableLayoutPanel.SuspendLayout()
     CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
@@ -141,7 +141,7 @@ Partial Class AboutBoxAk
     Me.TextBoxDescription.CustomButton.Style = MetroFramework.MetroColorStyle.Blue
     Me.TextBoxDescription.CustomButton.TabIndex = 1
     Me.TextBoxDescription.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
-    Me.TextBoxDescription.CustomButton.UseSelectable = True
+    Me.TextBoxDescription.CustomButton.FlatStyle = FlatStyle.Flat
     Me.TextBoxDescription.CustomButton.Visible = False
     Me.TextBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TextBoxDescription.Lines = New String() {"Description :", "", "(At runtime, the labels' text will be replaced with the application's assembly in" &
@@ -162,7 +162,6 @@ Partial Class AboutBoxAk
     Me.TextBoxDescription.TabIndex = 0
     Me.TextBoxDescription.TabStop = False
     Me.TextBoxDescription.Text = resources.GetString("TextBoxDescription.Text")
-    Me.TextBoxDescription.UseSelectable = True
     Me.TextBoxDescription.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
     Me.TextBoxDescription.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)
     '
@@ -175,7 +174,7 @@ Partial Class AboutBoxAk
     Me.OKButton.Size = New System.Drawing.Size(75, 18)
     Me.OKButton.TabIndex = 0
     Me.OKButton.Text = "&OK"
-    Me.OKButton.UseSelectable = True
+    Me.OKButton.FlatStyle = FlatStyle.Flat
     '
     'AboutBoxAk
     '

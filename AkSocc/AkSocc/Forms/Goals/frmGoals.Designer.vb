@@ -29,8 +29,8 @@ Partial Class frmGoals
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroTileGraphics = New MetroFramework.Controls.MetroTile()
     Me.TableLayoutPanelData = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroButtonAddAwayTeamSubstitition = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonRemoveGoal = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonAddAwayTeamSubstitition = New Button()
+    Me.MetroButtonRemoveGoal = New Button()
     Me.MetroGridGoals = New MetroFramework.Controls.MetroGrid()
     Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnHomeType = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -40,8 +40,8 @@ Partial Class frmGoals
     Me.ColumnAwayGoal = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnAwayPlayer = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnAwayType = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.MetroButtonAddHomeTeamSubstitition = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonShowSelectedGoal = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonAddHomeTeamSubstitition = New Button()
+    Me.MetroButtonShowSelectedGoal = New Button()
     Me.MetroTileData = New MetroFramework.Controls.MetroTile()
     Me.TableLayoutPanel2.SuspendLayout()
     Me.TableLayoutPanelData.SuspendLayout()
@@ -78,7 +78,7 @@ Partial Class frmGoals
     Me.MetroTileGraphics.Size = New System.Drawing.Size(792, 24)
     Me.MetroTileGraphics.TabIndex = 0
     Me.MetroTileGraphics.Text = "Graphics"
-    Me.MetroTileGraphics.UseSelectable = True
+    Me.MetroTileGraphics.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanelData
     '
@@ -108,7 +108,7 @@ Partial Class frmGoals
     Me.MetroButtonAddAwayTeamSubstitition.Size = New System.Drawing.Size(258, 24)
     Me.MetroButtonAddAwayTeamSubstitition.TabIndex = 3
     Me.MetroButtonAddAwayTeamSubstitition.Text = "Add home team GOAL"
-    Me.MetroButtonAddAwayTeamSubstitition.UseSelectable = True
+    Me.MetroButtonAddAwayTeamSubstitition.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonRemoveGoal
     '
@@ -118,7 +118,7 @@ Partial Class frmGoals
     Me.MetroButtonRemoveGoal.Size = New System.Drawing.Size(258, 24)
     Me.MetroButtonRemoveGoal.TabIndex = 2
     Me.MetroButtonRemoveGoal.Text = "Remove goal"
-    Me.MetroButtonRemoveGoal.UseSelectable = True
+    Me.MetroButtonRemoveGoal.FlatStyle = FlatStyle.Flat
     '
     'MetroGridGoals
     '
@@ -228,7 +228,7 @@ Partial Class frmGoals
     Me.MetroButtonAddHomeTeamSubstitition.Size = New System.Drawing.Size(258, 24)
     Me.MetroButtonAddHomeTeamSubstitition.TabIndex = 1
     Me.MetroButtonAddHomeTeamSubstitition.Text = "Add away team GOAL"
-    Me.MetroButtonAddHomeTeamSubstitition.UseSelectable = True
+    Me.MetroButtonAddHomeTeamSubstitition.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonShowSelectedGoal
     '
@@ -238,7 +238,7 @@ Partial Class frmGoals
     Me.MetroButtonShowSelectedGoal.Size = New System.Drawing.Size(792, 29)
     Me.MetroButtonShowSelectedGoal.TabIndex = 1
     Me.MetroButtonShowSelectedGoal.Text = "Selected goal..."
-    Me.MetroButtonShowSelectedGoal.UseSelectable = True
+    Me.MetroButtonShowSelectedGoal.FlatStyle = FlatStyle.Flat
     '
     'MetroTileData
     '
@@ -250,7 +250,7 @@ Partial Class frmGoals
     Me.MetroTileData.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileData.TabIndex = 2
     Me.MetroTileData.Text = "Data"
-    Me.MetroTileData.UseSelectable = True
+    Me.MetroTileData.FlatStyle = FlatStyle.Flat
     '
     'frmGoals
     '
@@ -269,11 +269,11 @@ Partial Class frmGoals
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
   Friend WithEvents MetroTileGraphics As MetroFramework.Controls.MetroTile
   Friend WithEvents TableLayoutPanelData As TableLayoutPanel
-  Friend WithEvents MetroButtonAddAwayTeamSubstitition As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonRemoveGoal As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonAddAwayTeamSubstitition As Button
+  Friend WithEvents MetroButtonRemoveGoal As Button
   Friend WithEvents MetroGridGoals As MetroFramework.Controls.MetroGrid
-  Friend WithEvents MetroButtonAddHomeTeamSubstitition As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonShowSelectedGoal As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonAddHomeTeamSubstitition As Button
+  Friend WithEvents MetroButtonShowSelectedGoal As Button
   Friend WithEvents MetroTileData As MetroFramework.Controls.MetroTile
   Friend WithEvents ColumnID As DataGridViewTextBoxColumn
   Friend WithEvents ColumnHomeType As DataGridViewTextBoxColumn

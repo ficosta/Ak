@@ -29,9 +29,9 @@ Partial Class FormPeriodControl_new
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.UcPeriod4 = New AkSocc.UCPeriod()
     Me.TableLayoutPanelOtherOptions = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroButtonResetMatch = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonOverwriteClock = New MetroFramework.Controls.MetroButton()
-    Me.MetroButtonReloadDataBase = New MetroFramework.Controls.MetroButton()
+    Me.MetroButtonResetMatch = New Button()
+    Me.MetroButtonOverwriteClock = New Button()
+    Me.MetroButtonReloadDataBase = New Button()
     Me.UcPeriod3 = New AkSocc.UCPeriod()
     Me.UcPeriod2 = New AkSocc.UCPeriod()
     Me.UcPeriod1 = New AkSocc.UCPeriod()
@@ -81,7 +81,7 @@ Partial Class FormPeriodControl_new
     Me.UcPeriod4.Size = New System.Drawing.Size(90, 98)
     Me.UcPeriod4.Style = MetroFramework.MetroColorStyle.White
     Me.UcPeriod4.TabIndex = 3
-    Me.UcPeriod4.UseSelectable = True
+
     '
     'TableLayoutPanelOtherOptions
     '
@@ -103,38 +103,32 @@ Partial Class FormPeriodControl_new
     'MetroButtonResetMatch
     '
     Me.MetroButtonResetMatch.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonResetMatch.FontSize = MetroFramework.MetroButtonSize.Medium
     Me.MetroButtonResetMatch.Location = New System.Drawing.Point(3, 3)
     Me.MetroButtonResetMatch.Name = "MetroButtonResetMatch"
     Me.MetroButtonResetMatch.Size = New System.Drawing.Size(88, 26)
-    Me.MetroButtonResetMatch.Style = MetroFramework.MetroColorStyle.Red
     Me.MetroButtonResetMatch.TabIndex = 0
     Me.MetroButtonResetMatch.Text = "Reset Match"
-    Me.MetroButtonResetMatch.UseSelectable = True
+    Me.MetroButtonResetMatch.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonOverwriteClock
     '
     Me.MetroButtonOverwriteClock.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonOverwriteClock.FontSize = MetroFramework.MetroButtonSize.Medium
     Me.MetroButtonOverwriteClock.Location = New System.Drawing.Point(3, 35)
     Me.MetroButtonOverwriteClock.Name = "MetroButtonOverwriteClock"
     Me.MetroButtonOverwriteClock.Size = New System.Drawing.Size(88, 26)
-    Me.MetroButtonOverwriteClock.Style = MetroFramework.MetroColorStyle.Red
     Me.MetroButtonOverwriteClock.TabIndex = 1
     Me.MetroButtonOverwriteClock.Text = "Overwrite clock"
-    Me.MetroButtonOverwriteClock.UseSelectable = True
+    Me.MetroButtonOverwriteClock.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonReloadDataBase
     '
     Me.MetroButtonReloadDataBase.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroButtonReloadDataBase.FontSize = MetroFramework.MetroButtonSize.Medium
     Me.MetroButtonReloadDataBase.Location = New System.Drawing.Point(3, 67)
     Me.MetroButtonReloadDataBase.Name = "MetroButtonReloadDataBase"
     Me.MetroButtonReloadDataBase.Size = New System.Drawing.Size(88, 28)
-    Me.MetroButtonReloadDataBase.Style = MetroFramework.MetroColorStyle.Red
     Me.MetroButtonReloadDataBase.TabIndex = 2
     Me.MetroButtonReloadDataBase.Text = "Reload data base"
-    Me.MetroButtonReloadDataBase.UseSelectable = True
+    Me.MetroButtonReloadDataBase.FlatStyle = FlatStyle.Flat
     '
     'UcPeriod3
     '
@@ -146,7 +140,6 @@ Partial Class FormPeriodControl_new
     Me.UcPeriod3.Size = New System.Drawing.Size(90, 98)
     Me.UcPeriod3.Style = MetroFramework.MetroColorStyle.White
     Me.UcPeriod3.TabIndex = 2
-    Me.UcPeriod3.UseSelectable = True
     '
     'UcPeriod2
     '
@@ -158,7 +151,6 @@ Partial Class FormPeriodControl_new
     Me.UcPeriod2.Size = New System.Drawing.Size(90, 98)
     Me.UcPeriod2.Style = MetroFramework.MetroColorStyle.White
     Me.UcPeriod2.TabIndex = 1
-    Me.UcPeriod2.UseSelectable = True
     '
     'UcPeriod1
     '
@@ -170,7 +162,6 @@ Partial Class FormPeriodControl_new
     Me.UcPeriod1.Size = New System.Drawing.Size(90, 98)
     Me.UcPeriod1.Style = MetroFramework.MetroColorStyle.White
     Me.UcPeriod1.TabIndex = 0
-    Me.UcPeriod1.UseSelectable = True
     '
     'msmPeriodControl
     '
@@ -314,9 +305,9 @@ Partial Class FormPeriodControl_new
   Friend WithEvents UcPeriod1 As UCPeriod
   Friend WithEvents msmPeriodControl As MetroFramework.Components.MetroStyleManager
   Friend WithEvents TableLayoutPanelOtherOptions As TableLayoutPanel
-  Friend WithEvents MetroButtonResetMatch As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonOverwriteClock As MetroFramework.Controls.MetroButton
-  Friend WithEvents MetroButtonReloadDataBase As MetroFramework.Controls.MetroButton
+  Friend WithEvents MetroButtonResetMatch As Button
+  Friend WithEvents MetroButtonOverwriteClock As Button
+  Friend WithEvents MetroButtonReloadDataBase As Button
   Friend WithEvents MetroGridPeriods As MetroFramework.Controls.MetroGrid
   Friend WithEvents ColumnID As DataGridViewTextBoxColumn
   Friend WithEvents ColumnType As DataGridViewTextBoxColumn

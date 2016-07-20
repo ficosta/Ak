@@ -63,8 +63,8 @@ Partial Class FormMatchSetup
     Me.TabPageHome = New System.Windows.Forms.TabPage()
     Me.TabPageAway = New System.Windows.Forms.TabPage()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New MetroFramework.Controls.MetroButton()
-    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.OK_Button = New Button()
+    Me.Cancel_Button = New Button()
     Me.ofdSelectFile = New System.Windows.Forms.OpenFileDialog()
     Me.UcTeamMatchSetupHome = New AkSocc.UCTeamMatchSetup()
     Me.UcTeamMatchSetupAway = New AkSocc.UCTeamMatchSetup()
@@ -120,7 +120,7 @@ Partial Class FormMatchSetup
     Me.MetroTabControl1.SelectedIndex = 1
     Me.MetroTabControl1.Size = New System.Drawing.Size(1101, 524)
     Me.MetroTabControl1.TabIndex = 48
-    Me.MetroTabControl1.UseSelectable = True
+
     '
     'TabPageMatchSetup
     '
@@ -182,7 +182,7 @@ Partial Class FormMatchSetup
     Me.MetroTileGeneralMatchInfo.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileGeneralMatchInfo.TabIndex = 13
     Me.MetroTileGeneralMatchInfo.Text = "GeneralMatchInfo"
-    Me.MetroTileGeneralMatchInfo.UseSelectable = True
+    Me.MetroTileGeneralMatchInfo.FlatStyle = FlatStyle.Flat
     '
     'MetroLabel4
     '
@@ -206,7 +206,7 @@ Partial Class FormMatchSetup
     Me.MetroTileMatchInfo.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileMatchInfo.TabIndex = 0
     Me.MetroTileMatchInfo.Text = "General match info"
-    Me.MetroTileMatchInfo.UseSelectable = True
+    Me.MetroTileMatchInfo.FlatStyle = FlatStyle.Flat
     '
     'MetroLabelSceneVersion
     '
@@ -230,7 +230,7 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxSceneVersion.Name = "MetroComboBoxSceneVersion"
     Me.MetroComboBoxSceneVersion.Size = New System.Drawing.Size(887, 29)
     Me.MetroComboBoxSceneVersion.TabIndex = 2
-    Me.MetroComboBoxSceneVersion.UseSelectable = True
+    Me.MetroComboBoxSceneVersion.FlatStyle = FlatStyle.Flat
     Me.MetroComboBoxSceneVersion.Visible = False
     '
     'MetroTileReferees
@@ -244,7 +244,7 @@ Partial Class FormMatchSetup
     Me.MetroTileReferees.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileReferees.TabIndex = 3
     Me.MetroTileReferees.Text = "Referees"
-    Me.MetroTileReferees.UseSelectable = True
+    Me.MetroTileReferees.FlatStyle = FlatStyle.Flat
     '
     'MetroLabel1
     '
@@ -278,7 +278,7 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxReferee1.Name = "MetroComboBoxReferee1"
     Me.MetroComboBoxReferee1.Size = New System.Drawing.Size(887, 29)
     Me.MetroComboBoxReferee1.TabIndex = 8
-    Me.MetroComboBoxReferee1.UseSelectable = True
+    Me.MetroComboBoxReferee1.FlatStyle = FlatStyle.Flat
     '
     'MetroComboBoxReferee2
     '
@@ -290,7 +290,7 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxReferee2.Name = "MetroComboBoxReferee2"
     Me.MetroComboBoxReferee2.Size = New System.Drawing.Size(887, 29)
     Me.MetroComboBoxReferee2.TabIndex = 9
-    Me.MetroComboBoxReferee2.UseSelectable = True
+    Me.MetroComboBoxReferee2.FlatStyle = FlatStyle.Flat
     '
     'MetroComboBoxReferee3
     '
@@ -302,7 +302,7 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxReferee3.Name = "MetroComboBoxReferee3"
     Me.MetroComboBoxReferee3.Size = New System.Drawing.Size(887, 29)
     Me.MetroComboBoxReferee3.TabIndex = 10
-    Me.MetroComboBoxReferee3.UseSelectable = True
+    Me.MetroComboBoxReferee3.FlatStyle = FlatStyle.Flat
     '
     'MetroLabel2
     '
@@ -663,7 +663,7 @@ Partial Class FormMatchSetup
     Me.OK_Button.Size = New System.Drawing.Size(67, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
-    Me.OK_Button.UseSelectable = True
+    Me.OK_Button.FlatStyle = FlatStyle.Flat
     '
     'Cancel_Button
     '
@@ -674,7 +674,7 @@ Partial Class FormMatchSetup
     Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
-    Me.Cancel_Button.UseSelectable = True
+    Me.Cancel_Button.FlatStyle = FlatStyle.Flat
     '
     'ofdSelectFile
     '
@@ -744,8 +744,8 @@ Partial Class FormMatchSetup
 
   Friend WithEvents TableLayoutPanelGlobal As TableLayoutPanel
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
-  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents OK_Button As Button
+  Friend WithEvents Cancel_Button As Button
   Friend WithEvents MetroTabControl1 As MetroFramework.Controls.MetroTabControl
   Friend WithEvents TabPageHome As TabPage
   Friend WithEvents TabPageAway As TabPage

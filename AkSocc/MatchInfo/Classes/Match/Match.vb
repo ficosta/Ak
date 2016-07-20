@@ -552,9 +552,11 @@ Imports MatchInfo
   End Function
 
   Public Function RemoveLastGoalByPlayer(player As Player) As MatchGoal
+    Dim matchGoal As MatchGoal = Nothing
     Try
       For Each goal As MatchGoal In Me.MatchGoals
         If goal.PlayerID = player.PlayerID Then
+          matchGoal = goal
           RemoveGoal(goal)
           Exit For
         End If
@@ -562,17 +564,20 @@ Imports MatchInfo
     Catch ex As Exception
 
     End Try
+    Return matchGoal
   End Function
 
   Public Function RemoveGoal(id As Integer) As Boolean
+    Dim res As Boolean = False
     Try
       Me.RemoveGoal(Me.HomeTeam, id)
       Me.RemoveGoal(Me.AwayTeam, id)
       SaveMatchGoalsToDB()
-      Return True
+      res = True
     Catch ex As Exception
-      Return False
+
     End Try
+    Return res
   End Function
 
   Public Function RemoveGoal(goal As MatchGoal) As Boolean
@@ -661,9 +666,9 @@ Imports MatchInfo
       End If
       RaiseEvent ScoreChanged()
     Catch ex As Exception
-
+      res = False
     End Try
-
+    Return res
   End Function
 
   Public Function Clone() As Object Implements ICloneable.Clone

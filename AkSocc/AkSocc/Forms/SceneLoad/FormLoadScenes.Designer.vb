@@ -47,7 +47,7 @@ Partial Class FormLoadScenes
     Me.MetroCheckBoxCloseWhenDone.Size = New System.Drawing.Size(114, 15)
     Me.MetroCheckBoxCloseWhenDone.TabIndex = 1
     Me.MetroCheckBoxCloseWhenDone.Text = "Close when done"
-    Me.MetroCheckBoxCloseWhenDone.UseSelectable = True
+    Me.MetroCheckBoxCloseWhenDone.FlatStyle = FlatStyle.Flat
     '
     'FormLoadScenes
     '

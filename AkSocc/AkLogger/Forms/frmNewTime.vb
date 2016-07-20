@@ -6,7 +6,6 @@ Imports System.Drawing
 Imports System.Text
 Imports System.Threading.Tasks
 Imports System.Windows.Forms
-Imports BeInRealOpta_Classes
 
 Partial Public Class frmNewTime
   Inherits Form

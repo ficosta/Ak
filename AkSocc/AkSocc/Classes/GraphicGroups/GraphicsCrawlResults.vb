@@ -24,17 +24,6 @@ Public Class GraphicsCrawlResults
     MyBase.KeyCombination = New KeyCombination(MyBase.Name, Keys.F8, False, True, False, False)
   End Sub
 
-  Private _otherMatchDays As OtherMatchDays
-  Public Property OtherMatchDays As OtherMatchDays
-    Get
-      Return _otherMatchDays
-    End Get
-    Set(value As OtherMatchDays)
-      _otherMatchDays = value
-    End Set
-  End Property
-
-
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
 
@@ -65,7 +54,7 @@ Public Class GraphicsCrawlResults
       gs.GraphicSteps.Clear()
 
       If graphicStep Is Nothing Then
-        For Each matchDays As MatchDay In _otherMatchDays
+        For Each matchDays As MatchDay In Me.OtherMatchDays
           gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(matchDays.MatchDayID, matchDays.MatchDayName), True, True))
         Next
       End If
@@ -82,7 +71,7 @@ Public Class GraphicsCrawlResults
     Try
       Scene = InitDefaultScene()
 
-      Dim matchDay As MatchDay = _otherMatchDays.GetMatchDay(graphicStep.UID)
+      Dim matchDay As MatchDay = Me.OtherMatchDays.GetMatchDay(graphicStep.UID)
       Scene = PrepareMatchScores(changeStep, matchDay)
 
     Catch ex As Exception

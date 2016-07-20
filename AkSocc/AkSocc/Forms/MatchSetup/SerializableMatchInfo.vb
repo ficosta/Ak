@@ -101,7 +101,6 @@ Namespace SerializableMatchInfo
     ''' Add an item
     ''' </summary>
     ''' <param name="item">TeamImageInfo item</param>
-    ''' <returns>Match class</returns>
     Public Sub Add(item As TeamImageInfo)
       Me.List.Add(item)
     End Sub

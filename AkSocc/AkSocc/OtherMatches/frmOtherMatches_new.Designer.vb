@@ -27,8 +27,8 @@ Partial Class frmMatchDay_new
     Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New MetroFramework.Controls.MetroButton()
-    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.OK_Button = New Button()
+    Me.Cancel_Button = New Button()
     Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
     Me.MetroGridMatchDay = New MetroFramework.Controls.MetroGrid()
     Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -81,7 +81,7 @@ Partial Class frmMatchDay_new
     Me.OK_Button.Size = New System.Drawing.Size(67, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
-    Me.OK_Button.UseSelectable = True
+    Me.OK_Button.FlatStyle = FlatStyle.Flat
     '
     'Cancel_Button
     '
@@ -92,7 +92,7 @@ Partial Class frmMatchDay_new
     Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
-    Me.Cancel_Button.UseSelectable = True
+    Me.Cancel_Button.FlatStyle = FlatStyle.Flat
     '
     'SplitContainer1
     '
@@ -350,8 +350,8 @@ Partial Class frmMatchDay_new
   End Sub
 
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
-  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents OK_Button As Button
+  Friend WithEvents Cancel_Button As Button
   Friend WithEvents SplitContainer1 As SplitContainer
   Friend WithEvents MetroGridMatchDay As MetroFramework.Controls.MetroGrid
   Friend WithEvents Column1 As DataGridViewTextBoxColumn

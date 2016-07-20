@@ -23,8 +23,8 @@ Partial Class FormOvewriteClock
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New MetroFramework.Controls.MetroButton()
-    Me.Cancel_Button = New MetroFramework.Controls.MetroButton()
+    Me.OK_Button = New Button()
+    Me.Cancel_Button = New Button()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.NumericUpDownSeconds = New System.Windows.Forms.NumericUpDown()
     Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
@@ -61,7 +61,7 @@ Partial Class FormOvewriteClock
     Me.OK_Button.Size = New System.Drawing.Size(67, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
-    Me.OK_Button.UseSelectable = True
+    Me.OK_Button.FlatStyle = FlatStyle.Flat
     '
     'Cancel_Button
     '
@@ -72,7 +72,7 @@ Partial Class FormOvewriteClock
     Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
-    Me.Cancel_Button.UseSelectable = True
+    Me.Cancel_Button.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanel2
     '
@@ -159,8 +159,8 @@ Partial Class FormOvewriteClock
   End Sub
 
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-  Friend WithEvents OK_Button As MetroFramework.Controls.MetroButton
-  Friend WithEvents Cancel_Button As MetroFramework.Controls.MetroButton
+  Friend WithEvents OK_Button As Button
+  Friend WithEvents Cancel_Button As Button
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
   Friend WithEvents NumericUpDownSeconds As NumericUpDown
   Friend WithEvents NumericUpDownMinutes As NumericUpDown
