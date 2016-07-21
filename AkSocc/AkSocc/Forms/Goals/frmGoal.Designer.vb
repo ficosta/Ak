@@ -35,8 +35,8 @@ Partial Class frmGoal
     Me.MetroTile3 = New MetroFramework.Controls.MetroTile()
     Me.MetroComboBoxPlayer = New System.Windows.Forms.ComboBox()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New Button()
-    Me.Cancel_Button = New Button()
+    Me.OK_Button = New System.Windows.Forms.Button()
+    Me.Cancel_Button = New System.Windows.Forms.Button()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TableLayoutPanel3.SuspendLayout()
     Me.TableLayoutPanel4.SuspendLayout()
@@ -55,6 +55,7 @@ Partial Class frmGoal
     Me.MetroRadioButtonNormal.Size = New System.Drawing.Size(67, 25)
     Me.MetroRadioButtonNormal.TabIndex = 0
     Me.MetroRadioButtonNormal.Text = "Goal"
+    Me.MetroRadioButtonNormal.UseSelectable = True
     '
     'MetroRadioButtonOwnGoal
     '
@@ -66,6 +67,7 @@ Partial Class frmGoal
     Me.MetroRadioButtonOwnGoal.Size = New System.Drawing.Size(109, 25)
     Me.MetroRadioButtonOwnGoal.TabIndex = 1
     Me.MetroRadioButtonOwnGoal.Text = "Own goal"
+    Me.MetroRadioButtonOwnGoal.UseSelectable = True
     '
     'MetroRadioButtonPenalty
     '
@@ -77,6 +79,7 @@ Partial Class frmGoal
     Me.MetroRadioButtonPenalty.Size = New System.Drawing.Size(92, 25)
     Me.MetroRadioButtonPenalty.TabIndex = 2
     Me.MetroRadioButtonPenalty.Text = "Penalty"
+    Me.MetroRadioButtonPenalty.UseSelectable = True
     '
     'TableLayoutPanel1
     '
@@ -166,6 +169,7 @@ Partial Class frmGoal
     Me.MetroTile1.Size = New System.Drawing.Size(114, 24)
     Me.MetroTile1.TabIndex = 3
     Me.MetroTile1.Text = "Type of goal"
+    Me.MetroTile1.UseSelectable = True
     '
     'MetroTile2
     '
@@ -176,6 +180,7 @@ Partial Class frmGoal
     Me.MetroTile2.Size = New System.Drawing.Size(375, 24)
     Me.MetroTile2.TabIndex = 4
     Me.MetroTile2.Text = "Scorer"
+    Me.MetroTile2.UseSelectable = True
     '
     'MetroTile3
     '
@@ -186,17 +191,18 @@ Partial Class frmGoal
     Me.MetroTile3.Size = New System.Drawing.Size(114, 24)
     Me.MetroTile3.TabIndex = 5
     Me.MetroTile3.Text = "Time"
+    Me.MetroTile3.UseSelectable = True
     '
     'MetroComboBoxPlayer
     '
     Me.MetroComboBoxPlayer.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroComboBoxPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.MetroComboBoxPlayer.FormattingEnabled = True
-    Me.MetroComboBoxPlayer.ItemHeight = 23
+    Me.MetroComboBoxPlayer.ItemHeight = 13
     Me.MetroComboBoxPlayer.Location = New System.Drawing.Point(123, 33)
     Me.MetroComboBoxPlayer.Name = "MetroComboBoxPlayer"
-    Me.MetroComboBoxPlayer.Size = New System.Drawing.Size(375, 29)
+    Me.MetroComboBoxPlayer.Size = New System.Drawing.Size(375, 21)
     Me.MetroComboBoxPlayer.TabIndex = 6
-    Me.MetroComboBoxPlayer.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanel2
     '
@@ -216,23 +222,23 @@ Partial Class frmGoal
     'OK_Button
     '
     Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
+    Me.OK_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.OK_Button.Location = New System.Drawing.Point(3, 3)
     Me.OK_Button.Name = "OK_Button"
     Me.OK_Button.Size = New System.Drawing.Size(67, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
-    Me.OK_Button.FlatStyle = FlatStyle.Flat
     '
     'Cancel_Button
     '
     Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
     Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
+    Me.Cancel_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.Cancel_Button.Location = New System.Drawing.Point(76, 3)
     Me.Cancel_Button.Name = "Cancel_Button"
     Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
-    Me.Cancel_Button.FlatStyle = FlatStyle.Flat
     '
     'frmGoal
     '
