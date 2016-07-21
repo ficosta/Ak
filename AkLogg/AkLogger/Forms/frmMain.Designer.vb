@@ -6130,13 +6130,13 @@ Partial Class frmMain
     Me.txtOPTADBConnection.Size = New System.Drawing.Size(698, 24)
     Me.txtOPTADBConnection.TabIndex = 7
     '
-    'MainForm
+    'frmMain
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.ClientSize = New System.Drawing.Size(1244, 715)
     Me.Controls.Add(Me.tbcMain)
-    Me.Name = "MainForm"
+    Me.Name = "frmMain"
     Me.Text = "frmMainForm"
     Me.tbcMain.ResumeLayout(False)
     Me.tabGame.ResumeLayout(False)

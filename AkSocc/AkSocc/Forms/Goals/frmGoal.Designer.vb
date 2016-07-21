@@ -55,7 +55,6 @@ Partial Class frmGoal
     Me.MetroRadioButtonNormal.Size = New System.Drawing.Size(67, 25)
     Me.MetroRadioButtonNormal.TabIndex = 0
     Me.MetroRadioButtonNormal.Text = "Goal"
-    Me.MetroRadioButtonNormal.FlatStyle = FlatStyle.Flat
     '
     'MetroRadioButtonOwnGoal
     '
@@ -67,7 +66,6 @@ Partial Class frmGoal
     Me.MetroRadioButtonOwnGoal.Size = New System.Drawing.Size(109, 25)
     Me.MetroRadioButtonOwnGoal.TabIndex = 1
     Me.MetroRadioButtonOwnGoal.Text = "Own goal"
-    Me.MetroRadioButtonOwnGoal.FlatStyle = FlatStyle.Flat
     '
     'MetroRadioButtonPenalty
     '
@@ -79,7 +77,6 @@ Partial Class frmGoal
     Me.MetroRadioButtonPenalty.Size = New System.Drawing.Size(92, 25)
     Me.MetroRadioButtonPenalty.TabIndex = 2
     Me.MetroRadioButtonPenalty.Text = "Penalty"
-    Me.MetroRadioButtonPenalty.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanel1
     '
@@ -169,7 +166,6 @@ Partial Class frmGoal
     Me.MetroTile1.Size = New System.Drawing.Size(114, 24)
     Me.MetroTile1.TabIndex = 3
     Me.MetroTile1.Text = "Type of goal"
-    Me.MetroTile1.FlatStyle = FlatStyle.Flat
     '
     'MetroTile2
     '
@@ -180,7 +176,6 @@ Partial Class frmGoal
     Me.MetroTile2.Size = New System.Drawing.Size(375, 24)
     Me.MetroTile2.TabIndex = 4
     Me.MetroTile2.Text = "Scorer"
-    Me.MetroTile2.FlatStyle = FlatStyle.Flat
     '
     'MetroTile3
     '
@@ -191,7 +186,6 @@ Partial Class frmGoal
     Me.MetroTile3.Size = New System.Drawing.Size(114, 24)
     Me.MetroTile3.TabIndex = 5
     Me.MetroTile3.Text = "Time"
-    Me.MetroTile3.FlatStyle = FlatStyle.Flat
     '
     'MetroComboBoxPlayer
     '

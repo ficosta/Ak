@@ -61,13 +61,13 @@ Partial Class FormMatchSetup
     Me.label198 = New System.Windows.Forms.Label()
     Me.imgHomePlayerJersey = New System.Windows.Forms.PictureBox()
     Me.TabPageHome = New System.Windows.Forms.TabPage()
-    Me.UcTeamMatchSetupHome = New AkSocc.UCTeamMatchSetup()
     Me.TabPageAway = New System.Windows.Forms.TabPage()
-    Me.UcTeamMatchSetupAway = New AkSocc.UCTeamMatchSetup()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.OK_Button = New System.Windows.Forms.Button()
     Me.Cancel_Button = New System.Windows.Forms.Button()
     Me.ofdSelectFile = New System.Windows.Forms.OpenFileDialog()
+    Me.UcTeamMatchSetupHome = New AkSocc.UCTeamMatchSetup()
+    Me.UcTeamMatchSetupAway = New AkSocc.UCTeamMatchSetup()
     Me.TableLayoutPanelGlobal.SuspendLayout()
     Me.MetroTabControl1.SuspendLayout()
     Me.TabPageMatchSetup.SuspendLayout()
@@ -627,18 +627,6 @@ Partial Class FormMatchSetup
     Me.TabPageHome.TabIndex = 0
     Me.TabPageHome.Text = "Home team"
     '
-    'UcTeamMatchSetupHome
-    '
-    Me.UcTeamMatchSetupHome.Color = System.Drawing.Color.AliceBlue
-    Me.UcTeamMatchSetupHome.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcTeamMatchSetupHome.IsLocalTeam = True
-    Me.UcTeamMatchSetupHome.Location = New System.Drawing.Point(0, 0)
-    Me.UcTeamMatchSetupHome.Name = "UcTeamMatchSetupHome"
-    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(1032, 462)
-    Me.UcTeamMatchSetupHome.TabIndex = 0
-    Me.UcTeamMatchSetupHome.Tactic = Nothing
-    Me.UcTeamMatchSetupHome.Team = Nothing
-    '
     'TabPageAway
     '
     Me.TabPageAway.Controls.Add(Me.UcTeamMatchSetupAway)
@@ -647,18 +635,6 @@ Partial Class FormMatchSetup
     Me.TabPageAway.Size = New System.Drawing.Size(1032, 462)
     Me.TabPageAway.TabIndex = 1
     Me.TabPageAway.Text = "Away team"
-    '
-    'UcTeamMatchSetupAway
-    '
-    Me.UcTeamMatchSetupAway.Color = System.Drawing.Color.AliceBlue
-    Me.UcTeamMatchSetupAway.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcTeamMatchSetupAway.IsLocalTeam = True
-    Me.UcTeamMatchSetupAway.Location = New System.Drawing.Point(0, 0)
-    Me.UcTeamMatchSetupAway.Name = "UcTeamMatchSetupAway"
-    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(1032, 462)
-    Me.UcTeamMatchSetupAway.TabIndex = 0
-    Me.UcTeamMatchSetupAway.Tactic = Nothing
-    Me.UcTeamMatchSetupAway.Team = Nothing
     '
     'TableLayoutPanel1
     '
@@ -699,6 +675,30 @@ Partial Class FormMatchSetup
     'ofdSelectFile
     '
     Me.ofdSelectFile.FileName = "OpenFileDialog1"
+    '
+    'UcTeamMatchSetupHome
+    '
+    Me.UcTeamMatchSetupHome.Color = System.Drawing.Color.AliceBlue
+    Me.UcTeamMatchSetupHome.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcTeamMatchSetupHome.IsLocalTeam = True
+    Me.UcTeamMatchSetupHome.Location = New System.Drawing.Point(0, 0)
+    Me.UcTeamMatchSetupHome.Name = "UcTeamMatchSetupHome"
+    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(1032, 462)
+    Me.UcTeamMatchSetupHome.TabIndex = 0
+    Me.UcTeamMatchSetupHome.Tactic = Nothing
+    Me.UcTeamMatchSetupHome.Team = Nothing
+    '
+    'UcTeamMatchSetupAway
+    '
+    Me.UcTeamMatchSetupAway.Color = System.Drawing.Color.AliceBlue
+    Me.UcTeamMatchSetupAway.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcTeamMatchSetupAway.IsLocalTeam = True
+    Me.UcTeamMatchSetupAway.Location = New System.Drawing.Point(0, 0)
+    Me.UcTeamMatchSetupAway.Name = "UcTeamMatchSetupAway"
+    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(1032, 462)
+    Me.UcTeamMatchSetupAway.TabIndex = 0
+    Me.UcTeamMatchSetupAway.Tactic = Nothing
+    Me.UcTeamMatchSetupAway.Team = Nothing
     '
     'FormMatchSetup
     '

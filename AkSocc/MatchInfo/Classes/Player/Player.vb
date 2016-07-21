@@ -163,7 +163,7 @@
     Formation_X = 0
     Formation_Y = 0
 
-    If ID <> -1 Then Me.GetFromDB()
+    If ID <> -1 And Match_ID <> -1 Then Me.GetFromDB()
   End Sub
 
   Public Function CreateCommand() As OleDbCommand

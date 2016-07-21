@@ -91,8 +91,8 @@ Partial Public Class frmMain
       AwayPlayers = New Players()
 
 
-      If AppSettings.Instance.ClockStart > 0 Then
-        If MessageBox.Show("The last match the app was working was MatchID:" & AppSettings.Instance.ClockStart.ToString() + vbLf & "Do you want to reload it?", Me.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = System.Windows.Forms.DialogResult.Yes Then
+      If AppSettings.Instance.LastMatchId > 0 Then
+        If MessageBox.Show("The last match the app was working was MatchID:" & AppSettings.Instance.LastMatchId.ToString() & vbLf & "Do you want to reload it?", Me.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = System.Windows.Forms.DialogResult.Yes Then
           'We should get the Match ID!
           GlobalMatch.match_id = 1
 
@@ -160,8 +160,8 @@ Partial Public Class frmMain
             txtPossessionAwayAttk.Text = PossessionString(9)
           End If
 
-          If AppSettings.Instance.ClockStart > 0 Then
-            Dim ClockInit As New DateTime(AppSettings.Instance.ClockStart)
+          If AppSettings.Instance.LastMatchId > 0 Then
+            Dim ClockInit As New DateTime(AppSettings.Instance.LastMatchId)
             Dim ClockNow As TimeSpan = DateTime.Now.Subtract(ClockInit)
             If ClockNow.Hours = 0 Then
               txtClock.Text = ClockNow.Minutes.ToString() & ":" & Utils.TwoChars(ClockNow.Seconds)
@@ -195,7 +195,7 @@ Partial Public Class frmMain
       txtClock.Text = "00:00"
 
       MainSec = 0
-      AppSettings.Instance.ClockStart = 0
+      AppSettings.Instance.LastMatchId = 0
       AppSettings.Instance.Save()
 
       OutOfPlay = True
@@ -648,7 +648,7 @@ Partial Public Class frmMain
     End If
 
     If EventPlayer <> "" Then
-      strText += Convert.ToString(" player ") & EventPlayer
+      strText &= Convert.ToString(" player ") & EventPlayer
     End If
     item.SubItems.Add(strText)
     item.ImageKey = [Event]
@@ -870,13 +870,13 @@ Partial Public Class frmMain
       myPlayer = DirectCast(DirectCast(grpAwayPlayers.Controls.Find("AwayPlayer" & Line, True)(0), Label).Tag, Player)
       HomeAway = "Away"
     End If
-    DirectCast(grpData.Controls.Find((Convert.ToString("lblSaves") & HomeAway) + Line, True)(0), Label).Text = myPlayer.MatchStats.Saves.ToString()
-    DirectCast(grpData.Controls.Find((Convert.ToString("lblShots") & HomeAway) + Line, True)(0), Label).Text = myPlayer.MatchStats.Shots.ToString()
-    DirectCast(grpData.Controls.Find((Convert.ToString("lblShtGl") & HomeAway) + Line, True)(0), Label).Text = myPlayer.MatchStats.ShotsOn.ToString()
-    DirectCast(grpData.Controls.Find((Convert.ToString("lblAssis") & HomeAway) + Line, True)(0), Label).Text = myPlayer.MatchStats.Assis.ToString()
-    DirectCast(grpData.Controls.Find((Convert.ToString("lblFouls") & HomeAway) + Line, True)(0), Label).Text = myPlayer.MatchStats.Fouls.ToString()
-    DirectCast(grpData.Controls.Find((Convert.ToString("lblYCard") & HomeAway) + Line, True)(0), Label).Text = myPlayer.YellowCards.ToString()
-    DirectCast(grpData.Controls.Find((Convert.ToString("lblRCard") & HomeAway) + Line, True)(0), Label).Text = myPlayer.RedCards.ToString()
+    DirectCast(grpData.Controls.Find((Convert.ToString("lblSaves") & HomeAway) & Line, True)(0), Label).Text = myPlayer.MatchStats.Saves.ToString()
+    DirectCast(grpData.Controls.Find((Convert.ToString("lblShots") & HomeAway) & Line, True)(0), Label).Text = myPlayer.MatchStats.Shots.ToString()
+    DirectCast(grpData.Controls.Find((Convert.ToString("lblShtGl") & HomeAway) & Line, True)(0), Label).Text = myPlayer.MatchStats.ShotsOn.ToString()
+    DirectCast(grpData.Controls.Find((Convert.ToString("lblAssis") & HomeAway) & Line, True)(0), Label).Text = myPlayer.MatchStats.Assis.ToString()
+    DirectCast(grpData.Controls.Find((Convert.ToString("lblFouls") & HomeAway) & Line, True)(0), Label).Text = myPlayer.MatchStats.Fouls.ToString()
+    DirectCast(grpData.Controls.Find((Convert.ToString("lblYCard") & HomeAway) & Line, True)(0), Label).Text = myPlayer.YellowCards.ToString()
+    DirectCast(grpData.Controls.Find((Convert.ToString("lblRCard") & HomeAway) & Line, True)(0), Label).Text = myPlayer.RedCards.ToString()
   End Sub
 
   Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs)
@@ -891,6 +891,9 @@ Partial Public Class frmMain
   Public Sub StartListening()
     ' Data buffer for incoming data.
     Dim bytes As Byte() = New [Byte](1023) {}
+
+    AppSettings.Instance.LoggerIP = "127.0.0.1"
+    AppSettings.Instance.LoggerPort = 2525
 
     ' Establish the local endpoint for the socket.
     Dim IP As String = AppSettings.Instance.LoggerIP
@@ -917,7 +920,7 @@ Partial Public Class frmMain
       End While
     Catch e As Exception
       If Not bClosing Then
-        MessageBox.Show("ERROR creating the socket!. Please, check the local IP:" & AppSettings.Instance.LoggerIP & ". PORT:" & AppSettings.Instance.LoggerPort.ToString() + vbLf & vbLf & vbLf + e.Message, Tittle, MessageBoxButtons.OK, MessageBoxIcon.[Error])
+        MessageBox.Show("ERROR creating the socket!. Please, check the local IP:" & AppSettings.Instance.LoggerIP & ". PORT:" & AppSettings.Instance.LoggerPort.ToString() & vbLf & vbLf & vbLf & e.Message, Tittle, MessageBoxButtons.OK, MessageBoxIcon.[Error])
       End If
     End Try
   End Sub
@@ -1001,27 +1004,27 @@ Partial Public Class frmMain
     ElseIf data.StartsWith("SMALSTATS") Then
       Dim smallstats As String
       smallstats = HomeTeam.MatchStats.PossessionMatch.ToString() & "|"
-      smallstats += AwayTeam.MatchStats.PossessionMatch.ToString() & "|"
+      smallstats &= AwayTeam.MatchStats.PossessionMatch.ToString() & "|"
 
-      smallstats += HomeTeam.MatchStats.Fouls.ToString() & "|"
-      smallstats += AwayTeam.MatchStats.Fouls.ToString() & "|"
-      smallstats += HomeTeam.MatchStats.ShotsOn.ToString() & "|"
-      smallstats += AwayTeam.MatchStats.ShotsOn.ToString() & "|"
-      smallstats += HomeTeam.MatchStats.Corners.ToString() & "|"
-      smallstats += AwayTeam.MatchStats.Corners.ToString() & "|"
-      smallstats += HomeTeam.MatchStats.Offsides.ToString() & "|"
-      smallstats += AwayTeam.MatchStats.Offsides.ToString() & "|"
-      smallstats += HomeTeam.MatchStats.WoodHits.ToString() & "|"
-      smallstats += AwayTeam.MatchStats.WoodHits.ToString() & "|"
-      smallstats += HomeTeam.MatchStats.Shots.ToString() & "|"
-      smallstats += AwayTeam.MatchStats.Shots.ToString() & "|"
-      smallstats += HomeTeam.MatchStats.Assis.ToString() & "|"
-      smallstats += AwayTeam.MatchStats.Assis.ToString()
+      smallstats &= HomeTeam.MatchStats.Fouls.ToString() & "|"
+      smallstats &= AwayTeam.MatchStats.Fouls.ToString() & "|"
+      smallstats &= HomeTeam.MatchStats.ShotsOn.ToString() & "|"
+      smallstats &= AwayTeam.MatchStats.ShotsOn.ToString() & "|"
+      smallstats &= HomeTeam.MatchStats.Corners.ToString() & "|"
+      smallstats &= AwayTeam.MatchStats.Corners.ToString() & "|"
+      smallstats &= HomeTeam.MatchStats.Offsides.ToString() & "|"
+      smallstats &= AwayTeam.MatchStats.Offsides.ToString() & "|"
+      smallstats &= HomeTeam.MatchStats.WoodHits.ToString() & "|"
+      smallstats &= AwayTeam.MatchStats.WoodHits.ToString() & "|"
+      smallstats &= HomeTeam.MatchStats.Shots.ToString() & "|"
+      smallstats &= AwayTeam.MatchStats.Shots.ToString() & "|"
+      smallstats &= HomeTeam.MatchStats.Assis.ToString() & "|"
+      smallstats &= AwayTeam.MatchStats.Assis.ToString()
       If Not String.IsNullOrEmpty(YCard) Then
-        smallstats += YCard
+        smallstats &= YCard
       End If
       If Not String.IsNullOrEmpty(RCard) Then
-        smallstats += RCard
+        smallstats &= RCard
       End If
 
       YCard = String.Empty
@@ -1134,6 +1137,10 @@ Partial Public Class frmMain
     handler.BeginSend(byteData, 0, byteData.Length, 0, New AsyncCallback(AddressOf SendCallback), handler)
 
     ' lblSocket.Text = "SEND: " & data;
+  End Sub
+
+  Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
   End Sub
 
   Private Sub SendCallback(ar As IAsyncResult)

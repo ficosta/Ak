@@ -140,7 +140,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\MatchInfo\MatchInfo.vbproj">
+    <ProjectReference Include="..\..\AkSocc\MatchInfo\MatchInfo.vbproj">
       <Project>{358b286c-8a11-4853-8ea0-415bcc4002cd}</Project>
       <Name>MatchInfo</Name>
     </ProjectReference>

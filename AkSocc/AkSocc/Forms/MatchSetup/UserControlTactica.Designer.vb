@@ -436,13 +436,13 @@ Partial Class UserControlTactica
     'MetroComboBoxFormation
     '
     Me.MetroComboBoxFormation.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroComboBoxFormation.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.MetroComboBoxFormation.FormattingEnabled = True
-    Me.MetroComboBoxFormation.ItemHeight = 23
+    Me.MetroComboBoxFormation.ItemHeight = 13
     Me.MetroComboBoxFormation.Location = New System.Drawing.Point(528, 393)
     Me.MetroComboBoxFormation.Name = "MetroComboBoxFormation"
-    Me.MetroComboBoxFormation.Size = New System.Drawing.Size(234, 29)
+    Me.MetroComboBoxFormation.Size = New System.Drawing.Size(234, 21)
     Me.MetroComboBoxFormation.TabIndex = 50
-    Me.MetroComboBoxFormation.FlatStyle = FlatStyle.Flat
     '
     'UserControlTactica
     '
