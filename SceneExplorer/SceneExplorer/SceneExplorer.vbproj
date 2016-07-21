@@ -4,30 +4,34 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{358B286C-8A11-4853-8EA0-415BCC4002CD}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>MatchInfo</RootNamespace>
-    <AssemblyName>MatchInfo</AssemblyName>
+    <ProjectGuid>{81B79808-EA61-42BA-B42A-3FD6E796CFD9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>SceneExplorer.My.MyApplication</StartupObject>
+    <RootNamespace>SceneExplorer</RootNamespace>
+    <AssemblyName>SceneExplorer</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Windows</MyType>
+    <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>MatchInfo.xml</DocumentationFile>
+    <DocumentationFile>SceneExplorer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>MatchInfo.xml</DocumentationFile>
+    <DocumentationFile>SceneExplorer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -43,11 +47,14 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="adodb, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <EmbedInteropTypes>False</EmbedInteropTypes>
+    <Reference Include="MetroFramework">
+      <HintPath>..\..\AkSocc\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,44 +67,28 @@
     <Import Include="System.Collections" />
     <Import Include="System.Collections.Generic" />
     <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
     <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
     <Import Include="System.Linq" />
     <Import Include="System.Xml.Linq" />
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Additional data\BugsDotText.vb" />
-    <Compile Include="Classes\Additional data\TeamStaff.vb" />
-    <Compile Include="Classes\ClassDatabase\DataBase.vb" />
-    <Compile Include="Classes\Competition\Competition.vb" />
-    <Compile Include="Classes\Competition\Competitions.vb" />
-    <Compile Include="Classes\Additional data\FreeText.vb" />
-    <Compile Include="Classes\Stats\AsyncStatWriter.vb" />
-    <Compile Include="Classes\Translation\EnglishToArabicTranslation.vb" />
-    <Compile Include="Classes\Translation\EnglishToArabicTranslator.vb" />
-    <Compile Include="Classes\Stats\GraphicSubject.vb" />
-    <Compile Include="Classes\Match\Match.vb" />
-    <Compile Include="Classes\Match\Matches.vb" />
-    <Compile Include="Classes\MatchGoals\MatchGoal.vb" />
-    <Compile Include="Classes\MatchGoals\MatchGoals.vb" />
-    <Compile Include="Classes\Stats\MatchStats.vb" />
-    <Compile Include="Classes\Additional data\NamesDotText.vb" />
-    <Compile Include="Classes\Period\Period.vb" />
-    <Compile Include="Classes\Period\Periodes.vb" />
-    <Compile Include="Classes\Player\Player.vb" />
-    <Compile Include="Classes\Player\Players.vb" />
-    <Compile Include="Classes\Officials\Official.vb" />
-    <Compile Include="Classes\Officials\Officials.vb" />
-    <Compile Include="Classes\Stats\Stat.vb" />
-    <Compile Include="Classes\Stats\StatSubject.vb" />
-    <Compile Include="Classes\Stats\SubjectStats.vb" />
-    <Compile Include="Classes\Substitution\Substitution.vb" />
-    <Compile Include="Classes\Substitution\Substitutions.vb" />
-    <Compile Include="Classes\Tactic.vb" />
-    <Compile Include="Classes\Team\Team.vb" />
-    <Compile Include="Classes\Team\Teams.vb" />
-    <Compile Include="Config.vb" />
-    <Compile Include="MFunctions.vb" />
+    <Compile Include="Forms\DialogConfig.Designer.vb">
+      <DependentUpon>DialogConfig.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogConfig.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MMain.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -115,6 +106,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\DialogConfig.resx">
+      <DependentUpon>DialogConfig.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -132,8 +129,14 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\AkSocc\VizCommands\VizCommands.vbproj">
+      <Project>{0bb903ea-a74a-44c4-81e5-0281ad804781}</Project>
+      <Name>VizCommands</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

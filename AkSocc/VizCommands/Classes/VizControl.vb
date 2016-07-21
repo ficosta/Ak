@@ -219,6 +219,7 @@ Public Class VizControl
   Public Event DataArrival(ByVal nIndex As Integer, ByVal sData As String, ByVal bError As Boolean)
 
   Public Event DataArrivalSceneAnimations(ByVal ListAnimations As List(Of String))
+  Public Event DataArrivalSceneControlObject(ByVal CControlObjecTree As ControlObjectTree)
   Public Event DataArrivalNodePosition(ByVal Node As String, ByVal X As Single, ByVal Y As Single, ByVal Z As Single)
   Public Event DataArrivalNodeRotation(ByVal Node As String, ByVal X As Single, ByVal Y As Single, ByVal Z As Single)
   Public Event DataArrivalNodeScaling(ByVal Node As String, ByVal X As Single, ByVal Y As Single, ByVal Z As Single)
@@ -1003,6 +1004,33 @@ Public Class VizControl
     Return 0
   End Function
 
+  Public Function SetControlObjectGeometryValue(ByVal siNodePath As String, ByVal siField As String, ByVal siValue As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
+    Dim sRenderer As String = ""
+    Try
+      Dim CCommand As New Command(eVizrtCommands.SetControlObjectValue, siNodePath, eiLayer)
+      Select Case eiLayer
+        Case eRendererLayers.BackLayer
+          sRenderer = "RENDERER*BACK_LAYER"
+        Case eRendererLayers.FrontLayer
+          sRenderer = "RENDERER*FRONT_LAYER"
+        Case eRendererLayers.MidleLayer
+          sRenderer = "RENDERER"
+      End Select
+      CCommand.Data = siField
+      If siValue <> "" Then
+        CCommand.SentData = sRenderer & "*TREE*" & CCommand.Source & "*FUNCTION*ControlObject*in SET ON " & CCommand.Data & " SET GEOM*" & siValue
+      Else
+        CCommand.SentData = sRenderer & "*TREE*" & CCommand.Source & "*FUNCTION*ControlObject*in SET ON " & CCommand.Data & " SET  "
+      End If
+
+      LlistaComandes.Add(CCommand)
+      CCommand.ID = SendTCPCommand(CCommand)
+    Catch ex As Exception
+      'AddError(ex.Source, ex.ToString)
+    End Try
+    Return 0
+  End Function
+
   Public Function GetControlObjectFields(ByVal siNodePath As String, Optional ByVal eiLayer As eRendererLayers = eRendererLayers.MidleLayer) As Integer
     Dim sRenderer As String = ""
     Try
@@ -1594,6 +1622,13 @@ Public Class VizControl
 
     Catch ex As Exception
       'AddError(Me.ToString, "SendSocketCommand", ex.ToString)
+      Select Case ex.HResult
+        Case -2147467259
+          'connection forcibly closed
+          CiSocket.Close()
+
+
+      End Select
       Return 0
     End Try
   End Function
@@ -1739,6 +1774,10 @@ Public Class VizControl
                 Llista.Add(sText)
               Next
               RaiseEvent DataArrivalSceneAnimations(Llista)
+            Case eVizrtCommands.GetControlObjectFields
+              Dim CControlObjectTree As ControlObjectTree
+              CControlObjectTree = New ControlObjectTree(CCommand.ReceivedData)
+              RaiseEvent DataArrivalSceneControlObject(CControlObjectTree)
             Case eVizrtCommands.GetControlobjectPrepare
             Case eVizrtCommands.GetActiveScene
               'Ja demanem quin caraju d'escena és aquesta!

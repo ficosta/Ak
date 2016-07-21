@@ -60,26 +60,32 @@ Public Class FormLoadScenes
   End Sub
 
   Private Sub _vizControl_CommandResponse(CCommand As Command) Handles _vizControl.CommandResponse
-    Select Case CCommand.VizrtCommand
-      Case eVizrtCommands.ActivateScene
-        If CCommand.BoolError Then
-          Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " not activated " & CCommand.ReceivedData & vbCrLf & MetroLabelScene.Text
-          Debug.Print("error activating scene " & Me.SceneList(_sceneIndex))
-        Else
-          Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " activated" & vbCrLf & MetroLabelScene.Text
-          Debug.Print("activated scene " & Me.SceneList(_sceneIndex))
-        End If
-        LoadNextScene()
-      Case eVizrtCommands.LoadScene
-        If CCommand.BoolError Then
-          Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " not loaded " & CCommand.ReceivedData & vbCrLf & MetroLabelScene.Text
-          Debug.Print("error loading scene " & Me.SceneList(_sceneIndex))
-        Else
-          Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " loaded" & vbCrLf & MetroLabelScene.Text
-          Debug.Print("loaded scene " & Me.SceneList(_sceneIndex))
-        End If
-        ActivateScene()
-    End Select
+    Try
+      If Me.SceneList.Count <= _sceneIndex Then Exit Sub
+      Select Case CCommand.VizrtCommand
+        Case eVizrtCommands.ActivateScene
+          If CCommand.BoolError Then
+            Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " not activated " & CCommand.ReceivedData & vbCrLf & MetroLabelScene.Text
+            Debug.Print("error activating scene " & Me.SceneList(_sceneIndex))
+          Else
+            Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " activated" & vbCrLf & MetroLabelScene.Text
+            Debug.Print("activated scene " & Me.SceneList(_sceneIndex))
+          End If
+          LoadNextScene()
+        Case eVizrtCommands.LoadScene
+          If CCommand.BoolError Then
+            Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " not loaded " & CCommand.ReceivedData & vbCrLf & MetroLabelScene.Text
+            Debug.Print("error loading scene " & Me.SceneList(_sceneIndex))
+          Else
+            Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " loaded" & vbCrLf & MetroLabelScene.Text
+            Debug.Print("loaded scene " & Me.SceneList(_sceneIndex))
+          End If
+          ActivateScene()
+      End Select
+    Catch ex As Exception
+
+    End Try
+
   End Sub
 
   Private Sub FormLoadScenes_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing

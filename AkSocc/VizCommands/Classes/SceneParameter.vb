@@ -2,6 +2,7 @@
   Text = 0
   Image = 1
   Numeric = 2
+  Geometry = 3
 End Enum
 
 <Serializable()> Public Class SceneParameter

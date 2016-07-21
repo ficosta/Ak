@@ -32,9 +32,9 @@ Public Class FormMatchSetup
     Try
       Me.Cursor = Cursors.WaitCursor
       Me.DialogResult = System.Windows.Forms.DialogResult.OK
-      Me.Match.Official1 = Me.MetroComboBoxReferee1.SelectedItem
-      Me.Match.Official2 = Me.MetroComboBoxReferee2.SelectedItem
-      Me.Match.Official3 = Me.MetroComboBoxReferee3.SelectedItem
+      Me.Match.Official1 = _officials.GetByName(Me.MetroComboBoxReferee1.Text)
+      Me.Match.Official2 = _officials.GetByName(Me.MetroComboBoxReferee2.Text)
+      Me.Match.Official3 = _officials.GetByName(Me.MetroComboBoxReferee3.Text)
       Config.Instance.AsyncDataWrites = True
       Me.UcTeamMatchSetupHome.Save()
       Me.UcTeamMatchSetupAway.Save()
@@ -109,12 +109,12 @@ Public Class FormMatchSetup
 
       _match.HomeTeam.TeamClockColour = TeamImageInfos.GetTeamColor(_match.HomeTeam.ID)
       If _match.HomeTeam.TeamClockColour <> "" Then
-        imgHomeClockColour.Image = Image.FromFile(_match.HomeTeam.TeamClockColour)
+        imgHomeClockColour.Image = Image.FromFile(System.IO.Path.Combine(GraphicVersions.Instance.SelectedGraphicVersion.PathColors, _match.HomeTeam.TeamClockColour))
         'grpHomePlayers.BackgroundImage = Image.FromFile(_match.HomeTeam.TeamClockColour)
       End If
       _match.AwayTeam.TeamClockColour = TeamImageInfos.GetTeamColor(_match.AwayTeam.ID)
       If _match.AwayTeam.TeamClockColour <> "" Then
-        imgAwayClockColour.Image = Image.FromFile(_match.AwayTeam.TeamClockColour)
+        imgAwayClockColour.Image = Image.FromFile(System.IO.Path.Combine(GraphicVersions.Instance.SelectedGraphicVersion.PathColors, _match.AwayTeam.TeamClockColour))
         'grpAwayPlayers.BackgroundImage = Image.FromFile(_match.AwayTeam.TeamClockColour)
       End If
       _match.HomeTeam.GoalKeeperJersey = TeamImageInfos.GetTeamJerseyGK(_match.HomeTeam.ID)
@@ -197,7 +197,7 @@ Public Class FormMatchSetup
       ' grpHomePlayers.BackgroundImage = Image.FromFile(ofdSelectFile.FileName)
       ' My.Settings.HomeColor = _match.HomeTeam.TeamClockColour
       'My.Settings.Save()
-      TeamImageInfos.SetTeamColor(_match.HomeTeam.TeamID, _match.HomeTeam.TeamClockColour)
+      TeamImageInfos.SetTeamColor(_match.HomeTeam.TeamID, System.IO.Path.GetFileNameWithoutExtension(_match.HomeTeam.TeamClockColour))
     End If
   End Sub
 

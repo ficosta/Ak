@@ -65,4 +65,21 @@ Public Class Officials
     End Try
     Return True
   End Function
+
+
+  Public Function GetByName(name As String) As Official
+    Dim output As Official = Nothing
+    Try
+      For Each Search As Official In List
+        If Search.ToString = name Then
+          output = Search
+          Exit For
+        End If
+      Next
+    Catch err As Exception
+      Throw err
+    End Try
+    Return (output)
+  End Function
+
 End Class

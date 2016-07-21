@@ -74,6 +74,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ControlObject.vb" />
     <Compile Include="Classes\Escena.vb" />
     <Compile Include="Classes\SceneDirector.vb" />
     <Compile Include="Classes\SceneDirectors.vb" />

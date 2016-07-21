@@ -18,6 +18,8 @@ Public Class SocketClient
   'Per fer la feina, un backgroundworker que s'encarregui de la comunicació
   Private WithEvents CPiBackgroundWorker As System.ComponentModel.BackgroundWorker
   Public ReceivedBytes() As Byte
+
+  Private _connected As Boolean = False
 #End Region
 
 #Region "Delegates/Events"
@@ -73,6 +75,7 @@ Public Class SocketClient
 
     Try
       CPiTCPSocket.Connect(endPoint)
+      _connected = True
       If IsConnected() = True Then
         RaiseEvent Connected(True)
         RaiseEvent ConnectedEx(True, CPiTCPSocket.RemoteEndPoint)
@@ -95,6 +98,7 @@ Public Class SocketClient
       End With
     Catch ex As Exception
       Throw New Exception("Error receiving data", ex)
+      _connected = False
       If IsConnected() = False Then
         RaiseEvent Connected(False)
         RaiseEvent ConnectedEx(False, CPiTCPSocket.RemoteEndPoint)
@@ -121,7 +125,7 @@ Public Class SocketClient
     If CPiTCPSocket Is Nothing Then
       Return False
     Else
-      Return True
+      Return _connected
     End If
     Exit Function
     'Dim result As Boolean = False
@@ -347,7 +351,11 @@ Public Class SocketClient
             Me.CPiBackgroundWorker.ReportProgress(0, CStr(args(0)))
           End If
         Catch ex As Exception
-
+          Select Case ex.HResult
+            Case 0
+            Case Else
+              _connected = False
+          End Select
         End Try
       End While
     Catch ex As Exception

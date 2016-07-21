@@ -207,8 +207,8 @@ Partial Class UCOtherMatch
     Me.MetroTabControlLineType.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.MetroTabControlLineType.Controls.Add(Me.TabPageBlank)
     Me.MetroTabControlLineType.Controls.Add(Me.TabPageMatch)
+    Me.MetroTabControlLineType.Controls.Add(Me.TabPageBlank)
     Me.MetroTabControlLineType.Controls.Add(Me.TabPageTitle)
     Me.MetroTabControlLineType.FontSize = MetroFramework.MetroTabControlSize.Small
     Me.MetroTabControlLineType.ItemSize = New System.Drawing.Size(54, 15)

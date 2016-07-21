@@ -234,6 +234,8 @@ Imports MatchInfo
 
     'Exit Sub
     Try
+      If Config.Instance.LocalConnectionString Is Nothing Then Exit Sub
+
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
 
@@ -426,6 +428,18 @@ Imports MatchInfo
 
     Return Date.Compare(Me.match_date, obj.match_date)
   End Function
+
+
+  Public Function GetPlayerById(ID As Integer) As Player
+    Dim res As Player = Nothing
+    Try
+      If res Is Nothing Then res = Me.HomeTeam.GetPlayerById(ID)
+      If res Is Nothing Then res = Me.AwayTeam.GetPlayerById(ID)
+    Catch ex As Exception
+    End Try
+    Return res
+  End Function
+
 
 #Region "Match goals"
   Public Sub GetMatchGoalsFromDB()

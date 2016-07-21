@@ -22,6 +22,9 @@ Public Class frmMain
 
   Private WithEvents _clockControl As ClockControl = ClockControl.Instance
 
+  Private WithEvents _asyncStatWriter As AsyncStatWriter = AsyncStatWriter.Instance
+  Private WithEvents _notifier As GlobalNotifier = GlobalNotifier.Instance
+
   Private _selectedPlayer As Player = Nothing
   Public ReadOnly Property SelectedPlayer As Player
     Get
@@ -58,6 +61,7 @@ Public Class frmMain
         ShowOptions(Me)
       End If
       Me.Cursor = Cursors.WaitCursor
+      InitializeKeyCapture()
       DesserializeObjectFromFile(AppSettings.Instance.OtherMatchesPath, _otherMatchDays)
       InitControls()
       SelectMatch()
@@ -576,6 +580,17 @@ Public Class frmMain
 
   Private Sub LoadAllScenes()
     Try
+      _scenes.Clear()
+      _scenes.Add("gfx_2way_box")
+      _scenes.Add("gfx_bugs")
+      _scenes.Add("gfx_Clock")
+      _scenes.Add("gfx_crawl")
+      _scenes.Add("gfx_Full_Frame")
+      _scenes.Add("gfx_leftframer")
+      _scenes.Add("gfx_Lower3rd")
+      _scenes.Add("gfx_penalties")
+      _scenes.Add("gfx_ScoreLine")
+
       'Add keys for graphics
       For Each myType As Type In GraphicGroup.GetMyAllSubclassesOf()
         Debug.Print(myType.Name)
@@ -1003,6 +1018,7 @@ Public Class frmMain
 
 
   Private Sub _keyCapture_Keycaptured() Handles _keyCapture.Keycaptured
+    Debug.Print("hey")
   End Sub
 
   Private Sub _keyCapture_KeyCombinationCaptured(CKeyCombination As KeyCombination) Handles _keyCapture.KeyCombinationCaptured
@@ -1030,6 +1046,32 @@ Public Class frmMain
       _vizControl.ActivateScene("", VizCommands.eRendererLayers.MidleLayer)
 
       _previewControl.ClearOutput()
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub _asyncStatWriter_DataUpdated(dataToUpdate As Integer, lastUpdatedData As AsyncStatWriter.StatToUpdate) Handles _asyncStatWriter.DataUpdated
+    If dataToUpdate > 0 Then
+      Me.ToolStripStatusLabelLastDataWritten.Text = "Pending data to write: " & dataToUpdate & "  last updated " & lastUpdatedData.subject.ToString & "   " & lastUpdatedData.stat.Name & " = " & lastUpdatedData.stat.Value
+    Else
+      Me.ToolStripStatusLabelLastDataWritten.Text = ""
+      Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.Black
+    End If
+  End Sub
+
+  Private Sub _notifier_NewMessage(msg As GlobalNotifier.tyMessage) Handles _notifier.NewMessage
+    Try
+      Me.ToolStripStatusLabelLastDataWritten.Text = msg.time.ToString & " " & msg.text
+
+      Select Case msg.type
+        Case GlobalNotifier.eMessageType.AppError
+          Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.DarkRed
+        Case GlobalNotifier.eMessageType.Info
+          Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.Black
+        Case GlobalNotifier.eMessageType.Warning
+          Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.DarkOrange
+      End Select
     Catch ex As Exception
 
     End Try

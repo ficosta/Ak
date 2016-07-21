@@ -66,10 +66,10 @@ Public Class GraphicsReporter
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Dim changeStep As Integer = 1
     Try
-      Scene = InitDefaultScene()
+      Me.Scene = InitDefaultScene()
 
 
-      Dim matchDay As NameDotText = _reporters.GetName(CInt(graphicStep.ChildGraphicStep.UID))
+      Dim matchDay As NameDotText = _reporters.GetName(CInt(graphicStep.UID))
       Scene = PrepareReporters(changeStep, matchDay)
 
     Catch ex As Exception
@@ -121,6 +121,7 @@ Public Class GraphicsReporter
         scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", VizEncoding(nameDotText.ArabicSubLineText))
         scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", VizEncoding(nameDotText.ArabicSubLineText))
         scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01 ", VizEncoding(nameDotText.ArabicSubLineText))
+
       End If
 
     Catch ex As Exception

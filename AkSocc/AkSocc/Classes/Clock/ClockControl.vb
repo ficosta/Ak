@@ -382,11 +382,8 @@ Public NotInheritable Class ClockControl
           .SceneParameters.Add("Clock_Home_Team_Score", _match.home_goals)
           .SceneParameters.Add("Clock_Away_Team_Score", _match.away_goals)
 
-          .SceneParameters.Add("Clock_Home_Team_TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & _match.HomeTeam.BadgeName, paramType.Image)
-          .SceneParameters.Add("Clock_Away_Team_TShirt_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathTShirts & _match.AwayTeam.BadgeName, paramType.Image)
-
-          .SceneParameters.Add("Clock_Home_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathColors & _match.HomeTeam.BadgeName, paramType.Image)
-          .SceneParameters.Add("Clock_Away_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathColors & _match.AwayTeam.BadgeName, paramType.Image)
+          .SceneParameters.Add("Clock_Home_Team_Color_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathColors & System.IO.Path.GetFileNameWithoutExtension(_match.HomeTeam.TeamClockColour), paramType.Image)
+          .SceneParameters.Add("Clock_Away_Team_Color_Logo", GraphicVersions.Instance.SelectedGraphicVersion.PathColors & System.IO.Path.GetFileNameWithoutExtension(_match.AwayTeam.TeamClockColour), paramType.Image)
 
           Dim sTime As String = ""
           If _match.MatchPeriods.ActivePeriod Is Nothing Then

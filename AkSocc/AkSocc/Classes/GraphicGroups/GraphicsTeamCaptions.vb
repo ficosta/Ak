@@ -129,6 +129,15 @@ Public Class GraphicsTeamCaptions
     scene.SceneParameters.Add("Veil_On_Off_Vis", "1")
     scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
 
+    scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
+    scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
+
+    scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
+    scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
+
+    scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
+    scene.SceneParameters.Add("Veil_Right_Vis.active ", "1")
+
 
 
     Dim prefix As String = "Side_" & gStep
@@ -153,6 +162,16 @@ Public Class GraphicsTeamCaptions
 
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Left", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & "\" & team.BadgeName, paramType.Image)
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Right", "", paramType.Image)
+
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & team.BadgeName, paramType.Geometry)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & team.BadgeName, paramType.Geometry)
+
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
+
+      scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
+      scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
+
 
       For i As Integer = 1 To 11
         Dim player As Player = team.MatchPlayers.GetPlayerByPosition(i)
@@ -194,6 +213,17 @@ Public Class GraphicsTeamCaptions
       scene.SceneParameters.Add("Side_" & gSide & "_Formation_Vis.active", "1")
       scene.SceneParameters.Add("Formation_Side_" & gSide & "_Substitutes_Title", Arabic("Substitutes"))
 
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Left", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & "\" & team.BadgeName, paramType.Image)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Right", "", paramType.Image)
+
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & team.BadgeName, paramType.Geometry)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & team.BadgeName, paramType.Geometry)
+
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
+
+      scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
+      scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
 
       For i As Integer = 1 To 11
         Dim player As Player = team.MatchPlayers.GetPlayerByPosition(i)
@@ -213,11 +243,11 @@ Public Class GraphicsTeamCaptions
         scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
         Dim pos As PosicioTactic = team.Tactic.GetPosicioByID(i)
         If Not pos Is Nothing Then
-          Dim NewY As Double = player.Formation_Y / 5 - 20 ' (((165 * player.Formation_Y) / 280) + 9) * -1
-          Dim NewX As Double = player.Formation_X / 2  ' ((170 * player.Formation_X) / 280) - 195
+          Dim NewY As Double = player.Formation_Y  ' (((165 * player.Formation_Y) / 280) + 9) * -1
+          Dim NewX As Double = player.Formation_X   ' ((170 * player.Formation_X) / 280) - 195
 
-          '    NewX = 0
-          '     NewY = 0
+          NewX = NewX / 2.5
+          NewY = NewY / 2.5
 
           scene.SceneParameters.Add(prefix & "Position.position ", CInt(NewX) & " " & CInt(NewY) & " 0")
         End If
@@ -239,6 +269,17 @@ Public Class GraphicsTeamCaptions
       scene.SceneParameters.Add("Side_" & gSide & "_Formation_Vis.active", "1")
       scene.SceneParameters.Add("Formation_Side_" & gSide & "_Substitutes_Title", Arabic("Substitutes"))
 
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Left", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & "\" & team.BadgeName, paramType.Image)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Right", "", paramType.Image)
+
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & team.BadgeName, paramType.Geometry)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & team.BadgeName, paramType.Geometry)
+
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
+
+      scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
+      scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
 
       For i As Integer = 1 To 11
         Dim player As Player = team.MatchPlayers.GetPlayerByPosition(i)

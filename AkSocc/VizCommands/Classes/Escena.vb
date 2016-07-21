@@ -72,7 +72,12 @@ End Enum
             _vizrtControl.SetControlObjectValue("$object", CParam.Name, sValor, Me.VizLayer)
           Case paramType.Image
             _vizrtControl.SetControlObjectImageValue("$object", CParam.Name, sValor, Me.VizLayer)
+          Case paramType.Geometry
+            _vizrtControl.SetControlObjectGeometryValue("$object", CParam.Name, sValor, Me.VizLayer)
           Case paramType.Numeric
+            Dim sNum As String = sValor
+            sNum = sNum.Replace(",", ".")
+            _vizrtControl.SetControlObjectValue("$object", CParam.Name, sNum, Me.VizLayer)
         End Select
         nCount = nCount + 1
         'If nCount Mod 100 = 0 Then

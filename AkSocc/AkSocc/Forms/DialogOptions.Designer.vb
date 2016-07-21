@@ -143,7 +143,7 @@ Partial Class DialogOptions
     Me.TabPage1.HorizontalScrollbarSize = 10
     Me.TabPage1.Location = New System.Drawing.Point(4, 38)
     Me.TabPage1.Name = "TabPage1"
-    Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+    Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
     Me.TabPage1.Size = New System.Drawing.Size(765, 313)
     Me.TabPage1.TabIndex = 0
     Me.TabPage1.Text = "General options"
@@ -199,16 +199,17 @@ Partial Class DialogOptions
     '
     Me.MetroTextBoxOtherMatchesFilePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.MetroTextBoxOtherMatchesFilePath.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTextBoxOtherMatchesFilePath.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.MetroTextBoxOtherMatchesFilePath.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroTextBoxOtherMatchesFilePath.Location = New System.Drawing.Point(158, 33)
     Me.MetroTextBoxOtherMatchesFilePath.Name = "MetroTextBoxOtherMatchesFilePath"
-    Me.MetroTextBoxOtherMatchesFilePath.Size = New System.Drawing.Size(563, 22)
+    Me.MetroTextBoxOtherMatchesFilePath.Size = New System.Drawing.Size(563, 23)
     Me.MetroTextBoxOtherMatchesFilePath.TabIndex = 4
     '
     'MetroLabelOtherMatches
     '
     Me.MetroLabelOtherMatches.AutoSize = True
     Me.MetroLabelOtherMatches.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabelOtherMatches.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroLabelOtherMatches.Location = New System.Drawing.Point(3, 30)
     Me.MetroLabelOtherMatches.Name = "MetroLabelOtherMatches"
     Me.MetroLabelOtherMatches.Size = New System.Drawing.Size(149, 30)
@@ -220,6 +221,7 @@ Partial Class DialogOptions
     '
     Me.MetroLabelDataBase.AutoSize = True
     Me.MetroLabelDataBase.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabelDataBase.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroLabelDataBase.Location = New System.Drawing.Point(3, 0)
     Me.MetroLabelDataBase.Name = "MetroLabelDataBase"
     Me.MetroLabelDataBase.Size = New System.Drawing.Size(149, 30)
@@ -231,10 +233,10 @@ Partial Class DialogOptions
     '
     Me.MetroTextBoxDataBase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.MetroTextBoxDataBase.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTextBoxDataBase.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.MetroTextBoxDataBase.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroTextBoxDataBase.Location = New System.Drawing.Point(158, 3)
     Me.MetroTextBoxDataBase.Name = "MetroTextBoxDataBase"
-    Me.MetroTextBoxDataBase.Size = New System.Drawing.Size(563, 22)
+    Me.MetroTextBoxDataBase.Size = New System.Drawing.Size(563, 23)
     Me.MetroTextBoxDataBase.TabIndex = 1
     '
     'MetroButtonDataBase
@@ -262,20 +264,20 @@ Partial Class DialogOptions
     '
     Me.MetroTextBoxDefaultColorPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.MetroTextBoxDefaultColorPath.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTextBoxDefaultColorPath.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.MetroTextBoxDefaultColorPath.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroTextBoxDefaultColorPath.Location = New System.Drawing.Point(158, 63)
     Me.MetroTextBoxDefaultColorPath.Name = "MetroTextBoxDefaultColorPath"
-    Me.MetroTextBoxDefaultColorPath.Size = New System.Drawing.Size(563, 22)
+    Me.MetroTextBoxDefaultColorPath.Size = New System.Drawing.Size(563, 23)
     Me.MetroTextBoxDefaultColorPath.TabIndex = 7
     '
     'MetroTextBoxDefaultKitsPath
     '
     Me.MetroTextBoxDefaultKitsPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.MetroTextBoxDefaultKitsPath.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTextBoxDefaultKitsPath.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.MetroTextBoxDefaultKitsPath.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroTextBoxDefaultKitsPath.Location = New System.Drawing.Point(158, 93)
     Me.MetroTextBoxDefaultKitsPath.Name = "MetroTextBoxDefaultKitsPath"
-    Me.MetroTextBoxDefaultKitsPath.Size = New System.Drawing.Size(563, 22)
+    Me.MetroTextBoxDefaultKitsPath.Size = New System.Drawing.Size(563, 23)
     Me.MetroTextBoxDefaultKitsPath.TabIndex = 8
     '
     'MetroButtonDefaultColorsPath
@@ -302,6 +304,7 @@ Partial Class DialogOptions
     '
     Me.MetroLabel3.AutoSize = True
     Me.MetroLabel3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroLabel3.Location = New System.Drawing.Point(3, 60)
     Me.MetroLabel3.Name = "MetroLabel3"
     Me.MetroLabel3.Size = New System.Drawing.Size(149, 30)
@@ -313,6 +316,7 @@ Partial Class DialogOptions
     '
     Me.MetroLabel4.AutoSize = True
     Me.MetroLabel4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroLabel4.Location = New System.Drawing.Point(3, 90)
     Me.MetroLabel4.Name = "MetroLabel4"
     Me.MetroLabel4.Size = New System.Drawing.Size(149, 30)
@@ -328,7 +332,7 @@ Partial Class DialogOptions
     Me.TabPage2.HorizontalScrollbarSize = 10
     Me.TabPage2.Location = New System.Drawing.Point(4, 38)
     Me.TabPage2.Name = "TabPage2"
-    Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+    Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
     Me.TabPage2.Size = New System.Drawing.Size(765, 313)
     Me.TabPage2.TabIndex = 1
     Me.TabPage2.Text = "Vizrt options"
@@ -376,6 +380,7 @@ Partial Class DialogOptions
     '
     Me.MetroLabel2.AutoSize = True
     Me.MetroLabel2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroLabel2.Location = New System.Drawing.Point(3, 160)
     Me.MetroLabel2.Name = "MetroLabel2"
     Me.MetroLabel2.Size = New System.Drawing.Size(145, 30)
@@ -407,6 +412,7 @@ Partial Class DialogOptions
     '
     Me.MetroLabel1.AutoSize = True
     Me.MetroLabel1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroLabel1.Location = New System.Drawing.Point(3, 130)
     Me.MetroLabel1.Name = "MetroLabel1"
     Me.MetroLabel1.Size = New System.Drawing.Size(145, 30)
@@ -447,6 +453,7 @@ Partial Class DialogOptions
     '
     Me.LabelHost.AutoSize = True
     Me.LabelHost.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelHost.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.LabelHost.Location = New System.Drawing.Point(3, 0)
     Me.LabelHost.Name = "LabelHost"
     Me.LabelHost.Size = New System.Drawing.Size(145, 30)
@@ -468,6 +475,7 @@ Partial Class DialogOptions
     '
     Me.LabelREPort.AutoSize = True
     Me.LabelREPort.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelREPort.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.LabelREPort.Location = New System.Drawing.Point(3, 30)
     Me.LabelREPort.Name = "LabelREPort"
     Me.LabelREPort.Size = New System.Drawing.Size(145, 30)
@@ -488,6 +496,7 @@ Partial Class DialogOptions
     '
     Me.LabelPreviewPort.AutoSize = True
     Me.LabelPreviewPort.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelPreviewPort.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.LabelPreviewPort.Location = New System.Drawing.Point(3, 60)
     Me.LabelPreviewPort.Name = "LabelPreviewPort"
     Me.LabelPreviewPort.Size = New System.Drawing.Size(145, 30)
@@ -499,6 +508,7 @@ Partial Class DialogOptions
     '
     Me.LabelSceneVersion.AutoSize = True
     Me.LabelSceneVersion.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelSceneVersion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.LabelSceneVersion.Location = New System.Drawing.Point(3, 90)
     Me.LabelSceneVersion.Name = "LabelSceneVersion"
     Me.LabelSceneVersion.Size = New System.Drawing.Size(145, 30)

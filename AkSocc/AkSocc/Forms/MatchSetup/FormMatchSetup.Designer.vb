@@ -98,14 +98,14 @@ Partial Class FormMatchSetup
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.TableLayoutPanelGlobal.ColumnCount = 1
     Me.TableLayoutPanelGlobal.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelGlobal.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelGlobal.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23.0!))
     Me.TableLayoutPanelGlobal.Controls.Add(Me.MetroTabControl1, 0, 0)
-    Me.TableLayoutPanelGlobal.Location = New System.Drawing.Point(23, 64)
+    Me.TableLayoutPanelGlobal.Location = New System.Drawing.Point(27, 74)
     Me.TableLayoutPanelGlobal.Name = "TableLayoutPanelGlobal"
     Me.TableLayoutPanelGlobal.RowCount = 2
-    Me.TableLayoutPanelGlobal.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanelGlobal.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
     Me.TableLayoutPanelGlobal.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelGlobal.Size = New System.Drawing.Size(1107, 530)
+    Me.TableLayoutPanelGlobal.Size = New System.Drawing.Size(1046, 510)
     Me.TableLayoutPanelGlobal.TabIndex = 2
     '
     'MetroTabControl1
@@ -118,7 +118,7 @@ Partial Class FormMatchSetup
     Me.MetroTabControl1.Name = "MetroTabControl1"
     Me.TableLayoutPanelGlobal.SetRowSpan(Me.MetroTabControl1, 2)
     Me.MetroTabControl1.SelectedIndex = 0
-    Me.MetroTabControl1.Size = New System.Drawing.Size(1101, 524)
+    Me.MetroTabControl1.Size = New System.Drawing.Size(1040, 504)
     Me.MetroTabControl1.TabIndex = 48
     Me.MetroTabControl1.UseSelectable = True
     '
@@ -127,7 +127,7 @@ Partial Class FormMatchSetup
     Me.TabPageMatchSetup.Controls.Add(Me.TableLayoutPanelMatchInfo)
     Me.TabPageMatchSetup.Location = New System.Drawing.Point(4, 38)
     Me.TabPageMatchSetup.Name = "TabPageMatchSetup"
-    Me.TabPageMatchSetup.Size = New System.Drawing.Size(1093, 482)
+    Me.TabPageMatchSetup.Size = New System.Drawing.Size(1032, 462)
     Me.TabPageMatchSetup.TabIndex = 2
     Me.TabPageMatchSetup.Text = "Match setup"
     '
@@ -135,7 +135,7 @@ Partial Class FormMatchSetup
     '
     Me.TableLayoutPanelMatchInfo.BackColor = System.Drawing.Color.White
     Me.TableLayoutPanelMatchInfo.ColumnCount = 2
-    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
+    Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 233.0!))
     Me.TableLayoutPanelMatchInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanelMatchInfo.Controls.Add(Me.MetroTileGeneralMatchInfo, 0, 0)
     Me.TableLayoutPanelMatchInfo.Controls.Add(Me.MetroLabel4, 0, 5)
@@ -155,20 +155,20 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanelMatchInfo.Location = New System.Drawing.Point(0, 0)
     Me.TableLayoutPanelMatchInfo.Name = "TableLayoutPanelMatchInfo"
     Me.TableLayoutPanelMatchInfo.RowCount = 13
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 162.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 173.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23.0!))
+    Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23.0!))
     Me.TableLayoutPanelMatchInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelMatchInfo.Size = New System.Drawing.Size(1093, 482)
+    Me.TableLayoutPanelMatchInfo.Size = New System.Drawing.Size(1032, 462)
     Me.TableLayoutPanelMatchInfo.TabIndex = 0
     '
     'MetroTileGeneralMatchInfo
@@ -178,7 +178,7 @@ Partial Class FormMatchSetup
     Me.MetroTileGeneralMatchInfo.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroTileGeneralMatchInfo.Location = New System.Drawing.Point(3, 3)
     Me.MetroTileGeneralMatchInfo.Name = "MetroTileGeneralMatchInfo"
-    Me.MetroTileGeneralMatchInfo.Size = New System.Drawing.Size(1087, 19)
+    Me.MetroTileGeneralMatchInfo.Size = New System.Drawing.Size(1026, 23)
     Me.MetroTileGeneralMatchInfo.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileGeneralMatchInfo.TabIndex = 13
     Me.MetroTileGeneralMatchInfo.Text = "GeneralMatchInfo"
@@ -188,9 +188,9 @@ Partial Class FormMatchSetup
     '
     Me.MetroLabel4.AutoSize = True
     Me.MetroLabel4.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel4.Location = New System.Drawing.Point(3, 260)
+    Me.MetroLabel4.Location = New System.Drawing.Point(3, 300)
     Me.MetroLabel4.Name = "MetroLabel4"
-    Me.MetroLabel4.Size = New System.Drawing.Size(194, 35)
+    Me.MetroLabel4.Size = New System.Drawing.Size(227, 40)
     Me.MetroLabel4.TabIndex = 7
     Me.MetroLabel4.Text = "Assistant referee #2"
     Me.MetroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -200,9 +200,9 @@ Partial Class FormMatchSetup
     Me.MetroTileMatchInfo.ActiveControl = Nothing
     Me.TableLayoutPanelMatchInfo.SetColumnSpan(Me.MetroTileMatchInfo, 2)
     Me.MetroTileMatchInfo.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileMatchInfo.Location = New System.Drawing.Point(3, 298)
+    Me.MetroTileMatchInfo.Location = New System.Drawing.Point(3, 343)
     Me.MetroTileMatchInfo.Name = "MetroTileMatchInfo"
-    Me.MetroTileMatchInfo.Size = New System.Drawing.Size(1087, 19)
+    Me.MetroTileMatchInfo.Size = New System.Drawing.Size(1026, 23)
     Me.MetroTileMatchInfo.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileMatchInfo.TabIndex = 0
     Me.MetroTileMatchInfo.Text = "General match info"
@@ -212,9 +212,9 @@ Partial Class FormMatchSetup
     '
     Me.MetroLabelSceneVersion.AutoSize = True
     Me.MetroLabelSceneVersion.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabelSceneVersion.Location = New System.Drawing.Point(3, 320)
+    Me.MetroLabelSceneVersion.Location = New System.Drawing.Point(3, 369)
     Me.MetroLabelSceneVersion.Name = "MetroLabelSceneVersion"
-    Me.MetroLabelSceneVersion.Size = New System.Drawing.Size(194, 35)
+    Me.MetroLabelSceneVersion.Size = New System.Drawing.Size(227, 40)
     Me.MetroLabelSceneVersion.TabIndex = 1
     Me.MetroLabelSceneVersion.Text = "Scene version"
     Me.MetroLabelSceneVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -225,11 +225,11 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxSceneVersion.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroComboBoxSceneVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.MetroComboBoxSceneVersion.FormattingEnabled = True
-    Me.MetroComboBoxSceneVersion.ItemHeight = 13
+    Me.MetroComboBoxSceneVersion.ItemHeight = 15
     Me.MetroComboBoxSceneVersion.Items.AddRange(New Object() {"Saudi league", "Cup"})
-    Me.MetroComboBoxSceneVersion.Location = New System.Drawing.Point(203, 323)
+    Me.MetroComboBoxSceneVersion.Location = New System.Drawing.Point(236, 372)
     Me.MetroComboBoxSceneVersion.Name = "MetroComboBoxSceneVersion"
-    Me.MetroComboBoxSceneVersion.Size = New System.Drawing.Size(887, 21)
+    Me.MetroComboBoxSceneVersion.Size = New System.Drawing.Size(793, 23)
     Me.MetroComboBoxSceneVersion.TabIndex = 2
     Me.MetroComboBoxSceneVersion.Visible = False
     '
@@ -238,9 +238,9 @@ Partial Class FormMatchSetup
     Me.MetroTileReferees.ActiveControl = Nothing
     Me.TableLayoutPanelMatchInfo.SetColumnSpan(Me.MetroTileReferees, 2)
     Me.MetroTileReferees.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileReferees.Location = New System.Drawing.Point(3, 168)
+    Me.MetroTileReferees.Location = New System.Drawing.Point(3, 194)
     Me.MetroTileReferees.Name = "MetroTileReferees"
-    Me.MetroTileReferees.Size = New System.Drawing.Size(1087, 19)
+    Me.MetroTileReferees.Size = New System.Drawing.Size(1026, 23)
     Me.MetroTileReferees.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileReferees.TabIndex = 3
     Me.MetroTileReferees.Text = "Referees"
@@ -250,9 +250,9 @@ Partial Class FormMatchSetup
     '
     Me.MetroLabel1.AutoSize = True
     Me.MetroLabel1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel1.Location = New System.Drawing.Point(3, 190)
+    Me.MetroLabel1.Location = New System.Drawing.Point(3, 220)
     Me.MetroLabel1.Name = "MetroLabel1"
-    Me.MetroLabel1.Size = New System.Drawing.Size(194, 35)
+    Me.MetroLabel1.Size = New System.Drawing.Size(227, 40)
     Me.MetroLabel1.TabIndex = 4
     Me.MetroLabel1.Text = "Main referee"
     Me.MetroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -261,9 +261,9 @@ Partial Class FormMatchSetup
     '
     Me.MetroLabel3.AutoSize = True
     Me.MetroLabel3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel3.Location = New System.Drawing.Point(3, 225)
+    Me.MetroLabel3.Location = New System.Drawing.Point(3, 260)
     Me.MetroLabel3.Name = "MetroLabel3"
-    Me.MetroLabel3.Size = New System.Drawing.Size(194, 35)
+    Me.MetroLabel3.Size = New System.Drawing.Size(227, 40)
     Me.MetroLabel3.TabIndex = 6
     Me.MetroLabel3.Text = "Assistant referee #1"
     Me.MetroLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -273,11 +273,11 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxReferee1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroComboBoxReferee1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.MetroComboBoxReferee1.FormattingEnabled = True
-    Me.MetroComboBoxReferee1.ItemHeight = 13
+    Me.MetroComboBoxReferee1.ItemHeight = 15
     Me.MetroComboBoxReferee1.Items.AddRange(New Object() {"Varcas Adam", "Abdul aziz Al funaitar", "Khaled Al Threes"})
-    Me.MetroComboBoxReferee1.Location = New System.Drawing.Point(203, 193)
+    Me.MetroComboBoxReferee1.Location = New System.Drawing.Point(236, 223)
     Me.MetroComboBoxReferee1.Name = "MetroComboBoxReferee1"
-    Me.MetroComboBoxReferee1.Size = New System.Drawing.Size(887, 21)
+    Me.MetroComboBoxReferee1.Size = New System.Drawing.Size(793, 23)
     Me.MetroComboBoxReferee1.TabIndex = 8
     '
     'MetroComboBoxReferee2
@@ -285,11 +285,11 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxReferee2.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroComboBoxReferee2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.MetroComboBoxReferee2.FormattingEnabled = True
-    Me.MetroComboBoxReferee2.ItemHeight = 13
+    Me.MetroComboBoxReferee2.ItemHeight = 15
     Me.MetroComboBoxReferee2.Items.AddRange(New Object() {"Varcas Adam", "Abdul aziz Al funaitar", "Khaled Al Threes"})
-    Me.MetroComboBoxReferee2.Location = New System.Drawing.Point(203, 228)
+    Me.MetroComboBoxReferee2.Location = New System.Drawing.Point(236, 263)
     Me.MetroComboBoxReferee2.Name = "MetroComboBoxReferee2"
-    Me.MetroComboBoxReferee2.Size = New System.Drawing.Size(887, 21)
+    Me.MetroComboBoxReferee2.Size = New System.Drawing.Size(793, 23)
     Me.MetroComboBoxReferee2.TabIndex = 9
     '
     'MetroComboBoxReferee3
@@ -297,20 +297,20 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxReferee3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroComboBoxReferee3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.MetroComboBoxReferee3.FormattingEnabled = True
-    Me.MetroComboBoxReferee3.ItemHeight = 13
+    Me.MetroComboBoxReferee3.ItemHeight = 15
     Me.MetroComboBoxReferee3.Items.AddRange(New Object() {"Varcas Adam", "Abdul aziz Al funaitar", "Khaled Al Threes"})
-    Me.MetroComboBoxReferee3.Location = New System.Drawing.Point(203, 263)
+    Me.MetroComboBoxReferee3.Location = New System.Drawing.Point(236, 303)
     Me.MetroComboBoxReferee3.Name = "MetroComboBoxReferee3"
-    Me.MetroComboBoxReferee3.Size = New System.Drawing.Size(887, 21)
+    Me.MetroComboBoxReferee3.Size = New System.Drawing.Size(793, 23)
     Me.MetroComboBoxReferee3.TabIndex = 10
     '
     'MetroLabel2
     '
     Me.MetroLabel2.AutoSize = True
     Me.MetroLabel2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel2.Location = New System.Drawing.Point(3, 355)
+    Me.MetroLabel2.Location = New System.Drawing.Point(3, 409)
     Me.MetroLabel2.Name = "MetroLabel2"
-    Me.MetroLabel2.Size = New System.Drawing.Size(194, 35)
+    Me.MetroLabel2.Size = New System.Drawing.Size(227, 40)
     Me.MetroLabel2.TabIndex = 11
     Me.MetroLabel2.Text = "On air clocks position"
     Me.MetroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -319,24 +319,24 @@ Partial Class FormMatchSetup
     'TableLayoutPanel3
     '
     Me.TableLayoutPanel3.ColumnCount = 4
-    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
-    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
-    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58.0!))
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58.0!))
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58.0!))
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel3.Controls.Add(Me.PictureBoxClockUp, 1, 0)
     Me.TableLayoutPanel3.Controls.Add(Me.PictureBoxClockLeft, 0, 1)
     Me.TableLayoutPanel3.Controls.Add(Me.PictureBoxClockRight, 2, 1)
     Me.TableLayoutPanel3.Controls.Add(Me.PictureBoxClockDown, 1, 2)
     Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel3.Location = New System.Drawing.Point(203, 358)
+    Me.TableLayoutPanel3.Location = New System.Drawing.Point(236, 412)
     Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
     Me.TableLayoutPanel3.RowCount = 4
     Me.TableLayoutPanelMatchInfo.SetRowSpan(Me.TableLayoutPanel3, 2)
-    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
-    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
-    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 58.0!))
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 58.0!))
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 58.0!))
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel3.Size = New System.Drawing.Size(887, 179)
+    Me.TableLayoutPanel3.Size = New System.Drawing.Size(793, 207)
     Me.TableLayoutPanel3.TabIndex = 12
     Me.TableLayoutPanel3.Visible = False
     '
@@ -345,9 +345,9 @@ Partial Class FormMatchSetup
     Me.PictureBoxClockUp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.PictureBoxClockUp.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PictureBoxClockUp.Image = Global.AkSocc.My.Resources.Resources.PS_Triangle_up
-    Me.PictureBoxClockUp.Location = New System.Drawing.Point(53, 3)
+    Me.PictureBoxClockUp.Location = New System.Drawing.Point(61, 3)
     Me.PictureBoxClockUp.Name = "PictureBoxClockUp"
-    Me.PictureBoxClockUp.Size = New System.Drawing.Size(44, 44)
+    Me.PictureBoxClockUp.Size = New System.Drawing.Size(52, 52)
     Me.PictureBoxClockUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.PictureBoxClockUp.TabIndex = 0
     Me.PictureBoxClockUp.TabStop = False
@@ -357,9 +357,9 @@ Partial Class FormMatchSetup
     Me.PictureBoxClockLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.PictureBoxClockLeft.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PictureBoxClockLeft.Image = Global.AkSocc.My.Resources.Resources.PS_Triangle_left
-    Me.PictureBoxClockLeft.Location = New System.Drawing.Point(3, 53)
+    Me.PictureBoxClockLeft.Location = New System.Drawing.Point(3, 61)
     Me.PictureBoxClockLeft.Name = "PictureBoxClockLeft"
-    Me.PictureBoxClockLeft.Size = New System.Drawing.Size(44, 44)
+    Me.PictureBoxClockLeft.Size = New System.Drawing.Size(52, 52)
     Me.PictureBoxClockLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.PictureBoxClockLeft.TabIndex = 1
     Me.PictureBoxClockLeft.TabStop = False
@@ -369,9 +369,9 @@ Partial Class FormMatchSetup
     Me.PictureBoxClockRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.PictureBoxClockRight.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PictureBoxClockRight.Image = Global.AkSocc.My.Resources.Resources.PS_Triangle_right
-    Me.PictureBoxClockRight.Location = New System.Drawing.Point(103, 53)
+    Me.PictureBoxClockRight.Location = New System.Drawing.Point(119, 61)
     Me.PictureBoxClockRight.Name = "PictureBoxClockRight"
-    Me.PictureBoxClockRight.Size = New System.Drawing.Size(44, 44)
+    Me.PictureBoxClockRight.Size = New System.Drawing.Size(52, 52)
     Me.PictureBoxClockRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.PictureBoxClockRight.TabIndex = 2
     Me.PictureBoxClockRight.TabStop = False
@@ -381,9 +381,9 @@ Partial Class FormMatchSetup
     Me.PictureBoxClockDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.PictureBoxClockDown.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PictureBoxClockDown.Image = Global.AkSocc.My.Resources.Resources.PS_Triangle_down
-    Me.PictureBoxClockDown.Location = New System.Drawing.Point(53, 103)
+    Me.PictureBoxClockDown.Location = New System.Drawing.Point(61, 119)
     Me.PictureBoxClockDown.Name = "PictureBoxClockDown"
-    Me.PictureBoxClockDown.Size = New System.Drawing.Size(44, 44)
+    Me.PictureBoxClockDown.Size = New System.Drawing.Size(52, 52)
     Me.PictureBoxClockDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.PictureBoxClockDown.TabIndex = 3
     Me.PictureBoxClockDown.TabStop = False
@@ -396,21 +396,21 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel6, 1, 0)
     Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel2, 0, 0)
     Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel4.Location = New System.Drawing.Point(203, 28)
+    Me.TableLayoutPanel4.Location = New System.Drawing.Point(236, 32)
     Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
     Me.TableLayoutPanel4.RowCount = 1
     Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 134.0!))
-    Me.TableLayoutPanel4.Size = New System.Drawing.Size(887, 134)
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 156.0!))
+    Me.TableLayoutPanel4.Size = New System.Drawing.Size(793, 156)
     Me.TableLayoutPanel4.TabIndex = 14
     '
     'TableLayoutPanel6
     '
     Me.TableLayoutPanel6.ColumnCount = 5
     Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
-    Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
-    Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
+    Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128.0!))
+    Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128.0!))
+    Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128.0!))
     Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel6.Controls.Add(Me.MetroLabelAwayTeam, 0, 0)
     Me.TableLayoutPanel6.Controls.Add(Me.imgAwayClockColour, 1, 1)
@@ -420,13 +420,13 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanel6.Controls.Add(Me.imgAwayGoalKeeperJersey, 2, 1)
     Me.TableLayoutPanel6.Controls.Add(Me.label97, 2, 2)
     Me.TableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel6.Location = New System.Drawing.Point(446, 3)
+    Me.TableLayoutPanel6.Location = New System.Drawing.Point(399, 3)
     Me.TableLayoutPanel6.Name = "TableLayoutPanel6"
     Me.TableLayoutPanel6.RowCount = 3
-    Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-    Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+    Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29.0!))
+    Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69.0!))
     Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel6.Size = New System.Drawing.Size(438, 128)
+    Me.TableLayoutPanel6.Size = New System.Drawing.Size(391, 150)
     Me.TableLayoutPanel6.TabIndex = 3
     '
     'MetroLabelAwayTeam
@@ -437,7 +437,7 @@ Partial Class FormMatchSetup
     Me.MetroLabelAwayTeam.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroLabelAwayTeam.Location = New System.Drawing.Point(3, 0)
     Me.MetroLabelAwayTeam.Name = "MetroLabelAwayTeam"
-    Me.MetroLabelAwayTeam.Size = New System.Drawing.Size(432, 25)
+    Me.MetroLabelAwayTeam.Size = New System.Drawing.Size(385, 29)
     Me.MetroLabelAwayTeam.TabIndex = 3
     Me.MetroLabelAwayTeam.Text = "AWAY TEAM"
     Me.MetroLabelAwayTeam.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -447,9 +447,9 @@ Partial Class FormMatchSetup
     Me.imgAwayClockColour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.imgAwayClockColour.Cursor = System.Windows.Forms.Cursors.Hand
     Me.imgAwayClockColour.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.imgAwayClockColour.Location = New System.Drawing.Point(57, 28)
+    Me.imgAwayClockColour.Location = New System.Drawing.Point(6, 32)
     Me.imgAwayClockColour.Name = "imgAwayClockColour"
-    Me.imgAwayClockColour.Size = New System.Drawing.Size(104, 54)
+    Me.imgAwayClockColour.Size = New System.Drawing.Size(122, 63)
     Me.imgAwayClockColour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.imgAwayClockColour.TabIndex = 0
     Me.imgAwayClockColour.TabStop = False
@@ -458,9 +458,9 @@ Partial Class FormMatchSetup
     '
     Me.label199.AutoSize = True
     Me.label199.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.label199.Location = New System.Drawing.Point(277, 85)
+    Me.label199.Location = New System.Drawing.Point(262, 98)
     Me.label199.Name = "label199"
-    Me.label199.Size = New System.Drawing.Size(104, 43)
+    Me.label199.Size = New System.Drawing.Size(122, 52)
     Me.label199.TabIndex = 85
     Me.label199.Text = "Player Jersey"
     Me.label199.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -469,9 +469,9 @@ Partial Class FormMatchSetup
     '
     Me.lblAwayClockColour.AutoSize = True
     Me.lblAwayClockColour.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.lblAwayClockColour.Location = New System.Drawing.Point(57, 85)
+    Me.lblAwayClockColour.Location = New System.Drawing.Point(6, 98)
     Me.lblAwayClockColour.Name = "lblAwayClockColour"
-    Me.lblAwayClockColour.Size = New System.Drawing.Size(104, 43)
+    Me.lblAwayClockColour.Size = New System.Drawing.Size(122, 52)
     Me.lblAwayClockColour.TabIndex = 78
     Me.lblAwayClockColour.Text = "Clock Colour"
     Me.lblAwayClockColour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -481,9 +481,9 @@ Partial Class FormMatchSetup
     Me.imgAwayPlayerJersey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.imgAwayPlayerJersey.Cursor = System.Windows.Forms.Cursors.Hand
     Me.imgAwayPlayerJersey.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.imgAwayPlayerJersey.Location = New System.Drawing.Point(277, 28)
+    Me.imgAwayPlayerJersey.Location = New System.Drawing.Point(262, 32)
     Me.imgAwayPlayerJersey.Name = "imgAwayPlayerJersey"
-    Me.imgAwayPlayerJersey.Size = New System.Drawing.Size(104, 54)
+    Me.imgAwayPlayerJersey.Size = New System.Drawing.Size(122, 63)
     Me.imgAwayPlayerJersey.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.imgAwayPlayerJersey.TabIndex = 83
     Me.imgAwayPlayerJersey.TabStop = False
@@ -493,9 +493,9 @@ Partial Class FormMatchSetup
     Me.imgAwayGoalKeeperJersey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.imgAwayGoalKeeperJersey.Cursor = System.Windows.Forms.Cursors.Hand
     Me.imgAwayGoalKeeperJersey.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.imgAwayGoalKeeperJersey.Location = New System.Drawing.Point(167, 28)
+    Me.imgAwayGoalKeeperJersey.Location = New System.Drawing.Point(134, 32)
     Me.imgAwayGoalKeeperJersey.Name = "imgAwayGoalKeeperJersey"
-    Me.imgAwayGoalKeeperJersey.Size = New System.Drawing.Size(104, 54)
+    Me.imgAwayGoalKeeperJersey.Size = New System.Drawing.Size(122, 63)
     Me.imgAwayGoalKeeperJersey.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.imgAwayGoalKeeperJersey.TabIndex = 79
     Me.imgAwayGoalKeeperJersey.TabStop = False
@@ -504,9 +504,9 @@ Partial Class FormMatchSetup
     '
     Me.label97.AutoSize = True
     Me.label97.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.label97.Location = New System.Drawing.Point(167, 85)
+    Me.label97.Location = New System.Drawing.Point(134, 98)
     Me.label97.Name = "label97"
-    Me.label97.Size = New System.Drawing.Size(104, 43)
+    Me.label97.Size = New System.Drawing.Size(122, 52)
     Me.label97.TabIndex = 81
     Me.label97.Text = "Goal Keeper Jersey"
     Me.label97.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -515,9 +515,9 @@ Partial Class FormMatchSetup
     '
     Me.TableLayoutPanel2.ColumnCount = 5
     Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
-    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
-    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128.0!))
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128.0!))
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128.0!))
     Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel2.Controls.Add(Me.MetroLabelHomeTeam, 0, 0)
     Me.TableLayoutPanel2.Controls.Add(Me.imgHomeClockColour, 1, 1)
@@ -530,10 +530,10 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
     Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
     Me.TableLayoutPanel2.RowCount = 3
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(437, 128)
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(390, 150)
     Me.TableLayoutPanel2.TabIndex = 2
     '
     'MetroLabelHomeTeam
@@ -544,7 +544,7 @@ Partial Class FormMatchSetup
     Me.MetroLabelHomeTeam.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroLabelHomeTeam.Location = New System.Drawing.Point(3, 0)
     Me.MetroLabelHomeTeam.Name = "MetroLabelHomeTeam"
-    Me.MetroLabelHomeTeam.Size = New System.Drawing.Size(431, 25)
+    Me.MetroLabelHomeTeam.Size = New System.Drawing.Size(384, 29)
     Me.MetroLabelHomeTeam.TabIndex = 1
     Me.MetroLabelHomeTeam.Text = "HOME TEAM"
     Me.MetroLabelHomeTeam.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -554,9 +554,9 @@ Partial Class FormMatchSetup
     Me.imgHomeClockColour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.imgHomeClockColour.Cursor = System.Windows.Forms.Cursors.Hand
     Me.imgHomeClockColour.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.imgHomeClockColour.Location = New System.Drawing.Point(56, 28)
+    Me.imgHomeClockColour.Location = New System.Drawing.Point(6, 32)
     Me.imgHomeClockColour.Name = "imgHomeClockColour"
-    Me.imgHomeClockColour.Size = New System.Drawing.Size(104, 54)
+    Me.imgHomeClockColour.Size = New System.Drawing.Size(122, 63)
     Me.imgHomeClockColour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.imgHomeClockColour.TabIndex = 0
     Me.imgHomeClockColour.TabStop = False
@@ -565,9 +565,9 @@ Partial Class FormMatchSetup
     '
     Me.lblHomeClockColour.AutoSize = True
     Me.lblHomeClockColour.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.lblHomeClockColour.Location = New System.Drawing.Point(56, 85)
+    Me.lblHomeClockColour.Location = New System.Drawing.Point(6, 98)
     Me.lblHomeClockColour.Name = "lblHomeClockColour"
-    Me.lblHomeClockColour.Size = New System.Drawing.Size(104, 43)
+    Me.lblHomeClockColour.Size = New System.Drawing.Size(122, 52)
     Me.lblHomeClockColour.TabIndex = 78
     Me.lblHomeClockColour.Text = "Clock Colour"
     Me.lblHomeClockColour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -576,9 +576,9 @@ Partial Class FormMatchSetup
     '
     Me.label200.AutoSize = True
     Me.label200.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.label200.Location = New System.Drawing.Point(276, 85)
+    Me.label200.Location = New System.Drawing.Point(262, 98)
     Me.label200.Name = "label200"
-    Me.label200.Size = New System.Drawing.Size(104, 43)
+    Me.label200.Size = New System.Drawing.Size(122, 52)
     Me.label200.TabIndex = 86
     Me.label200.Text = "Player Jersey"
     Me.label200.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -588,9 +588,9 @@ Partial Class FormMatchSetup
     Me.imgHomeGoalKeeperJersey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.imgHomeGoalKeeperJersey.Cursor = System.Windows.Forms.Cursors.Hand
     Me.imgHomeGoalKeeperJersey.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.imgHomeGoalKeeperJersey.Location = New System.Drawing.Point(166, 28)
+    Me.imgHomeGoalKeeperJersey.Location = New System.Drawing.Point(134, 32)
     Me.imgHomeGoalKeeperJersey.Name = "imgHomeGoalKeeperJersey"
-    Me.imgHomeGoalKeeperJersey.Size = New System.Drawing.Size(104, 54)
+    Me.imgHomeGoalKeeperJersey.Size = New System.Drawing.Size(122, 63)
     Me.imgHomeGoalKeeperJersey.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.imgHomeGoalKeeperJersey.TabIndex = 80
     Me.imgHomeGoalKeeperJersey.TabStop = False
@@ -599,9 +599,9 @@ Partial Class FormMatchSetup
     '
     Me.label198.AutoSize = True
     Me.label198.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.label198.Location = New System.Drawing.Point(166, 85)
+    Me.label198.Location = New System.Drawing.Point(134, 98)
     Me.label198.Name = "label198"
-    Me.label198.Size = New System.Drawing.Size(104, 43)
+    Me.label198.Size = New System.Drawing.Size(122, 52)
     Me.label198.TabIndex = 82
     Me.label198.Text = "Goal Keeper Jersey"
     Me.label198.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -611,9 +611,9 @@ Partial Class FormMatchSetup
     Me.imgHomePlayerJersey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.imgHomePlayerJersey.Cursor = System.Windows.Forms.Cursors.Hand
     Me.imgHomePlayerJersey.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.imgHomePlayerJersey.Location = New System.Drawing.Point(276, 28)
+    Me.imgHomePlayerJersey.Location = New System.Drawing.Point(262, 32)
     Me.imgHomePlayerJersey.Name = "imgHomePlayerJersey"
-    Me.imgHomePlayerJersey.Size = New System.Drawing.Size(104, 54)
+    Me.imgHomePlayerJersey.Size = New System.Drawing.Size(122, 63)
     Me.imgHomePlayerJersey.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.imgHomePlayerJersey.TabIndex = 84
     Me.imgHomePlayerJersey.TabStop = False
@@ -623,7 +623,7 @@ Partial Class FormMatchSetup
     Me.TabPageHome.Controls.Add(Me.UcTeamMatchSetupHome)
     Me.TabPageHome.Location = New System.Drawing.Point(4, 38)
     Me.TabPageHome.Name = "TabPageHome"
-    Me.TabPageHome.Size = New System.Drawing.Size(1093, 482)
+    Me.TabPageHome.Size = New System.Drawing.Size(1032, 462)
     Me.TabPageHome.TabIndex = 0
     Me.TabPageHome.Text = "Home team"
     '
@@ -634,7 +634,7 @@ Partial Class FormMatchSetup
     Me.UcTeamMatchSetupHome.IsLocalTeam = True
     Me.UcTeamMatchSetupHome.Location = New System.Drawing.Point(0, 0)
     Me.UcTeamMatchSetupHome.Name = "UcTeamMatchSetupHome"
-    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(1093, 482)
+    Me.UcTeamMatchSetupHome.Size = New System.Drawing.Size(1032, 462)
     Me.UcTeamMatchSetupHome.TabIndex = 0
     Me.UcTeamMatchSetupHome.Tactic = Nothing
     Me.UcTeamMatchSetupHome.Team = Nothing
@@ -644,7 +644,7 @@ Partial Class FormMatchSetup
     Me.TabPageAway.Controls.Add(Me.UcTeamMatchSetupAway)
     Me.TabPageAway.Location = New System.Drawing.Point(4, 38)
     Me.TabPageAway.Name = "TabPageAway"
-    Me.TabPageAway.Size = New System.Drawing.Size(1093, 482)
+    Me.TabPageAway.Size = New System.Drawing.Size(1032, 462)
     Me.TabPageAway.TabIndex = 1
     Me.TabPageAway.Text = "Away team"
     '
@@ -655,7 +655,7 @@ Partial Class FormMatchSetup
     Me.UcTeamMatchSetupAway.IsLocalTeam = True
     Me.UcTeamMatchSetupAway.Location = New System.Drawing.Point(0, 0)
     Me.UcTeamMatchSetupAway.Name = "UcTeamMatchSetupAway"
-    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(1093, 482)
+    Me.UcTeamMatchSetupAway.Size = New System.Drawing.Size(1032, 462)
     Me.UcTeamMatchSetupAway.TabIndex = 0
     Me.UcTeamMatchSetupAway.Tactic = Nothing
     Me.UcTeamMatchSetupAway.Team = Nothing
@@ -668,11 +668,11 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(984, 600)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(903, 590)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(146, 29)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(170, 33)
     Me.TableLayoutPanel1.TabIndex = 3
     '
     'OK_Button
@@ -681,7 +681,7 @@ Partial Class FormMatchSetup
     Me.OK_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.OK_Button.Location = New System.Drawing.Point(3, 3)
     Me.OK_Button.Name = "OK_Button"
-    Me.OK_Button.Size = New System.Drawing.Size(67, 23)
+    Me.OK_Button.Size = New System.Drawing.Size(78, 27)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
     '
@@ -690,9 +690,9 @@ Partial Class FormMatchSetup
     Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
     Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
     Me.Cancel_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-    Me.Cancel_Button.Location = New System.Drawing.Point(76, 3)
+    Me.Cancel_Button.Location = New System.Drawing.Point(88, 3)
     Me.Cancel_Button.Name = "Cancel_Button"
-    Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
+    Me.Cancel_Button.Size = New System.Drawing.Size(78, 27)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
     '
@@ -702,12 +702,14 @@ Partial Class FormMatchSetup
     '
     'FormMatchSetup
     '
-    Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+    Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1153, 652)
+    Me.ClientSize = New System.Drawing.Size(1100, 650)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Controls.Add(Me.TableLayoutPanelGlobal)
+    Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Name = "FormMatchSetup"
+    Me.Padding = New System.Windows.Forms.Padding(23, 69, 23, 23)
     Me.Style = MetroFramework.MetroColorStyle.Orange
     Me.Text = "Match setup"
     Me.TableLayoutPanelGlobal.ResumeLayout(False)

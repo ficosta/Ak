@@ -68,12 +68,12 @@ Public Class GraphicsScoreLine
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HalfTime))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.SecondHalf))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FullTime))
-        gs.GraphicSteps.Add(New GraphicStep(gs, "Extra time", False, False, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, "Extra time", "ET", False, False, True, True))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.ETFirstHalf))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.ETHalfTime))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.ETSecondHalf))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.ETFullTime))
-        gs.GraphicSteps.Add(New GraphicStep(gs, "Oher stats", False, False, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, "Oher stats", "OS", False, False, True, True))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.WithLastScorer))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.WithIDentDescription))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.WithhAllScorers))
@@ -119,7 +119,7 @@ Public Class GraphicsScoreLine
         Case Step0.ETSecondHalf
           PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Second half (extra time)", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
         Case Step0.ETHalfTime
-          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Half time (extra time)", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
+          PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Half-time (extra time)", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
         Case Step0.ETFullTime
           PrepareResultScene(Scene, Match.home_goals, Match.away_goals, "Full time (extra time)", gs.ChildGraphicStep.ChildGraphicStep.Name = StepMatch.SponsorLogo)
         Case Step0.WithhAllScorers
@@ -145,6 +145,7 @@ Public Class GraphicsScoreLine
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 100, DirectorAction.Dummy)
     'scene.SceneDirectorsIn.Add("Bottom_change", 80, DirectorAction.JumpTo)
     scene.SceneDirectorsIn.Add("Goals_Crawler", 0, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add("Bottom_change", 0, DirectorAction.Rewind)
     scene.SceneDirectorsIn.Add("Change_commentators ", 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("Change_commentators ", 1, DirectorAction.Rewind)
 
@@ -157,7 +158,7 @@ Public Class GraphicsScoreLine
     scene = InitDefaultScene()
 
     Try
-      Dim gSide As Integer = 2
+      Dim gSide As Integer = 1
 
       If show_Logo Then
         scene.SceneDirectorsIn.Add("sponsor_in_out", 50, DirectorAction.Start)
@@ -169,6 +170,7 @@ Public Class GraphicsScoreLine
 
 
       scene.SceneParameters.Add("Scoreline_Control_OMO_Score", "1")
+      scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Control_OMO_Subline_Type_Base ", "1")
 
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Name", Match.HomeTeam.Name))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Name", Match.AwayTeam.Name))
@@ -179,17 +181,16 @@ Public Class GraphicsScoreLine
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Score", away_Result))
 
       scene.SceneParameters.Add(New SceneParameter("Scoreline_period_Name", Arabic(period_Name)))
-
-      scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_01_Text", period_Name)
+      scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_01_Text", Arabic(period_Name))
 
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Control_OMO_Subline_Type_Base", "0"))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Data_Control_OMO_Data", "0"))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_2_Control_OMO_GV_Choose", "1"))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Control_OMO_Subline_Type_Base", "0"))
 
-      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_01_Text", period_Name))
-      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_02_Text", ""))
-      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_03_Text", ""))
+      'scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_01_Text", Arabic(period_Name)))
+      'scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_02_Text", ""))
+      'scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_03_Text", ""))
 
 
     Catch ex As Exception
@@ -198,16 +199,44 @@ Public Class GraphicsScoreLine
   End Sub
 
   Private Sub PrepareResultSceneWithIdent(ByRef scene As Scene, home_Result As String, away_Result As String, show_Logo As Boolean)
-    scene = InitDefaultScene(1)
+    scene = InitDefaultScene()
 
     Try
+      Dim gSide As Integer = 1
+
       If show_Logo Then
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 25, DirectorAction.Start)
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 50, DirectorAction.Dummy)
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 50, DirectorAction.Start)
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 55, DirectorAction.Dummy)
         scene.SceneDirectorsOut.Add("sponsor_in_out", 0, DirectorAction.ContinueNormal)
       Else
         scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
       End If
+
+
+      scene.SceneParameters.Add("Scoreline_Control_OMO_Score", "1")
+      scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Control_OMO_Subline_Type_Base ", "1")
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Name", Match.HomeTeam.Name))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Name", Match.AwayTeam.Name))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.HomeTeam.BadgeName, paramType.Image))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.AwayTeam.BadgeName, paramType.Image))
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Score", home_Result))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Score", away_Result))
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_period_Name", Me.Match.ArabicMatchDescription))
+      scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_01_Text", Me.Match.ArabicMatchDescription)
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Control_OMO_Subline_Type_Base", "0"))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Data_Control_OMO_Data", "0"))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_2_Control_OMO_GV_Choose", "1"))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Control_OMO_Subline_Type_Base", "0"))
+
+      'scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_01_Text", Arabic(period_Name)))
+      'scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_02_Text", ""))
+      'scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_1_Data_03_Text", ""))
+
+
     Catch ex As Exception
 
     End Try
@@ -215,8 +244,12 @@ Public Class GraphicsScoreLine
 
   Private Sub PrepareResultSceneWithLastScorer(ByRef scene As Scene, home_Result As String, away_Result As String, show_Logo As Boolean)
     scene = InitDefaultScene(1)
+    Dim gside As Integer = 1
 
     Try
+      scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Bottom_Control_OMO_Subline_Type_Base ", "1")
+      scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Bottom_Sublines_Data_Control_OMO_Data ", "2")
+      scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Bottom_Sublines_Type_2_Control_OMO_GV_Choose", "0")
       If show_Logo Then
         scene.SceneDirectorsIn.Add("sponsor_in_out", 25, DirectorAction.Start)
         scene.SceneDirectorsIn.Add("sponsor_in_out", 50, DirectorAction.Dummy)
@@ -224,16 +257,48 @@ Public Class GraphicsScoreLine
       Else
         scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
       End If
+
+
+      For i As Integer = 1 To 11
+        scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_Left_" & i & "_Score_A ", "")
+        scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_Right_" & i & "_Score_A ", "")
+        For j As Integer = 1 To 12
+          scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_Left_" & i & "_Text_" & Strings.Format(j, "00"), "")
+          scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_Right_" & i & "_Text_" & Strings.Format(j, "00"), "")
+        Next
+      Next
+
+      Dim goals As MatchInfo.MatchGoals = Me.Match.MatchGoals
+      If goals.Count > 0 Then
+        goals.Sort()
+        Dim teamSide As String = ""
+        Dim i As Integer = 1
+        If goals(0).TeamGoalID = Me.Match.home_team_id Then
+          teamSide = "Right"
+        Else
+          teamSide = "Left"
+        End If
+
+        scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_" & teamSide & "_" & i & "_Score_A ", FormatRunningTime(goals(0).TimeSecond))
+        Dim player As MatchInfo.Player = Me.Match.GetPlayerById(goals(0).PlayerID)
+        If Not player Is Nothing Then
+          scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_" & teamSide & "_" & i & "_Text_01", player.ArabicName)
+
+        End If
+
+
+      End If
+
     Catch ex As Exception
 
     End Try
   End Sub
 
   Private Sub PrepareResultSceneWithScorerCrawl(ByRef scene As Scene, home_Result As String, away_Result As String, show_Logo As Boolean)
-    scene = InitDefaultScene()
+    scene = InitDefaultScene(1)
 
     Try
-      Dim gSide As Integer = 2
+      Dim gSide As Integer = 1
       scene.SceneDirector = "DIR_MAIN$In_Out"
       scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
       scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 100, DirectorAction.Dummy)
@@ -253,6 +318,9 @@ Public Class GraphicsScoreLine
       scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
       scene.SceneParameters.Add("Scoreline_Control_OMO_Score", "1")
+      scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Control_OMO_Subline_Type_Base ", "1")
+      scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Sublines_Data_Control_OMO_Data ", "2")
+      scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Sublines_Type_2_Control_OMO_GV_Choose", "0")
 
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Name", Match.HomeTeam.Name))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Name", Match.AwayTeam.Name))
@@ -275,7 +343,7 @@ Public Class GraphicsScoreLine
       Dim goals As MatchInfo.MatchGoals = Me.Match.HomeTeam.MatchGoals
       goals.Sort()
       For i As Integer = 1 To 11
-        Dim prefix As String = "Scoreline_Side_" & gSide & "_Sublines_Type_2_Goals_Left_"
+        Dim prefix As String = "Scoreline_Side_" & gSide & "_Sublines_Type_2_Goals_Right_"
 
         If i - 1 < goals.Count Then
           Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
@@ -289,7 +357,7 @@ Public Class GraphicsScoreLine
       goals = Me.Match.AwayTeam.MatchGoals
       goals.Sort()
       For i As Integer = 1 To 11
-        Dim prefix As String = "Scoreline_Side_" & gSide & "_Sublines_Type_2_Goals_Right_"
+        Dim prefix As String = "Scoreline_Side_" & gSide & "_Sublines_Type_2_Goals_Left_"
         If i - 1 < goals.Count Then
           Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", FormatRunningTime(goal.TimeSecond)))

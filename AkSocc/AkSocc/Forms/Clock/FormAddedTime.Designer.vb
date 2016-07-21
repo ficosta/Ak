@@ -23,8 +23,8 @@ Partial Class FormAddedTime
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.OK_Button = New Button()
-    Me.Cancel_Button = New Button()
+    Me.OK_Button = New System.Windows.Forms.Button()
+    Me.Cancel_Button = New System.Windows.Forms.Button()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
     Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
@@ -54,23 +54,23 @@ Partial Class FormAddedTime
     'OK_Button
     '
     Me.OK_Button.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.OK_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.OK_Button.Location = New System.Drawing.Point(3, 3)
     Me.OK_Button.Name = "OK_Button"
     Me.OK_Button.Size = New System.Drawing.Size(74, 23)
     Me.OK_Button.TabIndex = 0
     Me.OK_Button.Text = "OK"
-    Me.OK_Button.FlatStyle = FlatStyle.Flat
     '
     'Cancel_Button
     '
     Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
     Me.Cancel_Button.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Cancel_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.Cancel_Button.Location = New System.Drawing.Point(83, 3)
     Me.Cancel_Button.Name = "Cancel_Button"
     Me.Cancel_Button.Size = New System.Drawing.Size(74, 23)
     Me.Cancel_Button.TabIndex = 1
     Me.Cancel_Button.Text = "Cancel"
-    Me.Cancel_Button.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanel2
     '

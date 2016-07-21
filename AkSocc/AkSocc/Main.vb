@@ -63,6 +63,7 @@ Module Main
   Public Sub WriteToErrorLog(logEx As Exception)
     Try
       WriteToErrorLog(logEx.ToString, "", My.Application.Info.AssemblyName & " " & My.Application.Info.Version.ToString)
+      GlobalNotifier.Instance.AddErrorMessage(logEx.ToString)
     Catch ex As Exception
 
     End Try

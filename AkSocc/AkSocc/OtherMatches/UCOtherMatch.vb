@@ -281,7 +281,11 @@ Public Class UCOtherMatch
   Private Sub MetroComboBoxMatch_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MetroComboBoxMatch.SelectedIndexChanged
     Try
       If Not _otherMatch Is Nothing Then
-        _otherMatch.Match = CType(MetroComboBoxMatch.SelectedItem, Match)
+        If MetroComboBoxMatch.Text = "" Then
+          _otherMatch.Match = Nothing
+        Else
+          _otherMatch.Match = CType(MetroComboBoxMatch.SelectedItem, Match)
+        End If
         If _otherMatch.Match Is Nothing Then
           Me.MetroTextBoxScoreHome.Text = ""
           Me.MetroTextBoxScoreAway.Text = ""

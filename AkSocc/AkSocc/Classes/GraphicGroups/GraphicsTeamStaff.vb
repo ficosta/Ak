@@ -93,7 +93,7 @@ Public Class GraphicsTeamStaff
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
-    scene.SceneName = "DIR_MAIN"
+    scene.SceneName = "gfx_Lower3rd"
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
@@ -111,16 +111,7 @@ Public Class GraphicsTeamStaff
     scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Control_OMO_GV_Choose", "0")
     scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Control_OMO_GV_Choose", "0")
     scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose", "2")
-
-    Dim prefix As String = "Side_" & gStep
-    scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_TeamList_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Double_teams_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Table_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Results_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Formation_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Stats_Vis.active", "0")
-
+    scene.SceneParameters.Add("Lower3rd_Player_Badge_Control_OMO_GV_Choose ", "0")
     Return scene
   End Function
 
@@ -133,6 +124,8 @@ Public Class GraphicsTeamStaff
       prefix = "Lower3rd_Side_" & gSide & "_"
 
       If Not teamStaff Is Nothing Then
+        scene.SceneParameters.Add("Lower3rd_Player_Badge_Subject_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Team.BadgeName, paramType.Image)
+        scene.SceneParameters.Add("Lower3rd_Player_Badge_Subject_Logo3D.geom", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Team.BadgeName, paramType.Geometry)
         scene.SceneParameters.Add("Lower3rd_Player_Badge_Subject_Name", teamStaff.ArabicStaffTitle)
         scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", teamStaff.ArabicName)
         scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", teamStaff.ArabicName)

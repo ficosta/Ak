@@ -34,6 +34,8 @@
           Else
             item = .Rows.Add(gStep.UID, gStep.Name)
           End If
+          '.Rows(item).Visible = Not (gStep.IsSeparator Or gStep.IsTitleOnly)
+          .Rows(item).Frozen = Not (gStep.IsSeparator Or gStep.IsTitleOnly)
           .Rows(item).Selected = False
         Next
         ' .ClearSelection()
