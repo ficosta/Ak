@@ -289,7 +289,23 @@ Public Class frmMain
   End Sub
 
   Private Sub ToolStripStatusLabelLoggerConnection_Click(sender As Object, e As EventArgs) Handles ToolStripStatusLabelLoggerConnection.Click
+    Try
+      AppSettings.Instance.UseLogger = Not AppSettings.Instance.UseLogger
+      If AppSettings.Instance.UseLogger Then
+        If LoggerComm.StartClient() Then
+          LoggerComm.SendTeamsInfo(_match)
+          ToolStripStatusLabelLoggerConnection.BackColor = Color.LightGreen
+        Else
+          ToolStripStatusLabelLoggerConnection.BackColor = Color.LightSalmon
+        End If
+      Else
+        ToolStripStatusLabelLoggerConnection.BackColor = Color.White
 
+      End If
+
+    Catch ex As Exception
+
+    End Try
   End Sub
 
   Private Sub UpdateStatusLabel()

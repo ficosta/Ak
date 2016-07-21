@@ -19,7 +19,7 @@ Public NotInheritable Class AppSettings
   Public Property GraphicVersion As String = ""
   Public Property LastCompetitionId As Integer = 0
   Public Property LastMatchId As Integer = 0
-  Public Property LoggerHost As String = ""
+  Public Property LoggerIP As String = ""
   Public Property LoggerPort As Integer = 6405
   Public Property OtherMatchesPath As String = ""
   Public Property PreviewLocalPath As String = ""
@@ -34,6 +34,7 @@ Public NotInheritable Class AppSettings
   Public Property ColorsDefaultPath As String = "C:\Alamiya\Colors"
   Public Property KitsDefaultPath As String = "C:\Alamiya\kits"
 
+  Public Property UseLogger As Boolean = False
 #End Region
 
   Public Function LlegirConfiguracio(ByVal niNumConfig As Integer) As AppSettings
@@ -44,7 +45,7 @@ Public NotInheritable Class AppSettings
     AppSettings.Instance.GraphicVersion = CStr(CMyRegConfig.ReadValue("GraphicVersion", AppSettings.Instance.GraphicVersion, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
     AppSettings.Instance.LastCompetitionId = CInt(CMyRegConfig.ReadValue("LastCompetitionId", AppSettings.Instance.LastCompetitionId, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
     AppSettings.Instance.LastMatchId = CInt(CMyRegConfig.ReadValue("LastMatchId", AppSettings.Instance.LastMatchId, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
-    AppSettings.Instance.LoggerHost = CStr(CMyRegConfig.ReadValue("LoggerHost", AppSettings.Instance.LoggerHost, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.LoggerIP = CStr(CMyRegConfig.ReadValue("LoggerHost", AppSettings.Instance.LoggerIP, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
     AppSettings.Instance.LoggerPort = CInt(CMyRegConfig.ReadValue("LoggerPort", AppSettings.Instance.LoggerPort, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
     AppSettings.Instance.OtherMatchesPath = CStr(CMyRegConfig.ReadValue("OtherMatchesPath", AppSettings.Instance.OtherMatchesPath, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
     AppSettings.Instance.PreviewLocalPath = CStr(CMyRegConfig.ReadValue("PreviewLocalPath", AppSettings.Instance.PreviewLocalPath, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
@@ -77,7 +78,7 @@ Public NotInheritable Class AppSettings
     CMyRegConfig.WriteValue("GraphicVersion", tiConfig.GraphicVersion, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
     CMyRegConfig.WriteValue("LastCompetitionId", tiConfig.LastCompetitionId, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
     CMyRegConfig.WriteValue("LastMatchId", tiConfig.LastMatchId, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
-    CMyRegConfig.WriteValue("LoggerHost", tiConfig.LoggerHost, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("LoggerHost", tiConfig.LoggerIP, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
     CMyRegConfig.WriteValue("LoggerPort", tiConfig.LoggerPort, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
     CMyRegConfig.WriteValue("OtherMatchesPath", tiConfig.OtherMatchesPath, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
     CMyRegConfig.WriteValue("PreviewLocalPath", tiConfig.PreviewLocalPath, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)

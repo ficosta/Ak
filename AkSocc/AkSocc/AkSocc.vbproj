@@ -119,6 +119,7 @@
     <Compile Include="Classes\GraphicVersions\GraphicVersion.vb" />
     <Compile Include="Classes\GraphicVersions\GraphicVersions.vb" />
     <Compile Include="Classes\KeyCapture.vb" />
+    <Compile Include="Classes\Logger\LoggerComm.vb" />
     <Compile Include="Classes\Prototype\Graphic.vb" />
     <Compile Include="Classes\Prototype\GraphicStep.vb" />
     <Compile Include="Classes\Prototype\GraphicSteps.vb" />
