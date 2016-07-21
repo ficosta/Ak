@@ -78,7 +78,6 @@ Partial Class frmGoals
     Me.MetroTileGraphics.Size = New System.Drawing.Size(792, 24)
     Me.MetroTileGraphics.TabIndex = 0
     Me.MetroTileGraphics.Text = "Graphics"
-    Me.MetroTileGraphics.FlatStyle = FlatStyle.Flat
     '
     'TableLayoutPanelData
     '
@@ -250,7 +249,6 @@ Partial Class frmGoals
     Me.MetroTileData.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileData.TabIndex = 2
     Me.MetroTileData.Text = "Data"
-    Me.MetroTileData.FlatStyle = FlatStyle.Flat
     '
     'frmGoals
     '
