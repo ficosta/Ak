@@ -130,14 +130,14 @@ Public Class GraphicGroupFullFramers
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 95, DirectorAction.Dummy)
     scene.SceneDirectorsIn.Add("Change_1_2", 0, DirectorAction.Rewind)
 
-    scene.SceneDirectorsChangeOut.Add("Change_1_2", 0, DirectorAction.Rewind)
-    scene.SceneDirectorsChangeOut.Add("Change_1_2", 100, DirectorAction.Dummy)
-
     scene.SceneDirectorsChangeIn.Add("Change_1_2", 0, DirectorAction.Start)
     scene.SceneDirectorsChangeIn.Add("Change_1_2", 200, DirectorAction.Dummy)
 
-    scene.SceneParameters.Add("Veil_On_Off_Vis", "1")
+    scene.SceneParameters.Add("Veil_On_Off_Vis.active", "1")
     scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
+    scene.SceneParameters.Add("Veil_Left_Vis.active ", "0")
+    scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
+
 
     Dim prefix As String = "Side_" & gStep
     scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
@@ -210,6 +210,10 @@ Public Class GraphicGroupFullFramers
       scene.SceneParameters.Add("Side_" & gStep & "_Table_Vis.active", "1")
       scene.SceneParameters.Add(prefix & "Table_Vis.active", 1)
 
+      scene.SceneParameters.Add(prefix & "Centre_Text", Arabic("LEAGUE TABLE")) '0 full bar, 1 split bar
+      scene.SceneParameters.Add(prefix & "Right_Text", "") '0 full bar, 1 split bar
+      scene.SceneParameters.Add(prefix & "Left_Text", "") '0 full bar, 1 split bar
+
       For index As Integer = 0 To linesPerPage - 1
         posIndex = linesPerPage * IIf(isTop, 0, 1) + index
         Dim teamClassification As TeamClassificationForMatchDay = _classification.LastAvailableClassificationForMatchDay.TeamClassificationList(posIndex)
@@ -244,39 +248,63 @@ Public Class GraphicGroupFullFramers
     Dim subjectPrefix As String = ""
     Try
       scene.SceneParameters.Add(prefix & "Results_Vis.active", "1")
-      prefix = "Results_" & prefix
 
+      prefix = "Title_Side_" & gStep & "_"
+      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", "0") '0 full bar, 1 split bar
+      scene.SceneParameters.Add(prefix & "Centre_Text", Arabic(matchDay.MatchDayName)) '0 full bar, 1 split bar
+      scene.SceneParameters.Add(prefix & "Right_Text", "") '0 full bar, 1 split bar
+      scene.SceneParameters.Add(prefix & "Left_Text", "") '0 full bar, 1 split bar
+
+      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo3D.geom ", "", paramType.Geometry)
+      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo3D.geom ", "", paramType.Geometry)
+
+      prefix = "Results_Side_" & gStep & "_"
 
       If Not matchDay Is Nothing Then
+        Dim matchIndex As Integer = 1
         For Each match As OtherMatch In matchDay.OtherMatches
-          subjectPrefix = prefix & "Subject_0" & (match.MatchIndex + 1) & "_"
-          Select Case match.LineType
-            Case OtherMatch.eOtherMatchLineType.Blank
-              scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "0")
-            Case OtherMatch.eOtherMatchLineType.Result
-              scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "1")
-            Case OtherMatch.eOtherMatchLineType.Title
-              scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "0")
-          End Select
-          scene.SceneParameters.Add(subjectPrefix & "Title", match.MatchTitle)
+          If match.IsTable Then
 
-          scene.SceneParameters.Add(subjectPrefix & "Control_OMO_TV_Channel", match.LogoChannel + 1)
-          scene.SceneParameters.Add(subjectPrefix & "Control_OMO_Score", match.AwayScore & "-" & match.HomeScore)
-          scene.SceneParameters.Add(subjectPrefix & "No_Score_Text", "")
-          If Not match.Match Is Nothing Then
-            scene.SceneParameters.Add(subjectPrefix & "Home_Team_Name", match.Match.HomeTeam.Name)
-            scene.SceneParameters.Add(subjectPrefix & "Away_Team_Name", match.Match.AwayTeam.Name)
-          Else
-            scene.SceneParameters.Add(subjectPrefix & "Home_Team_Name", "")
-            scene.SceneParameters.Add(subjectPrefix & "Away_Team_Name", "")
+            subjectPrefix = prefix & "Subject_0" & (matchIndex) & "_"
+            Select Case match.LineType
+              Case OtherMatch.eOtherMatchLineType.Blank
+                scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "0")
+              Case OtherMatch.eOtherMatchLineType.Result
+                scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "1")
+              Case OtherMatch.eOtherMatchLineType.Title
+                scene.SceneParameters.Add(subjectPrefix & "Control_OMO_GV_Choose", "0")
+            End Select
+            scene.SceneParameters.Add(subjectPrefix & "Title", match.MatchTitle)
+
+            scene.SceneParameters.Add(subjectPrefix & "Control_OMO_TV_Channel", match.LogoChannel)
+            Select Case match.MatchStatus
+              Case OtherMatch.otherMatchStatus.Idle
+                scene.SceneParameters.Add(subjectPrefix & "Control_OMO_Score", "0")
+                scene.SceneParameters.Add(subjectPrefix & "No_Score_Text", "X")
+              Case Else
+                scene.SceneParameters.Add(subjectPrefix & "Control_OMO_Score", "1")
+                scene.SceneParameters.Add(subjectPrefix & "No_Score_Text", "")
+            End Select
+
+            If match.LineType = OtherMatch.eOtherMatchLineType.Result And Not match.Match Is Nothing Then
+              match.Match.GetMatch()
+              scene.SceneParameters.Add(subjectPrefix & "Home_Team_Name", match.Match.HomeTeam.Name)
+              scene.SceneParameters.Add(subjectPrefix & "Away_Team_Name", match.Match.AwayTeam.Name)
+            Else
+              scene.SceneParameters.Add(subjectPrefix & "Home_Team_Name", "")
+              scene.SceneParameters.Add(subjectPrefix & "Away_Team_Name", "")
+            End If
+            scene.SceneParameters.Add(subjectPrefix & "Home_Team_Score", match.HomeScore)
+            scene.SceneParameters.Add(subjectPrefix & "Away_Team_Score", match.AwayScore)
+
+            scene.SceneParameters.Add(subjectPrefix & "Visible.active", "1")
+
+            matchIndex += 1
           End If
-          scene.SceneParameters.Add(subjectPrefix & "Home_Team_Score", match.HomeScore)
-          scene.SceneParameters.Add(subjectPrefix & "Away_Team_Score", match.AwayScore)
-
         Next
-        For index As Integer = matchDay.OtherMatches.Count To 10
-          subjectPrefix = prefix & "Subject_0" & index & "_"
-          scene.SceneParameters.Add(subjectPrefix & "Title", "no match to show")
+        For index As Integer = matchIndex To 10
+          subjectPrefix = prefix & "Subject_0" & (index) & "_"
+          scene.SceneParameters.Add(subjectPrefix & "Visible.active", "0")
         Next
       End If
 

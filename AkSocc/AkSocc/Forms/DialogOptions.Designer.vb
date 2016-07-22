@@ -58,6 +58,12 @@ Partial Class DialogOptions
     Me.LabelPreviewPort = New System.Windows.Forms.Label()
     Me.LabelSceneVersion = New System.Windows.Forms.Label()
     Me.ComboBoxSceneVersion = New System.Windows.Forms.ComboBox()
+    Me.TabPageLogger = New System.Windows.Forms.TabPage()
+    Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
+    Me.Label3 = New System.Windows.Forms.Label()
+    Me.TextBoxLoggerHost = New System.Windows.Forms.TextBox()
+    Me.Label4 = New System.Windows.Forms.Label()
+    Me.NumericUpDownLogger = New System.Windows.Forms.NumericUpDown()
     Me.OpenFileDialogDataBase = New System.Windows.Forms.OpenFileDialog()
     Me.OpenFileDialogXML = New System.Windows.Forms.OpenFileDialog()
     Me.FolderBrowserDialogPaths = New System.Windows.Forms.FolderBrowserDialog()
@@ -69,6 +75,9 @@ Partial Class DialogOptions
     Me.TableLayoutPanel2.SuspendLayout()
     CType(Me.NumericUpDownPreviewPort, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.NumericUpDownPort, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.TabPageLogger.SuspendLayout()
+    Me.TableLayoutPanel4.SuspendLayout()
+    CType(Me.NumericUpDownLogger, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'TableLayoutPanel1
@@ -128,6 +137,7 @@ Partial Class DialogOptions
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.TabControlOptions.Controls.Add(Me.TabPage1)
     Me.TabControlOptions.Controls.Add(Me.TabPage2)
+    Me.TabControlOptions.Controls.Add(Me.TabPageLogger)
     Me.TabControlOptions.Location = New System.Drawing.Point(12, 12)
     Me.TabControlOptions.Name = "TabControlOptions"
     Me.TabControlOptions.SelectedIndex = 1
@@ -527,6 +537,84 @@ Partial Class DialogOptions
     Me.ComboBoxSceneVersion.Size = New System.Drawing.Size(192, 25)
     Me.ComboBoxSceneVersion.TabIndex = 7
     '
+    'TabPageLogger
+    '
+    Me.TabPageLogger.Controls.Add(Me.TableLayoutPanel4)
+    Me.TabPageLogger.Location = New System.Drawing.Point(4, 38)
+    Me.TabPageLogger.Name = "TabPageLogger"
+    Me.TabPageLogger.Size = New System.Drawing.Size(765, 313)
+    Me.TabPageLogger.TabIndex = 2
+    Me.TabPageLogger.Text = "Logger"
+    '
+    'TableLayoutPanel4
+    '
+    Me.TableLayoutPanel4.ColumnCount = 3
+    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151.0!))
+    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanel4.Controls.Add(Me.Label3, 0, 0)
+    Me.TableLayoutPanel4.Controls.Add(Me.TextBoxLoggerHost, 1, 0)
+    Me.TableLayoutPanel4.Controls.Add(Me.Label4, 0, 1)
+    Me.TableLayoutPanel4.Controls.Add(Me.NumericUpDownLogger, 1, 1)
+    Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 0)
+    Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
+    Me.TableLayoutPanel4.RowCount = 8
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel4.Size = New System.Drawing.Size(765, 313)
+    Me.TableLayoutPanel4.TabIndex = 1
+    '
+    'Label3
+    '
+    Me.Label3.AutoSize = True
+    Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label3.Location = New System.Drawing.Point(3, 0)
+    Me.Label3.Name = "Label3"
+    Me.Label3.Size = New System.Drawing.Size(145, 30)
+    Me.Label3.TabIndex = 0
+    Me.Label3.Text = "Logger host"
+    Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'TextBoxLoggerHost
+    '
+    Me.TextBoxLoggerHost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.TableLayoutPanel4.SetColumnSpan(Me.TextBoxLoggerHost, 2)
+    Me.TextBoxLoggerHost.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TextBoxLoggerHost.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TextBoxLoggerHost.Location = New System.Drawing.Point(154, 3)
+    Me.TextBoxLoggerHost.Name = "TextBoxLoggerHost"
+    Me.TextBoxLoggerHost.Size = New System.Drawing.Size(608, 25)
+    Me.TextBoxLoggerHost.TabIndex = 1
+    '
+    'Label4
+    '
+    Me.Label4.AutoSize = True
+    Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label4.Location = New System.Drawing.Point(3, 30)
+    Me.Label4.Name = "Label4"
+    Me.Label4.Size = New System.Drawing.Size(145, 30)
+    Me.Label4.TabIndex = 2
+    Me.Label4.Text = "Logger port"
+    Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'NumericUpDownLogger
+    '
+    Me.NumericUpDownLogger.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.NumericUpDownLogger.Location = New System.Drawing.Point(154, 33)
+    Me.NumericUpDownLogger.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+    Me.NumericUpDownLogger.Name = "NumericUpDownLogger"
+    Me.NumericUpDownLogger.Size = New System.Drawing.Size(68, 25)
+    Me.NumericUpDownLogger.TabIndex = 3
+    '
     'OpenFileDialogDataBase
     '
     Me.OpenFileDialogDataBase.FileName = "OpenFileDialog1"
@@ -562,6 +650,10 @@ Partial Class DialogOptions
     Me.TableLayoutPanel2.PerformLayout()
     CType(Me.NumericUpDownPreviewPort, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.NumericUpDownPort, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.TabPageLogger.ResumeLayout(False)
+    Me.TableLayoutPanel4.ResumeLayout(False)
+    Me.TableLayoutPanel4.PerformLayout()
+    CType(Me.NumericUpDownLogger, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub
@@ -604,4 +696,10 @@ Partial Class DialogOptions
   Friend WithEvents MetroLabel3 As System.Windows.Forms.Label
   Friend WithEvents MetroLabel4 As System.Windows.Forms.Label
   Friend WithEvents FolderBrowserDialogPaths As FolderBrowserDialog
+  Friend WithEvents TabPageLogger As TabPage
+  Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
+  Friend WithEvents Label3 As Label
+  Friend WithEvents TextBoxLoggerHost As TextBox
+  Friend WithEvents Label4 As Label
+  Friend WithEvents NumericUpDownLogger As NumericUpDown
 End Class

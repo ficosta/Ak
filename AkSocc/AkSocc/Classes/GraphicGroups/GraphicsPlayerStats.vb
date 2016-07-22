@@ -82,12 +82,25 @@ Public Class GraphicsPlayerStats
     Try
       gs.GraphicSteps.Clear()
 
+      Dim PlayerInString As String = LoggerComm.SendSocket("PLAYERSTAT|" & Me.Player.PlayerID.ToString())
+      Me.Player.GetFromSocketFormat(PlayerInString)
+      Dim intPlayerGoals As Integer = Match.MatchGoals.GetGoalsByPlayer(Me.Player).Count
       If graphicStep Is Nothing Then
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AllShots, True, False))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FoulsConceded, True, False))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Assists, True, False))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Saves, True, False))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.ShotsAndAssists, True, False))
+
+        'myList.Add(New ListViewItem("All Shots [" & Me.Player.MatchStats.Shots.Value.ToString() & "], On Target [" & Me.Player.MatchStats.ShotsOn.Value.ToString() & "] & goals [" & intPlayerGoals.ToString() & "]"));          // 0
+        '        myList.Add(New ListViewItem("Fouls Conceded [" & Me.Player.MatchStats.Fouls.Value.ToString() & "]"));         // 1
+        '        myList.Add(New ListViewItem("Assists [" & Me.Player.MatchStats.Assis.Value.ToString() & "]"));         // 1
+        '        myList.Add(New ListViewItem("Saves [" & Me.Player.MatchStats.Saves.Value.ToString() & "]"));         // 1
+        '        myList.Add(New ListViewItem("Shots [" & Me.Player.MatchStats.Shots.Value.ToString() & "] & Assists [" & Me.Player.MatchStats.Assis.Value.ToString() & "]"));
+
+
+        gs.GraphicSteps.Add(New GraphicStep(gs, "All Shots [" & Me.Player.MatchStats.Shots.Value.ToString() & "], On Target [" & Me.Player.MatchStats.ShotsOn.Value.ToString() & "] & goals [" & intPlayerGoals.ToString() & "]", Step0.AllShots.Key, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, "Fouls Conceded [" & Me.Player.MatchStats.Fouls.Value.ToString() & "]", Step0.FoulsConceded.Key, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, "Assists [" & Me.Player.MatchStats.Assis.Value.ToString() & "]", Step0.Assists.Key, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, "Saves [" & Me.Player.MatchStats.Saves.Value.ToString() & "]", Step0.Saves.Key, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, "Shots [" & Me.Player.MatchStats.Shots.Value.ToString() & "] & Assists [" & Me.Player.MatchStats.Assis.Value.ToString() & "]", Step0.ShotsAndAssists.Key, True, False))
+
+
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -107,24 +120,24 @@ Public Class GraphicsPlayerStats
       End Select
 
 
-      Select Case gs.ChildGraphicStep.Name
-        Case Step0.AllShots
+      Select Case gs.ChildGraphicStep.UID
+        Case Step0.AllShots.Key
           'All shots
           dataText = Arabic("Goals") & " " & Player.Goals & " " & Arabic("On Target") & " " & Player.MatchStats.ShotsOn.ToString() & " " & Arabic("All shots") & " " & Player.MatchStats.Shots.ToString()
           Exit Select
-        Case Step0.FoulsConceded
+        Case Step0.FoulsConceded.Key
           'Fouls conceded
           dataText = Arabic("Fouls conceded") & " " & Player.MatchStats.Fouls.ToString()
           Exit Select
-        Case Step0.Assists
+        Case Step0.Assists.Key
           'Assist
           dataText = Arabic("Assists") & " " & Player.MatchStats.Assis.ToString()
           Exit Select
-        Case Step0.Saves
+        Case Step0.Saves.Key
           'Saves
           dataText = Arabic("Saves") & " " & Player.MatchStats.Fouls.ToString()
           Exit Select
-        Case Step0.ShotsAndAssists
+        Case Step0.ShotsAndAssists.Key
           'Shots & assists
           dataText = Arabic("shots") & " " & Player.MatchStats.Shots.ToString() & ", " & Arabic("Assists") & Player.MatchStats.Assis.ToString() & " "
           Exit Select

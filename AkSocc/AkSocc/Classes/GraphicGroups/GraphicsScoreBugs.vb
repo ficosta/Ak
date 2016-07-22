@@ -3,7 +3,7 @@ Imports MatchInfo
 Imports VizCommands
 
 
-Public Class GraphicsBugs
+Public Class GraphicsScoreBugs
   Inherits GraphicGroup
 
   Public Sub New(_match As MatchInfo.Match)
@@ -20,8 +20,6 @@ Public Class GraphicsBugs
       Return Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name
     End Get
   End Property
-
-  Public Property _bugs As BugDotTexts
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
@@ -47,13 +45,18 @@ Public Class GraphicsBugs
 
     Try
       gs.GraphicSteps.Clear()
-      _bugs = New BugDotTexts
-      _bugs.GetFromDB("WHERE Priority > 0")
 
       If graphicStep Is Nothing Then
-        For Each name As BugDotText In _bugs
-          gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(name.ID, name.EnglishDescription), True, False))
+        Dim goals As MatchGoals = Me.Match.MatchGoals
+        goals.Sort()
+
+        For Each goal As MatchGoal In goals
+          Dim player As Player = Me.Match.GetPlayerById(goal.PlayerID)
+          If Not player Is Nothing Then
+            gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(goal.GoalID, (goal.TimeSecond \ 60) & "' " & player.ToString), True, False))
+          End If
         Next
+
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -68,9 +71,8 @@ Public Class GraphicsBugs
     Try
       Scene = InitDefaultScene()
 
-
-      Dim bug As BugDotText = _bugs.GetName(CInt(graphicStep.UID))
-      Scene = PrepareBugs(changeStep, bug)
+      Dim goal As MatchGoal = Match.MatchGoals.GetGoal(CInt(graphicStep.UID))
+      Scene = PrepareBugs(changeStep, goal)
 
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -86,23 +88,25 @@ Public Class GraphicsBugs
     scene.SceneName = "gfx_bugs"
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 50, DirectorAction.Dummy)
     scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("Popout", 0, DirectorAction.Rewind)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
     scene.SceneParameters.Add("Bugs_Control_OMO_GV_Choose", "1")
+    scene.SceneParameters.Add("Bugs_Popout_Bar_Text", "")
     Return scene
   End Function
 
 
-  Public Function PrepareBugs(gSide As Integer, bugDotText As BugDotText) As Scene
+  Public Function PrepareBugs(gSide As Integer, goal As MatchGoal) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Try
-      If Not bugDotText Is Nothing Then
-        scene.SceneParameters.Add("Bugs_Full_Bar_Text", VizEncoding(bugDotText.ArabicTopLineText))
-        scene.SceneParameters.Add("Bugs_Bottom_Bar_Text", VizEncoding(bugDotText.ArabicSubLineText))
+      If Not goal Is Nothing Then
+        Dim player As Player = Me.Match.GetPlayerById(goal.PlayerID)
+        scene.SceneParameters.Add("Bugs_Full_Bar_Text", (goal.TimeSecond \ 60) & "' " & player.ArabicName)
+        scene.SceneParameters.Add("Bugs_Bottom_Bar_Text", "")
       End If
 
     Catch ex As Exception

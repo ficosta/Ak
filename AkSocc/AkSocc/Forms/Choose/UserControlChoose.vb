@@ -25,19 +25,21 @@
       With Me.MetroGridOptions
         .Rows.Clear()
 
-        For Each gStep As GraphicStep In Me.GraphicStep.GraphicSteps
-          Dim item As Integer = 0
-          If gStep.IsSeparator Then
-            item = .Rows.Add("-----")
-          ElseIf gStep.IsTitleOnly Then
-            item = .Rows.Add(gStep.Name & "---")
-          Else
-            item = .Rows.Add(gStep.UID, gStep.Name)
-          End If
-          '.Rows(item).Visible = Not (gStep.IsSeparator Or gStep.IsTitleOnly)
-          .Rows(item).Frozen = Not (gStep.IsSeparator Or gStep.IsTitleOnly)
-          .Rows(item).Selected = False
-        Next
+        If Not Me.GraphicStep Is Nothing AndAlso Not Me.GraphicStep.GraphicSteps Is Nothing Then
+          For Each gStep As GraphicStep In Me.GraphicStep.GraphicSteps
+            Dim item As Integer = 0
+            If gStep.IsSeparator Then
+              item = .Rows.Add("-----")
+            ElseIf gStep.IsTitleOnly Then
+              item = .Rows.Add(gStep.Name & "---")
+            Else
+              item = .Rows.Add(gStep.UID, gStep.Name)
+            End If
+            '.Rows(item).Visible = Not (gStep.IsSeparator Or gStep.IsTitleOnly)
+            .Rows(item).Frozen = Not (gStep.IsSeparator Or gStep.IsTitleOnly)
+            .Rows(item).Selected = False
+          Next
+        End If
         ' .ClearSelection()
       End With
     Catch ex As Exception

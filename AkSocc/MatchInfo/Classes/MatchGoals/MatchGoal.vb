@@ -168,4 +168,5 @@ Public Class MatchGoal
     End Try
     Return res
   End Function
+
 End Class

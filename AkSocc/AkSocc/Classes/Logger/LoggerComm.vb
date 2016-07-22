@@ -25,9 +25,6 @@ Public Class LoggerComm
 
     ' Connect to a remote device.
     Try
-      AppSettings.Instance.LoggerIP = "127.0.0.1"
-      AppSettings.Instance.LoggerPort = 2525
-
       Dim ipAddress As System.Net.IPAddress = System.Net.IPAddress.Parse(AppSettings.Instance.LoggerIP)
       Dim remoteEP As New IPEndPoint(ipAddress, AppSettings.Instance.LoggerPort)
 
@@ -124,8 +121,6 @@ Public Class LoggerComm
   End Function
 #End Region
 
-
-
   Public Shared Function SendTeamsInfo(match As MatchInfo.Match) As Boolean
     Dim bOK As Boolean = False
     Try
@@ -168,7 +163,7 @@ Public Class LoggerComm
   End Function
 
 
-  Private Sub GetTeamsStats(match As MatchInfo.Match)
+  Public Shared Sub GetTeamsStats(match As MatchInfo.Match)
     'Refresh the Match Info
     If AppSettings.Instance.UseLogger Then
       Dim StringHomeStats As String = SendSocket("TEAMSTATSHOME|NadaMas")

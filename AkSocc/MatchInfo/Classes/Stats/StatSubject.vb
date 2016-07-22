@@ -256,15 +256,69 @@ Public Class StatSubject
 #End Region
 
 #Region "For comunication"
+
+
   Public Function ToSocketFormat() As String
-    Dim res As String = ""
-    Return res
+    Dim output As String = ""
+
+    output = Me.MatchStats.Fouls.ToString() & "|"
+    output &= Me.MatchStats.Corners.ToString() & "|"
+    output &= Me.MatchStats.Assis.ToString() & "|"
+    output &= Me.MatchStats.Offsides.ToString() & "|"
+    output &= Me.MatchStats.Possession1st.ToString() & "|"
+    output &= Me.MatchStats.Possession2nd.ToString() & "|"
+    output &= Me.MatchStats.PossessionAttack.ToString() & "|"
+    output &= Me.MatchStats.PossessionLast10.ToString() & "|"
+    output &= Me.MatchStats.PossessionLast5.ToString() & "|"
+    output &= Me.MatchStats.PossessionMatch.ToString() & "|"
+    output &= Me.MatchStats.PossessionMid.ToString() & "|"
+    output &= Me.MatchStats.PossessionOwn.ToString() & "|"
+    output &= Me.MatchStats.RedCards.ToString() & "|"
+    output &= Me.MatchStats.Saves.ToString() & "|"
+    output &= Me.MatchStats.Shots.ToString() & "|"
+    output &= Me.MatchStats.ShotsOn.ToString() & "|"
+    output &= Me.MatchStats.WoodHits.ToString() & "|"
+    output &= Me.MatchStats.YellowCards.ToString()
+    Return output
   End Function
 
-  Public Function GetFromSocketFormat(data As String) As Boolean
-    Dim res As Boolean = False
-    Return res
-  End Function
+  Public Sub GetFromSocketFormat(AllData As String)
+    Dim Elements As String() = AllData.Split("|"c)
+    If Elements.Length = 18 Then
+
+      Me.MatchStats.Fouls.Value = NoNullDecimal(Elements(0))
+      Me.MatchStats.Corners.Value = NoNullDecimal(Elements(1))
+      Me.MatchStats.Assis.Value = NoNullDecimal(Elements(2))
+      Me.MatchStats.Offsides.Value = NoNullDecimal(Elements(3))
+      Me.MatchStats.Possession1st.Value = NoNullDecimal(Elements(4))
+      Me.MatchStats.Possession2nd.Value = NoNullDecimal(Elements(5))
+      Me.MatchStats.PossessionAttack.Value = NoNullDecimal(Elements(6))
+      Me.MatchStats.PossessionLast10.Value = NoNullDecimal(Elements(7))
+      Me.MatchStats.PossessionLast5.Value = NoNullDecimal(Elements(8))
+      Me.MatchStats.PossessionMatch.Value = NoNullDecimal(Elements(9))
+      Me.MatchStats.PossessionMid.Value = NoNullDecimal(Elements(10))
+      Me.MatchStats.PossessionOwn.Value = NoNullDecimal(Elements(11))
+      ' RCard.Value = NoNullDecimal(Elements[12]); nope
+      Me.MatchStats.Saves.Value = NoNullDecimal(Elements(13))
+      Me.MatchStats.Shots.Value = NoNullDecimal(Elements(14))
+      Me.MatchStats.ShotsOn.Value = NoNullDecimal(Elements(15))
+      ' YCard.Value = NoNullDecimal(Elements[17]); nope
+      Me.MatchStats.WoodHits.Value = NoNullDecimal(Elements(16))
+    ElseIf Elements.Length = 10 Then
+      'PlayerName = Elements(0)
+      'PlayerID = Utils.Val(Elements(1))
+      'MatchID = Utils.Val(Elements(2))
+      Me.MatchStats.Shots.Value = NoNullDecimal(Elements(3))
+      Me.MatchStats.Saves.Value = NoNullDecimal(Elements(4))
+      Me.MatchStats.ShotsOn.Value = NoNullDecimal(Elements(5))
+      Me.MatchStats.Fouls.Value = NoNullDecimal(Elements(6))
+      ' Yellow Cards will not be managed by Logger
+      '                YCard = NoNullDecimal(Elements[7]);
+      '                RCard = NoNullDecimal(Elements[8]); 
+
+      Me.MatchStats.Assis.Value = NoNullDecimal(Elements(9))
+    End If
+  End Sub
 
 #End Region
 End Class

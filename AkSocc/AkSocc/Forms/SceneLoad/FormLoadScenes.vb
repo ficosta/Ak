@@ -37,6 +37,7 @@ Public Class FormLoadScenes
       _vizControl.LoadScene(_vizControl.Config.SceneBasePath & Me.SceneList(_sceneIndex))
       Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " loading" & vbCrLf & MetroLabelScene.Text
       Debug.Print("loading scene " & Me.SceneList(_sceneIndex))
+      GlobalNotifier.Instance.AddInfoMessage(Me.SceneList(_sceneIndex) & " loading")
     Else
       _vizControl.ActivateScene("")
       If Me.MetroCheckBoxCloseWhenDone.Checked Then
@@ -49,6 +50,7 @@ Public Class FormLoadScenes
     If _sceneIndex < Me.SceneList.Count Then
       If _sceneIndex = -1 Then _sceneIndex = 0
       _vizControl.ActivateScene(_vizControl.Config.SceneBasePath & Me.SceneList(_sceneIndex))
+      GlobalNotifier.Instance.AddInfoMessage(Me.SceneList(_sceneIndex) & " activating")
       Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " activating" & vbCrLf & MetroLabelScene.Text
       Debug.Print("activating scene " & Me.SceneList(_sceneIndex))
     Else
@@ -70,6 +72,7 @@ Public Class FormLoadScenes
           Else
             Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " activated" & vbCrLf & MetroLabelScene.Text
             Debug.Print("activated scene " & Me.SceneList(_sceneIndex))
+            GlobalNotifier.Instance.AddInfoMessage(Me.SceneList(_sceneIndex) & " activated")
           End If
           LoadNextScene()
         Case eVizrtCommands.LoadScene
@@ -78,6 +81,7 @@ Public Class FormLoadScenes
             Debug.Print("error loading scene " & Me.SceneList(_sceneIndex))
           Else
             Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " loaded" & vbCrLf & MetroLabelScene.Text
+            GlobalNotifier.Instance.AddInfoMessage(Me.SceneList(_sceneIndex) & " loaded")
             Debug.Print("loaded scene " & Me.SceneList(_sceneIndex))
           End If
           ActivateScene()

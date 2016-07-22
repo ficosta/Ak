@@ -19,7 +19,7 @@ Public Class DataBase
       End Try
 
       Try
-        Dim SQL2 As String = "CREATE TABLE TeamMatchStats (TeamID INTEGER, MatchID INTEGER, Shots INTEGER, Saves INTEGER, Fouls INTEGER, YCard INTEGER, RCard INTEGER, Assis INTEGER, Shots_on_target INTEGER, corners INTEGER, offsides INTEGER, wood_hits INTEGER, PossesionMatch INTEGER, Possesion1st INTEGER, Possesion2nd INTEGER, PossesionLast5 INTEGER, PossesionLast10 INTEGER, PossesionOwn INTEGER, PossesionMid INTEGER, PossesionAttack INTEGER, FormID INTEGER, CONSTRAINT pk_TeamMatchStats PRIMARY KEY (TeamID, MatchID))"
+        Dim SQL2 As String = "CREATE TABLE TeamMatchStats (TeamID INTEGER, MatchID INTEGER, Shots INTEGER, Saves INTEGER, Fouls INTEGER, YCard INTEGER, RCard INTEGER, Assis INTEGER, Shots_on_target INTEGER, corners INTEGER, offsides INTEGER, wood_hits INTEGER, PossessionMatch INTEGER, Possession1st INTEGER, Possession2nd INTEGER, PossessionLast5 INTEGER, PossessionLast10 INTEGER, PossessionOwn INTEGER, PossessionMid INTEGER, PossessionAttack INTEGER, FormID INTEGER, CONSTRAINT pk_TeamMatchStats PRIMARY KEY (TeamID, MatchID))"
         Dim myCommand2 As New OleDbCommand(SQL2, conn)
         myCommand2.ExecuteNonQuery()
 

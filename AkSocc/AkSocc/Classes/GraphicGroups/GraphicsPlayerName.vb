@@ -95,7 +95,7 @@ Public Class GraphicsPlayerName
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Dim changeStep As Integer = 1
     Try
-      Select Case gs.ChildGraphicStep.Name
+      Select Case gs.ChildGraphicStep.UID
         Case Step0.NameAndTeam
           Scene = PrepareNameAndTeam(changeStep)
         Case Step0.YellowCard
@@ -126,9 +126,9 @@ Public Class GraphicsPlayerName
     scene.SceneName = "gfx_Lower3rd"
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 100, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
     scene.SceneDirectorsIn.Add("Bottom_change_1_2", 0, DirectorAction.Rewind)
-    scene.SceneDirectorsIn.Add(New SceneDirector("DIR_MAIN$In_Out$Cards", 0, DirectorAction.Rewind))
+    'scene.SceneDirectorsIn.Add(New SceneDirector("DIR_MAIN$In_Out$Cards", 0, DirectorAction.Rewind))
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
@@ -221,7 +221,7 @@ Public Class GraphicsPlayerName
     Try
       scene.SceneDirectorsIn.Add(New SceneDirector("DIR_MAIN$In_Out$Cards", 1, DirectorAction.JumpTo, 250))
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose ", "2")
-      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_Icon ", "1")
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_Icon ", "2")
       scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01", VizEncoding(Arabic("RED CARD")))
 
     Catch ex As Exception
@@ -235,6 +235,12 @@ Public Class GraphicsPlayerName
     Try
       Dim goals As Integer
       Dim strGoals As String = Team.Name
+
+      scene.SceneDirectorsIn.Add(New SceneDirector("DIR_MAIN$In_Out$Cards", 1, DirectorAction.Rewind))
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose ", "2")
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_Icon ", "3")
+      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01", VizEncoding(Arabic("RED CARD")))
+
       If seasonGoals = False Then
         goals = Player.Goals
 

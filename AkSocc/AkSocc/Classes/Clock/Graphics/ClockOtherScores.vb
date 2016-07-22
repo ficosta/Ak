@@ -11,7 +11,7 @@ Public Class ClockOtherScores
     MyBase.New(match)
 
     _otherMatchDays = New OtherMatchDays
-    DesserializeObjectFromFile(AppSettings.Instance.OtherMatchesPath, _otherMatchDays)
+    _otherMatchDays.LoadOthers()
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String

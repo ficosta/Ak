@@ -62,7 +62,7 @@ Public Class frmMain
       End If
       Me.Cursor = Cursors.WaitCursor
       InitializeKeyCapture()
-      DesserializeObjectFromFile(AppSettings.Instance.OtherMatchesPath, _otherMatchDays)
+      _otherMatchDays.LoadOthers()
       InitControls()
       SelectMatch()
     Catch ex As Exception
@@ -160,6 +160,8 @@ Public Class frmMain
 
 #Region "Match functions"
   Public Function SelectMatch() As Boolean
+    Dim cursor = Me.Cursor
+    Me.Cursor = Cursors.WaitCursor
     Try
       Config.Instance.Silent = True
       Config.Instance.AsyncDataWrites = False
@@ -177,6 +179,7 @@ Public Class frmMain
     End Try
     Config.Instance.Silent = False
     _updating = False
+    Me.Cursor = cursor
     Return True
   End Function
 
@@ -503,7 +506,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF7ScoreBugs_Click(sender As Object, e As EventArgs) Handles ButtonCtlF7ScoreBugs.Click
-
+    Me.StartGraphic(GraphicsScoreBugs.Description)
   End Sub
 
   Private Sub ButtonCtlF8Bugs_Click(sender As Object, e As EventArgs) Handles ButtonCtlF8Bugs.Click
@@ -551,7 +554,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonShftF7L3Commons_Click(sender As Object, e As EventArgs) Handles ButtonShftF7L3Commons.Click
-
+    StartGraphic(GraphicsCommons.Description)
   End Sub
 
   Private Sub ButtonShftF8TeamListsCrawlSF8_Click(sender As Object, e As EventArgs) Handles ButtonShftF8TeamListsCrawlSF8.Click
@@ -820,11 +823,16 @@ Public Class frmMain
   Public Sub ShowOtherMatches()
     Try
       Me.Cursor = Cursors.WaitCursor
+      GlobalNotifier.Instance.AddInfoMessage("Initializing Other Matches form")
       _frmMatchDay = New frmMatchDay()
+      GlobalNotifier.Instance.AddInfoMessage("Loading Competitions")
       Dim mps As New Competitions()
       mps.GetFromDB("")
+      GlobalNotifier.Instance.AddInfoMessage("Assigning competition for current match")
       _frmMatchDay.Competition = mps.GetCompetition(_match.competition_id)
       '_frmMatchDay.OtherMatchDays = _otherMatchDays
+
+      GlobalNotifier.Instance.AddInfoMessage("Showing dialog")
       If _frmMatchDay.ShowDialog(Me) = DialogResult.OK Then
         _otherMatchDays = _frmMatchDay.OtherMatchDays
       End If
@@ -1088,6 +1096,15 @@ Public Class frmMain
         Case GlobalNotifier.eMessageType.Warning
           Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.DarkOrange
       End Select
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub ToolStripStatusLabelGetLoggerData_Click(sender As Object, e As EventArgs) Handles ToolStripStatusLabelGetLoggerData.Click
+    Try
+      LoggerComm.GetTeamsStats(_match)
+      Debug.Print("new data")
     Catch ex As Exception
 
     End Try

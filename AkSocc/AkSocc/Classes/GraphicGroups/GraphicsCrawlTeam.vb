@@ -28,7 +28,7 @@ Public Class GraphicGroupCrawlTeams
     Public Shared ReadOnly AwayTeam As Step0 = New Step0("Away team")
     Public Shared ReadOnly AwayTeamWithSubs As Step0 = New Step0("Away team with subs")
     Public Shared ReadOnly HomeAwayTeams As Step0 = New Step0("Home + Away teams")
-    Public Shared ReadOnly HomeAwayTeamsWithSubs As Step0 = New Step0("Home + Awat teams with subs")
+    Public Shared ReadOnly HomeAwayTeamsWithSubs As Step0 = New Step0("Home + Away teams with subs")
 
     Public Sub New(key As String)
       MyBase.Key = key
@@ -71,21 +71,23 @@ Public Class GraphicGroupCrawlTeams
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Dim changeStep As Integer = 1
     Try
-      Scene = InitDefaultScene()
+
 
       Select Case gs.ChildGraphicStep.Depth
         Case 0
           Select Case graphicStep.Name
             Case Step0.HomeTeam
-              Scene = PrepareSingleTeam(Me.Match.HomeTeam, False)
+              Scene = PrepareSingleTeam(1, Me.Match.HomeTeam, False)
             Case Step0.HomeTeamWithSubs
-              Scene = PrepareSingleTeam(Me.Match.HomeTeam, True)
+              Scene = PrepareSingleTeam(1, Me.Match.HomeTeam, True)
             Case Step0.AwayTeam
-              Scene = PrepareSingleTeam(Me.Match.AwayTeam, False)
+              Scene = PrepareSingleTeam(1, Me.Match.AwayTeam, False)
             Case Step0.AwayTeamWithSubs
-              Scene = PrepareSingleTeam(Me.Match.AwayTeam, True)
+              Scene = PrepareSingleTeam(1, Me.Match.AwayTeam, True)
             Case Step0.HomeAwayTeams
+              Scene = PrepareDoubleTeam(1, False)
             Case Step0.HomeAwayTeamsWithSubs
+              Scene = PrepareDoubleTeam(1, True)
 
           End Select
 
@@ -127,39 +129,57 @@ Public Class GraphicGroupCrawlTeams
     scene.SceneParameters.Add(prefix & "_Formation_Vis.active", "0")
     scene.SceneParameters.Add(prefix & "_Stats_Vis.active", "0")
 
+    prefix = "Crawll_Team_List_Side_1_"
+    scene.SceneParameters.Add(prefix & "Team_A_Name", "")
+    scene.SceneParameters.Add(prefix & "Team_B_Name", "")
+    scene.SceneParameters.Add(prefix & "Team_A_Subtitutes_Title", "")
+    scene.SceneParameters.Add(prefix & "Team_B_Subtitutes_Title", "")
+
+    For i As Integer = 1 To 18
+      prefix = "Crawll_Team_List_Side_" & gStep & "_Team_A_Player_" & i & "_"
+      scene.SceneParameters.Add(prefix & "Name", "")
+      scene.SceneParameters.Add(prefix & "Number", "")
+      scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
+      scene.SceneParameters.Add(prefix & "Control_OMO_Arrows", "0")
+
+
+      prefix = "Crawll_Team_List_Side_" & gStep & "_Team_B_Player_" & i & "_"
+      scene.SceneParameters.Add(prefix & "Name", "")
+      scene.SceneParameters.Add(prefix & "Number", "")
+      scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
+      scene.SceneParameters.Add(prefix & "Control_OMO_Arrows", "0")
+    Next
+
     Return scene
   End Function
 
 
-  Public Function PrepareSingleTeam(team As Team, withSubs As Boolean) As Scene
+  Public Function PrepareSingleTeam(gSide As Integer, team As Team, withSubs As Boolean) As Scene
     Dim scene As Scene = InitDefaultScene()
-    Dim gSide As Integer = 1
     Dim prefix As String = "Crawll_Side_" & gSide & "_"
     Try
       scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 1)
       prefix = "Crawll_Team_List_Side_1_"
+
       scene.SceneParameters.Add(prefix & "Team_A_Name", team.Name)
-      scene.SceneParameters.Add(prefix & "Team_B_Name", "")
+      If withSubs Then
+        scene.SceneParameters.Add(prefix & "Team_A_Subtitutes_Title", Arabic("SUBSTITUTES"))
+      Else
+        scene.SceneParameters.Add(prefix & "Team_A_Subtitutes_Title", "")
+      End If
 
-      For i As Integer = 1 To 18
-        prefix = "Crawll_Team_List_Side_1_Team_A_Player_" & i & "_"
-        scene.SceneParameters.Add(prefix & "Name", "")
-        scene.SceneParameters.Add(prefix & "Number", "")
 
-        prefix = "Crawll_Team_List_Side_2_Team_A_Player_" & i & "_"
-        scene.SceneParameters.Add(prefix & "Name", "")
-        scene.SceneParameters.Add(prefix & "Number", "")
-      Next
-
-      For Each player As Player In team.MatchPlayers
-        prefix = "Crawll_Team_List_Side_1_Team_A_Player_" & player.PlayerPosition & "_"
-        Dim pos As Integer = 0
-        Dim paint As Boolean = True
-        If Integer.TryParse(player.PlayerPosition, pos) Then
-          If pos > 12 And withSubs = False Then
-            paint = False
+      For pos As Integer = 1 To 18
+        Dim player As Player = team.GetPlayerByPosicio(pos)
+        Dim paint As Boolean = False
+        If Not player Is Nothing Then
+          If pos < 12 Then
+            paint = True
+          ElseIf withSubs Then
+            paint = True
           End If
         End If
+        prefix = "Crawll_Team_List_Side_1_Team_A_Player_" & pos & "_"
         If paint Then
           scene.SceneParameters.Add(prefix & "Name", player.Name)
           scene.SceneParameters.Add(prefix & "Number", player.DomesticSquadNo)
@@ -172,8 +192,97 @@ Public Class GraphicGroupCrawlTeams
           Else
             scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
           End If
+          scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
           scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "0")
+        Else
+          scene.SceneParameters.Add(prefix & "Name", "")
+          scene.SceneParameters.Add(prefix & "Number", "")
+          scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
+          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "0")
+        End If
+      Next
+    Catch ex As Exception
 
+    End Try
+    Return scene
+  End Function
+
+  Public Function PrepareDoubleTeam(gSide As Integer, withSubs As Boolean) As Scene
+    Dim scene As Scene = InitDefaultScene()
+    Dim prefix As String = "Crawll_Side_" & gSide & "_"
+    Try
+      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 1)
+      prefix = "Crawll_Team_List_Side_1_"
+      scene.SceneParameters.Add(prefix & "Team_A_Name", Match.HomeTeam.Name)
+      scene.SceneParameters.Add(prefix & "Team_B_Name", Match.AwayTeam.Name)
+      If withSubs Then
+        scene.SceneParameters.Add(prefix & "Team_A_Subtitutes_Title", Arabic("SUBSTITUTES"))
+        scene.SceneParameters.Add(prefix & "Team_B_Subtitutes_Title", Arabic("SUBSTITUTES"))
+      Else
+        scene.SceneParameters.Add(prefix & "Team_A_Subtitutes_Title", "")
+        scene.SceneParameters.Add(prefix & "Team_B_Subtitutes_Title", "")
+      End If
+      Dim player As Player
+      Dim paint As Boolean
+
+      For pos As Integer = 1 To 18
+        player = Match.HomeTeam.GetPlayerByPosicio(pos)
+        paint = False
+        If Not player Is Nothing Then
+          If pos < 12 Then
+            paint = True
+          ElseIf withSubs Then
+            paint = True
+          End If
+        End If
+        prefix = "Crawll_Team_List_Side_1_Team_A_Player_" & pos & "_"
+        If paint Then
+          scene.SceneParameters.Add(prefix & "Name", player.Name)
+          scene.SceneParameters.Add(prefix & "Number", player.DomesticSquadNo)
+          If player.RedCards > 0 Then
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "2")
+          ElseIf player.YellowCards > 1 Then
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "2")
+          ElseIf player.YellowCards > 0 Then
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "1")
+          Else
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
+          End If
+          scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
+          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "0")
+        Else
+          scene.SceneParameters.Add(prefix & "Name", "")
+          scene.SceneParameters.Add(prefix & "Number", "")
+          scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
+          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "0")
+        End If
+      Next
+
+      For pos As Integer = 1 To 18
+        player = Match.AwayTeam.GetPlayerByPosicio(pos)
+        paint = False
+        If Not player Is Nothing Then
+          If pos < 12 Then
+            paint = True
+          ElseIf withSubs Then
+            paint = True
+          End If
+        End If
+        prefix = "Crawll_Team_List_Side_1_Team_B_Player_" & pos & "_"
+        If paint Then
+          scene.SceneParameters.Add(prefix & "Name", player.Name)
+          scene.SceneParameters.Add(prefix & "Number", player.DomesticSquadNo)
+          If player.RedCards > 0 Then
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "2")
+          ElseIf player.YellowCards > 1 Then
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "2")
+          ElseIf player.YellowCards > 0 Then
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "1")
+          Else
+            scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
+          End If
+          scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
+          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "0")
         Else
           scene.SceneParameters.Add(prefix & "Name", "")
           scene.SceneParameters.Add(prefix & "Number", "")

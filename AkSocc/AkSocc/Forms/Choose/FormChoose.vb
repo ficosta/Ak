@@ -63,7 +63,7 @@ Public Class FormChoose
           _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
 
           'wait for animation to end
-          fWait = New frmWait(1000 * _currentScene.SceneDirectorsChangeOut.MaxFrame / 40)
+          fWait = New frmWait(1000 * _currentScene.SceneDirectorsIn.MaxFrame / 40)
           fWait.ShowDialog()
         Else
           'we are changing!
@@ -257,7 +257,11 @@ Public Class FormChoose
         Me.OK_Button.Enabled = True
         'preview
       End If
-      MetroLabelTitle.Text = gs.ToString
+      If Not gs Is Nothing Then
+        MetroLabelTitle.Text = gs.ToString
+      Else
+        MetroLabelTitle.Text = ""
+      End If
       'ShowNextGraphicSteps()
     Catch ex As Exception
 

@@ -99,8 +99,10 @@
     <Compile Include="Classes\Clock\ControlScoreSingleGoal.vb" />
     <Compile Include="Classes\GlobalNotifier.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsBugs.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsCommons.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsInterviews.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsPlayerNameNoNumber.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsScoreBugs.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsTeamCaptions.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsReferee.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsScoreLine.vb" />
@@ -254,6 +256,12 @@
     <Compile Include="Forms\MatchSetup\UserControlTactica.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Forms\OtherMatches\UCOtherMatch.designer.vb">
+      <DependentUpon>UCOtherMatch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OtherMatches\UCOtherMatch.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\SceneLoad\FormLoadScenes.Designer.vb">
       <DependentUpon>FormLoadScenes.vb</DependentUpon>
     </Compile>
@@ -308,30 +316,24 @@
     <Compile Include="Controls\PlayerViewer.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OtherMatches\Classification\Classification.vb" />
-    <Compile Include="OtherMatches\Classification\ClassificationForMatchDay.vb" />
-    <Compile Include="OtherMatches\frmOtherMatches_new.Designer.vb">
+    <Compile Include="Forms\OtherMatches\Classification\Classification.vb" />
+    <Compile Include="Forms\OtherMatches\Classification\ClassificationForMatchDay.vb" />
+    <Compile Include="Forms\OtherMatches\frmOtherMatches_new.Designer.vb">
       <DependentUpon>frmOtherMatches_new.vb</DependentUpon>
     </Compile>
-    <Compile Include="OtherMatches\frmOtherMatches_new.vb">
+    <Compile Include="Forms\OtherMatches\frmOtherMatches_new.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OtherMatches\frmOtherMatches.Designer.vb">
+    <Compile Include="Forms\OtherMatches\frmOtherMatches.Designer.vb">
       <DependentUpon>frmOtherMatches.vb</DependentUpon>
     </Compile>
-    <Compile Include="OtherMatches\frmOtherMatches.vb">
+    <Compile Include="Forms\OtherMatches\frmOtherMatches.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OtherMatches\OtherMatch.vb" />
-    <Compile Include="OtherMatches\OtherMatchDays.vb" />
-    <Compile Include="OtherMatches\MatchDay.vb" />
-    <Compile Include="OtherMatches\Classification\TeamClassification.vb" />
-    <Compile Include="OtherMatches\UCOtherMatch.Designer.vb">
-      <DependentUpon>UCOtherMatch.vb</DependentUpon>
-    </Compile>
-    <Compile Include="OtherMatches\UCOtherMatch.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Forms\OtherMatches\OtherMatch.vb" />
+    <Compile Include="Forms\OtherMatches\OtherMatchDays.vb" />
+    <Compile Include="Forms\OtherMatches\MatchDay.vb" />
+    <Compile Include="Forms\OtherMatches\Classification\TeamClassification.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\TeamViewer.resx">
@@ -394,6 +396,9 @@
     <EmbeddedResource Include="Forms\MatchSetup\UserControlTactica.resx">
       <DependentUpon>UserControlTactica.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OtherMatches\UCOtherMatch.resx">
+      <DependentUpon>UCOtherMatch.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SceneLoad\FormLoadScenes.resx">
       <DependentUpon>FormLoadScenes.vb</DependentUpon>
     </EmbeddedResource>
@@ -421,14 +426,11 @@
     <EmbeddedResource Include="Controls\PlayerViewer.resx">
       <DependentUpon>PlayerViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OtherMatches\frmOtherMatches_new.resx">
+    <EmbeddedResource Include="Forms\OtherMatches\frmOtherMatches_new.resx">
       <DependentUpon>frmOtherMatches_new.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OtherMatches\frmOtherMatches.resx">
+    <EmbeddedResource Include="Forms\OtherMatches\frmOtherMatches.resx">
       <DependentUpon>frmOtherMatches.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OtherMatches\UCOtherMatch.resx">
-      <DependentUpon>UCOtherMatch.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -469,7 +471,9 @@
   <ItemGroup>
     <None Include="Resources\PS_Triangle_down.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="OtherMatches\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

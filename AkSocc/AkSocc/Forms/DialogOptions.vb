@@ -39,6 +39,8 @@ Public Class DialogOptions
       Me.MetroTextBoxDefaultColorPath.Text = AppSettings.Instance.ColorsDefaultPath
       Me.MetroTextBoxDefaultKitsPath.Text = AppSettings.Instance.KitsDefaultPath
 
+      Me.TextBoxLoggerHost.Text = AppSettings.Instance.LoggerIP
+      Me.NumericUpDownLogger.Value = AppSettings.Instance.LoggerPort
 
       'Me.colors= AppSettings.Instance.ColorsDefaultPath
       '  Me.MetroTextBoxDataBase.Text = AppSettings.Instance.KitsDefaultPath
@@ -85,6 +87,9 @@ Public Class DialogOptions
       AppSettings.Instance.KitsDefaultPath = Me.MetroTextBoxDefaultKitsPath.Text
 
       AppSettings.Instance.ColorsDefaultPath = Me.MetroTextBoxDefaultColorPath.Text
+
+      AppSettings.Instance.LoggerIP = Me.TextBoxLoggerHost.Text
+      AppSettings.Instance.LoggerPort = Me.NumericUpDownLogger.Value
 
       Dim version As GraphicVersion = CType(Me.ComboBoxSceneVersion.SelectedItem, GraphicVersion)
       GraphicVersions.Instance.SelectedGraphicVersion = version
