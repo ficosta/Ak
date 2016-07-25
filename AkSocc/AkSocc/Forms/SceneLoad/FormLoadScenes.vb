@@ -50,6 +50,7 @@ Public Class FormLoadScenes
     If _sceneIndex < Me.SceneList.Count Then
       If _sceneIndex = -1 Then _sceneIndex = 0
       _vizControl.ActivateScene(_vizControl.Config.SceneBasePath & Me.SceneList(_sceneIndex))
+      _vizControl.ActivateScene("")
       GlobalNotifier.Instance.AddInfoMessage(Me.SceneList(_sceneIndex) & " activating")
       Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " activating" & vbCrLf & MetroLabelScene.Text
       Debug.Print("activating scene " & Me.SceneList(_sceneIndex))

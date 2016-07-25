@@ -26,5 +26,22 @@
   Public Property UseArabicNames As Boolean = False
   Public Property Silent As Boolean = False
   Public Property AsyncDataWrites As Boolean = False
+
+  Private _oledbConnection As OleDb.OleDbConnection
+  Public ReadOnly Property OledbConnection As OleDb.OleDbConnection
+    Get
+      Try
+        If _oledbConnection Is Nothing Then
+          _oledbConnection = New OleDb.OleDbConnection(Config.Instance.LocalConnectionString)
+        End If
+        If Not _oledbConnection.State = ConnectionState.Open Then
+          _oledbConnection.Open()
+        End If
+      Catch ex As Exception
+        Debug.Print(ex.ToString)
+      End Try
+      Return _oledbConnection
+    End Get
+  End Property
 #End Region
 End Class

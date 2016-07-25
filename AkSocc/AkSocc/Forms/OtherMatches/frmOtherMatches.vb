@@ -134,18 +134,10 @@ Public Class frmMatchDay
       Try
         Dim maxItems As Integer = Math.Min(_controls.Count, _selectedMatchDay.OtherMatches.Count)
         For index As Integer = 0 To maxItems - 1
-          Dim update As Boolean = False
-          If _controls(index).OtherMatchInfo Is Nothing Then
-            update = True
-          ElseIf Not _selectedMatchDay(index) Is Nothing AndAlso _controls(index).OtherMatchInfo.OtherMatchID <> _selectedMatchDay(index).OtherMatchID Then
-            update = True
-          End If
-          If update Then
-            _controls(index).OtherMatchInfo = _selectedMatchDay(index)
-            _controls(index).ArrowUpVisible = (index > 0)
-            _controls(index).ArrowDownVisible = (index < maxItems - 1)
-            _controls(index).ButtonActionEnum = UCOtherMatch.eButtonAction.Delete
-          End If
+          _controls(index).OtherMatchInfo = _selectedMatchDay(index)
+          _controls(index).ArrowUpVisible = (index > 0)
+          _controls(index).ArrowDownVisible = (index < maxItems - 1)
+          _controls(index).ButtonActionEnum = UCOtherMatch.eButtonAction.Delete
         Next
         For index As Integer = maxItems To _controls.Count - 1
           _controls(index).OtherMatchInfo = Nothing

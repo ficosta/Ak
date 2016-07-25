@@ -75,7 +75,7 @@ Public Class SocketClient
 
     Try
       CPiTCPSocket.Connect(endPoint)
-      _connected = True
+      ' _connected = True
       If IsConnected() = True Then
         RaiseEvent Connected(True)
         RaiseEvent ConnectedEx(True, CPiTCPSocket.RemoteEndPoint)
@@ -125,7 +125,7 @@ Public Class SocketClient
     If CPiTCPSocket Is Nothing Then
       Return False
     Else
-      Return _connected
+      Return True
     End If
     Exit Function
     'Dim result As Boolean = False

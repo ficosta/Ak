@@ -86,7 +86,7 @@ Public Class frmMain
 
   Private Sub InitRender()
     Try
-
+      If Not _vizControl Is Nothing Then _vizControl.CloseSockets()
       Me.UpdateStatusLabel()
       _vizControl = New VizCommands.VizControl
       _vizControl.Config = New VizCommands.tyConfigVizrt
@@ -291,26 +291,6 @@ Public Class frmMain
     Me.InitRender()
   End Sub
 
-  Private Sub ToolStripStatusLabelLoggerConnection_Click(sender As Object, e As EventArgs) Handles ToolStripStatusLabelLoggerConnection.Click
-    Try
-      AppSettings.Instance.UseLogger = Not AppSettings.Instance.UseLogger
-      If AppSettings.Instance.UseLogger Then
-        If LoggerComm.StartClient() Then
-          LoggerComm.SendTeamsInfo(_match)
-          ToolStripStatusLabelLoggerConnection.BackColor = Color.LightGreen
-        Else
-          ToolStripStatusLabelLoggerConnection.BackColor = Color.LightSalmon
-        End If
-      Else
-        ToolStripStatusLabelLoggerConnection.BackColor = Color.White
-
-      End If
-
-    Catch ex As Exception
-
-    End Try
-  End Sub
-
   Private Sub UpdateStatusLabel()
     Try
       If _vizControl Is Nothing Then
@@ -392,6 +372,8 @@ Public Class frmMain
 #Region "Graphic buttons"
   Private Function StartGraphic(name As String) As Boolean
     Dim res As Boolean = False
+    Dim cursor As Cursor = Me.Cursor
+    Me.Cursor = Cursors.WaitCursor
     Try
       Select Case name
         Case "ToggleClockControl"
@@ -414,6 +396,7 @@ Public Class frmMain
       res = False
       WriteToErrorLog(ex)
     End Try
+    Me.Cursor = cursor
     Return res
   End Function
 
@@ -494,7 +477,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF4TwoWayBoxes_Click(sender As Object, e As EventArgs) Handles ButtonCtlF4TwoWayBoxes.Click
-
+    StartGraphic(Graphics2WayBoxes.Description)
   End Sub
 
   Private Sub ButtonCtlF5PlayerBio_Click(sender As Object, e As EventArgs) Handles ButtonCtlF5PlayerBio.Click
@@ -506,7 +489,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF7ScoreBugs_Click(sender As Object, e As EventArgs) Handles ButtonCtlF7ScoreBugs.Click
-    Me.StartGraphic(GraphicsScoreBugs.Description)
+    Me.StartGraphic(GraphicsBugScore.Description)
   End Sub
 
   Private Sub ButtonCtlF8Bugs_Click(sender As Object, e As EventArgs) Handles ButtonCtlF8Bugs.Click
@@ -582,7 +565,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonAltF6HtFtBug_Click(sender As Object, e As EventArgs) Handles ButtonAltF6HtFtBug.Click
-
+    StartGraphic(GraphicsBugHTFT.Description)
   End Sub
 
 #End Region
@@ -775,6 +758,10 @@ Public Class frmMain
   End Sub
 
   Private Sub MetroButtonAddedTime_Click(sender As Object, e As EventArgs) Handles MetroButtonAddedTime.Click
+    AddedTimeClick()
+  End Sub
+
+  Private Sub AddedTimeClick()
     Try
       If _match Is Nothing Then Exit Sub
       If _match.MatchPeriods.ActivePeriod Is Nothing Then Exit Sub
@@ -1076,23 +1063,23 @@ Public Class frmMain
   End Sub
 
   Private Sub _asyncStatWriter_DataUpdated(dataToUpdate As Integer, lastUpdatedData As AsyncStatWriter.StatToUpdate) Handles _asyncStatWriter.DataUpdated
-    If dataToUpdate > 0 Then
-      Me.ToolStripStatusLabelLastDataWritten.Text = "Pending data to write: " & dataToUpdate & "  last updated " & lastUpdatedData.subject.ToString & "   " & lastUpdatedData.stat.Name & " = " & lastUpdatedData.stat.Value
-    Else
-      Me.ToolStripStatusLabelLastDataWritten.Text = ""
-      Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.Black
-    End If
+    'If dataToUpdate > 0 Then
+    '  Me.ToolStripStatusLabelLastDataWritten.Text = "Pending data to write: " & dataToUpdate & "  last updated " & lastUpdatedData.subject.ToString & "   " & lastUpdatedData.stat.Name & " = " & lastUpdatedData.stat.Value
+    'Else
+    '  Me.ToolStripStatusLabelLastDataWritten.Text = ""
+    '  Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.Black
+    'End If
   End Sub
 
   Private Sub _notifier_NewMessage(msg As GlobalNotifier.tyMessage) Handles _notifier.NewMessage
     Try
-      Me.ToolStripStatusLabelLastDataWritten.Text = msg.time.ToString & " " & msg.text
 
       Select Case msg.type
         Case GlobalNotifier.eMessageType.AppError
           Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.DarkRed
         Case GlobalNotifier.eMessageType.Info
           Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.Black
+          Me.ToolStripStatusLabelLastDataWritten.Text = msg.text
         Case GlobalNotifier.eMessageType.Warning
           Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.DarkOrange
       End Select
@@ -1101,10 +1088,91 @@ Public Class frmMain
     End Try
   End Sub
 
-  Private Sub ToolStripStatusLabelGetLoggerData_Click(sender As Object, e As EventArgs) Handles ToolStripStatusLabelGetLoggerData.Click
+  Private Sub ToolStripStatusLabelGetLoggerData_Click(sender As Object, e As EventArgs)
     Try
       LoggerComm.GetTeamsStats(_match)
       Debug.Print("new data")
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub TimerRefreshStats_Tick(sender As Object, e As EventArgs) Handles TimerRefreshStats.Tick
+
+    'Refrescamos las estadisticas básicas
+    'Refresh the Match Info
+    If AppSettings.Instance.UseLogger Then
+      Dim StringSmallStats As String = LoggerComm.SendSocket("SMALSTATS|NadaMas")
+
+      Dim AllStats As String() = StringSmallStats.Split("|"c)
+      If AllStats.Length > 14 Then
+        Me.Match.HomeTeam.MatchStats.Possession.Value = NoNullDecimal(AllStats(0))
+        Me.Match.AwayTeam.MatchStats.Possession.Value = NoNullDecimal(AllStats(1))
+        Me.Match.HomeTeam.MatchStats.Fouls.Value = NoNullDecimal(AllStats(2))
+        Me.Match.AwayTeam.MatchStats.Fouls.Value = NoNullDecimal(AllStats(3))
+        Me.Match.HomeTeam.MatchStats.ShotsOn.Value = NoNullDecimal(AllStats(4))
+        Me.Match.AwayTeam.MatchStats.ShotsOn.Value = NoNullDecimal(AllStats(5))
+        Me.Match.HomeTeam.MatchStats.Corners.Value = NoNullDecimal(AllStats(6))
+        Me.Match.AwayTeam.MatchStats.Corners.Value = NoNullDecimal(AllStats(7))
+        Me.Match.HomeTeam.MatchStats.Offsides.Value = NoNullDecimal(AllStats(8))
+        Me.Match.AwayTeam.MatchStats.Offsides.Value = NoNullDecimal(AllStats(9))
+        Me.Match.HomeTeam.MatchStats.WoodHits.Value = NoNullDecimal(AllStats(10))
+        Me.Match.AwayTeam.MatchStats.WoodHits.Value = NoNullDecimal(AllStats(11))
+        Me.Match.HomeTeam.MatchStats.Shots.Value = NoNullDecimal(AllStats(12))
+        Me.Match.AwayTeam.MatchStats.Shots.Value = NoNullDecimal(AllStats(13))
+        Me.Match.HomeTeam.MatchStats.Assis.Value = NoNullDecimal(AllStats(14))
+        Me.Match.AwayTeam.MatchStats.Assis.Value = NoNullDecimal(AllStats(15))
+
+
+
+        lblInfoPosession.Text = Me.Match.HomeTeam.MatchStats.Possession.Value & "% - " & Me.Match.AwayTeam.MatchStats.Possession.Value & "%"
+        lblInfoFoulsConc.Text = Me.Match.HomeTeam.MatchStats.Fouls.Value & " - " & Me.Match.AwayTeam.MatchStats.Fouls.Value
+        lblInfoCorners.Text = Me.Match.HomeTeam.MatchStats.Corners.Value & " - " & Me.Match.AwayTeam.MatchStats.Corners.Value
+        lblInfoOffsides.Text = Me.Match.HomeTeam.MatchStats.Offsides.Value & " - " & Me.Match.AwayTeam.MatchStats.Offsides.Value
+        lblInfoShotsOn.Text = Me.Match.HomeTeam.MatchStats.ShotsOn.Value & " - " & Me.Match.AwayTeam.MatchStats.ShotsOn.Value
+        lblInfoShots.Text = Me.Match.HomeTeam.MatchStats.Shots.Value & " - " & Me.Match.AwayTeam.MatchStats.Shots.Value
+        lblInfoWoodHits.Text = Me.Match.HomeTeam.MatchStats.WoodHits.Value & " - " & Me.Match.AwayTeam.MatchStats.WoodHits.Value
+
+        Dim Position As Integer = 16
+        While AllStats.Length > Position & 1
+          Dim myPlayer As Player = Me.Match.GetPlayerById(NoNullInt(AllStats(Position & 1)))
+          Dim myPlayerStat As SubjectStats = myPlayer.MatchStats
+          Dim myNewColor As Color = Color.White
+          If AllStats(Position) = "YCard" Then
+            myNewColor = Color.Yellow
+            myPlayerStat.YellowCards.value = 1
+          ElseIf AllStats(Position) = "RCard" Then
+            myNewColor = Color.Red
+            myPlayerStat.RedCards.Value = 1
+          End If
+          'If myPlayer.TeamID = HomeTeam.TeamID Then
+          '  'DirectCast(grpHomePlayers.Controls.Find("HomePlayerCard" & myPlayerStat.Formation_Pos, True)(0), Label).BackColor = myNewColor
+          'Else
+          '  'DirectCast(grpAwayPlayers.Controls.Find("AwayPlayerCard" & myPlayerStat.Formation_pos, True)(0), Label).BackColor = myNewColor
+          'End If
+          Position &= 2
+        End While
+      End If
+    End If
+
+  End Sub
+
+  Private Sub LoggerConnect_Click(sender As Object, e As EventArgs) Handles LoggerConnect.Click
+    Try
+      Dim bUseLogger As Boolean = False
+
+      bUseLogger = LoggerComm.StartClient()
+      If bUseLogger Then
+        bUseLogger = True
+        LoggerConnect.BackColor = Color.Green
+        LoggerComm.SendTeamsInfo(_match)
+      Else
+        bUseLogger = False
+        LoggerConnect.BackColor = Color.Red
+      End If
+
+      AppSettings.Instance.UseLogger = bUseLogger
+      AppSettings.Instance.Save()
     Catch ex As Exception
 
     End Try

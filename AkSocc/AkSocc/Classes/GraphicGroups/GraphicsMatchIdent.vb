@@ -75,19 +75,6 @@ Public Class GraphicsMatchIdent
     Me.Scene = New Scene
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Try
-      Scene.VizLayer = SceneLayer.Middle
-      Scene.SceneName = "gfx_Full_Frame"
-      Scene.SceneDirector = "anim_Full_Frame$In_Out"
-
-      Scene.SceneDirectorsIn.Add(New SceneDirector("anim_Full_Frame$In_Out", 0, DirectorAction.Start))
-      Scene.SceneDirectorsIn.Add(New SceneDirector("anim_Full_Frame$In_Out", 100, DirectorAction.Dummy))
-
-      Scene.SceneDirectorsOut.Add(New SceneDirector("anim_Full_Frame$In_Out", 0, DirectorAction.ContinueNormal))
-
-
-
-      Scene.SceneDirector = "anim_Full_Frame$In_Out"
-
       Scene = PrepareMatchIdent(1, CInt(gs.ChildGraphicStep.UID))
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -120,6 +107,9 @@ Public Class GraphicsMatchIdent
     scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
     scene.SceneParameters.Add("Veil_On_Off_Vis.active ", "0")
 
+    scene.SceneParameters.Add("Title_Side_" & gStep & "_Vis.active", "0")
+    scene.SceneParameters.Add("Title_Side_2_Vis.active", "0")
+    scene.SceneParameters.Add("Title_Sponsor_Vis.active", "0")
 
 
     Dim prefix As String = "Side_" & gStep
@@ -142,14 +132,18 @@ Public Class GraphicsMatchIdent
       scene.SceneParameters.Add(prefix & "Vis.active", "1")
       scene.SceneParameters.Add("Side_" & gStep & "_" & "_Match_Ident_Vis.active", "1")
 
-      scene.SceneParameters.Add(prefix & "Header_Text", "Header text")
+
+
+      scene.SceneParameters.Add(prefix & "Header_Text", Match.ArabicMatchDescription)
       scene.SceneParameters.Add(prefix & "SUB_Header_Text", Match.ArabicMatchDescription)
 
       scene.SceneParameters.Add(prefix & "Subject_01_Name", Match.HomeTeam.Name)
       scene.SceneParameters.Add(prefix & "Subject_01_Geometry_Logo3D.geom", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Match.HomeTeam.BadgeName, paramType.Geometry)
+      scene.SceneParameters.Add(prefix & "Subject_01_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.HomeTeam.BadgeName, paramType.Image)
 
       scene.SceneParameters.Add(prefix & "Subject_02_Name", Match.AwayTeam.Name)
       scene.SceneParameters.Add(prefix & "Subject_02_Geometry_Logo3D.geom", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Match.AwayTeam.BadgeName, paramType.Geometry)
+      scene.SceneParameters.Add(prefix & "Subject_02_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.AwayTeam.BadgeName, paramType.Image)
 
       scene.SceneParameters.Add(prefix & "Header_Control_OMO_TVLOGO", logo)
 

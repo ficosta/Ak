@@ -72,6 +72,9 @@
     <Compile Include="Classes\Competition\Competition.vb" />
     <Compile Include="Classes\Competition\Competitions.vb" />
     <Compile Include="Classes\Additional data\FreeText.vb" />
+    <Compile Include="Classes\Events\MatchEvent.vb" />
+    <Compile Include="Classes\Events\MatchEvents.vb" />
+    <Compile Include="Classes\MatchHelper\MatchHelper.vb" />
     <Compile Include="Classes\Stats\AsyncStatWriter.vb" />
     <Compile Include="Classes\Translation\EnglishToArabicTranslation.vb" />
     <Compile Include="Classes\Translation\EnglishToArabicTranslator.vb" />

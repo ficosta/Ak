@@ -53,7 +53,7 @@ Public Class ClockOtherScores
         Next
       Else
         Select Case graphicStep.Depth
-          Case 0
+          Case 1
             _otherMatchDay = _otherMatchDays.GetMatchDay(graphicStep.UID)
             If Not _otherMatchDay Is Nothing Then
               For Each match As OtherMatch In _otherMatchDay.OtherMatches
@@ -62,7 +62,7 @@ Public Class ClockOtherScores
                 End If
               Next
             End If
-          Case 1
+          Case 2
         End Select
 
       End If

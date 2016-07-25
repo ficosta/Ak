@@ -74,7 +74,7 @@ Public Class GraphicGroupFullFramers
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueComparison, True, False))
       Else
         Select Case graphicStep.Depth
-          Case 0
+          Case 1
             Select Case graphicStep.Name
               Case Step0.LeagueTableTop, Step0.LeagueTableBottom
                 gs.GraphicSteps.Add(New GraphicStep(gs, StepArrows.Arrows, True, True))

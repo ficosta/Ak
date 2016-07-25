@@ -80,6 +80,24 @@
     <Compile Include="Classes\GlobalProperties.vb" />
     <Compile Include="Classes\RegistryHelper.vb" />
     <Compile Include="Classes\Utils.vb" />
+    <Compile Include="Controls\SingleStatControl.Designer.vb">
+      <DependentUpon>SingleStatControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SingleStatControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SingleSubjectControl.Designer.vb">
+      <DependentUpon>SingleSubjectControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SingleSubjectControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TeamControl.Designer.vb">
+      <DependentUpon>TeamControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TeamControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\DialogOptions.designer.vb">
       <DependentUpon>DialogOptions.vb</DependentUpon>
     </Compile>
@@ -122,6 +140,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\SingleStatControl.resx">
+      <DependentUpon>SingleStatControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SingleSubjectControl.resx">
+      <DependentUpon>SingleSubjectControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TeamControl.resx">
+      <DependentUpon>TeamControl.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogOptions.resx">
       <DependentUpon>DialogOptions.vb</DependentUpon>
     </EmbeddedResource>

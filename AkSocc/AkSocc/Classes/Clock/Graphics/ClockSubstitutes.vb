@@ -49,10 +49,10 @@ Public Class ClockSubstitutes
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AlreadyComitted))
       Else
         Select Case graphicStep.Depth
-          Case 0
+          Case 1
             gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.SponsorLogo, True, True))
             gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.NoLogo, True, True))
-          Case 1
+          Case 2
             'graphic is ready
 
         End Select

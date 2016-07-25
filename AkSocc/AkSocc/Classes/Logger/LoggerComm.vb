@@ -124,6 +124,7 @@ Public Class LoggerComm
   Public Shared Function SendTeamsInfo(match As MatchInfo.Match) As Boolean
     Dim bOK As Boolean = False
     Try
+      Dim MatchInString As String = "MATCH|" & match.match_id & "|"
       Dim HomeTeamInString As String = "HOMETEAM|" & match.HomeTeam.TeamID & "|" & match.HomeTeam.TeamAELCaption1Name & "|"
       Dim AwayTeamInString As String = "AWAYTEAM|" & match.AwayTeam.TeamID & "|" & match.AwayTeam.TeamAELCaption1Name & "|"
       For i As Integer = 1 To 18
@@ -154,6 +155,7 @@ Public Class LoggerComm
       AwayTeamInString = AwayTeamInString.Substring(0, AwayTeamInString.Length - 1)
       bOK = True
 
+      SendSocket(MatchInString)
       SendSocket(HomeTeamInString)
       SendSocket(AwayTeamInString)
     Catch ex As Exception

@@ -108,35 +108,54 @@ Public Class FormMatchSetup
       If JerseysPicsPC = "" Then JerseysPicsPC = AppSettings.Instance.KitsDefaultPath
 
       _match.HomeTeam.TeamClockColour = TeamImageInfos.GetTeamColor(_match.HomeTeam.ID)
-      If _match.HomeTeam.TeamClockColour <> "" Then
-        imgHomeClockColour.Image = Image.FromFile(System.IO.Path.Combine(GraphicVersions.Instance.SelectedGraphicVersion.PathColors, _match.HomeTeam.TeamClockColour))
+      If _match.HomeTeam.TeamClockColour <> "" And System.IO.File.Exists(_match.HomeTeam.TeamClockColour) Then
+        imgHomeClockColour.Image = Image.FromFile(_match.HomeTeam.TeamClockColour)
         'grpHomePlayers.BackgroundImage = Image.FromFile(_match.HomeTeam.TeamClockColour)
       End If
       _match.AwayTeam.TeamClockColour = TeamImageInfos.GetTeamColor(_match.AwayTeam.ID)
-      If _match.AwayTeam.TeamClockColour <> "" Then
-        imgAwayClockColour.Image = Image.FromFile(System.IO.Path.Combine(GraphicVersions.Instance.SelectedGraphicVersion.PathColors, _match.AwayTeam.TeamClockColour))
+      If _match.AwayTeam.TeamClockColour <> "" And System.IO.File.Exists(_match.AwayTeam.TeamClockColour) Then
+        imgAwayClockColour.Image = Image.FromFile(_match.AwayTeam.TeamClockColour)
         'grpAwayPlayers.BackgroundImage = Image.FromFile(_match.AwayTeam.TeamClockColour)
       End If
       _match.HomeTeam.GoalKeeperJersey = TeamImageInfos.GetTeamJerseyGK(_match.HomeTeam.ID)
       If _match.HomeTeam.GoalKeeperJersey <> "" Then
-        imgHomeGoalKeeperJersey.Image = Image.FromFile(System.IO.Path.Combine(JerseysPicsPC, _match.HomeTeam.GoalKeeperJersey + ".png"))
+        imgHomeGoalKeeperJersey.Image = Image.FromFile(System.IO.Path.Combine(JerseysPicsPC, _match.HomeTeam.GoalKeeperJersey & ".png"))
       End If
       _match.AwayTeam.GoalKeeperJersey = TeamImageInfos.GetTeamJerseyGK(_match.AwayTeam.ID)
       If _match.AwayTeam.GoalKeeperJersey <> "" Then
-        imgAwayGoalKeeperJersey.Image = Image.FromFile(System.IO.Path.Combine(JerseysPicsPC, _match.AwayTeam.GoalKeeperJersey + ".png"))
+        imgAwayGoalKeeperJersey.Image = Image.FromFile(System.IO.Path.Combine(JerseysPicsPC, _match.AwayTeam.GoalKeeperJersey & ".png"))
       End If
       _match.HomeTeam.PlayerJersey = TeamImageInfos.GetTeamJersey(_match.HomeTeam.ID)
       If _match.HomeTeam.PlayerJersey <> "" Then
-        imgHomePlayerJersey.Image = Image.FromFile(System.IO.Path.Combine(JerseysPicsPC, _match.HomeTeam.PlayerJersey + ".png"))
+        imgHomePlayerJersey.Image = Image.FromFile(System.IO.Path.Combine(JerseysPicsPC, _match.HomeTeam.PlayerJersey & ".png"))
       End If
       _match.AwayTeam.PlayerJersey = TeamImageInfos.GetTeamJersey(_match.AwayTeam.ID)
       If _match.AwayTeam.PlayerJersey <> "" Then
-        imgAwayPlayerJersey.Image = Image.FromFile(System.IO.Path.Combine(JerseysPicsPC, _match.AwayTeam.PlayerJersey + ".png"))
+        imgAwayPlayerJersey.Image = Image.FromFile(System.IO.Path.Combine(JerseysPicsPC, _match.AwayTeam.PlayerJersey & ".png"))
       End If
     Catch ex As Exception
 
     End Try
   End Sub
+
+  Private Function GetExistingFile(file As String) As String
+    Dim extensions() As String = {"png", "tif", "jpg", "jpeg", "tiff"}
+    Dim res As String = ""
+    Try
+      For Each ext As String In extensions
+        Dim aux As String = file.Trim & "." & ext
+        If System.IO.File.Exists(aux) Then
+          res = aux
+          Exit For
+        End If
+      Next
+
+
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
 
 
   Private Const imageFileFilter As String = "Image files|*.jpg;*.png;*.tga;*.jpeg;*.bmp;*.tif;*.tiff| JPG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png"
@@ -197,7 +216,7 @@ Public Class FormMatchSetup
       ' grpHomePlayers.BackgroundImage = Image.FromFile(ofdSelectFile.FileName)
       ' My.Settings.HomeColor = _match.HomeTeam.TeamClockColour
       'My.Settings.Save()
-      TeamImageInfos.SetTeamColor(_match.HomeTeam.TeamID, System.IO.Path.GetFileNameWithoutExtension(_match.HomeTeam.TeamClockColour))
+      TeamImageInfos.SetTeamColor(_match.HomeTeam.TeamID, _match.HomeTeam.TeamClockColour)
     End If
   End Sub
 

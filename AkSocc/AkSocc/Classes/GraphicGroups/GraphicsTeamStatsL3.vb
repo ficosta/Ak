@@ -65,7 +65,7 @@ Public Class GraphicsTeamStatsL3
         gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.NoLogo, False, False))
       Else
         Select Case graphicStep.Depth
-          Case 0
+          Case 1
 
             gs.GraphicSteps.Add(New GraphicStep(gs, Step0.MatchStats, True, True))
             gs.GraphicSteps.Add(New GraphicStep(gs, Step0.SeasonStats, True, True))
@@ -76,7 +76,7 @@ Public Class GraphicsTeamStatsL3
             gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeamSeasonRecord, True, True))
             gs.GraphicSteps.Add(New GraphicStep(gs, Step0.HomeTeamSeasonPosition, True, True))
             gs.GraphicSteps.Add(New GraphicStep(gs, Step0.AwayTeamSeasonPosition, True, True))
-          Case 1
+          Case 2
             'graphic is ready
 
         End Select

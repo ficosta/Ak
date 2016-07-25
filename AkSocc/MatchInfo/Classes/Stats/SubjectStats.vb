@@ -189,7 +189,7 @@ Public Class SubjectStats
   End Property
 
 
-  Public Property StatBag As New List(Of Stat) From {Me.GoalStat, Me.ShotsOn, Me.Shots, Me.Corners, Me.Offsides, Me.WoodHits, Me.YellowCards, Me.RedCards, Me.Possession, Me.Formation_Pos, Me.Formation_X, Me.Formation_Y, Me.Saves, Me.Fouls}
+  Public Property StatBag As New List(Of Stat) From {Me.GoalStat, Me.ShotsOn, Me.Shots, Me.Corners, Me.Offsides, Me.WoodHits, Me.YellowCards, Me.RedCards, Me.Possession, Me.Formation_Pos, Me.Formation_X, Me.Formation_Y, Me.Saves, Me.Fouls, Me.Assis}
 
   Public Sub New()
     UpdatePropertyEvents()

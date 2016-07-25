@@ -22,7 +22,7 @@ Partial Public Class frmNewTime
   End Sub
 
   Private Sub btnOk_Click(sender As Object, e As EventArgs)
-    'myTime = Utils.TwoChars(Utils.Val(txtHour.Text)) + ":" + Utils.TwoChars(Utils.Val(txtMinute.Text))
+    'myTime = Utils.TwoChars(Utils.Val(txtHour.Text)) & ":" & Utils.TwoChars(Utils.Val(txtMinute.Text))
     Me.DialogResult = System.Windows.Forms.DialogResult.OK
     Me.Close()
   End Sub

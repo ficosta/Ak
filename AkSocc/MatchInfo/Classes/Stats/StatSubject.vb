@@ -214,6 +214,9 @@ Public Class StatSubject
 
   Private Sub _matchStats_StatValueChanged(subjectStats As SubjectStats, stat As Stat) Handles _matchStats.StatValueChanged
     Try
+      If Me.Match_ID <= 0 Then Exit Sub
+      
+
       If Not stat Is Nothing Then
         WriteStatToDB(stat)
         Debug.Print("_matchStats_StatValueChanged id " & Me.ID & " " & Me.ParentID & " " & Me.Name & " stat " & stat.Name & " = " & stat.Value)

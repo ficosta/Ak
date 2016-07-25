@@ -10,7 +10,19 @@ Public Class GraphicStep
   Public Property IsFinalStep As Boolean = False
   Public Property IsTransitionalStep As Boolean = False
 
-  Public Property Depth As Integer = 0
+  'Public Property Depth As Integer = 0
+  Public ReadOnly Property Depth As Integer
+    Get
+      Dim aux As GraphicStep = Me.RootGraphicStep.ChildGraphicStep
+      Dim res As Integer = 0
+
+      While Not aux Is Nothing
+        aux = aux.ChildGraphicStep
+        res += 1
+      End While
+      Return res
+    End Get
+  End Property
 
   Public Property GraphicSteps As New GraphicSteps
   Public Property ParentGraphicStep As GraphicStep = Nothing

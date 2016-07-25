@@ -23,23 +23,27 @@ Imports MatchInfo
   Public Tactic As New Tactic
 
   Public MatchGoals As New MatchGoals
+  Public MatchEvents As New MatchEvents
 
 
   Public Event PlayerStatValueChanged(team As Team, player As Player, stat As Stat)
   Public Event GoalScored(team As Team, player As Player, own_goal As Boolean, penalty As Boolean)
 
 #Region "Overloaded properties"
-  Private _name As String = ""
   Public Overloads Property Name As String
     Get
-      If Config.Instance.UseArabicNames Then
-        Return Me.ArabicCaption1Name
+      If MyBase.Name <> "" Then
+        Return MyBase.Name
       Else
-        Return Me.TeamAELCaption1Name
+        If Config.Instance.UseArabicNames Then
+          Return Me.ArabicCaption1Name
+        Else
+          Return Me.TeamAELCaption1Name
+        End If
       End If
     End Get
     Set(value As String)
-      _name = value
+      MyBase.Name = value
     End Set
   End Property
 
@@ -224,7 +228,7 @@ Imports MatchInfo
         player.ID = player.PlayerID
         player.InitStats(Me.Match_ID, "PlayerStats", "PlayerID")
         player.ReadStatsFromDB()
-        AddHandler player.StatValueChanged, AddressOf player_statValueChanged
+        AddHandler player.StatValueChanged, AddressOf _player_StatValueChanged
         'player.GetPlayer()
 
         Me.AllPlayers.Add(player)
@@ -236,15 +240,6 @@ Imports MatchInfo
     Return True
   End Function
 
-  Private Sub player_statValueChanged(sender As StatSubject, stat As Stat)
-    Try
-      If Me.SaveToDBEnabled Then
-        ' Me.WriteStatsToDB()
-      End If
-    Catch ex As Exception
-
-    End Try
-  End Sub
 
   Public Function GetPlayersForMatch() As Boolean
     Dim res = True
@@ -301,18 +296,22 @@ Imports MatchInfo
   Private Sub _player_StatValueChanged(sender As StatSubject, stat As Stat)
     Try
       If _updating = True Then Exit Sub
-
-      UpdateStatFromPlayers(stat.Name)
+      'RaiseEvent PlayerStatValueChanged(Me, sender, stat)
+      'UpdateStatFromPlayers(stat.Name)
     Catch ex As Exception
 
     End Try
   End Sub
 
   Public Function UpdateStatFromPlayers(statName As String) As Stat
-    Dim destStat As Stat = Nothing
+
+    Dim destStat As Stat = Me.GetMatchStatByName(statName)
+    Return destStat
+
     Try
       Dim value As Double = 0
       destStat = Me.GetMatchStatByName(statName)
+
       If Not destStat Is Nothing Then
         For Each player As Player In Me.MatchPlayers
           Dim aux As Stat = player.GetMatchStatByName(statName)
@@ -323,8 +322,10 @@ Imports MatchInfo
             End If
           End If
         Next
+
         destStat.Value = value
-        Me.Update()
+        Me.WriteStatToDB(destStat)
+        'Me.Update()
       End If
     Catch ex As Exception
     End Try
@@ -368,7 +369,7 @@ Imports MatchInfo
           Dim myCommand As OleDbCommand = CreateCommand()
           myCommand.Connection = conn
           SQL = SQL.Substring(0, SQL.Length - 1)
-          SQL = (Convert.ToString("UPDATE Teams Set") & SQL) + " WHERE TeamID = " + TeamID
+          SQL = (Convert.ToString("UPDATE Teams Set") & SQL) & " WHERE TeamID = " & TeamID
           myCommand.CommandText = SQL
           myCommand.ExecuteNonQuery()
           conn.Close()
@@ -391,7 +392,11 @@ Imports MatchInfo
   End Sub
 
   Public Overrides Function ToString() As String
-    Return TeamAELCaption1Name
+    If MyBase.Name = "" Then
+      Return MyBase.Name
+    Else
+      Return TeamAELCaption1Name
+    End If
   End Function
 
   Public Function GetPlayerById(ID As Integer) As Player
@@ -414,6 +419,11 @@ Imports MatchInfo
       For Each player As Player In Me.AllPlayers
         If player.MatchStats.Formation_Pos.Value = position Then res = player
       Next
+      If res Is Nothing Then
+        For Each player As Player In Me.MatchPlayers
+          If player.MatchStats.Formation_Pos.Value = position Then res = player
+        Next
+      End If
     Catch ex As Exception
     End Try
     Return res
@@ -424,13 +434,21 @@ Imports MatchInfo
       Me.ReadStatsFromDB()
       Me.MatchGoals.GetMatchGoals(Me.Match_ID, Me.ID)
       For Each player As Player In Me.AllPlayers
-     '   player.ReadStatsFromDB()
+        '   player.ReadStatsFromDB()
         player.Goals = Me.MatchGoals.GetGoalsByPlayer(player).Count
       Next
       Me.Goals = Me.MatchGoals.Count
     Catch ex As Exception
 
     End Try
+  End Sub
+
+  Public Sub CreateEmptyPlayers(num As Integer)
+    Me.AllPlayers = New Players(num)
+    For Each player As Player In Me.AllPlayers
+      Me.MatchPlayers.Add(player)
+      AddHandler player.StatValueChanged, AddressOf _player_StatValueChanged
+    Next
   End Sub
 #End Region
 

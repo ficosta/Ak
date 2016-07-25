@@ -79,10 +79,10 @@ Public Class GraphicsScoreLine
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.WithhAllScorers))
       Else
         Select Case graphicStep.Depth
-          Case 0
+          Case 1
             gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.SponsorLogo, True, False))
             gs.GraphicSteps.Add(New GraphicStep(gs, StepMatch.NoLogo, True, False))
-          Case 1
+          Case 2
             'graphic is ready
 
         End Select

@@ -69,6 +69,14 @@
   End Sub
 
   Private Sub MetroGridOptions_SelectionChanged(sender As Object, e As EventArgs) Handles MetroGridOptions.SelectionChanged
+    SelectionChanged()
+  End Sub
+
+  Private Sub MetroGridOptions_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridOptions.CellContentClick
+    SelectionChanged()
+  End Sub
+
+  Private Sub SelectionChanged()
     If _init = False Then Exit Sub
 
     Dim gStep As GraphicStep = Nothing

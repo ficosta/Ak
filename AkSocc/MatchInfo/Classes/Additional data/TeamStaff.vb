@@ -69,7 +69,7 @@ Public Class TeamStaff
   End Sub
 
   Public Function GetStaff() As Boolean
-    Return GetFromDB("WHERE StaffID = " + StaffID)
+    Return GetFromDB("WHERE StaffID = " & StaffID)
   End Function
 
   Public Sub Update()
@@ -96,7 +96,7 @@ Public Class TeamStaff
     '      myCommand.Parameters.AddWithValue("@StaffTitle", StaffTitle)
     '    End If
     '    If ActualDb.StaffImportance <> StaffImportance AndAlso StaffImportance <> -1 Then
-    '      SQL += " StaffImportance=" + StaffImportance.ToString() + ","
+    '      SQL += " StaffImportance=" & StaffImportance.ToString() & ","
     '    End If
     '    If ActualDb.ArabicStaffTitle <> ArabicStaffTitle AndAlso ArabicStaffTitle <> "" Then
     '      SQL += " ArabicStaffTitle=@ArabicStaffTitle,"
@@ -115,7 +115,7 @@ Public Class TeamStaff
     '      conn.Open()
     '      myCommand.Connection = conn
     '      SQL = SQL.Substring(0, SQL.Length - 1)
-    '      SQL = (Convert.ToString("UPDATE Staff SET") & SQL) + " WHERE StaffID = " + StaffID
+    '      SQL = (Convert.ToString("UPDATE Staff SET") & SQL) & " WHERE StaffID = " & StaffID
     '      myCommand.CommandText = SQL
     '      myCommand.ExecuteNonQuery()
     '      conn.Close()
@@ -123,7 +123,7 @@ Public Class TeamStaff
     '  Else
     '    'INSERT
     '    Dim SQL As String = "INSERT INTO Staff (StaffTeamID, StaffFirstName, StaffSurname, StaffTitle, StaffImportance, ArabicStaffTitle, ArabicName, ArabicShortName)"
-    '    SQL += " VALUES (" + StaffTeamID.ToString() + ", @StaffFirstName, @StaffSurname, @StaffTitle, " + StaffImportance.ToString() + ", @ArabicStaffTitle, @ArabicName, @ArabicShortName)"
+    '    SQL += " VALUES (" & StaffTeamID.ToString() & ", @StaffFirstName, @StaffSurname, @StaffTitle, " & StaffImportance.ToString() & ", @ArabicStaffTitle, @ArabicName, @ArabicShortName)"
     '    Dim conn As New OleDbConnection(Config.LocalDBConnectionString)
     '    conn.Open()
     '    Dim myCmd As New OleDbCommand(SQL, conn)
@@ -149,7 +149,7 @@ Public Class TeamStaffs
   End Sub
 
   Public Sub GetStaffs(ID As Integer)
-    GetFromDB("WHERE StaffID=" + ID.ToString())
+    GetFromDB("WHERE StaffID=" & ID.ToString())
   End Sub
 
 

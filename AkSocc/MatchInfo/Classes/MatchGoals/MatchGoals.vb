@@ -95,7 +95,7 @@ Public Class MatchGoals
           NewItem.Penalty = myReader.GetBoolean(5)
         End If
         If Not myReader.IsDBNull(6) Then
-          NewItem.OwnGoal = myReader.GetBoolean(5)
+          NewItem.OwnGoal = myReader.GetBoolean(6)
         End If
         List.Add(NewItem)
       End While

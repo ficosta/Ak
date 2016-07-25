@@ -151,6 +151,7 @@ Partial Class FormPeriodControl
     Me.LabelOverTime.TabIndex = 5
     Me.LabelOverTime.Text = "Over time"
     Me.LabelOverTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    Me.LabelOverTime.Visible = False
     '
     'NumericUpDownMinutes
     '
@@ -161,6 +162,7 @@ Partial Class FormPeriodControl
     Me.NumericUpDownMinutes.Name = "NumericUpDownMinutes"
     Me.NumericUpDownMinutes.Size = New System.Drawing.Size(172, 25)
     Me.NumericUpDownMinutes.TabIndex = 6
+    Me.NumericUpDownMinutes.Visible = False
     '
     'TableLayoutPanel1
     '

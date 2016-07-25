@@ -98,11 +98,13 @@
     <Compile Include="Classes\Clock\Graphics\ClockSubstitutes.vb" />
     <Compile Include="Classes\Clock\ControlScoreSingleGoal.vb" />
     <Compile Include="Classes\GlobalNotifier.vb" />
+    <Compile Include="Classes\GraphicGroups\Graphics2WayBoxes.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsBugHTFT.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsBugs.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsCommons.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsInterviews.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsPlayerNameNoNumber.vb" />
-    <Compile Include="Classes\GraphicGroups\GraphicsScoreBugs.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsBugScore.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsTeamCaptions.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsReferee.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsScoreLine.vb" />
@@ -211,22 +213,10 @@
     <Compile Include="Forms\Clock\UCPeriod.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\DialogChooseWithPreview.Designer.vb">
-      <DependentUpon>DialogChooseWithPreview.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DialogChooseWithPreview.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\DialogOptions.Designer.vb">
       <DependentUpon>DialogOptions.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\DialogOptions.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DialogPreview.Designer.vb">
-      <DependentUpon>DialogPreview.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DialogPreview.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MatchSetup\FormMatchSetup.Designer.vb">
@@ -366,14 +356,8 @@
     <EmbeddedResource Include="Forms\Clock\UCPeriod.resx">
       <DependentUpon>UCPeriod.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DialogChooseWithPreview.resx">
-      <DependentUpon>DialogChooseWithPreview.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogOptions.resx">
       <DependentUpon>DialogOptions.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DialogPreview.resx">
-      <DependentUpon>DialogPreview.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Goals\frmGoal.resx">
       <DependentUpon>frmGoal.vb</DependentUpon>

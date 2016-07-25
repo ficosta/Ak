@@ -49,7 +49,7 @@ Public Class GraphicsCrawlFreeText
 
       If graphicStep Is Nothing Then
         For Each freeText As FreeText In _crawlTexts.FreeTextList
-          gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(freeText.EnglishDescription, freeText.EnglishDescription), True, True))
+          gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(freeText.UID, freeText.EnglishDescription), True, False))
         Next
       End If
     Catch ex As Exception
@@ -63,10 +63,8 @@ Public Class GraphicsCrawlFreeText
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Dim changeStep As Integer = 1
     Try
-      Scene = InitDefaultScene()
-
       Dim freeText As FreeText = _crawlTexts.GetByUID(graphicStep.UID)
-      Scene = PrepareMatchScores(changeStep, freeText)
+      Scene = PrepareFreeTexts(changeStep, freeText)
 
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -83,43 +81,45 @@ Public Class GraphicsCrawlFreeText
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("Change", 0, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add("Crawl_Change_1_2", 20, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 50, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 100, DirectorAction.Dummy)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
-    ' scene.SceneDirectorsChangeOut.Add("Change", 0, DirectorAction.Rewind)
+    Dim prefix As String
+    For i As Integer = 1 To 4
+      prefix = "Crawll_Free_Text_Side_" & gStep & "_Field_" & i & "_"
 
-    scene.SceneDirectorsChangeIn.Add("Change", 0, DirectorAction.Start)
-    scene.SceneDirectorsChangeIn.Add("Change", 200, DirectorAction.Dummy)
-
-    scene.SceneParameters.Add("Veil_On_Off_Vis", "1")
-    scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
-
-    Dim prefix As String = "Side_" & gStep
-    scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_TeamList_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Double_teams_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Table_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Results_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Formation_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Stats_Vis.active", "0")
+      scene.SceneParameters.Add(prefix & "Text", "")
+      scene.SceneParameters.Add(prefix & "Title", "")
+      scene.SceneParameters.Add(prefix & "Logo_1_Vis", "")
+      scene.SceneParameters.Add(prefix & "Logo_2_Vis", "")
+      scene.SceneParameters.Add(prefix & "Logo_3_Vis", "")
+      scene.SceneParameters.Add(prefix & "Logo_4_Vis", "")
+    Next
 
     Return scene
   End Function
 
 
-  Public Function PrepareMatchScores(gSide As Integer, freeText As FreeText) As Scene
-    Dim scene As Scene = InitDefaultScene()
+  Public Function PrepareFreeTexts(gSide As Integer, freeText As FreeText) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = "Crawll_Side_" & gSide & "_"
     Dim subjectPrefix As String = ""
     Try
-      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 2)
-      prefix = "Crawll_Results_Side_" & gSide & "_"
 
+      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 0)
+      prefix = "Crawll_Results_Side_" & gSide & "_"
+      prefix = "Crawll_Free_Text_Side_" & gSide & "_Field_1_"
 
       If Not freeText Is Nothing Then
         scene.SceneParameters.Add(prefix & "Title", freeText.CrawlHeader)
-        scene.SceneParameters.Add(prefix & "Title", freeText.CrawlText)
+        scene.SceneParameters.Add(prefix & "Text", freeText.CrawlText)
+        scene.SceneParameters.Add(prefix & "Logo_1_Vis", "")
+        scene.SceneParameters.Add(prefix & "Logo_2_Vis", "")
+        scene.SceneParameters.Add(prefix & "Logo_3_Vis", "")
+        scene.SceneParameters.Add(prefix & "Logo_4_Vis", "")
       End If
 
     Catch ex As Exception

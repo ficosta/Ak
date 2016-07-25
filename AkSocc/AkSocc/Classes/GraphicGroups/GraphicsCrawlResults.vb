@@ -93,23 +93,6 @@ Public Class GraphicsCrawlResults
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
-    ' scene.SceneDirectorsChangeOut.Add("Change", 0, DirectorAction.Rewind)
-
-    scene.SceneDirectorsChangeIn.Add("Change", 0, DirectorAction.Start)
-    scene.SceneDirectorsChangeIn.Add("Change", 200, DirectorAction.Dummy)
-
-    scene.SceneParameters.Add("Veil_On_Off_Vis", "1")
-    scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
-
-    Dim prefix As String = "Side_" & gStep
-    scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_TeamList_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Double_teams_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Table_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Results_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Formation_Vis.active", "0")
-    scene.SceneParameters.Add(prefix & "_Stats_Vis.active", "0")
-
     Return scene
   End Function
 

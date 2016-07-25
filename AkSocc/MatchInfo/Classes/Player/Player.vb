@@ -46,14 +46,18 @@
   Private _name As String = ""
   Public Overloads Property Name As String
     Get
-      If Config.Instance.UseArabicNames Then
-        Return Me.ArabicName
+      If MyBase.Name <> "" Then
+        Return MyBase.Name
       Else
-        Return Me.PlayerUniqueName
+        If Config.Instance.UseArabicNames Then
+          Return Me.ArabicName
+        Else
+          Return Me.PlayerUniqueName
+        End If
       End If
     End Get
     Set(value As String)
-      _name = value
+      MyBase.Name = value
     End Set
   End Property
 #End Region
@@ -420,13 +424,13 @@
           SQL += " Nationality=@Nationality,"
         End If
         If ActualDb.YellowCards <> YellowCards AndAlso YellowCards <> -1 Then
-          SQL += " YellowCards=" + YellowCards.ToString() + ","
+          SQL += " YellowCards=" & YellowCards.ToString() & ","
         End If
         If ActualDb.RedCards <> RedCards AndAlso RedCards <> -1 Then
-          SQL += " RedCards=" + RedCards.ToString() + ","
+          SQL += " RedCards=" & RedCards.ToString() & ","
         End If
         If ActualDb.SeasonGoals <> SeasonGoals AndAlso SeasonGoals <> -1 Then
-          SQL += " SeasonGoals=" + SeasonGoals.ToString() + ","
+          SQL += " SeasonGoals=" & SeasonGoals.ToString() & ","
         End If
         If ActualDb.PhotoName <> PhotoName AndAlso PhotoName <> "" Then
           SQL += " PhotoName=@PhotoName,"
@@ -462,8 +466,8 @@
           conn.Open()
           myCommand.Connection = conn
           SQL = SQL.Substring(0, SQL.Length - 1)
-          SQL = (Convert.ToString("UPDATE Players SET") & SQL) + " WHERE PlayerID = " + PlayerID
-          '                        SQL = "UPDATE Players SET PlayerFirstName=@PlayerFirstName, PlayerSurname=@PlayerSurname, PlayerUniqueName=@PlayerUniqueName, TeamID=@TeamID, DomesticTeamID=@DomesticTeamID, DomesticSquadNo=@DomesticSquadNo, PlayerPosition=@PlayerPosition, InternationalSquadNo=@InternationalSquadNo, InternationalTeamID=@InternationalTeamID, InternationalPlayerUniqueName=@InternationalPlayerUniqueName, EnglishBiog1=@EnglishBiog1, Biog1=@Biog1, EnglishBiog2=@EnglishBiog2, Biog2=@Biog2, EnglishBiog3=@EnglishBiog3, Biog3=@Biog3, Nationality=@Nationality, YellowCards=@YellowCards, RedCards=@RedCards, SeasonGoals=@SeasonGoals, PhotoName=@PhotoName, ArabicName=@ArabicName, VideoName=@VideoName, SeasonAppearances=@SeasonAppearances, PhotoName1=@PhotoName1, VideoName1=@VideoName1, VideoName2=@VideoName2, OptaId=@OptaId, SeasonCleanSheets=@SeasonCleanSheets WHERE PlayerID=" + PlayerID;
+          SQL = (Convert.ToString("UPDATE Players SET") & SQL) & " WHERE PlayerID = " & PlayerID
+          '                        SQL = "UPDATE Players SET PlayerFirstName=@PlayerFirstName, PlayerSurname=@PlayerSurname, PlayerUniqueName=@PlayerUniqueName, TeamID=@TeamID, DomesticTeamID=@DomesticTeamID, DomesticSquadNo=@DomesticSquadNo, PlayerPosition=@PlayerPosition, InternationalSquadNo=@InternationalSquadNo, InternationalTeamID=@InternationalTeamID, InternationalPlayerUniqueName=@InternationalPlayerUniqueName, EnglishBiog1=@EnglishBiog1, Biog1=@Biog1, EnglishBiog2=@EnglishBiog2, Biog2=@Biog2, EnglishBiog3=@EnglishBiog3, Biog3=@Biog3, Nationality=@Nationality, YellowCards=@YellowCards, RedCards=@RedCards, SeasonGoals=@SeasonGoals, PhotoName=@PhotoName, ArabicName=@ArabicName, VideoName=@VideoName, SeasonAppearances=@SeasonAppearances, PhotoName1=@PhotoName1, VideoName1=@VideoName1, VideoName2=@VideoName2, OptaId=@OptaId, SeasonCleanSheets=@SeasonCleanSheets WHERE PlayerID=" & PlayerID;
 
           myCommand.CommandText = SQL
           myCommand.ExecuteNonQuery()
@@ -493,7 +497,7 @@
 #End Region
 
   Public Overrides Function ToString() As String
-    Return Convert.ToString(SquadNo.ToString() + " ") & PlayerName
+    Return Convert.ToString(SquadNo.ToString() & " ") & PlayerName
   End Function
 
   Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo

@@ -73,7 +73,7 @@ Public Class EnglishToArabicTranslator
         If found = False Then
           If output = "" Then
             Dim sw As System.IO.StreamWriter = System.IO.File.AppendText("C:\NotInDictionary.txt")
-            sw.WriteLine(Convert.ToString(DateTime.Now.ToString("HH:mm:ss") + " ") & English)
+            sw.WriteLine(Convert.ToString(DateTime.Now.ToString("HH:mm:ss") & " ") & English)
             sw.Close()
           End If
         End If

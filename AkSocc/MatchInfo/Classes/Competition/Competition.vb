@@ -144,7 +144,7 @@ Public Class Competition
   End Sub
 
   Public Function GetCompetition() As Boolean
-    Return GetFromDB("WHERE CompID = " + CompID)
+    Return GetFromDB("WHERE CompID = " & CompID)
   End Function
 
   Public Sub Update()
@@ -225,7 +225,7 @@ Public Class Competition
           Dim myCommand As OleDbCommand = CreateCommand()
           myCommand.Connection = conn
           SQL = SQL.Substring(0, SQL.Length - 1)
-          SQL = (Convert.ToString("UPDATE Competitions SET") & SQL) + " WHERE CompID = " + CompID
+          SQL = (Convert.ToString("UPDATE Competitions SET") & SQL) & " WHERE CompID = " & CompID
           myCommand.CommandText = SQL
           myCommand.ExecuteNonQuery()
           conn.Close()

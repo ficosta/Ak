@@ -9,10 +9,13 @@ Imports System.Data.OleDb
   End Sub
 
   Public Sub New(count As Integer)
+    Me.Clear()
+
     For i As Integer = 1 To count
       Dim player As New Player(i)
       player.PlayerUniqueName = "Player " & i
       player.PlayerSurname = "Player " & i
+      player.Formation_Pos = i
       Me.Add(player)
     Next
   End Sub

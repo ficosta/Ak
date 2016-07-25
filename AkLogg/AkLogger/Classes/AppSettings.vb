@@ -35,6 +35,7 @@ Public NotInheritable Class AppSettings
   Public Property ColorsDefaultPath As String = "C:\Alamiya\Colors"
   Public Property KitsDefaultPath As String = "C:\Alamiya\kits"
   Public Property ClockStart As Boolean = False
+  Public Property UseDefaultShortcuts As Boolean = True
 
 #End Region
 

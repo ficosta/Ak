@@ -12,6 +12,7 @@ Public Class Stat
   Public Property DataType As eDataType = eDataType.IntValue
   Public Property Enabled As Boolean = True
   Public Property Name As String = ""
+  Public Property UID As String = Guid.NewGuid().ToString
 
   Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
   Public Event StatValueChanged(sender As Stat)

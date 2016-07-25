@@ -73,7 +73,7 @@ Public Class NameDotText
   End Sub
 
   Public Function [Get]() As Boolean
-    Return GetFromDB("WHERE ID = " + ID)
+    Return GetFromDB("WHERE ID = " & ID)
   End Function
 
   Public Sub Update()
@@ -100,7 +100,7 @@ Public Class NameDotText
           Dim myCommand As OleDbCommand = CreateCommand()
           myCommand.Connection = conn
           SQL = SQL.Substring(0, SQL.Length - 1)
-          SQL = (Convert.ToString("UPDATE NamesDotText SET") & SQL) + " WHERE ID = " + ID
+          SQL = (Convert.ToString("UPDATE NamesDotText SET") & SQL) & " WHERE ID = " & ID
           myCommand.CommandText = SQL
           myCommand.ExecuteNonQuery()
           conn.Close()

@@ -55,7 +55,7 @@ Public Class MatchGoal
   End Sub
 
   Private Function [Get]() As Boolean
-    Return [Get]("WHERE GoalID=" + GoalID.ToString())
+    Return [Get]("WHERE GoalID=" & GoalID.ToString())
   End Function
   Private Function [Get](Where As String) As Boolean
     Try
@@ -104,29 +104,29 @@ Public Class MatchGoal
         Dim myCommand As New OleDbCommand()
         Dim SQL As String = ""
         If ActualDb.MatchID <> MatchID AndAlso MatchID <> -1 Then
-          SQL += " [MatchID]=" + MatchID.ToString() + ","
+          SQL += " [MatchID]=" & MatchID.ToString() & ","
         End If
         If ActualDb.TeamGoalID <> TeamGoalID AndAlso TeamGoalID <> -1 Then
-          SQL += " [TeamGoalID]=" + TeamGoalID.ToString() + ","
+          SQL += " [TeamGoalID]=" & TeamGoalID.ToString() & ","
         End If
         If ActualDb.TimeSecond <> TimeSecond AndAlso TimeSecond <> -1 Then
-          SQL += " [TimeSecond]=" + TimeSecond.ToString() + ","
+          SQL += " [TimeSecond]=" & TimeSecond.ToString() & ","
         End If
         If ActualDb.PlayerID <> PlayerID AndAlso PlayerID <> -1 Then
-          SQL += " [PlayerID]=" + PlayerID.ToString() + ","
+          SQL += " [PlayerID]=" & PlayerID.ToString() & ","
         End If
         If ActualDb.Penalty <> Penalty Then
-          SQL += " [Penalty]=" + Penalty.ToString() + ","
+          SQL += " [Penalty]=" & Penalty.ToString() & ","
         End If
         If ActualDb.OwnGoal <> OwnGoal Then
-          SQL += " [OwnGoal]=" + OwnGoal.ToString() + ","
+          SQL += " [OwnGoal]=" & OwnGoal.ToString() & ","
         End If
         If SQL <> "" Then
           Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
           conn.Open()
           myCommand.Connection = conn
           SQL = SQL.Substring(0, SQL.Length - 1)
-          SQL = (Convert.ToString("UPDATE MatchGoals SET") & SQL) + " WHERE GoalID = " + GoalID.ToString()
+          SQL = (Convert.ToString("UPDATE MatchGoals SET") & SQL) & " WHERE GoalID = " & GoalID.ToString()
           myCommand.CommandText = SQL
           myCommand.ExecuteNonQuery()
           conn.Close()
@@ -135,7 +135,7 @@ Public Class MatchGoal
         Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
         conn.Open()
         Dim SQL As String = "INSERT INTO MatchGoals ([MatchID], [TeamGoalID], [TimeSecond], [PlayerID], [Penalty], [OwnGoal])"
-        SQL += " VALUES (" + MatchID.ToString() + ", " + TeamGoalID.ToString() + ", " + TimeSecond.ToString() + ", " + PlayerID.ToString() + ", " + (If(Penalty, "1", "0")) + ", " + (If(OwnGoal, "1", "0")) + ")"
+        SQL += " VALUES (" & MatchID.ToString() & ", " & TeamGoalID.ToString() & ", " & TimeSecond.ToString() & ", " & PlayerID.ToString() & ", " & (If(Penalty, "1", "0")) & ", " & (If(OwnGoal, "1", "0")) & ")"
         Dim myCmd As New OleDbCommand(SQL, conn)
         myCmd.ExecuteNonQuery()
 

@@ -23,8 +23,6 @@ Public Class FormChoose
 
   Public WithEvents _previewControl As VizCommands.PreviewControl
 
-  Private WithEvents _dlgPreview As New DialogPreview
-
   Private _lastControlIndex As Integer = 0
   Private _chooseControls As New List(Of UserControlChoose)
 
@@ -207,15 +205,18 @@ Public Class FormChoose
 
       Me.GraphicGroup.graphicStep = gs
 
+
       Dim bNextStep As Boolean = False
       If gs Is Nothing Then
         bNextStep = True
-      ElseIf gs.IsFinalStep = False Then
-        bNextStep = True
       Else
-        bNextStep = False
+        gs.ChildGraphicStep = Nothing
+        If gs.IsFinalStep = False Then
+          bNextStep = True
+        Else
+          bNextStep = False
+        End If
       End If
-
       If bNextStep Then
         Me.OK_Button.Enabled = False
         If Not sender Is Nothing Then _lastControlIndex = sender.Index + 1

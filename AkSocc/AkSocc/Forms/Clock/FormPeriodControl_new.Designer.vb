@@ -27,14 +27,10 @@ Partial Class FormPeriodControl_new
     Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.UcPeriod4 = New AkSocc.UCPeriod()
     Me.TableLayoutPanelOtherOptions = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroButtonResetMatch = New Button()
-    Me.MetroButtonOverwriteClock = New Button()
-    Me.MetroButtonReloadDataBase = New Button()
-    Me.UcPeriod3 = New AkSocc.UCPeriod()
-    Me.UcPeriod2 = New AkSocc.UCPeriod()
-    Me.UcPeriod1 = New AkSocc.UCPeriod()
+    Me.MetroButtonResetMatch = New System.Windows.Forms.Button()
+    Me.MetroButtonOverwriteClock = New System.Windows.Forms.Button()
+    Me.MetroButtonReloadDataBase = New System.Windows.Forms.Button()
     Me.msmPeriodControl = New MetroFramework.Components.MetroStyleManager(Me.components)
     Me.MetroGridPeriods = New MetroFramework.Controls.MetroGrid()
     Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -43,6 +39,10 @@ Partial Class FormPeriodControl_new
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.LabelOverTime = New System.Windows.Forms.Label()
     Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
+    Me.UcPeriod4 = New AkSocc.UCPeriod()
+    Me.UcPeriod3 = New AkSocc.UCPeriod()
+    Me.UcPeriod2 = New AkSocc.UCPeriod()
+    Me.UcPeriod1 = New AkSocc.UCPeriod()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TableLayoutPanelOtherOptions.SuspendLayout()
     CType(Me.msmPeriodControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,18 +71,6 @@ Partial Class FormPeriodControl_new
     Me.TableLayoutPanel1.Size = New System.Drawing.Size(484, 104)
     Me.TableLayoutPanel1.TabIndex = 2
     '
-    'UcPeriod4
-    '
-    Me.UcPeriod4.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcPeriod4.Location = New System.Drawing.Point(291, 3)
-    Me.UcPeriod4.Match = Nothing
-    Me.UcPeriod4.Name = "UcPeriod4"
-    Me.UcPeriod4.Period = Nothing
-    Me.UcPeriod4.Size = New System.Drawing.Size(90, 98)
-    Me.UcPeriod4.Style = MetroFramework.MetroColorStyle.White
-    Me.UcPeriod4.TabIndex = 3
-
-    '
     'TableLayoutPanelOtherOptions
     '
     Me.TableLayoutPanelOtherOptions.ColumnCount = 1
@@ -103,65 +91,32 @@ Partial Class FormPeriodControl_new
     'MetroButtonResetMatch
     '
     Me.MetroButtonResetMatch.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonResetMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.MetroButtonResetMatch.Location = New System.Drawing.Point(3, 3)
     Me.MetroButtonResetMatch.Name = "MetroButtonResetMatch"
     Me.MetroButtonResetMatch.Size = New System.Drawing.Size(88, 26)
     Me.MetroButtonResetMatch.TabIndex = 0
     Me.MetroButtonResetMatch.Text = "Reset Match"
-    Me.MetroButtonResetMatch.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonOverwriteClock
     '
     Me.MetroButtonOverwriteClock.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonOverwriteClock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.MetroButtonOverwriteClock.Location = New System.Drawing.Point(3, 35)
     Me.MetroButtonOverwriteClock.Name = "MetroButtonOverwriteClock"
     Me.MetroButtonOverwriteClock.Size = New System.Drawing.Size(88, 26)
     Me.MetroButtonOverwriteClock.TabIndex = 1
     Me.MetroButtonOverwriteClock.Text = "Overwrite clock"
-    Me.MetroButtonOverwriteClock.FlatStyle = FlatStyle.Flat
     '
     'MetroButtonReloadDataBase
     '
     Me.MetroButtonReloadDataBase.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroButtonReloadDataBase.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.MetroButtonReloadDataBase.Location = New System.Drawing.Point(3, 67)
     Me.MetroButtonReloadDataBase.Name = "MetroButtonReloadDataBase"
     Me.MetroButtonReloadDataBase.Size = New System.Drawing.Size(88, 28)
     Me.MetroButtonReloadDataBase.TabIndex = 2
     Me.MetroButtonReloadDataBase.Text = "Reload data base"
-    Me.MetroButtonReloadDataBase.FlatStyle = FlatStyle.Flat
-    '
-    'UcPeriod3
-    '
-    Me.UcPeriod3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcPeriod3.Location = New System.Drawing.Point(195, 3)
-    Me.UcPeriod3.Match = Nothing
-    Me.UcPeriod3.Name = "UcPeriod3"
-    Me.UcPeriod3.Period = Nothing
-    Me.UcPeriod3.Size = New System.Drawing.Size(90, 98)
-    Me.UcPeriod3.Style = MetroFramework.MetroColorStyle.White
-    Me.UcPeriod3.TabIndex = 2
-    '
-    'UcPeriod2
-    '
-    Me.UcPeriod2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcPeriod2.Location = New System.Drawing.Point(99, 3)
-    Me.UcPeriod2.Match = Nothing
-    Me.UcPeriod2.Name = "UcPeriod2"
-    Me.UcPeriod2.Period = Nothing
-    Me.UcPeriod2.Size = New System.Drawing.Size(90, 98)
-    Me.UcPeriod2.Style = MetroFramework.MetroColorStyle.White
-    Me.UcPeriod2.TabIndex = 1
-    '
-    'UcPeriod1
-    '
-    Me.UcPeriod1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcPeriod1.Location = New System.Drawing.Point(3, 3)
-    Me.UcPeriod1.Match = Nothing
-    Me.UcPeriod1.Name = "UcPeriod1"
-    Me.UcPeriod1.Period = Nothing
-    Me.UcPeriod1.Size = New System.Drawing.Size(90, 98)
-    Me.UcPeriod1.Style = MetroFramework.MetroColorStyle.White
-    Me.UcPeriod1.TabIndex = 0
     '
     'msmPeriodControl
     '
@@ -274,6 +229,54 @@ Partial Class FormPeriodControl_new
     Me.NumericUpDownMinutes.Name = "NumericUpDownMinutes"
     Me.NumericUpDownMinutes.Size = New System.Drawing.Size(126, 25)
     Me.NumericUpDownMinutes.TabIndex = 6
+    '
+    'UcPeriod4
+    '
+    Me.UcPeriod4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod4.Location = New System.Drawing.Point(291, 3)
+    Me.UcPeriod4.Match = Nothing
+    Me.UcPeriod4.Name = "UcPeriod4"
+    Me.UcPeriod4.Period = Nothing
+    Me.UcPeriod4.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod4.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod4.TabIndex = 3
+    Me.UcPeriod4.UseSelectable = True
+    '
+    'UcPeriod3
+    '
+    Me.UcPeriod3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod3.Location = New System.Drawing.Point(195, 3)
+    Me.UcPeriod3.Match = Nothing
+    Me.UcPeriod3.Name = "UcPeriod3"
+    Me.UcPeriod3.Period = Nothing
+    Me.UcPeriod3.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod3.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod3.TabIndex = 2
+    Me.UcPeriod3.UseSelectable = True
+    '
+    'UcPeriod2
+    '
+    Me.UcPeriod2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod2.Location = New System.Drawing.Point(99, 3)
+    Me.UcPeriod2.Match = Nothing
+    Me.UcPeriod2.Name = "UcPeriod2"
+    Me.UcPeriod2.Period = Nothing
+    Me.UcPeriod2.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod2.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod2.TabIndex = 1
+    Me.UcPeriod2.UseSelectable = True
+    '
+    'UcPeriod1
+    '
+    Me.UcPeriod1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod1.Location = New System.Drawing.Point(3, 3)
+    Me.UcPeriod1.Match = Nothing
+    Me.UcPeriod1.Name = "UcPeriod1"
+    Me.UcPeriod1.Period = Nothing
+    Me.UcPeriod1.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod1.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod1.TabIndex = 0
+    Me.UcPeriod1.UseSelectable = True
     '
     'FormPeriodControl_new
     '

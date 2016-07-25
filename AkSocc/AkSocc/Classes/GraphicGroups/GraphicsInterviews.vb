@@ -9,7 +9,7 @@ Public Class GraphicsInterviews
   Public Sub New(_match As MatchInfo.Match)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicsF2Interviews"
+    MyBase.Name = "GraphicsInterviews"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F2, True, False, False, False)
     Me.Scene = Me.InitDefaultScene(1)
@@ -127,6 +127,7 @@ Public Class GraphicsInterviews
         scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name ", player.ArabicName)
         scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Number ", player.SquadNo)
         scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName, paramType.Image)
+        scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & team.BadgeName, paramType.Geometry)
         scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", VizEncoding(team.Name))
         scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", team.Name)
         scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", team.Name)

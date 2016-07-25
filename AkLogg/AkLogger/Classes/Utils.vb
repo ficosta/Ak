@@ -140,7 +140,7 @@ Public Enum Cards
     Public Shared Function TwoChars(Valor As Integer) As String
       Dim output As String
       If Valor < 10 Then
-        output = "0" + Valor.ToString()
+        output = "0" & Valor.ToString()
       Else
         output = Valor.ToString()
       End If
@@ -149,8 +149,8 @@ Public Enum Cards
 
     Public Shared Function Secs2MMSS(Secs As Integer) As String
       Dim Mins As Integer = Secs / 60
-      Secs = Secs - (Mins * 60)
-      Return Convert.ToString(TwoChars(Mins) & Convert.ToString(":")) & TwoChars(Secs)
+    Secs = Secs Mod 60
+    Return Convert.ToString(TwoChars(Mins) & Convert.ToString(":")) & TwoChars(Secs)
     End Function
 
     Public Shared Function MMSS2Secs(TC As String) As Integer
