@@ -12,7 +12,9 @@ Public Class Stat
   Public Property DataType As eDataType = eDataType.IntValue
   Public Property Enabled As Boolean = True
   Public Property Name As String = ""
+  Public Property StatTitle As String = ""
   Public Property UID As String = Guid.NewGuid().ToString
+  Public Property EventBased As Boolean = True
 
   Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
   Public Event StatValueChanged(sender As Stat)
@@ -39,7 +41,18 @@ Public Class Stat
 
   Public ReadOnly Property ValueText As String
     Get
-      Return CStr(_value)
+      Select Case Me.DataType
+        Case eDataType.CompositeValue
+          Return CStr(_value)
+        Case eDataType.DoubleValue
+          Return CStr(_value)
+        Case eDataType.IntValue
+          Return CStr(_value)
+        Case eDataType.PercentageValue
+          Return CStr(_value) & "%"
+        Case Else
+          Return CStr(_value)
+      End Select
     End Get
   End Property
 
@@ -54,21 +67,26 @@ Public Class Stat
 
   End Sub
 
-  Public Sub New(name As String, Optional dataType As eDataType = eDataType.IntValue)
+  Public Sub New(name As String)
     Me.Name = name
-    Me.DataType = dataType
+    ' Me.DataType = DataType
+    Me.EventBased = EventBased
   End Sub
 
-  Public Sub New(name As String, value As Integer)
+  Public Sub New(name As String, eventBased As Boolean, value As Integer, Optional type As eDataType = eDataType.IntValue)
     Me.Name = name
     Me.Value = value
-    Me.DataType = eDataType.IntValue
+    Me.DataType = type
+    Me.EventBased = eventBased
+    Me.StatTitle = name
   End Sub
 
-  Public Sub New(name As String, value As Double)
+  Public Sub New(name As String, eventBased As Boolean, value As Integer, statTitle As String, Optional type As eDataType = eDataType.IntValue)
     Me.Name = name
     Me.Value = value
-    Me.DataType = eDataType.DoubleValue
+    Me.DataType = type
+    Me.EventBased = eventBased
+    Me.StatTitle = statTitle
   End Sub
 #End Region
 End Class

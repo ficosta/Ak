@@ -15,7 +15,6 @@ Imports MatchInfo
 Partial Public Class frmMain
   Inherits Form
   Private SocketThead As System.Threading.Thread
-  Const Tittle As String = "Be In real Opta - Logger v 1.72.55"
 
 #Region "Globals Variables"
   Private Shared YCard As String = String.Empty
@@ -92,131 +91,136 @@ Partial Public Class frmMain
 
 
   Private Sub Reset()
+    'If Me.InvokeRequired Then
+    '  Me.Invoke(New MethodInvoker(AddressOf Reset))
+    'Else
+
     Try
-      'Clock & Possession
-      tmrRefresh.Enabled = False
-      tmrClock.Enabled = False
-      txtClock.Text = "00:00"
+        'Clock & Possession
+        tmrRefresh.Enabled = False
+        tmrClock.Enabled = False
+        txtClock.Text = "00:00"
 
-      MainSec = 0
-      AppSettings.Instance.LastMatchId = 0
-      AppSettings.Instance.Save()
+        MainSec = 0
+        AppSettings.Instance.LastMatchId = 0
+        AppSettings.Instance.Save()
 
-      OutOfPlay = True
-      PossessionHome1st = 0
-      PossessionAway1st = 0
-      PossessionHome2nd = 0
-      PossessionAway2nd = 0
-      txtPossessionHomeOwnT.Text = "0"
-      txtPossessionHomeMidF.Text = "0"
-      txtPossessionHomeAttk.Text = "0"
-      txtPossessionAwayOwnT.Text = "0"
-      txtPossessionAwayMidF.Text = "0"
-      txtPossessionAwayAttk.Text = "0"
+        OutOfPlay = True
+        PossessionHome1st = 0
+        PossessionAway1st = 0
+        PossessionHome2nd = 0
+        PossessionAway2nd = 0
+        txtPossessionHomeOwnT.Text = "0"
+        txtPossessionHomeMidF.Text = "0"
+        txtPossessionHomeAttk.Text = "0"
+        txtPossessionAwayOwnT.Text = "0"
+        txtPossessionAwayMidF.Text = "0"
+        txtPossessionAwayAttk.Text = "0"
 
-      _match = New Match
-      MatchHelper.Instance.Match = _match
+        _match = New Match
+        MatchHelper.Instance.Match = _match
 
-      _match.HomeTeam = New Team
-      _match.HomeTeam.TeamAELCaption1Name = "Home team"
-      _match.HomeTeam.MatchPlayers = New Players(19)
-      Me.TeamControlHome.Team = _match.HomeTeam
-      _matchHomeTeam = _match.HomeTeam
+        _match.HomeTeam = New Team
+        _match.HomeTeam.TeamAELCaption1Name = "Home team"
+        _match.HomeTeam.MatchPlayers = New Players(19)
+        Me.TeamControlHome.Team = _match.HomeTeam
+        _matchHomeTeam = _match.HomeTeam
 
-      _match.AwayTeam = New Team
-      _match.AwayTeam.TeamAELCaption1Name = "Away team"
-      _match.AwayTeam.MatchPlayers = New Players(19)
-      _matchAwayTeam = _match.AwayTeam
-      Me.TeamControlAway.Team = _match.AwayTeam
-
-
-      ''Reset Players
-      'For i As Integer = 1 To 18
-      '  Dim myHomePlayer As Player = DirectCast(DirectCast(grpHomePlayers.Controls.Find("HomePlayer" & i, True)(0), Label).Tag, Player)
-      '  If myHomePlayer Is Nothing Then
-      '    myHomePlayer = New Player()
-      '    DirectCast(grpHomePlayers.Controls.Find("HomePlayer" & i, True)(0), Label).Tag = myHomePlayer
-      '  Else
-      '    myHomePlayer.MatchStats.Saves.Value = 0
-      '    myHomePlayer.MatchStats.Shots.Value = 0
-      '    myHomePlayer.MatchStats.ShotsOn.Value = 0
-      '    myHomePlayer.MatchStats.Assis.Value = 0
-      '    myHomePlayer.MatchStats.Fouls.Value = 0
-      '    myHomePlayer.YellowCards = 0
-      '    myHomePlayer.RedCards = 0
-      '  End If
-      '  ProcessPlayerLine(i, True)
-
-      '  Dim myAwayPlayer As Player = DirectCast(DirectCast(grpAwayPlayers.Controls.Find("AwayPlayer" & i, True)(0), Label).Tag, Player)
-      '  If myAwayPlayer Is Nothing Then
-      '    myAwayPlayer = New Player()
-      '    DirectCast(grpAwayPlayers.Controls.Find("AwayPlayer" & i, True)(0), Label).Tag = myAwayPlayer
-      '  Else
-      '    myAwayPlayer.MatchStats.Saves.Value = 0
-      '    myAwayPlayer.MatchStats.Shots.Value = 0
-      '    myAwayPlayer.MatchStats.ShotsOn.Value = 0
-      '    myAwayPlayer.MatchStats.Assis.Value = 0
-      '    myAwayPlayer.MatchStats.Fouls.Value = 0
-      '    myAwayPlayer.YellowCards = 0
-      '    myAwayPlayer.RedCards = 0
-      '  End If
-      '  ProcessPlayerLine(i, False)
-      'Next
-
-      ''Reset Teams
-      'HomeTeam = New Team()
-      'lblSavesHomeTot.Text = HomeTeam.MatchStats.Saves.ToString()
-      'lblShotsHomeTot.Text = HomeTeam.MatchStats.Shots.ToString()
-      'lblShtGlHomeTot.Text = HomeTeam.MatchStats.ShotsOn.ToString()
-      'lblAssisHomeTot.Text = HomeTeam.MatchStats.Assis.ToString()
-      'lblFoulsHomeTot.Text = HomeTeam.MatchStats.Fouls.ToString()
-      'lblYCardHomeTot.Text = HomeTeam.MatchStats.YellowCards.ToString()
-      'lblRCardHomeTot.Text = HomeTeam.MatchStats.RedCards.ToString()
-      'lblCornersHome.Text = HomeTeam.MatchStats.Corners.ToString()
-      'lblOffsidesHome.Text = HomeTeam.MatchStats.Offsides.ToString()
-      'lblWoodHitsHome.Text = HomeTeam.MatchStats.WoodHits.ToString()
-      'lblPossession1stHome.Text = HomeTeam.MatchStats.Possession1st.ToString()
-      'lblPossession2ndHome.Text = HomeTeam.MatchStats.Possession2nd.ToString()
-      'lblPossessionMatchHome.Text = HomeTeam.MatchStats.PossessionMatch.ToString()
-      'lblPossessionLast10Home.Text = HomeTeam.MatchStats.PossessionLast10.ToString()
-      'lblPossessionLast5Home.Text = HomeTeam.MatchStats.PossessionLast5.ToString()
-      'lblPossessionHomeOwnF.Text = HomeTeam.MatchStats.PossessionOwn.ToString()
-      'lblPossessionHomeMidF.Text = HomeTeam.MatchStats.PossessionMid.ToString()
-      'lblPossessionHomeAttk.Text = HomeTeam.MatchStats.PossessionAttack.ToString()
-
-      'AwayTeam = New Team()
-      'lblSavesAwayTot.Text = AwayTeam.MatchStats.Saves.ToString()
-      'lblShotsAwayTot.Text = AwayTeam.MatchStats.Shots.ToString()
-      'lblShtGlAwayTot.Text = AwayTeam.MatchStats.ShotsOn.ToString()
-      'lblAssisAwayTot.Text = AwayTeam.MatchStats.Assis.ToString()
-      'lblFoulsAwayTot.Text = AwayTeam.MatchStats.Fouls.ToString()
-      'lblYCardAwayTot.Text = AwayTeam.MatchStats.YellowCards.ToString()
-      'lblRCardAwayTot.Text = AwayTeam.MatchStats.RedCards.ToString()
-      'lblCornersAway.Text = AwayTeam.MatchStats.Corners.ToString()
-      'lblOffsidesAway.Text = AwayTeam.MatchStats.Offsides.ToString()
-      'lblWoodHitsAway.Text = AwayTeam.MatchStats.WoodHits.ToString()
-      'lblPossession1stAway.Text = AwayTeam.MatchStats.Possession1st.ToString()
-      'lblPossession2ndAway.Text = AwayTeam.MatchStats.Possession2nd.ToString()
-      'lblPossessionMatchAway.Text = AwayTeam.MatchStats.PossessionMatch.ToString()
-      'lblPossessionLast10Away.Text = AwayTeam.MatchStats.PossessionLast10.ToString()
-      'lblPossessionLast5Away.Text = AwayTeam.MatchStats.PossessionLast5.ToString()
-      'lblPossessionAwayOwnF.Text = AwayTeam.MatchStats.PossessionOwn.ToString()
-      'lblPossessionAwayMidF.Text = AwayTeam.MatchStats.PossessionMid.ToString()
-      'lblPossessionAwayAttk.Text = AwayTeam.MatchStats.PossessionAttack.ToString()
-
-      'For i As Integer = lsvEvents.Items.Count - 1 To 0 Step -1
-      '  lsvEvents.Items.RemoveAt(i)
-      'Next
+        _match.AwayTeam = New Team
+        _match.AwayTeam.TeamAELCaption1Name = "Away team"
+        _match.AwayTeam.MatchPlayers = New Players(19)
+        _matchAwayTeam = _match.AwayTeam
+        Me.TeamControlAway.Team = _match.AwayTeam
 
 
-      bControlPress = False
+        ''Reset Players
+        'For i As Integer = 1 To 18
+        '  Dim myHomePlayer As Player = DirectCast(DirectCast(grpHomePlayers.Controls.Find("HomePlayer" & i, True)(0), Label).Tag, Player)
+        '  If myHomePlayer Is Nothing Then
+        '    myHomePlayer = New Player()
+        '    DirectCast(grpHomePlayers.Controls.Find("HomePlayer" & i, True)(0), Label).Tag = myHomePlayer
+        '  Else
+        '    myHomePlayer.MatchStats.Saves.Value = 0
+        '    myHomePlayer.MatchStats.Shots.Value = 0
+        '    myHomePlayer.MatchStats.ShotsOn.Value = 0
+        '    myHomePlayer.MatchStats.Assis.Value = 0
+        '    myHomePlayer.MatchStats.Fouls.Value = 0
+        '    myHomePlayer.YellowCards = 0
+        '    myHomePlayer.RedCards = 0
+        '  End If
+        '  ProcessPlayerLine(i, True)
 
-      PosesionWhere = PossessionWhereTypes.MidField
+        '  Dim myAwayPlayer As Player = DirectCast(DirectCast(grpAwayPlayers.Controls.Find("AwayPlayer" & i, True)(0), Label).Tag, Player)
+        '  If myAwayPlayer Is Nothing Then
+        '    myAwayPlayer = New Player()
+        '    DirectCast(grpAwayPlayers.Controls.Find("AwayPlayer" & i, True)(0), Label).Tag = myAwayPlayer
+        '  Else
+        '    myAwayPlayer.MatchStats.Saves.Value = 0
+        '    myAwayPlayer.MatchStats.Shots.Value = 0
+        '    myAwayPlayer.MatchStats.ShotsOn.Value = 0
+        '    myAwayPlayer.MatchStats.Assis.Value = 0
+        '    myAwayPlayer.MatchStats.Fouls.Value = 0
+        '    myAwayPlayer.YellowCards = 0
+        '    myAwayPlayer.RedCards = 0
+        '  End If
+        '  ProcessPlayerLine(i, False)
+        'Next
 
-      LastPossession.Clear()
-    Catch err As Exception
-      MessageBox.Show("ERROR Reset. " & err.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.[Error])
-    End Try
+        ''Reset Teams
+        'HomeTeam = New Team()
+        'lblSavesHomeTot.Text = HomeTeam.MatchStats.Saves.ToString()
+        'lblShotsHomeTot.Text = HomeTeam.MatchStats.Shots.ToString()
+        'lblShtGlHomeTot.Text = HomeTeam.MatchStats.ShotsOn.ToString()
+        'lblAssisHomeTot.Text = HomeTeam.MatchStats.Assis.ToString()
+        'lblFoulsHomeTot.Text = HomeTeam.MatchStats.Fouls.ToString()
+        'lblYCardHomeTot.Text = HomeTeam.MatchStats.YellowCards.ToString()
+        'lblRCardHomeTot.Text = HomeTeam.MatchStats.RedCards.ToString()
+        'lblCornersHome.Text = HomeTeam.MatchStats.Corners.ToString()
+        'lblOffsidesHome.Text = HomeTeam.MatchStats.Offsides.ToString()
+        'lblWoodHitsHome.Text = HomeTeam.MatchStats.WoodHits.ToString()
+        'lblPossession1stHome.Text = HomeTeam.MatchStats.Possession1st.ToString()
+        'lblPossession2ndHome.Text = HomeTeam.MatchStats.Possession2nd.ToString()
+        'lblPossessionMatchHome.Text = HomeTeam.MatchStats.PossessionMatch.ToString()
+        'lblPossessionLast10Home.Text = HomeTeam.MatchStats.PossessionLast10.ToString()
+        'lblPossessionLast5Home.Text = HomeTeam.MatchStats.PossessionLast5.ToString()
+        'lblPossessionHomeOwnF.Text = HomeTeam.MatchStats.PossessionOwn.ToString()
+        'lblPossessionHomeMidF.Text = HomeTeam.MatchStats.PossessionMid.ToString()
+        'lblPossessionHomeAttk.Text = HomeTeam.MatchStats.PossessionAttack.ToString()
+
+        'AwayTeam = New Team()
+        'lblSavesAwayTot.Text = AwayTeam.MatchStats.Saves.ToString()
+        'lblShotsAwayTot.Text = AwayTeam.MatchStats.Shots.ToString()
+        'lblShtGlAwayTot.Text = AwayTeam.MatchStats.ShotsOn.ToString()
+        'lblAssisAwayTot.Text = AwayTeam.MatchStats.Assis.ToString()
+        'lblFoulsAwayTot.Text = AwayTeam.MatchStats.Fouls.ToString()
+        'lblYCardAwayTot.Text = AwayTeam.MatchStats.YellowCards.ToString()
+        'lblRCardAwayTot.Text = AwayTeam.MatchStats.RedCards.ToString()
+        'lblCornersAway.Text = AwayTeam.MatchStats.Corners.ToString()
+        'lblOffsidesAway.Text = AwayTeam.MatchStats.Offsides.ToString()
+        'lblWoodHitsAway.Text = AwayTeam.MatchStats.WoodHits.ToString()
+        'lblPossession1stAway.Text = AwayTeam.MatchStats.Possession1st.ToString()
+        'lblPossession2ndAway.Text = AwayTeam.MatchStats.Possession2nd.ToString()
+        'lblPossessionMatchAway.Text = AwayTeam.MatchStats.PossessionMatch.ToString()
+        'lblPossessionLast10Away.Text = AwayTeam.MatchStats.PossessionLast10.ToString()
+        'lblPossessionLast5Away.Text = AwayTeam.MatchStats.PossessionLast5.ToString()
+        'lblPossessionAwayOwnF.Text = AwayTeam.MatchStats.PossessionOwn.ToString()
+        'lblPossessionAwayMidF.Text = AwayTeam.MatchStats.PossessionMid.ToString()
+        'lblPossessionAwayAttk.Text = AwayTeam.MatchStats.PossessionAttack.ToString()
+
+        'For i As Integer = lsvEvents.Items.Count - 1 To 0 Step -1
+        '  lsvEvents.Items.RemoveAt(i)
+        'Next
+
+
+        bControlPress = False
+
+        PosesionWhere = PossessionWhereTypes.MidField
+
+        LastPossession.Clear()
+      Catch err As Exception
+        MessageBox.Show("ERROR Reset. " & err.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.[Error])
+      End Try
+    'End If
   End Sub
 
   Private Sub Log(strLogLine As String)
@@ -713,11 +717,20 @@ Partial Public Class frmMain
     'Next
   End Sub
 
+  Private Delegate Sub SetMatchInvoker(ByVal text As String)
   Private Sub SetMatchInvoke(data As String)
-    Dim values As String() = data.Split("|"c)
-    Dim x As Integer = 1
+    If Me.InvokeRequired Then
+      Me.Invoke(New SetMatchInvoker(AddressOf SetMatchInvoke), data)
+    Else
+      Dim values As String() = data.Split("|"c)
+      Dim x As Integer = 1
 
-    _match.match_id = Utils.Val(values(x).ToString())
+      _match.match_id = Utils.Val(values(x).ToString())
+      Me.LoadMatchFromDB(Utils.Val(values(x)))
+      AppSettings.Instance.LastMatchId = _match.match_id
+      AppSettings.Instance.Save()
+    End If
+
   End Sub
 
   Private Delegate Sub SetHomePlayersInvoker(ByVal text As String)
@@ -727,9 +740,10 @@ Partial Public Class frmMain
       'Me.GetType().GetMethod("SetHomePlayersInvoke").Invoke(Me, New String() {data})
       Me.Invoke(New SetHomePlayersInvoker(AddressOf SetHomePlayersInvoke), data)
     Else
+      Exit Sub
+      Dim x As Integer = 3
       Try
         Dim values As String() = data.Split("|"c)
-        Dim x As Integer = 3
         _match.HomeTeam = New Team()
         _match.HomeTeam.Match_ID = _match.match_id
         _match.HomeTeam.TeamID = Utils.Val(values(1).ToString())
@@ -741,7 +755,8 @@ Partial Public Class frmMain
         x = 3
         For i As Integer = 0 To 17
           Dim player As Player = _match.HomeTeam.GetPlayerByPosicio(i + 1)
-          If Not player Is Nothing Then
+          If Not player Is Nothing And x < values.Length Then
+
             player.PlayerID = Utils.Val(values(x).ToString())
             player.Name = values(x + 1).ToString()
             player.PlayerUniqueName = values(x + 1).ToString()
@@ -774,6 +789,7 @@ Partial Public Class frmMain
       'Me.GetType().GetMethod("SetAwayPlayersInvoke").Invoke(Me, New String() {data})
       Me.Invoke(New SetAwayPlayersInvoker(AddressOf SetAwayPlayersInvoke), data)
     Else
+      Exit Sub
       Try
         Dim values As String() = data.Split("|"c)
         Dim x As Integer = 3
@@ -788,7 +804,7 @@ Partial Public Class frmMain
         x = 3
         For i As Integer = 0 To 17
           Dim player As Player = _match.AwayTeam.GetPlayerByPosicio(i + 1)
-          If Not player Is Nothing Then
+          If Not player Is Nothing And x < values.Length Then
             player.PlayerID = Utils.Val(values(x).ToString())
             player.Name = values(x + 1).ToString()
             player.PlayerUniqueName = values(x + 1).ToString()
@@ -833,10 +849,15 @@ Partial Public Class frmMain
   End Sub
 
   Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs)
-    If MessageBox.Show("Are you sure you want to CLOSE the app?", Tittle, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) = System.Windows.Forms.DialogResult.Yes Then
+    If MessageBox.Show("Are you sure you want to CLOSE the app?", My.Application.Info.AssemblyName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) = System.Windows.Forms.DialogResult.Yes Then
       'Save the data
       bClosing = True
-      SocketThead.Abort()
+      Try
+
+        SocketThead.Abort()
+      Catch ex As Exception
+        MsgBox(ex.ToString)
+      End Try
     End If
   End Sub
 
@@ -873,7 +894,8 @@ Partial Public Class frmMain
       End While
     Catch e As Exception
       If Not bClosing Then
-        MessageBox.Show("ERROR creating the socket!. Please, check the local IP:" & AppSettings.Instance.LoggerIP & ". PORT:" & AppSettings.Instance.LoggerPort.ToString() & vbLf & vbLf & vbLf & e.Message, Tittle, MessageBoxButtons.OK, MessageBoxIcon.[Error])
+        WriteToErrorLog(e)
+        'MessageBox.Show("ERROR creating the socket!. Please, check the local IP:" & AppSettings.Instance.LoggerIP & ". PORT:" & AppSettings.Instance.LoggerPort.ToString() & vbLf & vbLf & vbLf & e.Message, My.Application.Info.AssemblyName, MessageBoxButtons.OK, MessageBoxIcon.[Error])
       End If
     End Try
   End Sub
@@ -922,104 +944,114 @@ Partial Public Class frmMain
   End Sub
 
   Private Sub treatArray(handler As Socket, data As String)
-    If data.StartsWith("MATCH") Then
-      Send(handler, "OK")
-      SetMatchInvoke(data)
-      GlobalProperties.Instance.HomePlayers = data
-    ElseIf data.StartsWith("HOMETEAM") Then
-      Send(handler, "OK")
-      SetHomePlayersInvoke(data)
-      GlobalProperties.Instance.HomePlayers = data
-    ElseIf data.StartsWith("AWAYTEAM") Then
-      Send(handler, "OK")
-      SetAwayPlayersInvoke(data)
-      GlobalProperties.Instance.AwayPlayers = data
-    ElseIf data.StartsWith("TEAMSTATSHOME") Then
-      Dim statsHome As String
-      statsHome = _match.HomeTeam.MatchStats.ToSocketFormat()
-      Send(handler, statsHome)
-    ElseIf data.StartsWith("TEAMSTATSAWAY") Then
-      Dim statsAway As String
-      statsAway = _match.AwayTeam.MatchStats.ToSocketFormat()
-      Send(handler, statsAway)
-    ElseIf data.StartsWith("PLAYERSTAT") Then
-      Dim player As String
-      If HomePlayers.GetPlayer(Utils.Val(data.Split("|"c)(1).ToString())) IsNot Nothing Then
-        player = HomePlayers.GetPlayer(Utils.Val(data.Split("|"c)(1).ToString())).ToSocketFormat()
+    Try
+      If data.StartsWith("MATCH") Then
+        Send(handler, "OK")
+        SetMatchInvoke(data)
+        GlobalProperties.Instance.HomePlayers = data
+      ElseIf data.StartsWith("HOMETEAM") Then
+        Send(handler, "OK")
+        SetHomePlayersInvoke(data)
+        GlobalProperties.Instance.HomePlayers = data
+      ElseIf data.StartsWith("AWAYTEAM") Then
+        Send(handler, "OK")
+        SetAwayPlayersInvoke(data)
+        GlobalProperties.Instance.AwayPlayers = data
+      ElseIf data.StartsWith("TEAMSTATSHOME") Then
+        Dim statsHome As String
+        statsHome = _match.HomeTeam.MatchStats.ToSocketFormat()
+        Send(handler, statsHome)
+      ElseIf data.StartsWith("TEAMSTATSAWAY") Then
+        Dim statsAway As String
+        statsAway = _match.AwayTeam.MatchStats.ToSocketFormat()
+        Send(handler, statsAway)
+      ElseIf data.StartsWith("PLAYERSTAT") Then
+        Dim playerID As String = (data.Split("|"c)(1))
+        Dim player As Player = _match.GetPlayerById(Utils.Val(playerID))
+        Dim playerString As String = ""
+        If Not player Is Nothing Then
+          playerString = player.ToSocketFormat
+        End If
+        'If HomePlayers.GetPlayer(Utils.Val(data.Split("|"c)(1).ToString())) IsNot Nothing Then
+        '  player = HomePlayers.GetPlayer(Utils.Val(data.Split("|"c)(1).ToString())).ToSocketFormat()
+        'Else
+        '  player = AwayPlayers.GetPlayer(Utils.Val(data.Split("|"c)(1).ToString())).ToSocketFormat()
+        'End If
+        Send(handler, playerString)
+      ElseIf data.StartsWith("SMALSTATS") Then
+        Dim smallstats As String
+        smallstats = _match.HomeTeam.MatchStats.PossessionMatch.ToString() & "|"
+        smallstats &= _match.AwayTeam.MatchStats.PossessionMatch.ToString() & "|"
+
+        smallstats &= _match.HomeTeam.MatchStats.Fouls.ToString() & "|"
+        smallstats &= _match.AwayTeam.MatchStats.Fouls.ToString() & "|"
+        smallstats &= _match.HomeTeam.MatchStats.ShotsOn.ToString() & "|"
+        smallstats &= _match.AwayTeam.MatchStats.ShotsOn.ToString() & "|"
+        smallstats &= _match.HomeTeam.MatchStats.Corners.ToString() & "|"
+        smallstats &= _match.AwayTeam.MatchStats.Corners.ToString() & "|"
+        smallstats &= _match.HomeTeam.MatchStats.Offsides.ToString() & "|"
+        smallstats &= _match.AwayTeam.MatchStats.Offsides.ToString() & "|"
+        smallstats &= _match.HomeTeam.MatchStats.WoodHits.ToString() & "|"
+        smallstats &= _match.AwayTeam.MatchStats.WoodHits.ToString() & "|"
+        smallstats &= _match.HomeTeam.MatchStats.Shots.ToString() & "|"
+        smallstats &= _match.AwayTeam.MatchStats.Shots.ToString() & "|"
+        smallstats &= _match.HomeTeam.MatchStats.Assis.ToString() & "|"
+        smallstats &= _match.AwayTeam.MatchStats.Assis.ToString()
+        If Not String.IsNullOrEmpty(YCard) Then
+          smallstats &= YCard
+        End If
+        If Not String.IsNullOrEmpty(RCard) Then
+          smallstats &= RCard
+        End If
+
+        YCard = String.Empty
+        RCard = String.Empty
+
+        'PosesionHome|Poseeionaway|FoulsHome|FoulsAway|Shots.. corners.. offsides..woodhits
+        Send(handler, smallstats)
+      ElseIf data.StartsWith("SUBS") Then
+        Send(handler, "OK")
+        'TODO GELO
+        'Dim homeAway As String = data.Split("|"c)(1)
+        'Dim idPlayerIn As Integer = Utils.Val(data.Split("|"c)(3).ToString())
+        'Dim idPlayerOut As Integer = Utils.Val(data.Split("|"c)(2).ToString())
+        'Dim labelIdPlayerIn As String
+        'Dim labelIdPlayerOut As String
+        'Dim myPlayerIn As Player
+        'Dim myPlayerOut As Player
+        'Dim myPlayer As Player
+        'If homeAway = "HOME" Then
+        '  myPlayerIn = HomePlayers.GetPlayer(idPlayerIn)
+        '  myPlayerOut = HomePlayers.GetPlayer(idPlayerOut)
+        '  labelIdPlayerIn = findLabelPlayer(grpHomePlayers.Controls, idPlayerIn)
+        '  labelIdPlayerOut = findLabelPlayer(grpHomePlayers.Controls, idPlayerOut)
+        '  setPlayerText(myPlayerIn, myPlayerOut, labelIdPlayerIn, labelIdPlayerOut, "Home")
+
+        '  myPlayer = myPlayerIn
+        '  myPlayerIn.Copy(myPlayerOut)
+        '  myPlayerOut.Copy(myPlayer)
+        'Else
+        '  myPlayerIn = AwayPlayers.GetPlayer(idPlayerIn)
+        '  myPlayerOut = AwayPlayers.GetPlayer(idPlayerOut)
+        '  labelIdPlayerIn = findLabelPlayer(grpAwayPlayers.Controls, idPlayerIn)
+        '  labelIdPlayerOut = findLabelPlayer(grpAwayPlayers.Controls, idPlayerOut)
+        '  setPlayerText(myPlayerIn, myPlayerOut, labelIdPlayerIn, labelIdPlayerOut, "Away")
+
+        '  myPlayer = myPlayerIn
+        '  myPlayerIn.Copy(myPlayerOut)
+        '  myPlayerOut.Copy(myPlayer)
+        'End If
+      ElseIf data.StartsWith("RESET") Then
+        Send(handler, "OK")
+        Reset()
       Else
-        player = AwayPlayers.GetPlayer(Utils.Val(data.Split("|"c)(1).ToString())).ToSocketFormat()
-      End If
-
-      Send(handler, player)
-    ElseIf data.StartsWith("SMALSTATS") Then
-      Dim smallstats As String
-      smallstats = _match.HomeTeam.MatchStats.PossessionMatch.ToString() & "|"
-      smallstats &= _match.AwayTeam.MatchStats.PossessionMatch.ToString() & "|"
-
-      smallstats &= _match.HomeTeam.MatchStats.Fouls.ToString() & "|"
-      smallstats &= _match.AwayTeam.MatchStats.Fouls.ToString() & "|"
-      smallstats &= _match.HomeTeam.MatchStats.ShotsOn.ToString() & "|"
-      smallstats &= _match.AwayTeam.MatchStats.ShotsOn.ToString() & "|"
-      smallstats &= _match.HomeTeam.MatchStats.Corners.ToString() & "|"
-      smallstats &= _match.AwayTeam.MatchStats.Corners.ToString() & "|"
-      smallstats &= _match.HomeTeam.MatchStats.Offsides.ToString() & "|"
-      smallstats &= _match.AwayTeam.MatchStats.Offsides.ToString() & "|"
-      smallstats &= _match.HomeTeam.MatchStats.WoodHits.ToString() & "|"
-      smallstats &= _match.AwayTeam.MatchStats.WoodHits.ToString() & "|"
-      smallstats &= _match.HomeTeam.MatchStats.Shots.ToString() & "|"
-      smallstats &= _match.AwayTeam.MatchStats.Shots.ToString() & "|"
-      smallstats &= _match.HomeTeam.MatchStats.Assis.ToString() & "|"
-      smallstats &= _match.AwayTeam.MatchStats.Assis.ToString()
-      If Not String.IsNullOrEmpty(YCard) Then
-        smallstats &= YCard
-      End If
-      If Not String.IsNullOrEmpty(RCard) Then
-        smallstats &= RCard
-      End If
-
-      YCard = String.Empty
-      RCard = String.Empty
-
-      'PosesionHome|Poseeionaway|FoulsHome|FoulsAway|Shots.. corners.. offsides..woodhits
-      Send(handler, smallstats)
-    ElseIf data.StartsWith("SUBS") Then
-      Send(handler, "OK")
-      'TODO GELO
-      'Dim homeAway As String = data.Split("|"c)(1)
-      'Dim idPlayerIn As Integer = Utils.Val(data.Split("|"c)(3).ToString())
-      'Dim idPlayerOut As Integer = Utils.Val(data.Split("|"c)(2).ToString())
-      'Dim labelIdPlayerIn As String
-      'Dim labelIdPlayerOut As String
-      'Dim myPlayerIn As Player
-      'Dim myPlayerOut As Player
-      'Dim myPlayer As Player
-      'If homeAway = "HOME" Then
-      '  myPlayerIn = HomePlayers.GetPlayer(idPlayerIn)
-      '  myPlayerOut = HomePlayers.GetPlayer(idPlayerOut)
-      '  labelIdPlayerIn = findLabelPlayer(grpHomePlayers.Controls, idPlayerIn)
-      '  labelIdPlayerOut = findLabelPlayer(grpHomePlayers.Controls, idPlayerOut)
-      '  setPlayerText(myPlayerIn, myPlayerOut, labelIdPlayerIn, labelIdPlayerOut, "Home")
-
-      '  myPlayer = myPlayerIn
-      '  myPlayerIn.Copy(myPlayerOut)
-      '  myPlayerOut.Copy(myPlayer)
-      'Else
-      '  myPlayerIn = AwayPlayers.GetPlayer(idPlayerIn)
-      '  myPlayerOut = AwayPlayers.GetPlayer(idPlayerOut)
-      '  labelIdPlayerIn = findLabelPlayer(grpAwayPlayers.Controls, idPlayerIn)
-      '  labelIdPlayerOut = findLabelPlayer(grpAwayPlayers.Controls, idPlayerOut)
-      '  setPlayerText(myPlayerIn, myPlayerOut, labelIdPlayerIn, labelIdPlayerOut, "Away")
-
-      '  myPlayer = myPlayerIn
-      '  myPlayerIn.Copy(myPlayerOut)
-      '  myPlayerOut.Copy(myPlayer)
-      'End If
-    ElseIf data.StartsWith("RESET") Then
-      Send(handler, "OK")
-      Reset()
-    Else
-      Send(handler, "Empty")
+        Send(handler, "Empty")
     End If
+
+    Catch ex As Exception
+      Debug.Print(ex.ToString)
+    End Try
+
   End Sub
 
 
@@ -1157,82 +1189,9 @@ Partial Public Class frmMain
 
       If AppSettings.Instance.LastMatchId > 0 Then
         'TODO GELO
-        'If MessageBox.Show("The last match the app was working was MatchID:" & AppSettings.Instance.LastMatchId.ToString() & vbLf & "Do you want to reload it?", Me.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = System.Windows.Forms.DialogResult.Yes Then
-        '  'We should get the Match ID!
-        '  GlobalMatch.match_id = 1
-
-        '  'Teams & Player Names
-        '  SetHomePlayers(GlobalProperties.Instance.HomePlayers)
-        '  SetAwayPlayers(GlobalProperties.Instance.AwayPlayers)
-
-        '  'Teams Data
-        '  HomeTeam = New Team()
-        '  HomeTeam.GetFromSocketFormat(GlobalProperties.Instance.HomeTeam)
-        '  lblSavesHomeTot.Text = HomeTeam.MatchStats.Saves.ToString()
-        '  lblShotsHomeTot.Text = HomeTeam.MatchStats.Shots.ToString()
-        '  lblShtGlHomeTot.Text = HomeTeam.MatchStats.ShotsOn.ToString()
-        '  lblAssisHomeTot.Text = HomeTeam.MatchStats.Assis.ToString()
-        '  lblFoulsHomeTot.Text = HomeTeam.MatchStats.Fouls.ToString()
-        '  lblYCardHomeTot.Text = HomeTeam.MatchStats.YellowCards.ToString()
-        '  lblRCardHomeTot.Text = HomeTeam.MatchStats.RedCards.ToString()
-        '  lblCornersHome.Text = HomeTeam.MatchStats.Corners.ToString()
-        '  lblOffsidesHome.Text = HomeTeam.MatchStats.Offsides.ToString()
-        '  lblWoodHitsHome.Text = HomeTeam.MatchStats.WoodHits.ToString()
-        '  lblPossession1stHome.Text = HomeTeam.MatchStats.Possession1st.ToString()
-        '  lblPossession2ndHome.Text = HomeTeam.MatchStats.Possession2nd.ToString()
-        '  lblPossessionMatchHome.Text = HomeTeam.MatchStats.PossessionMatch.ToString()
-
-        '  AwayTeam = New Team()
-        '  AwayTeam.GetFromSocketFormat(GlobalProperties.Instance.AwayTeam)
-        '  lblSavesAwayTot.Text = AwayTeam.MatchStats.Saves.ToString()
-        '  lblShotsAwayTot.Text = AwayTeam.MatchStats.Shots.ToString()
-        '  lblShtGlAwayTot.Text = AwayTeam.MatchStats.ShotsOn.ToString()
-        '  lblAssisAwayTot.Text = AwayTeam.MatchStats.Assis.ToString()
-        '  lblFoulsAwayTot.Text = AwayTeam.MatchStats.Fouls.ToString()
-        '  lblYCardAwayTot.Text = AwayTeam.MatchStats.YellowCards.ToString()
-        '  lblRCardAwayTot.Text = AwayTeam.MatchStats.RedCards.ToString()
-        '  lblCornersAway.Text = AwayTeam.MatchStats.Corners.ToString()
-        '  lblOffsidesAway.Text = AwayTeam.MatchStats.Offsides.ToString()
-        '  lblWoodHitsAway.Text = AwayTeam.MatchStats.WoodHits.ToString()
-        '  lblPossession1stAway.Text = AwayTeam.MatchStats.Possession1st.ToString()
-        '  lblPossession2ndAway.Text = AwayTeam.MatchStats.Possession2nd.ToString()
-        '  lblPossessionMatchAway.Text = AwayTeam.MatchStats.PossessionMatch.ToString()
-
-        '  For i As Integer = 1 To 18
-        '    Dim myHomePlayer As New Player()
-        '    myHomePlayer.GetFromSocketFormat(GlobalProperties.Instance.Player("TeamHomePlayer" & i.ToString()).ToString())
-        '    DirectCast(grpHomePlayers.Controls.Find("HomePlayer" & i, True)(0), Label).Tag = myHomePlayer
-        '    ProcessPlayerLine(i, True)
-
-        '    Dim myAwayPlayer As New Player()
-        '    myAwayPlayer.GetFromSocketFormat(GlobalProperties.Instance.Player("TeamAwayPlayer" & i.ToString()).ToString())
-        '    DirectCast(grpAwayPlayers.Controls.Find("AwayPlayer" & i, True)(0), Label).Tag = myAwayPlayer
-        '    ProcessPlayerLine(i, False)
-        '  Next
-
-        '  'Possession Data
-        '  Dim PossessionString As String() = GlobalProperties.Instance.Possession.Split("|"c)
-        '  If PossessionString.Length = 10 Then
-        '    PossessionHome1st = Utils.Val(PossessionString(0))
-        '    PossessionAway1st = Utils.Val(PossessionString(1))
-        '    PossessionHome2nd = Utils.Val(PossessionString(2))
-        '    PossessionAway2nd = Utils.Val(PossessionString(3))
-        '    txtPossessionHomeOwnT.Text = PossessionString(4)
-        '    txtPossessionHomeMidF.Text = PossessionString(5)
-        '    txtPossessionHomeAttk.Text = PossessionString(6)
-        '    txtPossessionAwayOwnT.Text = PossessionString(7)
-        '    txtPossessionAwayMidF.Text = PossessionString(8)
-        '    txtPossessionAwayAttk.Text = PossessionString(9)
-        '  End If
-
-        '  If AppSettings.Instance.LastMatchId > 0 Then
-        '    Dim ClockInit As New DateTime(AppSettings.Instance.LastMatchId)
-        '    Dim ClockNow As TimeSpan = DateTime.Now.Subtract(ClockInit)
-        '    If ClockNow.Hours = 0 Then
-        '      txtClock.Text = ClockNow.Minutes.ToString() & ":" & Utils.TwoChars(ClockNow.Seconds)
-        '    End If
-        '  End If
-        'End If
+        If MessageBox.Show("The last match the app was working was MatchID:" & AppSettings.Instance.LastMatchId.ToString() & vbLf & "Do you want to reload it?", Me.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = System.Windows.Forms.DialogResult.Yes Then
+          LoadMatchFromDB(AppSettings.Instance.LastMatchId)
+        End If
       Else
         'Init the values
         HomePlayers = New Players(19)
@@ -1248,6 +1207,118 @@ Partial Public Class frmMain
       SocketThead.Start()
     Catch err As Exception
       Log("ERROR: MainForm " & err.Message)
+    End Try
+  End Sub
+
+  Private Sub LoadMatchFromDB(match_id As Integer)
+    Try
+      _match = New Match
+      MatchHelper.Instance.Match = _match
+      _match.match_id = match_id
+      _match.GetMatch()
+      _match.HomeTeam.GetFullMatchData()
+      _match.AwayTeam.GetFullMatchData()
+
+      _match.GetMatchEventsFromDB()
+      _match.GetMatchGoalsFromDB()
+
+      Me.TeamControlHome.Team = _match.HomeTeam
+      Me._matchHomeTeam = _match.HomeTeam
+      Me.TeamControlAway.Team = _match.AwayTeam
+      Me._matchAwayTeam = _match.AwayTeam
+
+      Me.SingleStatControlHomeCorners.Init(_match.HomeTeam.MatchStats.Corners, _match.HomeTeam)
+      Me.SingleStatControlHomeOffsides.Init(_match.HomeTeam.MatchStats.Offsides, _match.HomeTeam)
+      Me.SingleStatControlHomeWood.Init(_match.HomeTeam.MatchStats.WoodHits, _match.HomeTeam)
+
+      Me.lblHomeTeam2.Text = _match.HomeTeam.Name
+      Me.lblHomeTeam3.Text = _match.HomeTeam.Name
+
+      Me.SingleStatControlAwayCorners.Init(_match.AwayTeam.MatchStats.Corners, _match.AwayTeam)
+      Me.SingleStatControlAwayOffsides.Init(_match.AwayTeam.MatchStats.Offsides, _match.AwayTeam)
+      Me.SingleStatControlAwayWood.Init(_match.AwayTeam.MatchStats.WoodHits, _match.AwayTeam)
+
+      Me.lblAwayTeam2.Text = _match.AwayTeam.Name
+      Me.lblAwayTeam3.Text = _match.AwayTeam.Name
+
+
+
+      '  'We should get the Match ID!
+      '  GlobalMatch.match_id = 1
+
+      '  'Teams & Player Names
+      '  SetHomePlayers(GlobalProperties.Instance.HomePlayers)
+      '  SetAwayPlayers(GlobalProperties.Instance.AwayPlayers)
+
+      '  'Teams Data
+      '  HomeTeam = New Team()
+      '  HomeTeam.GetFromSocketFormat(GlobalProperties.Instance.HomeTeam)
+      '  lblSavesHomeTot.Text = HomeTeam.MatchStats.Saves.ToString()
+      '  lblShotsHomeTot.Text = HomeTeam.MatchStats.Shots.ToString()
+      '  lblShtGlHomeTot.Text = HomeTeam.MatchStats.ShotsOn.ToString()
+      '  lblAssisHomeTot.Text = HomeTeam.MatchStats.Assis.ToString()
+      '  lblFoulsHomeTot.Text = HomeTeam.MatchStats.Fouls.ToString()
+      '  lblYCardHomeTot.Text = HomeTeam.MatchStats.YellowCards.ToString()
+      '  lblRCardHomeTot.Text = HomeTeam.MatchStats.RedCards.ToString()
+      '  lblCornersHome.Text = HomeTeam.MatchStats.Corners.ToString()
+      '  lblOffsidesHome.Text = HomeTeam.MatchStats.Offsides.ToString()
+      '  lblWoodHitsHome.Text = HomeTeam.MatchStats.WoodHits.ToString()
+      '  lblPossession1stHome.Text = HomeTeam.MatchStats.Possession1st.ToString()
+      '  lblPossession2ndHome.Text = HomeTeam.MatchStats.Possession2nd.ToString()
+      '  lblPossessionMatchHome.Text = HomeTeam.MatchStats.PossessionMatch.ToString()
+
+      '  AwayTeam = New Team()
+      '  AwayTeam.GetFromSocketFormat(GlobalProperties.Instance.AwayTeam)
+      '  lblSavesAwayTot.Text = AwayTeam.MatchStats.Saves.ToString()
+      '  lblShotsAwayTot.Text = AwayTeam.MatchStats.Shots.ToString()
+      '  lblShtGlAwayTot.Text = AwayTeam.MatchStats.ShotsOn.ToString()
+      '  lblAssisAwayTot.Text = AwayTeam.MatchStats.Assis.ToString()
+      '  lblFoulsAwayTot.Text = AwayTeam.MatchStats.Fouls.ToString()
+      '  lblYCardAwayTot.Text = AwayTeam.MatchStats.YellowCards.ToString()
+      '  lblRCardAwayTot.Text = AwayTeam.MatchStats.RedCards.ToString()
+      '  lblCornersAway.Text = AwayTeam.MatchStats.Corners.ToString()
+      '  lblOffsidesAway.Text = AwayTeam.MatchStats.Offsides.ToString()
+      '  lblWoodHitsAway.Text = AwayTeam.MatchStats.WoodHits.ToString()
+      '  lblPossession1stAway.Text = AwayTeam.MatchStats.Possession1st.ToString()
+      '  lblPossession2ndAway.Text = AwayTeam.MatchStats.Possession2nd.ToString()
+      '  lblPossessionMatchAway.Text = AwayTeam.MatchStats.PossessionMatch.ToString()
+
+      '  For i As Integer = 1 To 18
+      '    Dim myHomePlayer As New Player()
+      '    myHomePlayer.GetFromSocketFormat(GlobalProperties.Instance.Player("TeamHomePlayer" & i.ToString()).ToString())
+      '    DirectCast(grpHomePlayers.Controls.Find("HomePlayer" & i, True)(0), Label).Tag = myHomePlayer
+      '    ProcessPlayerLine(i, True)
+
+      '    Dim myAwayPlayer As New Player()
+      '    myAwayPlayer.GetFromSocketFormat(GlobalProperties.Instance.Player("TeamAwayPlayer" & i.ToString()).ToString())
+      '    DirectCast(grpAwayPlayers.Controls.Find("AwayPlayer" & i, True)(0), Label).Tag = myAwayPlayer
+      '    ProcessPlayerLine(i, False)
+      '  Next
+
+      '  'Possession Data
+      '  Dim PossessionString As String() = GlobalProperties.Instance.Possession.Split("|"c)
+      '  If PossessionString.Length = 10 Then
+      '    PossessionHome1st = Utils.Val(PossessionString(0))
+      '    PossessionAway1st = Utils.Val(PossessionString(1))
+      '    PossessionHome2nd = Utils.Val(PossessionString(2))
+      '    PossessionAway2nd = Utils.Val(PossessionString(3))
+      '    txtPossessionHomeOwnT.Text = PossessionString(4)
+      '    txtPossessionHomeMidF.Text = PossessionString(5)
+      '    txtPossessionHomeAttk.Text = PossessionString(6)
+      '    txtPossessionAwayOwnT.Text = PossessionString(7)
+      '    txtPossessionAwayMidF.Text = PossessionString(8)
+      '    txtPossessionAwayAttk.Text = PossessionString(9)
+      '  End If
+
+      '  If AppSettings.Instance.LastMatchId > 0 Then
+      '    Dim ClockInit As New DateTime(AppSettings.Instance.LastMatchId)
+      '    Dim ClockNow As TimeSpan = DateTime.Now.Subtract(ClockInit)
+      '    If ClockNow.Hours = 0 Then
+      '      txtClock.Text = ClockNow.Minutes.ToString() & ":" & Utils.TwoChars(ClockNow.Seconds)
+      '    End If
+      '  End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
     End Try
   End Sub
 
@@ -1475,6 +1546,20 @@ Partial Public Class frmMain
 
   End Sub
 
+  Private Sub btnClockReset_Click_1(sender As Object, e As EventArgs) Handles btnClockReset.Click
+    Try
+      If _match Is Nothing Then Exit Sub
+      If _match.match_id = -1 Then Exit Sub
+
+      If frmWaitForInput.ShowWaitDialog(Me, "Reset Match data?", _match.ToString, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
+
+      _match.Reset()
+      LoadMatchFromDB(_match.match_id)
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
 
 
 #End Region
@@ -1485,7 +1570,7 @@ Partial Public Class frmMain
     Try
       Dim team As Team = IIf(myEvent.TeamID = _match.HomeTeam.TeamID, _match.HomeTeam, _match.AwayTeam)
       Dim player As Player = team.GetPlayerById(myEvent.PlayerID)
-      i
+
       Me.AddEvent_old(myEvent.EventType, myEvent.TeamID = _match.HomeTeam.TeamID, player.Name)
       Me.AddEvent(myEvent, myEvent.TeamID = _match.HomeTeam.TeamID, player.Name)
 
@@ -1496,6 +1581,14 @@ Partial Public Class frmMain
 
   Private Sub _match_EventRemoved(myEvent As MatchEvent) Handles _match.EventRemoved
 
+  End Sub
+
+  Private Sub frmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    Try
+      Me.SocketThead.Abort()
+    Catch ex As Exception
+
+    End Try
   End Sub
 
 #End Region

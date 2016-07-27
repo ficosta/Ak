@@ -26,6 +26,7 @@ Public Class Teams
         Dim NewItem As New Team(myReader.GetInt32(0))
         If Not myReader.IsDBNull(1) Then
           NewItem.TeamAELCaption1Name = myReader.GetString(1)
+          CType(NewItem, StatSubject).Name = NewItem.TeamAELCaption1Name
         End If
         If Not myReader.IsDBNull(2) Then
           NewItem.TeamAELTinyName = myReader.GetString(2)

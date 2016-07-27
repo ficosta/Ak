@@ -32,11 +32,11 @@ Imports MatchInfo
 #Region "Overloaded properties"
   Public Overloads Property Name As String
     Get
-      If MyBase.Name <> "" Then
-        Return MyBase.Name
+      If Config.Instance.UseArabicNames Then
+        Return Me.ArabicCaption1Name
       Else
-        If Config.Instance.UseArabicNames Then
-          Return Me.ArabicCaption1Name
+        If MyBase.Name <> "" Then
+          Return MyBase.Name
         Else
           Return Me.TeamAELCaption1Name
         End If
@@ -191,6 +191,8 @@ Imports MatchInfo
       TeamPreviousPositionInLeague = Source.TeamPreviousPositionInLeague
       ArabicCaption1Name = Source.ArabicCaption1Name
       BadgeName = Source.BadgeName
+      Name = Source.Name
+      CType(Me, StatSubject).Name = Source.Name
     Catch err As Exception
       Throw err
     End Try
@@ -306,7 +308,7 @@ Imports MatchInfo
   Public Function UpdateStatFromPlayers(statName As String) As Stat
 
     Dim destStat As Stat = Me.GetMatchStatByName(statName)
-    Return destStat
+    'Return destStat
 
     Try
       Dim value As Double = 0
@@ -392,7 +394,7 @@ Imports MatchInfo
   End Sub
 
   Public Overrides Function ToString() As String
-    If MyBase.Name = "" Then
+    If MyBase.Name <> "" Then
       Return MyBase.Name
     Else
       Return TeamAELCaption1Name
@@ -470,4 +472,12 @@ Imports MatchInfo
   End Sub
 #End Region
 
+#Region "Substitutions functions and events"
+  Public Event Substitution(subs As Substitution)
+
+  Public Sub AddSubstitution(subs As Substitution)
+    Me.Substitutions.Add(subs)
+    RaiseEvent Substitution(subs)
+  End Sub
+#End Region
 End Class

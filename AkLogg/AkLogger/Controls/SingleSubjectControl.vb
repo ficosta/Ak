@@ -16,7 +16,6 @@
   Private Sub ShowStatSubject()
     Try
       If _StatSubject Is Nothing Then
-        Me.LabelSubjectNumber.Text = ""
         Me.LabelSubjectName.Text = ""
         Me.SingleStatControlSaves.Stat = Nothing
         Me.SingleStatControlShots.Stat = Nothing
@@ -27,7 +26,6 @@
         Me.SingleStatControlAssists.Stat = Nothing
       Else
         Me.LabelSubjectName.Text = Me.StatSubject.Name
-        Me.LabelSubjectNumber.Text = ""
         Me.SingleStatControlSaves.Stat = Me.StatSubject.MatchStats.Saves
         Me.SingleStatControlShots.Stat = Me.StatSubject.MatchStats.Shots
         Me.SingleStatControlShotsOn.Stat = Me.StatSubject.MatchStats.ShotsOn
@@ -36,7 +34,6 @@
         Me.SingleStatControlRCards.Stat = Me.StatSubject.MatchStats.RedCards
         Me.SingleStatControlAssists.Stat = Me.StatSubject.MatchStats.Assis
       End If
-      Me.TableLayoutStats.ColumnStyles(0).Width = IIf(Me.LabelSubjectNumber.Text = "", 0, Me.TableLayoutStats.Height)
     Catch ex As Exception
 
     End Try

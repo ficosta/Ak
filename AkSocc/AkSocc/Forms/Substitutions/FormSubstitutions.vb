@@ -67,8 +67,12 @@ Public Class FormSubstitutions
         subs.PlayerIn.Formation_Pos = subs.PlayerOut.Formation_Pos
         subs.PlayerOut.Formation_Pos = aux
         _substitution = subs
-        team.Substitutions.Add(subs)
         Me.ShowSubstitutions()
+        _match.CreateEvent("substitution", team.TeamID, subs.PlayerIn.PlayerID, _match.MatchPeriods.ActivePeriod.PlayingTime, subs.PlayerOut.PlayerID)
+        subs.PlayerIn.IsSubstitution = True
+        subs.PlayerOut.IsSubstitution = True
+        team.AddSubstitution(subs)
+
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -85,8 +89,8 @@ Public Class FormSubstitutions
     Try
       Dim graphic As New ClockSubstitution()
       graphic.ShowSubstitution(_substitution)
-      frmWaitForInput.ShowWaitDialog(Me, "Waiting")
-      graphic.HideSubstitution()
+      'frmWaitForInput.ShowWaitDialog(Me, "Waiting")
+      'graphic.HideSubstitution()
 
     Catch ex As Exception
       WriteToErrorLog(ex)

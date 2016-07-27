@@ -23,7 +23,14 @@ Partial Class TeamControl
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.TableLayoutPanelAll = New System.Windows.Forms.TableLayoutPanel()
-    Me.SingleSubjectControlTeamTitle = New AkLogger.SingleSubjectControl()
+    Me.TableLayoutStats = New System.Windows.Forms.TableLayoutPanel()
+    Me.Label1 = New System.Windows.Forms.Label()
+    Me.Label2 = New System.Windows.Forms.Label()
+    Me.Label3 = New System.Windows.Forms.Label()
+    Me.Label4 = New System.Windows.Forms.Label()
+    Me.Label5 = New System.Windows.Forms.Label()
+    Me.Label6 = New System.Windows.Forms.Label()
+    Me.Label7 = New System.Windows.Forms.Label()
     Me.SingleSubjectControl1 = New AkLogger.SingleSubjectControl()
     Me.SingleSubjectControl2 = New AkLogger.SingleSubjectControl()
     Me.SingleSubjectControl3 = New AkLogger.SingleSubjectControl()
@@ -44,13 +51,14 @@ Partial Class TeamControl
     Me.SingleSubjectControl18 = New AkLogger.SingleSubjectControl()
     Me.SingleSubjectControlTeam = New AkLogger.SingleSubjectControl()
     Me.TableLayoutPanelAll.SuspendLayout()
+    Me.TableLayoutStats.SuspendLayout()
     Me.SuspendLayout()
     '
     'TableLayoutPanelAll
     '
     Me.TableLayoutPanelAll.ColumnCount = 1
     Me.TableLayoutPanelAll.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelAll.Controls.Add(Me.SingleSubjectControlTeamTitle, 0, 0)
+    Me.TableLayoutPanelAll.Controls.Add(Me.TableLayoutStats, 0, 0)
     Me.TableLayoutPanelAll.Controls.Add(Me.SingleSubjectControl1, 0, 2)
     Me.TableLayoutPanelAll.Controls.Add(Me.SingleSubjectControl2, 0, 3)
     Me.TableLayoutPanelAll.Controls.Add(Me.SingleSubjectControl3, 0, 4)
@@ -75,52 +83,154 @@ Partial Class TeamControl
     Me.TableLayoutPanelAll.Margin = New System.Windows.Forms.Padding(0)
     Me.TableLayoutPanelAll.Name = "TableLayoutPanelAll"
     Me.TableLayoutPanelAll.RowCount = 24
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950099!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
     Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5.0!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
     Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5.0!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950099!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.954058!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.954058!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950099!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257403!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257402!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.261609!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.261609!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257403!))
     Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5.0!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.950098!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 0.990099!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.257403!))
+    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 0.1009506!))
     Me.TableLayoutPanelAll.Size = New System.Drawing.Size(753, 356)
     Me.TableLayoutPanelAll.TabIndex = 0
     '
-    'SingleSubjectControlTeamTitle
+    'TableLayoutStats
     '
-    Me.SingleSubjectControlTeamTitle.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleSubjectControlTeamTitle.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControlTeamTitle.Location = New System.Drawing.Point(0, 0)
-    Me.SingleSubjectControlTeamTitle.Margin = New System.Windows.Forms.Padding(0)
-    Me.SingleSubjectControlTeamTitle.Name = "SingleSubjectControlTeamTitle"
-    Me.SingleSubjectControlTeamTitle.Size = New System.Drawing.Size(753, 16)
-    Me.SingleSubjectControlTeamTitle.StatSubject = Nothing
-    Me.SingleSubjectControlTeamTitle.TabIndex = 0
+    Me.TableLayoutStats.ColumnCount = 9
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutStats.Controls.Add(Me.Label1, 1, 0)
+    Me.TableLayoutStats.Controls.Add(Me.Label2, 2, 0)
+    Me.TableLayoutStats.Controls.Add(Me.Label3, 3, 0)
+    Me.TableLayoutStats.Controls.Add(Me.Label4, 5, 0)
+    Me.TableLayoutStats.Controls.Add(Me.Label5, 6, 0)
+    Me.TableLayoutStats.Controls.Add(Me.Label6, 7, 0)
+    Me.TableLayoutStats.Controls.Add(Me.Label7, 8, 0)
+    Me.TableLayoutStats.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutStats.Location = New System.Drawing.Point(0, 0)
+    Me.TableLayoutStats.Margin = New System.Windows.Forms.Padding(0)
+    Me.TableLayoutStats.Name = "TableLayoutStats"
+    Me.TableLayoutStats.RowCount = 1
+    Me.TableLayoutStats.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutStats.Size = New System.Drawing.Size(753, 40)
+    Me.TableLayoutStats.TabIndex = 2
+    '
+    'Label1
+    '
+    Me.Label1.AutoSize = True
+    Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label1.Location = New System.Drawing.Point(227, 0)
+    Me.Label1.Name = "Label1"
+    Me.Label1.Size = New System.Drawing.Size(68, 40)
+    Me.Label1.TabIndex = 0
+    Me.Label1.Text = "SAVES"
+    Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'Label2
+    '
+    Me.Label2.AutoSize = True
+    Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label2.Location = New System.Drawing.Point(301, 0)
+    Me.Label2.Name = "Label2"
+    Me.Label2.Size = New System.Drawing.Size(68, 40)
+    Me.Label2.TabIndex = 1
+    Me.Label2.Text = "SHOTS"
+    Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'Label3
+    '
+    Me.Label3.AutoSize = True
+    Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label3.Location = New System.Drawing.Point(375, 0)
+    Me.Label3.Name = "Label3"
+    Me.Label3.Size = New System.Drawing.Size(68, 40)
+    Me.Label3.TabIndex = 2
+    Me.Label3.Text = "SHOTS ON"
+    Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'Label4
+    '
+    Me.Label4.AutoSize = True
+    Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label4.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label4.Location = New System.Drawing.Point(455, 0)
+    Me.Label4.Name = "Label4"
+    Me.Label4.Size = New System.Drawing.Size(68, 40)
+    Me.Label4.TabIndex = 3
+    Me.Label4.Text = "FOULS"
+    Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'Label5
+    '
+    Me.Label5.AutoSize = True
+    Me.Label5.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label5.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label5.Location = New System.Drawing.Point(529, 0)
+    Me.Label5.Name = "Label5"
+    Me.Label5.Size = New System.Drawing.Size(68, 40)
+    Me.Label5.TabIndex = 4
+    Me.Label5.Text = "YELLOW CARDS"
+    Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'Label6
+    '
+    Me.Label6.AutoSize = True
+    Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label6.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label6.Location = New System.Drawing.Point(603, 0)
+    Me.Label6.Name = "Label6"
+    Me.Label6.Size = New System.Drawing.Size(68, 40)
+    Me.Label6.TabIndex = 5
+    Me.Label6.Text = "RED CARDS"
+    Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'Label7
+    '
+    Me.Label7.AutoSize = True
+    Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label7.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label7.Location = New System.Drawing.Point(677, 0)
+    Me.Label7.Name = "Label7"
+    Me.Label7.Size = New System.Drawing.Size(73, 40)
+    Me.Label7.TabIndex = 6
+    Me.Label7.Text = "ASSISTS"
+    Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
     '
     'SingleSubjectControl1
     '
     Me.SingleSubjectControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl1.Location = New System.Drawing.Point(0, 21)
+    Me.SingleSubjectControl1.Location = New System.Drawing.Point(0, 45)
     Me.SingleSubjectControl1.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl1.Name = "SingleSubjectControl1"
-    Me.SingleSubjectControl1.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl1.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl1.StatSubject = Nothing
     Me.SingleSubjectControl1.TabIndex = 1
     '
@@ -128,10 +238,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl2.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl2.Location = New System.Drawing.Point(0, 37)
+    Me.SingleSubjectControl2.Location = New System.Drawing.Point(0, 60)
     Me.SingleSubjectControl2.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl2.Name = "SingleSubjectControl2"
-    Me.SingleSubjectControl2.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl2.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl2.StatSubject = Nothing
     Me.SingleSubjectControl2.TabIndex = 1
     '
@@ -139,10 +249,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl3.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl3.Location = New System.Drawing.Point(0, 53)
+    Me.SingleSubjectControl3.Location = New System.Drawing.Point(0, 75)
     Me.SingleSubjectControl3.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl3.Name = "SingleSubjectControl3"
-    Me.SingleSubjectControl3.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl3.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl3.StatSubject = Nothing
     Me.SingleSubjectControl3.TabIndex = 1
     '
@@ -150,10 +260,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl4.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl4.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl4.Location = New System.Drawing.Point(0, 69)
+    Me.SingleSubjectControl4.Location = New System.Drawing.Point(0, 90)
     Me.SingleSubjectControl4.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl4.Name = "SingleSubjectControl4"
-    Me.SingleSubjectControl4.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl4.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl4.StatSubject = Nothing
     Me.SingleSubjectControl4.TabIndex = 1
     '
@@ -161,10 +271,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl5.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl5.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl5.Location = New System.Drawing.Point(0, 85)
+    Me.SingleSubjectControl5.Location = New System.Drawing.Point(0, 105)
     Me.SingleSubjectControl5.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl5.Name = "SingleSubjectControl5"
-    Me.SingleSubjectControl5.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl5.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl5.StatSubject = Nothing
     Me.SingleSubjectControl5.TabIndex = 1
     '
@@ -172,10 +282,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl6.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl6.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl6.Location = New System.Drawing.Point(0, 101)
+    Me.SingleSubjectControl6.Location = New System.Drawing.Point(0, 120)
     Me.SingleSubjectControl6.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl6.Name = "SingleSubjectControl6"
-    Me.SingleSubjectControl6.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl6.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl6.StatSubject = Nothing
     Me.SingleSubjectControl6.TabIndex = 1
     '
@@ -183,10 +293,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl7.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl7.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl7.Location = New System.Drawing.Point(0, 117)
+    Me.SingleSubjectControl7.Location = New System.Drawing.Point(0, 135)
     Me.SingleSubjectControl7.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl7.Name = "SingleSubjectControl7"
-    Me.SingleSubjectControl7.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl7.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl7.StatSubject = Nothing
     Me.SingleSubjectControl7.TabIndex = 1
     '
@@ -194,10 +304,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl8.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl8.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl8.Location = New System.Drawing.Point(0, 133)
+    Me.SingleSubjectControl8.Location = New System.Drawing.Point(0, 150)
     Me.SingleSubjectControl8.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl8.Name = "SingleSubjectControl8"
-    Me.SingleSubjectControl8.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl8.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl8.StatSubject = Nothing
     Me.SingleSubjectControl8.TabIndex = 1
     '
@@ -205,10 +315,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl9.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl9.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl9.Location = New System.Drawing.Point(0, 149)
+    Me.SingleSubjectControl9.Location = New System.Drawing.Point(0, 165)
     Me.SingleSubjectControl9.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl9.Name = "SingleSubjectControl9"
-    Me.SingleSubjectControl9.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl9.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl9.StatSubject = Nothing
     Me.SingleSubjectControl9.TabIndex = 1
     '
@@ -216,10 +326,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl10.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl10.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl10.Location = New System.Drawing.Point(0, 165)
+    Me.SingleSubjectControl10.Location = New System.Drawing.Point(0, 180)
     Me.SingleSubjectControl10.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl10.Name = "SingleSubjectControl10"
-    Me.SingleSubjectControl10.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl10.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl10.StatSubject = Nothing
     Me.SingleSubjectControl10.TabIndex = 1
     '
@@ -227,10 +337,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl11.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl11.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl11.Location = New System.Drawing.Point(0, 181)
+    Me.SingleSubjectControl11.Location = New System.Drawing.Point(0, 195)
     Me.SingleSubjectControl11.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl11.Name = "SingleSubjectControl11"
-    Me.SingleSubjectControl11.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl11.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl11.StatSubject = Nothing
     Me.SingleSubjectControl11.TabIndex = 1
     '
@@ -238,10 +348,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl12.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl12.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl12.Location = New System.Drawing.Point(0, 202)
+    Me.SingleSubjectControl12.Location = New System.Drawing.Point(0, 215)
     Me.SingleSubjectControl12.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl12.Name = "SingleSubjectControl12"
-    Me.SingleSubjectControl12.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl12.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl12.StatSubject = Nothing
     Me.SingleSubjectControl12.TabIndex = 1
     '
@@ -249,10 +359,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl13.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl13.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl13.Location = New System.Drawing.Point(0, 218)
+    Me.SingleSubjectControl13.Location = New System.Drawing.Point(0, 230)
     Me.SingleSubjectControl13.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl13.Name = "SingleSubjectControl13"
-    Me.SingleSubjectControl13.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl13.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl13.StatSubject = Nothing
     Me.SingleSubjectControl13.TabIndex = 1
     '
@@ -260,10 +370,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl14.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl14.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl14.Location = New System.Drawing.Point(0, 234)
+    Me.SingleSubjectControl14.Location = New System.Drawing.Point(0, 245)
     Me.SingleSubjectControl14.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl14.Name = "SingleSubjectControl14"
-    Me.SingleSubjectControl14.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl14.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl14.StatSubject = Nothing
     Me.SingleSubjectControl14.TabIndex = 1
     '
@@ -271,10 +381,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl15.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl15.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl15.Location = New System.Drawing.Point(0, 250)
+    Me.SingleSubjectControl15.Location = New System.Drawing.Point(0, 260)
     Me.SingleSubjectControl15.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl15.Name = "SingleSubjectControl15"
-    Me.SingleSubjectControl15.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl15.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl15.StatSubject = Nothing
     Me.SingleSubjectControl15.TabIndex = 1
     '
@@ -282,10 +392,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl16.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl16.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl16.Location = New System.Drawing.Point(0, 266)
+    Me.SingleSubjectControl16.Location = New System.Drawing.Point(0, 275)
     Me.SingleSubjectControl16.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl16.Name = "SingleSubjectControl16"
-    Me.SingleSubjectControl16.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl16.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl16.StatSubject = Nothing
     Me.SingleSubjectControl16.TabIndex = 1
     '
@@ -293,10 +403,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl17.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl17.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl17.Location = New System.Drawing.Point(0, 282)
+    Me.SingleSubjectControl17.Location = New System.Drawing.Point(0, 290)
     Me.SingleSubjectControl17.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl17.Name = "SingleSubjectControl17"
-    Me.SingleSubjectControl17.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl17.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl17.StatSubject = Nothing
     Me.SingleSubjectControl17.TabIndex = 1
     '
@@ -304,10 +414,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControl18.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControl18.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControl18.Location = New System.Drawing.Point(0, 298)
+    Me.SingleSubjectControl18.Location = New System.Drawing.Point(0, 305)
     Me.SingleSubjectControl18.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControl18.Name = "SingleSubjectControl18"
-    Me.SingleSubjectControl18.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControl18.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControl18.StatSubject = Nothing
     Me.SingleSubjectControl18.TabIndex = 1
     '
@@ -315,10 +425,10 @@ Partial Class TeamControl
     '
     Me.SingleSubjectControlTeam.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleSubjectControlTeam.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.SingleSubjectControlTeam.Location = New System.Drawing.Point(0, 319)
+    Me.SingleSubjectControlTeam.Location = New System.Drawing.Point(0, 325)
     Me.SingleSubjectControlTeam.Margin = New System.Windows.Forms.Padding(0)
     Me.SingleSubjectControlTeam.Name = "SingleSubjectControlTeam"
-    Me.SingleSubjectControlTeam.Size = New System.Drawing.Size(753, 16)
+    Me.SingleSubjectControlTeam.Size = New System.Drawing.Size(753, 15)
     Me.SingleSubjectControlTeam.StatSubject = Nothing
     Me.SingleSubjectControlTeam.TabIndex = 1
     '
@@ -330,12 +440,13 @@ Partial Class TeamControl
     Me.Name = "TeamControl"
     Me.Size = New System.Drawing.Size(753, 356)
     Me.TableLayoutPanelAll.ResumeLayout(False)
+    Me.TableLayoutStats.ResumeLayout(False)
+    Me.TableLayoutStats.PerformLayout()
     Me.ResumeLayout(False)
 
   End Sub
 
   Friend WithEvents TableLayoutPanelAll As TableLayoutPanel
-  Friend WithEvents SingleSubjectControlTeamTitle As SingleSubjectControl
   Friend WithEvents SingleSubjectControl1 As SingleSubjectControl
   Friend WithEvents SingleSubjectControl2 As SingleSubjectControl
   Friend WithEvents SingleSubjectControl3 As SingleSubjectControl
@@ -355,4 +466,12 @@ Partial Class TeamControl
   Friend WithEvents SingleSubjectControl17 As SingleSubjectControl
   Friend WithEvents SingleSubjectControl18 As SingleSubjectControl
   Friend WithEvents SingleSubjectControlTeam As SingleSubjectControl
+  Friend WithEvents TableLayoutStats As TableLayoutPanel
+  Friend WithEvents Label1 As Label
+  Friend WithEvents Label2 As Label
+  Friend WithEvents Label3 As Label
+  Friend WithEvents Label4 As Label
+  Friend WithEvents Label5 As Label
+  Friend WithEvents Label6 As Label
+  Friend WithEvents Label7 As Label
 End Class

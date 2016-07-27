@@ -172,6 +172,7 @@ Public Class GraphicsScoreLine
       scene.SceneParameters.Add("Scoreline_Control_OMO_Score", "1")
       scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Control_OMO_Subline_Type_Base ", "1")
 
+
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Name", Match.HomeTeam.Name))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Name", Match.AwayTeam.Name))
       scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.HomeTeam.BadgeName, paramType.Image))

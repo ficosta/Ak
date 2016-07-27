@@ -67,8 +67,8 @@ Imports MatchInfo
   Public Property home_goals As Integer
     Get
       'If Not Me.HomeTeam Is Nothing Then _home_goals = Me.home_goals
-      If Not Me.HomeTeam Is Nothing AndAlso (Not Me.HomeTeam.MatchEvents Is Nothing AndAlso Me.HomeTeam.MatchEvents.UpToDate) Then
-        Return Me.HomeTeam.MatchEvents.Count
+      If Not Me.HomeTeam Is Nothing AndAlso (Not Me.HomeTeam.MatchGoals Is Nothing AndAlso Me.HomeTeam.MatchGoals.UpToDate) Then
+        Return Me.HomeTeam.MatchGoals.Count
       Else
         Return _home_goals
       End If
@@ -97,8 +97,8 @@ Imports MatchInfo
   Public Property away_goals As Integer
     Get
       'If Not Me.AwayTeam Is Nothing Then _away_goals = Me.away_goals
-      If Not Me.AwayTeam Is Nothing AndAlso (Not Me.AwayTeam.MatchEvents Is Nothing AndAlso Me.AwayTeam.MatchEvents.UpToDate) Then
-        Return Me.AwayTeam.MatchEvents.Count
+      If Not Me.AwayTeam Is Nothing AndAlso (Not Me.AwayTeam.MatchGoals Is Nothing AndAlso Me.AwayTeam.MatchGoals.UpToDate) Then
+        Return Me.AwayTeam.MatchGoals.Count
       Else
         Return _away_goals
       End If
@@ -251,6 +251,7 @@ Imports MatchInfo
     'Exit Sub
     Try
       If Config.Instance.LocalConnectionString Is Nothing Then Exit Sub
+      If match_id = -1 Then Exit Sub
 
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
@@ -288,8 +289,7 @@ Imports MatchInfo
         If Not myReader.IsDBNull(12) Then Me.OPTAID = myReader.GetInt32(12)
       End If
       conn.Close()
-
-      GetMatchEventsFromDB()
+      
     Catch ex As Exception
 
     End Try
@@ -730,24 +730,53 @@ Imports MatchInfo
     Try
       Me.MatchEvents.GetFromDB(Me.match_id)
 
+      For Each player As Player In Me.HomeTeam.AllPlayers
+        For Each stat As Stat In player.MatchStats.StatBag
+          Me.UpdateStatForPlayerFromEvents(stat, player)
+        Next
+      Next
+      For Each stat As Stat In Me.HomeTeam.MatchStats.StatBag
+        Me.UpdateStatFromEvents(Me.HomeTeam, stat)
+      Next
+
+      For Each player As Player In Me.AwayTeam.AllPlayers
+        For Each stat As Stat In player.MatchStats.StatBag
+          Me.UpdateStatForPlayerFromEvents(stat, player)
+        Next
+      Next
+      For Each stat As Stat In Me.AwayTeam.MatchStats.StatBag
+        Me.UpdateStatFromEvents(Me.AwayTeam, stat)
+      Next
+
 
     Catch ex As Exception
       Debug.Print(ex.ToString)
     End Try
   End Sub
 
+  Public Function AddSubstitution(teamId As Integer, playerInId As Integer, playerOutId As Integer) As Substitution
+
+  End Function
+
+
   Public Function AddEvent(type As String, teamID As Integer, playerID As Integer, timeSeconds As Integer, Optional playerSecID As Integer = -1) As MatchEvent
     Return Me.CreateEvent(type, teamID, playerID, timeSeconds, playerSecID)
   End Function
 
-  Public Sub UpdateStatFromEvents(stat As Stat)
-
+  Public Sub UpdateStatFromEvents(team As Team, stat As Stat)
+    If stat.EventBased Then
+      Dim allEvents As New List(Of MatchEvent)
+      allEvents = Me.MatchEvents.GetEventsByTeam(team.TeamID, stat.Name)
+      stat.Value = allEvents.Count
+    End If
   End Sub
 
   Public Sub UpdateStatForPlayerFromEvents(stat As Stat, player As Player)
-    Dim allEvents As New List(Of MatchEvent)
-    allEvents = Me.MatchEvents.GetEventsByPlayer(player, stat)
-    stat.Value = allEvents.Count
+    If stat.EventBased Then
+      Dim allEvents As New List(Of MatchEvent)
+      allEvents = Me.MatchEvents.GetEventsByPlayer(player, stat)
+      stat.Value = allEvents.Count
+    End If
   End Sub
 
   Public Sub UpdateStatForPlayerFromEvents(statName As String, teamID As Integer, playerID As Integer)
@@ -757,7 +786,7 @@ Imports MatchInfo
 
     If Not player Is Nothing Then
       Dim stat As Stat = player.GetMatchStatByName(statName)
-      If Not stat Is Nothing Then
+      If Not stat Is Nothing AndAlso stat.EventBased Then
         allEvents = Me.MatchEvents.GetEventsByPlayer(playerID, statName)
         stat.Value = allEvents.Count
       End If
@@ -765,7 +794,7 @@ Imports MatchInfo
 
     If Not team Is Nothing Then
       Dim stat As Stat = team.GetMatchStatByName(statName)
-      If Not stat Is Nothing Then
+      If Not stat Is Nothing AndAlso stat.EventBased Then
         allEvents = Me.MatchEvents.GetEventsByTeam(teamID, statName)
         stat.Value = allEvents.Count
       End If
@@ -922,5 +951,13 @@ Imports MatchInfo
     RaiseEvent ActivePeriodStateChanged(period)
   End Sub
 
+  Public Sub Reset()
+    Try
+      _matchEvents.Reset(Me.match_id)
+      _matchGoals.Reset(Me.match_id)
+    Catch ex As Exception
+      Debug.Print(ex.ToString)
+    End Try
+  End Sub
 End Class
 

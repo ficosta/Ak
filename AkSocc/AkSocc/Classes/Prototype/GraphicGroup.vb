@@ -50,6 +50,12 @@ Public MustInherit Class GraphicGroup
 
   Public Property AutomaticGraphic As Boolean = True
 
+  Public Property MustHavePlayer As Boolean = False
+  Public Property MustHaveTeam As Boolean = False
+
+  Public Property MustHaveClock As Boolean = False
+  Public Property CantHaveClock As Boolean = False
+
   Public Sub New(match As Match)
     _match = match
   End Sub

@@ -56,7 +56,7 @@ Public Class ControlScoreSingleGoal
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.OwnGoal))
       Else
         Select Case gs.Depth
-          Case 0
+          Case 1
             Select Case gs.Name
               Case Step0.Goal
                 _goalType = MatchGoal.eGoalType.Normal

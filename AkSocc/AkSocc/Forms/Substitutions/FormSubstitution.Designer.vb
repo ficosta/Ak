@@ -30,10 +30,18 @@ Partial Class FormSubstitution
     Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanelAdvanced = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroGridField = New MetroFramework.Controls.MetroGrid()
+    Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnPosition = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.MetroGridBench = New MetroFramework.Controls.MetroGrid()
+    Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.TableLayoutPanelAdvancedControls = New System.Windows.Forms.TableLayoutPanel()
-    Me.ButtonAdvancedOK = New Button()
-    Me.ButtonAdvancedCancel = New Button()
+    Me.ButtonAdvancedOK = New System.Windows.Forms.Button()
+    Me.ButtonAdvancedCancel = New System.Windows.Forms.Button()
     Me.MetroTabControl1 = New MetroFramework.Controls.MetroTabControl()
     Me.MetroTabPage1 = New MetroFramework.Controls.MetroTabPage()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -42,14 +50,6 @@ Partial Class FormSubstitution
     Me.MetroTextBoxPlayers = New System.Windows.Forms.TextBox()
     Me.MetroLabelOUTPlayer = New System.Windows.Forms.Label()
     Me.MetroTabPage2 = New MetroFramework.Controls.MetroTabPage()
-    Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnPosition = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.TableLayoutPanelAdvanced.SuspendLayout()
     CType(Me.MetroGridField, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.MetroGridBench, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,6 +124,36 @@ Partial Class FormSubstitution
     Me.MetroGridField.Size = New System.Drawing.Size(336, 310)
     Me.MetroGridField.TabIndex = 0
     '
+    'ColumnID
+    '
+    Me.ColumnID.HeaderText = "ID"
+    Me.ColumnID.Name = "ColumnID"
+    Me.ColumnID.ReadOnly = True
+    Me.ColumnID.Visible = False
+    '
+    'ColumnNumber
+    '
+    Me.ColumnNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnNumber.HeaderText = "#"
+    Me.ColumnNumber.Name = "ColumnNumber"
+    Me.ColumnNumber.ReadOnly = True
+    Me.ColumnNumber.Width = 37
+    '
+    'ColumnName
+    '
+    Me.ColumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnName.HeaderText = "Name"
+    Me.ColumnName.Name = "ColumnName"
+    Me.ColumnName.ReadOnly = True
+    '
+    'ColumnPosition
+    '
+    Me.ColumnPosition.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnPosition.HeaderText = "Pos"
+    Me.ColumnPosition.Name = "ColumnPosition"
+    Me.ColumnPosition.ReadOnly = True
+    Me.ColumnPosition.Visible = False
+    '
     'MetroGridBench
     '
     Me.MetroGridBench.AllowUserToAddRows = False
@@ -176,6 +206,36 @@ Partial Class FormSubstitution
     Me.MetroGridBench.Size = New System.Drawing.Size(337, 310)
     Me.MetroGridBench.TabIndex = 1
     '
+    'DataGridViewTextBoxColumn1
+    '
+    Me.DataGridViewTextBoxColumn1.HeaderText = "ID"
+    Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+    Me.DataGridViewTextBoxColumn1.ReadOnly = True
+    Me.DataGridViewTextBoxColumn1.Visible = False
+    '
+    'DataGridViewTextBoxColumn3
+    '
+    Me.DataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.DataGridViewTextBoxColumn3.HeaderText = "#"
+    Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+    Me.DataGridViewTextBoxColumn3.ReadOnly = True
+    Me.DataGridViewTextBoxColumn3.Width = 37
+    '
+    'DataGridViewTextBoxColumn2
+    '
+    Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
+    Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+    Me.DataGridViewTextBoxColumn2.ReadOnly = True
+    '
+    'DataGridViewTextBoxColumn4
+    '
+    Me.DataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.DataGridViewTextBoxColumn4.HeaderText = "Pos"
+    Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+    Me.DataGridViewTextBoxColumn4.ReadOnly = True
+    Me.DataGridViewTextBoxColumn4.Visible = False
+    '
     'TableLayoutPanelAdvancedControls
     '
     Me.TableLayoutPanelAdvancedControls.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -194,23 +254,23 @@ Partial Class FormSubstitution
     'ButtonAdvancedOK
     '
     Me.ButtonAdvancedOK.Anchor = System.Windows.Forms.AnchorStyles.None
+    Me.ButtonAdvancedOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.ButtonAdvancedOK.Location = New System.Drawing.Point(3, 3)
     Me.ButtonAdvancedOK.Name = "ButtonAdvancedOK"
     Me.ButtonAdvancedOK.Size = New System.Drawing.Size(67, 18)
     Me.ButtonAdvancedOK.TabIndex = 0
     Me.ButtonAdvancedOK.Text = "OK"
-    Me.ButtonAdvancedOK.FlatStyle = FlatStyle.Flat
     '
     'ButtonAdvancedCancel
     '
     Me.ButtonAdvancedCancel.Anchor = System.Windows.Forms.AnchorStyles.None
     Me.ButtonAdvancedCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+    Me.ButtonAdvancedCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.ButtonAdvancedCancel.Location = New System.Drawing.Point(76, 3)
     Me.ButtonAdvancedCancel.Name = "ButtonAdvancedCancel"
     Me.ButtonAdvancedCancel.Size = New System.Drawing.Size(67, 18)
     Me.ButtonAdvancedCancel.TabIndex = 1
     Me.ButtonAdvancedCancel.Text = "Cancel"
-    Me.ButtonAdvancedCancel.FlatStyle = FlatStyle.Flat
     '
     'MetroTabControl1
     '
@@ -221,9 +281,10 @@ Partial Class FormSubstitution
     Me.MetroTabControl1.Controls.Add(Me.MetroTabPage2)
     Me.MetroTabControl1.Location = New System.Drawing.Point(23, 63)
     Me.MetroTabControl1.Name = "MetroTabControl1"
-    Me.MetroTabControl1.SelectedIndex = 1
+    Me.MetroTabControl1.SelectedIndex = 0
     Me.MetroTabControl1.Size = New System.Drawing.Size(699, 364)
     Me.MetroTabControl1.TabIndex = 1
+    Me.MetroTabControl1.UseSelectable = True
     '
     'MetroTabPage1
     '
@@ -284,20 +345,10 @@ Partial Class FormSubstitution
     'MetroTextBoxPlayers
     '
     Me.TableLayoutPanel1.SetColumnSpan(Me.MetroTextBoxPlayers, 2)
-    '
-    '
-    '
     Me.MetroTextBoxPlayers.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTextBoxPlayers.Lines = New String(-1) {}
     Me.MetroTextBoxPlayers.Location = New System.Drawing.Point(3, 33)
-    Me.MetroTextBoxPlayers.MaxLength = 32767
     Me.MetroTextBoxPlayers.Name = "MetroTextBoxPlayers"
-    Me.MetroTextBoxPlayers.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-    Me.MetroTextBoxPlayers.ScrollBars = System.Windows.Forms.ScrollBars.None
-    Me.MetroTextBoxPlayers.SelectedText = ""
-    Me.MetroTextBoxPlayers.SelectionLength = 0
-    Me.MetroTextBoxPlayers.SelectionStart = 0
-    Me.MetroTextBoxPlayers.Size = New System.Drawing.Size(679, 24)
+    Me.MetroTextBoxPlayers.Size = New System.Drawing.Size(679, 20)
     Me.MetroTextBoxPlayers.TabIndex = 3
     '
     'MetroLabelOUTPlayer
@@ -324,68 +375,6 @@ Partial Class FormSubstitution
     Me.MetroTabPage2.VerticalScrollbarBarColor = True
     Me.MetroTabPage2.VerticalScrollbarHighlightOnWheel = False
     Me.MetroTabPage2.VerticalScrollbarSize = 10
-    '
-    'ColumnID
-    '
-    Me.ColumnID.HeaderText = "ID"
-    Me.ColumnID.Name = "ColumnID"
-    Me.ColumnID.ReadOnly = True
-    Me.ColumnID.Visible = False
-    '
-    'ColumnNumber
-    '
-    Me.ColumnNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnNumber.HeaderText = "#"
-    Me.ColumnNumber.Name = "ColumnNumber"
-    Me.ColumnNumber.ReadOnly = True
-    Me.ColumnNumber.Width = 37
-    '
-    'ColumnName
-    '
-    Me.ColumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnName.HeaderText = "Name"
-    Me.ColumnName.Name = "ColumnName"
-    Me.ColumnName.ReadOnly = True
-    '
-    'ColumnPosition
-    '
-    Me.ColumnPosition.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnPosition.HeaderText = "Pos"
-    Me.ColumnPosition.Name = "ColumnPosition"
-    Me.ColumnPosition.ReadOnly = True
-    Me.ColumnPosition.Visible = False
-    Me.ColumnPosition.Width = 48
-    '
-    'DataGridViewTextBoxColumn1
-    '
-    Me.DataGridViewTextBoxColumn1.HeaderText = "ID"
-    Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-    Me.DataGridViewTextBoxColumn1.ReadOnly = True
-    Me.DataGridViewTextBoxColumn1.Visible = False
-    '
-    'DataGridViewTextBoxColumn3
-    '
-    Me.DataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.DataGridViewTextBoxColumn3.HeaderText = "#"
-    Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-    Me.DataGridViewTextBoxColumn3.ReadOnly = True
-    Me.DataGridViewTextBoxColumn3.Width = 37
-    '
-    'DataGridViewTextBoxColumn2
-    '
-    Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
-    Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-    Me.DataGridViewTextBoxColumn2.ReadOnly = True
-    '
-    'DataGridViewTextBoxColumn4
-    '
-    Me.DataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.DataGridViewTextBoxColumn4.HeaderText = "Pos"
-    Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-    Me.DataGridViewTextBoxColumn4.ReadOnly = True
-    Me.DataGridViewTextBoxColumn4.Visible = False
-    Me.DataGridViewTextBoxColumn4.Width = 48
     '
     'FormSubstitution
     '

@@ -472,5 +472,9 @@ Public Class FormChoose
       WriteToErrorLog(ex)
     End Try
   End Sub
+
+  Private Sub UserControlChoose3_Load(sender As Object, e As EventArgs) Handles UserControlChoose3.Load
+
+  End Sub
 #End Region
 End Class

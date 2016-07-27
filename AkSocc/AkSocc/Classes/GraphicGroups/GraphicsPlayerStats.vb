@@ -9,6 +9,7 @@ Public Class GraphicsPlayerStats
 
   Public Sub New(_match As MatchInfo.Match)
     MyBase.New(_match)
+    Me.MustHavePlayer = True
 
     MyBase.Name = "GraphicsPlayerStats"
     MyBase.ID = 1
@@ -28,6 +29,7 @@ Public Class GraphicsPlayerStats
 
   Public Sub New(_match As MatchInfo.Match, player As Player)
     MyBase.New(_match)
+    Me.MustHavePlayer = True
 
     MyBase.Name = "GraphicsPlayerStats"
     Me.Player = player
@@ -82,7 +84,7 @@ Public Class GraphicsPlayerStats
     Try
       gs.GraphicSteps.Clear()
 
-      Dim PlayerInString As String = LoggerComm.SendSocket("PLAYERSTAT|" & Me.Player.PlayerID.ToString())
+      Dim PlayerInString As String = LoggerComm.Instance.SendSocket("PLAYERSTAT|" & Me.Player.PlayerID.ToString())
       Me.Player.GetFromSocketFormat(PlayerInString)
       Dim intPlayerGoals As Integer = Match.MatchGoals.GetGoalsByPlayer(Me.Player).Count
       If graphicStep Is Nothing Then
@@ -190,8 +192,10 @@ Public Class GraphicsPlayerStats
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name", "")
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name_Cards ", "")
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Number", "")
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo3D.geom", "", paramType.Geometry)
     Else
-      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & "\" & Team.BadgeName)
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Team.BadgeName, paramType.Image)
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Team.BadgeName, paramType.Geometry)
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name", Player.Name)
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name_Cards ", Player.Name)
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Number", Player.SquadNo)
@@ -203,6 +207,7 @@ Public Class GraphicsPlayerStats
       scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01 ", "")
     Else
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Team.BadgeName, paramType.Image)
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Team.BadgeName, paramType.Geometry)
       scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01 ", Team.Name)
     End If
 

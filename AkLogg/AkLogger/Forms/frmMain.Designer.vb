@@ -23,11 +23,13 @@ Partial Class frmMain
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
     Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
     Me.TableLayoutPanelTeams = New System.Windows.Forms.TableLayoutPanel()
+    Me.TeamControlHome = New AkLogger.TeamControl()
+    Me.TeamControlAway = New AkLogger.TeamControl()
     Me.grpControls = New System.Windows.Forms.GroupBox()
     Me.tableLayoutPanelPeriodes = New System.Windows.Forms.TableLayoutPanel()
     Me.rdbExtra2 = New System.Windows.Forms.RadioButton()
@@ -81,10 +83,17 @@ Partial Class frmMain
     Me.lblPossessionOwnT = New System.Windows.Forms.Label()
     Me.label52 = New System.Windows.Forms.Label()
     Me.groupBox2 = New System.Windows.Forms.GroupBox()
+    Me.MetroGridEvents = New MetroFramework.Controls.MetroGrid()
+    Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnImage = New System.Windows.Forms.DataGridViewImageColumn()
+    Me.ColumnType = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnPlayer = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.lsvEvents = New System.Windows.Forms.ListView()
     Me.colEventTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
     Me.colEventEvent = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
     Me.colEventText = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+    Me.imglstEvents = New System.Windows.Forms.ImageList(Me.components)
     Me.groupBox1 = New System.Windows.Forms.GroupBox()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.lblHomeTeam2 = New System.Windows.Forms.Label()
@@ -92,33 +101,24 @@ Partial Class frmMain
     Me.label90 = New System.Windows.Forms.Label()
     Me.label89 = New System.Windows.Forms.Label()
     Me.lblAwayTeam2 = New System.Windows.Forms.Label()
-    Me.tmrRefresh = New System.Windows.Forms.Timer(Me.components)
-    Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
-    Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-    Me.imglstEvents = New System.Windows.Forms.ImageList(Me.components)
-    Me.MetroGridEvents = New MetroFramework.Controls.MetroGrid()
-    Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnImage = New System.Windows.Forms.DataGridViewImageColumn()
-    Me.ColumnType = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnPlayer = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.TeamControlHome = New AkLogger.TeamControl()
-    Me.TeamControlAway = New AkLogger.TeamControl()
     Me.SingleStatControlHomeCorners = New AkLogger.SingleStatControl()
     Me.SingleStatControlHomeOffsides = New AkLogger.SingleStatControl()
     Me.SingleStatControlHomeWood = New AkLogger.SingleStatControl()
     Me.SingleStatControlAwayCorners = New AkLogger.SingleStatControl()
     Me.SingleStatControlAwayOffsides = New AkLogger.SingleStatControl()
     Me.SingleStatControlAwayWood = New AkLogger.SingleStatControl()
+    Me.tmrRefresh = New System.Windows.Forms.Timer(Me.components)
+    Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
+    Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
     Me.TableLayoutPanelTeams.SuspendLayout()
     Me.grpControls.SuspendLayout()
     Me.tableLayoutPanelPeriodes.SuspendLayout()
     Me.grpPossession.SuspendLayout()
     Me.groupBox2.SuspendLayout()
+    CType(Me.MetroGridEvents, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.groupBox1.SuspendLayout()
     Me.TableLayoutPanel2.SuspendLayout()
     Me.TableLayoutPanel3.SuspendLayout()
-    CType(Me.MetroGridEvents, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'TableLayoutPanelTeams
@@ -138,6 +138,28 @@ Partial Class frmMain
     Me.TableLayoutPanelTeams.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 538.0!))
     Me.TableLayoutPanelTeams.Size = New System.Drawing.Size(1299, 538)
     Me.TableLayoutPanelTeams.TabIndex = 379
+    '
+    'TeamControlHome
+    '
+    Me.TeamControlHome.BackColor = System.Drawing.Color.WhiteSmoke
+    Me.TeamControlHome.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TeamControlHome.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TeamControlHome.Location = New System.Drawing.Point(3, 3)
+    Me.TeamControlHome.Name = "TeamControlHome"
+    Me.TeamControlHome.Size = New System.Drawing.Size(643, 532)
+    Me.TeamControlHome.TabIndex = 378
+    Me.TeamControlHome.Team = Nothing
+    '
+    'TeamControlAway
+    '
+    Me.TeamControlAway.BackColor = System.Drawing.Color.WhiteSmoke
+    Me.TeamControlAway.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TeamControlAway.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TeamControlAway.Location = New System.Drawing.Point(652, 3)
+    Me.TeamControlAway.Name = "TeamControlAway"
+    Me.TeamControlAway.Size = New System.Drawing.Size(644, 532)
+    Me.TeamControlAway.TabIndex = 379
+    Me.TeamControlAway.Team = Nothing
     '
     'grpControls
     '
@@ -828,6 +850,92 @@ Partial Class frmMain
     Me.groupBox2.TabStop = False
     Me.groupBox2.Text = "Match Events"
     '
+    'MetroGridEvents
+    '
+    Me.MetroGridEvents.AllowUserToAddRows = False
+    Me.MetroGridEvents.AllowUserToDeleteRows = False
+    Me.MetroGridEvents.AllowUserToResizeRows = False
+    Me.MetroGridEvents.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroGridEvents.BorderStyle = System.Windows.Forms.BorderStyle.None
+    Me.MetroGridEvents.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+    Me.MetroGridEvents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+    DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
+    DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.MetroGridEvents.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+    Me.MetroGridEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+    Me.MetroGridEvents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnID, Me.ColumnImage, Me.ColumnType, Me.ColumnTime, Me.ColumnPlayer})
+    DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
+    DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+    Me.MetroGridEvents.DefaultCellStyle = DataGridViewCellStyle2
+    Me.MetroGridEvents.EnableHeadersVisualStyles = False
+    Me.MetroGridEvents.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    Me.MetroGridEvents.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.MetroGridEvents.Location = New System.Drawing.Point(312, 16)
+    Me.MetroGridEvents.Name = "MetroGridEvents"
+    Me.MetroGridEvents.ReadOnly = True
+    Me.MetroGridEvents.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+    DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
+    DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.MetroGridEvents.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+    Me.MetroGridEvents.RowHeadersVisible = False
+    Me.MetroGridEvents.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+    Me.MetroGridEvents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+    Me.MetroGridEvents.Size = New System.Drawing.Size(246, 116)
+    Me.MetroGridEvents.TabIndex = 1
+    '
+    'ColumnID
+    '
+    Me.ColumnID.HeaderText = "ID"
+    Me.ColumnID.Name = "ColumnID"
+    Me.ColumnID.ReadOnly = True
+    Me.ColumnID.Visible = False
+    '
+    'ColumnImage
+    '
+    Me.ColumnImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnImage.HeaderText = "Type"
+    Me.ColumnImage.Name = "ColumnImage"
+    Me.ColumnImage.ReadOnly = True
+    Me.ColumnImage.Width = 34
+    '
+    'ColumnType
+    '
+    Me.ColumnType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnType.HeaderText = "Type"
+    Me.ColumnType.Name = "ColumnType"
+    Me.ColumnType.ReadOnly = True
+    Me.ColumnType.Width = 53
+    '
+    'ColumnTime
+    '
+    Me.ColumnTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnTime.HeaderText = "Time"
+    Me.ColumnTime.Name = "ColumnTime"
+    Me.ColumnTime.ReadOnly = True
+    Me.ColumnTime.Width = 53
+    '
+    'ColumnPlayer
+    '
+    Me.ColumnPlayer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnPlayer.HeaderText = "Player"
+    Me.ColumnPlayer.Name = "ColumnPlayer"
+    Me.ColumnPlayer.ReadOnly = True
+    '
     'lsvEvents
     '
     Me.lsvEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -861,6 +969,24 @@ Partial Class frmMain
     Me.colEventText.DisplayIndex = 1
     Me.colEventText.Text = "TEXT"
     Me.colEventText.Width = 160
+    '
+    'imglstEvents
+    '
+    Me.imglstEvents.ImageStream = CType(resources.GetObject("imglstEvents.ImageStream"), System.Windows.Forms.ImageListStreamer)
+    Me.imglstEvents.TransparentColor = System.Drawing.Color.Transparent
+    Me.imglstEvents.Images.SetKeyName(0, "GOAL")
+    Me.imglstEvents.Images.SetKeyName(1, "YELLOWCARD")
+    Me.imglstEvents.Images.SetKeyName(2, "REDCARD")
+    Me.imglstEvents.Images.SetKeyName(3, "SUBS_IN")
+    Me.imglstEvents.Images.SetKeyName(4, "SUBS_OUT")
+    Me.imglstEvents.Images.SetKeyName(5, "OFFSIDES")
+    Me.imglstEvents.Images.SetKeyName(6, "CORNERS")
+    Me.imglstEvents.Images.SetKeyName(7, "SAVES")
+    Me.imglstEvents.Images.SetKeyName(8, "SHOTS")
+    Me.imglstEvents.Images.SetKeyName(9, "SHOTS_ON_TARGET")
+    Me.imglstEvents.Images.SetKeyName(10, "FOULS")
+    Me.imglstEvents.Images.SetKeyName(11, "ASSIS")
+    Me.imglstEvents.Images.SetKeyName(12, "WOOD_HITS")
     '
     'groupBox1
     '
@@ -979,162 +1105,6 @@ Partial Class frmMain
     Me.lblAwayTeam2.Text = "??"
     Me.lblAwayTeam2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
     '
-    'tmrRefresh
-    '
-    Me.tmrRefresh.Enabled = True
-    '
-    'tmrClock
-    '
-    '
-    'TableLayoutPanel3
-    '
-    Me.TableLayoutPanel3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.TableLayoutPanel3.ColumnCount = 4
-    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 621.0!))
-    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 257.0!))
-    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
-    Me.TableLayoutPanel3.Controls.Add(Me.groupBox2, 2, 1)
-    Me.TableLayoutPanel3.Controls.Add(Me.groupBox1, 1, 1)
-    Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanelTeams, 0, 0)
-    Me.TableLayoutPanel3.Controls.Add(Me.grpPossession, 0, 1)
-    Me.TableLayoutPanel3.Controls.Add(Me.grpControls, 3, 0)
-    Me.TableLayoutPanel3.Location = New System.Drawing.Point(12, 12)
-    Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-    Me.TableLayoutPanel3.RowCount = 2
-    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 147.0!))
-    Me.TableLayoutPanel3.Size = New System.Drawing.Size(1455, 691)
-    Me.TableLayoutPanel3.TabIndex = 381
-    '
-    'imglstEvents
-    '
-    Me.imglstEvents.ImageStream = CType(resources.GetObject("imglstEvents.ImageStream"), System.Windows.Forms.ImageListStreamer)
-    Me.imglstEvents.TransparentColor = System.Drawing.Color.Transparent
-    Me.imglstEvents.Images.SetKeyName(0, "GOAL")
-    Me.imglstEvents.Images.SetKeyName(1, "YELLOWCARD")
-    Me.imglstEvents.Images.SetKeyName(2, "REDCARD")
-    Me.imglstEvents.Images.SetKeyName(3, "SUBS_IN")
-    Me.imglstEvents.Images.SetKeyName(4, "SUBS_OUT")
-    Me.imglstEvents.Images.SetKeyName(5, "OFFSIDES")
-    Me.imglstEvents.Images.SetKeyName(6, "CORNERS")
-    Me.imglstEvents.Images.SetKeyName(7, "SAVES")
-    Me.imglstEvents.Images.SetKeyName(8, "SHOTS")
-    Me.imglstEvents.Images.SetKeyName(9, "SHOTS_ON_TARGET")
-    Me.imglstEvents.Images.SetKeyName(10, "FOULS")
-    Me.imglstEvents.Images.SetKeyName(11, "ASSIS")
-    Me.imglstEvents.Images.SetKeyName(12, "WOOD_HITS")
-    '
-    'MetroGridEvents
-    '
-    Me.MetroGridEvents.AllowUserToAddRows = False
-    Me.MetroGridEvents.AllowUserToDeleteRows = False
-    Me.MetroGridEvents.AllowUserToResizeRows = False
-    Me.MetroGridEvents.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridEvents.BorderStyle = System.Windows.Forms.BorderStyle.None
-    Me.MetroGridEvents.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-    Me.MetroGridEvents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-    DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
-    DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
-    DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridEvents.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-    Me.MetroGridEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-    Me.MetroGridEvents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnID, Me.ColumnImage, Me.ColumnType, Me.ColumnTime, Me.ColumnPlayer})
-    DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
-    DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
-    DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-    Me.MetroGridEvents.DefaultCellStyle = DataGridViewCellStyle2
-    Me.MetroGridEvents.EnableHeadersVisualStyles = False
-    Me.MetroGridEvents.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    Me.MetroGridEvents.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridEvents.Location = New System.Drawing.Point(312, 16)
-    Me.MetroGridEvents.Name = "MetroGridEvents"
-    Me.MetroGridEvents.ReadOnly = True
-    Me.MetroGridEvents.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-    DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
-    DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
-    DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridEvents.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-    Me.MetroGridEvents.RowHeadersVisible = False
-    Me.MetroGridEvents.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-    Me.MetroGridEvents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridEvents.Size = New System.Drawing.Size(246, 116)
-    Me.MetroGridEvents.TabIndex = 1
-    '
-    'ColumnID
-    '
-    Me.ColumnID.HeaderText = "ID"
-    Me.ColumnID.Name = "ColumnID"
-    Me.ColumnID.ReadOnly = True
-    Me.ColumnID.Visible = False
-    '
-    'ColumnImage
-    '
-    Me.ColumnImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnImage.HeaderText = "Type"
-    Me.ColumnImage.Name = "ColumnImage"
-    Me.ColumnImage.ReadOnly = True
-    Me.ColumnImage.Width = 34
-    '
-    'ColumnType
-    '
-    Me.ColumnType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnType.HeaderText = "Type"
-    Me.ColumnType.Name = "ColumnType"
-    Me.ColumnType.ReadOnly = True
-    Me.ColumnType.Width = 53
-    '
-    'ColumnTime
-    '
-    Me.ColumnTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnTime.HeaderText = "Time"
-    Me.ColumnTime.Name = "ColumnTime"
-    Me.ColumnTime.ReadOnly = True
-    Me.ColumnTime.Width = 53
-    '
-    'ColumnPlayer
-    '
-    Me.ColumnPlayer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnPlayer.HeaderText = "Player"
-    Me.ColumnPlayer.Name = "ColumnPlayer"
-    Me.ColumnPlayer.ReadOnly = True
-    '
-    'TeamControlHome
-    '
-    Me.TeamControlHome.BackColor = System.Drawing.Color.WhiteSmoke
-    Me.TeamControlHome.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TeamControlHome.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.TeamControlHome.Location = New System.Drawing.Point(3, 3)
-    Me.TeamControlHome.Name = "TeamControlHome"
-    Me.TeamControlHome.Size = New System.Drawing.Size(643, 532)
-    Me.TeamControlHome.TabIndex = 378
-    Me.TeamControlHome.Team = Nothing
-    '
-    'TeamControlAway
-    '
-    Me.TeamControlAway.BackColor = System.Drawing.Color.WhiteSmoke
-    Me.TeamControlAway.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TeamControlAway.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.TeamControlAway.Location = New System.Drawing.Point(652, 3)
-    Me.TeamControlAway.Name = "TeamControlAway"
-    Me.TeamControlAway.Size = New System.Drawing.Size(644, 532)
-    Me.TeamControlAway.TabIndex = 379
-    Me.TeamControlAway.Team = Nothing
-    '
     'SingleStatControlHomeCorners
     '
     Me.SingleStatControlHomeCorners.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1195,6 +1165,36 @@ Partial Class frmMain
     Me.SingleStatControlAwayWood.StatSubject = Nothing
     Me.SingleStatControlAwayWood.TabIndex = 540
     '
+    'tmrRefresh
+    '
+    Me.tmrRefresh.Enabled = True
+    '
+    'tmrClock
+    '
+    '
+    'TableLayoutPanel3
+    '
+    Me.TableLayoutPanel3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.TableLayoutPanel3.ColumnCount = 4
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 621.0!))
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 257.0!))
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
+    Me.TableLayoutPanel3.Controls.Add(Me.groupBox2, 2, 1)
+    Me.TableLayoutPanel3.Controls.Add(Me.groupBox1, 1, 1)
+    Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanelTeams, 0, 0)
+    Me.TableLayoutPanel3.Controls.Add(Me.grpPossession, 0, 1)
+    Me.TableLayoutPanel3.Controls.Add(Me.grpControls, 3, 0)
+    Me.TableLayoutPanel3.Location = New System.Drawing.Point(12, 12)
+    Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+    Me.TableLayoutPanel3.RowCount = 2
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 147.0!))
+    Me.TableLayoutPanel3.Size = New System.Drawing.Size(1455, 691)
+    Me.TableLayoutPanel3.TabIndex = 381
+    '
     'frmMain
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1211,10 +1211,10 @@ Partial Class frmMain
     Me.grpPossession.ResumeLayout(False)
     Me.grpPossession.PerformLayout()
     Me.groupBox2.ResumeLayout(False)
+    CType(Me.MetroGridEvents, System.ComponentModel.ISupportInitialize).EndInit()
     Me.groupBox1.ResumeLayout(False)
     Me.TableLayoutPanel2.ResumeLayout(False)
     Me.TableLayoutPanel3.ResumeLayout(False)
-    CType(Me.MetroGridEvents, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub

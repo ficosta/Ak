@@ -83,7 +83,6 @@
     <Compile Include="Classes\Match\Matches.vb" />
     <Compile Include="Classes\MatchGoals\MatchGoal.vb" />
     <Compile Include="Classes\MatchGoals\MatchGoals.vb" />
-    <Compile Include="Classes\Stats\MatchStats.vb" />
     <Compile Include="Classes\Additional data\NamesDotText.vb" />
     <Compile Include="Classes\Period\Period.vb" />
     <Compile Include="Classes\Period\Periodes.vb" />

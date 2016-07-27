@@ -7,14 +7,16 @@ Public Class GraphicsPlayerNameNoNumber
     Inherits GraphicGroup
 
     Public Sub New(_match As Match)
-      MyBase.New(_match)
+    MyBase.New(_match)
+    Me.MustHavePlayer = True
 
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F6, False, False, False, False)
     Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
     Public Sub New(_match As MatchInfo.Match, player As Player)
-      MyBase.New(_match)
+    MyBase.New(_match)
+    Me.MustHavePlayer = True
 
     MyBase.Name = "GraphicsPlayerNameNoNumber"
     Me.Player = player

@@ -123,6 +123,16 @@ Module Main
         res = True
         AppSettings.Instance.Save()
       End If
+      InitializeConnectionStrings()
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
+  Friend Function InitializeConnectionStrings()
+    Try
+
       MatchInfo.Config.Instance.LocalConnectionString = LocalConnectionString
       MatchInfo.Config.Instance.LocalODBCConnectionString = LocalODBCConnectionString
       MatchInfo.Config.Instance.OptaConnectionString = OptaConnectionString
@@ -135,6 +145,5 @@ Module Main
     Catch ex As Exception
 
     End Try
-    Return res
   End Function
 End Module

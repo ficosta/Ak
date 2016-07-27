@@ -39,6 +39,7 @@ Public Class frmMain
     End Get
   End Property
 
+  Private WithEvents _loggerComm As LoggerComm = LoggerComm.Instance
 #End Region
 
 #Region "Constructor"
@@ -51,7 +52,7 @@ Public Class frmMain
 
 #Region "Form events"
   Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    Me.ToolStripStatusLabelVersion.Text = "v " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "   "
+    Me.LabelAppVersion.Text = "v " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "   "
   End Sub
 
   Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
@@ -60,11 +61,13 @@ Public Class frmMain
       If AppSettings.Instance.ShowSettingsOnStartup Then
         ShowOptions(Me)
       End If
+      InitializeConnectionStrings()
+
       Me.Cursor = Cursors.WaitCursor
-      InitializeKeyCapture()
-      _otherMatchDays.LoadOthers()
       InitControls()
       SelectMatch()
+      InitializeKeyCapture()
+      _otherMatchDays.LoadOthers()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -113,7 +116,7 @@ Public Class frmMain
   Private Sub ToolStripButtonSettings_Click(sender As Object, e As EventArgs) Handles ToolStripButtonSettings.Click
     Try
       If ShowOptions(Me) Then
-        Me.InitRender()
+        ' Me.InitRender()
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -178,6 +181,7 @@ Public Class frmMain
       WriteToErrorLog(ex)
     End Try
     Config.Instance.Silent = False
+    UpdateStatLabels()
     _updating = False
     Me.Cursor = cursor
     Return True
@@ -287,24 +291,24 @@ Public Class frmMain
 #End Region
 
 #Region "Status label"
-  Private Sub ToolStripStatusLabelVizConnection_Click(sender As Object, e As EventArgs) Handles ToolStripStatusLabelVizConnection.Click
+  Private Sub LabelVizEngine_Click(sender As Object, e As EventArgs)
     Me.InitRender()
   End Sub
 
   Private Sub UpdateStatusLabel()
     Try
       If _vizControl Is Nothing Then
-        Me.ToolStripStatusLabelVizConnection.BackColor = Color.Red
+        Me.LabelVizEngine.BackColor = Color.Red
       Else
         Select Case _vizControl.SocketStateTCP
           Case VizCommands.eSocketState.Connected
-            Me.ToolStripStatusLabelVizConnection.BackColor = Color.Green
+            Me.LabelVizEngine.BackColor = Color.Green
           Case VizCommands.eSocketState.Connecting
-            Me.ToolStripStatusLabelVizConnection.BackColor = Color.Orange
+            Me.LabelVizEngine.BackColor = Color.Orange
           Case VizCommands.eSocketState.Disconnected
-            Me.ToolStripStatusLabelVizConnection.BackColor = Color.Red
+            Me.LabelVizEngine.BackColor = Color.Red
           Case VizCommands.eSocketState.ErrorState
-            Me.ToolStripStatusLabelVizConnection.BackColor = Color.Red
+            Me.LabelVizEngine.BackColor = Color.Red
         End Select
       End If
     Catch ex As Exception
@@ -383,11 +387,20 @@ Public Class frmMain
           For Each myType As Type In GraphicGroup.GetMyAllSubclassesOf()
             If myType.Name = name Then
               Dim instance As GraphicGroup = CType(Activator.CreateInstance(myType, _match), GraphicGroup)
-              instance.Player = _selectedPlayer
-              instance.Team = _selectedTeam
-              instance.OtherMatchDays = _otherMatchDays
-              Me.StartGraphic(instance)
-              res = True
+              If instance.MustHavePlayer And _selectedPlayer Is Nothing Then
+                frmWaitForInput.ShowWaitDialog(Me, "You must choose a player first", _match.ToString)
+              ElseIf instance.MustHaveClock And _clockControl.ClockVisible = False Then
+                frmWaitForInput.ShowWaitDialog(Me, "This action requires the clock to be visible", _match.ToString)
+              ElseIf instance.CantHaveClock And _clockControl.ClockVisible = True Then
+                frmWaitForInput.ShowWaitDialog(Me, "This action requires the clock to be retired", _match.ToString)
+              Else
+                instance.Match = _match
+                instance.Player = _selectedPlayer
+                instance.Team = _selectedTeam
+                instance.OtherMatchDays = _otherMatchDays
+                Me.StartGraphic(instance)
+                res = True
+              End If
             End If
           Next
       End Select
@@ -513,7 +526,27 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonShftF1PenaltyShootOut_Click(sender As Object, e As EventArgs) Handles ButtonShftF1PenaltyShootOut.Click
+    If _match Is Nothing Then Exit Sub
+    Try
+      If MessageBox.Show("Animate in Penalty Shoot Out Caption?", "Penalty shootout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
 
+        _vizControl.ActivateScene(_vizControl.Config.SceneBasePath & "gfx_penalties", VizCommands.eRendererLayers.MidleLayer)
+        _vizControl.DirectorRewind("DIR_MAIN")
+        _vizControl.SetControlObjectValue("$object", "Penalties_Home_Team_Name", _match.HomeTeam.Name)
+        _vizControl.SetControlObjectValue("$object", "Penalties_Away_Team_Name", _match.AwayTeam.Name)
+        _vizControl.SetControlObjectValue("$object", "Penalties_Home_Team_Score", "0")
+        _vizControl.SetControlObjectValue("$object", "Penalties_Away_Team_Score", "0")
+        _vizControl.DirectorRewind("Penalties_top")
+        _vizControl.DirectorRewind("Penalties_Bottom")
+        _vizControl.DirectorStart("DIR_MAIN")
+
+      End If
+      Dim bHomeFirst As Boolean = (MessageBox.Show(_match.HomeTeam.TeamAELCaption1Name & " shoots first?", "Penalty shootout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes)
+      Dim myPenalties As New frmPenalties(_vizControl, _match.HomeTeam.TeamAELCaption1Name, _match.AwayTeam.TeamAELCaption1Name, bHomeFirst)
+      myPenalties.ShowDialog()
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
   End Sub
 
   Private Sub ButtonShftF2Interview_Click(sender As Object, e As EventArgs) Handles ButtonShftF2Interview.Click
@@ -533,7 +566,9 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonShftF5TeamStatsMultiline_Click(sender As Object, e As EventArgs) Handles ButtonShftF5TeamStatsMultiline.Click
-
+    If _match Is Nothing Then Exit Sub
+    Dim frm As New FormChooseMulti(_match, _vizControl, _previewControl)
+    frm.ShowDialog(Me)
   End Sub
 
   Private Sub ButtonShftF7L3Commons_Click(sender As Object, e As EventArgs) Handles ButtonShftF7L3Commons.Click
@@ -798,6 +833,9 @@ Public Class frmMain
   Private Sub MetroButtonClockOtherScores_Click(sender As Object, e As EventArgs) Handles MetroButtonClockOtherScores.Click
     StartGraphic(ClockOtherScores.Description)
   End Sub
+  Private Sub ButtonClockCards_Click(sender As Object, e As EventArgs) Handles ButtonClockCards.Click
+    Me.StartGraphic(ClockPlayerCard.Description)
+  End Sub
 
   Private Sub MetroButtonClockPenalties_Click(sender As Object, e As EventArgs) Handles MetroButtonClockPenalties.Click
     StartGraphic(ClockPenalties.Description)
@@ -1045,9 +1083,26 @@ Public Class frmMain
       If stat.Name = "RCard" Then
         _clockControl.UpdateRedCards()
       End If
+      UpdateStatLabels()
     Catch ex As Exception
 
     End Try
+  End Sub
+
+  Private Sub UpdateStatLabels()
+    If Me.Match Is Nothing Then Exit Sub
+
+
+    lblInfoPosession.Text = Me.Match.HomeTeam.MatchStats.Possession.Value & "% - " & Me.Match.AwayTeam.MatchStats.Possession.Value & "%"
+    lblInfoFoulsConc.Text = Me.Match.HomeTeam.MatchStats.Fouls.Value & " - " & Me.Match.AwayTeam.MatchStats.Fouls.Value
+    lblInfoCorners.Text = Me.Match.HomeTeam.MatchStats.Corners.Value & " - " & Me.Match.AwayTeam.MatchStats.Corners.Value
+    lblInfoOffsides.Text = Me.Match.HomeTeam.MatchStats.Offsides.Value & " - " & Me.Match.AwayTeam.MatchStats.Offsides.Value
+    lblInfoShotsOn.Text = Me.Match.HomeTeam.MatchStats.ShotsOn.Value & " - " & Me.Match.AwayTeam.MatchStats.ShotsOn.Value
+    lblInfoShots.Text = Me.Match.HomeTeam.MatchStats.Shots.Value & " - " & Me.Match.AwayTeam.MatchStats.Shots.Value
+    lblInfoWoodHits.Text = Me.Match.HomeTeam.MatchStats.WoodHits.Value & " - " & Me.Match.AwayTeam.MatchStats.WoodHits.Value
+
+    lblInfoYellowCards.Text = Me.Match.HomeTeam.MatchStats.YellowCards.Value & " - " & Me.Match.AwayTeam.MatchStats.YellowCards.Value
+    lblInfoRedCards.Text = Me.Match.HomeTeam.MatchStats.RedCards.Value & " - " & Me.Match.AwayTeam.MatchStats.RedCards.Value
   End Sub
 
   Private Sub ButtonPANIC_Click(sender As Object, e As EventArgs) Handles ButtonPANIC.Click
@@ -1064,10 +1119,10 @@ Public Class frmMain
 
   Private Sub _asyncStatWriter_DataUpdated(dataToUpdate As Integer, lastUpdatedData As AsyncStatWriter.StatToUpdate) Handles _asyncStatWriter.DataUpdated
     'If dataToUpdate > 0 Then
-    '  Me.ToolStripStatusLabelLastDataWritten.Text = "Pending data to write: " & dataToUpdate & "  last updated " & lastUpdatedData.subject.ToString & "   " & lastUpdatedData.stat.Name & " = " & lastUpdatedData.stat.Value
+    '  Me.LabelLog.Text = "Pending data to write: " & dataToUpdate & "  last updated " & lastUpdatedData.subject.ToString & "   " & lastUpdatedData.stat.Name & " = " & lastUpdatedData.stat.Value
     'Else
-    '  Me.ToolStripStatusLabelLastDataWritten.Text = ""
-    '  Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.Black
+    '  Me.LabelLog.Text = ""
+    '  Me.LabelLog.ForeColor = Color.Black
     'End If
   End Sub
 
@@ -1076,12 +1131,12 @@ Public Class frmMain
 
       Select Case msg.type
         Case GlobalNotifier.eMessageType.AppError
-          Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.DarkRed
+          Me.LabelLog.ForeColor = Color.DarkRed
         Case GlobalNotifier.eMessageType.Info
-          Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.Black
-          Me.ToolStripStatusLabelLastDataWritten.Text = msg.text
+          Me.LabelLog.ForeColor = Color.Black
+          Me.LabelLog.Text = msg.text
         Case GlobalNotifier.eMessageType.Warning
-          Me.ToolStripStatusLabelLastDataWritten.ForeColor = Color.DarkOrange
+          Me.LabelLog.ForeColor = Color.DarkOrange
       End Select
     Catch ex As Exception
 
@@ -1090,7 +1145,7 @@ Public Class frmMain
 
   Private Sub ToolStripStatusLabelGetLoggerData_Click(sender As Object, e As EventArgs)
     Try
-      LoggerComm.GetTeamsStats(_match)
+      _loggerComm.GetTeamsStats(_match)
       Debug.Print("new data")
     Catch ex As Exception
 
@@ -1102,7 +1157,7 @@ Public Class frmMain
     'Refrescamos las estadisticas básicas
     'Refresh the Match Info
     If AppSettings.Instance.UseLogger Then
-      Dim StringSmallStats As String = LoggerComm.SendSocket("SMALSTATS|NadaMas")
+      Dim StringSmallStats As String = _loggerComm.SendSocket("SMALSTATS|NadaMas")
 
       Dim AllStats As String() = StringSmallStats.Split("|"c)
       If AllStats.Length > 14 Then
@@ -1133,6 +1188,9 @@ Public Class frmMain
         lblInfoShots.Text = Me.Match.HomeTeam.MatchStats.Shots.Value & " - " & Me.Match.AwayTeam.MatchStats.Shots.Value
         lblInfoWoodHits.Text = Me.Match.HomeTeam.MatchStats.WoodHits.Value & " - " & Me.Match.AwayTeam.MatchStats.WoodHits.Value
 
+        lblInfoYellowCards.Text = Me.Match.HomeTeam.MatchStats.YellowCards.Value & " - " & Me.Match.AwayTeam.MatchStats.YellowCards.Value
+        lblInfoRedCards.Text = Me.Match.HomeTeam.MatchStats.RedCards.Value & " - " & Me.Match.AwayTeam.MatchStats.RedCards.Value
+
         Dim Position As Integer = 16
         While AllStats.Length > Position & 1
           Dim myPlayer As Player = Me.Match.GetPlayerById(NoNullInt(AllStats(Position & 1)))
@@ -1140,7 +1198,7 @@ Public Class frmMain
           Dim myNewColor As Color = Color.White
           If AllStats(Position) = "YCard" Then
             myNewColor = Color.Yellow
-            myPlayerStat.YellowCards.value = 1
+            myPlayerStat.YellowCards.Value = 1
           ElseIf AllStats(Position) = "RCard" Then
             myNewColor = Color.Red
             myPlayerStat.RedCards.Value = 1
@@ -1161,23 +1219,30 @@ Public Class frmMain
     Try
       Dim bUseLogger As Boolean = False
 
-      bUseLogger = LoggerComm.StartClient()
+      bUseLogger = _loggerComm.StartClient()
+      AppSettings.Instance.UseLogger = bUseLogger
+      AppSettings.Instance.Save()
+
       If bUseLogger Then
-        bUseLogger = True
         LoggerConnect.BackColor = Color.Green
-        LoggerComm.SendTeamsInfo(_match)
+        _loggerComm.SendTeamsInfo(_match)
       Else
         bUseLogger = False
         LoggerConnect.BackColor = Color.Red
       End If
 
-      AppSettings.Instance.UseLogger = bUseLogger
-      AppSettings.Instance.Save()
     Catch ex As Exception
 
     End Try
   End Sub
 
+  Private Sub _loggerComm_Connected() Handles _loggerComm.Connected
+    LoggerConnect.BackColor = Color.Green
+  End Sub
+
+  Private Sub _loggerComm_Disconnected(msg As String) Handles _loggerComm.Disconnected
+    LoggerConnect.BackColor = Color.Red
+  End Sub
 
 #End Region
 End Class

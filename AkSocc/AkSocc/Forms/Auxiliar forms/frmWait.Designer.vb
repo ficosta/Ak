@@ -36,6 +36,7 @@ Partial Class frmWait
     Me.ClientSize = New System.Drawing.Size(636, 225)
     Me.Name = "frmWait"
     Me.Opacity = 0.85R
+    Me.Resizable = False
     Me.Text = "Wait"
     Me.ResumeLayout(False)
 

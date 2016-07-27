@@ -73,25 +73,22 @@ Public Class GraphicGroupCrawlTeams
     Try
 
 
-      Select Case gs.ChildGraphicStep.Depth
-        Case 0
-          Select Case graphicStep.Name
-            Case Step0.HomeTeam
-              Scene = PrepareSingleTeam(1, Me.Match.HomeTeam, False)
-            Case Step0.HomeTeamWithSubs
-              Scene = PrepareSingleTeam(1, Me.Match.HomeTeam, True)
-            Case Step0.AwayTeam
-              Scene = PrepareSingleTeam(1, Me.Match.AwayTeam, False)
-            Case Step0.AwayTeamWithSubs
-              Scene = PrepareSingleTeam(1, Me.Match.AwayTeam, True)
-            Case Step0.HomeAwayTeams
-              Scene = PrepareDoubleTeam(1, False)
-            Case Step0.HomeAwayTeamsWithSubs
-              Scene = PrepareDoubleTeam(1, True)
-
-          End Select
+      Select Case graphicStep.Name
+        Case Step0.HomeTeam
+          Scene = PrepareSingleTeam(1, Me.Match.HomeTeam, False)
+        Case Step0.HomeTeamWithSubs
+          Scene = PrepareSingleTeam(1, Me.Match.HomeTeam, True)
+        Case Step0.AwayTeam
+          Scene = PrepareSingleTeam(1, Me.Match.AwayTeam, False)
+        Case Step0.AwayTeamWithSubs
+          Scene = PrepareSingleTeam(1, Me.Match.AwayTeam, True)
+        Case Step0.HomeAwayTeams
+          Scene = PrepareDoubleTeam(1, False)
+        Case Step0.HomeAwayTeamsWithSubs
+          Scene = PrepareDoubleTeam(1, True)
 
       End Select
+
 
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -108,7 +105,9 @@ Public Class GraphicGroupCrawlTeams
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("Change", 0, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add("Crawl_Change_1_2", 20, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 50, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 100, DirectorAction.Dummy)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
@@ -116,9 +115,8 @@ Public Class GraphicGroupCrawlTeams
 
     scene.SceneDirectorsChangeIn.Add("Change", 0, DirectorAction.Start)
     scene.SceneDirectorsChangeIn.Add("Change", 200, DirectorAction.Dummy)
-
-    scene.SceneParameters.Add("Veil_On_Off_Vis", "1")
-    scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
+    
+    scene.SceneParameters.Add("Crawll_Side_" & gStep & "_Control_OMO_GV_Choose", 2)
 
     Dim prefix As String = "Side_" & gStep
     scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
@@ -155,11 +153,11 @@ Public Class GraphicGroupCrawlTeams
 
 
   Public Function PrepareSingleTeam(gSide As Integer, team As Team, withSubs As Boolean) As Scene
-    Dim scene As Scene = InitDefaultScene()
+    Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = "Crawll_Side_" & gSide & "_"
     Try
       scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 1)
-      prefix = "Crawll_Team_List_Side_1_"
+      prefix = "Crawll_Team_List_Side_" & gSide & "_"
 
       scene.SceneParameters.Add(prefix & "Team_A_Name", team.Name)
       If withSubs Then

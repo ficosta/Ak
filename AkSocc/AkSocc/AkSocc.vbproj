@@ -147,6 +147,12 @@
     <Compile Include="Forms\Auxiliar forms\frmWaitForInput.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Choose\FormChooseMulti.Designer.vb">
+      <DependentUpon>FormChooseMulti.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Choose\FormChooseMulti.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Clock\FormAddedTime.Designer.vb">
       <DependentUpon>FormAddedTime.vb</DependentUpon>
     </Compile>
@@ -157,6 +163,12 @@
       <DependentUpon>FormPeriodControl_new.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Clock\FormPeriodControl_new.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Penalties\FormPenalties.Designer.vb">
+      <DependentUpon>frmPenalties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Penalties\frmPenalties.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Goals\frmGoal.Designer.vb">
@@ -335,6 +347,9 @@
     <EmbeddedResource Include="Forms\Auxiliar forms\frmWaitForInput.resx">
       <DependentUpon>frmWaitForInput.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Choose\FormChooseMulti.resx">
+      <DependentUpon>FormChooseMulti.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Choose\FormChoose.resx">
       <DependentUpon>FormChoose.vb</DependentUpon>
     </EmbeddedResource>
@@ -358,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogOptions.resx">
       <DependentUpon>DialogOptions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Penalties\FormPenalties.resx">
+      <DependentUpon>frmPenalties.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Goals\frmGoal.resx">
       <DependentUpon>frmGoal.vb</DependentUpon>

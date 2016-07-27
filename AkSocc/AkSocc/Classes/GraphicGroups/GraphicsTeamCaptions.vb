@@ -14,6 +14,7 @@ Public Class GraphicsTeamCaptions
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F9, False, False, False, False)
     Me.Scene = Me.InitDefaultScene(1)
+    Me.CantHaveClock = True
 
   End Sub
 
@@ -143,6 +144,9 @@ Public Class GraphicsTeamCaptions
 
     End If
 
+    scene.SceneParameters.Add("Badge_Left_Side_" & gStep & "_Vis.active ", "1")
+    scene.SceneParameters.Add("Badge_Right_Side_" & gStep & "_Vis.active ", "1")
+
     scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
     scene.SceneParameters.Add("Veil_Right_Vis.active ", "1")
 
@@ -176,6 +180,10 @@ Public Class GraphicsTeamCaptions
 
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
+
+
+      scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
 
       scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
       scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
@@ -231,6 +239,9 @@ Public Class GraphicsTeamCaptions
 
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
+
+      scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
 
       scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
       scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
@@ -288,6 +299,9 @@ Public Class GraphicsTeamCaptions
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
 
+      scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
+
       scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
       scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
 
@@ -297,6 +311,7 @@ Public Class GraphicsTeamCaptions
       For i As Integer = 1 To 11
         Dim player As Player = team.MatchPlayers.GetPlayerByPosition(i)
         prefix = "Formation_Side_" & gSide & "_Subject_" & Strings.Format(i, "00") & "_"
+        prefix = "TeamList_Side_" & gSide & "_Subject_" & Strings.Format(i, "00") & "_"
         If Not player Is Nothing Then
           scene.SceneParameters.Add(prefix & "Name", player.Name)
           scene.SceneParameters.Add(prefix & "Number", player.SquadNo)
@@ -329,8 +344,8 @@ Public Class GraphicsTeamCaptions
           Dim NewY As Double = player.Formation_Y  ' (((165 * player.Formation_Y) / 280) + 9) * -1
           Dim NewX As Double = player.Formation_X   ' ((170 * player.Formation_X) / 280) - 195
 
-          NewX = 0 * NewX / 2.5
-          NewY = 0 * NewY / 2.5
+          NewX = NewX / 3
+          NewY = NewY / 3
           scene.SceneParameters.Add(prefix & "Position.position ", CInt(NewX) & " " & CInt(NewY) & " 0")
         End If
 
@@ -353,6 +368,9 @@ Public Class GraphicsTeamCaptions
 
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Left", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & "\" & Match.AwayTeam.BadgeName, paramType.Image)
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Geometry_Logo_Right", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & "\" & Match.HomeTeam.BadgeName, paramType.Image)
+
+      scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "1")
 
       Dim teams() As Team = {Me.Match.HomeTeam, Me.Match.AwayTeam}
       Dim sideName() As String = {"Right", "Left"}

@@ -90,7 +90,6 @@ Partial Class UserControlChoose
     Me.MetroGridOptions.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
     Me.MetroGridOptions.HighLightPercentage = 50.0!
     Me.MetroGridOptions.Location = New System.Drawing.Point(3, 3)
-    Me.MetroGridOptions.MultiSelect = False
     Me.MetroGridOptions.Name = "MetroGridOptions"
     Me.MetroGridOptions.ReadOnly = True
     Me.MetroGridOptions.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -151,6 +150,7 @@ Partial Class UserControlChoose
     Me.LabelFocus.Size = New System.Drawing.Size(35, 13)
     Me.LabelFocus.TabIndex = 8
     Me.LabelFocus.Text = "Focus"
+    Me.LabelFocus.Visible = False
     '
     'UserControlChoose
     '

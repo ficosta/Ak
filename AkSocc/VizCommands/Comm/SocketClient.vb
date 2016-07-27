@@ -69,12 +69,15 @@ Public Class SocketClient
     End Try
   End Sub
 
+  Private _endPoint As IPEndPoint
+
   Public Sub Connect(ByVal endPoint As IPEndPoint)
     '--Create a new socket
+    _endPoint = endPoint
     CPiTCPSocket = New Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
 
     Try
-      CPiTCPSocket.Connect(endPoint)
+      CPiTCPSocket.Connect(_endPoint)
       ' _connected = True
       If IsConnected() = True Then
         RaiseEvent Connected(True)
@@ -90,12 +93,14 @@ Public Class SocketClient
       '  it passes the byte array as the buffer to receive the data and the array adain as a reference that will be passed
       '  back to the ReceiveCallback event
       'CPiTCPSocket.BeginReceive(bytes, 0, bytes.Length, SocketFlags.None, AddressOf ReceiveCallBack, bytes)
-      Me.CPiBackgroundWorker = New System.ComponentModel.BackgroundWorker
-      With Me.CPiBackgroundWorker
-        .WorkerReportsProgress = True
-        .WorkerSupportsCancellation = True
-        .RunWorkerAsync()
-      End With
+      If Me.CPiBackgroundWorker Is Nothing Then
+        Me.CPiBackgroundWorker = New System.ComponentModel.BackgroundWorker
+        Me.CPiBackgroundWorker.WorkerReportsProgress = True
+        Me.CPiBackgroundWorker.WorkerSupportsCancellation = True
+      End If
+      If Not Me.CPiBackgroundWorker.IsBusy Then
+        Me.CPiBackgroundWorker.RunWorkerAsync()
+      End If
     Catch ex As Exception
       Throw New Exception("Error receiving data", ex)
       _connected = False
@@ -274,8 +279,24 @@ Public Class SocketClient
       While Not Me.CPiBackgroundWorker.CancellationPending
         '--Retreive array of bytes
         Try
-          If CPiTCPSocket.Connected = True Then
+          If CPiTCPSocket Is Nothing Then
+            _connected = False
+            'try to reconnect, wait if it fails
+            Dim _tcpSocket As Socket = New Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
 
+            Try
+              _tcpSocket.Connect(_endPoint)
+              ' _connected = True
+            Catch ex As Exception
+              Throw New Exception("Count not connect", ex)
+            End Try
+            If _tcpSocket.Connected Then
+              Me.CPiTCPSocket = _tcpSocket
+              Me.CPiBackgroundWorker.ReportProgress(eSocketProgressState.Connected, True)
+            Else
+              Thread.Sleep(5000)
+            End If
+          ElseIf CPiTCPSocket.Connected = True Then
             Dim bytes(nPiPacketSize) As Byte
             '--Get number of bytes received and also clean up resources that was used from beginReceive
             Dim numBytes As Int32 = CPiTCPSocket.Receive(bytes, SocketFlags.None)
@@ -327,7 +348,7 @@ Public Class SocketClient
                     'RaiseEvent Receive(args(0))
                     tData.stringData = CStr(args(0))
 
-                    Me.CPiBackgroundWorker.ReportProgress(0, tData)
+                    Me.CPiBackgroundWorker.ReportProgress(eSocketProgressState.DataArrial, tData)
                   Next
                 Else
                   '--Not line mode. Pass the entire string at once with only one event
@@ -337,7 +358,7 @@ Public Class SocketClient
                   'RaiseEvent Receive(args(0))
                   tData.stringData = CStr(args(0))
 
-                  Me.CPiBackgroundWorker.ReportProgress(0, tData)
+                  Me.CPiBackgroundWorker.ReportProgress(eSocketProgressState.DataArrial, tData)
                 End If
                 totalBytes = Nothing
               End If
@@ -348,9 +369,10 @@ Public Class SocketClient
           If IsConnected() = False Then
             '--Raise the connect event
             Dim args() As Object = {False}
-            Me.CPiBackgroundWorker.ReportProgress(0, CStr(args(0)))
+            'Me.CPiBackgroundWorker.ReportProgress(eSocketProgressState.Disconnected, CStr(args(0)))
           End If
         Catch ex As Exception
+          Debug.Print("Viz socket exception: " & Hex(ex.HResult))
           Select Case ex.HResult
             Case 0
             Case Else
@@ -363,13 +385,31 @@ Public Class SocketClient
     End Try
   End Sub
 
+  Private Enum eSocketProgressState
+    DataArrial = 0
+    Connected = 1
+    Disconnected = 2
+  End Enum
+
   Private Sub CPiBackgroundWorker_ProgressChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles CPiBackgroundWorker.ProgressChanged
     Try
       'Ha arribat data!
-      Dim tAux As tyDataArrival = CType(e.UserState, tyDataArrival)
-      RaiseEvent ActivityIncoming()
-      RaiseEvent Receive(tAux.stringData)
-      RaiseEvent ReceiveWithBytes(tAux.stringData, tAux.byteData)
+      Select Case e.ProgressPercentage
+        Case eSocketProgressState.DataArrial
+
+          Dim tAux As tyDataArrival = CType(e.UserState, tyDataArrival)
+          RaiseEvent ActivityIncoming()
+          RaiseEvent Receive(tAux.stringData)
+          RaiseEvent ReceiveWithBytes(tAux.stringData, tAux.byteData)
+        Case eSocketProgressState.Disconnected
+          _connected = False
+          RaiseEvent Connected(False)
+          RaiseEvent ConnectedEx(False, _endPoint)
+        Case eSocketProgressState.Connected
+          _connected = True
+          RaiseEvent Connected(True)
+          RaiseEvent ConnectedEx(True, _endPoint)
+      End Select
     Catch ex As Exception
 
     End Try

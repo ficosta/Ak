@@ -10,6 +10,7 @@ Public Class GraphicsPlayerName
 
   Public Sub New(_match As Match)
     MyBase.New(_match)
+    Me.MustHavePlayer = True
 
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F6, False, False, False, False)
     Me.Scene = Me.InitDefaultScene(1)
@@ -17,6 +18,7 @@ Public Class GraphicsPlayerName
 
   Public Sub New(_match As MatchInfo.Match, player As Player)
     MyBase.New(_match)
+    Me.MustHavePlayer = True
 
     MyBase.Name = "GraphicsPlayerName"
     Me.Player = player
@@ -148,7 +150,8 @@ Public Class GraphicsPlayerName
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name_Cards ", "")
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Number", "")
     Else
-      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & "\" & Team.BadgeName)
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Team.BadgeName, paramType.Image)
+      scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Team.BadgeName, paramType.Geometry)
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name", Player.Name)
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Name_Cards ", Player.Name)
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Number", Player.SquadNo)

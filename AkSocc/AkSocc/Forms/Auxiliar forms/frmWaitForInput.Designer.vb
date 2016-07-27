@@ -51,6 +51,7 @@ Partial Class frmWaitForInput
     Me.MetroLabelPrompt.AutoSize = True
     Me.TableLayoutPanel1.SetColumnSpan(Me.MetroLabelPrompt, 3)
     Me.MetroLabelPrompt.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabelPrompt.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroLabelPrompt.Location = New System.Drawing.Point(3, 0)
     Me.MetroLabelPrompt.Name = "MetroLabelPrompt"
     Me.MetroLabelPrompt.Size = New System.Drawing.Size(584, 109)
@@ -88,6 +89,7 @@ Partial Class frmWaitForInput
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Name = "frmWaitForInput"
     Me.Opacity = 0.85R
+    Me.Resizable = False
     Me.Text = "Wait"
     Me.TopMost = True
     Me.TableLayoutPanel1.ResumeLayout(False)

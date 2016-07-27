@@ -64,6 +64,10 @@ Public Class MatchGoals
     End Try
   End Function
 
+  Public Sub GetFromDB(match_id As Integer)
+    Me.GetFromDB("WHERE MatchID = " & match_id)
+  End Sub
+
   Public Sub GetFromDB(Where As String)
     Try
       List.Clear()
@@ -149,4 +153,26 @@ Public Class MatchGoals
     End Try
     Return (output)
   End Function
+
+
+  Public Sub Reset(match_id As Integer)
+    Try
+      Me.List.Clear()
+      Dim SQL As String = "DELETE FROM MatchGoals WHERE MatchID = " & match_id
+      Dim myCmd As New OleDbCommand(SQL, Config.Instance.OledbConnection)
+      myCmd.ExecuteNonQuery()
+    Catch ex As Exception
+      Debug.Print(ex.ToString)
+    End Try
+  End Sub
+
+  Public Sub SaveGoalsToDB(match_id As Integer)
+    Try
+      For Each myGoal As MatchGoal In Me.List
+        myGoal.Update()
+      Next
+    Catch ex As Exception
+
+    End Try
+  End Sub
 End Class

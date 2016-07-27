@@ -16,10 +16,16 @@ Public Class LoggerComm
   End Property
 #End Region
 
+  Public Event Connected()
+  Public Event Disconnected(msg As String)
+
+  Public Property IsConnected As Boolean = False
+
+
 #Region "Sockets"
 
 #Region "Sockets Jorge"
-  Public Shared Function StartClient() As [Boolean]
+  Public Function StartClient() As [Boolean]
     ' Data buffer for incoming data.
     Dim bytes As Byte() = New Byte(1023) {}
 
@@ -32,6 +38,8 @@ Public Class LoggerComm
 
       ' Connect the socket to the remote endpoint. Catch any errors.
       Try
+        IsConnected = False
+
         sender.Connect(remoteEP)
 
         ' Encode the data string into a byte array.
@@ -46,6 +54,8 @@ Public Class LoggerComm
         ' Release the socket.
         sender.Shutdown(SocketShutdown.Both)
         sender.Close()
+        RaiseEvent Connected()
+        IsConnected = True
         Return True
       Catch ane As ArgumentNullException
         MessageBox.Show("ERROR StartClient: ArgumentNullException : " + ane.ToString())
@@ -53,22 +63,22 @@ Public Class LoggerComm
       Catch se As SocketException
         MessageBox.Show("ERROR StartClient: SocketException : " + se.ToString())
         Return False
-
       Catch e As Exception
         MessageBox.Show("ERROR StartClient: Unexpected exception : " + e.ToString())
         Return False
-
       End Try
     Catch e As Exception
       MessageBox.Show("ERROR StartClient:" + e.ToString())
       Return False
     End Try
-
   End Function
 
-  Public Shared Function SendSocket(value As String) As String
+  Public Function SendSocket(value As String) As String
     Dim msgEcho As String = ""
     If AppSettings.Instance.UseLogger Then
+      If IsConnected = False Then
+        Me.StartClient()
+      End If
 
       ' Data buffer for incoming data.
       Dim bytes As Byte() = New Byte(1023) {}
@@ -102,26 +112,40 @@ Public Class LoggerComm
           sender.Close()
         Catch ane As ArgumentNullException
           AppSettings.Instance.UseLogger = False
-          MessageBox.Show("Connection with LOGGER lost" & vbLf & vbLf & "ArgumentNullException : " + ane.ToString())
+          'MessageBox.Show("Connection with LOGGER lost" & vbLf & vbLf & "ArgumentNullException : " + ane.ToString())
+          If IsConnected Then
+            IsConnected = False
+            RaiseEvent Disconnected("Connection with LOGGER lost" & vbLf & vbLf & "ArgumentNullException : " + ane.ToString())
+          End If
         Catch se As SocketException
           AppSettings.Instance.UseLogger = False
-          MessageBox.Show("Connection with LOGGER lost" & vbLf & vbLf & "SocketException :" + se.ToString())
-
+          'MessageBox.Show("Connection with LOGGER lost" & vbLf & vbLf & "SocketException :" + se.ToString())
+          If IsConnected Then
+            IsConnected = False
+            RaiseEvent Disconnected("Connection with LOGGER lost" & vbLf & vbLf & "SocketException :" + se.ToString())
+          End If
         Catch e As Exception
           AppSettings.Instance.UseLogger = False
-          MessageBox.Show("Connection with LOGGER lost" & vbLf & vbLf & "ERROR :" + e.ToString())
-
+          'MessageBox.Show("Connection with LOGGER lost" & vbLf & vbLf & "ERROR :" + e.ToString())
+          If IsConnected Then
+            IsConnected = False
+            RaiseEvent Disconnected("Connection with LOGGER lost" & vbLf & vbLf & "ERROR :" + e.ToString())
+          End If
         End Try
       Catch e As Exception
         AppSettings.Instance.UseLogger = False
-        MessageBox.Show("ERROR SendSocket" + e.ToString())
+        'MessageBox.Show("ERROR SendSocket" + e.ToString())
+        If IsConnected Then
+          IsConnected = False
+          RaiseEvent Disconnected("ERROR SendSocket" + e.ToString())
+        End If
       End Try
     End If
     Return msgEcho
   End Function
 #End Region
 
-  Public Shared Function SendTeamsInfo(match As MatchInfo.Match) As Boolean
+  Public Function SendTeamsInfo(match As MatchInfo.Match) As Boolean
     Dim bOK As Boolean = False
     Try
       Dim MatchInString As String = "MATCH|" & match.match_id & "|"
@@ -165,7 +189,7 @@ Public Class LoggerComm
   End Function
 
 
-  Public Shared Sub GetTeamsStats(match As MatchInfo.Match)
+  Public Sub GetTeamsStats(match As MatchInfo.Match)
     'Refresh the Match Info
     If AppSettings.Instance.UseLogger Then
       Dim StringHomeStats As String = SendSocket("TEAMSTATSHOME|NadaMas")

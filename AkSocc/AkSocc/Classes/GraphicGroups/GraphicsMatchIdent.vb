@@ -11,6 +11,7 @@ Public Class GraphicsMatchIdent
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F12, False, True, False, False)
     Me.Scene = Me.InitDefaultScene(1)
+    Me.CantHaveClock = True
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String

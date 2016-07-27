@@ -52,6 +52,17 @@ Public Class PlayerViewer
       ShowSelectionState()
     End Set
   End Property
+
+  Private _isSubstitution As Boolean = False
+  Public Property IsSubsitution As Boolean
+    Get
+      Return _isSubstitution
+    End Get
+    Set(value As Boolean)
+      _isSubstitution = value
+      UpdateStatInterface()
+    End Set
+  End Property
 #End Region
 
 #Region "DataBinding"
@@ -75,6 +86,17 @@ Public Class PlayerViewer
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub UpdateNameLabels()
+    Try
+      If Not _player Is Nothing Then
+        Me.LabelDorsal.Text = _player.SquadNo
+        Me.LabelName.Text = _player.PlayerName
+      End If
+    Catch ex As Exception
+
     End Try
   End Sub
 #End Region

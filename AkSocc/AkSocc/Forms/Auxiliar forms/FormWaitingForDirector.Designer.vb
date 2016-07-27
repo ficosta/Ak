@@ -31,6 +31,7 @@ Partial Class FormWaitingForDirector
     Me.ClientSize = New System.Drawing.Size(300, 195)
     Me.Name = "FormWaitingForDirector"
     Me.Opacity = 0.85R
+    Me.Resizable = False
     Me.Text = "Waiting for director"
     Me.ResumeLayout(False)
 

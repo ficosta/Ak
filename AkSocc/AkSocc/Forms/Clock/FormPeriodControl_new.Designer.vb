@@ -23,14 +23,18 @@ Partial Class FormPeriodControl_new
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-    Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-    Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+    Me.UcPeriod4 = New AkSocc.UCPeriod()
     Me.TableLayoutPanelOtherOptions = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroButtonResetMatch = New System.Windows.Forms.Button()
     Me.MetroButtonOverwriteClock = New System.Windows.Forms.Button()
     Me.MetroButtonReloadDataBase = New System.Windows.Forms.Button()
+    Me.UcPeriod3 = New AkSocc.UCPeriod()
+    Me.UcPeriod2 = New AkSocc.UCPeriod()
+    Me.UcPeriod1 = New AkSocc.UCPeriod()
     Me.msmPeriodControl = New MetroFramework.Components.MetroStyleManager(Me.components)
     Me.MetroGridPeriods = New MetroFramework.Controls.MetroGrid()
     Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -39,10 +43,6 @@ Partial Class FormPeriodControl_new
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.LabelOverTime = New System.Windows.Forms.Label()
     Me.NumericUpDownMinutes = New System.Windows.Forms.NumericUpDown()
-    Me.UcPeriod4 = New AkSocc.UCPeriod()
-    Me.UcPeriod3 = New AkSocc.UCPeriod()
-    Me.UcPeriod2 = New AkSocc.UCPeriod()
-    Me.UcPeriod1 = New AkSocc.UCPeriod()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TableLayoutPanelOtherOptions.SuspendLayout()
     CType(Me.msmPeriodControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,6 +70,18 @@ Partial Class FormPeriodControl_new
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel1.Size = New System.Drawing.Size(484, 104)
     Me.TableLayoutPanel1.TabIndex = 2
+    '
+    'UcPeriod4
+    '
+    Me.UcPeriod4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod4.Location = New System.Drawing.Point(291, 3)
+    Me.UcPeriod4.Match = Nothing
+    Me.UcPeriod4.Name = "UcPeriod4"
+    Me.UcPeriod4.Period = Nothing
+    Me.UcPeriod4.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod4.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod4.TabIndex = 3
+    Me.UcPeriod4.UseSelectable = True
     '
     'TableLayoutPanelOtherOptions
     '
@@ -118,6 +130,42 @@ Partial Class FormPeriodControl_new
     Me.MetroButtonReloadDataBase.TabIndex = 2
     Me.MetroButtonReloadDataBase.Text = "Reload data base"
     '
+    'UcPeriod3
+    '
+    Me.UcPeriod3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod3.Location = New System.Drawing.Point(195, 3)
+    Me.UcPeriod3.Match = Nothing
+    Me.UcPeriod3.Name = "UcPeriod3"
+    Me.UcPeriod3.Period = Nothing
+    Me.UcPeriod3.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod3.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod3.TabIndex = 2
+    Me.UcPeriod3.UseSelectable = True
+    '
+    'UcPeriod2
+    '
+    Me.UcPeriod2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod2.Location = New System.Drawing.Point(99, 3)
+    Me.UcPeriod2.Match = Nothing
+    Me.UcPeriod2.Name = "UcPeriod2"
+    Me.UcPeriod2.Period = Nothing
+    Me.UcPeriod2.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod2.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod2.TabIndex = 1
+    Me.UcPeriod2.UseSelectable = True
+    '
+    'UcPeriod1
+    '
+    Me.UcPeriod1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UcPeriod1.Location = New System.Drawing.Point(3, 3)
+    Me.UcPeriod1.Match = Nothing
+    Me.UcPeriod1.Name = "UcPeriod1"
+    Me.UcPeriod1.Period = Nothing
+    Me.UcPeriod1.Size = New System.Drawing.Size(90, 98)
+    Me.UcPeriod1.Style = MetroFramework.MetroColorStyle.White
+    Me.UcPeriod1.TabIndex = 0
+    Me.UcPeriod1.UseSelectable = True
+    '
     'msmPeriodControl
     '
     Me.msmPeriodControl.Owner = Nothing
@@ -131,25 +179,25 @@ Partial Class FormPeriodControl_new
     Me.MetroGridPeriods.BorderStyle = System.Windows.Forms.BorderStyle.None
     Me.MetroGridPeriods.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
     Me.MetroGridPeriods.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-    DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
-    DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
-    DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridPeriods.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+    DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
+    DataGridViewCellStyle7.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.MetroGridPeriods.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
     Me.MetroGridPeriods.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
     Me.MetroGridPeriods.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnID, Me.ColumnType, Me.ColumnText})
     Me.TableLayoutPanel2.SetColumnSpan(Me.MetroGridPeriods, 2)
-    DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
-    DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
-    DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-    Me.MetroGridPeriods.DefaultCellStyle = DataGridViewCellStyle2
+    DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle8.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
+    DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+    Me.MetroGridPeriods.DefaultCellStyle = DataGridViewCellStyle8
     Me.MetroGridPeriods.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroGridPeriods.EnableHeadersVisualStyles = False
     Me.MetroGridPeriods.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
@@ -158,14 +206,14 @@ Partial Class FormPeriodControl_new
     Me.MetroGridPeriods.Name = "MetroGridPeriods"
     Me.MetroGridPeriods.ReadOnly = True
     Me.MetroGridPeriods.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-    DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
-    DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
-    DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridPeriods.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+    DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
+    DataGridViewCellStyle9.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.MetroGridPeriods.RowHeadersDefaultCellStyle = DataGridViewCellStyle9
     Me.MetroGridPeriods.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridPeriods.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
     Me.MetroGridPeriods.Size = New System.Drawing.Size(258, 343)
@@ -229,54 +277,6 @@ Partial Class FormPeriodControl_new
     Me.NumericUpDownMinutes.Name = "NumericUpDownMinutes"
     Me.NumericUpDownMinutes.Size = New System.Drawing.Size(126, 25)
     Me.NumericUpDownMinutes.TabIndex = 6
-    '
-    'UcPeriod4
-    '
-    Me.UcPeriod4.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcPeriod4.Location = New System.Drawing.Point(291, 3)
-    Me.UcPeriod4.Match = Nothing
-    Me.UcPeriod4.Name = "UcPeriod4"
-    Me.UcPeriod4.Period = Nothing
-    Me.UcPeriod4.Size = New System.Drawing.Size(90, 98)
-    Me.UcPeriod4.Style = MetroFramework.MetroColorStyle.White
-    Me.UcPeriod4.TabIndex = 3
-    Me.UcPeriod4.UseSelectable = True
-    '
-    'UcPeriod3
-    '
-    Me.UcPeriod3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcPeriod3.Location = New System.Drawing.Point(195, 3)
-    Me.UcPeriod3.Match = Nothing
-    Me.UcPeriod3.Name = "UcPeriod3"
-    Me.UcPeriod3.Period = Nothing
-    Me.UcPeriod3.Size = New System.Drawing.Size(90, 98)
-    Me.UcPeriod3.Style = MetroFramework.MetroColorStyle.White
-    Me.UcPeriod3.TabIndex = 2
-    Me.UcPeriod3.UseSelectable = True
-    '
-    'UcPeriod2
-    '
-    Me.UcPeriod2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcPeriod2.Location = New System.Drawing.Point(99, 3)
-    Me.UcPeriod2.Match = Nothing
-    Me.UcPeriod2.Name = "UcPeriod2"
-    Me.UcPeriod2.Period = Nothing
-    Me.UcPeriod2.Size = New System.Drawing.Size(90, 98)
-    Me.UcPeriod2.Style = MetroFramework.MetroColorStyle.White
-    Me.UcPeriod2.TabIndex = 1
-    Me.UcPeriod2.UseSelectable = True
-    '
-    'UcPeriod1
-    '
-    Me.UcPeriod1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UcPeriod1.Location = New System.Drawing.Point(3, 3)
-    Me.UcPeriod1.Match = Nothing
-    Me.UcPeriod1.Name = "UcPeriod1"
-    Me.UcPeriod1.Period = Nothing
-    Me.UcPeriod1.Size = New System.Drawing.Size(90, 98)
-    Me.UcPeriod1.Style = MetroFramework.MetroColorStyle.White
-    Me.UcPeriod1.TabIndex = 0
-    Me.UcPeriod1.UseSelectable = True
     '
     'FormPeriodControl_new
     '

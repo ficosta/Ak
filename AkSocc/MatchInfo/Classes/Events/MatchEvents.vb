@@ -113,7 +113,7 @@ Public Class MatchEvents
       'Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       'conn.Open()
 
-      Dim SQL As [String] = "SELECT EventID, MatchID, EventID, TimeSecond, PlayerID, EventType, PlayerSecID"
+      Dim SQL As [String] = "SELECT EventID, MatchID, EventID, TimeSecond, TeamId, PlayerID, EventType, PlayerSecID"
       SQL += " FROM MatchEvents "
       SQL += Where.Trim()
       Dim CmdSQL As New OleDbCommand(SQL, Config.Instance.OledbConnection)
@@ -132,13 +132,16 @@ Public Class MatchEvents
           NewItem.TimeSecond = myReader.GetInt32(3)
         End If
         If Not myReader.IsDBNull(4) Then
-          NewItem.PlayerID = myReader.GetInt32(4)
+          NewItem.TeamID = myReader.GetInt32(4)
         End If
         If Not myReader.IsDBNull(5) Then
-          NewItem.EventType = myReader.GetString(5)
+          NewItem.PlayerID = myReader.GetInt32(5)
         End If
         If Not myReader.IsDBNull(6) Then
-          NewItem.PlayerSecID = myReader.GetInt32(6)
+          NewItem.EventType = myReader.GetString(6)
+        End If
+        If Not myReader.IsDBNull(7) Then
+          NewItem.PlayerSecID = myReader.GetInt32(7)
         End If
         List.Add(NewItem)
       End While
@@ -248,4 +251,25 @@ Public Class MatchEvents
     End Try
     Return (output)
   End Function
+
+  Public Sub Reset(match_id As Integer)
+    Try
+      Me.List.Clear()
+      Dim SQL As String = "DELETE FROM MatchEvents WHERE MatchID = " & match_id
+      Dim myCmd As New OleDbCommand(SQL, Config.Instance.OledbConnection)
+      myCmd.ExecuteNonQuery()
+    Catch ex As Exception
+      Debug.Print(ex.ToString)
+    End Try
+  End Sub
+
+  Public Sub SaveEventsToDB(match_id As Integer)
+    Try
+      For Each myEvent As MatchEvent In Me.List
+        myEvent.Update()
+      Next
+    Catch ex As Exception
+
+    End Try
+  End Sub
 End Class

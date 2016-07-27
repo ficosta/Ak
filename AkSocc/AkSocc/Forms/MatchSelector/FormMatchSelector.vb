@@ -3,8 +3,6 @@
 Public Class FormMatchSelector
   Private _matches As MatchInfo.Matches
 
-  Private _officials As New Officials
-
   Public Property SelectedMatchId As Integer
   Public Property SelectedCompetitionId As Integer
 

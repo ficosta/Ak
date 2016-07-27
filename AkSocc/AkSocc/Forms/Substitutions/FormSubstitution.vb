@@ -90,11 +90,11 @@ Public Class FormSubstitution
         MsgBox("You must select a player to leave the field")
         Exit Sub
       End If
-      If _playerIn.PlayerPosition <= 11 Then
+      If _playerIn.Formation_Pos <= 11 Then
         MsgBox("Player coming IN is already in the field!")
         Exit Sub
       End If
-      If _playerOut.PlayerPosition > 11 Then
+      If _playerOut.Formation_Pos > 11 Then
         MsgBox("Player going OUT is already out of the field!")
         Exit Sub
       End If

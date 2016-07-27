@@ -34,6 +34,8 @@
   Public OptaId As Integer
   Public SeasonCleanSheets As Integer
 
+  Public IsSubstitution As Boolean = False
+
 
 #Region "Variables non from the Player table"
   Private team_name As String = ""
@@ -46,13 +48,13 @@
   Private _name As String = ""
   Public Overloads Property Name As String
     Get
-      If MyBase.Name <> "" Then
+      If Config.Instance.UseArabicNames Then
+        Return Me.ArabicName
+      Else
+        If MyBase.Name <> "" Then
         Return MyBase.Name
       Else
-        If Config.Instance.UseArabicNames Then
-          Return Me.ArabicName
-        Else
-          Return Me.PlayerUniqueName
+        Return Me.PlayerUniqueName
         End If
       End If
     End Get
@@ -228,8 +230,10 @@
         If Not myPlayerReader.IsDBNull(2) Then
           Me.PlayerSurname = myPlayerReader.GetString(2)
         End If
+        CType(Me, StatSubject).Name = Me.PlayerFirstName & " " & Me.PlayerSurname
         If Not myPlayerReader.IsDBNull(3) Then
           Me.PlayerUniqueName = myPlayerReader.GetString(3)
+          CType(Me, StatSubject).Name = Me.PlayerUniqueName
         End If
         If Not myPlayerReader.IsDBNull(6) Then
           Me.TeamID = myPlayerReader.GetInt32(6)

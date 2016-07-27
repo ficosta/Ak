@@ -21,7 +21,7 @@ Public Class GraphicsCrawlFreeText
     End Get
   End Property
 
-  Private _crawlTexts As New FreeTexts()
+  Private _crawlTexts As FreeTexts
 
   Class Step0
     Inherits GraphicStep.GraphicStepDefinition
@@ -48,6 +48,7 @@ Public Class GraphicsCrawlFreeText
       gs.GraphicSteps.Clear()
 
       If graphicStep Is Nothing Then
+        _crawlTexts = New FreeTexts
         For Each freeText As FreeText In _crawlTexts.FreeTextList
           gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(freeText.UID, freeText.EnglishDescription), True, False))
         Next
@@ -87,6 +88,7 @@ Public Class GraphicsCrawlFreeText
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
+    scene.SceneParameters.Add("Crawll_Side_" & gStep & "_Control_OMO_GV_Choose", 0)
     Dim prefix As String
     For i As Integer = 1 To 4
       prefix = "Crawll_Free_Text_Side_" & gStep & "_Field_" & i & "_"

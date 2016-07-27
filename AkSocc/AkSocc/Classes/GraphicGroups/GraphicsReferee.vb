@@ -77,7 +77,7 @@ Public Class GraphicsReferee
           official = Me.Match.Official3
       End Select
       If Not official Is Nothing Then
-        Scene = PrepareReporters(changeStep, official)
+        Scene = PrepareReferees(changeStep, official)
       End If
 
     Catch ex As Exception
@@ -113,7 +113,7 @@ Public Class GraphicsReferee
   End Function
 
 
-  Public Function PrepareReporters(gSide As Integer, official As Official) As Scene
+  Public Function PrepareReferees(gSide As Integer, official As Official) As Scene
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "Lower3rd_Side_1" & gSide & "_"
     Dim subjectPrefix As String = ""

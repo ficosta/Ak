@@ -79,9 +79,17 @@ Public Class Graphics2WayBoxes
     Try
       Me.Scene = InitDefaultScene()
 
-      Dim reporter As NameDotText = _reporters.GetName(CInt(graphicStep.UID))
-      Scene = PrepareReporters(changeStep, reporter, reporter, True)
+      If graphicStep.Depth = 3 Then
 
+        Dim reporter1 As NameDotText = _reporters.GetName(CInt(graphicStep.RootGraphicStep.ChildGraphicStep.UID))
+        Dim reporter2 As NameDotText = _reporters.GetName(CInt(graphicStep.RootGraphicStep.ChildGraphicStep.ChildGraphicStep.UID))
+        Dim sym As Boolean = (graphicStep.UID = Step0.Symmetric.Key)
+
+
+        Scene = PrepareReporters(changeStep, reporter1, reporter2, sym)
+
+
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -111,7 +119,7 @@ Public Class Graphics2WayBoxes
   Public Function PrepareReporters(gSide As Integer, nameDotText1 As NameDotText, nameDotText2 As NameDotText, isSimetric As Boolean) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Try
-      scene.SceneParameters.Add("2WayBox_Simetry_Control_OMO ", IIf(isSimetric, "1", "0"))
+      scene.SceneParameters.Add("2WayBox_Simetry_Control_OMO ", IIf(isSimetric, "0", "1"))
 
       If Not nameDotText1 Is Nothing Then
         scene.SceneParameters.Add("Text_01", VizEncoding(nameDotText1.ArabicTopLineText))

@@ -55,7 +55,7 @@ Public Class GraphicsCrawlResults
 
       If graphicStep Is Nothing Then
         For Each matchDays As MatchDay In Me.OtherMatchDays
-          gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(matchDays.MatchDayID, matchDays.MatchDayName), True, True))
+          gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(matchDays.MatchDayID, matchDays.MatchDayName), True, False))
         Next
       End If
     Catch ex As Exception
@@ -88,10 +88,14 @@ Public Class GraphicsCrawlResults
     scene.SceneName = "gfx_crawl"
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("Crawl_Change_1_2", 20, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 50, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 100, DirectorAction.Dummy)
     scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("Change", 0, DirectorAction.Rewind)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
+
+    scene.SceneParameters.Add("Crawll_Side_" & gStep & "_Control_OMO_GV_Choose", 2)
 
     Return scene
   End Function
@@ -101,30 +105,36 @@ Public Class GraphicsCrawlResults
     Dim scene As Scene = InitDefaultScene()
     Dim prefix As String = "Crawll_Side_" & gSide & "_"
     Dim subjectPrefix As String = ""
+    Dim matchIndex As Integer = 0
     Try
-      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Cho  ose", 2)
+      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 2)
       prefix = "Crawll_Results_Side_" & gSide & "_"
 
 
       If Not matchDay Is Nothing Then
-        scene.SceneParameters.Add(prefix & "Title", matchDay.Name)
-
+        scene.SceneParameters.Add(prefix & "Title", Arabic(matchDay.MatchDayName))
         For Each match As OtherMatch In matchDay.OtherMatches
-          subjectPrefix = prefix & "Match_" & (match.MatchIndex + 1) & "_"
-          If Not match.Match Is Nothing Then
-            scene.SceneParameters.Add(subjectPrefix & "Team_A_Name", match.Match.HomeTeam.Name)
-            scene.SceneParameters.Add(subjectPrefix & "Team_B_Name", match.Match.AwayTeam.Name)
-          Else
-            scene.SceneParameters.Add(subjectPrefix & "Team_A_Name", "")
-            scene.SceneParameters.Add(subjectPrefix & "Team_B_Name", "")
+          If match.IsCrawl Then
+            matchIndex += 1
+            subjectPrefix = prefix & "Match_" & (matchIndex) & "_"
+            If Not match.Match Is Nothing Then
+              scene.SceneParameters.Add(subjectPrefix & "Team_A_Name", match.Match.HomeTeam.Name)
+              scene.SceneParameters.Add(subjectPrefix & "Team_B_Name", match.Match.AwayTeam.Name)
+            Else
+              scene.SceneParameters.Add(subjectPrefix & "Team_A_Name", "")
+              scene.SceneParameters.Add(subjectPrefix & "Team_B_Name", "")
+            End If
+            scene.SceneParameters.Add(subjectPrefix & "Score", match.AwayScore & "-" & match.HomeScore)
           End If
-          scene.SceneParameters.Add(subjectPrefix & "Score", match.AwayScore & "-" & match.HomeScore)
-        Next
-        For index As Integer = matchDay.OtherMatches.Count To 10
-          subjectPrefix = prefix & "Subject_0" & index & "_"
-          scene.SceneParameters.Add(subjectPrefix & "Title", "no match to show")
         Next
       End If
+
+      For index As Integer = matchIndex To 20
+        subjectPrefix = prefix & "Match_" & (index) & "_"
+        scene.SceneParameters.Add(subjectPrefix & "Team_A_Name", "")
+        scene.SceneParameters.Add(subjectPrefix & "Team_B_Name", "")
+        scene.SceneParameters.Add(subjectPrefix & "Score", "")
+      Next
 
     Catch ex As Exception
       WriteToErrorLog(ex)

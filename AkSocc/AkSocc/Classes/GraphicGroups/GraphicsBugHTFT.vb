@@ -70,7 +70,7 @@ Imports MatchInfo
       Dim gs As GraphicStep = graphicStep.RootGraphicStep
       Dim changeStep As Integer = 1
     Try
-      Scene = PrepareBugs(changeStep, graphicStep.Name)
+      Scene = PrepareBugs(changeStep, graphicStep.UID)
     Catch ex As Exception
         WriteToErrorLog(ex)
       End Try
@@ -85,8 +85,8 @@ Imports MatchInfo
       scene.SceneName = "gfx_bugs"
       scene.SceneDirector = "DIR_MAIN$In_Out"
       scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
-      scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 80, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
       scene.SceneDirectorsIn.Add("Popout", 0, DirectorAction.Rewind)
 
       scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)

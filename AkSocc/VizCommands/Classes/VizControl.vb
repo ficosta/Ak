@@ -1949,6 +1949,9 @@ Public Class VizControl
         ePiSocketStateTCP = eSocketState.Connected
         RaiseEvent TCPSocketConnected()
         RaiseEvent TCPSocketConnected_Ex(Me)
+      Else
+        ePiSocketStateTCP = eSocketState.Disconnected
+        RaiseEvent TCPSocketDisconnected()
       End If
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
