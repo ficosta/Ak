@@ -26,17 +26,17 @@
         .Rows.Clear()
 
         If Not Me.GraphicStep Is Nothing AndAlso Not Me.GraphicStep.GraphicSteps Is Nothing Then
-          For Each gStep As GraphicStep In Me.GraphicStep.GraphicSteps
+          For Each gSide As GraphicStep In Me.GraphicStep.GraphicSteps
             Dim item As Integer = 0
-            If gStep.IsSeparator Then
+            If gSide.IsSeparator Then
               item = .Rows.Add("-----")
-            ElseIf gStep.IsTitleOnly Then
-              item = .Rows.Add(gStep.Name & "---")
+            ElseIf gSide.IsTitleOnly Then
+              item = .Rows.Add(gSide.Name & "---")
             Else
-              item = .Rows.Add(gStep.UID, gStep.Name)
+              item = .Rows.Add(gSide.UID, gSide.Name)
             End If
-            '.Rows(item).Visible = Not (gStep.IsSeparator Or gStep.IsTitleOnly)
-            .Rows(item).Frozen = Not (gStep.IsSeparator Or gStep.IsTitleOnly)
+            '.Rows(item).Visible = Not (gSide.IsSeparator Or gSide.IsTitleOnly)
+            .Rows(item).Frozen = Not (gSide.IsSeparator Or gSide.IsTitleOnly)
             .Rows(item).Selected = False
           Next
         End If
@@ -79,13 +79,13 @@
   Private Sub SelectionChanged()
     If _init = False Then Exit Sub
 
-    Dim gStep As GraphicStep = Nothing
+    Dim gSide As GraphicStep = Nothing
     Try
       If MetroGridOptions.SelectedRows.Count > 0 Then
 
-        gStep = Me.GraphicStep.GraphicSteps(MetroGridOptions.SelectedRows(0).Index)
-        gStep.ParentGraphicStep.ChildGraphicStep = gStep
-        RaiseEvent GraphicStepSelected(Me, gStep)
+        gSide = Me.GraphicStep.GraphicSteps(MetroGridOptions.SelectedRows(0).Index)
+        gSide.ParentGraphicStep.ChildGraphicStep = gSide
+        RaiseEvent GraphicStepSelected(Me, gSide)
 
       End If
 
@@ -95,7 +95,7 @@
   End Sub
 
   Private Sub SelectItemAtrow(row As Integer)
-    Dim gStep As GraphicStep = Nothing
+    Dim gSide As GraphicStep = Nothing
     Try
       Dim lastInit As Boolean = _init
       _init = False
@@ -105,9 +105,9 @@
       _init = lastInit
 
 
-      gStep = Me.GraphicStep.GraphicSteps(row)
-      gStep.ParentGraphicStep.ChildGraphicStep = gStep
-      RaiseEvent GraphicStepSelected(Me, gStep)
+      gSide = Me.GraphicStep.GraphicSteps(row)
+      gSide.ParentGraphicStep.ChildGraphicStep = gSide
+      RaiseEvent GraphicStepSelected(Me, gSide)
 
 
     Catch ex As Exception
@@ -123,10 +123,10 @@
           e.Handled = True
           If MetroGridOptions.SelectedRows.Count > 0 Then
 
-            'Dim gStep As GraphicStep = Nothing
-            'gStep = Me.GraphicStep.GraphicSteps(MetroGridOptions.SelectedRows(0).Index)
-            'gStep.ParentGraphicStep.ChildGraphicStep = gStep
-            'RaiseEvent GraphicStepSelected(Me, gStep)
+            'Dim gSide As GraphicStep = Nothing
+            'gSide = Me.GraphicStep.GraphicSteps(MetroGridOptions.SelectedRows(0).Index)
+            'gSide.ParentGraphicStep.ChildGraphicStep = gSide
+            'RaiseEvent GraphicStepSelected(Me, gSide)
             RaiseEvent JumpToNext(Me)
           End If
         Case Keys.Escape

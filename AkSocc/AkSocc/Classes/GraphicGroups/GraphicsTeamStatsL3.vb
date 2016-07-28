@@ -87,7 +87,7 @@ Public Class GraphicsTeamStatsL3
     Return gs
   End Function
 
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle

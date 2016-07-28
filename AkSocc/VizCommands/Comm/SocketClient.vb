@@ -281,21 +281,6 @@ Public Class SocketClient
         Try
           If CPiTCPSocket Is Nothing Then
             _connected = False
-            'try to reconnect, wait if it fails
-            Dim _tcpSocket As Socket = New Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
-
-            Try
-              _tcpSocket.Connect(_endPoint)
-              ' _connected = True
-            Catch ex As Exception
-              Throw New Exception("Count not connect", ex)
-            End Try
-            If _tcpSocket.Connected Then
-              Me.CPiTCPSocket = _tcpSocket
-              Me.CPiBackgroundWorker.ReportProgress(eSocketProgressState.Connected, True)
-            Else
-              Thread.Sleep(5000)
-            End If
           ElseIf CPiTCPSocket.Connected = True Then
             Dim bytes(nPiPacketSize) As Byte
             '--Get number of bytes received and also clean up resources that was used from beginReceive

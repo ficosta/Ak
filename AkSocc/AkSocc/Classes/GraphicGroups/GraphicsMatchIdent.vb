@@ -84,7 +84,7 @@ Public Class GraphicsMatchIdent
   End Function
 
 #Region "Full frame scenes"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
@@ -98,22 +98,22 @@ Public Class GraphicsMatchIdent
 
     scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
 
-    scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo3D.geom ", "")
-    scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo3D.geom ", "")
+    scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", "")
+    scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", "")
 
-    scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo ", "")
-    scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo ", "")
+    scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", "")
+    scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", "")
 
     scene.SceneParameters.Add("Veil_Left_Vis.active ", "0")
     scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
     scene.SceneParameters.Add("Veil_On_Off_Vis.active ", "0")
 
-    scene.SceneParameters.Add("Title_Side_" & gStep & "_Vis.active", "0")
+    scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active", "0")
     scene.SceneParameters.Add("Title_Side_2_Vis.active", "0")
     scene.SceneParameters.Add("Title_Sponsor_Vis.active", "0")
 
 
-    Dim prefix As String = "Side_" & gStep
+    Dim prefix As String = "Side_" & gSide
     scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "1")
     scene.SceneParameters.Add(prefix & "_TeamList_Vis.active", "0")
     scene.SceneParameters.Add(prefix & "_Double_teams_Vis.active", "0")
@@ -125,13 +125,13 @@ Public Class GraphicsMatchIdent
     Return scene
   End Function
 
-  Public Function PrepareMatchIdent(gStep As Integer, logo As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene(gStep)
-    Dim prefix As String = "Match_Ident_Side_" & gStep & "_"
+  Public Function PrepareMatchIdent(gSide As Integer, logo As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide)
+    Dim prefix As String = "Match_Ident_Side_" & gSide & "_"
     Try
 
       scene.SceneParameters.Add(prefix & "Vis.active", "1")
-      scene.SceneParameters.Add("Side_" & gStep & "_" & "_Match_Ident_Vis.active", "1")
+      scene.SceneParameters.Add("Side_" & gSide & "_" & "_Match_Ident_Vis.active", "1")
 
 
 
@@ -149,11 +149,11 @@ Public Class GraphicsMatchIdent
       scene.SceneParameters.Add(prefix & "Header_Control_OMO_TVLOGO", logo)
 
 
-      'scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
-      'scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
+      'scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
+      'scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
 
-      'scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
-      'scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
+      'scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
+      'scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
 
       'scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
       'scene.SceneParameters.Add("Veil_Right_Vis.active ", "1")

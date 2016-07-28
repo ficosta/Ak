@@ -142,13 +142,18 @@ Public Class frmMain
 
   Private Sub ToolStripButtonClassification_Click(sender As Object, e As EventArgs) Handles ToolStripButtonClassification.Click
     Try
+      Dim frm As New FormClassification(_match.competition_id)
+      frm.Show(Me)
+
+
       If _match Is Nothing Then Exit Sub
       Dim _matches As New Matches()
       _matches = Matches.GetMatchesForCompetition(_match.competition_id)
       Dim classification As New Classification(_matches)
-      If Not _otherMatchDays Is Nothing Then
-        _otherMatchDays.ComputeClassification()
-      End If
+
+      For Each team As TeamClassificationForMatchDay In classification.LastAvailableClassificationForMatchDay.TeamClassificationList
+        Debug.Print(team.ToString)
+      Next
 
     Catch ex As Exception
 
@@ -238,8 +243,8 @@ Public Class frmMain
         InitTeamPlayerControls(_match.HomeTeam, _homePlayerControls)
         InitTeamPlayerControls(_match.AwayTeam, _awayPlayerControls)
 
-        Me.LabelAwayTeamName.Text = _match.AwayTeam.ToString
-        Me.LabelHomeTeamName.Text = _match.HomeTeam.ToString
+        Me.LabelAwayTeamName.Text = _match.AwayTeam.TeamAELCaption1Name
+        Me.LabelHomeTeamName.Text = _match.HomeTeam.TeamAELCaption1Name
 
         Me.LabelAwayTeamShortName.Text = _match.AwayTeam.TeamAELTinyName
         Me.LabelHomeTeamShortName.Text = _match.HomeTeam.TeamAELTinyName

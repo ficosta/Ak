@@ -97,17 +97,17 @@ Public Class GraphicGroupCrawlTeams
   End Function
 
 #Region "Crawl scenes"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
     scene.SceneName = "gfx_crawl"
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gSide, 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("Crawl_Change_1_2", 20, DirectorAction.Rewind)
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 50, DirectorAction.Dummy)
-    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 100, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gSide, 100, DirectorAction.Dummy)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
@@ -115,10 +115,10 @@ Public Class GraphicGroupCrawlTeams
 
     scene.SceneDirectorsChangeIn.Add("Change", 0, DirectorAction.Start)
     scene.SceneDirectorsChangeIn.Add("Change", 200, DirectorAction.Dummy)
-    
-    scene.SceneParameters.Add("Crawll_Side_" & gStep & "_Control_OMO_GV_Choose", 2)
 
-    Dim prefix As String = "Side_" & gStep
+    scene.SceneParameters.Add("Crawll_Side_" & gSide & "_Control_OMO_GV_Choose", 2)
+
+    Dim prefix As String = "Side_" & gSide
     scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
     scene.SceneParameters.Add(prefix & "_TeamList_Vis.active", "0")
     scene.SceneParameters.Add(prefix & "_Double_teams_Vis.active", "0")
@@ -134,14 +134,14 @@ Public Class GraphicGroupCrawlTeams
     scene.SceneParameters.Add(prefix & "Team_B_Subtitutes_Title", "")
 
     For i As Integer = 1 To 18
-      prefix = "Crawll_Team_List_Side_" & gStep & "_Team_A_Player_" & i & "_"
+      prefix = "Crawll_Team_List_Side_" & gSide & "_Team_A_Player_" & i & "_"
       scene.SceneParameters.Add(prefix & "Name", "")
       scene.SceneParameters.Add(prefix & "Number", "")
       scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
       scene.SceneParameters.Add(prefix & "Control_OMO_Arrows", "0")
 
 
-      prefix = "Crawll_Team_List_Side_" & gStep & "_Team_B_Player_" & i & "_"
+      prefix = "Crawll_Team_List_Side_" & gSide & "_Team_B_Player_" & i & "_"
       scene.SceneParameters.Add(prefix & "Name", "")
       scene.SceneParameters.Add(prefix & "Number", "")
       scene.SceneParameters.Add(prefix & "Control_OMO_Cards", "0")
@@ -206,7 +206,7 @@ Public Class GraphicGroupCrawlTeams
   End Function
 
   Public Function PrepareDoubleTeam(gSide As Integer, withSubs As Boolean) As Scene
-    Dim scene As Scene = InitDefaultScene()
+    Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = "Crawll_Side_" & gSide & "_"
     Try
       scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", 1)

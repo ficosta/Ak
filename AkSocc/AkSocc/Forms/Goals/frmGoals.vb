@@ -92,7 +92,7 @@ Public Class frmGoals
         If frm.ShowDialog(Me) = DialogResult.OK Then
           'do something
           Me.ShowGoals()
-          _match.SaveMatchGoalsToDB()
+          _match.SaveMatchGoalsToDB(True)
         End If
       End If
     Catch ex As Exception

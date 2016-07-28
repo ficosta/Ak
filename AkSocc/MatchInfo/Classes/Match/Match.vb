@@ -474,26 +474,28 @@ Imports MatchInfo
   End Sub
 
 
-  Public Sub SaveMatchGoalsToDB()
+  Public Sub SaveMatchGoalsToDB(computeGoals As Boolean)
     Try
-      MatchGoals.DeleteMatchGoals(Me.match_id)
-      For Each goal As MatchGoal In Me.MatchGoals
-        ' goal.Update()
-      Next
-      For Each goal As MatchGoal In Me.HomeTeam.MatchGoals
-        goal.Update()
-      Next
-      Me.home_goals = Me.HomeTeam.MatchGoals.Count
-      Me.home_goals = Me.HomeTeam.MatchGoals.Count
+      If computeGoals Then
+        MatchGoals.DeleteMatchGoals(Me.match_id)
+        For Each goal As MatchGoal In Me.MatchGoals
+          ' goal.Update()
+        Next
+        For Each goal As MatchGoal In Me.HomeTeam.MatchGoals
+          goal.Update()
+        Next
+        Me.home_goals = Me.HomeTeam.MatchGoals.Count
+        Me.home_goals = Me.HomeTeam.MatchGoals.Count
 
-      For Each goal As MatchGoal In Me.AwayTeam.MatchGoals
-        goal.Update()
-      Next
-      Me.away_goals = Me.AwayTeam.MatchGoals.Count
-      Me.away_goals = Me.HomeTeam.MatchGoals.Count
+        For Each goal As MatchGoal In Me.AwayTeam.MatchGoals
+          goal.Update()
+        Next
+        Me.away_goals = Me.AwayTeam.MatchGoals.Count
+        Me.away_goals = Me.HomeTeam.MatchGoals.Count
 
-      HomeTeam.WriteStatsToDB()
-      AwayTeam.WriteStatsToDB()
+        HomeTeam.WriteStatsToDB()
+        AwayTeam.WriteStatsToDB()
+      End If
 
 
       Dim sql As String
@@ -508,6 +510,7 @@ Imports MatchInfo
       Debug.Print(ex.ToString)
     End Try
   End Sub
+
 
   Private Sub _team_StatValueChanged(sender As StatSubject, stat As Stat) Handles _homeTeam.StatValueChanged, _awayTeam.StatValueChanged
     'SaveMatch()
@@ -624,7 +627,7 @@ Imports MatchInfo
     Try
       Me.RemoveGoal(Me.HomeTeam, id)
       Me.RemoveGoal(Me.AwayTeam, id)
-      SaveMatchGoalsToDB()
+      SaveMatchGoalsToDB(True)
       res = True
     Catch ex As Exception
 
@@ -650,13 +653,13 @@ Imports MatchInfo
   End Function
 
   Public Function UpdateGoal(goal As MatchGoal) As Boolean
-    SaveMatchGoalsToDB()
+    SaveMatchGoalsToDB(True)
     RaiseEvent ScoreChanged()
     Return True
   End Function
 
   Public Function UpdateGoals() As Boolean
-    SaveMatchGoalsToDB()
+    SaveMatchGoalsToDB(True)
     RaiseEvent ScoreChanged()
     Return True
   End Function
@@ -685,7 +688,7 @@ Imports MatchInfo
       End If
       team.Goals = team.MatchGoals.Count
       Me.LastGoal = goal
-      Me.SaveMatchGoalsToDB()
+      Me.SaveMatchGoalsToDB(True)
       Me.Update()
       RaiseEvent ScoreChanged()
     Catch ex As Exception

@@ -59,7 +59,7 @@ Public Class Stat
   Public Property FromDataBase As Boolean = True
 
   Public Overrides Function ToString() As String
-    Return Me.ValueText
+    Return CStr(Me.Value)
   End Function
 
 #Region "Constructors"

@@ -74,24 +74,24 @@ Public Class GraphicsCrawlFreeText
   End Function
 
 #Region "Crawl scenes"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
     scene.SceneName = "gfx_crawl"
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gSide, 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("Crawl_Change_1_2", 20, DirectorAction.Rewind)
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 50, DirectorAction.Dummy)
-    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 100, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gSide, 100, DirectorAction.Dummy)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
-    scene.SceneParameters.Add("Crawll_Side_" & gStep & "_Control_OMO_GV_Choose", 0)
+    scene.SceneParameters.Add("Crawll_Side_" & gSide & "_Control_OMO_GV_Choose", 0)
     Dim prefix As String
     For i As Integer = 1 To 4
-      prefix = "Crawll_Free_Text_Side_" & gStep & "_Field_" & i & "_"
+      prefix = "Crawll_Free_Text_Side_" & gSide & "_Field_" & i & "_"
 
       scene.SceneParameters.Add(prefix & "Text", "")
       scene.SceneParameters.Add(prefix & "Title", "")

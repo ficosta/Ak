@@ -36,12 +36,12 @@ Public Class FormChoose
   End Sub
 
   Private Sub AcceptGraphic()
-    Dim gstep As GraphicStep = Me.GraphicGroup.graphicStep
+    Dim gSide As GraphicStep = Me.GraphicGroup.graphicStep
 
-    ' If MsgBox("Start graphic?", MsgBoxStyle.YesNo, gstep.ToString) = MsgBoxResult.No Then Exit Sub
-    If frmWaitForInput.ShowWaitDialog(Me, "Start graphic?", gstep.ToString, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
+    ' If MsgBox("Start graphic?", MsgBoxStyle.YesNo, gSide.ToString) = MsgBoxResult.No Then Exit Sub
+    If frmWaitForInput.ShowWaitDialog(Me, "Start graphic?", gSide.ToString, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
 
-    If Not gstep Is Nothing Then
+    If Not gSide Is Nothing Then
       Dim lbl As New System.Windows.Forms.Label
       Dim fWait As frmWait
       lbl.Text = "Wating for animation..."
@@ -114,9 +114,9 @@ Public Class FormChoose
 
         End If
 
-        If gstep.IsTransitionalStep = False Then
+        If gSide.IsTransitionalStep = False Then
           'there's nothing else: we wait for the "out" confirmation and close the dialog
-          frmWaitForInput.ShowWaitDialog(Me, "Waiting for your input to take out the graphic.", gstep.ToString, MessageBoxButtons.OK, MessageBoxIcon.Hand)
+          frmWaitForInput.ShowWaitDialog(Me, "Waiting for your input to take out the graphic.", gSide.ToString, MessageBoxButtons.OK, MessageBoxIcon.Hand)
 
           _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
 
@@ -124,7 +124,7 @@ Public Class FormChoose
           Me.DialogResult = System.Windows.Forms.DialogResult.OK
           Me.Close()
         Else
-          'frmWaitForInput.ShowWaitDialog(Me, "Waiting for your input to take out the graphic.", gstep.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
+          'frmWaitForInput.ShowWaitDialog(Me, "Waiting for your input to take out the graphic.", gSide.Name, MessageBoxButtons.OK, MessageBoxIcon.Hand)
           ' _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
         End If
       Else
@@ -429,12 +429,12 @@ Public Class FormChoose
   End Sub
 
   Private Function SelectStep() As GraphicStep
-    Dim gStep As GraphicStep = Nothing
+    Dim gSide As GraphicStep = Nothing
     Try
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
-    Return gStep
+    Return gSide
   End Function
 #End Region
 

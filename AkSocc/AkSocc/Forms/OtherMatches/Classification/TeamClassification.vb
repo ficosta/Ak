@@ -16,6 +16,14 @@ Public Class TeamClassificationForMatchDay
   Public Property MatchesDrawn As Integer = 0
   Public Property MatchesPlayed As Integer = 0
 
+  Public Enum ePositionChange
+    Down = 0
+    Up
+    Equal
+  End Enum
+  Public Property PositionChange As ePositionChange = ePositionChange.Equal
+  Public Property FormerPosition As Integer = 0
+
   Public ReadOnly Property GoalAverage As Integer
     Get
       Return GoalsFor - GoalsAgainst
@@ -45,6 +53,14 @@ Public Class TeamClassificationForMatchDay
     Return res
   End Function
 
+  Public Overrides Function ToString() As String
+    If Me.Team Is Nothing Then
+      Return MyBase.ToString()
+    Else
+      Return Me.Position & ". " & Team.TeamAELCaption1Name & vbCrLf & vbTab & Me.Points & "." & vbTab & Me.MatchesWon & "." & vbTab & Me.MatchesDrawn & "." & vbTab & Me.MatchesLost & "." & vbTab & GoalsFor & "." & vbTab & GoalsAgainst & "." & vbTab & GoalAverage & "."
+    End If
+
+  End Function
 End Class
 
 Public Class TeamClassificationForCompetition
@@ -146,4 +162,5 @@ Public Class TeamClassificationForCompetition
       WriteToErrorLog(ex)
     End Try
   End Sub
+
 End Class

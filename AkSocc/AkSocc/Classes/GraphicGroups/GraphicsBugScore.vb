@@ -69,7 +69,7 @@ Public Class GraphicsBugScore
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Dim changeStep As Integer = 1
     Try
-      Scene = InitDefaultScene()
+      Scene = InitDefaultScene(changeStep)
 
       Dim goal As MatchGoal = Match.MatchGoals.GetGoal(CInt(graphicStep.UID))
       Scene = PrepareBugs(changeStep, goal)
@@ -81,7 +81,7 @@ Public Class GraphicsBugScore
   End Function
 
 #Region "Crawl scenes"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
@@ -89,7 +89,7 @@ Public Class GraphicsBugScore
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 50, DirectorAction.Dummy)
-    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gSide, 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("Popout", 0, DirectorAction.Rewind)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)

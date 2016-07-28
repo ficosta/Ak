@@ -58,4 +58,43 @@ Public Class ClassificationForMatchDay
     End Try
     Return res
   End Function
+
+
+
+  Public Function HasResults() As Boolean
+    Dim res As Boolean = False
+
+    If TeamClassificationList.Count > 0 Then
+      For Each teamClass As TeamClassificationForMatchDay In TeamClassificationList
+        If Not teamClass Is Nothing AndAlso Not teamClass.Match Is Nothing Then
+          If teamClass.Match.home_goals >= 0 Then
+            res = True
+            Exit For
+          End If
+        End If
+      Next
+    End If
+
+    Return res
+  End Function
+
+  Public Function getTeamClassificationForMatchDay(teamID As Integer) As TeamClassificationForMatchDay
+    Dim res As TeamClassificationForMatchDay = Nothing
+    Try
+      For Each team As TeamClassificationForMatchDay In Me.TeamClassificationList
+        If team.Team.TeamID = teamID Then
+          res = team
+          Exit For
+        End If
+      Next
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
+  Public Overrides Function ToString() As String
+    Return "Match day " & Me.MatchDay
+  End Function
+
 End Class

@@ -34,8 +34,8 @@ Partial Class UCOtherMatch
     Me.ButtonUP = New System.Windows.Forms.Button()
     Me.ButtonDOWN = New System.Windows.Forms.Button()
     Me.MetroTabControlLineType = New MetroFramework.Controls.MetroTabControl()
-    Me.TabPageMatch = New System.Windows.Forms.TabPage()
     Me.TabPageBlank = New System.Windows.Forms.TabPage()
+    Me.TabPageMatch = New System.Windows.Forms.TabPage()
     Me.TabPageTitle = New System.Windows.Forms.TabPage()
     Me.PanelTextTitle = New System.Windows.Forms.Panel()
     Me.MetroTextBoxTitle = New System.Windows.Forms.TextBox()
@@ -219,6 +219,14 @@ Partial Class UCOtherMatch
     Me.MetroTabControlLineType.TabIndex = 1
     Me.MetroTabControlLineType.UseSelectable = True
     '
+    'TabPageBlank
+    '
+    Me.TabPageBlank.Location = New System.Drawing.Point(4, 19)
+    Me.TabPageBlank.Name = "TabPageBlank"
+    Me.TabPageBlank.Size = New System.Drawing.Size(761, 30)
+    Me.TabPageBlank.TabIndex = 0
+    Me.TabPageBlank.Text = "Blank"
+    '
     'TabPageMatch
     '
     Me.TabPageMatch.Controls.Add(Me.TableLayoutPanelMatch)
@@ -227,14 +235,6 @@ Partial Class UCOtherMatch
     Me.TabPageMatch.Size = New System.Drawing.Size(761, 30)
     Me.TabPageMatch.TabIndex = 1
     Me.TabPageMatch.Text = "Match"
-    '
-    'TabPageBlank
-    '
-    Me.TabPageBlank.Location = New System.Drawing.Point(4, 19)
-    Me.TabPageBlank.Name = "TabPageBlank"
-    Me.TabPageBlank.Size = New System.Drawing.Size(761, 30)
-    Me.TabPageBlank.TabIndex = 0
-    Me.TabPageBlank.Text = "Blank"
     '
     'TabPageTitle
     '

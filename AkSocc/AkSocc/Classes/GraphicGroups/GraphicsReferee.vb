@@ -66,7 +66,7 @@ Public Class GraphicsReferee
     Dim changeStep As Integer = 1
     Dim official As Official = Nothing
     Try
-      Scene = InitDefaultScene()
+      Scene = InitDefaultScene(changeStep)
 
       Select Case graphicStep.UID
         Case Step0.Official1
@@ -114,7 +114,7 @@ Public Class GraphicsReferee
 
 
   Public Function PrepareReferees(gSide As Integer, official As Official) As Scene
-    Dim scene As Scene = InitDefaultScene()
+    Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = "Lower3rd_Side_1" & gSide & "_"
     Dim subjectPrefix As String = ""
     Try

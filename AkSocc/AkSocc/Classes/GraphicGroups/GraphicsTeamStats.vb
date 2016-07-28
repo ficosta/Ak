@@ -110,7 +110,7 @@ Public Class GraphicsTeamStats
 
 
 #Region "Crawl scenes"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
@@ -122,7 +122,7 @@ Public Class GraphicsTeamStats
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
-    Dim changeAnim As String = "Bottom_change_" & ((gStep + 1) Mod 2 + 1) & "_" & ((gStep) Mod 2 + 1)
+    Dim changeAnim As String = "Bottom_change_" & ((gSide + 1) Mod 2 + 1) & "_" & ((gSide) Mod 2 + 1)
     'changeAnim = "Bottom_change_1_2"
 
     'scene.SceneDirectorsChangeOut.Add(changeAnim, 0, DirectorAction.Rewind)
@@ -133,7 +133,7 @@ Public Class GraphicsTeamStats
 
     scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose", "3")
     scene.SceneParameters.Add("Lower3rd_Player_Badge_Control_OMO_GV_Choose", "0")
-    scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Control_OMO_GV_Choose", 2)
+    scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Control_OMO_GV_Choose", 2)
 
     Return scene
   End Function
@@ -145,36 +145,36 @@ Public Class GraphicsTeamStats
   End Enum
 
 
-  Private Function PrepareTeamStat(gStep As Integer, stat_name As String, home_team_value As String, away_team_value As String, Optional statType As eStatType = eStatType.Stat) As Scene
-    Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "LeftFramer_Title_Stats_Side_" & gStep & "_"
+  Private Function PrepareTeamStat(gSide As Integer, stat_name As String, home_team_value As String, away_team_value As String, Optional statType As eStatType = eStatType.Stat) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide)
+    Dim prefix As String = "LeftFramer_Title_Stats_Side_" & gSide & "_"
     Dim subjectPrefix As String = ""
     Dim nSubject As Integer = 1
     Try
 
-      scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Text_Text_02", VizEncoding(Arabic(stat_name)))
-      scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Control_OMO_GV_Choose ", "2")
+      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_02", VizEncoding(Arabic(stat_name)))
+      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Control_OMO_GV_Choose ", "2")
 
       scene.SceneParameters.Add("Lower3rd_Data_Team_01_Name", Me.Match.HomeTeam.Name)
       scene.SceneParameters.Add("Lower3rd_Data_Team_02_Name", Me.Match.AwayTeam.Name)
 
       Select Case statType
         Case eStatType.Stat
-          scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Left_Control_OMO_GV_Chosse", 0)
-          scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Right_Control_OMO_GV_Chosse", 0)
+          scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Left_Control_OMO_GV_Chosse", 0)
+          scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Right_Control_OMO_GV_Chosse", 0)
 
           scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Left_Score_Text", away_team_value)
           scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Right_Score_Text", home_team_value)
 
         Case eStatType.YellowCard
-          scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Left_Control_OMO_GV_Chosse", 1)
-          scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Right_Control_OMO_GV_Chosse", 1)
+          scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Left_Control_OMO_GV_Chosse", 1)
+          scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Right_Control_OMO_GV_Chosse", 1)
 
           scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Left_Yellow_Card_Number", away_team_value)
           scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Right_Yellow_Card_Number", home_team_value)
         Case eStatType.RedCard
-          scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Left_Control_OMO_GV_Chosse", 2)
-          scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Right_Control_OMO_GV_Chosse", 2)
+          scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Left_Control_OMO_GV_Chosse", 2)
+          scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Subject_" & Strings.Format(nSubject, "00") & "_Right_Control_OMO_GV_Chosse", 2)
 
           scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Left_Red_Card_Number", away_team_value)
           scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Subject_01_Right_Red_Card_Number", home_team_value)

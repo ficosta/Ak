@@ -77,7 +77,7 @@ Public Class GraphicsTeamStaff
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Dim changeStep As Integer = 1
     Try
-      Scene = InitDefaultScene()
+      Scene = InitDefaultScene(changeStep)
 
       Dim staff As TeamStaff = _teamStaffs.GetStaff(CInt(graphicStep.UID))
       Scene = PrepareMatchScores(changeStep, staff)
@@ -89,7 +89,7 @@ Public Class GraphicsTeamStaff
   End Function
 
 #Region "Lower 3rd"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
@@ -97,7 +97,7 @@ Public Class GraphicsTeamStaff
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
-    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gSide, 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("BottomChange", 0, DirectorAction.Rewind)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
@@ -117,7 +117,7 @@ Public Class GraphicsTeamStaff
 
 
   Public Function PrepareMatchScores(gSide As Integer, teamStaff As TeamStaff) As Scene
-    Dim scene As Scene = InitDefaultScene()
+    Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = ""
     Dim subjectPrefix As String = ""
     Try

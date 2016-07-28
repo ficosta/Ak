@@ -219,7 +219,7 @@ Public Class GraphicsPlayerStats
 
 
   Public Function PreparePlayerStat(gSide As Integer, stat_text As String) As Scene
-    Dim scene As Scene = InitDefaultScene()
+    Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = "LeftFramer_Title_Stats_Side_" & gSide & "_"
     Dim subjectPrefix As String = ""
     Try

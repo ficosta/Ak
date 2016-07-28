@@ -208,9 +208,9 @@ Public Class UCOtherMatch
           Me.MetroComboBoxChannelLogo.Text = ""
           Me.MetroComboBoxMatchStatus.Text = ""
         Else
+          Me.MetroComboBoxMatch.Text = _otherMatch.Match.ToString
           Me.MetroTextBoxScoreHome.Text = _otherMatch.HomeScore
           Me.MetroTextBoxScoreAway.Text = _otherMatch.AwayScore
-          Me.MetroComboBoxMatch.Text = _otherMatch.Match.ToString
 
           If _otherMatch.LogoChannel = 0 Then
             Me.MetroComboBoxChannelLogo.Text = ""
@@ -310,6 +310,7 @@ Public Class UCOtherMatch
   End Sub
 
   Private Sub MetroTextBoxScoreHome_TextChanged(sender As Object, e As EventArgs) Handles MetroTextBoxScoreHome.TextChanged
+    If _initializing Then Exit Sub
     Try
       If Not _otherMatch Is Nothing Then
         _otherMatch.HomeScore = MetroTextBoxScoreHome.Text
@@ -320,6 +321,7 @@ Public Class UCOtherMatch
   End Sub
 
   Private Sub MetroTextBoxScoreAway_TextChanged(sender As Object, e As EventArgs) Handles MetroTextBoxScoreAway.TextChanged
+    If _initializing Then Exit Sub
     Try
       If Not _otherMatch Is Nothing Then
         _otherMatch.AwayScore = MetroTextBoxScoreAway.Text

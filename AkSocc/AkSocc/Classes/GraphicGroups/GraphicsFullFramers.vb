@@ -72,8 +72,8 @@ Public Class GraphicGroupFullFramers
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueTableTop))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueTableBottom))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.OtherMatchScores))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FullFrameStats, True, False))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueComparison, True, False))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FullFrameStats, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueComparison, True, True))
       Else
         Select Case graphicStep.Depth
           Case 1
@@ -124,29 +124,32 @@ Public Class GraphicGroupFullFramers
   End Function
 
 #Region "Full frame scenes"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
     scene.SceneName = "gfx_Full_Frame"
     scene.SceneDirector = "anim_Full_Frame$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 95, DirectorAction.Dummy)
+    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 105, DirectorAction.Dummy)
     scene.SceneDirectorsIn.Add("Change_1_2", 0, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add("Title_change_1_2", 0, DirectorAction.Rewind)
 
     scene.SceneDirectorsChangeIn.Add("Change_1_2", 0, DirectorAction.Start)
     scene.SceneDirectorsChangeIn.Add("Change_1_2", 200, DirectorAction.Dummy)
+    scene.SceneDirectorsChangeIn.Add("Title_change_1_2", 0, DirectorAction.Start)
+    scene.SceneDirectorsChangeIn.Add("Title_change_1_2", 200, DirectorAction.Dummy)
 
     scene.SceneParameters.Add("Veil_On_Off_Vis.active", "1")
     scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
     scene.SceneParameters.Add("Veil_Left_Vis.active ", "0")
     scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
 
-    scene.SceneParameters.Add("Title_Side_" & gStep & "_Centre_Text", "")
-    scene.SceneParameters.Add("Title_Side_" & gStep & "_Left_Text", "")
-    scene.SceneParameters.Add("Title_Side_" & gStep & "_Right_Text", "")
+    scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", "")
+    scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
+    scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
 
-    Dim prefix As String = "Side_" & gStep
+    Dim prefix As String = "Side_" & gSide
     scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
     scene.SceneParameters.Add(prefix & "_TeamList_Vis.active", "0")
     scene.SceneParameters.Add(prefix & "_Double_teams_Vis.active", "0")
@@ -158,23 +161,23 @@ Public Class GraphicGroupFullFramers
     Return scene
   End Function
 
-  Public Function PrepareMatchIdent(gStep As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "TeamList_Step_" & gStep & "_"
-    scene.SceneParameters.Add("Side_" & gStep & "_Match_Ident_Vis.active", "1")
+  Public Function PrepareMatchIdent(gSide As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide)
+    Dim prefix As String = "TeamList_Step_" & gSide & "_"
+    scene.SceneParameters.Add("Side_" & gSide & "_Match_Ident_Vis.active", "1")
     Try
-      scene.SceneParameters.Add("Side_" & gStep & "_Control_Omo", 0)
+      scene.SceneParameters.Add("Side_" & gSide & "_Control_Omo", 0)
     Catch ex As Exception
 
     End Try
     Return scene
   End Function
 
-  Public Function PrepareTeamList(gStep As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "TeamList_Step_" & gStep & "_"
+  Public Function PrepareTeamList(gSide As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide)
+    Dim prefix As String = "TeamList_Step_" & gSide & "_"
     Try
-      scene.SceneParameters.Add("Side_" & gStep & "_TeamList_Vis.active", "1")
+      scene.SceneParameters.Add("Side_" & gSide & "_TeamList_Vis.active", "1")
       scene.SceneParameters.Add(prefix & "TeamList_Vis.active", 1)
     Catch ex As Exception
 
@@ -182,11 +185,11 @@ Public Class GraphicGroupFullFramers
     Return scene
   End Function
 
-  Public Function PrepareDoubleTeams(gStep As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "TeamList_Step_" & gStep & "_"
+  Public Function PrepareDoubleTeams(gSide As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide)
+    Dim prefix As String = "TeamList_Step_" & gSide & "_"
     Try
-      scene.SceneParameters.Add("Side_" & gStep & "_Double_teams_Vis.active", "1")
+      scene.SceneParameters.Add("Side_" & gSide & "_Double_teams_Vis.active", "1")
       scene.SceneParameters.Add(prefix & "Double_teams_Vis.active", 1)
     Catch ex As Exception
 
@@ -194,44 +197,50 @@ Public Class GraphicGroupFullFramers
     Return scene
   End Function
 
-  Private _classification As Classification = Nothing
+  Private _classificationUpdated As Boolean = False
+  Private _classification As Classification
   Private Sub ComputeClassification()
     If Me.Match Is Nothing Then Exit Sub
-    If _classification Is Nothing Then
+    If _classificationUpdated = False Then
       Dim _matches As MatchInfo.Matches
       _matches = MatchInfo.Matches.GetMatchesForCompetition(Me.Match.competition_id)
       _classification = New Classification(_matches)
     End If
+    _classificationUpdated = False
 
   End Sub
 
-  Public Function PrepareLeagueTable(gStep As Integer, isTop As Boolean, showArrows As Boolean) As Scene
-    Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "Side_" & gStep & "_"
+  Public Function PrepareLeagueTable(gSide As Integer, isTop As Boolean, showArrows As Boolean) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide)
+    Dim prefix As String = "Side_" & gSide & "_"
     Dim posIndex As Integer = 0
     Dim linesPerPage As Integer = 7
     Try
 
       ComputeClassification()
 
-      scene.SceneParameters.Add("Side_" & gStep & "_Table_Vis.active", "1")
+      scene.SceneParameters.Add("Side_" & gSide & "_Table_Vis.active", "1")
       scene.SceneParameters.Add(prefix & "Table_Vis.active", 1)
 
-      scene.SceneParameters.Add(prefix & "Centre_Text", Arabic("LEAGUE TABLE")) '0 full bar, 1 split bar
-      scene.SceneParameters.Add(prefix & "Right_Text", "") '0 full bar, 1 split bar
-      scene.SceneParameters.Add(prefix & "Left_Text", "") '0 full bar, 1 split bar
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", Arabic("LEAGUE TABLE"))
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
 
-      scene.SceneParameters.Add("Badge_Left_Side_" & gStep & "_Vis.active ", "0")
-      scene.SceneParameters.Add("Badge_Right_Side_" & gStep & "_Vis.active ", "0")
+      scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "0")
+      scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
 
       scene.SceneParameters.Add("Veil_Left_Vis.active ", "0")
       scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
 
+      Dim classificationForDay As ClassificationForMatchDay = _classification.LastAvailableClassificationForMatchDay
+
 
       For index As Integer = 0 To linesPerPage - 1
         posIndex = linesPerPage * IIf(isTop, 0, 1) + index
-        Dim teamClassification As TeamClassificationForMatchDay = _classification.LastAvailableClassificationForMatchDay.TeamClassificationList(posIndex)
-        prefix = "Table_Side_" & gStep & "_Subject_" & Strings.Format(index + 1, "00") & "_"
+        Dim teamClassification As TeamClassificationForMatchDay = classificationForDay.TeamClassificationList(posIndex)
+        prefix = "Table_Side_" & gSide & "_Subject_" & Strings.Format(index + 1, "00") & "_"
 
         scene.SceneParameters.Add(prefix & "Number", (posIndex + 1))
         scene.SceneParameters.Add(prefix & "Name", teamClassification.Team.Name)
@@ -239,7 +248,7 @@ Public Class GraphicGroupFullFramers
         '1 up
         '2 line
         If showArrows Then
-          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "3")
+          scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", CInt(teamClassification.PositionChange))
         Else
           scene.SceneParameters.Add(prefix & "Control_OMO_Arrow", "3")
         End If
@@ -256,30 +265,30 @@ Public Class GraphicGroupFullFramers
     Return scene
   End Function
 
-  Public Function PrepareMatchScores(gStep As Integer, matchDay As MatchDay) As Scene
-    Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "Side_" & gStep & "_"
+  Public Function PrepareMatchScores(gSide As Integer, matchDay As MatchDay) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide)
+    Dim prefix As String = "Side_" & gSide & "_"
     Dim subjectPrefix As String = ""
     Try
       scene.SceneParameters.Add(prefix & "Results_Vis.active", "1")
 
-      scene.SceneParameters.Add("Badge_Left_Side_" & gStep & "_Vis.active ", "0")
-      scene.SceneParameters.Add("Badge_Right_Side_" & gStep & "_Vis.active ", "0")
+      scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "0")
+      scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
 
       scene.SceneParameters.Add("Veil_Left_Vis.active ", "0")
       scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
 
 
-      prefix = "Title_Side_" & gStep & "_"
-      scene.SceneParameters.Add(prefix & "Control_OMO_GV_Choose", "0") '0 full bar, 1 split bar
-      scene.SceneParameters.Add(prefix & "Centre_Text", Arabic(matchDay.MatchDayName)) '0 full bar, 1 split bar
-      scene.SceneParameters.Add(prefix & "Right_Text", "") '0 full bar, 1 split bar
-      scene.SceneParameters.Add(prefix & "Left_Text", "") '0 full bar, 1 split bar
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", Arabic(matchDay.MatchDayName))
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
 
-      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo3D.geom ", "", paramType.Geometry)
-      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo3D.geom ", "", paramType.Geometry)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", "", paramType.Geometry)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", "", paramType.Geometry)
 
-      prefix = "Results_Side_" & gStep & "_"
+      prefix = "Results_Side_" & gSide & "_"
 
       If Not matchDay Is Nothing Then
         Dim matchIndex As Integer = 1
@@ -335,9 +344,9 @@ Public Class GraphicGroupFullFramers
     Return scene
   End Function
 
-  Public Function PrepareFormation(gStep As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "Side_" & gStep & "_"
+  Public Function PrepareFormation(gSide As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide)
+    Dim prefix As String = "Side_" & gSide & "_"
     Try
       scene.SceneParameters.Add(prefix & "Formation_Vis.active", "1")
     Catch ex As Exception
@@ -347,30 +356,33 @@ Public Class GraphicGroupFullFramers
   End Function
 
 
-  Public Function PrepareFullFrameStats(gStep As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "Stats_Side_" & gStep & "_"
+  Public Function PrepareFullFrameStats(gSide As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide)
+    Dim prefix As String = "Stats_Side_" & gSide & "_"
     Dim posIndex As Integer = 0
     Dim linesPerPage As Integer = 7
     Try
 
-      scene.SceneParameters.Add("Side_" & gStep & "_Stats_Vis.active", "1")
+      scene.SceneParameters.Add("Side_" & gSide & "_Stats_Vis.active", "1")
 
-      scene.SceneParameters.Add("Side_" & gStep & "_Centre_Text", Me.Match.AwayTeam.Goals & "-" & Me.Match.AwayTeam.Goals) '0 full bar, 1 split bar
-      scene.SceneParameters.Add("Side_" & gStep & "_Right_Text", Me.Match.HomeTeam.Name) '0 full bar, 1 split bar
-      scene.SceneParameters.Add("Side_" & gStep & "_Left_Text", Me.Match.AwayTeam.Name) '0 full bar, 1 split bar
-
-      scene.SceneParameters.Add("Badge_Left_Side_" & gStep & "_Vis.active ", "1")
-      scene.SceneParameters.Add("Badge_Right_Side_" & gStep & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "1")
 
       scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
       scene.SceneParameters.Add("Veil_Right_Vis.active ", "1")
 
-      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
-      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
 
-      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
-      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
+
+
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", "") ' Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", Me.Match.HomeTeam.Name)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", Me.Match.AwayTeam.Name)
 
       Dim statNames() As String = {"Shots", "Shots_on_target", "Corners", "Offsides", "Fouls", "Cards", "Possession"}
       Dim stat As MatchInfo.Stat
@@ -435,8 +447,8 @@ Public Class GraphicGroupFullFramers
       'scene.SceneParameters.Add(prefix & "Right_Text", "") '0 full bar, 1 split bar
       'scene.SceneParameters.Add(prefix & "Left_Text", "") '0 full bar, 1 split bar
 
-      'scene.SceneParameters.Add("Badge_Left_Side_" & gStep & "_Vis.active ", "0")
-      'scene.SceneParameters.Add("Badge_Right_Side_" & gStep & "_Vis.active ", "0")
+      'scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "0")
+      'scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
 
       'scene.SceneParameters.Add("Veil_Left_Vis.active ", "0")
       'scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
@@ -449,21 +461,34 @@ Public Class GraphicGroupFullFramers
   End Function
 
 
-  Public Function PrepareLeagueComparisson(gStep As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene()
-    Dim prefix As String = "Stats_Side_" & gStep & "_"
+  Public Function PrepareLeagueComparisson(gSide As Integer) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide)
+    Dim prefix As String = "Stats_Side_" & gSide & "_"
     Dim posIndex As Integer = 0
     Dim linesPerPage As Integer = 7
     Try
 
-      scene.SceneParameters.Add("Side_" & gStep & "_Stats_Vis.active", "1")
+      scene.SceneParameters.Add("Side_" & gSide & "_Stats_Vis.active", "1")
 
-
-      scene.SceneParameters.Add("Badge_Left_Side_" & gStep & "_Vis.active ", "1")
-      scene.SceneParameters.Add("Badge_Right_Side_" & gStep & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "1")
 
       scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
       scene.SceneParameters.Add("Veil_Right_Vis.active ", "1")
+
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
+
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
+
+
+
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", "") ' Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", Me.Match.HomeTeam.Name)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", Me.Match.AwayTeam.Name)
 
       ComputeClassification()
 
@@ -486,36 +511,50 @@ Public Class GraphicGroupFullFramers
       scene.SceneParameters.Add(subjectPrefix & "Team_Name", Arabic("POSITION"))
       scene.SceneParameters.Add(subjectPrefix & "Right_Score_Text", homeTeamClassification.Position)
       scene.SceneParameters.Add(subjectPrefix & "Left_Score_Text", awayTeamClassification.Position)
+      scene.SceneParameters.Add(subjectPrefix & "Right_Control_OMO_GV_Chosse", "0")
+      scene.SceneParameters.Add(subjectPrefix & "Left_Control_OMO_GV_Chosse", "0")
       'GAmes played
       subjectPrefix = prefix & "Subject_02_"
       scene.SceneParameters.Add(subjectPrefix & "Team_Name", Arabic("GAMES"))
       scene.SceneParameters.Add(subjectPrefix & "Right_Score_Text", homeTeamClassification.MatchesPlayed)
       scene.SceneParameters.Add(subjectPrefix & "Left_Score_Text", awayTeamClassification.MatchesPlayed)
+      scene.SceneParameters.Add(subjectPrefix & "Right_Control_OMO_GV_Chosse", "0")
+      scene.SceneParameters.Add(subjectPrefix & "Left_Control_OMO_GV_Chosse", "0")
       'Wins
       subjectPrefix = prefix & "Subject_03_"
       scene.SceneParameters.Add(subjectPrefix & "Team_Name", Arabic("WINS"))
       scene.SceneParameters.Add(subjectPrefix & "Right_Score_Text", homeTeamClassification.MatchesWon)
       scene.SceneParameters.Add(subjectPrefix & "Left_Score_Text", awayTeamClassification.MatchesWon)
+      scene.SceneParameters.Add(subjectPrefix & "Right_Control_OMO_GV_Chosse", "0")
+      scene.SceneParameters.Add(subjectPrefix & "Left_Control_OMO_GV_Chosse", "0")
       'Draws
       subjectPrefix = prefix & "Subject_04_"
       scene.SceneParameters.Add(subjectPrefix & "Team_Name", Arabic("DRAWS"))
       scene.SceneParameters.Add(subjectPrefix & "Right_Score_Text", homeTeamClassification.MatchesDrawn)
       scene.SceneParameters.Add(subjectPrefix & "Left_Score_Text", awayTeamClassification.MatchesDrawn)
+      scene.SceneParameters.Add(subjectPrefix & "Right_Control_OMO_GV_Chosse", "0")
+      scene.SceneParameters.Add(subjectPrefix & "Left_Control_OMO_GV_Chosse", "0")
       'Lost
       subjectPrefix = prefix & "Subject_05_"
       scene.SceneParameters.Add(subjectPrefix & "Team_Name", Arabic("LOST"))
       scene.SceneParameters.Add(subjectPrefix & "Right_Score_Text", homeTeamClassification.MatchesLost)
       scene.SceneParameters.Add(subjectPrefix & "Left_Score_Text", awayTeamClassification.MatchesLost)
+      scene.SceneParameters.Add(subjectPrefix & "Right_Control_OMO_GV_Chosse", "0")
+      scene.SceneParameters.Add(subjectPrefix & "Left_Control_OMO_GV_Chosse", "0")
       'Goal difference
       subjectPrefix = prefix & "Subject_06_"
       scene.SceneParameters.Add(subjectPrefix & "Team_Name", Arabic("GOAL DIFFERENCE"))
       scene.SceneParameters.Add(subjectPrefix & "Right_Score_Text", homeTeamClassification.GoalAverage)
       scene.SceneParameters.Add(subjectPrefix & "Left_Score_Text", awayTeamClassification.GoalAverage)
+      scene.SceneParameters.Add(subjectPrefix & "Right_Control_OMO_GV_Chosse", "0")
+      scene.SceneParameters.Add(subjectPrefix & "Left_Control_OMO_GV_Chosse", "0")
       'points
       subjectPrefix = prefix & "Subject_07_"
       scene.SceneParameters.Add(subjectPrefix & "Team_Name", Arabic("POINTS"))
       scene.SceneParameters.Add(subjectPrefix & "Right_Score_Text", homeTeamClassification.Points)
       scene.SceneParameters.Add(subjectPrefix & "Left_Score_Text", awayTeamClassification.Points)
+      scene.SceneParameters.Add(subjectPrefix & "Right_Control_OMO_GV_Chosse", "0")
+      scene.SceneParameters.Add(subjectPrefix & "Left_Control_OMO_GV_Chosse", "0")
 
 
     Catch ex As Exception

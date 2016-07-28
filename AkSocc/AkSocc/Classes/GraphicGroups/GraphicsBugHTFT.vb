@@ -78,7 +78,7 @@ Imports MatchInfo
     End Function
 
 #Region "Crawl scenes"
-    Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+    Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
       Dim scene As New Scene()
 
       scene.VizLayer = SceneLayer.Middle
@@ -86,7 +86,7 @@ Imports MatchInfo
       scene.SceneDirector = "DIR_MAIN$In_Out"
       scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 80, DirectorAction.Dummy)
-    scene.SceneDirectorsIn.Add("Crawl_Side_" & gStep, 0, DirectorAction.Start)
+    scene.SceneDirectorsIn.Add("Crawl_Side_" & gSide, 0, DirectorAction.Start)
       scene.SceneDirectorsIn.Add("Popout", 0, DirectorAction.Rewind)
 
       scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)

@@ -268,8 +268,14 @@ Public Class frmMatchDay
     Try
       ' SerializeObjectToFile(AppSettings.Instance.OtherMatchesPath, _otherMatchDays)
       _otherMatchDays.SaveXML()
+
+      If MsgBox("Update data base?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+        _otherMatchDays.SaveResultsToDataBase()
+      End If
+
       Me.DialogResult = DialogResult.OK
       Me.Close()
+
     Catch ex As Exception
 
       WriteToErrorLog(ex)

@@ -114,7 +114,7 @@ Public Class GraphicsTeamCaptions
   End Function
 
 #Region "Team scenes"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
@@ -136,23 +136,23 @@ Public Class GraphicsTeamCaptions
 
 
     If Not Me.Match Is Nothing Then
-      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
-      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
 
-      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
-      scene.SceneParameters.Add("Badge_Side_" & gStep & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
 
     End If
 
-    scene.SceneParameters.Add("Badge_Left_Side_" & gStep & "_Vis.active ", "1")
-    scene.SceneParameters.Add("Badge_Right_Side_" & gStep & "_Vis.active ", "1")
+    scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
+    scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "1")
 
     scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
     scene.SceneParameters.Add("Veil_Right_Vis.active ", "1")
 
 
 
-    Dim prefix As String = "Side_" & gStep
+    Dim prefix As String = "Side_" & gSide
     scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
     scene.SceneParameters.Add(prefix & "_TeamList_Vis.active", "0")
     scene.SceneParameters.Add(prefix & "_Double_teams_Vis.active", "0")
@@ -165,7 +165,7 @@ Public Class GraphicsTeamCaptions
   End Function
 
   Public Function PrepareTeam(gSide As Integer, team As Team) As Scene
-    Dim scene As Scene = InitDefaultScene()
+    Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = ""
     Dim subjectPrefix As String = ""
     Try
@@ -224,7 +224,7 @@ Public Class GraphicsTeamCaptions
   End Function
 
   Public Function PrepareTeamFormation(gSide As Integer, team As Team) As Scene
-    Dim scene As Scene = InitDefaultScene()
+    Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = ""
     Dim subjectPrefix As String = ""
     Try
@@ -283,7 +283,7 @@ Public Class GraphicsTeamCaptions
   End Function
 
   Public Function PrepareTeamMiniFormation(gSide As Integer, team As Team) As Scene
-    Dim scene As Scene = InitDefaultScene()
+    Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = ""
     Dim subjectPrefix As String = ""
     Try
@@ -359,7 +359,7 @@ Public Class GraphicsTeamCaptions
   End Function
 
   Public Function PrepareDoubleTeam(gSide As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene()
+    Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = ""
     Dim subjectPrefix As String = ""
     Try

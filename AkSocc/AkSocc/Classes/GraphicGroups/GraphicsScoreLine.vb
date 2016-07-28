@@ -135,7 +135,7 @@ Public Class GraphicsScoreLine
     Return Me.Scene
   End Function
 
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
@@ -155,7 +155,7 @@ Public Class GraphicsScoreLine
   End Function
 
   Private Sub PrepareResultScene(ByRef scene As Scene, home_Result As String, away_Result As String, period_Name As String, show_Logo As Boolean)
-    scene = InitDefaultScene()
+    scene = InitDefaultScene(1)
 
     Try
       Dim gSide As Integer = 1
@@ -200,7 +200,7 @@ Public Class GraphicsScoreLine
   End Sub
 
   Private Sub PrepareResultSceneWithIdent(ByRef scene As Scene, home_Result As String, away_Result As String, show_Logo As Boolean)
-    scene = InitDefaultScene()
+    scene = InitDefaultScene(1)
 
     Try
       Dim gSide As Integer = 1

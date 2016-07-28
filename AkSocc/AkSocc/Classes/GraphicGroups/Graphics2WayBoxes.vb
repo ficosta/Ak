@@ -77,7 +77,7 @@ Public Class Graphics2WayBoxes
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Dim changeStep As Integer = 1
     Try
-      Me.Scene = InitDefaultScene()
+      Me.Scene = InitDefaultScene(changeStep)
 
       If graphicStep.Depth = 3 Then
 
@@ -97,7 +97,7 @@ Public Class Graphics2WayBoxes
   End Function
 
 #Region "Crawl scenes"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle

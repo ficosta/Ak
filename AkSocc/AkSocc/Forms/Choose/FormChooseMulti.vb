@@ -56,7 +56,7 @@ Public Class FormChooseMulti
   Private Sub AcceptGraphic()
     Try
 
-      ' If MsgBox("Start graphic?", MsgBoxStyle.YesNo, gstep.ToString) = MsgBoxResult.No Then Exit Sub
+      ' If MsgBox("Start graphic?", MsgBoxStyle.YesNo, gSide.ToString) = MsgBoxResult.No Then Exit Sub
       If frmWaitForInput.ShowWaitDialog(Me, "Start graphic?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
       Dim fWait As frmWait
 
@@ -143,12 +143,12 @@ Public Class FormChooseMulti
 
 #Region "Graphic steps"
   Private Function SelectStep() As GraphicStep
-    Dim gStep As GraphicStep = Nothing
+    Dim gSide As GraphicStep = Nothing
     Try
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
-    Return gStep
+    Return gSide
   End Function
 #End Region
 

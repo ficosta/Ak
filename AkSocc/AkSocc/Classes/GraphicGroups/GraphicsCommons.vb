@@ -70,7 +70,7 @@ Public Class GraphicsCommons
   End Function
 
 #Region "Crawl scenes"
-  Private Function InitDefaultScene(Optional gStep As Integer = 1) As Scene
+  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
@@ -83,7 +83,7 @@ Public Class GraphicsCommons
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
     scene.SceneParameters.Add("Lower3rd_Data_Single_Subject_Control_OMO_Icon", "1")
-    scene.SceneParameters.Add("Lower3rd_Side_" & gStep & "_Bottom_Bar_Control_OMO_GV_Choose", "0")
+    scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Control_OMO_GV_Choose", "0")
 
     scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose ", "0")
     'scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Control_OMO_GV_Choose", "0")
@@ -95,7 +95,7 @@ Public Class GraphicsCommons
 
 
   Public Function PrepareCommons(gSide As Integer) As Scene
-    Dim scene As Scene = InitDefaultScene()
+    Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = "Lower3rd_Side_1" & gSide & "_"
     Dim subjectPrefix As String = ""
     Try
