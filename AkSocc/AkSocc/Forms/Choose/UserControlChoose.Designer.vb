@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class UserControlChoose
   Inherits System.Windows.Forms.UserControl
 
@@ -27,11 +27,9 @@ Partial Class UserControlChoose
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanelAll = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroGridOptions = New MetroFramework.Controls.MetroGrid()
+    Me.LabelFocus = New System.Windows.Forms.Label()
     Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.LabelFocus = New System.Windows.Forms.Label()
     Me.TableLayoutPanelAll.SuspendLayout()
     CType(Me.MetroGridOptions, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
@@ -39,7 +37,7 @@ Partial Class UserControlChoose
     'TableLayoutPanelAll
     '
     Me.TableLayoutPanelAll.ColumnCount = 1
-    Me.TableLayoutPanelAll.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelAll.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanelAll.Controls.Add(Me.MetroGridOptions, 0, 0)
     Me.TableLayoutPanelAll.Controls.Add(Me.LabelFocus, 0, 1)
     Me.TableLayoutPanelAll.Dock = System.Windows.Forms.DockStyle.Fill
@@ -48,7 +46,6 @@ Partial Class UserControlChoose
     Me.TableLayoutPanelAll.Name = "TableLayoutPanelAll"
     Me.TableLayoutPanelAll.RowCount = 2
     Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
     Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
     Me.TableLayoutPanelAll.Size = New System.Drawing.Size(574, 453)
     Me.TableLayoutPanelAll.TabIndex = 0
@@ -62,7 +59,6 @@ Partial Class UserControlChoose
     Me.MetroGridOptions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
     Me.MetroGridOptions.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
     Me.MetroGridOptions.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridOptions.BorderStyle = System.Windows.Forms.BorderStyle.None
     Me.MetroGridOptions.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
     Me.MetroGridOptions.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
     DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -74,7 +70,7 @@ Partial Class UserControlChoose
     DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
     Me.MetroGridOptions.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
     Me.MetroGridOptions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-    Me.MetroGridOptions.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4})
+    Me.MetroGridOptions.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
     DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
     DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
     DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -101,6 +97,7 @@ Partial Class UserControlChoose
     DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
     Me.MetroGridOptions.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+    Me.MetroGridOptions.RowHeadersVisible = False
     Me.MetroGridOptions.RowHeadersWidth = 10
     Me.MetroGridOptions.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridOptions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -111,37 +108,6 @@ Partial Class UserControlChoose
     Me.MetroGridOptions.Size = New System.Drawing.Size(568, 427)
     Me.MetroGridOptions.TabIndex = 7
     '
-    'Column1
-    '
-    Me.Column1.HeaderText = "Column1"
-    Me.Column1.Name = "Column1"
-    Me.Column1.ReadOnly = True
-    Me.Column1.Visible = False
-    Me.Column1.Width = 76
-    '
-    'Column2
-    '
-    Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.Column2.HeaderText = "Column2"
-    Me.Column2.Name = "Column2"
-    Me.Column2.ReadOnly = True
-    Me.Column2.Width = 76
-    '
-    'Column3
-    '
-    Me.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.Column3.HeaderText = "Column3"
-    Me.Column3.Name = "Column3"
-    Me.Column3.ReadOnly = True
-    Me.Column3.Width = 76
-    '
-    'Column4
-    '
-    Me.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.Column4.HeaderText = "Column4"
-    Me.Column4.Name = "Column4"
-    Me.Column4.ReadOnly = True
-    '
     'LabelFocus
     '
     Me.LabelFocus.AutoSize = True
@@ -151,6 +117,21 @@ Partial Class UserControlChoose
     Me.LabelFocus.TabIndex = 8
     Me.LabelFocus.Text = "Focus"
     Me.LabelFocus.Visible = False
+    '
+    'Column1
+    '
+    Me.Column1.HeaderText = "Column1"
+    Me.Column1.Name = "Column1"
+    Me.Column1.ReadOnly = True
+    Me.Column1.Visible = False
+    Me.Column1.Width = 57
+    '
+    'Column2
+    '
+    Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.Column2.HeaderText = "Options"
+    Me.Column2.Name = "Column2"
+    Me.Column2.ReadOnly = True
     '
     'UserControlChoose
     '
@@ -168,9 +149,7 @@ Partial Class UserControlChoose
 
   Friend WithEvents TableLayoutPanelAll As TableLayoutPanel
   Friend WithEvents MetroGridOptions As MetroFramework.Controls.MetroGrid
+  Friend WithEvents LabelFocus As Label
   Friend WithEvents Column1 As DataGridViewTextBoxColumn
   Friend WithEvents Column2 As DataGridViewTextBoxColumn
-  Friend WithEvents Column3 As DataGridViewTextBoxColumn
-  Friend WithEvents Column4 As DataGridViewTextBoxColumn
-  Friend WithEvents LabelFocus As Label
 End Class

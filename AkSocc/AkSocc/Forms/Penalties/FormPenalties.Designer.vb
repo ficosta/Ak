@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmPenalties
-  Inherits MetroFramework.Forms.MetroForm
+  Inherits System.Windows.Forms.Form
 
   'Form overrides dispose to clean up the component list.
   <System.Diagnostics.DebuggerNonUserCode()> _
@@ -98,7 +98,7 @@ Partial Class frmPenalties
     '
     Me.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnClear.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnClear.Location = New System.Drawing.Point(365, 158)
+    Me.btnClear.Location = New System.Drawing.Point(363, 107)
     Me.btnClear.Name = "btnClear"
     Me.btnClear.Size = New System.Drawing.Size(107, 54)
     Me.btnClear.TabIndex = 240
@@ -109,7 +109,7 @@ Partial Class frmPenalties
     '
     Me.btnNext10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnNext10.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnNext10.Location = New System.Drawing.Point(478, 158)
+    Me.btnNext10.Location = New System.Drawing.Point(476, 107)
     Me.btnNext10.Name = "btnNext10"
     Me.btnNext10.Size = New System.Drawing.Size(87, 54)
     Me.btnNext10.TabIndex = 239
@@ -120,7 +120,7 @@ Partial Class frmPenalties
     '
     Me.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnUndo.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnUndo.Location = New System.Drawing.Point(617, 158)
+    Me.btnUndo.Location = New System.Drawing.Point(615, 107)
     Me.btnUndo.Name = "btnUndo"
     Me.btnUndo.Size = New System.Drawing.Size(87, 54)
     Me.btnUndo.TabIndex = 238
@@ -131,7 +131,7 @@ Partial Class frmPenalties
     '
     Me.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnExit.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnExit.Location = New System.Drawing.Point(710, 158)
+    Me.btnExit.Location = New System.Drawing.Point(708, 107)
     Me.btnExit.Name = "btnExit"
     Me.btnExit.Size = New System.Drawing.Size(87, 54)
     Me.btnExit.TabIndex = 237
@@ -143,7 +143,7 @@ Partial Class frmPenalties
     Me.btnMiss.BackColor = System.Drawing.Color.LightSalmon
     Me.btnMiss.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnMiss.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnMiss.Location = New System.Drawing.Point(113, 158)
+    Me.btnMiss.Location = New System.Drawing.Point(111, 107)
     Me.btnMiss.Name = "btnMiss"
     Me.btnMiss.Size = New System.Drawing.Size(87, 54)
     Me.btnMiss.TabIndex = 236
@@ -155,7 +155,7 @@ Partial Class frmPenalties
     Me.btnGoal.BackColor = System.Drawing.Color.PaleGreen
     Me.btnGoal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnGoal.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnGoal.Location = New System.Drawing.Point(11, 158)
+    Me.btnGoal.Location = New System.Drawing.Point(9, 107)
     Me.btnGoal.Name = "btnGoal"
     Me.btnGoal.Size = New System.Drawing.Size(87, 54)
     Me.btnGoal.TabIndex = 235
@@ -168,7 +168,7 @@ Partial Class frmPenalties
     Me.AwayPenal20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal20.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal20.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal20.Location = New System.Drawing.Point(771, 123)
+    Me.AwayPenal20.Location = New System.Drawing.Point(769, 72)
     Me.AwayPenal20.Name = "AwayPenal20"
     Me.AwayPenal20.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal20.TabIndex = 234
@@ -180,7 +180,7 @@ Partial Class frmPenalties
     Me.HomePenal20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal20.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal20.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal20.Location = New System.Drawing.Point(771, 91)
+    Me.HomePenal20.Location = New System.Drawing.Point(769, 40)
     Me.HomePenal20.Name = "HomePenal20"
     Me.HomePenal20.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal20.TabIndex = 233
@@ -192,7 +192,7 @@ Partial Class frmPenalties
     Me.label51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label51.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label51.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label51.Location = New System.Drawing.Point(771, 60)
+    Me.label51.Location = New System.Drawing.Point(769, 9)
     Me.label51.Name = "label51"
     Me.label51.Size = New System.Drawing.Size(26, 26)
     Me.label51.TabIndex = 232
@@ -205,7 +205,7 @@ Partial Class frmPenalties
     Me.AwayPenal19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal19.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal19.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal19.Location = New System.Drawing.Point(742, 123)
+    Me.AwayPenal19.Location = New System.Drawing.Point(740, 72)
     Me.AwayPenal19.Name = "AwayPenal19"
     Me.AwayPenal19.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal19.TabIndex = 231
@@ -217,7 +217,7 @@ Partial Class frmPenalties
     Me.HomePenal19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal19.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal19.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal19.Location = New System.Drawing.Point(742, 91)
+    Me.HomePenal19.Location = New System.Drawing.Point(740, 40)
     Me.HomePenal19.Name = "HomePenal19"
     Me.HomePenal19.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal19.TabIndex = 230
@@ -229,7 +229,7 @@ Partial Class frmPenalties
     Me.label54.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label54.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label54.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label54.Location = New System.Drawing.Point(742, 60)
+    Me.label54.Location = New System.Drawing.Point(740, 9)
     Me.label54.Name = "label54"
     Me.label54.Size = New System.Drawing.Size(26, 26)
     Me.label54.TabIndex = 229
@@ -242,7 +242,7 @@ Partial Class frmPenalties
     Me.AwayPenal18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal18.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal18.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal18.Location = New System.Drawing.Point(713, 123)
+    Me.AwayPenal18.Location = New System.Drawing.Point(711, 72)
     Me.AwayPenal18.Name = "AwayPenal18"
     Me.AwayPenal18.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal18.TabIndex = 228
@@ -254,7 +254,7 @@ Partial Class frmPenalties
     Me.HomePenal18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal18.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal18.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal18.Location = New System.Drawing.Point(713, 91)
+    Me.HomePenal18.Location = New System.Drawing.Point(711, 40)
     Me.HomePenal18.Name = "HomePenal18"
     Me.HomePenal18.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal18.TabIndex = 227
@@ -266,7 +266,7 @@ Partial Class frmPenalties
     Me.label57.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label57.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label57.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label57.Location = New System.Drawing.Point(713, 60)
+    Me.label57.Location = New System.Drawing.Point(711, 9)
     Me.label57.Name = "label57"
     Me.label57.Size = New System.Drawing.Size(26, 26)
     Me.label57.TabIndex = 226
@@ -279,7 +279,7 @@ Partial Class frmPenalties
     Me.AwayPenal17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal17.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal17.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal17.Location = New System.Drawing.Point(684, 123)
+    Me.AwayPenal17.Location = New System.Drawing.Point(682, 72)
     Me.AwayPenal17.Name = "AwayPenal17"
     Me.AwayPenal17.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal17.TabIndex = 225
@@ -291,7 +291,7 @@ Partial Class frmPenalties
     Me.HomePenal17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal17.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal17.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal17.Location = New System.Drawing.Point(684, 91)
+    Me.HomePenal17.Location = New System.Drawing.Point(682, 40)
     Me.HomePenal17.Name = "HomePenal17"
     Me.HomePenal17.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal17.TabIndex = 224
@@ -303,7 +303,7 @@ Partial Class frmPenalties
     Me.label60.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label60.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label60.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label60.Location = New System.Drawing.Point(684, 60)
+    Me.label60.Location = New System.Drawing.Point(682, 9)
     Me.label60.Name = "label60"
     Me.label60.Size = New System.Drawing.Size(26, 26)
     Me.label60.TabIndex = 223
@@ -316,7 +316,7 @@ Partial Class frmPenalties
     Me.AwayPenal16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal16.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal16.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal16.Location = New System.Drawing.Point(655, 123)
+    Me.AwayPenal16.Location = New System.Drawing.Point(653, 72)
     Me.AwayPenal16.Name = "AwayPenal16"
     Me.AwayPenal16.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal16.TabIndex = 222
@@ -328,7 +328,7 @@ Partial Class frmPenalties
     Me.HomePenal16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal16.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal16.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal16.Location = New System.Drawing.Point(655, 91)
+    Me.HomePenal16.Location = New System.Drawing.Point(653, 40)
     Me.HomePenal16.Name = "HomePenal16"
     Me.HomePenal16.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal16.TabIndex = 221
@@ -340,7 +340,7 @@ Partial Class frmPenalties
     Me.label63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label63.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label63.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label63.Location = New System.Drawing.Point(655, 60)
+    Me.label63.Location = New System.Drawing.Point(653, 9)
     Me.label63.Name = "label63"
     Me.label63.Size = New System.Drawing.Size(26, 26)
     Me.label63.TabIndex = 220
@@ -353,7 +353,7 @@ Partial Class frmPenalties
     Me.AwayPenal15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal15.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal15.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal15.Location = New System.Drawing.Point(626, 123)
+    Me.AwayPenal15.Location = New System.Drawing.Point(624, 72)
     Me.AwayPenal15.Name = "AwayPenal15"
     Me.AwayPenal15.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal15.TabIndex = 219
@@ -365,7 +365,7 @@ Partial Class frmPenalties
     Me.HomePenal15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal15.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal15.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal15.Location = New System.Drawing.Point(626, 91)
+    Me.HomePenal15.Location = New System.Drawing.Point(624, 40)
     Me.HomePenal15.Name = "HomePenal15"
     Me.HomePenal15.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal15.TabIndex = 218
@@ -377,7 +377,7 @@ Partial Class frmPenalties
     Me.label36.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label36.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label36.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label36.Location = New System.Drawing.Point(626, 60)
+    Me.label36.Location = New System.Drawing.Point(624, 9)
     Me.label36.Name = "label36"
     Me.label36.Size = New System.Drawing.Size(26, 26)
     Me.label36.TabIndex = 217
@@ -390,7 +390,7 @@ Partial Class frmPenalties
     Me.AwayPenal14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal14.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal14.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal14.Location = New System.Drawing.Point(597, 123)
+    Me.AwayPenal14.Location = New System.Drawing.Point(595, 72)
     Me.AwayPenal14.Name = "AwayPenal14"
     Me.AwayPenal14.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal14.TabIndex = 216
@@ -402,7 +402,7 @@ Partial Class frmPenalties
     Me.HomePenal14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal14.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal14.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal14.Location = New System.Drawing.Point(597, 91)
+    Me.HomePenal14.Location = New System.Drawing.Point(595, 40)
     Me.HomePenal14.Name = "HomePenal14"
     Me.HomePenal14.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal14.TabIndex = 215
@@ -414,7 +414,7 @@ Partial Class frmPenalties
     Me.label39.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label39.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label39.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label39.Location = New System.Drawing.Point(597, 60)
+    Me.label39.Location = New System.Drawing.Point(595, 9)
     Me.label39.Name = "label39"
     Me.label39.Size = New System.Drawing.Size(26, 26)
     Me.label39.TabIndex = 214
@@ -427,7 +427,7 @@ Partial Class frmPenalties
     Me.AwayPenal13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal13.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal13.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal13.Location = New System.Drawing.Point(568, 123)
+    Me.AwayPenal13.Location = New System.Drawing.Point(566, 72)
     Me.AwayPenal13.Name = "AwayPenal13"
     Me.AwayPenal13.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal13.TabIndex = 213
@@ -439,7 +439,7 @@ Partial Class frmPenalties
     Me.HomePenal13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal13.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal13.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal13.Location = New System.Drawing.Point(568, 91)
+    Me.HomePenal13.Location = New System.Drawing.Point(566, 40)
     Me.HomePenal13.Name = "HomePenal13"
     Me.HomePenal13.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal13.TabIndex = 212
@@ -451,7 +451,7 @@ Partial Class frmPenalties
     Me.label42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label42.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label42.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label42.Location = New System.Drawing.Point(568, 60)
+    Me.label42.Location = New System.Drawing.Point(566, 9)
     Me.label42.Name = "label42"
     Me.label42.Size = New System.Drawing.Size(26, 26)
     Me.label42.TabIndex = 211
@@ -464,7 +464,7 @@ Partial Class frmPenalties
     Me.AwayPenal12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal12.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal12.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal12.Location = New System.Drawing.Point(539, 123)
+    Me.AwayPenal12.Location = New System.Drawing.Point(537, 72)
     Me.AwayPenal12.Name = "AwayPenal12"
     Me.AwayPenal12.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal12.TabIndex = 210
@@ -476,7 +476,7 @@ Partial Class frmPenalties
     Me.HomePenal12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal12.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal12.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal12.Location = New System.Drawing.Point(539, 91)
+    Me.HomePenal12.Location = New System.Drawing.Point(537, 40)
     Me.HomePenal12.Name = "HomePenal12"
     Me.HomePenal12.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal12.TabIndex = 209
@@ -488,7 +488,7 @@ Partial Class frmPenalties
     Me.label45.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label45.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label45.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label45.Location = New System.Drawing.Point(539, 60)
+    Me.label45.Location = New System.Drawing.Point(537, 9)
     Me.label45.Name = "label45"
     Me.label45.Size = New System.Drawing.Size(26, 26)
     Me.label45.TabIndex = 208
@@ -501,7 +501,7 @@ Partial Class frmPenalties
     Me.AwayPenal11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal11.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal11.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal11.Location = New System.Drawing.Point(510, 123)
+    Me.AwayPenal11.Location = New System.Drawing.Point(508, 72)
     Me.AwayPenal11.Name = "AwayPenal11"
     Me.AwayPenal11.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal11.TabIndex = 207
@@ -513,7 +513,7 @@ Partial Class frmPenalties
     Me.HomePenal11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal11.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal11.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal11.Location = New System.Drawing.Point(510, 91)
+    Me.HomePenal11.Location = New System.Drawing.Point(508, 40)
     Me.HomePenal11.Name = "HomePenal11"
     Me.HomePenal11.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal11.TabIndex = 206
@@ -525,7 +525,7 @@ Partial Class frmPenalties
     Me.label48.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label48.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label48.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label48.Location = New System.Drawing.Point(510, 60)
+    Me.label48.Location = New System.Drawing.Point(508, 9)
     Me.label48.Name = "label48"
     Me.label48.Size = New System.Drawing.Size(26, 26)
     Me.label48.TabIndex = 205
@@ -538,7 +538,7 @@ Partial Class frmPenalties
     Me.AwayPenal10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal10.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal10.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal10.Location = New System.Drawing.Point(481, 123)
+    Me.AwayPenal10.Location = New System.Drawing.Point(479, 72)
     Me.AwayPenal10.Name = "AwayPenal10"
     Me.AwayPenal10.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal10.TabIndex = 204
@@ -550,7 +550,7 @@ Partial Class frmPenalties
     Me.HomePenal10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal10.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal10.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal10.Location = New System.Drawing.Point(481, 91)
+    Me.HomePenal10.Location = New System.Drawing.Point(479, 40)
     Me.HomePenal10.Name = "HomePenal10"
     Me.HomePenal10.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal10.TabIndex = 203
@@ -562,7 +562,7 @@ Partial Class frmPenalties
     Me.label21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label21.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label21.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label21.Location = New System.Drawing.Point(481, 60)
+    Me.label21.Location = New System.Drawing.Point(479, 9)
     Me.label21.Name = "label21"
     Me.label21.Size = New System.Drawing.Size(26, 26)
     Me.label21.TabIndex = 202
@@ -575,7 +575,7 @@ Partial Class frmPenalties
     Me.AwayPenal9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal9.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal9.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal9.Location = New System.Drawing.Point(452, 123)
+    Me.AwayPenal9.Location = New System.Drawing.Point(450, 72)
     Me.AwayPenal9.Name = "AwayPenal9"
     Me.AwayPenal9.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal9.TabIndex = 201
@@ -587,7 +587,7 @@ Partial Class frmPenalties
     Me.HomePenal9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal9.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal9.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal9.Location = New System.Drawing.Point(452, 91)
+    Me.HomePenal9.Location = New System.Drawing.Point(450, 40)
     Me.HomePenal9.Name = "HomePenal9"
     Me.HomePenal9.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal9.TabIndex = 200
@@ -599,7 +599,7 @@ Partial Class frmPenalties
     Me.label24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label24.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label24.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label24.Location = New System.Drawing.Point(452, 60)
+    Me.label24.Location = New System.Drawing.Point(450, 9)
     Me.label24.Name = "label24"
     Me.label24.Size = New System.Drawing.Size(26, 26)
     Me.label24.TabIndex = 199
@@ -612,7 +612,7 @@ Partial Class frmPenalties
     Me.AwayPenal8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal8.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal8.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal8.Location = New System.Drawing.Point(423, 123)
+    Me.AwayPenal8.Location = New System.Drawing.Point(421, 72)
     Me.AwayPenal8.Name = "AwayPenal8"
     Me.AwayPenal8.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal8.TabIndex = 198
@@ -624,7 +624,7 @@ Partial Class frmPenalties
     Me.HomePenal8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal8.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal8.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal8.Location = New System.Drawing.Point(423, 91)
+    Me.HomePenal8.Location = New System.Drawing.Point(421, 40)
     Me.HomePenal8.Name = "HomePenal8"
     Me.HomePenal8.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal8.TabIndex = 197
@@ -636,7 +636,7 @@ Partial Class frmPenalties
     Me.label27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label27.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label27.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label27.Location = New System.Drawing.Point(423, 60)
+    Me.label27.Location = New System.Drawing.Point(421, 9)
     Me.label27.Name = "label27"
     Me.label27.Size = New System.Drawing.Size(26, 26)
     Me.label27.TabIndex = 196
@@ -649,7 +649,7 @@ Partial Class frmPenalties
     Me.AwayPenal7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal7.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal7.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal7.Location = New System.Drawing.Point(394, 123)
+    Me.AwayPenal7.Location = New System.Drawing.Point(392, 72)
     Me.AwayPenal7.Name = "AwayPenal7"
     Me.AwayPenal7.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal7.TabIndex = 195
@@ -661,7 +661,7 @@ Partial Class frmPenalties
     Me.HomePenal7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal7.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal7.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal7.Location = New System.Drawing.Point(394, 91)
+    Me.HomePenal7.Location = New System.Drawing.Point(392, 40)
     Me.HomePenal7.Name = "HomePenal7"
     Me.HomePenal7.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal7.TabIndex = 194
@@ -673,7 +673,7 @@ Partial Class frmPenalties
     Me.label30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label30.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label30.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label30.Location = New System.Drawing.Point(394, 60)
+    Me.label30.Location = New System.Drawing.Point(392, 9)
     Me.label30.Name = "label30"
     Me.label30.Size = New System.Drawing.Size(26, 26)
     Me.label30.TabIndex = 193
@@ -686,7 +686,7 @@ Partial Class frmPenalties
     Me.AwayPenal6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal6.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal6.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal6.Location = New System.Drawing.Point(365, 123)
+    Me.AwayPenal6.Location = New System.Drawing.Point(363, 72)
     Me.AwayPenal6.Name = "AwayPenal6"
     Me.AwayPenal6.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal6.TabIndex = 192
@@ -698,7 +698,7 @@ Partial Class frmPenalties
     Me.HomePenal6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal6.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal6.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal6.Location = New System.Drawing.Point(365, 91)
+    Me.HomePenal6.Location = New System.Drawing.Point(363, 40)
     Me.HomePenal6.Name = "HomePenal6"
     Me.HomePenal6.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal6.TabIndex = 191
@@ -710,7 +710,7 @@ Partial Class frmPenalties
     Me.label33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label33.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label33.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label33.Location = New System.Drawing.Point(365, 60)
+    Me.label33.Location = New System.Drawing.Point(363, 9)
     Me.label33.Name = "label33"
     Me.label33.Size = New System.Drawing.Size(26, 26)
     Me.label33.TabIndex = 190
@@ -723,7 +723,7 @@ Partial Class frmPenalties
     Me.AwayPenal5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal5.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal5.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal5.Location = New System.Drawing.Point(318, 123)
+    Me.AwayPenal5.Location = New System.Drawing.Point(316, 72)
     Me.AwayPenal5.Name = "AwayPenal5"
     Me.AwayPenal5.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal5.TabIndex = 189
@@ -735,7 +735,7 @@ Partial Class frmPenalties
     Me.HomePenal5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal5.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal5.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal5.Location = New System.Drawing.Point(318, 91)
+    Me.HomePenal5.Location = New System.Drawing.Point(316, 40)
     Me.HomePenal5.Name = "HomePenal5"
     Me.HomePenal5.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal5.TabIndex = 188
@@ -747,7 +747,7 @@ Partial Class frmPenalties
     Me.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label15.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label15.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label15.Location = New System.Drawing.Point(318, 60)
+    Me.label15.Location = New System.Drawing.Point(316, 9)
     Me.label15.Name = "label15"
     Me.label15.Size = New System.Drawing.Size(26, 26)
     Me.label15.TabIndex = 187
@@ -760,7 +760,7 @@ Partial Class frmPenalties
     Me.AwayPenal4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal4.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal4.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal4.Location = New System.Drawing.Point(289, 123)
+    Me.AwayPenal4.Location = New System.Drawing.Point(287, 72)
     Me.AwayPenal4.Name = "AwayPenal4"
     Me.AwayPenal4.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal4.TabIndex = 186
@@ -772,7 +772,7 @@ Partial Class frmPenalties
     Me.HomePenal4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal4.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal4.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal4.Location = New System.Drawing.Point(289, 91)
+    Me.HomePenal4.Location = New System.Drawing.Point(287, 40)
     Me.HomePenal4.Name = "HomePenal4"
     Me.HomePenal4.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal4.TabIndex = 185
@@ -784,7 +784,7 @@ Partial Class frmPenalties
     Me.label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label18.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label18.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label18.Location = New System.Drawing.Point(289, 60)
+    Me.label18.Location = New System.Drawing.Point(287, 9)
     Me.label18.Name = "label18"
     Me.label18.Size = New System.Drawing.Size(26, 26)
     Me.label18.TabIndex = 184
@@ -797,7 +797,7 @@ Partial Class frmPenalties
     Me.AwayPenal3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal3.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal3.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal3.Location = New System.Drawing.Point(260, 123)
+    Me.AwayPenal3.Location = New System.Drawing.Point(258, 72)
     Me.AwayPenal3.Name = "AwayPenal3"
     Me.AwayPenal3.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal3.TabIndex = 183
@@ -809,7 +809,7 @@ Partial Class frmPenalties
     Me.HomePenal3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal3.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal3.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal3.Location = New System.Drawing.Point(260, 91)
+    Me.HomePenal3.Location = New System.Drawing.Point(258, 40)
     Me.HomePenal3.Name = "HomePenal3"
     Me.HomePenal3.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal3.TabIndex = 182
@@ -821,7 +821,7 @@ Partial Class frmPenalties
     Me.label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label12.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label12.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label12.Location = New System.Drawing.Point(260, 60)
+    Me.label12.Location = New System.Drawing.Point(258, 9)
     Me.label12.Name = "label12"
     Me.label12.Size = New System.Drawing.Size(26, 26)
     Me.label12.TabIndex = 181
@@ -834,7 +834,7 @@ Partial Class frmPenalties
     Me.AwayPenal2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal2.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal2.Location = New System.Drawing.Point(231, 123)
+    Me.AwayPenal2.Location = New System.Drawing.Point(229, 72)
     Me.AwayPenal2.Name = "AwayPenal2"
     Me.AwayPenal2.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal2.TabIndex = 180
@@ -846,7 +846,7 @@ Partial Class frmPenalties
     Me.HomePenal2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal2.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal2.Location = New System.Drawing.Point(231, 91)
+    Me.HomePenal2.Location = New System.Drawing.Point(229, 40)
     Me.HomePenal2.Name = "HomePenal2"
     Me.HomePenal2.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal2.TabIndex = 179
@@ -858,7 +858,7 @@ Partial Class frmPenalties
     Me.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label9.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label9.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label9.Location = New System.Drawing.Point(231, 60)
+    Me.label9.Location = New System.Drawing.Point(229, 9)
     Me.label9.Name = "label9"
     Me.label9.Size = New System.Drawing.Size(26, 26)
     Me.label9.TabIndex = 178
@@ -871,7 +871,7 @@ Partial Class frmPenalties
     Me.AwayPenal1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayPenal1.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayPenal1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayPenal1.Location = New System.Drawing.Point(202, 123)
+    Me.AwayPenal1.Location = New System.Drawing.Point(200, 72)
     Me.AwayPenal1.Name = "AwayPenal1"
     Me.AwayPenal1.Size = New System.Drawing.Size(26, 26)
     Me.AwayPenal1.TabIndex = 177
@@ -883,7 +883,7 @@ Partial Class frmPenalties
     Me.HomePenal1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomePenal1.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomePenal1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomePenal1.Location = New System.Drawing.Point(202, 91)
+    Me.HomePenal1.Location = New System.Drawing.Point(200, 40)
     Me.HomePenal1.Name = "HomePenal1"
     Me.HomePenal1.Size = New System.Drawing.Size(26, 26)
     Me.HomePenal1.TabIndex = 176
@@ -895,7 +895,7 @@ Partial Class frmPenalties
     Me.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.label4.Cursor = System.Windows.Forms.Cursors.Hand
     Me.label4.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label4.Location = New System.Drawing.Point(202, 60)
+    Me.label4.Location = New System.Drawing.Point(200, 9)
     Me.label4.Name = "label4"
     Me.label4.Size = New System.Drawing.Size(26, 26)
     Me.label4.TabIndex = 175
@@ -908,7 +908,7 @@ Partial Class frmPenalties
     Me.AwayTeamScore.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayTeamScore.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayTeamScore.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayTeamScore.Location = New System.Drawing.Point(148, 123)
+    Me.AwayTeamScore.Location = New System.Drawing.Point(146, 72)
     Me.AwayTeamScore.Name = "AwayTeamScore"
     Me.AwayTeamScore.Size = New System.Drawing.Size(35, 26)
     Me.AwayTeamScore.TabIndex = 173
@@ -921,7 +921,7 @@ Partial Class frmPenalties
     Me.HomeTeamScore.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomeTeamScore.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomeTeamScore.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomeTeamScore.Location = New System.Drawing.Point(148, 91)
+    Me.HomeTeamScore.Location = New System.Drawing.Point(146, 40)
     Me.HomeTeamScore.Name = "HomeTeamScore"
     Me.HomeTeamScore.Size = New System.Drawing.Size(35, 26)
     Me.HomeTeamScore.TabIndex = 174
@@ -934,7 +934,7 @@ Partial Class frmPenalties
     Me.AwayTeamName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.AwayTeamName.Cursor = System.Windows.Forms.Cursors.Hand
     Me.AwayTeamName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.AwayTeamName.Location = New System.Drawing.Point(11, 123)
+    Me.AwayTeamName.Location = New System.Drawing.Point(9, 72)
     Me.AwayTeamName.Name = "AwayTeamName"
     Me.AwayTeamName.Size = New System.Drawing.Size(131, 26)
     Me.AwayTeamName.TabIndex = 172
@@ -947,7 +947,7 @@ Partial Class frmPenalties
     Me.HomeTeamName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.HomeTeamName.Cursor = System.Windows.Forms.Cursors.Hand
     Me.HomeTeamName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.HomeTeamName.Location = New System.Drawing.Point(11, 91)
+    Me.HomeTeamName.Location = New System.Drawing.Point(9, 40)
     Me.HomeTeamName.Name = "HomeTeamName"
     Me.HomeTeamName.Size = New System.Drawing.Size(131, 26)
     Me.HomeTeamName.TabIndex = 171
@@ -957,7 +957,8 @@ Partial Class frmPenalties
     'frmPenalties
     '
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-    Me.ClientSize = New System.Drawing.Size(806, 235)
+    Me.BackColor = System.Drawing.Color.White
+    Me.ClientSize = New System.Drawing.Size(806, 177)
     Me.ControlBox = False
     Me.Controls.Add(Me.btnClear)
     Me.Controls.Add(Me.btnNext10)
@@ -1032,7 +1033,7 @@ Partial Class frmPenalties
     Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MaximizeBox = False
     Me.Name = "frmPenalties"
-    Me.Resizable = False
+    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
     Me.Text = "Penalty shootout"
     Me.ResumeLayout(False)
 

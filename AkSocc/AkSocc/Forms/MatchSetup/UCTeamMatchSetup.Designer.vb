@@ -37,7 +37,7 @@ Partial Class UCTeamMatchSetup
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(991, 489)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1095, 560)
     Me.TableLayoutPanel1.TabIndex = 0
     '
     'UserControlTactica1
@@ -49,7 +49,7 @@ Partial Class UCTeamMatchSetup
     Me.UserControlTactica1.Location = New System.Drawing.Point(3, 3)
     Me.UserControlTactica1.Name = "UserControlTactica1"
     Me.UserControlTactica1.SelectedPosicio = Nothing
-    Me.UserControlTactica1.Size = New System.Drawing.Size(694, 483)
+    Me.UserControlTactica1.Size = New System.Drawing.Size(1089, 554)
     Me.UserControlTactica1.TabIndex = 0
     Me.UserControlTactica1.Tactic = Nothing
     Me.UserControlTactica1.Team = Nothing
@@ -60,7 +60,7 @@ Partial Class UCTeamMatchSetup
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Name = "UCTeamMatchSetup"
-    Me.Size = New System.Drawing.Size(991, 489)
+    Me.Size = New System.Drawing.Size(1095, 560)
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.ResumeLayout(False)
 

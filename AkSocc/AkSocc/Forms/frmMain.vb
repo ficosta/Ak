@@ -1,5 +1,6 @@
 ﻿Imports AkSocc
 Imports MatchInfo
+Imports VizCommands
 
 Public Class frmMain
 #Region "Properties and variables"
@@ -57,17 +58,22 @@ Public Class frmMain
 
   Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
     Try
+      Me.Cursor = Cursors.WaitCursor
+      Application.DoEvents()
 
       If AppSettings.Instance.ShowSettingsOnStartup Then
         ShowOptions(Me)
       End If
-      InitializeConnectionStrings()
 
-      Me.Cursor = Cursors.WaitCursor
+      Application.DoEvents()
+
+
+      InitializeConnectionStrings()
       InitControls()
       SelectMatch()
-      InitializeKeyCapture()
       _otherMatchDays.LoadOthers()
+      InitializeKeyCapture()
+      InitRender()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -80,7 +86,6 @@ Public Class frmMain
   Private Sub InitControls()
     Try
       InitPlayerControls()
-      InitRender()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -89,22 +94,37 @@ Public Class frmMain
 
   Private Sub InitRender()
     Try
-      If Not _vizControl Is Nothing Then _vizControl.CloseSockets()
-      Me.UpdateStatusLabel()
-      _vizControl = New VizCommands.VizControl
-      _vizControl.Config = New VizCommands.tyConfigVizrt
-      _vizControl.Config.TCPHost = AppSettings.Instance.VizrtHost
-      _vizControl.Config.TCPPort = AppSettings.Instance.VizrtPort
-      _vizControl.Config.SceneBasePath = AppSettings.Instance.ScenePath
-      _vizControl.InitializeSockets()
+      If _checkSocketConnection Is Nothing Then
+        _checkSocketConnection = New CheckSocketConnection
+        _checkSocketConnection.CheckConnection(AppSettings.Instance.VizrtHost, AppSettings.Instance.VizrtPort)
+      ElseIf _checkSocketConnection.LastSocketState = CheckSocketConnection.eSocketCheckState.Connected Then
+        'the connection is good
+        If Not _vizControl Is Nothing Then _vizControl.CloseSockets()
+        Me.UpdateStatusLabel()
+        _vizControl = New VizCommands.VizControl
+        _vizControl.Config = New VizCommands.tyConfigVizrt
+        _vizControl.Config.TCPHost = AppSettings.Instance.VizrtHost
+        _vizControl.Config.TCPPort = AppSettings.Instance.VizrtPort
+        _vizControl.Config.SceneBasePath = AppSettings.Instance.ScenePath
+        _vizControl.InitializeSockets()
 
-      Dim pvwConfig As New VizCommands.tyConfigVizrt
-      pvwConfig.TCPHost = AppSettings.Instance.VizrtHost
-      pvwConfig.TCPPort = AppSettings.Instance.VizrtPreviewPort
-      pvwConfig.SceneBasePath = AppSettings.Instance.ScenePath
+        Dim pvwConfig As New VizCommands.tyConfigVizrt
+        pvwConfig.TCPHost = AppSettings.Instance.VizrtHost
+        pvwConfig.TCPPort = AppSettings.Instance.VizrtPreviewPort
+        pvwConfig.SceneBasePath = AppSettings.Instance.ScenePath
 
-      _previewControl = New VizCommands.PreviewControl(pvwConfig, AppSettings.Instance.PreviewLocalPath, AppSettings.Instance.PreviewRemotePath)
+        _previewControl = New VizCommands.PreviewControl(pvwConfig, AppSettings.Instance.PreviewLocalPath, AppSettings.Instance.PreviewRemotePath)
 
+        _clockControl.VizControl = _vizControl
+      Else
+        'no connection or we dind't check it out yet!
+        If TimerVizrtConnection.Enabled = True Then
+          'we are already on it, nothing to do
+        Else
+          TimerVizrtConnection.Interval = 5000
+          TimerVizrtConnection.Enabled = True
+        End If
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -117,7 +137,9 @@ Public Class frmMain
     Try
       If ShowOptions(Me) Then
         ' Me.InitRender()
+        UpdateVizConfig()
       End If
+      Me.UpdateStatusLabel()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -181,16 +203,30 @@ Public Class frmMain
         'match selected!
         InitMatchInfo(dlg.SelectedMatchId)
         MatchSetup()
+        UpdateVizConfig()
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
     Config.Instance.Silent = False
-    UpdateStatLabels()
+    UpdateStatusLabel()
     _updating = False
     Me.Cursor = cursor
     Return True
   End Function
+
+  Private Sub UpdateVizConfig()
+    Try
+      If Not _vizControl Is Nothing Then
+        _vizControl.Config.SceneBasePath = GraphicVersions.Instance.SelectedGraphicVersion.Path
+      End If
+      If Not _previewControl Is Nothing Then
+        _previewControl.Config = _vizControl.Config
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
 
   Public Function MatchSetup() As Boolean
     Try
@@ -239,6 +275,9 @@ Public Class frmMain
       If Not _match Is Nothing Then
         _match.HomeTeam.GetDataFromDB()
         _match.AwayTeam.GetDataFromDB()
+
+
+        _match.GetMatchEventsFromDB()
 
         InitTeamPlayerControls(_match.HomeTeam, _homePlayerControls)
         InitTeamPlayerControls(_match.AwayTeam, _awayPlayerControls)
@@ -296,10 +335,6 @@ Public Class frmMain
 #End Region
 
 #Region "Status label"
-  Private Sub LabelVizEngine_Click(sender As Object, e As EventArgs)
-    Me.InitRender()
-  End Sub
-
   Private Sub UpdateStatusLabel()
     Try
       If _vizControl Is Nothing Then
@@ -316,6 +351,7 @@ Public Class frmMain
             Me.LabelVizEngine.BackColor = Color.Red
         End Select
       End If
+      Me.LabelGraphicVersion.Text = GraphicVersions.Instance.SelectedGraphicVersion.Name
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -661,15 +697,13 @@ Public Class frmMain
       If frmWaitForInput.ShowWaitDialog(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
         Dim gsList As New GraphicSteps
 
-        _match.AddGoal(False, Nothing, False, False)
 
         Dim gg As New ControlScoreSingleGoal(_match, _match.LastGoal)
         gg.IsLocalTeam = False
-
-        '_match.away_goals += 1
+        gg.Goal = _match.AddGoal(False, Nothing, False, False)
 
         _dlgChoosWithPreview = New FormChoose(_vizControl, _previewControl, gg)
-
+        _dlgChoosWithPreview.ShowPreview = False
         If _dlgChoosWithPreview.ShowDialog(Me) = DialogResult.Cancel Then
           _match.RemoveLastGoal()
         End If
@@ -687,14 +721,13 @@ Public Class frmMain
       If frmWaitForInput.ShowWaitDialog(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
         Dim gsList As New GraphicSteps
 
-        _match.AddGoal(True, Nothing, False, False)
-
         Dim gg As New ControlScoreSingleGoal(_match, _match.LastGoal)
+
         gg.IsLocalTeam = True
-        gg.Goal = _match.LastGoal
+        gg.Goal = _match.AddGoal(True, Nothing, False, False)
 
         _dlgChoosWithPreview = New FormChoose(_vizControl, _previewControl, gg)
-
+        _dlgChoosWithPreview.ShowPreview = False
         If _dlgChoosWithPreview.ShowDialog(Me) = DialogResult.Cancel Then
           _match.RemoveLastGoal()
         End If
@@ -810,6 +843,7 @@ Public Class frmMain
       frm.Minutes = _match.MatchPeriods.ActivePeriod.ExtraTime
       If frm.ShowDialog(Me) = DialogResult.OK Then
         _match.MatchPeriods.UpdatePeriodExtraTime(_match.MatchPeriods.ActivePeriod, frm.Minutes)
+        _clockControl.UpdateExraTimeVisibility()
       End If
     Catch ex As Exception
 
@@ -929,25 +963,6 @@ Public Class frmMain
     Next
   End Sub
 
-  Private Sub TeamViewerHome_GoalScored(team As Team, player As Player, add As Boolean)
-
-  End Sub
-
-  Private Sub TeamViewerAway_GoalScored(team As Team, player As Player, add As Boolean)
-
-  End Sub
-
-  Private Sub TeamViewerHome_Load(sender As Object, e As EventArgs)
-
-  End Sub
-
-  Private Sub TeamViewerAway_Load(sender As Object, e As EventArgs)
-
-  End Sub
-
-  Private Sub PlayerHomeViewer1_Load(sender As Object, e As EventArgs) ' Handles PlayerViewer1.Load
-
-  End Sub
   Private Sub PlayerViewer_SelectionChanged(ByRef sender As PlayerViewer, value As Boolean)
     If _updating Then Exit Sub
     _updating = True
@@ -1015,6 +1030,7 @@ Public Class frmMain
         For index As Integer = 1 To controls.Count
           Dim player As Player = team.MatchPlayers.GetPlayerByPosition(index)
           controls(index - 1).Player = player
+          controls(index - 1).IsSubsitution = False
         Next
       End If
     Catch ex As Exception
@@ -1072,15 +1088,44 @@ Public Class frmMain
 
 
   Private Sub _keyCapture_Keycaptured() Handles _keyCapture.Keycaptured
-    Debug.Print("hey")
+    Debug.Print("_keyCapture_Keycaptured ")
   End Sub
 
   Private Sub _keyCapture_KeyCombinationCaptured(CKeyCombination As KeyCombination) Handles _keyCapture.KeyCombinationCaptured
+    Debug.Print("_keyCapture_KeyCombinationCaptured " & CKeyCombination.Name)
     Me.StartGraphic(CKeyCombination.Name)
   End Sub
 
   Private Sub _keyCapture_UndefinedKeyCombinationCaptured(CKeyCombination As KeyCombination) Handles _keyCapture.UndefinedKeyCombinationCaptured
+    Debug.Print("_keyCapture_UndefinedKeyCombinationCaptured " & CKeyCombination.KeyCode & " ALT " & CKeyCombination.Alt.ToString & " - CONTROL " & CKeyCombination.Control.ToString & " - shift " & CKeyCombination.Shift.ToString)
+    Try
+      If _match Is Nothing Then Exit Sub
+      Select Case CKeyCombination.KeyCode
+        Case Keys.T
+          If CKeyCombination.Alt = True And CKeyCombination.Control = False And CKeyCombination.Shift = False And CKeyCombination.Windows = False Then
+            MetroButtonTimeControl_Click(Nothing, Nothing)
+          End If
+        Case Keys.D1
+          If CKeyCombination.Alt = True And CKeyCombination.Control = False And CKeyCombination.Shift = False And CKeyCombination.Windows = False Then
+            Me.ButtonHomeGoal_Click(Nothing, Nothing)
+          End If
+        Case Keys.D2
+          If CKeyCombination.Alt = True And CKeyCombination.Control = False And CKeyCombination.Shift = False And CKeyCombination.Windows = False Then
+            Me.ButtonAwayGoal_Click(Nothing, Nothing)
+          End If
+        Case Keys.F7
+          StartGraphic(New GraphicsTeamStaff(_match, _match.HomeTeam))
+        Case Keys.F8
+          StartGraphic(New GraphicsTeamStaff(_match, _match.AwayTeam))
+        Case Keys.F10
+          If CKeyCombination.Alt = False And CKeyCombination.Control = False And CKeyCombination.Shift = False And CKeyCombination.Windows = False Then
+            ToggleClockControl()
+          End If
+      End Select
 
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
   End Sub
 
   Private Sub _match_TeamStatValueChanged(team As Team, stat As Stat) Handles _match.TeamStatValueChanged
@@ -1137,6 +1182,7 @@ Public Class frmMain
       Select Case msg.type
         Case GlobalNotifier.eMessageType.AppError
           Me.LabelLog.ForeColor = Color.DarkRed
+          Me.LabelLog.Text = msg.text
         Case GlobalNotifier.eMessageType.Info
           Me.LabelLog.ForeColor = Color.Black
           Me.LabelLog.Text = msg.text
@@ -1247,6 +1293,139 @@ Public Class frmMain
 
   Private Sub _loggerComm_Disconnected(msg As String) Handles _loggerComm.Disconnected
     LoggerConnect.BackColor = Color.Red
+  End Sub
+
+  Private Sub ButtonUndo_Click(sender As Object, e As EventArgs) Handles ButtonUndo.Click
+    If _match Is Nothing Then Exit Sub
+    Try
+      If frmWaitForInput.ShowWaitDialog(Me, "Remove last goal?", _match.Description, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
+
+      _match.RemoveLastGoal()
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Function GetControlForPlayer(player As Player) As PlayerViewer
+    Dim res As PlayerViewer = Nothing
+    Try
+      For Each ctl As PlayerViewer In _homePlayerControls
+        If ctl.Player.PlayerID = player.PlayerID Then
+          res = ctl
+        End If
+      Next
+      For Each ctl As PlayerViewer In _awayPlayerControls
+        If ctl.Player.PlayerID = player.PlayerID Then
+          res = ctl
+        End If
+      Next
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+    Return res
+  End Function
+
+  Private Sub _match_Substitution(team As Team, substitution As Substitution) Handles _match.Substitution
+    Try
+      Dim ctlIn As PlayerViewer = Me.GetControlForPlayer(substitution.PlayerIn)
+      Dim ctlOut As PlayerViewer = Me.GetControlForPlayer(substitution.PlayerOut)
+      ctlIn.Player = substitution.PlayerOut
+      ctlOut.Player = substitution.PlayerIn
+      ctlIn.IsSubsitution = True
+      ctlOut.IsSubsitution = True
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+
+  Private Sub _match_MatchReset() Handles _match.MatchReset
+    'Match
+    InitMatchInfo(_match)
+  End Sub
+
+
+#End Region
+
+#Region "Match events"
+  Private WithEvents _frmMatchEvents As FormMatchEvents = Nothing
+
+  Private Sub ToolStripButtonMatchEvents_Click(sender As Object, e As EventArgs) Handles ToolStripButtonMatchEvents.Click
+    Try
+      If _frmMatchEvents Is Nothing Then
+        _frmMatchEvents = New FormMatchEvents
+        _frmMatchEvents.Match = _match
+        _frmMatchEvents.Show(Me)
+      Else
+        _frmMatchEvents.Close()
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub _frmMatchEvents_Closed(sender As Object, e As EventArgs) Handles _frmMatchEvents.Closed
+    _frmMatchEvents = Nothing
+  End Sub
+
+  Private Sub frmMain_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+    Debug.Print("Keypress " & e.KeyChar.ToString)
+  End Sub
+
+  Private Sub frmMain_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+    Debug.Print("KeyDown " & e.KeyCode.ToString)
+  End Sub
+
+#End Region
+
+#Region "Check vizrt connection / reconnect"
+  Private WithEvents _checkSocketConnection As VizCommands.CheckSocketConnection
+
+
+  Private Sub TimerVizrtConnection_Tick(sender As Object, e As EventArgs) Handles TimerVizrtConnection.Tick
+    Try
+      ' Me.TimerVizrtConnection.Enabled = False
+      _checkSocketConnection.CheckConnection(AppSettings.Instance.VizrtHost, AppSettings.Instance.VizrtPort)
+      'Me.LabelVizEngine.BackColor = Color.Aqua
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub _checkSocketConnection_ConnectionCheckStateChanged(host As String, port As Integer, state As CheckSocketConnection.eSocketCheckState) Handles _checkSocketConnection.ConnectionCheckStateChanged
+    Select Case state
+      Case CheckSocketConnection.eSocketCheckState.Idle
+
+      Case CheckSocketConnection.eSocketCheckState.ResolvingAddress
+        'Me.LabelVizEngine.BackColor = Color.Yellow
+      Case CheckSocketConnection.eSocketCheckState.Connecting
+        'Me.LabelVizEngine.BackColor = Color.Orange
+      Case CheckSocketConnection.eSocketCheckState.Disconnected
+        'Me.LabelVizEngine.BackColor = Color.Gray
+      Case CheckSocketConnection.eSocketCheckState.Connected
+        'Me.LabelVizEngine.BackColor = Color.LightGreen
+        If _vizControl Is Nothing Then
+          Me.InitRender()
+        ElseIf _vizControl.SocketStateTCP <> eSocketState.Connected Then
+          ' _vizControl.InitializeSockets()
+          InitRender()
+        End If
+      Case CheckSocketConnection.eSocketCheckState.Error
+        Me.LabelVizEngine.BackColor = Color.Red
+        WriteToErrorLog("Unable to connect to VizEngine (0x" & Hex(_checkSocketConnection.LastErrorCode) & ": " & _checkSocketConnection.LasterrorDescription & ")")
+        TimerVizrtConnection.Interval = 10000
+        TimerVizrtConnection.Enabled = True
+    End Select
+  End Sub
+
+  Private Sub ButtonClockManagement_Click(sender As Object, e As EventArgs) Handles ButtonClockManagement.Click
+    Try
+      Dim dlg As New FormClockPosition
+      dlg.ClockControl = _clockControl
+      dlg.ShowDialog(Me)
+    Catch ex As Exception
+
+    End Try
   End Sub
 
 #End Region

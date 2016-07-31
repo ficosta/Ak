@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class AboutBoxAk
-  Inherits MetroFramework.Forms.MetroForm
+  Inherits System.Windows.Forms.Form
 
   'Form overrides dispose to clean up the component list.
   <System.Diagnostics.DebuggerNonUserCode()>

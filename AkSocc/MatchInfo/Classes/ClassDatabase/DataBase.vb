@@ -46,7 +46,7 @@ Public Class DataBase
       End Try
 
       Try
-        Dim SQL4 As String = "CREATE TABLE MatchGoals (GoalID AUTOINCREMENT, MatchID INTEGER, TeamGoalID INTEGER, TimeSecond INTEGER, PlayerID INTEGER, Penalty YESNO, OwnGoal YESNO, CONSTRAINT pk_MatchGoals PRIMARY KEY (GoalID))"
+        Dim SQL4 As String = "CREATE TABLE MatchGoals (GoalID AUTOINCREMENT, MatchID INTEGER, TeamGoalID INTEGER, Minute INTEGER, PlayerID INTEGER, Penalty YESNO, OwnGoal YESNO, CONSTRAINT pk_MatchGoals PRIMARY KEY (GoalID))"
         Dim myCommand4 As New OleDbCommand(SQL4, conn)
         myCommand4.ExecuteNonQuery()
 

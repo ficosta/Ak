@@ -29,6 +29,9 @@ Public Class frmGoal
   End Property
 
   Private Sub UpdateInterface()
+
+    Dim updating As Boolean = _updating
+    _updating = True
     Try
 
       Me.MetroRadioButtonNormal.Checked = (_goalType = MatchGoal.eGoalType.Normal)
@@ -56,6 +59,7 @@ Public Class frmGoal
     Catch ex As Exception
 
     End Try
+    _updating = updating
   End Sub
 
   Private Sub UpdateComboPlayers()

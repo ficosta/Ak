@@ -98,8 +98,11 @@ Public Class MatchGoal
 
   Public Sub Update()
     Try
-      Dim ActualDb As New MatchGoal(GoalID)
-      If ActualDb.[Get]() Then
+      Dim ActualDb As MatchGoal = Nothing
+      If Me.GoalID > 0 Then
+        ActualDb = New MatchGoal(GoalID)
+      End If
+      If Not ActualDb Is Nothing AndAlso ActualDb.[Get]() Then
         'UPDATE
         Dim myCommand As New OleDbCommand()
         Dim SQL As String = ""
@@ -110,7 +113,7 @@ Public Class MatchGoal
           SQL += " [TeamGoalID]=" & TeamGoalID.ToString() & ","
         End If
         If ActualDb.TimeSecond <> TimeSecond AndAlso TimeSecond <> -1 Then
-          SQL += " [TimeSecond]=" & TimeSecond.ToString() & ","
+          SQL += " [Minute]=" & TimeSecond.ToString() & ","
         End If
         If ActualDb.PlayerID <> PlayerID AndAlso PlayerID <> -1 Then
           SQL += " [PlayerID]=" & PlayerID.ToString() & ","
@@ -134,7 +137,7 @@ Public Class MatchGoal
       Else
         Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
         conn.Open()
-        Dim SQL As String = "INSERT INTO MatchGoals ([MatchID], [TeamGoalID], [TimeSecond], [PlayerID], [Penalty], [OwnGoal])"
+        Dim SQL As String = "INSERT INTO MatchGoals ([MatchID], [TeamGoalID], [Minute], [PlayerID], [Penalty], [OwnGoal])"
         SQL += " VALUES (" & MatchID.ToString() & ", " & TeamGoalID.ToString() & ", " & TimeSecond.ToString() & ", " & PlayerID.ToString() & ", " & (If(Penalty, "1", "0")) & ", " & (If(OwnGoal, "1", "0")) & ")"
         Dim myCmd As New OleDbCommand(SQL, conn)
         myCmd.ExecuteNonQuery()

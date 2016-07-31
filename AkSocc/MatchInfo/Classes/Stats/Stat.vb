@@ -49,7 +49,7 @@ Public Class Stat
         Case eDataType.IntValue
           Return CStr(_value)
         Case eDataType.PercentageValue
-          Return CStr(_value) & "%"
+          Return "%" & CStr(_value)
         Case Else
           Return CStr(_value)
       End Select

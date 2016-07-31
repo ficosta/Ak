@@ -31,7 +31,21 @@ Public Class FormChoose
 
   Private _firstControl As Boolean = True
 
+#Region "Properties"
+  Private _showPreview As Boolean = True
+  Public Property ShowPreview As Boolean
+    Get
+      Return _showPreview
+    End Get
+    Set(value As Boolean)
+      _showPreview = value
+      Me.SplitContainerAll.Panel2Collapsed = (Not _showPreview)
+    End Set
+  End Property
+#End Region
+
   Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
+
     AcceptGraphic()
   End Sub
 
@@ -39,7 +53,11 @@ Public Class FormChoose
     Dim gSide As GraphicStep = Me.GraphicGroup.graphicStep
 
     ' If MsgBox("Start graphic?", MsgBoxStyle.YesNo, gSide.ToString) = MsgBoxResult.No Then Exit Sub
-    If frmWaitForInput.ShowWaitDialog(Me, "Start graphic?", gSide.ToString, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
+    If _showPreview Then
+      If frmWaitForInput.ShowWaitDialog(Me, "Start graphic?", gSide.ToString, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
+    Else
+      If frmWaitForInput.ShowWaitDialog(Me, "Accept data?", gSide.ToString, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
+    End If
 
     If Not gSide Is Nothing Then
       Dim lbl As New System.Windows.Forms.Label

@@ -68,6 +68,8 @@ Public Class KeyCapture
 
   Const WM_KEYDOWN As Integer = &H100
   Const WM_KEYUP As Integer = &H101
+  Const WM_SYSKEYDOWN As Integer = &H104
+  Const WM_SYSKEYUP As Integer = &H105
 
   Public LlistaCombinations As New List(Of KeyCombination)
 
@@ -128,13 +130,13 @@ Public Class KeyCapture
   Public Function PreFilterMessage(ByRef m As System.Windows.Forms.Message) As Boolean Implements System.Windows.Forms.IMessageFilter.PreFilterMessage
     If Not _enabled Then Return False
     Select Case m.Msg
-      Case WM_KEYDOWN
+      Case WM_KEYDOWN, WM_SYSKEYDOWN
         ' Debug.Print(m.LParam.ToString & " " & m.WParam.ToString)
         Select Case m.WParam.ToInt32
           Case Keys.Shift, Keys.ShiftKey
             Me.Shift = True
             Return True
-          Case Keys.Alt
+          Case Keys.Alt, Keys.Menu, Keys.RMenu
             Me.Alt = True
             Return True
           Case Keys.Control, Keys.ControlKey
@@ -147,13 +149,13 @@ Public Class KeyCapture
             Return CheckAndFireCombination(New KeyCombination("", CType(m.WParam.ToInt32, Keys), Me.Shift, Me.Control, Me.Alt, Me.Windows))
         End Select
 
-      Case WM_KEYUP
+      Case WM_KEYUP, WM_SYSKEYUP
         ' Debug.Print(m.LParam.ToString & " " & m.WParam.ToString)
         Select Case m.WParam.ToInt32
           Case Keys.Shift, Keys.ShiftKey
             Me.Shift = False
             Return True
-          Case Keys.Alt
+          Case Keys.Alt, 18
             Me.Alt = False
             Return True
           Case Keys.Control, Keys.ControlKey

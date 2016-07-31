@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class FormOvewriteClock
-  Inherits MetroFramework.Forms.MetroForm
+  Inherits System.Windows.Forms.Form
 
   'Form overrides dispose to clean up the component list.
   <System.Diagnostics.DebuggerNonUserCode()> _
@@ -46,7 +46,7 @@ Partial Class FormOvewriteClock
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
     Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(262, 143)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(255, 67)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -116,7 +116,7 @@ Partial Class FormOvewriteClock
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanel2, 1, 0)
     Me.TableLayoutPanel3.Controls.Add(Me.MetroLabelTime, 0, 0)
-    Me.TableLayoutPanel3.Location = New System.Drawing.Point(23, 79)
+    Me.TableLayoutPanel3.Location = New System.Drawing.Point(16, 12)
     Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
     Me.TableLayoutPanel3.RowCount = 1
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -138,13 +138,14 @@ Partial Class FormOvewriteClock
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(445, 195)
+    Me.BackColor = System.Drawing.Color.White
+    Me.ClientSize = New System.Drawing.Size(427, 118)
     Me.Controls.Add(Me.TableLayoutPanel3)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.MaximizeBox = False
     Me.MinimizeBox = False
     Me.Name = "FormOvewriteClock"
-    Me.Resizable = False
+    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "Overwrite clock"
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.TableLayoutPanel2.ResumeLayout(False)

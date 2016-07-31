@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class FormLoadScenes
-  Inherits MetroFramework.Forms.MetroForm
+  Inherits System.Windows.Forms.Form
 
   'Form overrides dispose to clean up the component list.
   <System.Diagnostics.DebuggerNonUserCode()> _
@@ -47,12 +47,13 @@ Partial Class FormLoadScenes
     Me.MetroCheckBoxCloseWhenDone.Size = New System.Drawing.Size(114, 15)
     Me.MetroCheckBoxCloseWhenDone.TabIndex = 1
     Me.MetroCheckBoxCloseWhenDone.Text = "Close when done"
-    Me.MetroCheckBoxCloseWhenDone.FlatStyle = FlatStyle.Flat
+    Me.MetroCheckBoxCloseWhenDone.UseSelectable = True
     '
     'FormLoadScenes
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+    Me.BackColor = System.Drawing.Color.White
     Me.ClientSize = New System.Drawing.Size(621, 455)
     Me.Controls.Add(Me.MetroCheckBoxCloseWhenDone)
     Me.Controls.Add(Me.MetroLabelScene)

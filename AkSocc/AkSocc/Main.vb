@@ -68,6 +68,14 @@ Module Main
 
     End Try
   End Sub
+  Public Sub WriteToErrorLog(text As String)
+    Try
+      WriteToErrorLog(text, "", My.Application.Info.AssemblyName & " " & My.Application.Info.Version.ToString)
+      GlobalNotifier.Instance.AddErrorMessage(text)
+    Catch ex As Exception
+
+    End Try
+  End Sub
   Public Sub WriteToErrorLog(ByVal msg As String,
        ByVal stkTrace As String, ByVal title As String)
 
@@ -115,10 +123,6 @@ Module Main
     Dim res As Boolean = False
     Try
       Dim dlg As New DialogOptions()
-      Dim aux As MetroFramework.Forms.MetroForm = TryCast(frm, MetroFramework.Forms.MetroForm)
-      If Not aux Is Nothing Then
-        dlg.StyleManager = aux.StyleManager
-      End If
       If dlg.ShowDialog(frm) = DialogResult.OK Then
         res = True
         AppSettings.Instance.Save()

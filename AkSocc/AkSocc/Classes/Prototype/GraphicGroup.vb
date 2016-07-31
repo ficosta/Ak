@@ -71,7 +71,7 @@ Public MustInherit Class GraphicGroup
 
   Public MustOverride Function PrepareScene(graphicStep As GraphicStep) As VizCommands.Scene
 
-  Public Overridable Function PostProcessingAction(frm As MetroFramework.Forms.MetroForm) As Boolean
+  Public Overridable Function PostProcessingAction(frm As Form) As Boolean
     Try
 
     Catch ex As Exception

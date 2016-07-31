@@ -473,11 +473,17 @@ Imports MatchInfo
 #End Region
 
 #Region "Substitutions functions and events"
-  Public Event Substitution(subs As Substitution)
+  Public Event SubstitutionAdded(sender As Team, subs As Substitution)
+  Public Event SubstitutionRemoved(sender As Team, subs As Substitution)
 
   Public Sub AddSubstitution(subs As Substitution)
     Me.Substitutions.Add(subs)
-    RaiseEvent Substitution(subs)
+    RaiseEvent SubstitutionAdded(Me, subs)
+  End Sub
+
+  Public Sub RemoveSubstitution(subs As Substitution)
+    Me.Substitutions.Remove(subs)
+    RaiseEvent SubstitutionRemoved(Me, subs)
   End Sub
 #End Region
 End Class

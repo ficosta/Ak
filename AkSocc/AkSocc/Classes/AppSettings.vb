@@ -34,6 +34,9 @@ Public NotInheritable Class AppSettings
   Public Property ColorsDefaultPath As String = "C:\Alamiya\Colors"
   Public Property KitsDefaultPath As String = "C:\Alamiya\kits"
 
+  Public Property ClockPosition_X As Double = 0
+  Public Property ClockPosition_Y As Double = 0
+
   Public Property UseLogger As Boolean = False
 #End Region
 
@@ -59,6 +62,9 @@ Public NotInheritable Class AppSettings
     AppSettings.Instance.TeamImageInfoList = CStr(CMyRegConfig.ReadValue("TeamImageInfoList", AppSettings.Instance.TeamImageInfoList, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
     AppSettings.Instance.ColorsDefaultPath = CStr(CMyRegConfig.ReadValue("ColorsDefaultPath", AppSettings.Instance.ColorsDefaultPath, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
     AppSettings.Instance.KitsDefaultPath = CStr(CMyRegConfig.ReadValue("KitsDefaultPath", AppSettings.Instance.KitsDefaultPath, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+
+    AppSettings.Instance.ClockPosition_X = CDbl(CMyRegConfig.ReadValue("ClockPosition_X", AppSettings.Instance.ClockPosition_X, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.ClockPosition_Y = CDbl(CMyRegConfig.ReadValue("ClockPosition_y", AppSettings.Instance.ClockPosition_Y, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
 
     Return AppSettings.Instance
   End Function
@@ -93,6 +99,8 @@ Public NotInheritable Class AppSettings
     CMyRegConfig.WriteValue("ColorsDefaultPath", tiConfig.ColorsDefaultPath, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
     CMyRegConfig.WriteValue("KitsDefaultPath", tiConfig.KitsDefaultPath, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
 
+    CMyRegConfig.WriteValue("ClockPosition_X", tiConfig.ClockPosition_X, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
+    CMyRegConfig.WriteValue("ClockPosition_y", tiConfig.ClockPosition_Y, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
     CMyRegConfig = Nothing
   End Sub
 

@@ -16,24 +16,24 @@ Public Class GraphicsPlayerName
     Me.Scene = Me.InitDefaultScene(1)
   End Sub
 
-  Public Sub New(_match As MatchInfo.Match, player As Player)
-    MyBase.New(_match)
-    Me.MustHavePlayer = True
+  'Public Sub New(_match As MatchInfo.Match, player As Player)
+  '  MyBase.New(_match)
+  '  Me.MustHavePlayer = True
 
-    MyBase.Name = "GraphicsPlayerName"
-    Me.Player = player
-    MyBase.ID = 1
-    If Not Me.Match Is Nothing And Not Me.Player Is Nothing Then
-      Select Case Me.Player.TeamID
-        Case Me.Match.HomeTeam.ID
-          Me.Team = Me.Match.HomeTeam
-        Case Me.Match.AwayTeam.ID
-          Me.Team = Me.Match.AwayTeam
-        Case Else
-          Me.Team = Nothing
-      End Select
-    End If
-  End Sub
+  '  MyBase.Name = "GraphicsPlayerName"
+  '  Me.Player = player
+  '  MyBase.ID = 1
+  '  If Not Me.Match Is Nothing And Not Me.Player Is Nothing Then
+  '    Select Case Me.Player.TeamID
+  '      Case Me.Match.HomeTeam.ID
+  '        Me.Team = Me.Match.HomeTeam
+  '      Case Me.Match.AwayTeam.ID
+  '        Me.Team = Me.Match.AwayTeam
+  '      Case Else
+  '        Me.Team = Nothing
+  '    End Select
+  '  End If
+  'End Sub
 
   Public Overloads Shared ReadOnly Property Description As String
     Get
@@ -130,19 +130,10 @@ Public Class GraphicsPlayerName
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
     scene.SceneDirectorsIn.Add("Bottom_change_1_2", 0, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add(New SceneDirector("2_Yellow_Cards", 0, DirectorAction.Rewind))
     'scene.SceneDirectorsIn.Add(New SceneDirector("DIR_MAIN$In_Out$Cards", 0, DirectorAction.Rewind))
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
-
-    Dim changeAnim As String = "Bottom_change_" & ((gSide) Mod 2 + 1) & "_" & ((gSide + 1) Mod 2) + 1
-    changeAnim = "Bottom_change_1_2"
-    'scene.SceneDirectorsChangeOut.Add(changeAnim, 0, DirectorAction.Rewind)
-    'scene.SceneDirectorsChangeOut.Add(changeAnim, 50, DirectorAction.Dummy)
-
-    scene.SceneDirectorsChangeIn.Add(changeAnim, 0, DirectorAction.Start)
-    scene.SceneDirectorsChangeIn.Add(changeAnim, 50, DirectorAction.Dummy)
-
-
     'player data
     If Player Is Nothing Then
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Subject_Logo", "")
@@ -209,10 +200,13 @@ Public Class GraphicsPlayerName
   Private Function Prepare2YellowCards(gSide As Integer) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Try
-      scene.SceneDirectorsIn.Add(New SceneDirector("DIR_MAIN$In_Out$Cards", 50, DirectorAction.Start))
+      scene.SceneDirectorsIn.Add(New SceneDirector("DIR_MAIN$In_Out$Cards", 100, DirectorAction.Start))
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose ", "2")
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_Icon ", "1")
-      scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01", VizEncoding(Arabic("SECOND YELLOW CARD")))
+      scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", VizEncoding(Arabic("SECOND YELLOW CARD")))
+      scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", VizEncoding(Arabic("RED CARD")))
+      scene.SceneDirectorsIn.Add("Bottom_change_1_2", 200, DirectorAction.Start)
+      scene.SceneDirectorsIn.Add(New SceneDirector("2_Yellow_Cards", 200, DirectorAction.Start))
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -285,7 +279,7 @@ Public Class GraphicsPlayerName
 #End Region
 
 #Region "Processing"
-  Public Overrides Function PostProcessingAction(frm As MetroFramework.Forms.MetroForm) As Boolean
+  Public Overrides Function PostProcessingAction(frm As Form) As Boolean
     Dim res As Boolean = False
     Try
       If _lastPreparedStep Is Nothing Then Return False
@@ -294,22 +288,48 @@ Public Class GraphicsPlayerName
         Case Step0.NameAndTeam
         Case Step0.YellowCard
           If frmWaitForInput.ShowWaitDialog(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            Me.Player.YellowCards = 1
+            'only 1 event of yellow card for this player
+            While Me.Match.MatchEvents.GetEventsByPlayer(Player.PlayerID, Me.Player.MatchStats.YellowCards.Name).Count > 0
+              Me.Match.MatchEvents.RemoveEvent(Me.Match.match_id, Me.Player.MatchStats.YellowCards.Name, Me.Player.TeamID, Me.Player.PlayerID)
+            End While
+
+            Me.Match.AddEvent(Me.Player.MatchStats.YellowCards.Name, Me.Player.TeamID, Me.Player.PlayerID)
+            Me.Match.UpdateStatForPlayerFromEvents(Me.Player.MatchStats.YellowCards.Name, Player)
             Me.Team.UpdateStatFromPlayers(Me.Team.MatchStats.YellowCards.Name)
+
           End If
         Case Step0.YellowCardMisses
           If frmWaitForInput.ShowWaitDialog(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            Me.Player.YellowCards = 1
+            'only 1 event of yellow card for this player
+            While Me.Match.MatchEvents.GetEventsByPlayer(Player.PlayerID, Me.Player.MatchStats.YellowCards.Name).Count > 0
+              Me.Match.MatchEvents.RemoveEvent(Me.Match.match_id, Me.Player.MatchStats.YellowCards.Name, Me.Player.TeamID, Me.Player.PlayerID)
+            End While
+
+            Me.Match.AddEvent(Me.Player.MatchStats.YellowCards.Name, Me.Player.TeamID, Me.Player.PlayerID)
+            Me.Match.UpdateStatForPlayerFromEvents(Me.Player.MatchStats.YellowCards.Name, Player)
             Me.Team.UpdateStatFromPlayers(Me.Team.MatchStats.YellowCards.Name)
           End If
         Case Step0.YellowCard2
           If frmWaitForInput.ShowWaitDialog(frm, "Add yellow card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            Me.Player.YellowCards = 2
+            'we need 2 yellow cards for this player
+            While Me.Match.MatchEvents.GetEventsByPlayer(Player.PlayerID, Me.Player.MatchStats.YellowCards.Name).Count > 1
+              Me.Match.MatchEvents.RemoveEvent(Me.Match.match_id, Me.Player.MatchStats.YellowCards.Name, Me.Player.TeamID, Me.Player.PlayerID)
+            End While
+            While Me.Match.MatchEvents.GetEventsByPlayer(Player.PlayerID, Me.Player.MatchStats.YellowCards.Name).Count <> 2
+              Me.Match.AddEvent(Me.Player.MatchStats.YellowCards.Name, Me.Player.TeamID, Me.Player.PlayerID)
+            End While
+            Me.Match.UpdateStatForPlayerFromEvents(Me.Player.MatchStats.YellowCards.Name, Player)
             Me.Team.UpdateStatFromPlayers(Me.Team.MatchStats.YellowCards.Name)
           End If
         Case Step0.RedCard
           If frmWaitForInput.ShowWaitDialog(frm, "Add red card to match stats?", Me.Name, MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            Me.Player.RedCards = 1
+            'only 1 event of red card for this player
+            While Me.Match.MatchEvents.GetEventsByPlayer(Player.PlayerID, Me.Player.MatchStats.RedCards.Name).Count > 0
+              Me.Match.MatchEvents.RemoveEvent(Me.Match.match_id, Me.Player.MatchStats.RedCards.Name, Me.Player.TeamID, Me.Player.PlayerID)
+            End While
+
+            Me.Match.AddEvent(Me.Player.MatchStats.RedCards.Name, Me.Player.TeamID, Me.Player.PlayerID)
+            Me.Match.UpdateStatForPlayerFromEvents(Me.Player.MatchStats.RedCards.Name, Player)
             Me.Team.UpdateStatFromPlayers(Me.Team.MatchStats.RedCards.Name)
           End If
         Case Step0.GoalsInMatch
@@ -319,7 +339,7 @@ Public Class GraphicsPlayerName
     Catch ex As Exception
 
     End Try
-    Return Res
+    Return res
   End Function
 #End Region
 End Class

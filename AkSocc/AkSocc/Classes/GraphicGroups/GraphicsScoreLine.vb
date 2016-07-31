@@ -10,7 +10,7 @@ Public Class GraphicsScoreLine
     MyBase.Name = "GraphicsScoreLine"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F1, False, False, False, False)
-    Me.Scene = Me.InitDefaultScene(1)
+    Me.Scene = Me.InitDefaultScene(1, False)
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String
@@ -135,7 +135,7 @@ Public Class GraphicsScoreLine
     Return Me.Scene
   End Function
 
-  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
+  Private Function InitDefaultScene(gSide As Integer, show_logo As Boolean) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
@@ -151,22 +151,29 @@ Public Class GraphicsScoreLine
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
+
+    If show_logo Then
+      If GraphicVersions.Instance.SelectedGraphicVersion.UseLongPreview Then
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 80, DirectorAction.Start)
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 90, DirectorAction.Dummy)
+      Else
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 50, DirectorAction.Start)
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 55, DirectorAction.Dummy)
+      End If
+      scene.SceneDirectorsOut.Add("sponsor_in_out", 0, DirectorAction.ContinueNormal)
+    Else
+      scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
+    End If
+
     Return scene
   End Function
 
   Private Sub PrepareResultScene(ByRef scene As Scene, home_Result As String, away_Result As String, period_Name As String, show_Logo As Boolean)
-    scene = InitDefaultScene(1)
+    scene = InitDefaultScene(1, show_Logo)
 
     Try
       Dim gSide As Integer = 1
 
-      If show_Logo Then
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 50, DirectorAction.Start)
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 55, DirectorAction.Dummy)
-        scene.SceneDirectorsOut.Add("sponsor_in_out", 0, DirectorAction.ContinueNormal)
-      Else
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
-      End If
 
 
       scene.SceneParameters.Add("Scoreline_Control_OMO_Score", "1")
@@ -200,18 +207,10 @@ Public Class GraphicsScoreLine
   End Sub
 
   Private Sub PrepareResultSceneWithIdent(ByRef scene As Scene, home_Result As String, away_Result As String, show_Logo As Boolean)
-    scene = InitDefaultScene(1)
+    scene = InitDefaultScene(1, show_Logo)
 
     Try
       Dim gSide As Integer = 1
-
-      If show_Logo Then
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 50, DirectorAction.Start)
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 55, DirectorAction.Dummy)
-        scene.SceneDirectorsOut.Add("sponsor_in_out", 0, DirectorAction.ContinueNormal)
-      Else
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
-      End If
 
 
       scene.SceneParameters.Add("Scoreline_Control_OMO_Score", "1")
@@ -244,20 +243,13 @@ Public Class GraphicsScoreLine
   End Sub
 
   Private Sub PrepareResultSceneWithLastScorer(ByRef scene As Scene, home_Result As String, away_Result As String, show_Logo As Boolean)
-    scene = InitDefaultScene(1)
+    scene = InitDefaultScene(1, show_Logo)
     Dim gside As Integer = 1
 
     Try
       scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Bottom_Control_OMO_Subline_Type_Base ", "1")
       scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Bottom_Sublines_Data_Control_OMO_Data ", "2")
       scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Bottom_Sublines_Type_2_Control_OMO_GV_Choose", "0")
-      If show_Logo Then
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 25, DirectorAction.Start)
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 50, DirectorAction.Dummy)
-        scene.SceneDirectorsOut.Add("sponsor_in_out", 0, DirectorAction.ContinueNormal)
-      Else
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
-      End If
 
 
       For i As Integer = 1 To 11
@@ -283,7 +275,7 @@ Public Class GraphicsScoreLine
         scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_" & teamSide & "_" & i & "_Score_A ", FormatRunningTime(goals(0).TimeSecond))
         Dim player As MatchInfo.Player = Me.Match.GetPlayerById(goals(0).PlayerID)
         If Not player Is Nothing Then
-          scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_" & teamSide & "_" & i & "_Text_01", player.ArabicName)
+          scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_" & teamSide & "_" & i & "_Text_01", player.Name)
 
         End If
 
@@ -296,27 +288,11 @@ Public Class GraphicsScoreLine
   End Sub
 
   Private Sub PrepareResultSceneWithScorerCrawl(ByRef scene As Scene, home_Result As String, away_Result As String, show_Logo As Boolean)
-    scene = InitDefaultScene(1)
+    scene = InitDefaultScene(1, show_Logo)
 
     Try
       Dim gSide As Integer = 1
-      scene.SceneDirector = "DIR_MAIN$In_Out"
-      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 100, DirectorAction.Dummy)
-      'scene.SceneDirectorsIn.Add("Bottom_change", 0, DirectorAction.Rewind)
       scene.SceneDirectorsIn.Add("Goals_Crawler", 0, DirectorAction.Rewind)
-      scene.SceneDirectorsIn.Add("Goals_Crawler", 100, DirectorAction.Start)
-      scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
-
-      If show_Logo Then
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 25, DirectorAction.Start)
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 50, DirectorAction.Dummy)
-        scene.SceneDirectorsOut.Add("sponsor_in_out", 0, DirectorAction.ContinueNormal)
-      Else
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
-      End If
-
-      scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
       scene.SceneParameters.Add("Scoreline_Control_OMO_Score", "1")
       scene.SceneParameters.Add("Scoreline_Side_" & gSide & "_Bottom_Control_OMO_Subline_Type_Base ", "1")
@@ -349,7 +325,10 @@ Public Class GraphicsScoreLine
         If i - 1 < goals.Count Then
           Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", FormatRunningTime(goal.TimeSecond)))
-          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", goal.GoalType.ToString))
+          Dim player As MatchInfo.Player = Me.Match.GetPlayerById(goals(0).PlayerID)
+          If Not player Is Nothing Then
+            scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", player.Name))
+          End If
         Else
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", " "))
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", " "))
@@ -362,14 +341,27 @@ Public Class GraphicsScoreLine
         If i - 1 < goals.Count Then
           Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", FormatRunningTime(goal.TimeSecond)))
-          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", goal.GoalType.ToString))
+          Dim player As MatchInfo.Player = Me.Match.GetPlayerById(goals(0).PlayerID)
+          If Not player Is Nothing Then
+            scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", player.Name))
+          End If
         Else
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", " "))
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", " "))
         End If
       Next
 
+      Dim nMax As Integer = Math.Max(Match.HomeTeam.Goals, Match.AwayTeam.Goals)
+      Dim nPages As Integer = (nMax - 1) / 2
+      Dim nTimePerPage As Integer = 200
 
+      If nPages > 0 Then
+        scene.SceneDirectorsIn.Add("Goals_Crawler", nTimePerPage, DirectorAction.Start)
+        For i As Integer = 1 To nPages - 1
+          scene.SceneDirectorsIn.Add("Goals_Crawler", (i + 1) * nTimePerPage, DirectorAction.ContinueNormal)
+        Next
+
+      End If
 
     Catch ex As Exception
 

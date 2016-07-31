@@ -26,7 +26,7 @@ Public Class FormSubstitutions
           Dim item As Integer = .Rows.Add(subst.PlayerIn.Name)
           .Rows(item).Cells(ColumnInPlayer.Index).Value = subst.PlayerIn.ToString
           .Rows(item).Cells(ColumnOutPlayer.Index).Value = subst.PlayerOut.ToString
-          .Rows(item).Cells(ColumnTeam.Index).Value = subst.Team.ToString
+          .Rows(item).Cells(ColumnTeam.Index).Value = subst.Team.TeamAELCaption1Name
           .Rows(item).Cells(ColumnTime.Index).Value = subst.part & "p " & subst.timeInSeconds & "s"
           .Rows(item).Cells(ColumnPlayerInID.Index).Value = subst.PlayerIn.PlayerID
           .Rows(item).Cells(ColumnPlayerOutID.Index).Value = subst.PlayerOut.PlayerID
@@ -68,11 +68,11 @@ Public Class FormSubstitutions
         subs.PlayerOut.Formation_Pos = aux
         _substitution = subs
         Me.ShowSubstitutions()
-        _match.CreateEvent("substitution", team.TeamID, subs.PlayerIn.PlayerID, _match.MatchPeriods.ActivePeriod.PlayingTime, subs.PlayerOut.PlayerID)
+        ' _match.CreateEvent("substitution", team.TeamID, subs.PlayerIn.PlayerID, _match.MatchPeriods.ActivePeriod.PlayingTime, subs.PlayerOut.PlayerID)
         subs.PlayerIn.IsSubstitution = True
         subs.PlayerOut.IsSubstitution = True
         team.AddSubstitution(subs)
-
+        Me.ShowSubstitutions()
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)

@@ -91,7 +91,12 @@ Public Class GraphicsMatchIdent
     scene.SceneName = "gfx_Full_Frame"
     scene.SceneDirector = "anim_Full_Frame$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 100, DirectorAction.Dummy)
+    If GraphicVersions.Instance.SelectedGraphicVersion.UseLongPreview Then
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 80, DirectorAction.Dummy)
+    Else
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 50, DirectorAction.Dummy)
+
+    End If
     scene.SceneDirectorsIn.Add("Change_1_2", 0, DirectorAction.Rewind)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
@@ -104,8 +109,11 @@ Public Class GraphicsMatchIdent
     scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", "")
     scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", "")
 
-    scene.SceneParameters.Add("Veil_Left_Vis.active ", "0")
-    scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
+    scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "0")
+    scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
+
+    scene.SceneParameters.Add("Veil_Left_Vis ", "0")
+    scene.SceneParameters.Add("Veil_Right_Vis ", "0")
     scene.SceneParameters.Add("Veil_On_Off_Vis.active ", "0")
 
     scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active", "0")
@@ -155,8 +163,8 @@ Public Class GraphicsMatchIdent
       'scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
       'scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
 
-      'scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
-      'scene.SceneParameters.Add("Veil_Right_Vis.active ", "1")
+      'scene.SceneParameters.Add("Veil_Left_Vis ", "1")
+      'scene.SceneParameters.Add("Veil_Right_Vis ", "1")
 
     Catch ex As Exception
 

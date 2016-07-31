@@ -52,4 +52,48 @@
   Private Sub SingleStatControlSaves_RemoveEvent(sender As SingleStatControl) Handles SingleStatControlSaves.RemoveEvent
     RaiseEvent RemoveEvent(Me, sender.Stat)
   End Sub
+
+#Region "Mouse over controls"
+  Private Sub SingleStatControlSaves_MouseEnter(sender As Object, e As EventArgs) Handles LabelSubjectName.MouseEnter,
+      SingleStatControlAssists.MouseEnter,
+      SingleStatControlShots.MouseEnter,
+      SingleStatControlShotsOn.MouseEnter,
+      SingleStatControlFouls.MouseEnter,
+      SingleStatControlYCards.MouseEnter,
+      SingleStatControlRCards.MouseEnter,
+      SingleStatControlSaves.MouseEnter
+
+    UpdateInterface(True)
+  End Sub
+
+  Private Sub SingleStatControlSaves_MouseLeave(sender As Object, e As EventArgs) Handles LabelSubjectName.MouseLeave,
+      SingleStatControlAssists.MouseLeave,
+      SingleStatControlShots.MouseLeave,
+      SingleStatControlShotsOn.MouseLeave,
+      SingleStatControlFouls.MouseLeave,
+      SingleStatControlYCards.MouseLeave,
+      SingleStatControlRCards.MouseLeave,
+      SingleStatControlSaves.MouseLeave
+
+    UpdateInterface(False)
+  End Sub
+
+  Private Sub UpdateInterface(biMouseOver As Boolean)
+    Try
+      Dim color As Color = IIf(biMouseOver, Color.Red, Color.Black)
+      Me.LabelSubjectName.ForeColor = color
+      Me.SingleStatControlSaves.ForeColor = color
+      Me.SingleStatControlAssists.ForeColor = color
+      Me.SingleStatControlShots.ForeColor = color
+      Me.SingleStatControlShotsOn.ForeColor = color
+      Me.SingleStatControlFouls.ForeColor = color
+      Me.SingleStatControlYCards.ForeColor = color
+      Me.SingleStatControlRCards.ForeColor = color
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+#End Region
+
 End Class

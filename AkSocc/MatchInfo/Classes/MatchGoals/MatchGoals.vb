@@ -38,6 +38,7 @@ Public Class MatchGoals
   Public Sub Add(NewGoal As MatchGoal)
     NewGoal.Update()
     List.Add(NewGoal)
+    Me.Sort()
   End Sub
 
   Public Function RemoveGoal(id As Integer) As Boolean
@@ -74,7 +75,7 @@ Public Class MatchGoals
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
 
-      Dim SQL As [String] = "SELECT GoalID, MatchID, TeamGoalID, TimeSecond, PlayerID, Penalty, OwnGoal"
+      Dim SQL As [String] = "SELECT GoalID, MatchID, TeamGoalID, Minute, PlayerID, Penalty, OwnGoal"
       SQL += " FROM MatchGoals "
       SQL += Where.Trim()
       Dim CmdSQL As New OleDbCommand(SQL, conn)

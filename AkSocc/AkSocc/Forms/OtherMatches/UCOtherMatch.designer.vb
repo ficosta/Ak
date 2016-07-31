@@ -63,12 +63,12 @@ Partial Class UCOtherMatch
     Me.TableLayoutPanelMatch.ColumnCount = 8
     Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58.0!))
     Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58.0!))
-    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58.0!))
-    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117.0!))
-    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
-    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117.0!))
-    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
+    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90.0!))
+    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+    Me.TableLayoutPanelMatch.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90.0!))
     Me.TableLayoutPanelMatch.Controls.Add(Me.MetroTextBoxScoreAway, 3, 0)
     Me.TableLayoutPanelMatch.Controls.Add(Me.MetroTileLogo, 4, 0)
     Me.TableLayoutPanelMatch.Controls.Add(Me.MetroTileMatchStatus, 6, 0)
@@ -81,15 +81,15 @@ Partial Class UCOtherMatch
     Me.TableLayoutPanelMatch.Name = "TableLayoutPanelMatch"
     Me.TableLayoutPanelMatch.RowCount = 1
     Me.TableLayoutPanelMatch.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelMatch.Size = New System.Drawing.Size(761, 30)
+    Me.TableLayoutPanelMatch.Size = New System.Drawing.Size(935, 30)
     Me.TableLayoutPanelMatch.TabIndex = 0
     '
     'MetroTextBoxScoreAway
     '
     Me.MetroTextBoxScoreAway.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTextBoxScoreAway.Location = New System.Drawing.Point(262, 3)
+    Me.MetroTextBoxScoreAway.Location = New System.Drawing.Point(518, 3)
     Me.MetroTextBoxScoreAway.Name = "MetroTextBoxScoreAway"
-    Me.MetroTextBoxScoreAway.Size = New System.Drawing.Size(52, 25)
+    Me.MetroTextBoxScoreAway.Size = New System.Drawing.Size(34, 25)
     Me.MetroTextBoxScoreAway.TabIndex = 8
     Me.MetroTextBoxScoreAway.Text = "0"
     Me.MetroTextBoxScoreAway.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -98,9 +98,9 @@ Partial Class UCOtherMatch
     '
     Me.MetroTileLogo.ActiveControl = Nothing
     Me.MetroTileLogo.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileLogo.Location = New System.Drawing.Point(320, 3)
+    Me.MetroTileLogo.Location = New System.Drawing.Point(558, 3)
     Me.MetroTileLogo.Name = "MetroTileLogo"
-    Me.MetroTileLogo.Size = New System.Drawing.Size(111, 24)
+    Me.MetroTileLogo.Size = New System.Drawing.Size(94, 24)
     Me.MetroTileLogo.TabIndex = 2
     Me.MetroTileLogo.Text = "Channel logo"
     Me.MetroTileLogo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -110,9 +110,9 @@ Partial Class UCOtherMatch
     '
     Me.MetroTileMatchStatus.ActiveControl = Nothing
     Me.MetroTileMatchStatus.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileMatchStatus.Location = New System.Drawing.Point(542, 3)
+    Me.MetroTileMatchStatus.Location = New System.Drawing.Point(748, 3)
     Me.MetroTileMatchStatus.Name = "MetroTileMatchStatus"
-    Me.MetroTileMatchStatus.Size = New System.Drawing.Size(111, 24)
+    Me.MetroTileMatchStatus.Size = New System.Drawing.Size(94, 24)
     Me.MetroTileMatchStatus.TabIndex = 3
     Me.MetroTileMatchStatus.Text = "Match status"
     Me.MetroTileMatchStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -124,9 +124,9 @@ Partial Class UCOtherMatch
     Me.MetroComboBoxChannelLogo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.MetroComboBoxChannelLogo.FormattingEnabled = True
     Me.MetroComboBoxChannelLogo.ItemHeight = 17
-    Me.MetroComboBoxChannelLogo.Location = New System.Drawing.Point(437, 3)
+    Me.MetroComboBoxChannelLogo.Location = New System.Drawing.Point(658, 3)
     Me.MetroComboBoxChannelLogo.Name = "MetroComboBoxChannelLogo"
-    Me.MetroComboBoxChannelLogo.Size = New System.Drawing.Size(99, 25)
+    Me.MetroComboBoxChannelLogo.Size = New System.Drawing.Size(84, 25)
     Me.MetroComboBoxChannelLogo.TabIndex = 4
     '
     'MetroComboBoxMatchStatus
@@ -135,9 +135,9 @@ Partial Class UCOtherMatch
     Me.MetroComboBoxMatchStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.MetroComboBoxMatchStatus.FormattingEnabled = True
     Me.MetroComboBoxMatchStatus.ItemHeight = 17
-    Me.MetroComboBoxMatchStatus.Location = New System.Drawing.Point(659, 3)
+    Me.MetroComboBoxMatchStatus.Location = New System.Drawing.Point(848, 3)
     Me.MetroComboBoxMatchStatus.Name = "MetroComboBoxMatchStatus"
-    Me.MetroComboBoxMatchStatus.Size = New System.Drawing.Size(99, 25)
+    Me.MetroComboBoxMatchStatus.Size = New System.Drawing.Size(84, 25)
     Me.MetroComboBoxMatchStatus.TabIndex = 5
     '
     'MetroComboBoxMatch
@@ -148,15 +148,15 @@ Partial Class UCOtherMatch
     Me.MetroComboBoxMatch.ItemHeight = 17
     Me.MetroComboBoxMatch.Location = New System.Drawing.Point(61, 3)
     Me.MetroComboBoxMatch.Name = "MetroComboBoxMatch"
-    Me.MetroComboBoxMatch.Size = New System.Drawing.Size(137, 25)
+    Me.MetroComboBoxMatch.Size = New System.Drawing.Size(411, 25)
     Me.MetroComboBoxMatch.TabIndex = 6
     '
     'MetroTextBoxScoreHome
     '
     Me.MetroTextBoxScoreHome.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTextBoxScoreHome.Location = New System.Drawing.Point(204, 3)
+    Me.MetroTextBoxScoreHome.Location = New System.Drawing.Point(478, 3)
     Me.MetroTextBoxScoreHome.Name = "MetroTextBoxScoreHome"
-    Me.MetroTextBoxScoreHome.Size = New System.Drawing.Size(52, 25)
+    Me.MetroTextBoxScoreHome.Size = New System.Drawing.Size(34, 25)
     Me.MetroTextBoxScoreHome.TabIndex = 7
     Me.MetroTextBoxScoreHome.Text = "0"
     Me.MetroTextBoxScoreHome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -215,7 +215,7 @@ Partial Class UCOtherMatch
     Me.MetroTabControlLineType.Location = New System.Drawing.Point(3, 3)
     Me.MetroTabControlLineType.Name = "MetroTabControlLineType"
     Me.MetroTabControlLineType.SelectedIndex = 1
-    Me.MetroTabControlLineType.Size = New System.Drawing.Size(769, 53)
+    Me.MetroTabControlLineType.Size = New System.Drawing.Size(943, 53)
     Me.MetroTabControlLineType.TabIndex = 1
     Me.MetroTabControlLineType.UseSelectable = True
     '
@@ -232,7 +232,7 @@ Partial Class UCOtherMatch
     Me.TabPageMatch.Controls.Add(Me.TableLayoutPanelMatch)
     Me.TabPageMatch.Location = New System.Drawing.Point(4, 19)
     Me.TabPageMatch.Name = "TabPageMatch"
-    Me.TabPageMatch.Size = New System.Drawing.Size(761, 30)
+    Me.TabPageMatch.Size = New System.Drawing.Size(935, 30)
     Me.TabPageMatch.TabIndex = 1
     Me.TabPageMatch.Text = "Match"
     '
@@ -279,7 +279,7 @@ Partial Class UCOtherMatch
     Me.TableLayoutPanelAll.Name = "TableLayoutPanelAll"
     Me.TableLayoutPanelAll.RowCount = 1
     Me.TableLayoutPanelAll.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelAll.Size = New System.Drawing.Size(945, 67)
+    Me.TableLayoutPanelAll.Size = New System.Drawing.Size(1119, 67)
     Me.TableLayoutPanelAll.TabIndex = 2
     '
     'PanelSection
@@ -290,7 +290,7 @@ Partial Class UCOtherMatch
     Me.PanelSection.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelSection.Location = New System.Drawing.Point(61, 3)
     Me.PanelSection.Name = "PanelSection"
-    Me.PanelSection.Size = New System.Drawing.Size(776, 61)
+    Me.PanelSection.Size = New System.Drawing.Size(950, 61)
     Me.PanelSection.TabIndex = 2
     '
     'TableLayoutPanelCheckboxes
@@ -302,7 +302,7 @@ Partial Class UCOtherMatch
     Me.TableLayoutPanelCheckboxes.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
     Me.TableLayoutPanelCheckboxes.Controls.Add(Me.MetroCheckBoxAddToTable, 1, 0)
     Me.TableLayoutPanelCheckboxes.Controls.Add(Me.MetroCheckBoxAddToCrawl, 0, 0)
-    Me.TableLayoutPanelCheckboxes.Location = New System.Drawing.Point(519, -1)
+    Me.TableLayoutPanelCheckboxes.Location = New System.Drawing.Point(693, -1)
     Me.TableLayoutPanelCheckboxes.Name = "TableLayoutPanelCheckboxes"
     Me.TableLayoutPanelCheckboxes.RowCount = 1
     Me.TableLayoutPanelCheckboxes.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -338,7 +338,7 @@ Partial Class UCOtherMatch
     Me.TableLayoutPanelControlButton.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanelControlButton.Controls.Add(Me.ButtonAction, 0, 1)
     Me.TableLayoutPanelControlButton.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanelControlButton.Location = New System.Drawing.Point(843, 3)
+    Me.TableLayoutPanelControlButton.Location = New System.Drawing.Point(1017, 3)
     Me.TableLayoutPanelControlButton.Name = "TableLayoutPanelControlButton"
     Me.TableLayoutPanelControlButton.RowCount = 3
     Me.TableLayoutPanelControlButton.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -366,7 +366,7 @@ Partial Class UCOtherMatch
     Me.Controls.Add(Me.TableLayoutPanelAll)
     Me.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Name = "UCOtherMatch"
-    Me.Size = New System.Drawing.Size(945, 67)
+    Me.Size = New System.Drawing.Size(1119, 67)
     Me.TableLayoutPanelMatch.ResumeLayout(False)
     Me.TableLayoutPanelMatch.PerformLayout()
     Me.TableLayoutPanelArrows.ResumeLayout(False)

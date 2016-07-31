@@ -124,16 +124,23 @@ Public Class GraphicGroupFullFramers
   End Function
 
 #Region "Full frame scenes"
-  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
+  Private Function InitDefaultScene(gSide As Integer) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
     scene.SceneName = "gfx_Full_Frame"
     scene.SceneDirector = "anim_Full_Frame$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 105, DirectorAction.Dummy)
+    If GraphicVersions.Instance.SelectedGraphicVersion.UseLongPreview Then
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 90, DirectorAction.Dummy)
+    Else
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 105, DirectorAction.Dummy)
+    End If
     scene.SceneDirectorsIn.Add("Change_1_2", 0, DirectorAction.Rewind)
     scene.SceneDirectorsIn.Add("Title_change_1_2", 0, DirectorAction.Rewind)
+
+
+    scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
     scene.SceneDirectorsChangeIn.Add("Change_1_2", 0, DirectorAction.Start)
     scene.SceneDirectorsChangeIn.Add("Change_1_2", 200, DirectorAction.Dummy)
@@ -142,12 +149,17 @@ Public Class GraphicGroupFullFramers
 
     scene.SceneParameters.Add("Veil_On_Off_Vis.active", "1")
     scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
-    scene.SceneParameters.Add("Veil_Left_Vis.active ", "0")
-    scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
+    scene.SceneParameters.Add("Veil_Left_Vis ", "0")
+    scene.SceneParameters.Add("Veil_Right_Vis ", "0")
 
     scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", "")
     scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
     scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
+    scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", "")
+    scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", "")
+    scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "0")
+
+    scene.SceneParameters.Add("Stats_Side_" & gSide & "_Bottom_Text", "")
 
     Dim prefix As String = "Side_" & gSide
     scene.SceneParameters.Add(prefix & "_Match_Ident_Vis.active", "0")
@@ -206,7 +218,7 @@ Public Class GraphicGroupFullFramers
       _matches = MatchInfo.Matches.GetMatchesForCompetition(Me.Match.competition_id)
       _classification = New Classification(_matches)
     End If
-    _classificationUpdated = False
+    _classificationUpdated = True
 
   End Sub
 
@@ -224,15 +236,19 @@ Public Class GraphicGroupFullFramers
 
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "0")
-      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", Arabic("LEAGUE TABLE"))
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", "")
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Text", Arabic("LEAGUE TABLE"))
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "1")
 
       scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "0")
       scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
 
-      scene.SceneParameters.Add("Veil_Left_Vis.active ", "0")
-      scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
+      scene.SceneParameters.Add("Veil_Left_Vis ", "0")
+      scene.SceneParameters.Add("Veil_Right_Vis ", "0")
 
       Dim classificationForDay As ClassificationForMatchDay = _classification.LastAvailableClassificationForMatchDay
 
@@ -275,8 +291,8 @@ Public Class GraphicGroupFullFramers
       scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "0")
       scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
 
-      scene.SceneParameters.Add("Veil_Left_Vis.active ", "0")
-      scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
+      scene.SceneParameters.Add("Veil_Left_Vis ", "1")
+      scene.SceneParameters.Add("Veil_Right_Vis ", "0")
 
 
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
@@ -284,9 +300,12 @@ Public Class GraphicGroupFullFramers
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", Arabic(matchDay.MatchDayName))
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "0")
 
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", "", paramType.Geometry)
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", "", paramType.Geometry)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", "", paramType.Geometry)
 
       prefix = "Results_Side_" & gSide & "_"
 
@@ -368,21 +387,23 @@ Public Class GraphicGroupFullFramers
       scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
       scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "1")
 
-      scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
-      scene.SceneParameters.Add("Veil_Right_Vis.active ", "1")
+      scene.SceneParameters.Add("Veil_Left_Vis ", "1")
+      scene.SceneParameters.Add("Veil_Right_Vis ", "1")
 
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
 
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
 
 
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
-      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "1")
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", "") ' Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
-      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", Me.Match.HomeTeam.Name)
-      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", Me.Match.AwayTeam.Name)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", Me.Match.HomeTeam.Name)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", Me.Match.AwayTeam.Name)
 
       Dim statNames() As String = {"Shots", "Shots_on_target", "Corners", "Offsides", "Fouls", "Cards", "Possession"}
       Dim stat As MatchInfo.Stat
@@ -422,7 +443,6 @@ Public Class GraphicGroupFullFramers
               scene.SceneParameters.Add(subjectPrefix & "Left_Score_Text", stat.ValueText)
             End If
         End Select
-
       Next
 
       For i As Integer = statNames.Count To 10
@@ -450,8 +470,8 @@ Public Class GraphicGroupFullFramers
       'scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "0")
       'scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
 
-      'scene.SceneParameters.Add("Veil_Left_Vis.active ", "0")
-      'scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
+      'scene.SceneParameters.Add("Veil_Left_Vis ", "0")
+      'scene.SceneParameters.Add("Veil_Right_Vis ", "0")
 
 
     Catch ex As Exception
@@ -473,14 +493,14 @@ Public Class GraphicGroupFullFramers
       scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
       scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "1")
 
-      scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
-      scene.SceneParameters.Add("Veil_Right_Vis.active ", "1")
+      scene.SceneParameters.Add("Veil_Left_Vis ", "1")
+      scene.SceneParameters.Add("Veil_Right_Vis ", "1")
 
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
 
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
 
 
 
@@ -489,6 +509,9 @@ Public Class GraphicGroupFullFramers
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", "") ' Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", Me.Match.HomeTeam.Name)
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", Me.Match.AwayTeam.Name)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "0")
 
       ComputeClassification()
 

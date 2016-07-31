@@ -223,16 +223,6 @@ Partial Public Class frmMain
     'End If
   End Sub
 
-  Private Sub Log(strLogLine As String)
-    If Not bClosing Then
-      lsvEvents.Items.Add(grpControls.Text)
-      lsvEvents.Items(lsvEvents.Items.Count - 1).SubItems.Add(strLogLine)
-      lsvEvents.Items(lsvEvents.Items.Count - 1).Selected = True
-
-      MessageBox.Show(strLogLine)
-    End If
-  End Sub
-
   Private Sub CheckPosesion()
     'TODO GELO
     If PossessionIsHome Then
@@ -427,126 +417,35 @@ Partial Public Class frmMain
     End If
   End Sub
 
-  Private Sub lblStat_MouseDown(sender As Object, e As MouseEventArgs)
+  Private Sub ShowEvents()
+    Try
+      Me.MetroGridEvents.Rows.Clear()
 
+      For Each myEvent As MatchEvent In _match.MatchEvents
+        Me.AddEvent(myEvent)
+      Next
+    Catch ex As Exception
+
+    End Try
   End Sub
 
 
+  Private Sub AddEvent(myEvent As MatchEvent)
+    Try
+      If _match Is Nothing Then Exit Sub
 
-  Private Sub lblStat_Click(sender As Object, e As EventArgs)
-    'Dim myLabel As Label = DirectCast(sender, Label)
-    'Dim Type As String = myLabel.Name.Substring(3, 5)
-    'Dim HomeAway As String = (myLabel.Name.Substring(8, 4))
-    'Dim NumPlayer As String = myLabel.Name.Substring(12)
+      Dim localTeam As Boolean = (myEvent.TeamID = _match.HomeTeam.TeamID)
+      Dim playerName As String = ""
+      If Not _match.GetPlayerById(myEvent.PlayerID) Is Nothing Then
+        playerName = _match.GetPlayerById(myEvent.PlayerID).ToString
+      End If
+      If Not _match.GetPlayerById(myEvent.PlayerSecID) Is Nothing Then
+        playerName = playerName & " for " & _match.GetPlayerById(myEvent.PlayerSecID).ToString
+      End If
+      Me.AddEvent(myEvent, localTeam, playerName)
+    Catch ex As Exception
 
-    'Dim ThisPlayer As Label
-    'Dim LocalTeam As Boolean
-    'Dim myTeamStat As Team
-    'Dim myPlayer As Player
-    'If HomeAway = "Home" Then
-    '  ThisPlayer = DirectCast(grpHomePlayers.Controls.Find(Convert.ToString("HomePlayer") & NumPlayer, True)(0), Label)
-    '  myPlayer = HomePlayers(Utils.Val(NumPlayer) - 1)
-    '  myTeamStat = HomeTeam
-    '  LocalTeam = True
-    'Else
-    '  ThisPlayer = DirectCast(grpAwayPlayers.Controls.Find(Convert.ToString("AwayPlayer") & NumPlayer, True)(0), Label)
-    '  myPlayer = AwayPlayers(Utils.Val(NumPlayer) - 1)
-    '  myTeamStat = AwayTeam
-    '  LocalTeam = False
-    'End If
-
-    'Dim lblShot As Label, lblShotsTot As Label
-    'lblShot = DirectCast(grpData.Controls.Find(Convert.ToString(Convert.ToString("lblShots") & HomeAway) & NumPlayer, True)(0), Label)
-    'lblShotsTot = DirectCast(grpData.Controls.Find((Convert.ToString("lblShots") & HomeAway) & "Tot", True)(0), Label)
-
-    'Dim LabelTot As Label = DirectCast(grpData.Controls.Find((Convert.ToString(Convert.ToString("lbl") & Type) & HomeAway) & "Tot", True)(0), Label)
-    'If bControlPress Then
-    '  myLabel.Text = (Utils.Val(myLabel.Text) - 1).ToString()
-    '  LabelTot.Text = (Utils.Val(LabelTot.Text) - 1).ToString()
-
-    '  If Type = "ShtGl" Then
-    '    'Shots on Target
-    '    'Shots also decrease
-    '    lblShot.Text = (Utils.Val(lblShot.Text) - 1).ToString()
-    '    lblShotsTot.Text = (Utils.Val(lblShotsTot.Text) - 1).ToString()
-    '  End If
-    'Else
-    '  If Type = "ShtGl" Then
-    '    'Shots on Target
-    '    'Shots also grow
-    '    lblShot.Text = (Utils.Val(lblShot.Text) + 1).ToString()
-    '    lblShotsTot.Text = (Utils.Val(lblShotsTot.Text) + 1).ToString()
-    '  End If
-
-    '  myLabel.Text = (Utils.Val(myLabel.Text) + 1).ToString()
-    '  LabelTot.Text = (Utils.Val(LabelTot.Text) + 1).ToString()
-    'End If
-    ''Refresh the Data file
-    'Select Case Type
-    '  Case "Shots"
-    '    myPlayer.MatchStats.Shots.Value = Utils.Val(myLabel.Text)
-    '    myTeamStat.MatchStats.Shots.Value = Utils.Val(LabelTot.Text)
-    '    Exit Select
-    '  Case "ShtGl"
-    '    myTeamStat.MatchStats.Shots.Value = Utils.Val(lblShot.Text)
-    '    myTeamStat.MatchStats.Shots.Value = Utils.Val(lblShotsTot.Text)
-    '    myTeamStat.MatchStats.ShotsOn.Value = Utils.Val(myLabel.Text)
-    '    myTeamStat.MatchStats.ShotsOn.Value = Utils.Val(LabelTot.Text)
-    '    Exit Select
-    '  Case "Saves"
-    '    myTeamStat.MatchStats.Saves.Value = Utils.Val(myLabel.Text)
-    '    myTeamStat.MatchStats.Saves.Value = Utils.Val(LabelTot.Text)
-    '    Exit Select
-    '  Case "Fouls"
-    '    myTeamStat.MatchStats.Fouls.Value = Utils.Val(myLabel.Text)
-    '    myTeamStat.MatchStats.Fouls.Value = Utils.Val(LabelTot.Text)
-    '    Exit Select
-    '  Case "YCard"
-    '    myTeamStat.MatchStats.YellowCards.Value = Utils.Val(myLabel.Text)
-    '    myTeamStat.MatchStats.YellowCards.Value = Utils.Val(LabelTot.Text)
-    '    YCard += "|YCard|" & myPlayer.PlayerID.ToString()
-    '    Exit Select
-    '  Case "RCard"
-    '    myTeamStat.MatchStats.RedCards.Value = Utils.Val(myLabel.Text)
-    '    myTeamStat.MatchStats.RedCards.Value = Utils.Val(LabelTot.Text)
-    '    RCard += "|RCard|" & myPlayer.PlayerID.ToString()
-    '    Exit Select
-    '  Case "Assis"
-    '    myTeamStat.MatchStats.Assis.Value = Utils.Val(myLabel.Text)
-    '    myTeamStat.MatchStats.Assis.Value = Utils.Val(LabelTot.Text)
-    '    Exit Select
-    'End Select
-    'AddEvent(Type.ToUpper(), LocalTeam, ThisPlayer.Text)
-    '''Properties.Settings.[Default](Convert.ToString((Convert.ToString("Team") & HomeAway) & "Player") & NumPlayer) = myPlayer.ToSocketFormat()
-    '''Properties.Settings.[Default](HomeAway & Convert.ToString("Team")) = myTeamStat.ToSocketFormat()
-    '''Properties.Settings.[Default].Save()
-  End Sub
-
-
-  Private Sub AddEvent_old([Event] As String, LocalTeam As Boolean, EventPlayer As String)
-    Dim item As ListViewItem = lsvEvents.Items.Insert(0, txtClock.Text)
-    Dim TextToAdd As String = [Event].ToUpper()
-    If [Event] = "RCARD" Then
-      TextToAdd = "RED CARD"
-    ElseIf [Event] = "YCARD" Then
-      TextToAdd = "YELLOW CARD"
-    ElseIf [Event] = "SHTGL" Then
-      TextToAdd = "SHOT ON TARGET"
-    End If
-
-    item.SubItems.Add(TextToAdd)
-    Dim strText As String
-    If LocalTeam Then
-      strText = _match.HomeTeam.Name ' lblHomeTeam1.Text
-    Else
-      strText = _match.AwayTeam.Name 'lblAwayTeam1.Text
-    End If
-
-    If EventPlayer <> "" Then
-      strText &= Convert.ToString(" player ") & EventPlayer
-    End If
-    item.SubItems.Add(strText)
-    item.ImageKey = [Event]
+    End Try
   End Sub
 
   Private Sub AddEvent(myEvent As MatchEvent, LocalTeam As Boolean, EventPlayer As String)
@@ -557,29 +456,29 @@ Partial Public Class frmMain
       Me.MetroGridEvents.Rows.Insert(0, 1)
       Me.MetroGridEvents.Rows(item).Cells(ColumnID.Index).Value = myEvent.EventID
       Dim TextToAdd As String = myEvent.EventType
-    If myEvent.EventType = "RCARD" Then
-      TextToAdd = "RED CARD"
-    ElseIf myEvent.EventType = "YCARD" Then
-      TextToAdd = "YELLOW CARD"
-    ElseIf myEvent.EventType = "SHTGL" Then
-      TextToAdd = "SHOT ON TARGET"
-    End If
-    Me.MetroGridEvents.Rows(item).Cells(ColumnType.Index).Value = TextToAdd
+      If myEvent.EventType = "RCARD" Then
+        TextToAdd = "RED CARD"
+      ElseIf myEvent.EventType = "YCARD" Then
+        TextToAdd = "YELLOW CARD"
+      ElseIf myEvent.EventType = "SHTGL" Then
+        TextToAdd = "SHOT ON TARGET"
+      End If
+      Me.MetroGridEvents.Rows(item).Cells(ColumnType.Index).Value = TextToAdd
 
-    Dim strText As String
-    If LocalTeam Then
-      strText = _match.HomeTeam.Name ' lblHomeTeam1.Text
-    Else
-      strText = _match.AwayTeam.Name 'lblAwayTeam1.Text
-    End If
+      Dim strText As String
+      If LocalTeam Then
+        strText = _match.HomeTeam.Name ' lblHomeTeam1.Text
+      Else
+        strText = _match.AwayTeam.Name 'lblAwayTeam1.Text
+      End If
 
-    If EventPlayer <> "" Then
-      strText &= Convert.ToString(" player ") & EventPlayer
-    End If
-    Me.MetroGridEvents.Rows(item).Cells(ColumnPlayer.Index).Value = strText
-    Me.MetroGridEvents.Rows(item).Cells(ColumnTime.Index).Value = myEvent.TimeSecond \ 60 & ":" & Strings.Format(myEvent.TimeSecond Mod 60)
+      If EventPlayer <> "" Then
+        strText &= Convert.ToString(" player ") & EventPlayer
+      End If
+      Me.MetroGridEvents.Rows(item).Cells(ColumnPlayer.Index).Value = strText
+      Me.MetroGridEvents.Rows(item).Cells(ColumnTime.Index).Value = myEvent.TimeSecond \ 60 & ":" & Strings.Format(myEvent.TimeSecond Mod 60, "00")
 
-    Me.MetroGridEvents.Rows(item).Cells(ColumnImage.Index).Value = Me.imglstEvents.Images(myEvent.EventType.ToUpper)
+      Me.MetroGridEvents.Rows(item).Cells(ColumnImage.Index).Value = Me.imglstEvents.Images(myEvent.EventType.ToUpper)
 
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -740,31 +639,39 @@ Partial Public Class frmMain
       'Me.GetType().GetMethod("SetHomePlayersInvoke").Invoke(Me, New String() {data})
       Me.Invoke(New SetHomePlayersInvoker(AddressOf SetHomePlayersInvoke), data)
     Else
-      Exit Sub
       Dim x As Integer = 3
       Try
         Dim values As String() = data.Split("|"c)
-        _match.HomeTeam = New Team()
-        _match.HomeTeam.Match_ID = _match.match_id
-        _match.HomeTeam.TeamID = Utils.Val(values(1).ToString())
-        _match.HomeTeam.Name = values(2).ToString()
+        If _match.HomeTeam.TeamID <= 0 Then
+          _match.HomeTeam = New Team()
+          _match.HomeTeam.Match_ID = _match.match_id
+          _match.HomeTeam.TeamID = Utils.Val(values(1).ToString())
+          _match.HomeTeam.Name = values(2).ToString()
+        End If
 
-        _match.HomeTeam.MatchPlayers = New Players(19)
-        _match.HomeTeam.CreateEmptyPlayers(19)
+        If _match.HomeTeam.MatchPlayers.Count = 0 Then
+          'match home playeres were empty! populate them!!
+          _match.HomeTeam.MatchPlayers = New Players(19)
+          _match.HomeTeam.CreateEmptyPlayers(19)
 
-        x = 3
-        For i As Integer = 0 To 17
-          Dim player As Player = _match.HomeTeam.GetPlayerByPosicio(i + 1)
-          If Not player Is Nothing And x < values.Length Then
+          x = 3
+          For i As Integer = 0 To 17
+            Dim player As Player = _match.HomeTeam.GetPlayerByPosicio(i + 1)
+            If Not player Is Nothing And x < values.Length Then
 
-            player.PlayerID = Utils.Val(values(x).ToString())
-            player.Name = values(x + 1).ToString()
-            player.PlayerUniqueName = values(x + 1).ToString()
-            player.PlayerFirstName = values(x + 1).ToString()
-            player.Match_ID = _match.match_id
-          End If
-          x += 2
-        Next
+              player.PlayerID = Utils.Val(values(x).ToString())
+              player.Name = values(x + 1).ToString()
+              player.PlayerUniqueName = values(x + 1).ToString()
+              player.PlayerFirstName = values(x + 1).ToString()
+              player.Match_ID = _match.match_id
+            End If
+            x += 2
+          Next
+        Else
+          'we already had players... what shall we do?
+
+        End If
+
         Me.TeamControlHome.Team = _match.HomeTeam
 
         Me.SingleStatControlHomeCorners.Init(_match.HomeTeam.MatchStats.Corners, _match.HomeTeam)
@@ -789,31 +696,39 @@ Partial Public Class frmMain
       'Me.GetType().GetMethod("SetAwayPlayersInvoke").Invoke(Me, New String() {data})
       Me.Invoke(New SetAwayPlayersInvoker(AddressOf SetAwayPlayersInvoke), data)
     Else
-      Exit Sub
       Try
         Dim values As String() = data.Split("|"c)
         Dim x As Integer = 3
-        _match.AwayTeam = New Team()
-        _match.AwayTeam.Match_ID = _match.match_id
-        _match.AwayTeam.TeamID = Utils.Val(values(1).ToString())
-        _match.AwayTeam.Name = values(2).ToString()
 
-        _match.AwayTeam.MatchPlayers = New Players(19)
-        _match.AwayTeam.CreateEmptyPlayers(19)
+        If _match.AwayTeam.TeamID <= 0 Then
+          _match.AwayTeam = New Team()
+          _match.AwayTeam.Match_ID = _match.match_id
+          _match.AwayTeam.TeamID = Utils.Val(values(1).ToString())
+          _match.AwayTeam.Name = values(2).ToString()
+        End If
 
-        x = 3
-        For i As Integer = 0 To 17
-          Dim player As Player = _match.AwayTeam.GetPlayerByPosicio(i + 1)
-          If Not player Is Nothing And x < values.Length Then
-            player.PlayerID = Utils.Val(values(x).ToString())
-            player.Name = values(x + 1).ToString()
-            player.PlayerUniqueName = values(x + 1).ToString()
-            player.PlayerFirstName = values(x + 1).ToString()
-            player.Match_ID = _match.match_id
-          End If
-          x += 2
-        Next
-        Me.TeamControlAway.Team = _match.AwayTeam
+        If _match.AwayTeam.MatchPlayers.Count = 0 Then
+
+          _match.AwayTeam.MatchPlayers = New Players(19)
+          _match.AwayTeam.CreateEmptyPlayers(19)
+
+          x = 3
+          For i As Integer = 0 To 17
+            Dim player As Player = _match.AwayTeam.GetPlayerByPosicio(i + 1)
+            If Not player Is Nothing And x < values.Length Then
+              player.PlayerID = Utils.Val(values(x).ToString())
+              player.Name = values(x + 1).ToString()
+              player.PlayerUniqueName = values(x + 1).ToString()
+              player.PlayerFirstName = values(x + 1).ToString()
+              player.Match_ID = _match.match_id
+            End If
+            x += 2
+          Next
+          Me.TeamControlAway.Team = _match.AwayTeam
+        Else
+
+        End If
+
 
         Me.SingleStatControlAwayCorners.Init(_match.AwayTeam.MatchStats.Corners, _match.AwayTeam)
         Me.SingleStatControlAwayOffsides.Init(_match.AwayTeam.MatchStats.Offsides, _match.AwayTeam)
@@ -1163,10 +1078,6 @@ Partial Public Class frmMain
     End Try
   End Sub
 
-  Private Sub lblSavesHome1_Click(sender As Object, e As EventArgs)
-    lblStat_Click(sender, e)
-  End Sub
-
 #End Region
 
   Private Sub btnOverwriteClock_Click(sender As Object, e As EventArgs)
@@ -1206,7 +1117,7 @@ Partial Public Class frmMain
 
       SocketThead.Start()
     Catch err As Exception
-      Log("ERROR: MainForm " & err.Message)
+      'Log("ERROR: MainForm " & err.Message)
     End Try
   End Sub
 
@@ -1240,6 +1151,9 @@ Partial Public Class frmMain
 
       Me.lblAwayTeam2.Text = _match.AwayTeam.Name
       Me.lblAwayTeam3.Text = _match.AwayTeam.Name
+
+      Me.showevents()
+
 
 
 
@@ -1324,14 +1238,6 @@ Partial Public Class frmMain
 
 
 #Region "Team stat events"
-  Private Sub AwayTeam_PlayerStatValueChanged(team As Team, player As Player, stat As Stat) Handles _matchAwayTeam.PlayerStatValueChanged
-    If player Is Nothing Then
-      AddEvent_old(stat.Name, team.TeamID = _match.HomeTeam.ID, 0)
-    Else
-      AddEvent_old(stat.Name, team.TeamID = _match.HomeTeam.ID, player.ID)
-    End If
-  End Sub
-
   Private Sub SingleStatControlHome_AddEvent(sender As SingleStatControl) Handles SingleStatControlHomeCorners.AddEvent, SingleStatControlHomeOffsides.AddEvent, SingleStatControlHomeWood.AddEvent
     Try
       _match.AddEvent(sender.Stat.Name, _match.HomeTeam.TeamID, 0, 0, 0)
@@ -1396,8 +1302,10 @@ Partial Public Class frmMain
 #End Region
 
 #Region "Clock control"
+  Private _selectedIndex As Integer
 
   Private Sub StartClock_Click(sender As Object, e As EventArgs) Handles StartClock.Click
+
 
     tmrClock.Enabled = False
     tmrRefresh.Enabled = False
@@ -1405,15 +1313,19 @@ Partial Public Class frmMain
     Dim timeToStart As Integer = 0
     If rdb1stHalf.Checked Then
       timeToStart = 0 * 60
+      _selectedIndex = 0
     End If
     If rdb2ndHalf.Checked Then
       timeToStart = 45 * 60
+      _selectedIndex = 1
     End If
     If rdbExtra1.Checked Then
       timeToStart = 90 * 60
+      _selectedIndex = 2
     End If
     If rdbExtra2.Checked Then
       timeToStart = 105 * 60
+      _selectedIndex = 3
     End If
 
     MainSec = timeToStart
@@ -1424,6 +1336,10 @@ Partial Public Class frmMain
     AppSettings.Instance.ClockStart = DateTime.Now.Ticks
     tmrClock.Enabled = True
     tmrRefresh.Enabled = True
+
+
+    _match.MatchPeriods.StartPeriod(_match.MatchPeriods(_selectedIndex), 0)
+
   End Sub
 
 
@@ -1471,9 +1387,44 @@ Partial Public Class frmMain
         PossessionAway2nd += 1
       End If
     End If
-
+    UpdateClock()
     'Save the Possession
     GlobalProperties.Instance.Possession = PossessionHome1st.ToString() & "|" & PossessionAway1st.ToString() & "|" & PossessionHome2nd.ToString() & "|" & PossessionAway2nd.ToString() & "|" & txtPossessionHomeOwnT.Text & "|" & txtPossessionHomeMidF.Text & "|" & txtPossessionHomeAttk.Text & "|" & txtPossessionAwayOwnT.Text & "|" & txtPossessionAwayMidF.Text & "|" & txtPossessionAwayAttk.Text
+  End Sub
+
+  Private Sub UpdateClock()
+    Try
+      Dim labelColor As Color = Color.White
+      Dim colorOn As Color = Color.LightGreen
+      Dim colorOff As Color = Color.LightSalmon
+
+      If _match Is Nothing Then Exit Sub
+      If _match.MatchPeriods.ActivePeriod Is Nothing Then
+        Me.MetroLabelPeriodTime.Text = "00:00"
+        Me.MetroLabelPeriodName.Text = ""
+        labelColor = colorOff
+      Else
+        Me.MetroLabelPeriodTime.Text = _match.MatchPeriods.TempsJocWithOffsetString
+        Me.MetroLabelPeriodName.Text = _match.MatchPeriods.Nom
+
+        Dim XX As New MetroFramework.Components.MetroStyleManager()
+
+        If _match.MatchPeriods.ActivePeriod.PlayingTime > _match.MatchPeriods.ActivePeriod.TotalTime Then
+          labelColor = colorOn
+          XX.Theme = MetroFramework.MetroThemeStyle.Dark
+          Me.MetroLabelPeriodTime.BackColor = Color.Red
+          Me.MetroLabelPeriodTime.Invalidate()
+        Else
+          labelColor = colorOff
+          XX.Theme = MetroFramework.MetroThemeStyle.Light
+
+          Me.MetroLabelPeriodTime.BackColor = Color.Blue
+        End If
+      End If
+      Me.MetroLabelPeriodTime.BackColor = labelColor
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
   End Sub
 
   Private Sub SetSelectedPeriod(period As Integer)
@@ -1504,11 +1455,6 @@ Partial Public Class frmMain
 
   End Sub
 
-
-  Private Sub rdb1stHalf_Click(sender As Object, e As EventArgs)
-
-  End Sub
-
   Private Sub lblHomeTeam_MouseClick(sender As Object, e As EventArgs) Handles lblHomeTeam3.Click, lblHomeTeam2.Click
 
   End Sub
@@ -1534,18 +1480,6 @@ Partial Public Class frmMain
     lblPossessionOwnT.BackColor = Color.Gray
   End Sub
 
-  Private Sub rdb2ndHalf_Click(sender As Object, e As EventArgs)
-
-  End Sub
-
-  Private Sub rdbExtra1_Click(sender As Object, e As EventArgs)
-
-  End Sub
-
-  Private Sub rdbExtra2_Click(sender As Object, e As EventArgs)
-
-  End Sub
-
   Private Sub btnClockReset_Click_1(sender As Object, e As EventArgs) Handles btnClockReset.Click
     Try
       If _match Is Nothing Then Exit Sub
@@ -1568,11 +1502,7 @@ Partial Public Class frmMain
 
   Private Sub _match_EventCreated(myEvent As MatchEvent) Handles _match.EventCreated
     Try
-      Dim team As Team = IIf(myEvent.TeamID = _match.HomeTeam.TeamID, _match.HomeTeam, _match.AwayTeam)
-      Dim player As Player = team.GetPlayerById(myEvent.PlayerID)
-
-      Me.AddEvent_old(myEvent.EventType, myEvent.TeamID = _match.HomeTeam.TeamID, player.Name)
-      Me.AddEvent(myEvent, myEvent.TeamID = _match.HomeTeam.TeamID, player.Name)
+      Me.AddEvent(myEvent)
 
     Catch ex As Exception
 
@@ -1583,9 +1513,58 @@ Partial Public Class frmMain
 
   End Sub
 
+  Private Sub ToolStripButtonSettings_Click(sender As Object, e As EventArgs) Handles ToolStripButtonSettings.Click
+
+    ShowOptions(Me)
+
+  End Sub
+
+  Private Sub btnOverwriteClock_Click_1(sender As Object, e As EventArgs) Handles btnOverwriteClock.Click
+
+  End Sub
+
   Private Sub frmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
     Try
       Me.SocketThead.Abort()
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub _matchAwayTeam_StatValueChanged(sender As StatSubject, stat As Stat) Handles _matchAwayTeam.StatValueChanged
+
+  End Sub
+
+  Private Sub _matchHomeTeam_StatValueChanged(sender As StatSubject, stat As Stat) Handles _matchHomeTeam.StatValueChanged
+
+  End Sub
+
+  Private Sub rdb1stHalf_Click(sender As Object, e As EventArgs) Handles rdb1stHalf.Click
+    _selectedIndex = 0
+    UpdateRadioButtons()
+  End Sub
+
+  Private Sub rdb2ndHalf_Click(sender As Object, e As EventArgs) Handles rdb2ndHalf.Click
+    _selectedIndex = 1
+    UpdateRadioButtons()
+  End Sub
+
+  Private Sub rdbExtra1_Click(sender As Object, e As EventArgs) Handles rdbExtra1.Click
+    _selectedIndex = 2
+    UpdateRadioButtons()
+  End Sub
+
+  Private Sub rdbExtra2_Click(sender As Object, e As EventArgs) Handles rdbExtra2.Click
+    _selectedIndex = 3
+    UpdateRadioButtons()
+  End Sub
+
+  Private Sub UpdateRadioButtons()
+    Try
+      rdb1stHalf.Checked = (_selectedIndex = 0)
+      rdb2ndHalf.Checked = (_selectedIndex = 1)
+      rdbExtra1.Checked = (_selectedIndex = 2)
+      rdbExtra2.Checked = (_selectedIndex = 3)
     Catch ex As Exception
 
     End Try

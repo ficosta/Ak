@@ -60,7 +60,7 @@ Public Class PlayerViewer
     End Get
     Set(value As Boolean)
       _isSubstitution = value
-      UpdateStatInterface()
+      UpdateNameLabels()
     End Set
   End Property
 #End Region
@@ -78,8 +78,11 @@ Public Class PlayerViewer
   Private Sub EngageDataBinding()
     Try
       If Not _player Is Nothing Then
-
-        Me.LabelDorsal.Text = _player.SquadNo
+        If Not Me.IsSubsitution Then
+          Me.LabelDorsal.Text = _player.SquadNo
+        Else
+          Me.LabelDorsal.Text = _player.SquadNo & "s"
+        End If
         Me.LabelName.Text = _player.PlayerName
         AddHandler _player.StatValueChanged, AddressOf _player_StatValueChanged
         Me.UpdateStatInterface()
@@ -92,7 +95,11 @@ Public Class PlayerViewer
   Private Sub UpdateNameLabels()
     Try
       If Not _player Is Nothing Then
-        Me.LabelDorsal.Text = _player.SquadNo
+        If Not Me.IsSubsitution Then
+          Me.LabelDorsal.Text = _player.SquadNo
+        Else
+          Me.LabelDorsal.Text = _player.SquadNo & "s"
+        End If
         Me.LabelName.Text = _player.PlayerName
       End If
     Catch ex As Exception
@@ -156,7 +163,7 @@ Public Class PlayerViewer
     End Try
   End Sub
 
-  Private Sub Label_MouseEnter(sender As Object, e As EventArgs) Handles LabelName.MouseEnter
+  Private Sub Label_MouseEnter(sender As Object, e As EventArgs) Handles LabelName.MouseEnter, LabelDorsal.MouseEnter, PictureBoxInfo.MouseEnter
     Try
       Me.IsMouseOver = True
     Catch ex As Exception
@@ -164,7 +171,7 @@ Public Class PlayerViewer
     End Try
   End Sub
 
-  Private Sub Label_MouseLeave(sender As Object, e As EventArgs) Handles LabelName.MouseLeave
+  Private Sub Label_MouseLeave(sender As Object, e As EventArgs) Handles LabelName.MouseLeave, LabelDorsal.MouseLeave, PictureBoxInfo.MouseLeave
     Try
       Me.IsMouseOver = False
     Catch ex As Exception

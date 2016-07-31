@@ -95,13 +95,13 @@ Public Class GraphicsReporter
     scene.SceneDirectorsChangeIn.Add("BottomChange", 0, DirectorAction.Start)
     scene.SceneDirectorsChangeIn.Add("BottomChange", 200, DirectorAction.Dummy)
 
-    scene.SceneParameters.Add("Lower3rd_Data_Single_Subject_Control_OMO_Icon", "1")
+    scene.SceneParameters.Add("Lower3rd_Data_Single_Subject_Control_OMO_Icon", "2")
     scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Control_OMO_GV_Choose", "0")
     
     scene.SceneParameters.Add("Lower3rd_Data_Control_OMO_GV_Choose ", "0")
     'scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Control_OMO_GV_Choose", "0")
-    scene.SceneParameters.Add("Lower3rd_Single_Text_Subject_Name ", "xxxxxxxxxxxx")
-    scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", "yyyyyyyyyyyyyyyyy")
+    scene.SceneParameters.Add("Lower3rd_Single_Text_Subject_Name ", "")
+    scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", "")
 
     Return scene
   End Function

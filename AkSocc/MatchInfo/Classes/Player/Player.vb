@@ -508,9 +508,9 @@
     Dim res As Integer = 0
     Try
       Dim aux As Player = CType(obj, Player)
-      If aux.Formation_Pos > Me.Formation_Pos Then
+      If aux.Formation_Pos < Me.Formation_Pos Then
         res = 1
-      ElseIf aux.Formation_Pos < Me.Formation_Pos Then
+      ElseIf aux.Formation_Pos > Me.Formation_Pos Then
         res = -1
       End If
 

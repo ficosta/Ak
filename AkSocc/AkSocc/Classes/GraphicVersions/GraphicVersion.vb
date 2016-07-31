@@ -9,6 +9,8 @@
   Public Property LocalPathTShirts As String
   Public Property LocalPathColors As String
 
+  Public Property UseLongPreview As Boolean
+
   Public Sub New()
 
   End Sub

@@ -6,7 +6,7 @@ Public Class SubjectStats
 
   Public Event StatValueChanged(subjectStats As SubjectStats, stat As Stat)
 
-  Private WithEvents _goals As New Stat("Goals", True, 0, "GOALS") With {.FromDataBase = False}
+  Private WithEvents _goals As New Stat("Goals", False, 0, "GOALS") With {.FromDataBase = False}
   Public ReadOnly Property GoalStat As Stat
     Get
       Return _goals

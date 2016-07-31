@@ -77,15 +77,15 @@ Public Class ClockPlayerCard
           Case "Name and Yellow card"
             .SceneParameters.Add("Clock_Player_Card_Data_01_Text", Arabic("YELLOW CARD"))
             .SceneParameters.Add("Clock_Player_Card_Data_02_Text", Arabic("YELLOW CARD"))
-            .SceneParameters.Add("Clock_Player_Card_Data_01_Control_OMO_Cards", "0")
+            .SceneParameters.Add("Clock_Player_Card_Data_01_Control_OMO_Cards", "1")
           Case "Name and Second Yellow card"
             .SceneParameters.Add("Clock_Player_Card_Data_01_Text", Arabic("SECOND YELLOW CARD"))
             .SceneParameters.Add("Clock_Player_Card_Data_02_Text", Arabic("RED CARD"))
-            .SceneParameters.Add("Clock_Player_Card_Data_01_Control_OMO_Cards", "1")
+            .SceneParameters.Add("Clock_Player_Card_Data_01_Control_OMO_Cards", "2")
           Case "Name and Red card"
             .SceneParameters.Add("Clock_Player_Card_Data_01_Text", Arabic("RED CARD"))
             .SceneParameters.Add("Clock_Player_Card_Data_02_Text", Arabic("RED CARD"))
-            .SceneParameters.Add("Clock_Player_Card_Data_01_Control_OMO_Cards", "2")
+            .SceneParameters.Add("Clock_Player_Card_Data_01_Control_OMO_Cards", "3")
         End Select
 
       End With

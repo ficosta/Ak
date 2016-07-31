@@ -56,6 +56,8 @@ Public Class FormSubstitution
     Try
       _initializing = True
       grid.Rows.Clear()
+      players.Sort()
+
       For Each player As Player In players
         Dim showPlayer As Boolean = False
         If isBench = False And player.Formation_Pos <= 11 Then
@@ -64,7 +66,7 @@ Public Class FormSubstitution
           showPlayer = True
         End If
         If showPlayer Then
-          Dim itm As Integer = grid.Rows.Add(player.PlayerID, player.PlayerName, player.SquadNo, player.Formation_Pos)
+          Dim itm As Integer = grid.Rows.Add(player.PlayerID, player.SquadNo, player.PlayerName, player.Formation_Pos)
           grid.Rows(itm).Selected = False
         End If
 
@@ -101,7 +103,7 @@ Public Class FormSubstitution
       Me.DialogResult = DialogResult.OK
       Me.Close()
     Catch ex As Exception
-
+      WriteToErrorLog(ex)
     End Try
   End Sub
 
@@ -110,7 +112,7 @@ Public Class FormSubstitution
       Me.DialogResult = DialogResult.Cancel
       Me.Close()
     Catch ex As Exception
-
+      WriteToErrorLog(ex)
     End Try
   End Sub
 

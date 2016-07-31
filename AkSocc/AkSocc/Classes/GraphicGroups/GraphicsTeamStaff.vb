@@ -14,7 +14,7 @@ Public Class GraphicsTeamStaff
 
     MyBase.Name = "GraphicsTeamStaff"
     MyBase.ID = 1
-    MyBase.KeyCombination = New KeyCombination(Description, Keys.F7, False, False, False, False)
+    'MyBase.KeyCombination = New KeyCombination(Description, Keys.F7, False, False, False, False)
   End Sub
 
 
@@ -126,10 +126,10 @@ Public Class GraphicsTeamStaff
       If Not teamStaff Is Nothing Then
         scene.SceneParameters.Add("Lower3rd_Player_Badge_Subject_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Team.BadgeName, paramType.Image)
         scene.SceneParameters.Add("Lower3rd_Player_Badge_Subject_Logo3D.geom", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Team.BadgeName, paramType.Geometry)
-        scene.SceneParameters.Add("Lower3rd_Player_Badge_Subject_Name", teamStaff.ArabicStaffTitle)
-        scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", teamStaff.ArabicName)
-        scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", teamStaff.ArabicName)
-        scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", teamStaff.ArabicName)
+        scene.SceneParameters.Add("Lower3rd_Player_Badge_Subject_Name", teamStaff.ArabicName)
+        scene.SceneParameters.Add(prefix & "Bottom_Bar_Text_Text_01", teamStaff.ArabicStaffTitle)
+        scene.SceneParameters.Add("Lower3rd_Side_1_Bottom_Bar_Text_Text_01", teamStaff.ArabicStaffTitle)
+        scene.SceneParameters.Add("Lower3rd_Side_2_Bottom_Bar_Text_Text_01", teamStaff.ArabicStaffTitle)
       End If
 
     Catch ex As Exception

@@ -50,8 +50,8 @@ Public Class UCOtherMatch
       Me.MetroComboBoxMatch.Items.Add("")
 
       If Not _matches Is Nothing Then
-        For Each match As Match In _matches
-          Me.MetroComboBoxMatch.Items.Add(match)
+        For i As Integer = _matches.Count - 1 To 0 Step -1
+          Me.MetroComboBoxMatch.Items.Add(_matches(i))
         Next
       End If
     End Set

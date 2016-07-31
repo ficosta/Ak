@@ -92,9 +92,9 @@ Public Class DialogOptions
       AppSettings.Instance.LoggerPort = Me.NumericUpDownLogger.Value
 
       Dim version As GraphicVersion = CType(Me.ComboBoxSceneVersion.SelectedItem, GraphicVersion)
-      GraphicVersions.Instance.SelectedGraphicVersion = version
       If Not version Is Nothing Then
         AppSettings.Instance.ScenePath = version.Path
+        GraphicVersions.Instance.SelectedGraphicVersion = version
       End If
       AppSettings.Instance.Save()
     Catch ex As Exception

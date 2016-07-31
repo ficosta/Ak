@@ -19,9 +19,9 @@ Public Class ClockSubstitution
         .VizLayer = _clockControl.Scene.VizLayer
 
         .SceneParameters.Add("Clock_Substitute_Subject_01_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Substitution.Team.BadgeName, paramType.Image)
-        .SceneParameters.Add("Clock_Substitute_Subject_01_Name", Substitution.PlayerOut.PlayerName)
+        .SceneParameters.Add("Clock_Substitute_Subject_01_Name", Substitution.PlayerOut.Name)
         .SceneParameters.Add("Clock_Substitute_Subject_01_Number", Substitution.PlayerOut.SquadNo)
-        .SceneParameters.Add("Clock_Substitute_Subject_02_Name", Substitution.PlayerIn.PlayerName)
+        .SceneParameters.Add("Clock_Substitute_Subject_02_Name", Substitution.PlayerIn.Name)
         .SceneParameters.Add("Clock_Substitute_Subject_02_Number", Substitution.PlayerIn.SquadNo)
       End With
 

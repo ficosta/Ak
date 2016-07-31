@@ -32,6 +32,19 @@ Public Class Substitutions
     Return Me.List.Count
   End Function
 
+  Public Sub Remove(subs As Substitution)
+    Try
+      For i As Integer = Me.List.Count - 1 To 0 Step -1
+        If CType(Me.List(i), Substitution).PlayerIn.ID = subs.PlayerIn.ID And CType(Me.List(i), Substitution).PlayerOut.ID = subs.PlayerOut.ID Then
+          Me.RemoveAt(i)
+          Exit For
+        End If
+      Next
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
   Default Public Property Item(Index As Integer) As Substitution
     Get
       Return DirectCast(List(Index), Substitution)

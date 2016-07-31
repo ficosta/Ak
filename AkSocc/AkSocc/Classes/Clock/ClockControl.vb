@@ -55,9 +55,6 @@ Public NotInheritable Class ClockControl
   Public Property Visible As Boolean = False
   Public Property RequestVisible As Boolean = False
   Public Property Active As Boolean = False
-  Public Property AddedTimeVisible As Boolean = False
-  Public Property AddedTimeVisibleAuto As Boolean = True
-  Public Property AddedTimeTotalVisible As Boolean = False
   Public Property nPuOffsetTime As Long
 
   Private _showRedCards As Boolean
@@ -66,7 +63,8 @@ Public NotInheritable Class ClockControl
       Return _ShowRedCards
     End Get
     Set(value As Boolean)
-      _ShowRedCards = value
+      _showRedCards = value
+      Me.UpdateRedCards()
     End Set
   End Property
 
@@ -88,6 +86,14 @@ Public NotInheritable Class ClockControl
       .SceneName = "gfx_Clock"
       .SceneDirector = "DIR_MAIN"
       .VizLayer = SceneLayer.Back
+
+      .SceneDirectorsIn.Add("anim_Clock_Substitute", 0, DirectorAction.Rewind)
+      .SceneDirectorsIn.Add("anim_Clock_Player_Card", 0, DirectorAction.Rewind)
+      .SceneDirectorsIn.Add("anim_Clock_Match_Statistics", 0, DirectorAction.Rewind)
+      .SceneDirectorsIn.Add("anim_Clock_Generic_Straps", 0, DirectorAction.Rewind)
+      .SceneDirectorsIn.Add("anim_Clock_Straps_with_Icon", 0, DirectorAction.Rewind)
+      .SceneDirectorsIn.Add("anim_Clock_Penalties", 0, DirectorAction.Rewind)
+      .SceneDirectorsIn.Add("anim_OtherScores", 0, DirectorAction.Rewind)
     End With
     Return scene
   End Function
@@ -146,11 +152,12 @@ Public NotInheritable Class ClockControl
       Return _clockVisible
     End Get
     Set(value As Boolean)
-      If value Then
+      If value <> _clockVisible And value Then
         _showRedCards = (MsgBox("Show red cards?", Buttons:=MsgBoxStyle.YesNo) = MsgBoxResult.Yes)
       End If
       _clockVisible = value
       UpdateClockVisibility()
+      UpdateExraTimeVisibility()
     End Set
   End Property
 
@@ -161,7 +168,7 @@ Public NotInheritable Class ClockControl
     End Get
     Set(value As Boolean)
       _overtimeClockVisible = value
-      UpdateOvertimeClockVisibility()
+      UpdateExraTimeVisibility()
     End Set
   End Property
 
@@ -214,7 +221,51 @@ Public NotInheritable Class ClockControl
     _updating = False
   End Sub
 
+  Public Sub UpdateExraTimeVisibility()
+    If _updating Then Exit Sub
+    _updating = True
+    Try
+      If _match Is Nothing Then
+        _updating = False
+        Exit Sub
+      End If
+
+      If _match.MatchPeriods.ActivePeriod Is Nothing Then
+        _request = False
+      ElseIf _match.MatchPeriods.ActivePeriod.Activa Then
+        _request = _match.MatchPeriods.ActivePeriod.IsPeriodDone
+        _request = (_match.MatchPeriods.ActivePeriod.ExtraTime > 0)
+      Else
+        _request = False
+      End If
+
+      If _clockVisible Then
+        If _overtimeClockVisible <> _overtimeClockOnAir Or _request <> _overtimeClockOnAir Then
+          'we must do something
+          If _overtimeClockOnAir = True And _request = False Then
+            'we must hide it
+            Me.HideOvertimeClock()
+          ElseIf _overtimeClockOnAir = False And _request = True Then
+            'we must show it???
+            Me.ShowOvertimeClock()
+          End If
+        End If
+      End If
+
+      If Not _vizControl Is Nothing Then
+        If _match.MatchPeriods.ActivePeriod.ExtraTime > 0 Then
+          _vizControl.SetControlObjectValue("$object", "Clock_Added_Time_Text", "+" & _match.MatchPeriods.ActivePeriod.ExtraTime, Me.Scene.VizLayer)
+        End If
+      End If
+
+    Catch ex As Exception
+
+    End Try
+    _updating = False
+  End Sub
+
   Public Sub UpdateOvertimeClockVisibility()
+    Exit Sub
     If _updating Then Exit Sub
     _updating = True
     Try
@@ -235,10 +286,10 @@ Public NotInheritable Class ClockControl
         'we must do something
         If _overtimeClockOnAir = True And (_overtimeClockVisible = False Or _request = False) Then
           'we must hide it
-          Me.HideovertimeClock()
-        ElseIf _overtimeclockOnAir = False And _request = True And _overtimeclockVisible = True Then
-          'we must show it
-          Me.ShowovertimeClock()
+          Me.HideOvertimeClock()
+        ElseIf _overtimeClockOnAir = False And _request = True And _overtimeClockVisible = True Then
+          'we must show it???
+          ' Me.ShowovertimeClock()
         End If
       End If
 
@@ -248,6 +299,27 @@ Public NotInheritable Class ClockControl
     _updating = False
   End Sub
 
+  Public Sub UpdatePosition(x As Double, y As Double)
+    Try
+      AppSettings.Instance.ClockPosition_X = x
+      AppSettings.Instance.ClockPosition_Y = y
+      AppSettings.Instance.Save()
+
+      If Not _vizControl Is Nothing Then
+
+        Dim sPosition As String = AppSettings.Instance.ClockPosition_X.ToString & " " & AppSettings.Instance.ClockPosition_Y.ToString & " 0.0"
+        sPosition = sPosition.Replace(",", ".")
+        _vizControl.SetControlObjectValue("$object", "Clock_Position.position", sPosition, Me.Scene.VizLayer)
+      End If
+
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Public Sub SendPosition()
+
+  End Sub
 #End Region
 
 #Region "Scene functions"
@@ -255,6 +327,7 @@ Public NotInheritable Class ClockControl
     Try
       _clockOnAir = True
       UpdateAndSendScene(True)
+
       '_vizControl.DirectorStart("DIR_MAIN", Me.Scene.VizLayer)
       Me.Scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.InDirectors)
       RaiseEvent Updated()
@@ -266,6 +339,7 @@ Public NotInheritable Class ClockControl
   Public Sub HideIdentClock()
     Try
       _clockOnAir = False
+      _overtimeClockOnAir = False
       '_vizControl.DirectorContinue("DIR_MAIN", Me.Scene.VizLayer)  
       Me.Scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
       RaiseEvent Updated()
@@ -305,30 +379,53 @@ Public NotInheritable Class ClockControl
     Try
       If _match Is Nothing Then Exit Sub
       If _match.MatchPeriods.ActivePeriod Is Nothing Then Exit Sub
+      If _vizControl Is Nothing Then Exit Sub
 
       Dim clockIndex As Integer = 0
       Dim overtimeClockIndex As Integer = 1
 
-      If _match.MatchPeriods.ActivePeriod.Activa And Not _match.MatchPeriods.ActivePeriod.IsPeriodDone Then
-        If _clockIsRunning(clockIndex) = False Or forceSend Then
-          _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime + _match.MatchPeriods.ActivePeriod.StartOffset)
-          _vizControl.ClockStart(clockIndex)
+      If True Then
+
+        If _match.MatchPeriods.ActivePeriod.Activa Then
+          If _clockIsRunning(clockIndex) = False Or forceSend Then
+            _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime + _match.MatchPeriods.ActivePeriod.StartOffset)
+            _vizControl.ClockStart(clockIndex)
+          End If
+        Else
+          _vizControl.ClockStop(clockIndex)
+        End If
+
+        _vizControl.ClockSet(overtimeClockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime - _match.MatchPeriods.ActivePeriod.TotalTime)
+        If _match.MatchPeriods.ActivePeriod.IsPeriodDone Then
+          _vizControl.ClockStart(overtimeClockIndex)
+        Else
+          _vizControl.ClockStop(overtimeClockIndex)
         End If
       Else
-        _vizControl.ClockStop(clockIndex)
+        'we have to stop the clock at the end of the period
+
+        If _match.MatchPeriods.ActivePeriod.Activa And Not _match.MatchPeriods.ActivePeriod.IsPeriodDone Then
+          If _clockIsRunning(clockIndex) = False Or forceSend Then
+            _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime + _match.MatchPeriods.ActivePeriod.StartOffset)
+            _vizControl.ClockStart(clockIndex)
+          End If
+        Else
+          _vizControl.ClockStop(clockIndex)
+        End If
+
+        _vizControl.ClockSet(overtimeClockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime - _match.MatchPeriods.ActivePeriod.TotalTime)
+        If _match.MatchPeriods.ActivePeriod.IsPeriodDone Then
+          _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.TotalTime + _match.MatchPeriods.ActivePeriod.StartOffset)
+          _vizControl.ClockStop(clockIndex)
+          _vizControl.ClockStart(overtimeClockIndex)
+          If _clockIsRunning(overtimeClockIndex) = False Or forceSend Then
+            _vizControl.ClockStart(overtimeClockIndex)
+          End If
+        Else
+          _vizControl.ClockStop(overtimeClockIndex)
+        End If
       End If
 
-      _vizControl.ClockSet(overtimeClockIndex, _match.MatchPeriods.ActivePeriod.PlayingTime - _match.MatchPeriods.ActivePeriod.TotalTime)
-      If _match.MatchPeriods.ActivePeriod.IsPeriodDone Then
-        _vizControl.ClockSet(clockIndex, _match.MatchPeriods.ActivePeriod.TotalTime + _match.MatchPeriods.ActivePeriod.StartOffset)
-        _vizControl.ClockStop(clockIndex)
-        _vizControl.ClockStart(overtimeClockIndex)
-        If _clockIsRunning(overtimeClockIndex) = False Or forceSend Then
-          _vizControl.ClockStart(overtimeClockIndex)
-        End If
-      Else
-        _vizControl.ClockStop(overtimeClockIndex)
-      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -403,10 +500,15 @@ Public NotInheritable Class ClockControl
 
           .SceneParameters.Add("Clock_Half_Indicator_Text", sTime)
 
+          Dim sPosition As String = AppSettings.Instance.ClockPosition_X.ToString & " " & AppSettings.Instance.ClockPosition_Y.ToString & " 0.0"
+          .SceneParameters.Add("Clock_Position.Position", sPosition)
+
           'clock control
           UpdateRunningClock(forceSend)
           'red cards
           UpdateRedCards()
+          'extra time
+          UpdateExraTimeVisibility()
         End If
 
       End With
@@ -450,6 +552,7 @@ Public NotInheritable Class ClockControl
 
   Public Sub UpdateRedCards()
     Try
+      If _vizControl Is Nothing Then Exit Sub
       If _showRedCards Then
 
         Dim RedTime As Double = 1.5
@@ -495,10 +598,10 @@ Public NotInheritable Class ClockControl
       If _match Is Nothing Then Exit Sub
       If _match.MatchPeriods.ActivePeriod Is Nothing Then Exit Sub
       If _match.MatchPeriods.ActivePeriod.IsPeriodDone <> Me.OverTimeClockVisible Then
-        Me.OverTimeClockVisible = _match.MatchPeriods.ActivePeriod.IsPeriodDone
-        If _match.MatchPeriods.ActivePeriod.Activa Then
-          UpdateAndSendScene(False)
-        End If
+        'Me.OverTimeClockVisible = _match.MatchPeriods.ActivePeriod.IsPeriodDone
+        'If _match.MatchPeriods.ActivePeriod.Activa Then
+        '  UpdateAndSendScene(False)
+        'End If
       End If
     Catch ex As Exception
 

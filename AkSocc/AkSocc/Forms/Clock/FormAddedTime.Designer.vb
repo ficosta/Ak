@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormAddedTime
-  Inherits MetroFramework.Forms.MetroForm
+  Inherits System.Windows.Forms.Form
 
   'Form overrides dispose to clean up the component list.
   <System.Diagnostics.DebuggerNonUserCode()>
@@ -44,7 +44,7 @@ Partial Class FormAddedTime
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
     Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(262, 143)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(262, 63)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -103,7 +103,7 @@ Partial Class FormAddedTime
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanel2, 1, 0)
     Me.TableLayoutPanel3.Controls.Add(Me.MetroLabelTime, 0, 0)
-    Me.TableLayoutPanel3.Location = New System.Drawing.Point(23, 79)
+    Me.TableLayoutPanel3.Location = New System.Drawing.Point(20, 12)
     Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
     Me.TableLayoutPanel3.RowCount = 1
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -126,14 +126,15 @@ Partial Class FormAddedTime
     Me.AcceptButton = Me.OK_Button
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+    Me.BackColor = System.Drawing.Color.White
     Me.CancelButton = Me.Cancel_Button
-    Me.ClientSize = New System.Drawing.Size(445, 195)
+    Me.ClientSize = New System.Drawing.Size(445, 115)
     Me.Controls.Add(Me.TableLayoutPanel3)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.MaximizeBox = False
     Me.MinimizeBox = False
     Me.Name = "FormAddedTime"
-    Me.Resizable = False
+    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "Added time"
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.TableLayoutPanel2.ResumeLayout(False)

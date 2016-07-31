@@ -58,12 +58,9 @@ Public Class MatchEvents
   Public Sub RemoveEvent(match_id As Integer, type As String, teamID As Integer, playerID As Integer, Optional timeSeconds As Integer = -1, Optional playerSecID As Integer = -1)
     For i As Integer = Me.Count - 1 To 0 Step -1
       Dim myEvent As MatchEvent = Me.Item(i)
-      If myEvent.MatchID = match_id And myEvent.EventType = type And
-            myEvent.TeamID = teamID And
-            myEvent.PlayerID = playerID And
-            (myEvent.TimeSecond = timeSeconds Or timeSeconds = -1) And
-            (myEvent.PlayerSecID = playerSecID Or timeSeconds = -1) Then
+      If myEvent.MatchID = match_id And myEvent.EventType = type And myEvent.TeamID = teamID And myEvent.PlayerID = playerID And (myEvent.TimeSecond = timeSeconds Or timeSeconds = -1) And (myEvent.PlayerSecID = playerSecID Or playerSecID = -1) Then
         Me.RemoveAt(i)
+        Exit For
       End If
     Next
   End Sub

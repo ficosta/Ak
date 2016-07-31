@@ -85,7 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AppSettings.vb" />
-    <Compile Include="Classes\Clock\Clock.vb" />
     <Compile Include="Classes\Clock\ClockControl.vb" />
     <Compile Include="Classes\Clock\ClockSubstitution.vb" />
     <Compile Include="Classes\ErrorHandling.vb" />
@@ -165,10 +164,22 @@
     <Compile Include="Forms\Clock\FormAddedTime.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Clock\FormClockPosition.Designer.vb">
+      <DependentUpon>FormClockPosition.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\FormClockPosition.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Clock\FormPeriodControl_new.Designer.vb">
       <DependentUpon>FormPeriodControl_new.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Clock\FormPeriodControl_new.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MatchEvents\FormMatchEvents.Designer.vb">
+      <DependentUpon>FormMatchEvents.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MatchEvents\FormMatchEvents.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Penalties\FormPenalties.Designer.vb">
@@ -326,12 +337,6 @@
     </Compile>
     <Compile Include="Forms\OtherMatches\Classification\Classification.vb" />
     <Compile Include="Forms\OtherMatches\Classification\ClassificationForMatchDay.vb" />
-    <Compile Include="Forms\OtherMatches\frmOtherMatches_new.Designer.vb">
-      <DependentUpon>frmOtherMatches_new.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\OtherMatches\frmOtherMatches_new.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\OtherMatches\frmOtherMatches.Designer.vb">
       <DependentUpon>frmOtherMatches.vb</DependentUpon>
     </Compile>
@@ -368,6 +373,9 @@
     <EmbeddedResource Include="Forms\Clock\FormAddedTime.resx">
       <DependentUpon>FormAddedTime.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\FormClockPosition.resx">
+      <DependentUpon>FormClockPosition.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Clock\FormOvewriteClock.resx">
       <DependentUpon>FormOvewriteClock.vb</DependentUpon>
     </EmbeddedResource>
@@ -383,8 +391,8 @@
     <EmbeddedResource Include="Forms\DialogOptions.resx">
       <DependentUpon>DialogOptions.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Penalties\FormPenalties.resx">
-      <DependentUpon>frmPenalties.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\MatchEvents\FormMatchEvents.resx">
+      <DependentUpon>FormMatchEvents.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Goals\frmGoal.resx">
       <DependentUpon>frmGoal.vb</DependentUpon>
@@ -409,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OtherMatches\UCOtherMatch.resx">
       <DependentUpon>UCOtherMatch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Penalties\frmPenalties.resx">
+      <DependentUpon>frmPenalties.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SceneLoad\FormLoadScenes.resx">
       <DependentUpon>FormLoadScenes.vb</DependentUpon>
@@ -436,9 +447,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PlayerViewer.resx">
       <DependentUpon>PlayerViewer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OtherMatches\frmOtherMatches_new.resx">
-      <DependentUpon>frmOtherMatches_new.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OtherMatches\frmOtherMatches.resx">
       <DependentUpon>frmOtherMatches.vb</DependentUpon>

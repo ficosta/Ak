@@ -11,6 +11,14 @@ Public Class PreviewControl
   Private _localBasePath As String = "\\vaio\Shared\Snapshots"
   Private _remoteBasePath As String = "\\vaio\Shared\Snapshots"
   Private _tConfig As tyConfigVizrt
+  Public Property Config As tyConfigVizrt
+    Get
+      Return _tConfig
+    End Get
+    Set(value As tyConfigVizrt)
+      _tConfig = value
+    End Set
+  End Property
 
   Public Event AssetAdded(ByVal asset As PreviewAsset)
   Public Event ActiveAssetChanged(ByVal asset As PreviewAsset, ByVal former_asset As PreviewAsset)
@@ -191,6 +199,7 @@ Public Class PreviewControl
           Else
             Debug.Print(asset.Scene.SceneName)
             'send scene to preview server
+            controlVizrt.Config.SceneBasePath = _tConfig.SceneBasePath
             asset.Scene.SendSceneToEngine(controlVizrt)
             asset.Scene.JumpToEndFrame(controlVizrt, asset.Scene.SceneDirectorsIn)
             

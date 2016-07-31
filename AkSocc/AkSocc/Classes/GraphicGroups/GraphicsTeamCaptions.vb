@@ -100,9 +100,9 @@ Public Class GraphicsTeamCaptions
         Case Step0.Away11MiniFormation
           Scene = PrepareTeamMiniFormation(changeStep, Me.Match.AwayTeam)
         Case Step0.DoubleTeams
-          Scene = PrepareDoubleTeam(changeStep)
+          Scene = PrepareDoubleTeam(changeStep, False)
         Case Step0.DoubleSubs
-          Scene = PrepareDoubleTeam(changeStep)
+          Scene = PrepareDoubleTeam(changeStep, True)
         Case Else
           Scene = PrepareTeam(changeStep, Me.Match.HomeTeam)
       End Select
@@ -121,8 +121,13 @@ Public Class GraphicsTeamCaptions
     scene.SceneName = "gfx_Full_Frame"
     scene.SceneDirector = "anim_Full_Frame$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
+    If GraphicVersions.Instance.SelectedGraphicVersion.UseLongPreview Then
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 90, DirectorAction.Dummy)
+    Else
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 105, DirectorAction.Dummy)
+    End If
     scene.SceneDirectorsIn.Add("Change_1_2", 0, DirectorAction.Rewind)
+    scene.SceneDirectorsIn.Add("Title_change_1_2", 0, DirectorAction.Rewind)
 
     scene.SceneDirectorsOut.Add("DIR_MAIN$In_Out", 0, DirectorAction.ContinueNormal)
 
@@ -130,25 +135,29 @@ Public Class GraphicsTeamCaptions
 
     scene.SceneDirectorsChangeIn.Add("Change_1_2", 0, DirectorAction.Start)
     scene.SceneDirectorsChangeIn.Add("Change_1_2", 200, DirectorAction.Dummy)
+    scene.SceneDirectorsChangeIn.Add("Title_change_1_2", 0, DirectorAction.Start)
+    scene.SceneDirectorsChangeIn.Add("Title_change_1_2", 200, DirectorAction.Dummy)
 
     scene.SceneParameters.Add("Veil_On_Off_Vis.active", "1")
     scene.SceneParameters.Add("Title_Sponsor_Vis.active", "1")
 
 
     If Not Me.Match Is Nothing Then
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo3D.geom ", GraphicVersions.Instance.SelectedGraphicVersion.Path3DBadges & Me.Match.AwayTeam.BadgeName)
 
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
-      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_01_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.HomeTeam.BadgeName)
+      scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Me.Match.AwayTeam.BadgeName)
 
     End If
 
     scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
     scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "1")
 
-    scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
-    scene.SceneParameters.Add("Veil_Right_Vis.active ", "1")
+    scene.SceneParameters.Add("Veil_Left_Vis ", "1")
+    scene.SceneParameters.Add("Veil_Right_Vis ", "1")
+
+    scene.SceneParameters.Add("Stats_Side_" & gSide & "_Bottom_Text", "")
 
 
 
@@ -182,11 +191,21 @@ Public Class GraphicsTeamCaptions
       scene.SceneParameters.Add("Badge_Side_" & gSide & "_Subject_02_Logo ", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & team.BadgeName)
 
 
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", team.Name) ' Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "0")
+
       scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
       scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
 
-      scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
-      scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
+      scene.SceneParameters.Add("Veil_Left_Vis ", "1")
+      scene.SceneParameters.Add("Veil_Right_Vis ", "0")
       scene.SceneParameters.Add("Veil_On_Off_Vis.active", "1")
       scene.SceneParameters.Add("TeamList_Side_" & gSide & "_Control_OMO_GV_Choose", "0")
 
@@ -197,11 +216,12 @@ Public Class GraphicsTeamCaptions
         If Not player Is Nothing Then
           scene.SceneParameters.Add(prefix & "Name", player.Name)
           scene.SceneParameters.Add(prefix & "Number", player.SquadNo)
+          scene.SceneParameters.Add(prefix & "Card_Vis.active", IIf(player.YellowCards = 1, "1", "0"))
         Else
           scene.SceneParameters.Add(prefix & "Name", "")
           scene.SceneParameters.Add(prefix & "Number", "")
+          scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
         End If
-        scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
       Next
 
       For i As Integer = 12 To 18
@@ -210,11 +230,12 @@ Public Class GraphicsTeamCaptions
         If Not player Is Nothing Then
           scene.SceneParameters.Add(prefix & "Name", player.Name)
           scene.SceneParameters.Add(prefix & "Number", player.SquadNo)
+          scene.SceneParameters.Add(prefix & "Card_Vis.active", IIf(player.YellowCards = 1, "1", "0"))
         Else
           scene.SceneParameters.Add(prefix & "Name", "")
           scene.SceneParameters.Add(prefix & "Number", "")
+          scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
         End If
-        scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
       Next
 
     Catch ex As Exception
@@ -243,8 +264,18 @@ Public Class GraphicsTeamCaptions
       scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
       scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
 
-      scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
-      scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
+      scene.SceneParameters.Add("Veil_Left_Vis ", "1")
+      scene.SceneParameters.Add("Veil_Right_Vis ", "0")
+
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", team.Name) ' Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "0")
 
       For i As Integer = 1 To 11
         Dim player As Player = team.MatchPlayers.GetPlayerByPosition(i)
@@ -267,10 +298,15 @@ Public Class GraphicsTeamCaptions
           Dim NewY As Double = player.Formation_Y  ' (((165 * player.Formation_Y) / 280) + 9) * -1
           Dim NewX As Double = player.Formation_X   ' ((170 * player.Formation_X) / 280) - 195
 
-          NewX = NewX / 2.5
-          NewY = NewY / 2.5
+          NewX = NewX / 2.8
+          NewY = NewY / 2.8
 
           scene.SceneParameters.Add(prefix & "Position.position ", CInt(NewX) & " " & CInt(NewY) & " 0")
+
+          NewX = player.Formation_X / 1.8 + 10
+          NewY = player.Formation_Y / 1.5 - 80
+
+          scene.SceneParameters.Add(prefix & "Position_Cup.position ", CInt(NewX) & " " & CInt(NewY) & " 0")
         End If
 
 
@@ -302,11 +338,20 @@ Public Class GraphicsTeamCaptions
       scene.SceneParameters.Add("Badge_Left_Side_" & gSide & "_Vis.active ", "1")
       scene.SceneParameters.Add("Badge_Right_Side_" & gSide & "_Vis.active ", "0")
 
-      scene.SceneParameters.Add("Veil_Left_Vis.active ", "1")
-      scene.SceneParameters.Add("Veil_Right_Vis.active ", "0")
+      scene.SceneParameters.Add("Veil_Left_Vis ", "1")
+      scene.SceneParameters.Add("Veil_Right_Vis ", "0")
 
       scene.SceneParameters.Add("TeamList_Side_" & gSide & "_Control_OMO_GV_Choose", "1")
 
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", team.Name) ' Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "0")
 
       For i As Integer = 1 To 11
         Dim player As Player = team.MatchPlayers.GetPlayerByPosition(i)
@@ -344,8 +389,8 @@ Public Class GraphicsTeamCaptions
           Dim NewY As Double = player.Formation_Y  ' (((165 * player.Formation_Y) / 280) + 9) * -1
           Dim NewX As Double = player.Formation_X   ' ((170 * player.Formation_X) / 280) - 195
 
-          NewX = NewX / 3
-          NewY = NewY / 3
+          NewX = -NewX / 3
+          NewY = -NewY / 3 + 20
           scene.SceneParameters.Add(prefix & "Position.position ", CInt(NewX) & " " & CInt(NewY) & " 0")
         End If
 
@@ -358,7 +403,7 @@ Public Class GraphicsTeamCaptions
     Return scene
   End Function
 
-  Public Function PrepareDoubleTeam(gSide As Integer) As Scene
+  Public Function PrepareDoubleTeam(gSide As Integer, subst As Boolean) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = ""
     Dim subjectPrefix As String = ""
@@ -375,11 +420,32 @@ Public Class GraphicsTeamCaptions
       Dim teams() As Team = {Me.Match.HomeTeam, Me.Match.AwayTeam}
       Dim sideName() As String = {"Right", "Left"}
 
+
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "1")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", "") ' Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", Me.Match.HomeTeam.Name)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", Me.Match.AwayTeam.Name)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "0")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Table_Vis.active", "0")
+
+      Dim nMin As Integer
+      Dim nMax As Integer
+      If subst = False Then
+        nMin = 1
+        nMax = 11
+      Else
+        nMin = 12
+        nMax = 18
+      End If
       For iTeam As Integer = 0 To teams.Count - 1
         Dim team As Team = teams(iTeam)
-        For nSubject As Integer = 1 To 11
+        Dim index As Integer = 1
+        For nSubject As Integer = nMin To nMax
           Dim player As Player = team.MatchPlayers.GetPlayerByPosition(nSubject)
-          prefix = "Double_teams_" & sideName(iTeam) & "_Side_" & gSide & "_Subject_" & Strings.Format(nSubject, "00") & "_"
+          prefix = "Double_teams_" & sideName(iTeam) & "_Side_" & gSide & "_Subject_" & Microsoft.VisualBasic.Strings.Format(index, "00") & "_"
           If Not player Is Nothing Then
             scene.SceneParameters.Add(prefix & "Name", player.Name)
             scene.SceneParameters.Add(prefix & "Number", player.SquadNo)
@@ -387,7 +453,18 @@ Public Class GraphicsTeamCaptions
             scene.SceneParameters.Add(prefix & "Name", "")
             scene.SceneParameters.Add(prefix & "Number", "")
           End If
+          scene.SceneParameters.Add(prefix & "Card_Vis.active", IIf(player.YellowCards = 1, "1", "0"))
+          scene.SceneParameters.Add(prefix & "Vis.active", "1")
+          index += 1
+        Next
+        For nSubject = index To 11
+          prefix = "Double_teams_" & sideName(iTeam) & "_Side_" & gSide & "_Subject_" & Microsoft.VisualBasic.Strings.Format(index, "00") & "_"
+          scene.SceneParameters.Add(prefix & "Name", "")
+          scene.SceneParameters.Add(prefix & "Number", "")
           scene.SceneParameters.Add(prefix & "Card_Vis.active", "0")
+          scene.SceneParameters.Add(prefix & "Vis.active", "0")
+          index += 1
+
         Next
       Next
 

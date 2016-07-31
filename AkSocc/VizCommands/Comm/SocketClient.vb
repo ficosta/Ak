@@ -158,29 +158,44 @@ Public Class SocketClient
 
   Public Sub Send(ByVal data As String)
     Dim lTicks As Long = Now.Ticks
-    If IsConnected() = False Then
-      RaiseEvent Connected(False)
-      RaiseEvent ConnectedEx(False, CPiTCPSocket.RemoteEndPoint)
+    Try
+      If IsConnected() = False Then
+        RaiseEvent Connected(False)
+        RaiseEvent ConnectedEx(False, CPiTCPSocket.RemoteEndPoint)
 
-    Else
-      'lTicks = Now.Ticks - lTicks : Debug.Print("IsConnected " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
-      '--Send the string data and block the thread until all data is sent
-      Dim bytes() As Byte = System.Text.Encoding.UTF8.GetBytes(data) ' _ascii.GetBytes(data)
-      'CPiTCPSocket.Send(bytes, bytes.Length, SocketFlags.None)
-      'lTicks = Now.Ticks - lTicks : Debug.Print("Encoding " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
+      Else
+        If CPiTCPSocket.Connected Then
+          'lTicks = Now.Ticks - lTicks : Debug.Print("IsConnected " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
+          '--Send the string data and block the thread until all data is sent
+          Dim bytes() As Byte = System.Text.Encoding.UTF8.GetBytes(data) ' _ascii.GetBytes(data)
+          'CPiTCPSocket.Send(bytes, bytes.Length, SocketFlags.None)
+          'lTicks = Now.Ticks - lTicks : Debug.Print("Encoding " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
 
-      Dim nDataSent As Integer = 0
-      Dim nSize As Integer
+          Dim nDataSent As Integer = 0
+          Dim nSize As Integer
 
-      While nDataSent < bytes.Length
-        nSize = Math.Min(Me.nPiPacketSize, bytes.Length - nDataSent)
-        nDataSent = nDataSent + CPiTCPSocket.Send(bytes, nDataSent, nSize, SocketFlags.None)
-        'lTicks = Now.Ticks - lTicks : Debug.Print("send loop step " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
-        RaiseEvent ActivityOutgoing()
-        'Application.DoEvents()
-      End While
-      'lTicks = Now.Ticks - lTicks : Debug.Print("DataSend " & data & " " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
-    End If
+          While nDataSent < bytes.Length
+            nSize = Math.Min(Me.nPiPacketSize, bytes.Length - nDataSent)
+            nDataSent = nDataSent + CPiTCPSocket.Send(bytes, nDataSent, nSize, SocketFlags.None)
+            'lTicks = Now.Ticks - lTicks : Debug.Print("send loop step " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
+            RaiseEvent ActivityOutgoing()
+            'Application.DoEvents()
+          End While
+          'lTicks = Now.Ticks - lTicks : Debug.Print("DataSend " & data & " " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
+        Else
+          Try
+            RaiseEvent Connected(False)
+            RaiseEvent ConnectedEx(False, CPiTCPSocket.RemoteEndPoint)
+            CPiTCPSocket.Disconnect(True)
+          Catch ex As Exception
+          End Try
+          CPiTCPSocket = Nothing
+        End If
+      End If
+    Catch ex As Exception
+
+    End Try
+
   End Sub
 
   Public Sub Close()

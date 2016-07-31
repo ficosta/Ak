@@ -143,7 +143,7 @@ Public Class StatSubject
       If Me.Match_ID = "-1" Then Exit Sub
       If Me.FieldName = "" Then Exit Sub
       If Me.ID = "" Then Exit Sub
-
+      If stat.FromDataBase = False Then Exit Sub
 
       Dim conn As New ADODB.Connection()
       conn.Open(Config.Instance.LocalConnectionString)

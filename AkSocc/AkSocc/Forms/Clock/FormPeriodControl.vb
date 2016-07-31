@@ -57,7 +57,16 @@ Public Class FormPeriodControl
 
 
   Private Sub ResetMatch()
+    Try
+      If _match Is Nothing Then Exit Sub
 
+      If frmWaitForInput.ShowWaitDialog(Me, "Reset match data?", _match.Description, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
+
+      _match.Reset()
+
+    Catch ex As Exception
+
+    End Try
   End Sub
 
   Private Sub OverWriteClock()

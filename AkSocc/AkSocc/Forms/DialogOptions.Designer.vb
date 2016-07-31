@@ -1,6 +1,8 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class DialogOptions
-  Inherits MetroFramework.Forms.MetroForm
+  Inherits System.Windows.Forms.Form
+  'Inherits System.Windows.Forms.Form
+
 
   'Form overrides dispose to clean up the component list.
   <System.Diagnostics.DebuggerNonUserCode()>
@@ -629,6 +631,7 @@ Partial Class DialogOptions
     Me.AcceptButton = Me.OK_Button
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+    Me.BackColor = System.Drawing.Color.White
     Me.CancelButton = Me.Cancel_Button
     Me.ClientSize = New System.Drawing.Size(797, 414)
     Me.Controls.Add(Me.TabControlOptions)

@@ -4,6 +4,9 @@ Imports MatchInfo
 Public Class SingleStatControl
   Public Event AddEvent(sender As SingleStatControl)
   Public Event RemoveEvent(sender As SingleStatControl)
+  Public Shadows Event MouseEnter(sender As SingleStatControl, e As EventArgs)
+  Public Shadows Event MouseLeave(sender As SingleStatControl, e As EventArgs)
+
 
 
   Private WithEvents _stat As MatchInfo.Stat
@@ -77,5 +80,13 @@ Public Class SingleStatControl
     Catch ex As Exception
 
     End Try
+  End Sub
+
+  Private Sub ButtonStat_MouseEnter(sender As Object, e As EventArgs) Handles ButtonStat.MouseEnter
+    RaiseEvent MouseEnter(Me, e)
+  End Sub
+
+  Private Sub ButtonStat_MouseLeave(sender As Object, e As EventArgs) Handles ButtonStat.MouseLeave
+    RaiseEvent MouseLeave(Me, e)
   End Sub
 End Class

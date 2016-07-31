@@ -31,6 +31,9 @@ Imports MatchInfo
   Public Event TeamStatValueChanged(team As Team, stat As Stat)
   Public Event EventCreated(myEvent As MatchEvent)
   Public Event EventRemoved(myEvent As MatchEvent)
+  Public Event Substitution(team As Team, substitution As Substitution)
+  Public Event MatchReset()
+
 
   Public ReadOnly Property Substitutions As Substitutions
     Get
@@ -112,7 +115,7 @@ Imports MatchInfo
     End Set
   End Property
 
-  Private _matchGoals As New MatchGoals()
+  Private WithEvents _matchGoals As New MatchGoals()
   Public Property MatchGoals() As MatchGoals
     Get
       _matchGoals.Clear()
@@ -130,10 +133,25 @@ Imports MatchInfo
     End Set
   End Property
 
+  Private _lastGoal As MatchGoal = Nothing
   Public Property LastGoal() As MatchGoal
+    Get
+      If Not _lastGoal Is Nothing Then
+        Return _lastGoal
+      ElseIf Me.MatchGoals.Count > 0 Then
+        Me.MatchGoals.Sort()
+        Return Me.MatchGoals(0)
+      Else
+        Return Nothing
+      End If
+    End Get
+    Set(value As MatchGoal)
+
+    End Set
+  End Property
 
 
-  Private _matchEvents As New MatchEvents()
+  Private WithEvents _matchEvents As New MatchEvents()
   Public Property MatchEvents() As MatchEvents
     Get
       Return _matchEvents
@@ -216,11 +234,11 @@ Imports MatchInfo
 
 
   Public Overrides Function ToString() As String
-    Return Me.match_date_string & " " & Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString
+    Return Me.match_date_string & " " & Me.HomeTeam.TeamAELCaption1Name & " - " & Me.AwayTeam.TeamAELCaption1Name
   End Function
 
   Public Function Description() As String
-    Return Me.match_date_string & " " & Me.HomeTeam.ToString & " - " & Me.AwayTeam.ToString & "     " & Me.HomeTeam.MatchEvents.Count & " - " & Me.AwayTeam.MatchEvents.Count
+    Return Me.match_date_string & " " & Me.HomeTeam.TeamAELCaption1Name & " - " & Me.AwayTeam.TeamAELCaption1Name & "     " & Me.HomeTeam.MatchGoals.Count & " - " & Me.AwayTeam.MatchGoals.Count
   End Function
 
   Public Sub New()
@@ -384,10 +402,10 @@ Imports MatchInfo
           SQL &= " away_team_id=@away_team_id,"
         End If
         If _actualDB.db_home_goals <> home_goals AndAlso home_goals <> -1 Then
-          SQL &= " Score1=@home_goals,"
+          SQL &= " Score1=" & home_goals & ","
         End If
         If _actualDB.db_away_goals <> away_goals AndAlso away_goals <> -1 Then
-          SQL &= " Score2=@away_goals,"
+          SQL &= " Score2=" & away_goals & ","
         End If
         If _actualDB.venue_id <> venue_id AndAlso venue_id <> -1 Then
           SQL &= " venue_id=@venue_id,"
@@ -477,7 +495,7 @@ Imports MatchInfo
   Public Sub SaveMatchGoalsToDB(computeGoals As Boolean)
     Try
       If computeGoals Then
-        MatchGoals.DeleteMatchGoals(Me.match_id)
+        ' MatchGoals.DeleteMatchGoals(Me.match_id)
         For Each goal As MatchGoal In Me.MatchGoals
           ' goal.Update()
         Next
@@ -653,10 +671,22 @@ Imports MatchInfo
   End Function
 
   Public Function UpdateGoal(goal As MatchGoal) As Boolean
+    UpdateScorers(Me.HomeTeam)
+    UpdateScorers(Me.AwayTeam)
     SaveMatchGoalsToDB(True)
     RaiseEvent ScoreChanged()
     Return True
   End Function
+
+  Private Sub UpdateScorers(team As Team)
+    Try
+      For Each player As Player In team.AllPlayers
+        player.Goals = team.MatchGoals.GetGoalsByPlayer(player).Count
+      Next
+    Catch ex As Exception
+
+    End Try
+  End Sub
 
   Public Function UpdateGoals() As Boolean
     SaveMatchGoalsToDB(True)
@@ -719,7 +749,15 @@ Imports MatchInfo
           Me.LastGoal = Nothing
         End If
       End If
-      RaiseEvent ScoreChanged()
+
+      Dim cCon As New ADODB.Connection()
+      cCon.Open(Config.Instance.LocalConnectionString)
+
+      Dim sql As String = "DELETE FROM MatchGoals WHERE MatchID = " & Me.match_id & " AND goalID = " & goalID
+
+      cCon.Execute(sql)
+
+
     Catch ex As Exception
       res = False
     End Try
@@ -762,8 +800,16 @@ Imports MatchInfo
   End Function
 
 
-  Public Function AddEvent(type As String, teamID As Integer, playerID As Integer, timeSeconds As Integer, Optional playerSecID As Integer = -1) As MatchEvent
-    Return Me.CreateEvent(type, teamID, playerID, timeSeconds, playerSecID)
+  Public Function AddEvent(type As String, teamID As Integer, playerID As Integer) As MatchEvent
+    Dim time As Integer = 0
+    If Not Me.MatchPeriods.ActivePeriod Is Nothing Then
+      time = Me.MatchPeriods.ActivePeriod.PlayingTime + Me.MatchPeriods.ActivePeriod.StartOffset
+    End If
+    Return Me.CreateEvent(type, teamID, playerID, time, 0)
+  End Function
+
+  Public Function AddEvent(type As String, teamID As Integer, playerID As Integer, time As Integer, playerSecId As Integer) As MatchEvent
+    Return Me.CreateEvent(type, teamID, playerID, time, playerSecId)
   End Function
 
   Public Sub UpdateStatFromEvents(team As Team, stat As Stat)
@@ -807,7 +853,7 @@ Imports MatchInfo
 
   Public Sub UpdateStatForPlayerFromEvents(statName As String, player As Player)
     Try
-
+      Me.UpdateStatForPlayerFromEvents(statName, player.TeamID, player.PlayerID)
     Catch ex As Exception
 
     End Try
@@ -839,6 +885,24 @@ Imports MatchInfo
     End Try
   End Function
 
+
+  Public Function RemoveEvent(type As String, teamID As Integer, playerID As Integer, timeSeconds As Integer, Optional playerSecID As Integer = -1) As MatchEvent
+    Dim matchEvent As MatchEvent = Nothing
+    Try
+      For i As Integer = Me.MatchEvents.Count - 1 To 0 Step -1
+        Dim myEvent As MatchEvent = Me.MatchEvents(i)
+        If myEvent.EventType = type And myEvent.TeamID = teamID And myEvent.PlayerID = playerID And myEvent.TimeSecond = timeSeconds And myEvent.PlayerSecID = playerSecID Then
+          matchEvent = myevent
+          RemoveEvent(myevent)
+        End If
+      Next
+    Catch ex As Exception
+
+    End Try
+    Return matchEvent
+  End Function
+
+
   Public Function RemoveLastEvent() As MatchEvent
     If Not LastEvent Is Nothing Then
       Me.RemoveEvent(Me.LastEvent)
@@ -864,7 +928,14 @@ Imports MatchInfo
   Public Function CreateEvent(type As String, teamID As Integer, playerID As Integer, timeSeconds As Integer, Optional playerSecID As Integer = -1) As MatchEvent
     Dim res As MatchEvent = Nothing
     Try
-      res = Me.MatchEvents.Add(Me.match_id, type, teamID, playerID, timeSeconds, playerSecID)
+      Dim time As Integer = timeSeconds
+      If time = 0 Then
+        If Not Me.MatchPeriods.ActivePeriod Is Nothing Then
+          time = Me.MatchPeriods.TempsJocWithOffset
+        End If
+
+      End If
+        res = Me.MatchEvents.Add(Me.match_id, type, teamID, playerID, time, playerSecID)
       Me.UpdateStatForPlayerFromEvents(type, teamID, playerID)
       RaiseEvent EventCreated(res)
     Catch ex As Exception
@@ -950,17 +1021,70 @@ Imports MatchInfo
     Return res
   End Function
 
+  Private _wasSaved As Boolean = False
+
   Private Sub MatchPeriods_ActivePeriodStateChanged(period As Period) Handles MatchPeriods.ActivePeriodStateChanged
-    RaiseEvent ActivePeriodStateChanged(period)
+    Try
+      RaiseEvent ActivePeriodStateChanged(period)
+      If _wasSaved = False And period.Activa Then
+        _wasSaved = True
+        Me.SaveMatchGoalsToDB(True)
+        Me.Update()
+      End If
+    Catch ex As Exception
+
+    End Try
+
   End Sub
 
   Public Sub Reset()
     Try
       _matchEvents.Reset(Me.match_id)
       _matchGoals.Reset(Me.match_id)
+      Me.MatchPeriods.EndPeriod(1)
+      Me.MatchPeriods.ActivePeriod = Me.MatchPeriods(0)
+      Me.MatchPeriods.SetPlayingTime(0)
+      Me.MatchPeriods.EndPeriod(1)
+
+      Me.HomeTeam.MatchGoals.Reset(Me.match_id)
+      For Each player As Player In Me.HomeTeam.MatchPlayers
+        For Each stat As Stat In player.MatchStats.StatBag
+          If stat.EventBased Then
+            stat.Value = 0
+          End If
+        Next
+      Next
+
+      Me.AwayTeam.MatchGoals.Reset(Me.match_id)
+      For Each player As Player In Me.AwayTeam.MatchPlayers
+        For Each stat As Stat In player.MatchStats.StatBag
+          If stat.EventBased Then
+            stat.Value = 0
+          End If
+        Next
+      Next
+      RaiseEvent ScoreChanged()
     Catch ex As Exception
       Debug.Print(ex.ToString)
     End Try
+  End Sub
+
+  Private Sub _awayTeam_Substitution(sender As Team, subs As Substitution) Handles _awayTeam.SubstitutionAdded
+    RaiseEvent Substitution(Me.HomeTeam, subs)
+    Me.AddEvent("substitution", Me.AwayTeam.TeamID, subs.PlayerIn.PlayerID, subs.timeInSeconds, subs.PlayerOut.PlayerID)
+  End Sub
+
+  Private Sub _homeTeam_Substitution(sender As Team, subs As Substitution) Handles _homeTeam.SubstitutionAdded
+    RaiseEvent Substitution(Me.AwayTeam, subs)
+    Me.AddEvent("substitution", Me.AwayTeam.TeamID, subs.PlayerIn.PlayerID, subs.timeInSeconds, subs.PlayerOut.PlayerID)
+  End Sub
+
+  Private Sub _awayTeam_SubstitutionRemoved(sender As Team, subs As Substitution) Handles _awayTeam.SubstitutionRemoved
+    Me.RemoveEvent("substitution", Me.AwayTeam.TeamID, subs.PlayerIn.PlayerID, subs.timeInSeconds, subs.PlayerOut.PlayerID)
+  End Sub
+
+  Private Sub _homeTeam_SubstitutionRemoved(sender As Team, subs As Substitution) Handles _homeTeam.SubstitutionRemoved
+    Me.RemoveEvent("substitution", Me.AwayTeam.TeamID, subs.PlayerIn.PlayerID, subs.timeInSeconds, subs.PlayerOut.PlayerID)
   End Sub
 End Class
 

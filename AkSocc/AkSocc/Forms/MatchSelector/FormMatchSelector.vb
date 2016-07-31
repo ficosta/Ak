@@ -11,6 +11,12 @@ Public Class FormMatchSelector
     If SelectedMatchId = 0 Then
       frmWaitForInput.ShowWaitDialog(Me, "No match selected", "Options", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     Else
+      Dim version As GraphicVersion = CType(Me.ComboBoxSceneVersion.SelectedItem, GraphicVersion)
+      GraphicVersions.Instance.SelectedGraphicVersion = version
+      If Not version Is Nothing Then
+        AppSettings.Instance.ScenePath = version.Path
+      End If
+
       Me.DialogResult = System.Windows.Forms.DialogResult.OK
       Me.Close()
     End If
@@ -24,6 +30,19 @@ Public Class FormMatchSelector
   Private Sub DialogMatchSetup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     Try
       InitCompetitions(AppSettings.Instance.LastCompetitionId)
+      Dim index As Integer = -1
+      Me.ComboBoxSceneVersion.Items.Clear()
+
+      For Each version As GraphicVersion In GraphicVersions.Instance
+        Me.ComboBoxSceneVersion.Items.Add(version)
+        If version.Path = AppSettings.Instance.ScenePath Then
+          index = Me.ComboBoxSceneVersion.Items.Count - 1
+        End If
+      Next
+
+      If index > -1 Then
+        Me.ComboBoxSceneVersion.Text = GraphicVersions.Instance(index).Name
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try

@@ -8,8 +8,8 @@ Public Class Periods
   Public Sub New()
     Me.List.Add(New Period(0, 1, False) With {.TotalTime = 45 * 60, .Nom = "1st half", .StartOffset = 0})
     Me.List.Add(New Period(0, 2, False) With {.TotalTime = 45 * 60, .Nom = "2nd half", .StartOffset = 45 * 60})
-    Me.List.Add(New Period(0, 3, False) With {.TotalTime = 20 * 60, .Nom = "1st overtime", .StartOffset = 90 * 60})
-    Me.List.Add(New Period(0, 4, False) With {.TotalTime = 20 * 60, .Nom = "2nd overtime", .StartOffset = 110 * 60})
+    Me.List.Add(New Period(0, 3, False) With {.TotalTime = 15 * 60, .Nom = "1st overtime", .StartOffset = 90 * 60})
+    Me.List.Add(New Period(0, 4, False) With {.TotalTime = 15 * 60, .Nom = "2nd overtime", .StartOffset = 105 * 60})
     RaiseEvent ActivePeriodStateChanged(Nothing)
   End Sub
 
@@ -255,7 +255,7 @@ Public Class Periods
       If Not res Is Nothing Then
         res.ExtraTime = extraTime
       End If
-      RaiseEvent ActivePeriodStateChanged(Me.ActivePeriod)
+      ' RaiseEvent ActivePeriodStateChanged(Me.ActivePeriod)
     Catch ex As Exception
     End Try
     Return Me.ActivePeriod
@@ -338,7 +338,11 @@ Public Class Periods
   Public Function SetPlayingTime(newTime As Integer) As Period
     Dim newPeriod As Period = Nothing
     Try
-      newPeriod = Me.GetPeriodByTime(newTime)
+      If Not Me.ActivePeriod Is Nothing AndAlso Me.ActivePeriod.Activa Then
+        newPeriod = Me.ActivePeriod
+      Else
+        newPeriod = Me.GetPeriodByTime(newTime)
+      End If
       If Not newPeriod Is Nothing Then
         If Not ActivePeriod Is Nothing Then
           ActivePeriod.Activa = False

@@ -6,7 +6,7 @@ Imports System.Threading.Tasks
 Imports System.Windows.Forms
 
 Partial Public Class frmPenalties
-  Inherits MetroFramework.Forms.MetroForm
+  Inherits System.Windows.Forms.Form
   Private _vizControl As VizCommands.VizControl
   Private ShotsHome As Boolean
   Private HomeFirst As Boolean

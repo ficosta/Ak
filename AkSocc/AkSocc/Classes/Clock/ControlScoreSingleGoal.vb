@@ -70,8 +70,10 @@ Public Class ControlScoreSingleGoal
             End Select
 
             Dim players As New List(Of Player)
+            _team.MatchPlayers.Sort()
+
             For Each player As MatchInfo.Player In _team.MatchPlayers
-              If Not player Is Nothing AndAlso player.Formation_Pos >= 0 Then
+              If Not player Is Nothing AndAlso player.Formation_Pos > 0 Then
                 While player.Formation_Pos > players.Count
                   players.Add(Nothing)
                 End While
@@ -79,14 +81,18 @@ Public Class ControlScoreSingleGoal
               End If
             Next
 
-            For Each player As MatchInfo.Player In players
-              If Not player Is Nothing Then
-                gs.GraphicSteps.Add(New GraphicStep(gs, player.ToString(), True, False))
-              Else
-                gs.GraphicSteps.Add(New GraphicStep(gs, "", "", False, False, True, False))
-              End If
+
+            For Each player As MatchInfo.Player In _team.MatchPlayers
+              gs.GraphicSteps.Add(New GraphicStep(gs, player.ToString(), True, False))
             Next
-          Case 1
+
+            'For Each player As MatchInfo.Player In players
+            '  If Not player Is Nothing Then
+            '    gs.GraphicSteps.Add(New GraphicStep(gs, player.ToString(), True, False))
+            '  Else
+            '    gs.GraphicSteps.Add(New GraphicStep(gs, "", "", False, False, True, False))
+            '  End If
+            'Next
         End Select
 
       End If
@@ -152,7 +158,7 @@ Public Class ControlScoreSingleGoal
     Return MyBase.PostProcessingAction(Nothing)
   End Function
 
-  Public Overrides Function PostProcessingAction(frm As MetroFramework.Forms.MetroForm) As Boolean
+  Public Overrides Function PostProcessingAction(frm As Form) As Boolean
     Me.Scene = Nothing
     Me.graphicStep = graphicStep
 

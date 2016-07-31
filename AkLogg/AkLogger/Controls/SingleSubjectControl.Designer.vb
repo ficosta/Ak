@@ -37,16 +37,15 @@ Partial Class SingleSubjectControl
     'TableLayoutStats
     '
     Me.TableLayoutStats.ColumnCount = 9
-    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
-    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
     Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
-    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5.0!))
+    Me.TableLayoutStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
     Me.TableLayoutStats.Controls.Add(Me.LabelSubjectName, 0, 0)
     Me.TableLayoutStats.Controls.Add(Me.SingleStatControlSaves, 1, 0)
     Me.TableLayoutStats.Controls.Add(Me.SingleStatControlShots, 2, 0)
@@ -70,7 +69,7 @@ Partial Class SingleSubjectControl
     Me.LabelSubjectName.Dock = System.Windows.Forms.DockStyle.Fill
     Me.LabelSubjectName.Location = New System.Drawing.Point(3, 0)
     Me.LabelSubjectName.Name = "LabelSubjectName"
-    Me.LabelSubjectName.Size = New System.Drawing.Size(256, 42)
+    Me.LabelSubjectName.Size = New System.Drawing.Size(318, 42)
     Me.LabelSubjectName.TabIndex = 0
     Me.LabelSubjectName.Text = "Subject name"
     Me.LabelSubjectName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -78,10 +77,10 @@ Partial Class SingleSubjectControl
     'SingleStatControlSaves
     '
     Me.SingleStatControlSaves.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlSaves.Location = New System.Drawing.Point(263, 1)
+    Me.SingleStatControlSaves.Location = New System.Drawing.Point(325, 1)
     Me.SingleStatControlSaves.Margin = New System.Windows.Forms.Padding(1)
     Me.SingleStatControlSaves.Name = "SingleStatControlSaves"
-    Me.SingleStatControlSaves.Size = New System.Drawing.Size(85, 40)
+    Me.SingleStatControlSaves.Size = New System.Drawing.Size(106, 40)
     Me.SingleStatControlSaves.Stat = Nothing
     Me.SingleStatControlSaves.StatSubject = Nothing
     Me.SingleStatControlSaves.TabIndex = 1
@@ -89,10 +88,10 @@ Partial Class SingleSubjectControl
     'SingleStatControlShots
     '
     Me.SingleStatControlShots.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlShots.Location = New System.Drawing.Point(350, 1)
+    Me.SingleStatControlShots.Location = New System.Drawing.Point(433, 1)
     Me.SingleStatControlShots.Margin = New System.Windows.Forms.Padding(1)
     Me.SingleStatControlShots.Name = "SingleStatControlShots"
-    Me.SingleStatControlShots.Size = New System.Drawing.Size(85, 40)
+    Me.SingleStatControlShots.Size = New System.Drawing.Size(106, 40)
     Me.SingleStatControlShots.Stat = Nothing
     Me.SingleStatControlShots.StatSubject = Nothing
     Me.SingleStatControlShots.TabIndex = 2
@@ -100,10 +99,10 @@ Partial Class SingleSubjectControl
     'SingleStatControlShotsOn
     '
     Me.SingleStatControlShotsOn.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlShotsOn.Location = New System.Drawing.Point(437, 1)
+    Me.SingleStatControlShotsOn.Location = New System.Drawing.Point(541, 1)
     Me.SingleStatControlShotsOn.Margin = New System.Windows.Forms.Padding(1)
     Me.SingleStatControlShotsOn.Name = "SingleStatControlShotsOn"
-    Me.SingleStatControlShotsOn.Size = New System.Drawing.Size(85, 40)
+    Me.SingleStatControlShotsOn.Size = New System.Drawing.Size(106, 40)
     Me.SingleStatControlShotsOn.Stat = Nothing
     Me.SingleStatControlShotsOn.StatSubject = Nothing
     Me.SingleStatControlShotsOn.TabIndex = 3
@@ -111,10 +110,10 @@ Partial Class SingleSubjectControl
     'SingleStatControlFouls
     '
     Me.SingleStatControlFouls.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlFouls.Location = New System.Drawing.Point(530, 1)
+    Me.SingleStatControlFouls.Location = New System.Drawing.Point(655, 1)
     Me.SingleStatControlFouls.Margin = New System.Windows.Forms.Padding(1)
     Me.SingleStatControlFouls.Name = "SingleStatControlFouls"
-    Me.SingleStatControlFouls.Size = New System.Drawing.Size(85, 40)
+    Me.SingleStatControlFouls.Size = New System.Drawing.Size(106, 40)
     Me.SingleStatControlFouls.Stat = Nothing
     Me.SingleStatControlFouls.StatSubject = Nothing
     Me.SingleStatControlFouls.TabIndex = 4
@@ -122,32 +121,34 @@ Partial Class SingleSubjectControl
     'SingleStatControlYCards
     '
     Me.SingleStatControlYCards.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlYCards.Location = New System.Drawing.Point(617, 1)
+    Me.SingleStatControlYCards.Location = New System.Drawing.Point(763, 1)
     Me.SingleStatControlYCards.Margin = New System.Windows.Forms.Padding(1)
     Me.SingleStatControlYCards.Name = "SingleStatControlYCards"
-    Me.SingleStatControlYCards.Size = New System.Drawing.Size(85, 40)
+    Me.SingleStatControlYCards.Size = New System.Drawing.Size(3, 40)
     Me.SingleStatControlYCards.Stat = Nothing
     Me.SingleStatControlYCards.StatSubject = Nothing
     Me.SingleStatControlYCards.TabIndex = 5
+    Me.SingleStatControlYCards.Visible = False
     '
     'SingleStatControlRCards
     '
     Me.SingleStatControlRCards.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlRCards.Location = New System.Drawing.Point(704, 1)
+    Me.SingleStatControlRCards.Location = New System.Drawing.Point(768, 1)
     Me.SingleStatControlRCards.Margin = New System.Windows.Forms.Padding(1)
     Me.SingleStatControlRCards.Name = "SingleStatControlRCards"
-    Me.SingleStatControlRCards.Size = New System.Drawing.Size(85, 40)
+    Me.SingleStatControlRCards.Size = New System.Drawing.Size(3, 40)
     Me.SingleStatControlRCards.Stat = Nothing
     Me.SingleStatControlRCards.StatSubject = Nothing
     Me.SingleStatControlRCards.TabIndex = 6
+    Me.SingleStatControlRCards.Visible = False
     '
     'SingleStatControlAssists
     '
     Me.SingleStatControlAssists.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlAssists.Location = New System.Drawing.Point(791, 1)
+    Me.SingleStatControlAssists.Location = New System.Drawing.Point(773, 1)
     Me.SingleStatControlAssists.Margin = New System.Windows.Forms.Padding(1)
     Me.SingleStatControlAssists.Name = "SingleStatControlAssists"
-    Me.SingleStatControlAssists.Size = New System.Drawing.Size(89, 40)
+    Me.SingleStatControlAssists.Size = New System.Drawing.Size(107, 40)
     Me.SingleStatControlAssists.Stat = Nothing
     Me.SingleStatControlAssists.StatSubject = Nothing
     Me.SingleStatControlAssists.TabIndex = 7

@@ -36,7 +36,7 @@
               item = .Rows.Add(gSide.UID, gSide.Name)
             End If
             '.Rows(item).Visible = Not (gSide.IsSeparator Or gSide.IsTitleOnly)
-            .Rows(item).Frozen = Not (gSide.IsSeparator Or gSide.IsTitleOnly)
+            ' .Rows(item).Frozen = Not (gSide.IsSeparator Or gSide.IsTitleOnly)
             .Rows(item).Selected = False
           Next
         End If

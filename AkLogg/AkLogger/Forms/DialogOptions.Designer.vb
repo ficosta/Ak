@@ -95,14 +95,14 @@ Partial Class DialogOptions
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(766, 29)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(758, 29)
     Me.TableLayoutPanel1.TabIndex = 0
     '
     'OK_Button
     '
     Me.OK_Button.Dock = System.Windows.Forms.DockStyle.Fill
     Me.OK_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-    Me.OK_Button.Location = New System.Drawing.Point(609, 3)
+    Me.OK_Button.Location = New System.Drawing.Point(601, 3)
     Me.OK_Button.Name = "OK_Button"
     Me.OK_Button.Size = New System.Drawing.Size(74, 23)
     Me.OK_Button.TabIndex = 0
@@ -113,7 +113,7 @@ Partial Class DialogOptions
     Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
     Me.Cancel_Button.Dock = System.Windows.Forms.DockStyle.Fill
     Me.Cancel_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-    Me.Cancel_Button.Location = New System.Drawing.Point(689, 3)
+    Me.Cancel_Button.Location = New System.Drawing.Point(681, 3)
     Me.Cancel_Button.Name = "Cancel_Button"
     Me.Cancel_Button.Size = New System.Drawing.Size(74, 23)
     Me.Cancel_Button.TabIndex = 1
@@ -125,23 +125,20 @@ Partial Class DialogOptions
     Me.CheckBoxShowOptionsOnStartup.Dock = System.Windows.Forms.DockStyle.Fill
     Me.CheckBoxShowOptionsOnStartup.Location = New System.Drawing.Point(3, 3)
     Me.CheckBoxShowOptionsOnStartup.Name = "CheckBoxShowOptionsOnStartup"
-    Me.CheckBoxShowOptionsOnStartup.Size = New System.Drawing.Size(600, 23)
+    Me.CheckBoxShowOptionsOnStartup.Size = New System.Drawing.Size(915, 23)
     Me.CheckBoxShowOptionsOnStartup.TabIndex = 2
     Me.CheckBoxShowOptionsOnStartup.Text = "Show options on application startup"
     Me.CheckBoxShowOptionsOnStartup.UseSelectable = True
     '
     'TabControlOptions
     '
-    Me.TabControlOptions.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.TabControlOptions.Controls.Add(Me.TabPage1)
-    Me.TabControlOptions.Controls.Add(Me.TabPage2)
     Me.TabControlOptions.Controls.Add(Me.TabPageLogger)
+    Me.TabControlOptions.Controls.Add(Me.TabPage2)
+    Me.TabControlOptions.Controls.Add(Me.TabPage1)
     Me.TabControlOptions.Location = New System.Drawing.Point(12, 12)
     Me.TabControlOptions.Name = "TabControlOptions"
     Me.TabControlOptions.Padding = New System.Drawing.Point(6, 8)
-    Me.TabControlOptions.SelectedIndex = 2
+    Me.TabControlOptions.SelectedIndex = 0
     Me.TabControlOptions.Size = New System.Drawing.Size(773, 355)
     Me.TabControlOptions.TabIndex = 1
     Me.TabControlOptions.UseSelectable = True
@@ -635,7 +632,7 @@ Partial Class DialogOptions
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.CancelButton = Me.Cancel_Button
-    Me.ClientSize = New System.Drawing.Size(797, 414)
+    Me.ClientSize = New System.Drawing.Size(789, 414)
     Me.Controls.Add(Me.TabControlOptions)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
