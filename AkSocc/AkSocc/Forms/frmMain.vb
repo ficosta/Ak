@@ -429,11 +429,11 @@ Public Class frmMain
             If myType.Name = name Then
               Dim instance As GraphicGroup = CType(Activator.CreateInstance(myType, _match), GraphicGroup)
               If instance.MustHavePlayer And _selectedPlayer Is Nothing Then
-                frmWaitForInput.ShowWaitDialog(Me, "You must choose a player first", _match.ToString)
+                frmWaitForInput.ShowWaitDialog(Me, "You must choose a player first", _match.ToString, MessageBoxButtons.OK)
               ElseIf instance.MustHaveClock And _clockControl.ClockVisible = False Then
-                frmWaitForInput.ShowWaitDialog(Me, "This action requires the clock to be visible", _match.ToString)
+                frmWaitForInput.ShowWaitDialog(Me, "This action requires the clock to be visible", _match.ToString, MessageBoxButtons.OK)
               ElseIf instance.CantHaveClock And _clockControl.ClockVisible = True Then
-                frmWaitForInput.ShowWaitDialog(Me, "This action requires the clock to be retired", _match.ToString)
+                frmWaitForInput.ShowWaitDialog(Me, "This action requires the clock to be retired", _match.ToString, MessageBoxButtons.OK)
               Else
                 instance.Match = _match
                 instance.Player = _selectedPlayer
@@ -854,12 +854,46 @@ Public Class frmMain
     Me.UpdateClockInterface()
   End Sub
 
+#Region "Substitution"
   Private Sub MetroButtonClockSubstitutions_Click(sender As Object, e As EventArgs) Handles MetroButtonClockSubstitutions.Click
     'Me.StartGraphic(New ClockSubstitutes(_match))
-    Dim dlg As New FormSubstitutions()
-    dlg.Match = _match
-    dlg.Show(Me)
+    Dim dlgPre As New FormSubstitutionPreSelection
+    dlgPre.ShowDialog(Me)
+    If dlgPre.DialogResult = DialogResult.OK Then
+      Select Case dlgPre.SubsitutitonType
+        Case FormSubstitutionPreSelection.eSubstitutionType.Home
+          Me.AddSubstitution(_match.HomeTeam)
+        Case FormSubstitutionPreSelection.eSubstitutionType.Away
+          Me.AddSubstitution(_match.AwayTeam)
+        Case Else
+          'nothing to do
+      End Select
+
+      Dim dlg As New FormSubstitutions()
+      dlg.Match = _match
+      dlg.Show(Me)
+    End If
+
   End Sub
+
+  Private Function AddSubstitution(team As Team) As Substitution
+    Try
+      Dim dlg As New FormSubstitution()
+      dlg.Team = team
+      If dlg.ShowDialog(Me) = DialogResult.OK Then
+        Dim subs As New Substitution() With {.Team = team, .PlayerIn = dlg.PlayerIn, .PlayerOut = dlg.PlayerOut, .part = _match.MatchPeriods.ActivePeriod.Part, .timeInSeconds = _match.MatchPeriods.ActivePeriod.PlayingTime}
+        Dim aux As Integer = subs.PlayerIn.Formation_Pos
+        subs.PlayerIn.Formation_Pos = subs.PlayerOut.Formation_Pos
+        subs.PlayerOut.Formation_Pos = aux
+        team.AddSubstitution(subs)
+      End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+    Return Nothing
+  End Function
+#End Region
+
 
   Private Sub MetroButtonClockStats_Click(sender As Object, e As EventArgs) Handles MetroButtonClockStats.Click
     StartGraphic(ClockGenericStraps.Description)
@@ -1113,6 +1147,8 @@ Public Class frmMain
           If CKeyCombination.Alt = True And CKeyCombination.Control = False And CKeyCombination.Shift = False And CKeyCombination.Windows = False Then
             Me.ButtonAwayGoal_Click(Nothing, Nothing)
           End If
+        Case Keys.F4
+          MetroButtonClockSubstitutions_Click(Nothing, Nothing)
         Case Keys.F7
           StartGraphic(New GraphicsTeamStaff(_match, _match.HomeTeam))
         Case Keys.F8
@@ -1418,14 +1454,28 @@ Public Class frmMain
     End Select
   End Sub
 
+#End Region
+
+#Region "Clock control"
+  Private WithEvents _dlgClockControl As FormClockControl
+
+
   Private Sub ButtonClockManagement_Click(sender As Object, e As EventArgs) Handles ButtonClockManagement.Click
     Try
-      Dim dlg As New FormClockPosition
-      dlg.ClockControl = _clockControl
-      dlg.ShowDialog(Me)
+      If _dlgClockControl Is Nothing Then
+        _dlgClockControl = New FormClockControl
+        _dlgClockControl.ClockControl = _clockControl
+        _dlgClockControl.Show(Me)
+      Else
+        _dlgClockControl.BringToFront()
+      End If
     Catch ex As Exception
 
     End Try
+  End Sub
+
+  Private Sub _dlgClockControl_Closed(sender As Object, e As EventArgs) Handles _dlgClockControl.Closed
+    _dlgClockControl = Nothing
   End Sub
 
 #End Region

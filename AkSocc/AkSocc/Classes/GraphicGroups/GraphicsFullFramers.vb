@@ -148,7 +148,7 @@ Public Class GraphicGroupFullFramers
     scene.SceneDirectorsChangeIn.Add("Title_change_1_2", 200, DirectorAction.Dummy)
 
     scene.SceneParameters.Add("Veil_On_Off_Vis.active", "1")
-    scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
+    scene.SceneParameters.Add("Title_Sponsor_Vis", "0")
     scene.SceneParameters.Add("Veil_Left_Vis ", "0")
     scene.SceneParameters.Add("Veil_Right_Vis ", "0")
 
@@ -399,11 +399,13 @@ Public Class GraphicGroupFullFramers
 
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "1")
-      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", "") ' Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", Me.Match.HomeTeam.Name)
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", Me.Match.AwayTeam.Name)
+
+      scene.SceneParameters.Add("Title_Sponsor_Vis ", "1")
 
       Dim statNames() As String = {"Shots", "Shots_on_target", "Corners", "Offsides", "Fouls", "Cards", "Possession"}
       Dim stat As MatchInfo.Stat

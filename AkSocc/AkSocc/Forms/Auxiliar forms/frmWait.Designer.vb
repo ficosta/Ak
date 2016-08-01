@@ -70,7 +70,7 @@ Partial Class frmWait
     Me.ClientSize = New System.Drawing.Size(448, 133)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Font = New System.Drawing.Font("Segoe UI", 9.75!)
-    Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+    Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
     Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.MaximizeBox = False
     Me.MinimizeBox = False

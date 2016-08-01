@@ -6,6 +6,7 @@ Public Class ClockGenericStraps
 
   Public Sub New(match As MatchInfo.Match)
     MyBase.New(match)
+    MyBase.MustHaveClock = True
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String

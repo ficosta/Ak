@@ -708,8 +708,10 @@ Imports MatchInfo
       End If
       If Me.MatchPeriods.ActivePeriod Is Nothing Then
         goal.TimeSecond = 0
+        goal.IsExtraTime = False
       Else
         goal.TimeSecond = Me.MatchPeriods.ActivePeriod.PlayingTime + Me.MatchPeriods.ActivePeriod.StartOffset
+        goal.IsExtraTime = Me.MatchPeriods.ActivePeriod.IsPeriodDone
       End If
       team.MatchGoals.Add(goal)
       Me.MatchGoals.Add(goal)

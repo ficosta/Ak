@@ -165,6 +165,14 @@ Public Class GraphicsScoreLine
       scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
     End If
 
+    For i As Integer = 1 To 11
+      Dim prefix As String = "Scoreline_Side_" & gSide & "_Sublines_Type_2_Goals_"
+      For j = 1 To 12
+        scene.SceneParameters.Add(New SceneParameter(prefix & "Left_" & i & "_Text_" & Microsoft.VisualBasic.Strings.Format(j, "00"), " "))
+        scene.SceneParameters.Add(New SceneParameter(prefix & "Right_" & i & "_Text_" & Microsoft.VisualBasic.Strings.Format(j, "00"), " "))
+      Next j
+    Next i
+
     Return scene
   End Function
 
@@ -272,19 +280,15 @@ Public Class GraphicsScoreLine
           teamSide = "Left"
         End If
 
-        scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_" & teamSide & "_" & i & "_Score_A ", FormatRunningTime(goals(0).TimeSecond))
-        Dim player As MatchInfo.Player = Me.Match.GetPlayerById(goals(0).PlayerID)
-        If Not player Is Nothing Then
-          scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_" & teamSide & "_" & i & "_Text_01", player.Name)
-
-        End If
-
-
+        scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_" & teamSide & "_" & i & "_Score_A ", GetGoalTime(goals(0)))
+        scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_" & teamSide & "_" & i & "_Text_01", GetGoalPlayer(goals(0)))
+        scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_" & teamSide & "_" & i & "_Text_02", GetGoalDescription(goals(0)))
       End If
 
     Catch ex As Exception
 
     End Try
+
   End Sub
 
   Private Sub PrepareResultSceneWithScorerCrawl(ByRef scene As Scene, home_Result As String, away_Result As String, show_Logo As Boolean)
@@ -324,11 +328,9 @@ Public Class GraphicsScoreLine
 
         If i - 1 < goals.Count Then
           Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
-          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", FormatRunningTime(goal.TimeSecond)))
-          Dim player As MatchInfo.Player = Me.Match.GetPlayerById(goals(0).PlayerID)
-          If Not player Is Nothing Then
-            scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", player.Name))
-          End If
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", GetGoalTime(goal)))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", GetGoalPlayer(goal)))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_02", GetGoalDescription(goal)))
         Else
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", " "))
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", " "))
@@ -340,11 +342,9 @@ Public Class GraphicsScoreLine
         Dim prefix As String = "Scoreline_Side_" & gSide & "_Sublines_Type_2_Goals_Left_"
         If i - 1 < goals.Count Then
           Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
-          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", FormatRunningTime(goal.TimeSecond)))
-          Dim player As MatchInfo.Player = Me.Match.GetPlayerById(goals(0).PlayerID)
-          If Not player Is Nothing Then
-            scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", player.Name))
-          End If
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", GetGoalTime(goal)))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", GetGoalPlayer(goal)))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_02", GetGoalDescription(goal)))
         Else
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", " "))
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", " "))
@@ -367,4 +367,63 @@ Public Class GraphicsScoreLine
 
     End Try
   End Sub
+
+  Private Function GetGoalTime(goal As MatchInfo.MatchGoal) As String
+    Dim goalTime As String = ""
+    Try
+      Dim minute As Integer = goal.TimeSecond \ 60 + 1
+      If goal.IsExtraTime = False Then
+        goalTime = (minute) & "'"
+      Else
+        If minute > 120 Then
+          goalTime = "120+" & (minute - 120) & "'"
+        ElseIf minute > 105 Then
+          goalTime = "105+" & (minute - 105) & "'"
+        ElseIf minute > 90 Then
+          goalTime = "90+" & (minute - 90) & "'"
+        ElseIf minute > 45 Then
+          goalTime = "45+" & (minute - 45) & "'"
+        End If
+      End If
+    Catch ex As Exception
+
+    End Try
+    Return goalTime
+  End Function
+
+  Private Function GetGoalDescription(goal As MatchInfo.MatchGoal) As String
+    Dim goalDescription As String = ""
+
+    Try
+      Select Case (goal.GoalType)
+        Case MatchInfo.MatchGoal.eGoalType.Normal
+          goalDescription = ""
+        Case MatchInfo.MatchGoal.eGoalType.Own
+          goalDescription = (Arabic("OWN GOAL"))
+        Case MatchInfo.MatchGoal.eGoalType.Penalty
+          goalDescription = (Arabic("PENALTY"))
+      End Select
+      goalDescription = goalDescription.Replace("(", "~")
+      goalDescription = goalDescription.Replace(")", "( ")
+      goalDescription = goalDescription.Replace("~", " )")
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+    Return goalDescription
+  End Function
+
+  Private Function GetGoalPlayer(goal As MatchInfo.MatchGoal) As String
+    Dim text As String = ""
+
+    Try
+      Dim player As MatchInfo.Player = Me.Match.GetPlayerById(goal.PlayerID)
+      If Not player Is Nothing Then
+        text = player.Name
+      End If
+
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+    Return text
+  End Function
 End Class

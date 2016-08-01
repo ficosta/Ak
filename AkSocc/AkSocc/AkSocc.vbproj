@@ -164,10 +164,10 @@
     <Compile Include="Forms\Clock\FormAddedTime.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Clock\FormClockPosition.Designer.vb">
-      <DependentUpon>FormClockPosition.vb</DependentUpon>
+    <Compile Include="Forms\Clock\FormClockControl.Designer.vb">
+      <DependentUpon>FormClockControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Clock\FormClockPosition.vb">
+    <Compile Include="Forms\Clock\FormClockControl.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Clock\FormPeriodControl_new.Designer.vb">
@@ -299,6 +299,12 @@
     <Compile Include="Forms\Substitutions\FormSubstitution.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitutionPreSelection.Designer.vb">
+      <DependentUpon>FormSubstitutionPreSelection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitutionPreSelection.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Substitutions\FormSubstitutions.Designer.vb">
       <DependentUpon>FormSubstitutions.vb</DependentUpon>
     </Compile>
@@ -373,8 +379,8 @@
     <EmbeddedResource Include="Forms\Clock\FormAddedTime.resx">
       <DependentUpon>FormAddedTime.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Clock\FormClockPosition.resx">
-      <DependentUpon>FormClockPosition.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Clock\FormClockControl.resx">
+      <DependentUpon>FormClockControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Clock\FormOvewriteClock.resx">
       <DependentUpon>FormOvewriteClock.vb</DependentUpon>
@@ -429,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Substitutions\FormSubstitution.resx">
       <DependentUpon>FormSubstitution.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Substitutions\FormSubstitutionPreSelection.resx">
+      <DependentUpon>FormSubstitutionPreSelection.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Substitutions\FormSubstitutions.resx">
       <DependentUpon>FormSubstitutions.vb</DependentUpon>

@@ -188,6 +188,11 @@ Public Class FormChooseMulti
     scene.SceneParameters.Add("LeftFramer_Table_Vis.active", "0")
     scene.SceneParameters.Add("LeftFramer_Stats_Vis.active", "1")
 
+    scene.SceneParameters.Add("LeftFramer_Title_Stats_Side_" & gSide & "_Text_Center", "")
+    scene.SceneParameters.Add("LeftFramer_Title_Stats_Side_" & gSide & "_Text_Left", _match.AwayTeam.Name)
+    scene.SceneParameters.Add("LeftFramer_Title_Stats_Side_" & gSide & "_Text_Right", _match.HomeTeam.Name)
+    scene.SceneParameters.Add("LeftFramer_Title_Stats_Side_" & gSide & "_Text_Team_Left", "")
+    scene.SceneParameters.Add("LeftFramer_Title_Stats_Side_" & gSide & "_Text_Team_Right", "")
 
 
     Dim prefix As String = ""
@@ -224,6 +229,7 @@ Public Class FormChooseMulti
       Dim prefix As String
       Dim selected As String
       Dim stat As Stat
+      Dim statName As String = ""
 
       With Me.MetroGridSelected
         For i As Integer = 0 To .Rows.Count - 1D
@@ -234,80 +240,82 @@ Public Class FormChooseMulti
             Case "Shots"
               scene.SceneParameters.Add(prefix & "Left_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
               scene.SceneParameters.Add(prefix & "Right_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
-              scene.SceneParameters.Add(prefix & "Stat_Name", "Shots")
+              statName = Arabic("ATTEMPTS")
               stat = _match.HomeTeam.MatchStats.Shots
-              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.ValueText)
               stat = _match.AwayTeam.MatchStats.Shots
-              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.ValueText)
             Case "Shots_on_target"
               scene.SceneParameters.Add(prefix & "Left_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
               scene.SceneParameters.Add(prefix & "Right_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
-              scene.SceneParameters.Add(prefix & "Stat_Name", "Shots_on_target")
+              statName = Arabic("ATTEMPTS ON TARGET")
               stat = _match.HomeTeam.MatchStats.ShotsOn
-              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.ValueText)
               stat = _match.AwayTeam.MatchStats.ShotsOn
-              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.ValueText)
             Case "Fouls"
               scene.SceneParameters.Add(prefix & "Left_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
               scene.SceneParameters.Add(prefix & "Right_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
-              scene.SceneParameters.Add(prefix & "Stat_Name", "Fouls")
+              statName = Arabic("FOULS CONCEDED")
               stat = _match.HomeTeam.MatchStats.Fouls
-              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.ValueText)
               stat = _match.AwayTeam.MatchStats.Fouls
-              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.ValueText)
             Case "Corners"
               scene.SceneParameters.Add(prefix & "Left_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
               scene.SceneParameters.Add(prefix & "Right_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
-              scene.SceneParameters.Add(prefix & "Stat_Name", "Corners")
+              statName = Arabic("CORNERS")
               stat = _match.HomeTeam.MatchStats.Corners
-              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.ValueText)
               stat = _match.AwayTeam.MatchStats.Corners
-              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.ValueText)
             Case "Possession"
               scene.SceneParameters.Add(prefix & "Left_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
               scene.SceneParameters.Add(prefix & "Right_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
-              scene.SceneParameters.Add(prefix & "Stat_Name", "Possession")
+              statName = Arabic("POSSESSION")
               stat = _match.HomeTeam.MatchStats.Possession
-              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.ValueText)
               stat = _match.AwayTeam.MatchStats.Possession
-              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.ValueText)
             Case "LastPossessions"
               scene.SceneParameters.Add(prefix & "Left_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
               scene.SceneParameters.Add(prefix & "Right_Control_OMO_GV_Chosse", CInt(eTipusLinia.Normal))
-              scene.SceneParameters.Add(prefix & "Stat_Name", "LastPossessions")
+              statName = Arabic("POSSESSION - LAST 5")
               stat = _match.HomeTeam.MatchStats.LastPossessions
-              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Right_Score_Text", stat.ValueText)
               stat = _match.AwayTeam.MatchStats.LastPossessions
-              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.Value)
+              scene.SceneParameters.Add(prefix & "Left_Score_Text", stat.ValueText)
             Case "YCard"
               scene.SceneParameters.Add(prefix & "Left_Control_OMO_GV_Chosse", CInt(eTipusLinia.Yellow))
               scene.SceneParameters.Add(prefix & "Right_Control_OMO_GV_Chosse", CInt(eTipusLinia.Yellow))
-              scene.SceneParameters.Add(prefix & "Stat_Name", "YellowCards")
+              statName = Arabic("YELLOW CARDS")
               stat = _match.HomeTeam.MatchStats.YellowCards
-              scene.SceneParameters.Add(prefix & "Right_Yellow_Card_Number", stat.Value)
+              scene.SceneParameters.Add(prefix & "Right_Yellow_Card_Number", stat.ValueText)
               stat = _match.AwayTeam.MatchStats.YellowCards
-              scene.SceneParameters.Add(prefix & "Left_Yellow_Card_Number", stat.Value)
+              scene.SceneParameters.Add(prefix & "Left_Yellow_Card_Number", stat.ValueText)
             Case "RCard"
               scene.SceneParameters.Add(prefix & "Left_Control_OMO_GV_Chosse", CInt(eTipusLinia.Red))
               scene.SceneParameters.Add(prefix & "Right_Control_OMO_GV_Chosse", CInt(eTipusLinia.Red))
-              scene.SceneParameters.Add(prefix & "Stat_Name", "RedCards")
+              statName = Arabic("RED CARDS")
               stat = _match.HomeTeam.MatchStats.RedCards
-              scene.SceneParameters.Add(prefix & "Right_Red_Card_Number", stat.Value)
+              scene.SceneParameters.Add(prefix & "Right_Red_Card_Number", stat.ValueText)
               stat = _match.AwayTeam.MatchStats.RedCards
-              scene.SceneParameters.Add(prefix & "Left_Red_Card_Number", stat.Value)
+              scene.SceneParameters.Add(prefix & "Left_Red_Card_Number", stat.ValueText)
             Case "YCard + RCard"
               scene.SceneParameters.Add(prefix & "Left_Control_OMO_GV_Chosse", CInt(eTipusLinia.YellowRed))
               scene.SceneParameters.Add(prefix & "Right_Control_OMO_GV_Chosse", CInt(eTipusLinia.YellowRed))
-              scene.SceneParameters.Add(prefix & "Stat_Name", "Yellow +  red cards")
+              statName = Arabic("CARDS")
               stat = _match.HomeTeam.MatchStats.YellowCards
-              scene.SceneParameters.Add(prefix & "Right_YellowRed_Card_Yellow_Number", stat.Value)
+              scene.SceneParameters.Add(prefix & "Right_YellowRed_Card_Yellow_Number", stat.ValueText)
               stat = _match.AwayTeam.MatchStats.YellowCards
-              scene.SceneParameters.Add(prefix & "Left_YellowRed_Card_Yellow_Number", stat.Value)
+              scene.SceneParameters.Add(prefix & "Left_YellowRed_Card_Yellow_Number", stat.ValueText)
               stat = _match.HomeTeam.MatchStats.RedCards
-              scene.SceneParameters.Add(prefix & "Right_YellowRed_Card_Red_Number", stat.Value)
+              scene.SceneParameters.Add(prefix & "Right_YellowRed_Card_Red_Number", stat.ValueText)
               stat = _match.AwayTeam.MatchStats.RedCards
-              scene.SceneParameters.Add(prefix & "Left_YellowRed_Card_Red_Number", stat.Value)
+              scene.SceneParameters.Add(prefix & "Left_YellowRed_Card_Red_Number", stat.ValueText)
           End Select
+          scene.SceneParameters.Add(prefix & "Stat_Name", statName)
+          scene.SceneParameters.Add(prefix & "Team_Name", statName)
         Next
       End With
 

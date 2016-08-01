@@ -65,7 +65,7 @@ Partial Class FormWaitingForDirector
     Me.ClientSize = New System.Drawing.Size(448, 133)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+    Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
     Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.MaximizeBox = False
     Me.MinimizeBox = False

@@ -10,8 +10,8 @@ Public Class ClockOtherScores
   Public Sub New(match As MatchInfo.Match)
     MyBase.New(match)
 
-    _otherMatchDays = New OtherMatchDays
-    _otherMatchDays.LoadOthers()
+    MyBase.MustHaveClock = True
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F7, False, True, False, False)
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String
@@ -47,7 +47,8 @@ Public Class ClockOtherScores
       gs.GraphicSteps.Clear()
 
       If graphicStep Is Nothing Then
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.Dummy, True, False))
+        _otherMatchDays = New OtherMatchDays
+        _otherMatchDays.LoadOthers()
         For Each matchDays As MatchDay In _otherMatchDays
           gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(matchDays.MatchDayID, matchDays.MatchDayName), False, False))
         Next

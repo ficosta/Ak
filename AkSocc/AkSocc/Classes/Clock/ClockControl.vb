@@ -16,6 +16,8 @@ Public NotInheritable Class ClockControl
   End Property
 #End Region
 
+  Public Event ClockStateChanged()
+
 #Region "Properties"
   Private WithEvents _vizControl As VizControl
   Public Property VizControl As VizControl
@@ -38,6 +40,7 @@ Public NotInheritable Class ClockControl
       _homeTeam = _match.HomeTeam
       _awayTeam = _match.AwayTeam
       Me.InitScene()
+      RaiseEvent ClockStateChanged()
     End Set
   End Property
 
@@ -60,11 +63,36 @@ Public NotInheritable Class ClockControl
   Private _showRedCards As Boolean
   Public Property ShowRedCards As Boolean
     Get
-      Return _ShowRedCards
+      Return _showRedCards
     End Get
     Set(value As Boolean)
       _showRedCards = value
       Me.UpdateRedCards()
+      RaiseEvent ClockStateChanged()
+    End Set
+  End Property
+
+  Private _showSponsor As Boolean
+  Public Property ShowSponsor As Boolean
+    Get
+      Return _showSponsor
+    End Get
+    Set(value As Boolean)
+      _showSponsor = value
+      Me.UpdateSponsor()
+      RaiseEvent ClockStateChanged()
+    End Set
+  End Property
+
+  Private _SponsorSelectedLogo As Integer
+  Public Property SponsorSelectedLogo As Integer
+    Get
+      Return _SponsorSelectedLogo
+    End Get
+    Set(value As Integer)
+      _SponsorSelectedLogo = value
+      Me.UpdateSponsor()
+      ' RaiseEvent ClockStateChanged()
     End Set
   End Property
 
@@ -104,6 +132,7 @@ Public NotInheritable Class ClockControl
     ClockVisible = False
     _request = False
     _clockOnAir = False
+    _sponsorOnair = False
 
     _addedTimeTimer.Interval = 200
     _addedTimeTimer.Enabled = True
@@ -153,11 +182,15 @@ Public NotInheritable Class ClockControl
     End Get
     Set(value As Boolean)
       If value <> _clockVisible And value Then
-        _showRedCards = (MsgBox("Show red cards?", Buttons:=MsgBoxStyle.YesNo) = MsgBoxResult.Yes)
+
+        _showRedCards = (frmWaitForInput.ShowWaitDialog(Nothing, "Show read cards?", "Clock control", MessageBoxButtons.YesNo, MessageBoxIcon.Hand) = DialogResult.Yes)
       End If
-      _clockVisible = value
+        _clockVisible = value
       UpdateClockVisibility()
       UpdateExraTimeVisibility()
+      UpdateSponsor()
+      SendClockPosition()
+      RaiseEvent ClockStateChanged()
     End Set
   End Property
 
@@ -178,6 +211,7 @@ Public NotInheritable Class ClockControl
     End Get
     Set(value As Boolean)
       _clockOnAir = value
+      If _clockOnAir = False Then _sponsorOnair = False
     End Set
   End Property
 
@@ -190,6 +224,7 @@ Public NotInheritable Class ClockControl
     Try
       If _match Is Nothing Then
         _clockOnAir = False
+        _sponsorOnair = False
         Me.ClockVisible = False
         _updating = False
         Exit Sub
@@ -299,12 +334,8 @@ Public NotInheritable Class ClockControl
     _updating = False
   End Sub
 
-  Public Sub UpdatePosition(x As Double, y As Double)
+  Public Sub SendClockPosition()
     Try
-      AppSettings.Instance.ClockPosition_X = x
-      AppSettings.Instance.ClockPosition_Y = y
-      AppSettings.Instance.Save()
-
       If Not _vizControl Is Nothing Then
 
         Dim sPosition As String = AppSettings.Instance.ClockPosition_X.ToString & " " & AppSettings.Instance.ClockPosition_Y.ToString & " 0.0"
@@ -312,6 +343,18 @@ Public NotInheritable Class ClockControl
         _vizControl.SetControlObjectValue("$object", "Clock_Position.position", sPosition, Me.Scene.VizLayer)
       End If
 
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Public Sub UpdatePosition(x As Double, y As Double)
+    Try
+      AppSettings.Instance.ClockPosition_X = x
+      AppSettings.Instance.ClockPosition_Y = y
+      AppSettings.Instance.Save()
+
+      SendClockPosition()
     Catch ex As Exception
 
     End Try
@@ -340,6 +383,7 @@ Public NotInheritable Class ClockControl
     Try
       _clockOnAir = False
       _overtimeClockOnAir = False
+      _sponsorOnair = False
       '_vizControl.DirectorContinue("DIR_MAIN", Me.Scene.VizLayer)  
       Me.Scene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
       RaiseEvent Updated()
@@ -448,7 +492,9 @@ Public NotInheritable Class ClockControl
         '.SceneDirectorsIn.Add("Team_Left_Cards", 0, DirectorAction.Rewind)
         '.SceneDirectorsIn.Add("Team_Right_Cards", 0, DirectorAction.Rewind)
 
-        .SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
+        If _showSponsor = False Then
+          .SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
+        End If
 
         .SceneDirectorsIn.Add("anim_Clock_Substitute", 0, DirectorAction.Rewind)
         .SceneDirectorsIn.Add("anim_Clock_Player_Card", 0, DirectorAction.Rewind)
@@ -509,6 +555,8 @@ Public NotInheritable Class ClockControl
           UpdateRedCards()
           'extra time
           UpdateExraTimeVisibility()
+          'sponsor
+          UpdateSponsor()
         End If
 
       End With
@@ -543,6 +591,27 @@ Public NotInheritable Class ClockControl
 
     End Try
   End Sub
+
+#Region "Sponsor"
+  Private _sponsorOnair As Boolean = False
+  Public Sub UpdateSponsor()
+    Try
+      _vizControl.SetControlObjectValue("$object", "Clock_Control_OMO_Sponsor", _SponsorSelectedLogo, eRendererLayers.FrontLayer)
+      If _clockOnAir = False Then
+        _sponsorOnair = False
+        _vizControl.DirectorContinueReverse("sponsor_in_out", eRendererLayers.FrontLayer)
+      ElseIf _showSponsor = True And _sponsorOnair = False Then
+        _sponsorOnair = True
+        _vizControl.DirectorStart("sponsor_in_out", eRendererLayers.FrontLayer)
+      ElseIf _showSponsor = False And _sponsorOnair = True Then
+        _sponsorOnair = False
+        _vizControl.DirectorContinueReverse("sponsor_in_out", eRendererLayers.FrontLayer)
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+#End Region
 
 #Region "red cards"
   Private _shownHomeRedCards As Integer = 0

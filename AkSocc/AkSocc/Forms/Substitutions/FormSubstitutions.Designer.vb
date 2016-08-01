@@ -270,7 +270,7 @@ Partial Class FormSubstitutions
     Me.ClientSize = New System.Drawing.Size(844, 343)
     Me.Controls.Add(Me.TableLayoutPanel2)
     Me.Name = "FormSubstitutions"
-    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "Substitutions"
     Me.TableLayoutPanelData.ResumeLayout(False)
     CType(Me.MetroGridSubstitutions, System.ComponentModel.ISupportInitialize).EndInit()

@@ -56,27 +56,32 @@ Partial Class UserControlTactica
     Me.ButtonRandom = New System.Windows.Forms.Button()
     Me.MetroComboBoxFormation = New System.Windows.Forms.ComboBox()
     Me.ToolTipDrag = New System.Windows.Forms.ToolTip(Me.components)
+    Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+    Me.ButtonSaveFormation = New System.Windows.Forms.Button()
+    Me.ButtonSaveAs = New System.Windows.Forms.Button()
+    Me.ButtonDelete = New System.Windows.Forms.Button()
     Me.TableLayoutPanelTot.SuspendLayout()
     CType(Me.MetroGridPlayers, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.MetroGridTeamAll, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelCanvas.SuspendLayout()
     CType(Me.PictureBoxCanvas, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
+    Me.TableLayoutPanel2.SuspendLayout()
     Me.SuspendLayout()
     '
     'TableLayoutPanelTot
     '
     Me.TableLayoutPanelTot.ColumnCount = 4
     Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 240.0!))
-    Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 240.0!))
+    Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
+    Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 360.0!))
     Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanelTot.Controls.Add(Me.MetroGridPlayers, 3, 0)
     Me.TableLayoutPanelTot.Controls.Add(Me.MetroGridTeamAll, 0, 0)
     Me.TableLayoutPanelTot.Controls.Add(Me.PanelCanvas, 1, 0)
     Me.TableLayoutPanelTot.Controls.Add(Me.LabelSelectedPlayer, 1, 2)
     Me.TableLayoutPanelTot.Controls.Add(Me.TableLayoutPanel1, 1, 1)
-    Me.TableLayoutPanelTot.Controls.Add(Me.MetroComboBoxFormation, 2, 2)
+    Me.TableLayoutPanelTot.Controls.Add(Me.TableLayoutPanel2, 2, 2)
     Me.TableLayoutPanelTot.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanelTot.Location = New System.Drawing.Point(0, 0)
     Me.TableLayoutPanelTot.Name = "TableLayoutPanelTot"
@@ -298,7 +303,7 @@ Partial Class UserControlTactica
     Me.LabelSelectedPlayer.Dock = System.Windows.Forms.DockStyle.Fill
     Me.LabelSelectedPlayer.Location = New System.Drawing.Point(237, 390)
     Me.LabelSelectedPlayer.Name = "LabelSelectedPlayer"
-    Me.LabelSelectedPlayer.Size = New System.Drawing.Size(234, 33)
+    Me.LabelSelectedPlayer.Size = New System.Drawing.Size(114, 33)
     Me.LabelSelectedPlayer.TabIndex = 2
     Me.LabelSelectedPlayer.Text = "Selected player..."
     Me.LabelSelectedPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -450,15 +455,70 @@ Partial Class UserControlTactica
     '
     'MetroComboBoxFormation
     '
-    Me.MetroComboBoxFormation.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroComboBoxFormation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.MetroComboBoxFormation.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroComboBoxFormation.FormattingEnabled = True
     Me.MetroComboBoxFormation.ItemHeight = 17
-    Me.MetroComboBoxFormation.Location = New System.Drawing.Point(477, 393)
+    Me.MetroComboBoxFormation.Location = New System.Drawing.Point(3, 3)
     Me.MetroComboBoxFormation.Name = "MetroComboBoxFormation"
-    Me.MetroComboBoxFormation.Size = New System.Drawing.Size(234, 25)
+    Me.MetroComboBoxFormation.Size = New System.Drawing.Size(144, 25)
     Me.MetroComboBoxFormation.TabIndex = 50
+    '
+    'TableLayoutPanel2
+    '
+    Me.TableLayoutPanel2.ColumnCount = 4
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+    Me.TableLayoutPanel2.Controls.Add(Me.ButtonDelete, 3, 0)
+    Me.TableLayoutPanel2.Controls.Add(Me.ButtonSaveAs, 2, 0)
+    Me.TableLayoutPanel2.Controls.Add(Me.ButtonSaveFormation, 1, 0)
+    Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxFormation, 0, 0)
+    Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel2.Location = New System.Drawing.Point(354, 390)
+    Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
+    Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+    Me.TableLayoutPanel2.RowCount = 1
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(360, 33)
+    Me.TableLayoutPanel2.TabIndex = 51
+    '
+    'ButtonSaveFormation
+    '
+    Me.ButtonSaveFormation.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonSaveFormation.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonSaveFormation.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ButtonSaveFormation.Location = New System.Drawing.Point(153, 3)
+    Me.ButtonSaveFormation.Name = "ButtonSaveFormation"
+    Me.ButtonSaveFormation.Size = New System.Drawing.Size(64, 27)
+    Me.ButtonSaveFormation.TabIndex = 15
+    Me.ButtonSaveFormation.Text = "Save"
+    Me.ButtonSaveFormation.UseVisualStyleBackColor = True
+    '
+    'ButtonSaveAs
+    '
+    Me.ButtonSaveAs.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonSaveAs.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ButtonSaveAs.Location = New System.Drawing.Point(223, 3)
+    Me.ButtonSaveAs.Name = "ButtonSaveAs"
+    Me.ButtonSaveAs.Size = New System.Drawing.Size(64, 27)
+    Me.ButtonSaveAs.TabIndex = 51
+    Me.ButtonSaveAs.Text = "Save as"
+    Me.ButtonSaveAs.UseVisualStyleBackColor = True
+    '
+    'ButtonDelete
+    '
+    Me.ButtonDelete.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonDelete.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ButtonDelete.Location = New System.Drawing.Point(293, 3)
+    Me.ButtonDelete.Name = "ButtonDelete"
+    Me.ButtonDelete.Size = New System.Drawing.Size(64, 27)
+    Me.ButtonDelete.TabIndex = 52
+    Me.ButtonDelete.Text = "Delete"
+    Me.ButtonDelete.UseVisualStyleBackColor = True
     '
     'UserControlTactica
     '
@@ -475,6 +535,7 @@ Partial Class UserControlTactica
     CType(Me.PictureBoxCanvas, System.ComponentModel.ISupportInitialize).EndInit()
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.TableLayoutPanel1.PerformLayout()
+    Me.TableLayoutPanel2.ResumeLayout(False)
     Me.ResumeLayout(False)
 
   End Sub
@@ -505,4 +566,8 @@ Partial Class UserControlTactica
   Friend WithEvents ColumnPlayerFormationY As DataGridViewTextBoxColumn
   Friend WithEvents ButtonRandom As Button
   Friend WithEvents MetroComboBoxFormation As System.Windows.Forms.ComboBox
+  Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+  Friend WithEvents ButtonSaveFormation As Button
+  Friend WithEvents ButtonSaveAs As Button
+  Friend WithEvents ButtonDelete As Button
 End Class

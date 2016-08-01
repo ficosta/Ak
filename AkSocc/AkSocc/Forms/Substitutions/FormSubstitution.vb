@@ -69,7 +69,6 @@ Public Class FormSubstitution
           Dim itm As Integer = grid.Rows.Add(player.PlayerID, player.SquadNo, player.PlayerName, player.Formation_Pos)
           grid.Rows(itm).Selected = False
         End If
-
       Next
       If selectedPlayer Is Nothing Then
 

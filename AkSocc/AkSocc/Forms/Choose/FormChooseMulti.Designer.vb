@@ -36,14 +36,14 @@ Partial Class FormChooseMulti
     Me.ColumnStatsID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnStatsName = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.MetroGridSelected = New MetroFramework.Controls.MetroGrid()
-    Me.MetroLabelTitle = New System.Windows.Forms.Label()
-    Me.SplitContainerAll = New System.Windows.Forms.SplitContainer()
-    Me._ucPreview = New VizCommands.UCPreview()
     Me.ColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnName = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnMoveUp = New System.Windows.Forms.DataGridViewButtonColumn()
     Me.ColumnMoveDown = New System.Windows.Forms.DataGridViewButtonColumn()
     Me.ColumnRemove = New System.Windows.Forms.DataGridViewButtonColumn()
+    Me.MetroLabelTitle = New System.Windows.Forms.Label()
+    Me.SplitContainerAll = New System.Windows.Forms.SplitContainer()
+    Me._ucPreview = New VizCommands.UCPreview()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TableLayoutPanelAll.SuspendLayout()
     CType(Me.MetroGridStats, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,6 +156,7 @@ Partial Class FormChooseMulti
     DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
     Me.MetroGridStats.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+    Me.MetroGridStats.RowHeadersVisible = False
     Me.MetroGridStats.RowHeadersWidth = 10
     Me.MetroGridStats.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridStats.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -229,6 +230,7 @@ Partial Class FormChooseMulti
     DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
     Me.MetroGridSelected.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
+    Me.MetroGridSelected.RowHeadersVisible = False
     Me.MetroGridSelected.RowHeadersWidth = 10
     Me.MetroGridSelected.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridSelected.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -238,6 +240,44 @@ Partial Class FormChooseMulti
     Me.MetroGridSelected.ShowRowErrors = False
     Me.MetroGridSelected.Size = New System.Drawing.Size(486, 178)
     Me.MetroGridSelected.TabIndex = 10
+    '
+    'ColumnID
+    '
+    Me.ColumnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnID.HeaderText = "ColumnID"
+    Me.ColumnID.Name = "ColumnID"
+    Me.ColumnID.ReadOnly = True
+    Me.ColumnID.Visible = False
+    '
+    'ColumnName
+    '
+    Me.ColumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnName.HeaderText = "Option"
+    Me.ColumnName.Name = "ColumnName"
+    Me.ColumnName.ReadOnly = True
+    '
+    'ColumnMoveUp
+    '
+    Me.ColumnMoveUp.HeaderText = "Move up"
+    Me.ColumnMoveUp.Name = "ColumnMoveUp"
+    Me.ColumnMoveUp.ReadOnly = True
+    Me.ColumnMoveUp.Visible = False
+    Me.ColumnMoveUp.Width = 56
+    '
+    'ColumnMoveDown
+    '
+    Me.ColumnMoveDown.HeaderText = "Down"
+    Me.ColumnMoveDown.Name = "ColumnMoveDown"
+    Me.ColumnMoveDown.ReadOnly = True
+    Me.ColumnMoveDown.Visible = False
+    Me.ColumnMoveDown.Width = 42
+    '
+    'ColumnRemove
+    '
+    Me.ColumnRemove.HeaderText = "Remove"
+    Me.ColumnRemove.Name = "ColumnRemove"
+    Me.ColumnRemove.ReadOnly = True
+    Me.ColumnRemove.Width = 51
     '
     'MetroLabelTitle
     '
@@ -280,45 +320,6 @@ Partial Class FormChooseMulti
     Me._ucPreview.TabIndex = 0
     Me._ucPreview.Title = "Title"
     Me._ucPreview.VizControl = Nothing
-    '
-    'ColumnID
-    '
-    Me.ColumnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnID.HeaderText = "ColumnID"
-    Me.ColumnID.Name = "ColumnID"
-    Me.ColumnID.ReadOnly = True
-    Me.ColumnID.Visible = False
-    Me.ColumnID.Width = 62
-    '
-    'ColumnName
-    '
-    Me.ColumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnName.HeaderText = "Option"
-    Me.ColumnName.Name = "ColumnName"
-    Me.ColumnName.ReadOnly = True
-    '
-    'ColumnMoveUp
-    '
-    Me.ColumnMoveUp.HeaderText = "Move up"
-    Me.ColumnMoveUp.Name = "ColumnMoveUp"
-    Me.ColumnMoveUp.ReadOnly = True
-    Me.ColumnMoveUp.Visible = False
-    Me.ColumnMoveUp.Width = 56
-    '
-    'ColumnMoveDown
-    '
-    Me.ColumnMoveDown.HeaderText = "Down"
-    Me.ColumnMoveDown.Name = "ColumnMoveDown"
-    Me.ColumnMoveDown.ReadOnly = True
-    Me.ColumnMoveDown.Visible = False
-    Me.ColumnMoveDown.Width = 42
-    '
-    'ColumnRemove
-    '
-    Me.ColumnRemove.HeaderText = "Remove"
-    Me.ColumnRemove.Name = "ColumnRemove"
-    Me.ColumnRemove.ReadOnly = True
-    Me.ColumnRemove.Width = 51
     '
     'FormChooseMulti
     '

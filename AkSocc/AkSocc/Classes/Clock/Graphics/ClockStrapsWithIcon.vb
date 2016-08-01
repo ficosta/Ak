@@ -6,6 +6,7 @@ Public Class ClockStrapsWithIcon
 
   Public Sub New(match As MatchInfo.Match)
     MyBase.New(match)
+    MyBase.MustHaveClock = True
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String
@@ -75,7 +76,7 @@ Public Class ClockStrapsWithIcon
 
     With scene
       .SceneDirectorsIn.Add("anim_Clock_Straps_with_Icon", 0, DirectorAction.Start)
-      .SceneDirectorsIn.Add("anim_Clock_Straps_with_Icon", 10, DirectorAction.Dummy)
+      .SceneDirectorsIn.Add("anim_Clock_Straps_with_Icon", 40, DirectorAction.Dummy)
       .SceneDirectorsOut.Add("anim_Clock_Straps_with_Icon", 0, DirectorAction.ContinueNormal)
       .SceneDirectorsOut.Add("anim_Clock_Straps_with_Icon", 0, DirectorAction.ContinueNormal)
     End With

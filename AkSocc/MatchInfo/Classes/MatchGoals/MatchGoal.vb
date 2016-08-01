@@ -11,6 +11,7 @@ Public Class MatchGoal
   Public PlayerID As Integer
   Public Penalty As Boolean
   Public OwnGoal As Boolean
+  Public IsExtraTime As Boolean = False
 
   Public Enum eGoalType
     Normal = 0

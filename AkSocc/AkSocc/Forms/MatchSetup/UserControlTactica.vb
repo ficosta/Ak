@@ -881,10 +881,17 @@ Public Class UserControlTactica
       With Me.MetroComboBoxFormation
         .Items.Clear()
 
-        .Items.Add(_team.Tactic)
+        '.Items.Add(_team.Tactic)
+        Dim index As Integer = -1
         For Each tactic As Tactic In _tactiques.LlistaTactiques
           .Items.Add(tactic)
+          If tactic.IDTactic = _tactica.IDTactic Then
+            index = .Items.Count - 1
+          End If
         Next
+        If index > -1 Then
+          .SelectedIndex = index
+        End If
       End With
     Catch ex As Exception
 
@@ -897,6 +904,89 @@ Public Class UserControlTactica
 
     _tactica = MetroComboBoxFormation.SelectedItem
     UpdateSelectedTactic(_tactica)
+  End Sub
+
+  Private Sub ButtonSaveFormation_Click(sender As Object, e As EventArgs) Handles ButtonSaveFormation.Click
+    Try
+      If Me.MetroComboBoxFormation.SelectedItem Is Nothing Then
+        SaveFormationAs()
+      ElseIf frmWaitForInput.ShowWaitDialog(Nothing, "Save formation " & _tactica.NomTactic & "?", "Save formation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.OK Then
+        _tactica.save()
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub SaveFormation(formationName As String)
+    Try
+      Dim formation As Tactic = Nothing
+      If formationName <> "" Then
+        formation = _tactiques.GetTactic(formationName)
+        If formation Is Nothing Then
+          formation = New Tactic
+          formation.NomTactic = formationName
+        End If
+      End If
+      _tactica.NomTactic = formationName
+      _tactica.Descripcio = formationName
+      _tactica.IDTactic = formation.IDTactic
+      _tactica.Save()
+
+      _tactiques.GetFromDB()
+      UpdateComboBox()
+
+
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub DeleteFormation()
+    Try
+      If Not _tactica Is Nothing Then
+
+        If frmWaitForInput.ShowWaitDialog(Nothing, "Delete formation " & _tactica.NomTactic & "?", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then
+          Exit Sub
+        End If
+        _tactica.Delete()
+
+          _tactiques.GetFromDB()
+          UpdateComboBox()
+
+        End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub SaveFormationAs()
+    Try
+      Dim formationName As String = InputBox("New formation name", "Formation", "")
+      Dim formation As Tactic = Nothing
+      If formationName <> "" Then
+        formation = _tactiques.GetTactic(formationName)
+        If Not formation Is Nothing Then
+          If frmWaitForInput.ShowWaitDialog(Nothing, "There's a formation with that name already. Overwrite?", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then
+            Exit Sub
+          End If
+        Else
+          formation = New Tactic()
+        End If
+        SaveFormation(formationName)
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+
+  Private Sub ButtonSaveAs_Click(sender As Object, e As EventArgs) Handles ButtonSaveAs.Click
+    SaveFormationAs()
+  End Sub
+
+  Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
+    DeleteFormation()
   End Sub
 #End Region
 

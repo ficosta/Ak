@@ -23,20 +23,35 @@ Public Class FormPeriodControl
         .Rows(itemIndex).Cells(ColumnID.Index).Value = "0"
         .Rows(itemIndex).Cells(ColumnText.Index).Value = "Reset"
 
+        Dim periodToStart As Integer = 0
+        Dim start As Boolean = True
+        If _match.MatchPeriods.ActivePeriod Is Nothing Then
+          periodToStart = 0
+          start = True
+        Else
+          periodToStart = Math.Max(_match.MatchPeriods.ActivePeriod.Part - 1, 0)
+          start = Not _match.MatchPeriods.ActivePeriod.Activa
+        End If
+        Dim itemToSelect As Integer = 2
+
         For i As Integer = 0 To _match.MatchPeriods.Count - 1
 
           itemIndex = .Rows.Add("separator")
           .Rows(itemIndex).Cells(ColumnText.Index).Value = "___________"
-          .Rows(itemIndex).Frozen = True
+          '.Rows(itemIndex).Frozen = True
 
           itemIndex = .Rows.Add("START:" & i)
           .Rows(itemIndex).Cells(ColumnType.Index).Value = "START"
           .Rows(itemIndex).Cells(ColumnID.Index).Value = CStr(i)
           .Rows(itemIndex).Cells(ColumnText.Index).Value = _match.MatchPeriods(i).Nom & " (start clock)"
+          .Rows(itemIndex).Selected = (i = periodToStart And start)
+
           itemIndex = .Rows.Add("STOP:" & i)
           .Rows(itemIndex).Cells(ColumnType.Index).Value = "STOP"
           .Rows(itemIndex).Cells(ColumnID.Index).Value = CStr(i)
           .Rows(itemIndex).Cells(ColumnText.Index).Value = _match.MatchPeriods(i).Nom & " (stop clock)"
+          .Rows(itemIndex).Selected = (i = periodToStart And Not start)
+
         Next
         itemIndex = .Rows.Add("separator")
         .Rows(itemIndex).Cells(ColumnText.Index).Value = "___________"
@@ -45,6 +60,12 @@ Public Class FormPeriodControl
         .Rows(itemIndex).Cells(ColumnType.Index).Value = "OVERWRITE"
         .Rows(itemIndex).Cells(ColumnID.Index).Value = "0"
         .Rows(itemIndex).Cells(ColumnText.Index).Value = "Overwrite clock"
+
+        .ClearSelection()
+
+        For row As Integer = 0 To .Rows.Count - 1
+          Me.MetroGridPeriods.Rows(itemIndex).Selected = (row = itemToSelect)
+        Next
       End With
     Catch ex As Exception
 

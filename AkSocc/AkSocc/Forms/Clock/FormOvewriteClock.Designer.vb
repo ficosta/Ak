@@ -95,6 +95,7 @@ Partial Class FormOvewriteClock
     Me.NumericUpDownSeconds.Dock = System.Windows.Forms.DockStyle.Fill
     Me.NumericUpDownSeconds.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.NumericUpDownSeconds.Location = New System.Drawing.Point(100, 4)
+    Me.NumericUpDownSeconds.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
     Me.NumericUpDownSeconds.Name = "NumericUpDownSeconds"
     Me.NumericUpDownSeconds.Size = New System.Drawing.Size(90, 25)
     Me.NumericUpDownSeconds.TabIndex = 1
@@ -105,6 +106,7 @@ Partial Class FormOvewriteClock
     Me.NumericUpDownMinutes.Dock = System.Windows.Forms.DockStyle.Fill
     Me.NumericUpDownMinutes.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.NumericUpDownMinutes.Location = New System.Drawing.Point(4, 4)
+    Me.NumericUpDownMinutes.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
     Me.NumericUpDownMinutes.Name = "NumericUpDownMinutes"
     Me.NumericUpDownMinutes.Size = New System.Drawing.Size(89, 25)
     Me.NumericUpDownMinutes.TabIndex = 0

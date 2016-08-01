@@ -421,7 +421,7 @@ Public Class GraphicsTeamCaptions
       Dim sideName() As String = {"Right", "Left"}
 
 
-      scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "0")
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "1")
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", "") ' Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", Me.Match.HomeTeam.Name)

@@ -10,10 +10,10 @@
 
   Public Property Prompt As String
     Get
-      Return Me.MetroLabelPrompt.Text
+      Return Me.LabelPrompt.Text
     End Get
     Set(value As String)
-      Me.MetroLabelPrompt.Text = value
+      Me.LabelPrompt.Text = value
     End Set
   End Property
 
@@ -35,14 +35,14 @@
       Select Case _buttons
 
         Case MessageBoxButtons.OK
-          Me.TableLayoutPanel1.ColumnStyles(2).Width = 0
+          Me.TableLayoutPanel3.ColumnStyles(2).Width = 0
           _dialogResults(0) = DialogResult.OK
         Case MessageBoxButtons.OKCancel
-          Me.TableLayoutPanel1.ColumnStyles(2).Width = Me.TableLayoutPanel1.ColumnStyles(1).Width
+          Me.TableLayoutPanel3.ColumnStyles(2).Width = Me.TableLayoutPanel3.ColumnStyles(1).Width
           _dialogResults(0) = DialogResult.OK
           _dialogResults(1) = DialogResult.Cancel
         Case MessageBoxButtons.YesNo
-          Me.TableLayoutPanel1.ColumnStyles(2).Width = Me.TableLayoutPanel1.ColumnStyles(1).Width
+          Me.TableLayoutPanel3.ColumnStyles(2).Width = Me.TableLayoutPanel3.ColumnStyles(1).Width
           _dialogResults(0) = DialogResult.Yes
           _dialogResults(1) = DialogResult.No
       End Select
@@ -67,7 +67,7 @@
     InitializeComponent()
 
     Me.Text = title
-    Me.MetroLabelPrompt.Text = prompt
+    Me.LabelPrompt.Text = prompt
     Me.Buttons = buttons
 
   End Sub
@@ -124,5 +124,45 @@
     Me.DialogResult = _dialogResults(1)
     Me.Close()
   End Sub
+#End Region
+
+#Region "Form drag"
+
+  Dim drag As Boolean
+  Dim mousex As Integer
+  Dim mousey As Integer
+
+
+  Private Sub Form1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles LabelTitle.MouseDown
+    If e.Button = System.Windows.Forms.MouseButtons.Left Then
+      drag = True
+      mousex = System.Windows.Forms.Cursor.Position.X - Me.Left
+      mousey = System.Windows.Forms.Cursor.Position.Y - Me.Top
+    End If
+  End Sub
+
+
+  Private Sub Form1_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles LabelTitle.MouseMove
+    If drag Then
+      Me.Top = System.Windows.Forms.Cursor.Position.Y - mousey
+      Me.Left = System.Windows.Forms.Cursor.Position.X - mousex
+    End If
+  End Sub
+
+  Private Sub LabelPrompt_MouseUp(sender As Object, e As MouseEventArgs) Handles LabelTitle.MouseUp
+    If e.Button = System.Windows.Forms.MouseButtons.Left Then
+      drag = False
+    End If
+  End Sub
+
+  Public Overrides Property Text As String
+    Get
+      Return MyBase.Text
+    End Get
+    Set(value As String)
+      Me.LabelTitle.Text = value
+      MyBase.Text = value
+    End Set
+  End Property
 #End Region
 End Class

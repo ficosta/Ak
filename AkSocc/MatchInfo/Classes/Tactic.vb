@@ -64,6 +64,59 @@ End Class
     Return Me.Descripcio
   End Function
 
+  Public Sub Save()
+    Try
+      Dim sql As String = ""
+      Dim cConn As New ADODB.Connection()
+      cConn.Open(Config.Instance.LocalConnectionString)
+
+      Dim rs As New ADODB.Recordset
+
+
+      If Me.IDTactic <= 0 Then 'new!
+        Dim auxName As String = Guid.NewGuid.ToString
+        sql = "INSERT INTO Formations (FormDescription) VALUES ('" & auxName & "')"
+        cConn.Execute(sql)
+
+        sql = "SELECT * FROM Formations WHERE FormDescription = '" & auxName & "'"
+        rs.Open(sql, cConn, CursorType:=ADODB.CursorTypeEnum.adOpenDynamic, LockType:=ADODB.LockTypeEnum.adLockOptimistic)
+
+        If Not rs.EOF Then
+          Me.IDTactic = NoNullInt(rs.Fields("FormID").Value)
+        End If
+      Else
+        sql = "SELECT * FROM Formations WHERE FormID= " & Me.IDTactic
+        rs.Open(sql, cConn, CursorType:=ADODB.CursorTypeEnum.adOpenDynamic, LockType:=ADODB.LockTypeEnum.adLockOptimistic)
+      End If
+
+      If Not rs.EOF Then
+        rs.Fields("FormDescription").Value = Me.NomTactic
+        For i As Integer = 1 To 11
+          rs.Fields("FormOrds" & i & "X").Value = Me.LlistaPosicions(i - 1).X
+          rs.Fields("FormOrds" & i & "Y").Value = Me.LlistaPosicions(i - 1).Y
+        Next
+      End If
+      rs.Update()
+      rs.Close()
+      cConn.Close()
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Public Sub Delete()
+    Try
+      Dim sql As String = ""
+      Dim cConn As New ADODB.Connection()
+      cConn.Open(Config.Instance.LocalConnectionString)
+
+      sql = "DELETE FROM Formations WHERE FormID= " & Me.IDTactic
+      cConn.Execute(sql)
+      cConn.Close()
+    Catch ex As Exception
+
+    End Try
+  End Sub
 End Class
 
 <Serializable()> Public Class Tactiques
@@ -97,11 +150,23 @@ End Class
       End While
       rs.Close()
       con.Close()
+    Catch ex As Exception
+    End Try
+  End Sub
 
-
+  Public Function GetTactic(name As String) As Tactic
+    Dim res As Tactic = Nothing
+    Try
+      For Each aux As Tactic In Me.LlistaTactiques
+        If aux.NomTactic = name Then
+          res = aux
+          Exit For
+        End If
+      Next
     Catch ex As Exception
 
     End Try
-  End Sub
+    Return res
+  End Function
 End Class
 
