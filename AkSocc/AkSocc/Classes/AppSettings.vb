@@ -38,6 +38,9 @@ Public NotInheritable Class AppSettings
   Public Property ClockPosition_Y As Double = 0
 
   Public Property UseLogger As Boolean = False
+
+  Public Property OptaStatsTeams As String
+  Public Property OptaStatsPlayers As String
 #End Region
 
   Public Function LlegirConfiguracio(ByVal niNumConfig As Integer) As AppSettings
@@ -65,6 +68,10 @@ Public NotInheritable Class AppSettings
 
     AppSettings.Instance.ClockPosition_X = CDbl(CMyRegConfig.ReadValue("ClockPosition_X", AppSettings.Instance.ClockPosition_X, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
     AppSettings.Instance.ClockPosition_Y = CDbl(CMyRegConfig.ReadValue("ClockPosition_y", AppSettings.Instance.ClockPosition_Y, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+
+
+    AppSettings.Instance.OptaStatsPlayers = CStr(CMyRegConfig.ReadValue("OptaStatsPlayers", AppSettings.Instance.OptaStatsPlayers, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.OptaStatsTeams = CStr(CMyRegConfig.ReadValue("OptaStatsTeams", AppSettings.Instance.OptaStatsTeams, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
 
     Return AppSettings.Instance
   End Function
@@ -101,6 +108,9 @@ Public NotInheritable Class AppSettings
 
     CMyRegConfig.WriteValue("ClockPosition_X", tiConfig.ClockPosition_X, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
     CMyRegConfig.WriteValue("ClockPosition_y", tiConfig.ClockPosition_Y, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
+
+    CMyRegConfig.WriteValue("OptaStatsPlayers", tiConfig.OptaStatsPlayers, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("OptaStatsTeams", tiConfig.OptaStatsTeams, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
     CMyRegConfig = Nothing
   End Sub
 

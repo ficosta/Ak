@@ -61,6 +61,10 @@ Public Class KeyCombination
   Public Shared Operator <>(ByVal point1 As KeyCombination, ByVal point2 As KeyCombination) As Boolean
     Return Not (point1 = point2)
   End Operator
+
+  Public Overrides Function ToString() As String
+    Return Me.Name
+  End Function
 End Class
 
 Public Class KeyCapture

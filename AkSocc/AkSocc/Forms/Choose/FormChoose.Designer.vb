@@ -26,13 +26,13 @@ Partial Class FormChoose
     Me.OK_Button = New System.Windows.Forms.Button()
     Me.Cancel_Button = New System.Windows.Forms.Button()
     Me.TableLayoutPanelAll = New System.Windows.Forms.TableLayoutPanel()
-    Me.MetroLabelTitle = New System.Windows.Forms.Label()
-    Me.SplitContainerAll = New System.Windows.Forms.SplitContainer()
-    Me._ucPreview = New VizCommands.UCPreview()
     Me.UserControlChoose4 = New AkSocc.UserControlChoose()
     Me.UserControlChoose3 = New AkSocc.UserControlChoose()
     Me.UserControlChoose2 = New AkSocc.UserControlChoose()
     Me.UserControlChoose1 = New AkSocc.UserControlChoose()
+    Me.MetroLabelTitle = New System.Windows.Forms.Label()
+    Me.SplitContainerAll = New System.Windows.Forms.SplitContainer()
+    Me._ucPreview = New VizCommands.UCPreview()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TableLayoutPanelAll.SuspendLayout()
     CType(Me.SplitContainerAll, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,6 +99,46 @@ Partial Class FormChoose
     Me.TableLayoutPanelAll.Size = New System.Drawing.Size(494, 472)
     Me.TableLayoutPanelAll.TabIndex = 6
     '
+    'UserControlChoose4
+    '
+    Me.UserControlChoose4.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UserControlChoose4.GraphicStep = Nothing
+    Me.UserControlChoose4.Index = 3
+    Me.UserControlChoose4.Location = New System.Drawing.Point(373, 45)
+    Me.UserControlChoose4.Name = "UserControlChoose4"
+    Me.UserControlChoose4.Size = New System.Drawing.Size(117, 423)
+    Me.UserControlChoose4.TabIndex = 3
+    '
+    'UserControlChoose3
+    '
+    Me.UserControlChoose3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UserControlChoose3.GraphicStep = Nothing
+    Me.UserControlChoose3.Index = 2
+    Me.UserControlChoose3.Location = New System.Drawing.Point(250, 45)
+    Me.UserControlChoose3.Name = "UserControlChoose3"
+    Me.UserControlChoose3.Size = New System.Drawing.Size(116, 423)
+    Me.UserControlChoose3.TabIndex = 2
+    '
+    'UserControlChoose2
+    '
+    Me.UserControlChoose2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UserControlChoose2.GraphicStep = Nothing
+    Me.UserControlChoose2.Index = 1
+    Me.UserControlChoose2.Location = New System.Drawing.Point(127, 45)
+    Me.UserControlChoose2.Name = "UserControlChoose2"
+    Me.UserControlChoose2.Size = New System.Drawing.Size(116, 423)
+    Me.UserControlChoose2.TabIndex = 1
+    '
+    'UserControlChoose1
+    '
+    Me.UserControlChoose1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.UserControlChoose1.GraphicStep = Nothing
+    Me.UserControlChoose1.Index = 0
+    Me.UserControlChoose1.Location = New System.Drawing.Point(4, 45)
+    Me.UserControlChoose1.Name = "UserControlChoose1"
+    Me.UserControlChoose1.Size = New System.Drawing.Size(116, 423)
+    Me.UserControlChoose1.TabIndex = 0
+    '
     'MetroLabelTitle
     '
     Me.MetroLabelTitle.AutoSize = True
@@ -142,46 +182,6 @@ Partial Class FormChoose
     Me._ucPreview.Title = "Title"
     Me._ucPreview.VizControl = Nothing
     '
-    'UserControlChoose4
-    '
-    Me.UserControlChoose4.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UserControlChoose4.GraphicStep = Nothing
-    Me.UserControlChoose4.Index = 3
-    Me.UserControlChoose4.Location = New System.Drawing.Point(373, 45)
-    Me.UserControlChoose4.Name = "UserControlChoose4"
-    Me.UserControlChoose4.Size = New System.Drawing.Size(117, 423)
-    Me.UserControlChoose4.TabIndex = 3
-    '
-    'UserControlChoose3
-    '
-    Me.UserControlChoose3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UserControlChoose3.GraphicStep = Nothing
-    Me.UserControlChoose3.Index = 2
-    Me.UserControlChoose3.Location = New System.Drawing.Point(250, 45)
-    Me.UserControlChoose3.Name = "UserControlChoose3"
-    Me.UserControlChoose3.Size = New System.Drawing.Size(116, 423)
-    Me.UserControlChoose3.TabIndex = 2
-    '
-    'UserControlChoose2
-    '
-    Me.UserControlChoose2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UserControlChoose2.GraphicStep = Nothing
-    Me.UserControlChoose2.Index = 1
-    Me.UserControlChoose2.Location = New System.Drawing.Point(127, 45)
-    Me.UserControlChoose2.Name = "UserControlChoose2"
-    Me.UserControlChoose2.Size = New System.Drawing.Size(116, 423)
-    Me.UserControlChoose2.TabIndex = 1
-    '
-    'UserControlChoose1
-    '
-    Me.UserControlChoose1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.UserControlChoose1.GraphicStep = Nothing
-    Me.UserControlChoose1.Index = 0
-    Me.UserControlChoose1.Location = New System.Drawing.Point(4, 45)
-    Me.UserControlChoose1.Name = "UserControlChoose1"
-    Me.UserControlChoose1.Size = New System.Drawing.Size(116, 423)
-    Me.UserControlChoose1.TabIndex = 0
-    '
     'FormChoose
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -190,6 +190,8 @@ Partial Class FormChoose
     Me.Controls.Add(Me.SplitContainerAll)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Name = "FormChoose"
+    Me.ShowIcon = False
+    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
     Me.Text = "Graphic options"
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.TableLayoutPanelAll.ResumeLayout(False)

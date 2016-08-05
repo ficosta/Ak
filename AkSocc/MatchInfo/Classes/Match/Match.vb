@@ -178,11 +178,20 @@ Imports MatchInfo
   Public comp_id As Integer
   Public ArabicMatchDescription As String
   Public ArabicMatchCommentators As String
-  Public OPTAID As Integer
+  Public optaID As Integer
 
   Public Official1 As Official
   Public Official2 As Official
   Public Official3 As Official
+
+  Public optaCompetitionId As Integer
+  Public optaCompetitionCode As String
+  Public optaSeason As String
+  Public optaMatchDay As Integer
+  Public optaHomeTeamID As Integer
+  Public optaAwayTeamID As Integer
+  Public optaHomeScore As Integer = 0
+  Public optaAwayScore As Integer = 0
 
 
   Public WithEvents MatchPeriods As New Periods
@@ -241,6 +250,10 @@ Imports MatchInfo
     Return Me.match_date_string & " " & Me.HomeTeam.TeamAELCaption1Name & " - " & Me.AwayTeam.TeamAELCaption1Name & "     " & Me.HomeTeam.MatchGoals.Count & " - " & Me.AwayTeam.MatchGoals.Count
   End Function
 
+  Public Function DescriptionByOpta() As String
+    Return Me.match_date_string & " " & Me.HomeTeam.OptaName & " - " & Me.AwayTeam.OptaName & "     " & Me.optaHomeScore & " - " & Me.optaAwayScore
+  End Function
+
   Public Sub New()
     Init(-1)
   End Sub
@@ -274,7 +287,7 @@ Imports MatchInfo
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
 
-      Dim SQL As [String] = "SELECT MatchId, AA, MatchDate, TeamID1, TeamID2, Score1, Score2, VenueID, Attendance, CompID, ArabicMatchDescription, ArabicMatchCommentators, OPTAID"
+      Dim SQL As [String] = "SELECT MatchId, AA, MatchDate, TeamID1, TeamID2, Score1, Score2, VenueID, Attendance, CompID, ArabicMatchDescription, ArabicMatchCommentators, OPTAID, Official1, Official2, Official3"
       SQL += " FROM Matches "
       SQL += " WHERE MatchId = " & match_id
       Dim CmdSQL As New OleDbCommand(SQL, conn)
@@ -304,10 +317,17 @@ Imports MatchInfo
         If Not myReader.IsDBNull(9) Then Me.competition_id = myReader.GetInt32(9)
         If Not myReader.IsDBNull(10) Then Me.ArabicMatchDescription = myReader.GetString(10)
         If Not myReader.IsDBNull(11) Then Me.ArabicMatchCommentators = myReader.GetString(11)
-        If Not myReader.IsDBNull(12) Then Me.OPTAID = myReader.GetInt32(12)
+        If Not myReader.IsDBNull(12) Then Me.optaID = myReader.GetInt32(12)
+
+        Dim officials As New Officials
+        officials.GetFromDB()
+        If Not myReader.IsDBNull(13) Then Me.Official1 = officials.GetByID(myReader.GetInt32(13))
+        If Not myReader.IsDBNull(14) Then Me.Official2 = officials.GetByID(myReader.GetInt32(14))
+        If Not myReader.IsDBNull(15) Then Me.Official3 = officials.GetByID(myReader.GetInt32(15))
+
       End If
       conn.Close()
-      
+
     Catch ex As Exception
 
     End Try
@@ -332,7 +352,11 @@ Imports MatchInfo
       myCmd.Parameters.AddWithValue("@competition_id", competition_id)
       myCmd.Parameters.AddWithValue("@ArabicMatchDescription", ArabicMatchDescription)
       myCmd.Parameters.AddWithValue("@ArabicMatchCommentators", ArabicMatchCommentators)
-      myCmd.Parameters.AddWithValue("@OPTAID", OPTAID)
+      myCmd.Parameters.AddWithValue("@OPTAID", optaID)
+      myCmd.Parameters.AddWithValue("@Official1", Official.GetID(Official1))
+      myCmd.Parameters.AddWithValue("@Official2", Official.GetID(Official2))
+      myCmd.Parameters.AddWithValue("@Official3", Official.GetID(Official3))
+
     Catch err As Exception
       Throw err
     End Try
@@ -369,9 +393,12 @@ Imports MatchInfo
       competition_id = Source.competition_id
       ArabicMatchDescription = Source.ArabicMatchDescription
       ArabicMatchCommentators = Source.ArabicMatchCommentators
-      OPTAID = Source.OPTAID
+      optaID = Source.optaID
       HomeTeam = Source.HomeTeam
       AwayTeam = Source.AwayTeam
+      Official1 = Source.Official1
+      Official2 = Source.Official2
+      Official3 = Source.Official3
     Catch err As Exception
       Throw err
     End Try
@@ -422,9 +449,19 @@ Imports MatchInfo
         If _actualDB.ArabicMatchCommentators <> ArabicMatchCommentators AndAlso ArabicMatchCommentators <> "" Then
           SQL &= " ArabicMatchCommentators=@ArabicMatchCommentators,"
         End If
-        If _actualDB.OPTAID <> OPTAID AndAlso OPTAID <> -1 Then
+        If _actualDB.optaID <> optaID AndAlso optaID <> -1 Then
           SQL &= " OPTAID=@OPTAID,"
         End If
+        If Official.GetID(_actualDB.Official1) <> Official.GetID(Official1) Then
+          SQL &= " Official1=" & Official.GetID(Official1) & ","
+        End If
+        If Official.GetID(_actualDB.Official2) <> Official.GetID(Official2) Then
+          SQL &= " Official2=" & Official.GetID(Official2) & ","
+        End If
+        If Official.GetID(_actualDB.Official3) <> Official.GetID(Official3) Then
+          SQL &= " Official3=" & Official.GetID(Official3) & ","
+        End If
+
         If SQL <> "" Then
           Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
           conn.Open()
@@ -438,8 +475,8 @@ Imports MatchInfo
         End If
       Else
         'INSERT
-        Dim SQL As String = "INSERT INTO Matches (AA, match_date, home_team_id, away_team_id, home_goals, away_goals, venue_id, Attendance, competition_id, ArabicMatchDescription, ArabicMatchCommentators, OPTAID)"
-        SQL &= " VALUES (@AA, @match_date, @home_team_id, @away_team_id, @home_goals, @away_goals, @venue_id, @Attendance, @competition_id, @ArabicMatchDescription, @ArabicMatchCommentators, @OPTAID)"
+        Dim SQL As String = "INSERT INTO Matches (AA, match_date, home_team_id, away_team_id, home_goals, away_goals, venue_id, Attendance, competition_id, ArabicMatchDescription, ArabicMatchCommentators, OPTAID, Official1, Official2, Official3)"
+        SQL &= " VALUES (@AA, @match_date, @home_team_id, @away_team_id, @home_goals, @away_goals, @venue_id, @Attendance, @competition_id, @ArabicMatchDescription, @ArabicMatchCommentators, @OPTAID, @Official1, @Official2, @Official3)"
         Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
         conn.Open()
         Dim cmdExecute As OleDbCommand = CreateCommand()
@@ -894,8 +931,8 @@ Imports MatchInfo
       For i As Integer = Me.MatchEvents.Count - 1 To 0 Step -1
         Dim myEvent As MatchEvent = Me.MatchEvents(i)
         If myEvent.EventType = type And myEvent.TeamID = teamID And myEvent.PlayerID = playerID And myEvent.TimeSecond = timeSeconds And myEvent.PlayerSecID = playerSecID Then
-          matchEvent = myevent
-          RemoveEvent(myevent)
+          matchEvent = myEvent
+          RemoveEvent(myEvent)
         End If
       Next
     Catch ex As Exception
@@ -937,7 +974,7 @@ Imports MatchInfo
         End If
 
       End If
-        res = Me.MatchEvents.Add(Me.match_id, type, teamID, playerID, time, playerSecID)
+      res = Me.MatchEvents.Add(Me.match_id, type, teamID, playerID, time, playerSecID)
       Me.UpdateStatForPlayerFromEvents(type, teamID, playerID)
       RaiseEvent EventCreated(res)
     Catch ex As Exception
@@ -1007,9 +1044,13 @@ Imports MatchInfo
       res.match_date = Me.match_date
       res.match_id = Me.match_id
       res.match_time = Me.match_time
-      res.OPTAID = Me.OPTAID
+      res.optaID = Me.optaID
       res.state = Me.state
       res.venue_id = Me.venue_id
+
+      res.Official1 = Me.Official1
+      res.Official2 = Me.Official2
+      res.Official3 = Me.Official3
 
       res.AwayTeam = Me.AwayTeam
       res.HomeTeam = Me.HomeTeam

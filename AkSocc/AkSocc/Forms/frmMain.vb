@@ -1,4 +1,5 @@
-﻿Imports AkSocc
+﻿Imports System.ComponentModel
+Imports AkSocc
 Imports MatchInfo
 Imports VizCommands
 
@@ -217,6 +218,8 @@ Public Class frmMain
 
   Private Sub UpdateVizConfig()
     Try
+      Me.InitRender()
+
       If Not _vizControl Is Nothing Then
         _vizControl.Config.SceneBasePath = GraphicVersions.Instance.SelectedGraphicVersion.Path
       End If
@@ -464,11 +467,11 @@ Public Class frmMain
     StartGraphic(GraphicsReporter.Description)
   End Sub
 
-  Private Sub ButtonF3L3Subs_Click(sender As Object, e As EventArgs) Handles ButtonF3L3Subs.Click
+  Private Sub ButtonF3L3Subs_Click(sender As Object, e As EventArgs)
 
   End Sub
 
-  Private Sub ButtonF4ClockSubs_Click(sender As Object, e As EventArgs) Handles ButtonF4ClockSubs.Click
+  Private Sub ButtonF4ClockSubs_Click(sender As Object, e As EventArgs)
 
   End Sub
 
@@ -502,7 +505,7 @@ Public Class frmMain
     StartGraphic(GraphicsTeamCaptions.Description)
   End Sub
 
-  Private Sub ButtonF10IdentClock_Click(sender As Object, e As EventArgs) Handles ButtonF10IdentClock.Click
+  Private Sub ButtonF10IdentClock_Click(sender As Object, e As EventArgs)
 
   End Sub
 
@@ -534,7 +537,7 @@ Public Class frmMain
     StartGraphic(Graphics2WayBoxes.Description)
   End Sub
 
-  Private Sub ButtonCtlF5PlayerBio_Click(sender As Object, e As EventArgs) Handles ButtonCtlF5PlayerBio.Click
+  Private Sub ButtonCtlF5PlayerBio_Click(sender As Object, e As EventArgs)
 
   End Sub
 
@@ -550,7 +553,7 @@ Public Class frmMain
     Me.StartGraphic(GraphicsBugs.Description)
   End Sub
 
-  Private Sub ButtonCtlF9AddedTree_Click(sender As Object, e As EventArgs) Handles ButtonCtlF9AddedTree.Click
+  Private Sub ButtonCtlF9AddedTree_Click(sender As Object, e As EventArgs)
 
   End Sub
 
@@ -559,36 +562,52 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonCtlF11AsItStands_Click(sender As Object, e As EventArgs) Handles ButtonCtlF11AsItStands.Click
-
+    StartGraphic(GraphicsAsItStands.Description)
   End Sub
 
   Private Sub ButtonCtlF12FFIdent_Click(sender As Object, e As EventArgs) Handles ButtonCtlF12FFIdent.Click
     StartGraphic(GraphicsMatchIdent.Description)
   End Sub
 
+#Region "Penalties"
+  Private WithEvents _frmPenalties As frmPenalties
+
+
   Private Sub ButtonShftF1PenaltyShootOut_Click(sender As Object, e As EventArgs) Handles ButtonShftF1PenaltyShootOut.Click
     If _match Is Nothing Then Exit Sub
+
     Try
-      If MessageBox.Show("Animate in Penalty Shoot Out Caption?", "Penalty shootout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+      Dim animateIn As Boolean = frmWaitForInput.ShowWaitDialog(Me, "Animate in Penalty Shoot Out Caption?", "Penalty shootout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes
+      Dim bClearResults As Boolean = frmWaitForInput.ShowWaitDialog(Me, "Reset match penalties?", "Penalties", MessageBoxButtons.YesNo) = DialogResult.Yes
 
-        _vizControl.ActivateScene(_vizControl.Config.SceneBasePath & "gfx_penalties", VizCommands.eRendererLayers.MidleLayer)
-        _vizControl.DirectorRewind("DIR_MAIN")
-        _vizControl.SetControlObjectValue("$object", "Penalties_Home_Team_Name", _match.HomeTeam.Name)
-        _vizControl.SetControlObjectValue("$object", "Penalties_Away_Team_Name", _match.AwayTeam.Name)
-        _vizControl.SetControlObjectValue("$object", "Penalties_Home_Team_Score", "0")
-        _vizControl.SetControlObjectValue("$object", "Penalties_Away_Team_Score", "0")
-        _vizControl.DirectorRewind("Penalties_top")
-        _vizControl.DirectorRewind("Penalties_Bottom")
-        _vizControl.DirectorStart("DIR_MAIN")
-
+      If bClearResults Then
+        _frmPenalties = Nothing
       End If
-      Dim bHomeFirst As Boolean = (MessageBox.Show(_match.HomeTeam.TeamAELCaption1Name & " shoots first?", "Penalty shootout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes)
-      Dim myPenalties As New frmPenalties(_vizControl, _match.HomeTeam.TeamAELCaption1Name, _match.AwayTeam.TeamAELCaption1Name, bHomeFirst)
-      myPenalties.ShowDialog()
+
+      If _frmPenalties Is Nothing Then
+        Dim bHomeFirst As Boolean = (MessageBox.Show(_match.HomeTeam.TeamAELCaption1Name & " shoots first?", "Penalty shootout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes)
+        _frmPenalties = New frmPenalties(_vizControl, _match.HomeTeam.TeamAELCaption1Name, _match.AwayTeam.TeamAELCaption1Name, bHomeFirst)
+      End If
+      _frmPenalties.Match = _match
+      _frmPenalties.StartOnShow = animateIn
+      _frmPenalties.ShowDialog()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
   End Sub
+
+
+  Private Sub _frmPenalties_Closing(sender As Object, e As CancelEventArgs) Handles _frmPenalties.Closing
+    Try
+      e.Cancel = True
+      _frmPenalties.Hide()
+    Catch ex As Exception
+
+    End Try
+
+  End Sub
+#End Region
+
 
   Private Sub ButtonShftF2Interview_Click(sender As Object, e As EventArgs) Handles ButtonShftF2Interview.Click
     StartGraphic(GraphicsInterviews.Description)
@@ -620,15 +639,15 @@ Public Class frmMain
     StartGraphic(GraphicGroupCrawlTeams.Description)
   End Sub
 
-  Private Sub ButtonShftF9OtherScores_Click(sender As Object, e As EventArgs) Handles ButtonShftF9OtherScores.Click
+  Private Sub ButtonShftF9OtherScores_Click(sender As Object, e As EventArgs)
 
   End Sub
 
-  Private Sub ButtonShftF10ClockCard_Click(sender As Object, e As EventArgs) Handles ButtonShftF10ClockCard.Click
+  Private Sub ButtonShftF10ClockCard_Click(sender As Object, e As EventArgs)
 
   End Sub
 
-  Private Sub ButtonShftF11ActionAreas_Click(sender As Object, e As EventArgs) Handles ButtonShftF11ActionAreas.Click
+  Private Sub ButtonShftF11ActionAreas_Click(sender As Object, e As EventArgs)
 
   End Sub
 
@@ -654,6 +673,9 @@ Public Class frmMain
 
   Private Sub _vizControl_TCPSocketDisconnected() Handles _vizControl.TCPSocketDisconnected
     Me.UpdateStatusLabel()
+    _vizControl = Nothing
+
+    TimerVizrtConnection.Enabled = True
   End Sub
 
   Private Sub LoadAllScenes()
@@ -694,7 +716,7 @@ Public Class frmMain
       If _match Is Nothing Then Exit Sub
       Dim team As Team = _match.AwayTeam
 
-      If frmWaitForInput.ShowWaitDialog(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
+      If frmWaitForInput.ShowWaitDialog(Me, "Do you want to set a goal to " & team.TeamAELCaption1Name & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
         Dim gsList As New GraphicSteps
 
 
@@ -718,7 +740,7 @@ Public Class frmMain
       If _match Is Nothing Then Exit Sub
       Dim team As Team = _match.HomeTeam
 
-      If frmWaitForInput.ShowWaitDialog(Me, "Do you want to set a goal to " & team.ToString & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
+      If frmWaitForInput.ShowWaitDialog(Me, "Do you want to set a goal to " & team.TeamAELCaption1Name & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
         Dim gsList As New GraphicSteps
 
         Dim gg As New ControlScoreSingleGoal(_match, _match.LastGoal)
@@ -1451,6 +1473,7 @@ Public Class frmMain
         WriteToErrorLog("Unable to connect to VizEngine (0x" & Hex(_checkSocketConnection.LastErrorCode) & ": " & _checkSocketConnection.LasterrorDescription & ")")
         TimerVizrtConnection.Interval = 10000
         TimerVizrtConnection.Enabled = True
+        _vizControl = Nothing
     End Select
   End Sub
 

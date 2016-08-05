@@ -48,6 +48,26 @@ Public Class Classification
         For i As Integer = 0 To tcfc.ClassificationsForMatchDay.Count - 1
           ClassificationForMatchDays(i).TeamClassificationList.Add(tcfc.ClassificationsForMatchDay(i))
         Next
+        For i As Integer = tcfc.ClassificationsForMatchDay.Count To 2 * (_teams.Count - 1) - 1
+          Dim tcfmd As New TeamClassificationForMatchDay(team, i, Nothing)
+
+          If tcfc.ClassificationsForMatchDay.Count > 0 Then
+            tcfmd.FormerPosition = 0
+            tcfmd.GoalsAgainst = tcfc.ClassificationsForMatchDay(tcfc.ClassificationsForMatchDay.Count - 1).GoalsAgainst
+            tcfmd.GoalsFor = tcfc.ClassificationsForMatchDay(tcfc.ClassificationsForMatchDay.Count - 1).GoalsFor
+            tcfmd.Match = Nothing
+            tcfmd.MatchDayIndex = i
+            tcfmd.MatchesDrawn = tcfc.ClassificationsForMatchDay(tcfc.ClassificationsForMatchDay.Count - 1).MatchesDrawn
+            tcfmd.MatchesLost = tcfc.ClassificationsForMatchDay(tcfc.ClassificationsForMatchDay.Count - 1).MatchesLost
+            tcfmd.MatchesPlayed = tcfc.ClassificationsForMatchDay(tcfc.ClassificationsForMatchDay.Count - 1).MatchesPlayed
+            tcfmd.MatchesWon = tcfc.ClassificationsForMatchDay(tcfc.ClassificationsForMatchDay.Count - 1).MatchesWon
+            tcfmd.Points = tcfc.ClassificationsForMatchDay(tcfc.ClassificationsForMatchDay.Count - 1).Points
+            tcfmd.Position = 0
+            tcfmd.PositionChange = TeamClassificationForMatchDay.ePositionChange.Equal
+          End If
+
+          ClassificationForMatchDays(i).TeamClassificationList.Add(tcfmd)
+          Next
       Next
       'now, for each match day, sort it
       For i As Integer = 0 To ClassificationForMatchDays.Count - 1
@@ -295,6 +315,12 @@ Public Class Classification
         former = current
         res.ClassificationsForMatchDay.Add(current)
       Next
+      'For i As Integer = matches.Count To 2 * (_teams.Count - 1)
+      '  'for the rest of the league, add an empty match!
+      '  current = UpdateClassification(team, i, Nothing, former)
+      '  former = current
+      '  res.ClassificationsForMatchDay.Add(current)
+      'Next
     Catch ex As Exception
     End Try
     Return res

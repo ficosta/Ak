@@ -31,10 +31,21 @@
   Public PhotoName1 As String
   Public VideoName1 As String
   Public VideoName2 As String
-  Public OptaId As Integer
   Public SeasonCleanSheets As Integer
 
   Public IsSubstitution As Boolean = False
+
+  Public optaID As Integer
+  Public optaName As String
+  Public OptaShortName As String
+  Public OptaSquadNumber As String
+  Public optaPosition As Integer
+  Public optaType As String
+  Public optaTeamID As Integer
+  Public optaMatchID As Integer
+
+  Public optaStatValueNames As New List(Of String)
+  Public optaStatValues As New List(Of String)
 
 
 #Region "Variables non from the Player table"
@@ -501,7 +512,13 @@
 #End Region
 
   Public Overrides Function ToString() As String
-    Return Convert.ToString(SquadNo.ToString() & " ") & PlayerName
+    If SquadNo <> "-1" And PlayerName <> "" Then
+      Return Convert.ToString(SquadNo.ToString() & " ") & PlayerName
+    Else
+
+      Return Convert.ToString(OptaSquadNumber.ToString() & " ") & optaName & " (opta)"
+
+    End If
   End Function
 
   Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo

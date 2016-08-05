@@ -109,5 +109,26 @@ Namespace My.Resources
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to ====================
+        '''Version 0.7.6
+        '''
+        '''====================
+        '''Version 0.7.5
+        '''- Fixed clock card presentation for cup graphics.
+        '''- Fixed clock substitution presentation for cup graphics.
+        '''- Fixed ScoreLine: when launching last scorer, teams and scores where not being updated.
+        '''- Fixed reporter graphic (was showing the microphone logo).
+        '''- Fixed a problem reconnecting automatically to the viz engine if connection was lost.
+        '''- Fixed the calculation of classifications for incomplete match days.
+        '''
+        '''.
+        '''</summary>
+        Friend ReadOnly Property Versions() As String
+            Get
+                Return ResourceManager.GetString("Versions", resourceCulture)
+            End Get
+        End Property
     End Module
 End Namespace

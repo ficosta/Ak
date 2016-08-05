@@ -47,6 +47,7 @@ Public Class UserControlTactica
           player.Formation_Y = Clamp(pos.Y, -_scale, _scale)
         End If
       Next
+      UpdateListViewTeam()
       InicialitzarVisualitzacioPlayersTeam()
       InicialitzarVisualitzacioAllPlayersTeam()
       ShowTactics()
@@ -557,7 +558,7 @@ Public Class UserControlTactica
             If CRow.Index < 11 Then
               CRow.DefaultCellStyle.ForeColor = Color.Black
             Else
-              CRow.DefaultCellStyle.ForeColor = Color.Gray
+              CRow.DefaultCellStyle.ForeColor = Color.LightGray
             End If
           End If
         Next

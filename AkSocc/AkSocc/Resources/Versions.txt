@@ -1,0 +1,22 @@
+====================
+Version 0.7.7
+- Fixed: Officials were not getting saved to the database
+- More work on opta integration
+- Improved scene load window
+
+====================
+Version 0.7.6
+- Minor interface improvements. Added app icons.
+- Added "As it stands" graphic
+- Added inner algorithms for OptaIntegration (so far hidden from the user)
+- changed Pentalties so you can show/hide the graphic without losing the progress. Also added buttons to show in clock aread
+
+====================
+Version 0.7.5
+- Fixed clock card presentation for cup graphics.
+- Fixed clock substitution presentation for cup graphics.
+- Fixed ScoreLine: when launching last scorer, teams and scores where not being updated.
+- Fixed reporter graphic (was showing the microphone logo).
+- Fixed a problem reconnecting automatically to the viz engine if connection was lost.
+- Fixed the calculation of classifications for incomplete match days.
+

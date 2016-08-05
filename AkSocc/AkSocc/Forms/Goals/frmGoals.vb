@@ -124,6 +124,54 @@ Public Class frmGoals
 
   End Sub
 
+  Private Sub MetroButtonAddAwayTeamSubstitition_Click(sender As Object, e As EventArgs) Handles MetroButtonAddAwayTeamSubstitition.Click
+    Try
+      If _match Is Nothing Then Exit Sub
+      Dim team As Team = _match.HomeTeam
+
+      If frmWaitForInput.ShowWaitDialog(Me, "Do you want to set a goal to " & team.TeamAELCaption1Name & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
+        Dim gsList As New GraphicSteps
+
+        Dim gg As New ControlScoreSingleGoal(_match, _match.LastGoal)
+
+        gg.IsLocalTeam = True
+        gg.Goal = _match.AddGoal(True, Nothing, False, False)
+
+        Dim _dlgChoosWithPreview As FormChoose = New FormChoose(Nothing, Nothing, gg)
+        _dlgChoosWithPreview.ShowPreview = False
+        If _dlgChoosWithPreview.ShowDialog(Me) = DialogResult.Cancel Then
+          _match.RemoveLastGoal()
+        End If
+      End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub MetroButtonAddHomeTeamSubstitition_Click(sender As Object, e As EventArgs) Handles MetroButtonAddHomeTeamSubstitition.Click
+    Try
+      If _match Is Nothing Then Exit Sub
+      Dim team As Team = _match.AwayTeam
+
+      If frmWaitForInput.ShowWaitDialog(Me, "Do you want to set a goal to " & team.TeamAELCaption1Name & "?", _match.ToString, MessageBoxButtons.OKCancel) = DialogResult.OK Then
+        Dim gsList As New GraphicSteps
+
+
+        Dim gg As New ControlScoreSingleGoal(_match, _match.LastGoal)
+        gg.IsLocalTeam = False
+        gg.Goal = _match.AddGoal(False, Nothing, False, False)
+
+        Dim _dlgChoosWithPreview As FormChoose = New FormChoose(Nothing, Nothing, gg)
+        _dlgChoosWithPreview.ShowPreview = False
+        If _dlgChoosWithPreview.ShowDialog(Me) = DialogResult.Cancel Then
+          _match.RemoveLastGoal()
+        End If
+      End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
 
 #End Region
 End Class

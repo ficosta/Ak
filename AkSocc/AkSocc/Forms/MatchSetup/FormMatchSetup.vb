@@ -35,6 +35,7 @@ Public Class FormMatchSetup
       Me.Match.Official1 = _officials.GetByName(Me.MetroComboBoxReferee1.Text)
       Me.Match.Official2 = _officials.GetByName(Me.MetroComboBoxReferee2.Text)
       Me.Match.Official3 = _officials.GetByName(Me.MetroComboBoxReferee3.Text)
+      Me.Match.Update()
       Config.Instance.AsyncDataWrites = True
       Me.UcTeamMatchSetupHome.Save()
       Me.UcTeamMatchSetupAway.Save()
@@ -83,7 +84,6 @@ Public Class FormMatchSetup
 
         'match.HomeTeam.GetFullMatchData()
         'match.AwayTeam.GetFullMatchData()
-        'save referee
 
         Me.UcTeamMatchSetupHome.Team = match.HomeTeam
         Me.UcTeamMatchSetupAway.Team = match.AwayTeam
@@ -92,6 +92,22 @@ Public Class FormMatchSetup
         Me.MetroLabelAwayTeam.Text = match.AwayTeam.TeamAELCaption1Name
 
         LoadColors()
+
+
+        Me.MetroComboBoxReferee1.Items.Clear()
+        Me.MetroComboBoxReferee2.Items.Clear()
+        Me.MetroComboBoxReferee3.Items.Clear()
+
+        For Each official As Official In _officials
+          Me.MetroComboBoxReferee1.Items.Add(official)
+          Me.MetroComboBoxReferee2.Items.Add(official)
+          Me.MetroComboBoxReferee3.Items.Add(official)
+        Next
+
+        MetroComboBoxReferee1.SelectedIndex = MetroComboBoxReferee1.FindStringExact(match.Official1.ToString)
+        MetroComboBoxReferee2.SelectedIndex = MetroComboBoxReferee1.FindStringExact(match.Official2.ToString)
+        MetroComboBoxReferee3.SelectedIndex = MetroComboBoxReferee1.FindStringExact(match.Official3.ToString)
+
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)

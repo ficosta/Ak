@@ -100,7 +100,7 @@ Public Class Matches
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
 
-      Dim SQL As [String] = "SELECT MatchId, AA, MatchDate, TeamID1, TeamID2, Score1, Score2, VenueID, Attendance, CompID, ArabicMatchDescription, ArabicMatchCommentators, OPTAID"
+      Dim SQL As [String] = "SELECT MatchId, AA, MatchDate, TeamID1, TeamID2, Score1, Score2, VenueID, Attendance, CompID, ArabicMatchDescription, ArabicMatchCommentators, OPTAID, Official1, Official2, Official3"
       SQL += " FROM Matches "
       SQL += Where.Trim()
       Dim CmdSQL As New OleDbCommand(SQL, conn)
@@ -129,6 +129,12 @@ Public Class Matches
         If Not myReader.IsDBNull(10) Then NewItem.ArabicMatchDescription = myReader.GetString(10)
         If Not myReader.IsDBNull(11) Then NewItem.ArabicMatchCommentators = myReader.GetString(11)
         If Not myReader.IsDBNull(12) Then NewItem.OPTAID = myReader.GetInt32(12)
+
+        Dim officials As New Officials
+        officials.GetFromDB()
+        If Not myReader.IsDBNull(13) Then NewItem.Official1 = officials.GetByID(myReader.GetInt32(13))
+        If Not myReader.IsDBNull(14) Then NewItem.Official2 = officials.GetByID(myReader.GetInt32(14))
+        If Not myReader.IsDBNull(15) Then NewItem.Official3 = officials.GetByID(myReader.GetInt32(15))
 
         List.Add(NewItem)
       End While
@@ -197,6 +203,21 @@ Public Class Matches
     Try
       For Each SearchMatch As Match In List
         If SearchMatch.match_id = ID Then
+          output = SearchMatch
+          Exit For
+        End If
+      Next
+      Return (output)
+    Catch err As Exception
+      Throw err
+    End Try
+  End Function
+
+  Public Function GetMatchByOptaID(optaID As Integer) As Match
+    Dim output As Match = Nothing
+    Try
+      For Each SearchMatch As Match In List
+        If SearchMatch.optaID = optaID Then
           output = SearchMatch
           Exit For
         End If

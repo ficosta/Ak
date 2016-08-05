@@ -37,7 +37,6 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxReferee1 = New System.Windows.Forms.ComboBox()
     Me.MetroComboBoxReferee2 = New System.Windows.Forms.ComboBox()
     Me.MetroComboBoxReferee3 = New System.Windows.Forms.ComboBox()
-    Me.MetroLabel2 = New System.Windows.Forms.Label()
     Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
     Me.TableLayoutPanel6 = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroLabelAwayTeam = New System.Windows.Forms.Label()
@@ -138,7 +137,6 @@ Partial Class FormMatchSetup
     Me.TableLayoutPanelMatchInfo.Controls.Add(Me.MetroComboBoxReferee1, 1, 3)
     Me.TableLayoutPanelMatchInfo.Controls.Add(Me.MetroComboBoxReferee2, 1, 4)
     Me.TableLayoutPanelMatchInfo.Controls.Add(Me.MetroComboBoxReferee3, 1, 5)
-    Me.TableLayoutPanelMatchInfo.Controls.Add(Me.MetroLabel2, 0, 8)
     Me.TableLayoutPanelMatchInfo.Controls.Add(Me.TableLayoutPanel4, 1, 1)
     Me.TableLayoutPanelMatchInfo.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanelMatchInfo.Location = New System.Drawing.Point(0, 0)
@@ -292,18 +290,6 @@ Partial Class FormMatchSetup
     Me.MetroComboBoxReferee3.Name = "MetroComboBoxReferee3"
     Me.MetroComboBoxReferee3.Size = New System.Drawing.Size(823, 23)
     Me.MetroComboBoxReferee3.TabIndex = 10
-    '
-    'MetroLabel2
-    '
-    Me.MetroLabel2.AutoSize = True
-    Me.MetroLabel2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabel2.Location = New System.Drawing.Point(3, 409)
-    Me.MetroLabel2.Name = "MetroLabel2"
-    Me.MetroLabel2.Size = New System.Drawing.Size(227, 40)
-    Me.MetroLabel2.TabIndex = 11
-    Me.MetroLabel2.Text = "On air clocks position"
-    Me.MetroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    Me.MetroLabel2.Visible = False
     '
     'TableLayoutPanel4
     '
@@ -628,6 +614,7 @@ Partial Class FormMatchSetup
     Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Name = "FormMatchSetup"
     Me.Padding = New System.Windows.Forms.Padding(23, 69, 23, 23)
+    Me.ShowIcon = False
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
     Me.Text = "Match setup"
     Me.TableLayoutPanelGlobal.ResumeLayout(False)
@@ -674,7 +661,6 @@ Partial Class FormMatchSetup
   Friend WithEvents MetroComboBoxReferee1 As System.Windows.Forms.ComboBox
   Friend WithEvents MetroComboBoxReferee2 As System.Windows.Forms.ComboBox
   Friend WithEvents MetroComboBoxReferee3 As System.Windows.Forms.ComboBox
-  Friend WithEvents MetroLabel2 As System.Windows.Forms.Label
   Friend WithEvents MetroTileGeneralMatchInfo As MetroFramework.Controls.MetroTile
   Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
   Private WithEvents label199 As Label

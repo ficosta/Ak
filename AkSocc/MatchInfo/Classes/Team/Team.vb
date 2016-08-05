@@ -6,7 +6,9 @@ Imports MatchInfo
 
   Public Property MatchPlayers As New Players
   Public Property AllPlayers As New Players
+  Public Property TeamStaff As New Players
   Public Property Substitutions As New Substitutions
+  Public Property Manager As Player
 
   Public TeamID As Integer
   Public TeamAELCaption1Name As String
@@ -25,6 +27,14 @@ Imports MatchInfo
   Public MatchGoals As New MatchGoals
   Public MatchEvents As New MatchEvents
 
+  Public OptaID As Integer
+  Public OptaName As String
+  Public OptaShortName As String
+  Public optaMatchID As Integer
+  Public optaScore As Integer = 0
+
+  Public optaStatValueNames As New List(Of String)
+  Public optaStatValues As New List(Of String)
 
   Public Event PlayerStatValueChanged(team As Team, player As Player, stat As Stat)
   Public Event GoalScored(team As Team, player As Player, own_goal As Boolean, penalty As Boolean)
@@ -396,8 +406,10 @@ Imports MatchInfo
   Public Overrides Function ToString() As String
     If MyBase.Name <> "" Then
       Return MyBase.Name
-    Else
+    ElseIf TeamAELCaption1Name <> "" Then
       Return TeamAELCaption1Name
+    Else
+      Return OptaName & " (opta)"
     End If
   End Function
 
@@ -408,6 +420,18 @@ Imports MatchInfo
       For Each player As Player In Me.AllPlayers
         If player.ID = ID Then res = player
         If player.PlayerID = ID Then res = player
+      Next
+    Catch ex As Exception
+    End Try
+    Return res
+  End Function
+
+  Public Function GetPlayerByOptaId(ID As Integer) As Player
+    Dim res As Player = Nothing
+    Try
+
+      For Each player As Player In Me.AllPlayers
+        If player.optaID = ID Then res = player
       Next
     Catch ex As Exception
     End Try

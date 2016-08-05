@@ -72,10 +72,21 @@ Public Class Teams
     Dim res As Boolean = False
     Try
       For index = 0 To Me.List.Count - 1
-        If CType(Me.List(index), Team).ID = team.ID Then
+        If team.ID <> -1 Then
+          If CType(Me.List(index), Team).ID = team.ID Then
+            res = True
+            Exit For
+          End If
+        ElseIf team.teamid <> -1 Then
+          If CType(Me.List(index), Team).TeamID = team.TeamID Then
+            res = True
+            Exit For
+          End If
+        ElseIf CType(Me.List(index), Team).OptaID = team.OptaID Then
           res = True
           Exit For
         End If
+
       Next
     Catch ex As Exception
     End Try
@@ -96,6 +107,21 @@ Public Class Teams
     Try
       For Each Search As Team In List
         If Search.TeamID = ID Then
+          output = Search
+          Exit For
+        End If
+      Next
+    Catch err As Exception
+      Throw err
+    End Try
+    Return (output)
+  End Function
+
+  Public Function GetTeamByOptaID(optaID As Integer) As Team
+    Dim output As Team = Nothing
+    Try
+      For Each Search As Team In List
+        If Search.OptaID = optaID Then
           output = Search
           Exit For
         End If

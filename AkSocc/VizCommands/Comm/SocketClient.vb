@@ -296,6 +296,8 @@ Public Class SocketClient
         Try
           If CPiTCPSocket Is Nothing Then
             _connected = False
+            Thread.Sleep(100)
+            Me.CPiBackgroundWorker.CancelAsync()
           ElseIf CPiTCPSocket.Connected = True Then
             Dim bytes(nPiPacketSize) As Byte
             '--Get number of bytes received and also clean up resources that was used from beginReceive
@@ -362,8 +364,18 @@ Public Class SocketClient
                 End If
                 totalBytes = Nothing
               End If
+            Else
+              'we didn't receve anything... ain't that suspicious?
+              If CPiTCPSocket.Connected = False Then
+                CPiTCPSocket = Nothing
+              End If
+              CPiTCPSocket = Nothing
+              Dim args() As Object = {False}
+              Me.CPiBackgroundWorker.ReportProgress(eSocketProgressState.Disconnected, CStr(args(0)))
+
+              Thread.Sleep(1)
             End If
-          End If
+            End If
 
           '--Are we stil conncted?
           If IsConnected() = False Then

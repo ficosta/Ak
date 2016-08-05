@@ -5,6 +5,7 @@ Module Main
 
   Private _frmMain As frmMain
 
+
   Public Property ConfigNum As Integer = 0
 
   Public ReadOnly Property LocalConnectionString As String

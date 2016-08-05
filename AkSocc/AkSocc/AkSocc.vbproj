@@ -46,6 +46,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Football 2-50-grey.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MetroFramework, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.dll</HintPath>
@@ -98,6 +101,7 @@
     <Compile Include="Classes\Clock\ControlScoreSingleGoal.vb" />
     <Compile Include="Classes\GlobalNotifier.vb" />
     <Compile Include="Classes\GraphicGroups\Graphics2WayBoxes.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsAsItStands.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsBugHTFT.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsBugs.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsCommons.vb" />
@@ -180,6 +184,21 @@
       <DependentUpon>FormMatchEvents.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\MatchEvents\FormMatchEvents.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opta\Classes\COptaF9Helper.vb" />
+    <Compile Include="Opta\Classes\COptaFile.vb" />
+    <Compile Include="Opta\Classes\COptaLink.vb" />
+    <Compile Include="Opta\Controls\OptaTeamViewer.designer.vb">
+      <DependentUpon>OptaTeamViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Controls\OptaTeamViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaMatchStats.designer.vb">
+      <DependentUpon>frmOptaMatchStats.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaMatchStats.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Penalties\FormPenalties.Designer.vb">
@@ -275,10 +294,10 @@
     <Compile Include="Forms\MatchSetup\UserControlTactica.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\OtherMatches\UCOtherMatch.designer.vb">
+    <Compile Include="Opta\OtherMatches\UCOtherMatch.designer.vb">
       <DependentUpon>UCOtherMatch.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\OtherMatches\UCOtherMatch.vb">
+    <Compile Include="Opta\OtherMatches\UCOtherMatch.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\SceneLoad\FormLoadScenes.Designer.vb">
@@ -341,18 +360,18 @@
     <Compile Include="Controls\PlayerViewer.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\OtherMatches\Classification\Classification.vb" />
-    <Compile Include="Forms\OtherMatches\Classification\ClassificationForMatchDay.vb" />
-    <Compile Include="Forms\OtherMatches\frmOtherMatches.Designer.vb">
+    <Compile Include="Opta\OtherMatches\Classification\Classification.vb" />
+    <Compile Include="Opta\OtherMatches\Classification\ClassificationForMatchDay.vb" />
+    <Compile Include="Opta\OtherMatches\frmOtherMatches.Designer.vb">
       <DependentUpon>frmOtherMatches.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\OtherMatches\frmOtherMatches.vb">
+    <Compile Include="Opta\OtherMatches\frmOtherMatches.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\OtherMatches\OtherMatch.vb" />
-    <Compile Include="Forms\OtherMatches\OtherMatchDays.vb" />
-    <Compile Include="Forms\OtherMatches\MatchDay.vb" />
-    <Compile Include="Forms\OtherMatches\Classification\TeamClassification.vb" />
+    <Compile Include="Opta\OtherMatches\OtherMatch.vb" />
+    <Compile Include="Opta\OtherMatches\OtherMatchDays.vb" />
+    <Compile Include="Opta\OtherMatches\MatchDay.vb" />
+    <Compile Include="Opta\OtherMatches\Classification\TeamClassification.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\TeamViewer.resx">
@@ -421,7 +440,13 @@
     <EmbeddedResource Include="Forms\MatchSetup\UserControlTactica.resx">
       <DependentUpon>UserControlTactica.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OtherMatches\UCOtherMatch.resx">
+    <EmbeddedResource Include="Opta\Controls\OptaTeamViewer.resx">
+      <DependentUpon>OptaTeamViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmOptaMatchStats.resx">
+      <DependentUpon>frmOptaMatchStats.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\OtherMatches\UCOtherMatch.resx">
       <DependentUpon>UCOtherMatch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Penalties\frmPenalties.resx">
@@ -457,7 +482,7 @@
     <EmbeddedResource Include="Controls\PlayerViewer.resx">
       <DependentUpon>PlayerViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OtherMatches\frmOtherMatches.resx">
+    <EmbeddedResource Include="Opta\OtherMatches\frmOtherMatches.resx">
       <DependentUpon>frmOtherMatches.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -501,6 +526,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="OtherMatches\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Versions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconApp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Football 2-50-green.ico" />
+    <Content Include="Resources\Football 2-50-grey.ico" />
+    <Content Include="Resources\Football 2-50-orange.ico" />
+    <Content Include="Resources\Football 2-50.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

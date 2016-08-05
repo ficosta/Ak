@@ -164,6 +164,7 @@ Partial Class FormMatchEvents
     Me.ClientSize = New System.Drawing.Size(653, 407)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Name = "FormMatchEvents"
+    Me.ShowIcon = False
     Me.Text = "FormMatchEvents"
     Me.TableLayoutPanel1.ResumeLayout(False)
     CType(Me.MetroGridEvents, System.ComponentModel.ISupportInitialize).EndInit()

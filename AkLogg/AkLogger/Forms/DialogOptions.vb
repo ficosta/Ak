@@ -27,18 +27,10 @@ Public Class DialogOptions
       Me.MetroTextBoxDataBase.Text = AppSettings.Instance.DataBasePath
       Me.MetroTextBoxOtherMatchesFilePath.Text = AppSettings.Instance.OtherMatchesPath
       Me.CheckBoxShowOptionsOnStartup.Checked = AppSettings.Instance.ShowSettingsOnStartup
-      Me.MetroCheckBoxUseArabicNames.Checked = AppSettings.Instance.UseArabicNames
-      Me.TextBoxVizrtHost.Text = AppSettings.Instance.VizrtHost
-      Me.NumericUpDownPort.Value = AppSettings.Instance.VizrtPort
-      Me.NumericUpDownPreviewPort.Value = AppSettings.Instance.VizrtPreviewPort
-
-      Me.MetroTextBoxLocalPreviewPath.Text = AppSettings.Instance.PreviewLocalPath
-      Me.MetroTextBoxRemotePreviewPath.Text = AppSettings.Instance.PreviewRemotePath
 
       Me.MetroTextBoxDefaultColorPath.Text = AppSettings.Instance.ColorsDefaultPath
       Me.MetroTextBoxDefaultKitsPath.Text = AppSettings.Instance.KitsDefaultPath
 
-      Me.TextBoxLoggerHost.Text = AppSettings.Instance.LoggerIP
       Me.NumericUpDownLogger.Value = AppSettings.Instance.LoggerPort
 
 
@@ -59,19 +51,12 @@ Public Class DialogOptions
       AppSettings.Instance.DataBasePath = Me.MetroTextBoxDataBase.Text
       AppSettings.Instance.OtherMatchesPath = Me.MetroTextBoxOtherMatchesFilePath.Text
       AppSettings.Instance.ShowSettingsOnStartup = Me.CheckBoxShowOptionsOnStartup.Checked
-      AppSettings.Instance.UseArabicNames = Me.MetroCheckBoxUseArabicNames.Checked
-      AppSettings.Instance.VizrtHost = Me.TextBoxVizrtHost.Text
-      AppSettings.Instance.VizrtPort = Me.NumericUpDownPort.Value
-      AppSettings.Instance.VizrtPreviewPort = Me.NumericUpDownPreviewPort.Value
-      AppSettings.Instance.PreviewLocalPath = Me.MetroTextBoxLocalPreviewPath.Text
-      AppSettings.Instance.PreviewRemotePath = Me.MetroTextBoxRemotePreviewPath.Text
 
       AppSettings.Instance.ColorsDefaultPath = Me.MetroTextBoxDefaultColorPath.Text
       AppSettings.Instance.KitsDefaultPath = Me.MetroTextBoxDefaultKitsPath.Text
 
       AppSettings.Instance.ColorsDefaultPath = Me.MetroTextBoxDefaultColorPath.Text
 
-      AppSettings.Instance.LoggerIP = Me.TextBoxLoggerHost.Text
       AppSettings.Instance.LoggerPort = Me.NumericUpDownLogger.Value
 
       AppSettings.Instance.Save()

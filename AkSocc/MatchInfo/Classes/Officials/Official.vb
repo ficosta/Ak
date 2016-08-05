@@ -22,6 +22,19 @@ Public Class Official
     InitOfficial(ID)
   End Sub
 
+  Public Shared Function GetID(official As Official) As Integer
+    Dim aux As Integer
+    Try
+      If (official Is Nothing) Then
+        aux = 0
+      Else
+        aux = official.OfficialID
+      End If
+    Catch ex As Exception
+    End Try
+    Return aux
+  End Function
+
 #Region "Official info"
   Private Sub InitOfficial(ID As Integer)
     OfficialID = ID
@@ -48,7 +61,7 @@ Public Class Official
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
 
-      Dim SQL As [String] = "SELECT OfficialFirstName, OfficialSurname, OfficialArabicName"
+      Dim SQL As [String] = "SELECT OfficialFirstName, OfficialSurname, OfficialArabicName, OfficialID"
       SQL += " FROM Officials "
       SQL += " WHERE OfficialArabicName = '" & Me.OfficialArabicName & "'"
       Dim CmdSQL As New OleDbCommand(SQL, conn)
@@ -64,6 +77,9 @@ Public Class Official
         End If
         If Not myOfficialReader.IsDBNull(2) Then
           Me.OfficialArabicName = myOfficialReader.GetString(2)
+        End If
+        If Not myOfficialReader.IsDBNull(3) Then
+          Me.OfficialID = myOfficialReader.GetInt32(3)
         End If
       End If
       conn.Close()

@@ -246,6 +246,7 @@ Partial Class FormMatchSelector
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Controls.Add(Me.TableLayoutPanelGlobal)
     Me.Name = "FormMatchSelector"
+    Me.ShowIcon = False
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
     Me.Text = "Match selector"
     Me.TableLayoutPanelGlobal.ResumeLayout(False)

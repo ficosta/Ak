@@ -25,7 +25,7 @@ Imports System.Data.OleDb
       If Not player Is Nothing Then
         Dim found As Boolean
         For index As Integer = 0 To Me.List.Count - 1
-          If Me.List(index).PlayerID = player.PlayerID Then
+          If Me.List(index).PlayerID = player.PlayerID And Me.List(index).optaid = player.optaID Then
             Me.List(index) = player
             found = True
             Exit For
@@ -104,6 +104,21 @@ Imports System.Data.OleDb
     Try
       For Each SearchPlayer As Player In List
         If SearchPlayer.PlayerID = ID Then
+          output = True
+          Exit For
+        End If
+      Next
+    Catch err As Exception
+      Throw err
+    End Try
+    Return (output)
+  End Function
+
+  Public Function ContainsByOptaID(ID As Integer) As Boolean
+    Dim output As Boolean = False
+    Try
+      For Each SearchPlayer As Player In List
+        If SearchPlayer.optaID = ID Then
           output = True
           Exit For
         End If

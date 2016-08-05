@@ -131,6 +131,8 @@ Partial Class frmWaitForInput
     Me.MaximizeBox = False
     Me.MinimizeBox = False
     Me.Name = "frmWaitForInput"
+    Me.ShowIcon = False
+    Me.ShowInTaskbar = False
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "Wait"
     Me.TopMost = True

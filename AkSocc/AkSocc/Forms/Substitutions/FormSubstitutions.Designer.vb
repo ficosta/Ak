@@ -53,19 +53,20 @@ Partial Class FormSubstitutions
     Me.TableLayoutPanelData.ColumnCount = 2
     Me.TableLayoutPanelData.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanelData.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.00001!))
-    Me.TableLayoutPanelData.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+    Me.TableLayoutPanelData.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23.0!))
     Me.TableLayoutPanelData.Controls.Add(Me.MetroGridSubstitutions, 0, 2)
     Me.TableLayoutPanelData.Controls.Add(Me.MetroButtonAddAwayTeamSubstitition, 1, 0)
     Me.TableLayoutPanelData.Controls.Add(Me.MetroButtonRemoveSubstitution, 0, 1)
     Me.TableLayoutPanelData.Controls.Add(Me.MetroButtonAddHomeTeamSubstitition, 1, 1)
     Me.TableLayoutPanelData.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanelData.Location = New System.Drawing.Point(3, 33)
+    Me.TableLayoutPanelData.Location = New System.Drawing.Point(3, 43)
+    Me.TableLayoutPanelData.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.TableLayoutPanelData.Name = "TableLayoutPanelData"
     Me.TableLayoutPanelData.RowCount = 3
-    Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46.0!))
+    Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46.0!))
     Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelData.Size = New System.Drawing.Size(838, 242)
+    Me.TableLayoutPanelData.Size = New System.Drawing.Size(795, 235)
     Me.TableLayoutPanelData.TabIndex = 1
     '
     'MetroGridSubstitutions
@@ -101,7 +102,8 @@ Partial Class FormSubstitutions
     Me.MetroGridSubstitutions.EnableHeadersVisualStyles = False
     Me.MetroGridSubstitutions.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
     Me.MetroGridSubstitutions.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridSubstitutions.Location = New System.Drawing.Point(3, 73)
+    Me.MetroGridSubstitutions.Location = New System.Drawing.Point(3, 96)
+    Me.MetroGridSubstitutions.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.MetroGridSubstitutions.MultiSelect = False
     Me.MetroGridSubstitutions.Name = "MetroGridSubstitutions"
     Me.MetroGridSubstitutions.ReadOnly = True
@@ -119,7 +121,7 @@ Partial Class FormSubstitutions
     DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroGridSubstitutions.RowsDefaultCellStyle = DataGridViewCellStyle5
     Me.MetroGridSubstitutions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridSubstitutions.Size = New System.Drawing.Size(832, 166)
+    Me.MetroGridSubstitutions.Size = New System.Drawing.Size(789, 135)
     Me.MetroGridSubstitutions.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroGridSubstitutions.TabIndex = 4
     '
@@ -182,9 +184,10 @@ Partial Class FormSubstitutions
     '
     Me.MetroButtonAddAwayTeamSubstitition.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroButtonAddAwayTeamSubstitition.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-    Me.MetroButtonAddAwayTeamSubstitition.Location = New System.Drawing.Point(421, 3)
+    Me.MetroButtonAddAwayTeamSubstitition.Location = New System.Drawing.Point(400, 4)
+    Me.MetroButtonAddAwayTeamSubstitition.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.MetroButtonAddAwayTeamSubstitition.Name = "MetroButtonAddAwayTeamSubstitition"
-    Me.MetroButtonAddAwayTeamSubstitition.Size = New System.Drawing.Size(414, 29)
+    Me.MetroButtonAddAwayTeamSubstitition.Size = New System.Drawing.Size(392, 38)
     Me.MetroButtonAddAwayTeamSubstitition.TabIndex = 3
     Me.MetroButtonAddAwayTeamSubstitition.Text = "Add home team substitution"
     '
@@ -193,9 +196,10 @@ Partial Class FormSubstitutions
     Me.MetroButtonRemoveSubstitution.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
     Me.MetroButtonRemoveSubstitution.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroButtonRemoveSubstitution.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-    Me.MetroButtonRemoveSubstitution.Location = New System.Drawing.Point(3, 38)
+    Me.MetroButtonRemoveSubstitution.Location = New System.Drawing.Point(3, 50)
+    Me.MetroButtonRemoveSubstitution.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.MetroButtonRemoveSubstitution.Name = "MetroButtonRemoveSubstitution"
-    Me.MetroButtonRemoveSubstitution.Size = New System.Drawing.Size(412, 29)
+    Me.MetroButtonRemoveSubstitution.Size = New System.Drawing.Size(391, 38)
     Me.MetroButtonRemoveSubstitution.TabIndex = 2
     Me.MetroButtonRemoveSubstitution.Text = "Remove substitution"
     Me.MetroButtonRemoveSubstitution.UseVisualStyleBackColor = False
@@ -204,9 +208,10 @@ Partial Class FormSubstitutions
     '
     Me.MetroButtonAddHomeTeamSubstitition.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroButtonAddHomeTeamSubstitition.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-    Me.MetroButtonAddHomeTeamSubstitition.Location = New System.Drawing.Point(421, 38)
+    Me.MetroButtonAddHomeTeamSubstitition.Location = New System.Drawing.Point(400, 50)
+    Me.MetroButtonAddHomeTeamSubstitition.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.MetroButtonAddHomeTeamSubstitition.Name = "MetroButtonAddHomeTeamSubstitition"
-    Me.MetroButtonAddHomeTeamSubstitition.Size = New System.Drawing.Size(414, 29)
+    Me.MetroButtonAddHomeTeamSubstitition.Size = New System.Drawing.Size(392, 38)
     Me.MetroButtonAddHomeTeamSubstitition.TabIndex = 1
     Me.MetroButtonAddHomeTeamSubstitition.Text = "Add away team substitution"
     '
@@ -220,22 +225,24 @@ Partial Class FormSubstitutions
     Me.TableLayoutPanel2.Controls.Add(Me.MetroTileData, 0, 0)
     Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
+    Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
     Me.TableLayoutPanel2.RowCount = 4
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(844, 343)
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46.0!))
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(801, 367)
     Me.TableLayoutPanel2.TabIndex = 2
     '
     'MetroTileGraphics
     '
     Me.MetroTileGraphics.ActiveControl = Nothing
     Me.MetroTileGraphics.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileGraphics.Location = New System.Drawing.Point(3, 281)
+    Me.MetroTileGraphics.Location = New System.Drawing.Point(3, 286)
+    Me.MetroTileGraphics.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.MetroTileGraphics.Name = "MetroTileGraphics"
-    Me.MetroTileGraphics.Size = New System.Drawing.Size(838, 24)
+    Me.MetroTileGraphics.Size = New System.Drawing.Size(795, 31)
     Me.MetroTileGraphics.TabIndex = 0
     Me.MetroTileGraphics.Text = "Graphics"
     Me.MetroTileGraphics.UseSelectable = True
@@ -244,9 +251,10 @@ Partial Class FormSubstitutions
     '
     Me.MetroButtonShowSelectedSubstitution.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroButtonShowSelectedSubstitution.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-    Me.MetroButtonShowSelectedSubstitution.Location = New System.Drawing.Point(3, 311)
+    Me.MetroButtonShowSelectedSubstitution.Location = New System.Drawing.Point(3, 325)
+    Me.MetroButtonShowSelectedSubstitution.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.MetroButtonShowSelectedSubstitution.Name = "MetroButtonShowSelectedSubstitution"
-    Me.MetroButtonShowSelectedSubstitution.Size = New System.Drawing.Size(838, 29)
+    Me.MetroButtonShowSelectedSubstitution.Size = New System.Drawing.Size(795, 38)
     Me.MetroButtonShowSelectedSubstitution.TabIndex = 1
     Me.MetroButtonShowSelectedSubstitution.Text = "Selected substitution..."
     '
@@ -254,9 +262,10 @@ Partial Class FormSubstitutions
     '
     Me.MetroTileData.ActiveControl = Nothing
     Me.MetroTileData.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTileData.Location = New System.Drawing.Point(3, 3)
+    Me.MetroTileData.Location = New System.Drawing.Point(3, 4)
+    Me.MetroTileData.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.MetroTileData.Name = "MetroTileData"
-    Me.MetroTileData.Size = New System.Drawing.Size(838, 24)
+    Me.MetroTileData.Size = New System.Drawing.Size(795, 31)
     Me.MetroTileData.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroTileData.TabIndex = 2
     Me.MetroTileData.Text = "Data"
@@ -264,12 +273,15 @@ Partial Class FormSubstitutions
     '
     'FormSubstitutions
     '
-    Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+    Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.BackColor = System.Drawing.Color.White
-    Me.ClientSize = New System.Drawing.Size(844, 343)
+    Me.ClientSize = New System.Drawing.Size(801, 367)
     Me.Controls.Add(Me.TableLayoutPanel2)
+    Me.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.Name = "FormSubstitutions"
+    Me.ShowIcon = False
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "Substitutions"
     Me.TableLayoutPanelData.ResumeLayout(False)

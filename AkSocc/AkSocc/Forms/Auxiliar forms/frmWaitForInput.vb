@@ -1,13 +1,4 @@
 ﻿Public Class frmWaitForInput
-  Public Property Title As String
-    Get
-      Return Me.Text
-    End Get
-    Set(value As String)
-      Me.Text = value
-    End Set
-  End Property
-
   Public Property Prompt As String
     Get
       Return Me.LabelPrompt.Text
@@ -108,7 +99,28 @@
     Try
       Dim frm As New frmWaitForInput(text, title, buttons, icon)
 
-      res = frm.ShowDialog()
+      Select Case icon
+        Case MessageBoxIcon.Asterisk
+          frm.BackColor = Color.LightGray
+        Case MessageBoxIcon.Error
+          frm.BackColor = Color.Red
+        Case MessageBoxIcon.Exclamation
+          frm.BackColor = Color.LightGray
+        Case MessageBoxIcon.Hand
+          frm.BackColor = Color.LightGray
+        Case MessageBoxIcon.Information
+          frm.BackColor = Color.Gray
+        Case MessageBoxIcon.None
+          frm.BackColor = Color.LightGray
+        Case MessageBoxIcon.Question
+          frm.BackColor = Color.LightGray
+        Case MessageBoxIcon.Stop
+          frm.BackColor = Color.LightGray
+        Case MessageBoxIcon.Warning
+          frm.BackColor = Color.OrangeRed
+      End Select
+
+      res = frm.ShowDialog(parent)
     Catch ex As Exception
 
     End Try
@@ -131,7 +143,6 @@
   Dim drag As Boolean
   Dim mousex As Integer
   Dim mousey As Integer
-
 
   Private Sub Form1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles LabelTitle.MouseDown
     If e.Button = System.Windows.Forms.MouseButtons.Left Then

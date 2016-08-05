@@ -259,6 +259,23 @@ Public Class GraphicsScoreLine
       scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Bottom_Sublines_Data_Control_OMO_Data ", "2")
       scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Bottom_Sublines_Type_2_Control_OMO_GV_Choose", "0")
 
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Name", Match.HomeTeam.Name))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Name", Match.AwayTeam.Name))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.HomeTeam.BadgeName, paramType.Image))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Logo", GraphicVersions.Instance.SelectedGraphicVersion.Path2DLogos & Match.AwayTeam.BadgeName, paramType.Image))
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Home_Team_Score", home_Result))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Away_Team_Score", away_Result))
+
+      scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Bottom_Sublines_Type_1_Data_01_Text", "")
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gside & "_Bottom_Control_OMO_Subline_Type_Base", "1"))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gside & "_Bottom_Sublines_Type_2_Control_OMO_GV_Choose", "0"))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gside & "_Bottom_Control_OMO_Subline_Type_Base", "1"))
+
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gside & "_Bottom_Sublines_Type_1_Data_01_Text", ""))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gside & "_Bottom_Sublines_Type_1_Data_02_Text", ""))
+      scene.SceneParameters.Add(New SceneParameter("Scoreline_Side_" & gside & "_Bottom_Sublines_Type_1_Data_03_Text", ""))
 
       For i As Integer = 1 To 11
         scene.SceneParameters.Add("Scoreline_Side_" & gside & "_Sublines_Type_2_Goals_Left_" & i & "_Score_A ", "")

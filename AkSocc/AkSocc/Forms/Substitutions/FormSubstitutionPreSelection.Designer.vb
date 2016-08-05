@@ -173,6 +173,7 @@ Partial Class FormSubstitutionPreSelection
     Me.MaximizeBox = False
     Me.MinimizeBox = False
     Me.Name = "FormSubstitutionPreSelection"
+    Me.ShowIcon = False
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "Substitutions"
     Me.TableLayoutPanel1.ResumeLayout(False)

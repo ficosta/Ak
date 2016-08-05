@@ -26,7 +26,7 @@ Public Class FormLoadScenes
   End Sub
 
   Private Sub FormLoadScenes_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-    Me.MetroLabelScene.Text = ""
+    ShowScenes()
     LoadNextScene()
   End Sub
 
@@ -35,7 +35,7 @@ Public Class FormLoadScenes
     If _sceneIndex < Me.SceneList.Count Then
       If _sceneIndex = -1 Then _sceneIndex = 0
       _vizControl.LoadScene(_vizControl.Config.SceneBasePath & Me.SceneList(_sceneIndex))
-      Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " loading" & vbCrLf & MetroLabelScene.Text
+      Me.ShowScene(Me.SceneList(_sceneIndex), "loading scene", Color.Yellow)
       Debug.Print("loading scene " & Me.SceneList(_sceneIndex))
       GlobalNotifier.Instance.AddInfoMessage(Me.SceneList(_sceneIndex) & " loading")
     Else
@@ -50,9 +50,9 @@ Public Class FormLoadScenes
     If _sceneIndex < Me.SceneList.Count Then
       If _sceneIndex = -1 Then _sceneIndex = 0
       _vizControl.ActivateScene(_vizControl.Config.SceneBasePath & Me.SceneList(_sceneIndex))
-      _vizControl.ActivateScene("")
+      '_vizControl.ActivateScene("")
       GlobalNotifier.Instance.AddInfoMessage(Me.SceneList(_sceneIndex) & " activating")
-      Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " activating" & vbCrLf & MetroLabelScene.Text
+      Me.ShowScene(Me.SceneList(_sceneIndex), "activating scene", Color.Orange)
       Debug.Print("activating scene " & Me.SceneList(_sceneIndex))
     Else
       _vizControl.ActivateScene("")
@@ -68,21 +68,21 @@ Public Class FormLoadScenes
       Select Case CCommand.VizrtCommand
         Case eVizrtCommands.ActivateScene
           If CCommand.BoolError Then
-            Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " not activated " & CCommand.ReceivedData & vbCrLf & MetroLabelScene.Text
+            Me.ShowScene(Me.SceneList(_sceneIndex), "error activating scene", Color.Red)
             Debug.Print("error activating scene " & Me.SceneList(_sceneIndex))
           Else
-            Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " activated" & vbCrLf & MetroLabelScene.Text
+            Me.ShowScene(Me.SceneList(_sceneIndex), "activated", Color.Green)
             Debug.Print("activated scene " & Me.SceneList(_sceneIndex))
             GlobalNotifier.Instance.AddInfoMessage(Me.SceneList(_sceneIndex) & " activated")
           End If
           LoadNextScene()
         Case eVizrtCommands.LoadScene
           If CCommand.BoolError Then
-            Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " not loaded " & CCommand.ReceivedData & vbCrLf & MetroLabelScene.Text
+            Me.ShowScene(Me.SceneList(_sceneIndex), "error loading scene", Color.Red)
             Debug.Print("error loading scene " & Me.SceneList(_sceneIndex))
           Else
-            Me.MetroLabelScene.Text = Me.SceneList(_sceneIndex) & " loaded" & vbCrLf & MetroLabelScene.Text
             GlobalNotifier.Instance.AddInfoMessage(Me.SceneList(_sceneIndex) & " loaded")
+            Me.ShowScene(Me.SceneList(_sceneIndex), "scene loaded", Color.LightGreen)
             Debug.Print("loaded scene " & Me.SceneList(_sceneIndex))
           End If
           ActivateScene()
@@ -100,4 +100,47 @@ Public Class FormLoadScenes
 
     End Try
   End Sub
+
+
+  Private Sub ShowScenes()
+    Try
+      Me.MetroGridScenes.Rows.Clear()
+      For Each scene As String In Me.SceneList
+        ShowScene(scene, "", Color.White)
+      Next
+    Catch ex As Exception
+    End Try
+  End Sub
+
+  Private Function GetSceneRow(scene As String) As Integer
+    Dim res As Integer = -1
+    Try
+      For row As Integer = 0 To Me.MetroGridScenes.Rows.Count - 1
+        If Me.MetroGridScenes.Rows(row).Cells(ColumnScenesName.Index).Value = scene Then
+          res = row
+          Exit For
+        End If
+      Next
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
+
+  Private Sub ShowScene(scene As String, state As String, color As Color)
+    Try
+      Dim row As Integer = Me.GetSceneRow(scene)
+      With Me.MetroGridScenes
+        If row = -1 Then row = .Rows.Add(scene)
+        .Rows(row).Cells(ColumnScenesName.Index).Value = scene
+        .Rows(row).Cells(ColumnSceneState.Index).Value = state
+        .Rows(row).Cells(ColumnSceneState.Index).Style.BackColor = color
+      End With
+
+
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
 End Class

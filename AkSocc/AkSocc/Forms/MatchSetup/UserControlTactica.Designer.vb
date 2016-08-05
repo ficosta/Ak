@@ -54,12 +54,12 @@ Partial Class UserControlTactica
     Me.Label6 = New System.Windows.Forms.Label()
     Me.Label7 = New System.Windows.Forms.Label()
     Me.ButtonRandom = New System.Windows.Forms.Button()
+    Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+    Me.ButtonDelete = New System.Windows.Forms.Button()
+    Me.ButtonSaveAs = New System.Windows.Forms.Button()
+    Me.ButtonSaveFormation = New System.Windows.Forms.Button()
     Me.MetroComboBoxFormation = New System.Windows.Forms.ComboBox()
     Me.ToolTipDrag = New System.Windows.Forms.ToolTip(Me.components)
-    Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-    Me.ButtonSaveFormation = New System.Windows.Forms.Button()
-    Me.ButtonSaveAs = New System.Windows.Forms.Button()
-    Me.ButtonDelete = New System.Windows.Forms.Button()
     Me.TableLayoutPanelTot.SuspendLayout()
     CType(Me.MetroGridPlayers, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.MetroGridTeamAll, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,8 +73,8 @@ Partial Class UserControlTactica
     '
     Me.TableLayoutPanelTot.ColumnCount = 4
     Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
-    Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 360.0!))
+    Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
+    Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 380.0!))
     Me.TableLayoutPanelTot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanelTot.Controls.Add(Me.MetroGridPlayers, 3, 0)
     Me.TableLayoutPanelTot.Controls.Add(Me.MetroGridTeamAll, 0, 0)
@@ -89,7 +89,7 @@ Partial Class UserControlTactica
     Me.TableLayoutPanelTot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanelTot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
     Me.TableLayoutPanelTot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33.0!))
-    Me.TableLayoutPanelTot.Size = New System.Drawing.Size(948, 423)
+    Me.TableLayoutPanelTot.Size = New System.Drawing.Size(1062, 507)
     Me.TableLayoutPanelTot.TabIndex = 1
     '
     'MetroGridPlayers
@@ -125,7 +125,7 @@ Partial Class UserControlTactica
     Me.MetroGridPlayers.EnableHeadersVisualStyles = False
     Me.MetroGridPlayers.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
     Me.MetroGridPlayers.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridPlayers.Location = New System.Drawing.Point(717, 3)
+    Me.MetroGridPlayers.Location = New System.Drawing.Point(794, 3)
     Me.MetroGridPlayers.MultiSelect = False
     Me.MetroGridPlayers.Name = "MetroGridPlayers"
     Me.MetroGridPlayers.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -145,7 +145,7 @@ Partial Class UserControlTactica
     Me.MetroGridPlayers.ShowCellToolTips = False
     Me.MetroGridPlayers.ShowEditingIcon = False
     Me.MetroGridPlayers.ShowRowErrors = False
-    Me.MetroGridPlayers.Size = New System.Drawing.Size(228, 384)
+    Me.MetroGridPlayers.Size = New System.Drawing.Size(265, 468)
     Me.MetroGridPlayers.TabIndex = 49
     '
     'ColumnPlayersID
@@ -247,7 +247,7 @@ Partial Class UserControlTactica
     Me.MetroGridTeamAll.ShowCellToolTips = False
     Me.MetroGridTeamAll.ShowEditingIcon = False
     Me.MetroGridTeamAll.ShowRowErrors = False
-    Me.MetroGridTeamAll.Size = New System.Drawing.Size(228, 384)
+    Me.MetroGridTeamAll.Size = New System.Drawing.Size(265, 468)
     Me.MetroGridTeamAll.TabIndex = 48
     '
     'ColumnAllID
@@ -277,9 +277,9 @@ Partial Class UserControlTactica
     Me.TableLayoutPanelTot.SetColumnSpan(Me.PanelCanvas, 2)
     Me.PanelCanvas.Controls.Add(Me.PictureBoxCanvas)
     Me.PanelCanvas.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelCanvas.Location = New System.Drawing.Point(237, 3)
+    Me.PanelCanvas.Location = New System.Drawing.Point(274, 3)
     Me.PanelCanvas.Name = "PanelCanvas"
-    Me.PanelCanvas.Size = New System.Drawing.Size(474, 334)
+    Me.PanelCanvas.Size = New System.Drawing.Size(514, 418)
     Me.PanelCanvas.TabIndex = 1
     '
     'PictureBoxCanvas
@@ -288,7 +288,7 @@ Partial Class UserControlTactica
     Me.PictureBoxCanvas.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PictureBoxCanvas.Location = New System.Drawing.Point(0, 0)
     Me.PictureBoxCanvas.Name = "PictureBoxCanvas"
-    Me.PictureBoxCanvas.Size = New System.Drawing.Size(474, 334)
+    Me.PictureBoxCanvas.Size = New System.Drawing.Size(514, 418)
     Me.PictureBoxCanvas.TabIndex = 1
     Me.PictureBoxCanvas.TabStop = False
     Me.ToolTipDrag.SetToolTip(Me.PictureBoxCanvas, "feels like it should")
@@ -301,9 +301,9 @@ Partial Class UserControlTactica
     'LabelSelectedPlayer
     '
     Me.LabelSelectedPlayer.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelSelectedPlayer.Location = New System.Drawing.Point(237, 390)
+    Me.LabelSelectedPlayer.Location = New System.Drawing.Point(274, 474)
     Me.LabelSelectedPlayer.Name = "LabelSelectedPlayer"
-    Me.LabelSelectedPlayer.Size = New System.Drawing.Size(114, 33)
+    Me.LabelSelectedPlayer.Size = New System.Drawing.Size(134, 33)
     Me.LabelSelectedPlayer.TabIndex = 2
     Me.LabelSelectedPlayer.Text = "Selected player..."
     Me.LabelSelectedPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -330,11 +330,11 @@ Partial Class UserControlTactica
     Me.TableLayoutPanel1.Controls.Add(Me.Label7, 7, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.ButtonRandom, 0, 0)
     Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(237, 343)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(274, 427)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(474, 44)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(514, 44)
     Me.TableLayoutPanel1.TabIndex = 27
     '
     'Label1
@@ -345,7 +345,7 @@ Partial Class UserControlTactica
     Me.Label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label1.ForeColor = System.Drawing.Color.White
-    Me.Label1.Location = New System.Drawing.Point(65, 0)
+    Me.Label1.Location = New System.Drawing.Point(85, 0)
     Me.Label1.Name = "Label1"
     Me.Label1.Size = New System.Drawing.Size(44, 44)
     Me.Label1.TabIndex = 7
@@ -360,7 +360,7 @@ Partial Class UserControlTactica
     Me.Label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.Label2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label2.ForeColor = System.Drawing.Color.White
-    Me.Label2.Location = New System.Drawing.Point(115, 0)
+    Me.Label2.Location = New System.Drawing.Point(135, 0)
     Me.Label2.Name = "Label2"
     Me.Label2.Size = New System.Drawing.Size(44, 44)
     Me.Label2.TabIndex = 8
@@ -375,7 +375,7 @@ Partial Class UserControlTactica
     Me.Label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.Label3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label3.ForeColor = System.Drawing.Color.White
-    Me.Label3.Location = New System.Drawing.Point(165, 0)
+    Me.Label3.Location = New System.Drawing.Point(185, 0)
     Me.Label3.Name = "Label3"
     Me.Label3.Size = New System.Drawing.Size(44, 44)
     Me.Label3.TabIndex = 9
@@ -390,7 +390,7 @@ Partial Class UserControlTactica
     Me.Label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.Label4.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label4.ForeColor = System.Drawing.Color.White
-    Me.Label4.Location = New System.Drawing.Point(215, 0)
+    Me.Label4.Location = New System.Drawing.Point(235, 0)
     Me.Label4.Name = "Label4"
     Me.Label4.Size = New System.Drawing.Size(44, 44)
     Me.Label4.TabIndex = 10
@@ -405,7 +405,7 @@ Partial Class UserControlTactica
     Me.Label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.Label5.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label5.ForeColor = System.Drawing.Color.White
-    Me.Label5.Location = New System.Drawing.Point(265, 0)
+    Me.Label5.Location = New System.Drawing.Point(285, 0)
     Me.Label5.Name = "Label5"
     Me.Label5.Size = New System.Drawing.Size(44, 44)
     Me.Label5.TabIndex = 11
@@ -420,7 +420,7 @@ Partial Class UserControlTactica
     Me.Label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.Label6.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label6.ForeColor = System.Drawing.Color.White
-    Me.Label6.Location = New System.Drawing.Point(315, 0)
+    Me.Label6.Location = New System.Drawing.Point(335, 0)
     Me.Label6.Name = "Label6"
     Me.Label6.Size = New System.Drawing.Size(44, 44)
     Me.Label6.TabIndex = 12
@@ -435,7 +435,7 @@ Partial Class UserControlTactica
     Me.Label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.Label7.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label7.ForeColor = System.Drawing.Color.White
-    Me.Label7.Location = New System.Drawing.Point(365, 0)
+    Me.Label7.Location = New System.Drawing.Point(385, 0)
     Me.Label7.Name = "Label7"
     Me.Label7.Size = New System.Drawing.Size(44, 44)
     Me.Label7.TabIndex = 13
@@ -448,21 +448,10 @@ Partial Class UserControlTactica
     Me.ButtonRandom.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.ButtonRandom.Location = New System.Drawing.Point(3, 3)
     Me.ButtonRandom.Name = "ButtonRandom"
-    Me.ButtonRandom.Size = New System.Drawing.Size(56, 38)
+    Me.ButtonRandom.Size = New System.Drawing.Size(76, 38)
     Me.ButtonRandom.TabIndex = 14
     Me.ButtonRandom.Text = "Random"
     Me.ButtonRandom.UseVisualStyleBackColor = True
-    '
-    'MetroComboBoxFormation
-    '
-    Me.MetroComboBoxFormation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-    Me.MetroComboBoxFormation.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.MetroComboBoxFormation.FormattingEnabled = True
-    Me.MetroComboBoxFormation.ItemHeight = 17
-    Me.MetroComboBoxFormation.Location = New System.Drawing.Point(3, 3)
-    Me.MetroComboBoxFormation.Name = "MetroComboBoxFormation"
-    Me.MetroComboBoxFormation.Size = New System.Drawing.Size(144, 25)
-    Me.MetroComboBoxFormation.TabIndex = 50
     '
     'TableLayoutPanel2
     '
@@ -476,49 +465,60 @@ Partial Class UserControlTactica
     Me.TableLayoutPanel2.Controls.Add(Me.ButtonSaveFormation, 1, 0)
     Me.TableLayoutPanel2.Controls.Add(Me.MetroComboBoxFormation, 0, 0)
     Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel2.Location = New System.Drawing.Point(354, 390)
+    Me.TableLayoutPanel2.Location = New System.Drawing.Point(411, 474)
     Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
     Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
     Me.TableLayoutPanel2.RowCount = 1
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(360, 33)
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(380, 33)
     Me.TableLayoutPanel2.TabIndex = 51
-    '
-    'ButtonSaveFormation
-    '
-    Me.ButtonSaveFormation.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonSaveFormation.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-    Me.ButtonSaveFormation.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.ButtonSaveFormation.Location = New System.Drawing.Point(153, 3)
-    Me.ButtonSaveFormation.Name = "ButtonSaveFormation"
-    Me.ButtonSaveFormation.Size = New System.Drawing.Size(64, 27)
-    Me.ButtonSaveFormation.TabIndex = 15
-    Me.ButtonSaveFormation.Text = "Save"
-    Me.ButtonSaveFormation.UseVisualStyleBackColor = True
-    '
-    'ButtonSaveAs
-    '
-    Me.ButtonSaveAs.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-    Me.ButtonSaveAs.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.ButtonSaveAs.Location = New System.Drawing.Point(223, 3)
-    Me.ButtonSaveAs.Name = "ButtonSaveAs"
-    Me.ButtonSaveAs.Size = New System.Drawing.Size(64, 27)
-    Me.ButtonSaveAs.TabIndex = 51
-    Me.ButtonSaveAs.Text = "Save as"
-    Me.ButtonSaveAs.UseVisualStyleBackColor = True
     '
     'ButtonDelete
     '
     Me.ButtonDelete.Dock = System.Windows.Forms.DockStyle.Fill
     Me.ButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.ButtonDelete.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.ButtonDelete.Location = New System.Drawing.Point(293, 3)
+    Me.ButtonDelete.Location = New System.Drawing.Point(313, 3)
     Me.ButtonDelete.Name = "ButtonDelete"
     Me.ButtonDelete.Size = New System.Drawing.Size(64, 27)
     Me.ButtonDelete.TabIndex = 52
     Me.ButtonDelete.Text = "Delete"
     Me.ButtonDelete.UseVisualStyleBackColor = True
+    '
+    'ButtonSaveAs
+    '
+    Me.ButtonSaveAs.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonSaveAs.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ButtonSaveAs.Location = New System.Drawing.Point(243, 3)
+    Me.ButtonSaveAs.Name = "ButtonSaveAs"
+    Me.ButtonSaveAs.Size = New System.Drawing.Size(64, 27)
+    Me.ButtonSaveAs.TabIndex = 51
+    Me.ButtonSaveAs.Text = "Save as"
+    Me.ButtonSaveAs.UseVisualStyleBackColor = True
+    '
+    'ButtonSaveFormation
+    '
+    Me.ButtonSaveFormation.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonSaveFormation.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonSaveFormation.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ButtonSaveFormation.Location = New System.Drawing.Point(173, 3)
+    Me.ButtonSaveFormation.Name = "ButtonSaveFormation"
+    Me.ButtonSaveFormation.Size = New System.Drawing.Size(64, 27)
+    Me.ButtonSaveFormation.TabIndex = 15
+    Me.ButtonSaveFormation.Text = "Save"
+    Me.ButtonSaveFormation.UseVisualStyleBackColor = True
+    '
+    'MetroComboBoxFormation
+    '
+    Me.MetroComboBoxFormation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+    Me.MetroComboBoxFormation.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.MetroComboBoxFormation.FormattingEnabled = True
+    Me.MetroComboBoxFormation.ItemHeight = 17
+    Me.MetroComboBoxFormation.Location = New System.Drawing.Point(3, 3)
+    Me.MetroComboBoxFormation.Name = "MetroComboBoxFormation"
+    Me.MetroComboBoxFormation.Size = New System.Drawing.Size(144, 25)
+    Me.MetroComboBoxFormation.TabIndex = 50
     '
     'UserControlTactica
     '
@@ -527,7 +527,7 @@ Partial Class UserControlTactica
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.Controls.Add(Me.TableLayoutPanelTot)
     Me.Name = "UserControlTactica"
-    Me.Size = New System.Drawing.Size(948, 423)
+    Me.Size = New System.Drawing.Size(1062, 507)
     Me.TableLayoutPanelTot.ResumeLayout(False)
     CType(Me.MetroGridPlayers, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.MetroGridTeamAll, System.ComponentModel.ISupportInitialize).EndInit()

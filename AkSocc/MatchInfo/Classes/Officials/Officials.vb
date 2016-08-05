@@ -43,7 +43,7 @@ Public Class Officials
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
 
-      Dim mySQL As String = "SELECT OfficialFirstName, OfficialSurname, OfficialArabicName FROM Officials ORDER BY OfficialSurname"
+      Dim mySQL As String = "SELECT OfficialFirstName, OfficialSurname, OfficialArabicName, OfficialID FROM Officials ORDER BY OfficialSurname"
 
       Dim CmdSQL As New OleDbCommand(mySQL, conn)
 
@@ -54,6 +54,7 @@ Public Class Officials
         official.OfficialFirstName = myReader.GetString(0)
         official.OfficialSurname = myReader.GetString(1)
         official.OfficialArabicName = myReader.GetString(2)
+        official.OfficialID = myReader.GetInt32(3)
         'player.GetPlayer()
         Me.InnerList.Add(official)
       End While
@@ -72,6 +73,21 @@ Public Class Officials
     Try
       For Each Search As Official In List
         If Search.ToString = name Then
+          output = Search
+          Exit For
+        End If
+      Next
+    Catch err As Exception
+      Throw err
+    End Try
+    Return (output)
+  End Function
+
+  Public Function GetByID(id As Integer) As Official
+    Dim output As Official = Nothing
+    Try
+      For Each Search As Official In List
+        If Search.OfficialID = id Then
           output = Search
           Exit For
         End If

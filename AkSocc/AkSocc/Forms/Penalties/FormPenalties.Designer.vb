@@ -92,13 +92,23 @@ Partial Class frmPenalties
     Me.HomeTeamScore = New System.Windows.Forms.Label()
     Me.AwayTeamName = New System.Windows.Forms.Label()
     Me.HomeTeamName = New System.Windows.Forms.Label()
+    Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+    Me.ButtonShowClock = New System.Windows.Forms.Button()
+    Me.ButtonLower3rdHide = New System.Windows.Forms.Button()
+    Me.ButtonLower3rdShow = New System.Windows.Forms.Button()
+    Me.ButtonHideClock = New System.Windows.Forms.Button()
+    Me.ButtonPage0 = New System.Windows.Forms.Button()
+    Me.ButtonPage1 = New System.Windows.Forms.Button()
+    Me.ButtonPage2 = New System.Windows.Forms.Button()
+    Me.ButtonPage3 = New System.Windows.Forms.Button()
+    Me.TableLayoutPanel1.SuspendLayout()
     Me.SuspendLayout()
     '
     'btnClear
     '
     Me.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnClear.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnClear.Location = New System.Drawing.Point(363, 107)
+    Me.btnClear.Location = New System.Drawing.Point(363, 142)
     Me.btnClear.Name = "btnClear"
     Me.btnClear.Size = New System.Drawing.Size(107, 54)
     Me.btnClear.TabIndex = 240
@@ -109,7 +119,7 @@ Partial Class frmPenalties
     '
     Me.btnNext10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnNext10.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnNext10.Location = New System.Drawing.Point(476, 107)
+    Me.btnNext10.Location = New System.Drawing.Point(476, 142)
     Me.btnNext10.Name = "btnNext10"
     Me.btnNext10.Size = New System.Drawing.Size(87, 54)
     Me.btnNext10.TabIndex = 239
@@ -120,7 +130,7 @@ Partial Class frmPenalties
     '
     Me.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnUndo.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnUndo.Location = New System.Drawing.Point(615, 107)
+    Me.btnUndo.Location = New System.Drawing.Point(615, 142)
     Me.btnUndo.Name = "btnUndo"
     Me.btnUndo.Size = New System.Drawing.Size(87, 54)
     Me.btnUndo.TabIndex = 238
@@ -131,7 +141,7 @@ Partial Class frmPenalties
     '
     Me.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnExit.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnExit.Location = New System.Drawing.Point(708, 107)
+    Me.btnExit.Location = New System.Drawing.Point(708, 142)
     Me.btnExit.Name = "btnExit"
     Me.btnExit.Size = New System.Drawing.Size(87, 54)
     Me.btnExit.TabIndex = 237
@@ -143,7 +153,7 @@ Partial Class frmPenalties
     Me.btnMiss.BackColor = System.Drawing.Color.LightSalmon
     Me.btnMiss.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnMiss.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnMiss.Location = New System.Drawing.Point(111, 107)
+    Me.btnMiss.Location = New System.Drawing.Point(111, 142)
     Me.btnMiss.Name = "btnMiss"
     Me.btnMiss.Size = New System.Drawing.Size(87, 54)
     Me.btnMiss.TabIndex = 236
@@ -155,7 +165,7 @@ Partial Class frmPenalties
     Me.btnGoal.BackColor = System.Drawing.Color.PaleGreen
     Me.btnGoal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnGoal.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnGoal.Location = New System.Drawing.Point(9, 107)
+    Me.btnGoal.Location = New System.Drawing.Point(9, 142)
     Me.btnGoal.Name = "btnGoal"
     Me.btnGoal.Size = New System.Drawing.Size(87, 54)
     Me.btnGoal.TabIndex = 235
@@ -954,12 +964,118 @@ Partial Class frmPenalties
     Me.HomeTeamName.Text = "TEAM A"
     Me.HomeTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
     '
+    'TableLayoutPanel1
+    '
+    Me.TableLayoutPanel1.ColumnCount = 2
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanel1.Controls.Add(Me.ButtonShowClock, 0, 1)
+    Me.TableLayoutPanel1.Controls.Add(Me.ButtonLower3rdHide, 1, 0)
+    Me.TableLayoutPanel1.Controls.Add(Me.ButtonLower3rdShow, 0, 0)
+    Me.TableLayoutPanel1.Controls.Add(Me.ButtonHideClock, 1, 1)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(9, 202)
+    Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+    Me.TableLayoutPanel1.RowCount = 2
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(189, 100)
+    Me.TableLayoutPanel1.TabIndex = 241
+    '
+    'ButtonShowClock
+    '
+    Me.ButtonShowClock.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShowClock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonShowClock.Location = New System.Drawing.Point(3, 53)
+    Me.ButtonShowClock.Name = "ButtonShowClock"
+    Me.ButtonShowClock.Size = New System.Drawing.Size(88, 44)
+    Me.ButtonShowClock.TabIndex = 2
+    Me.ButtonShowClock.Text = "Show clock"
+    Me.ButtonShowClock.UseVisualStyleBackColor = True
+    '
+    'ButtonLower3rdHide
+    '
+    Me.ButtonLower3rdHide.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonLower3rdHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonLower3rdHide.Location = New System.Drawing.Point(97, 3)
+    Me.ButtonLower3rdHide.Name = "ButtonLower3rdHide"
+    Me.ButtonLower3rdHide.Size = New System.Drawing.Size(89, 44)
+    Me.ButtonLower3rdHide.TabIndex = 1
+    Me.ButtonLower3rdHide.Text = "Hide lower third"
+    Me.ButtonLower3rdHide.UseVisualStyleBackColor = True
+    '
+    'ButtonLower3rdShow
+    '
+    Me.ButtonLower3rdShow.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonLower3rdShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonLower3rdShow.Location = New System.Drawing.Point(3, 3)
+    Me.ButtonLower3rdShow.Name = "ButtonLower3rdShow"
+    Me.ButtonLower3rdShow.Size = New System.Drawing.Size(88, 44)
+    Me.ButtonLower3rdShow.TabIndex = 0
+    Me.ButtonLower3rdShow.Text = "Show lower third"
+    Me.ButtonLower3rdShow.UseVisualStyleBackColor = True
+    '
+    'ButtonHideClock
+    '
+    Me.ButtonHideClock.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonHideClock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonHideClock.Location = New System.Drawing.Point(97, 53)
+    Me.ButtonHideClock.Name = "ButtonHideClock"
+    Me.ButtonHideClock.Size = New System.Drawing.Size(89, 44)
+    Me.ButtonHideClock.TabIndex = 3
+    Me.ButtonHideClock.Text = "Hide clock"
+    Me.ButtonHideClock.UseVisualStyleBackColor = True
+    '
+    'ButtonPage0
+    '
+    Me.ButtonPage0.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonPage0.Location = New System.Drawing.Point(200, 101)
+    Me.ButtonPage0.Name = "ButtonPage0"
+    Me.ButtonPage0.Size = New System.Drawing.Size(142, 23)
+    Me.ButtonPage0.TabIndex = 242
+    Me.ButtonPage0.Text = "Page 1"
+    Me.ButtonPage0.UseVisualStyleBackColor = True
+    '
+    'ButtonPage1
+    '
+    Me.ButtonPage1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonPage1.Location = New System.Drawing.Point(363, 101)
+    Me.ButtonPage1.Name = "ButtonPage1"
+    Me.ButtonPage1.Size = New System.Drawing.Size(142, 23)
+    Me.ButtonPage1.TabIndex = 243
+    Me.ButtonPage1.Text = "Page 2"
+    Me.ButtonPage1.UseVisualStyleBackColor = True
+    '
+    'ButtonPage2
+    '
+    Me.ButtonPage2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonPage2.Location = New System.Drawing.Point(508, 101)
+    Me.ButtonPage2.Name = "ButtonPage2"
+    Me.ButtonPage2.Size = New System.Drawing.Size(142, 23)
+    Me.ButtonPage2.TabIndex = 244
+    Me.ButtonPage2.Text = "Page 3"
+    Me.ButtonPage2.UseVisualStyleBackColor = True
+    '
+    'ButtonPage3
+    '
+    Me.ButtonPage3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonPage3.Location = New System.Drawing.Point(652, 101)
+    Me.ButtonPage3.Name = "ButtonPage3"
+    Me.ButtonPage3.Size = New System.Drawing.Size(142, 23)
+    Me.ButtonPage3.TabIndex = 245
+    Me.ButtonPage3.Text = "Page 4"
+    Me.ButtonPage3.UseVisualStyleBackColor = True
+    '
     'frmPenalties
     '
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
     Me.BackColor = System.Drawing.Color.White
-    Me.ClientSize = New System.Drawing.Size(806, 177)
+    Me.ClientSize = New System.Drawing.Size(806, 314)
     Me.ControlBox = False
+    Me.Controls.Add(Me.ButtonPage3)
+    Me.Controls.Add(Me.ButtonPage2)
+    Me.Controls.Add(Me.ButtonPage1)
+    Me.Controls.Add(Me.ButtonPage0)
+    Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Controls.Add(Me.btnClear)
     Me.Controls.Add(Me.btnNext10)
     Me.Controls.Add(Me.btnUndo)
@@ -1035,6 +1151,7 @@ Partial Class frmPenalties
     Me.Name = "frmPenalties"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
     Me.Text = "Penalty shootout"
+    Me.TableLayoutPanel1.ResumeLayout(False)
     Me.ResumeLayout(False)
 
   End Sub
@@ -1109,4 +1226,13 @@ Partial Class frmPenalties
   Private WithEvents HomeTeamScore As Label
   Private WithEvents AwayTeamName As Label
   Private WithEvents HomeTeamName As Label
+  Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+  Friend WithEvents ButtonShowClock As Button
+  Friend WithEvents ButtonLower3rdHide As Button
+  Friend WithEvents ButtonLower3rdShow As Button
+  Friend WithEvents ButtonHideClock As Button
+  Friend WithEvents ButtonPage0 As Button
+  Friend WithEvents ButtonPage1 As Button
+  Friend WithEvents ButtonPage2 As Button
+  Friend WithEvents ButtonPage3 As Button
 End Class

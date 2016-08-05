@@ -30,15 +30,19 @@ Public Class ClockSubstitution
 
       'there's a pause... wait for animation, then paus
       Dim fWait As frmWait
-      fWait = New frmWait(500)
+      fWait = New frmWait(3000)
       fWait.ShowDialog()
 
 
-      If frmWaitForInput.ShowWaitDialog(Nothing, "Complete change?", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then
+      If frmWaitForInput.ShowWaitDialog(Nothing, "Complete change?", Substitution.ToString, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then
         _clockControl.VizControl.DirectorContinueReverse("anim_Clock_Substitute", Me.Scene.VizLayer)
       Else
         _clockControl.VizControl.DirectorContinue("anim_Clock_Substitute", Me.Scene.VizLayer)
-        frmWaitForInput.ShowWaitDialog(Nothing, "Take out graphic", MessageBoxButtons.OK, MessageBoxIcon.Hand)
+        fWait = New frmWait(2000) : fWait.ShowDialog()
+        frmWaitForInput.ShowWaitDialog(Nothing, "Take out graphic", Substitution.ToString, MessageBoxButtons.OK, MessageBoxIcon.Hand)
+        _clockControl.VizControl.DirectorContinue("anim_Clock_Substitute", Me.Scene.VizLayer)
+        fWait = New frmWait(3000) : fWait.ShowDialog()
+        Application.DoEvents()
         _clockControl.VizControl.DirectorContinue("anim_Clock_Substitute", Me.Scene.VizLayer)
       End If
     Catch ex As Exception

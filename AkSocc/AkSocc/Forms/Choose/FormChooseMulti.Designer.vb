@@ -329,6 +329,7 @@ Partial Class FormChooseMulti
     Me.Controls.Add(Me.SplitContainerAll)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Name = "FormChooseMulti"
+    Me.ShowIcon = False
     Me.Text = "Graphic options"
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.TableLayoutPanelAll.ResumeLayout(False)

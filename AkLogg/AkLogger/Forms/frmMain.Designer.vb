@@ -137,16 +137,16 @@ Partial Class frmMain
     Me.TableLayoutPanelTeams.RowCount = 1
     Me.TableLayoutPanelTeams.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanelTeams.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 469.0!))
-    Me.TableLayoutPanelTeams.Size = New System.Drawing.Size(994, 469)
+    Me.TableLayoutPanelTeams.Size = New System.Drawing.Size(991, 469)
     Me.TableLayoutPanelTeams.TabIndex = 379
     '
     'grpControls
     '
     Me.grpControls.Controls.Add(Me.tableLayoutPanelPeriodes)
     Me.grpControls.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grpControls.Location = New System.Drawing.Point(1003, 3)
+    Me.grpControls.Location = New System.Drawing.Point(1000, 3)
     Me.grpControls.Name = "grpControls"
-    Me.grpControls.Size = New System.Drawing.Size(150, 469)
+    Me.grpControls.Size = New System.Drawing.Size(153, 469)
     Me.grpControls.TabIndex = 375
     Me.grpControls.TabStop = False
     Me.grpControls.Text = "Controls"
@@ -182,7 +182,7 @@ Partial Class frmMain
     Me.tableLayoutPanelPeriodes.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.04964!))
     Me.tableLayoutPanelPeriodes.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.208037!))
     Me.tableLayoutPanelPeriodes.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-    Me.tableLayoutPanelPeriodes.Size = New System.Drawing.Size(144, 450)
+    Me.tableLayoutPanelPeriodes.Size = New System.Drawing.Size(147, 450)
     Me.tableLayoutPanelPeriodes.TabIndex = 238
     '
     'MetroLabelPeriodName
@@ -194,7 +194,7 @@ Partial Class frmMain
     Me.MetroLabelPeriodName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroLabelPeriodName.Location = New System.Drawing.Point(3, 58)
     Me.MetroLabelPeriodName.Name = "MetroLabelPeriodName"
-    Me.MetroLabelPeriodName.Size = New System.Drawing.Size(138, 35)
+    Me.MetroLabelPeriodName.Size = New System.Drawing.Size(141, 35)
     Me.MetroLabelPeriodName.TabIndex = 241
     Me.MetroLabelPeriodName.Text = "1st half"
     Me.MetroLabelPeriodName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -208,7 +208,7 @@ Partial Class frmMain
     Me.MetroLabelPeriodTime.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroLabelPeriodTime.Location = New System.Drawing.Point(3, 0)
     Me.MetroLabelPeriodTime.Name = "MetroLabelPeriodTime"
-    Me.MetroLabelPeriodTime.Size = New System.Drawing.Size(138, 58)
+    Me.MetroLabelPeriodTime.Size = New System.Drawing.Size(141, 58)
     Me.MetroLabelPeriodTime.TabIndex = 240
     Me.MetroLabelPeriodTime.Text = "00:00"
     Me.MetroLabelPeriodTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -218,9 +218,9 @@ Partial Class frmMain
     Me.rdbExtra2.AutoCheck = False
     Me.rdbExtra2.AutoSize = True
     Me.rdbExtra2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.rdbExtra2.Location = New System.Drawing.Point(75, 318)
+    Me.rdbExtra2.Location = New System.Drawing.Point(76, 318)
     Me.rdbExtra2.Name = "rdbExtra2"
-    Me.rdbExtra2.Size = New System.Drawing.Size(66, 35)
+    Me.rdbExtra2.Size = New System.Drawing.Size(68, 35)
     Me.rdbExtra2.TabIndex = 239
     Me.rdbExtra2.Text = "e2"
     Me.rdbExtra2.UseSelectable = True
@@ -236,7 +236,7 @@ Partial Class frmMain
     Me.btnClockReset.ForeColor = System.Drawing.SystemColors.ControlLightLight
     Me.btnClockReset.Location = New System.Drawing.Point(3, 408)
     Me.btnClockReset.Name = "btnClockReset"
-    Me.btnClockReset.Size = New System.Drawing.Size(138, 39)
+    Me.btnClockReset.Size = New System.Drawing.Size(141, 39)
     Me.btnClockReset.TabIndex = 237
     Me.btnClockReset.Text = "DATA RESET"
     Me.btnClockReset.UseVisualStyleBackColor = False
@@ -246,9 +246,9 @@ Partial Class frmMain
     Me.rdbExtra1.AutoCheck = False
     Me.rdbExtra1.AutoSize = True
     Me.rdbExtra1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.rdbExtra1.Location = New System.Drawing.Point(75, 277)
+    Me.rdbExtra1.Location = New System.Drawing.Point(76, 277)
     Me.rdbExtra1.Name = "rdbExtra1"
-    Me.rdbExtra1.Size = New System.Drawing.Size(66, 35)
+    Me.rdbExtra1.Size = New System.Drawing.Size(68, 35)
     Me.rdbExtra1.TabIndex = 236
     Me.rdbExtra1.Text = "e1"
     Me.rdbExtra1.UseSelectable = True
@@ -263,7 +263,7 @@ Partial Class frmMain
     Me.btnOverwriteClock.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.btnOverwriteClock.Location = New System.Drawing.Point(3, 359)
     Me.btnOverwriteClock.Name = "btnOverwriteClock"
-    Me.btnOverwriteClock.Size = New System.Drawing.Size(138, 43)
+    Me.btnOverwriteClock.Size = New System.Drawing.Size(141, 43)
     Me.btnOverwriteClock.TabIndex = 4
     Me.btnOverwriteClock.Text = "OVERWRITE CLOCK"
     Me.btnOverwriteClock.UseVisualStyleBackColor = False
@@ -277,7 +277,7 @@ Partial Class frmMain
     Me.txtClock.Font = New System.Drawing.Font("Verdana", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtClock.Location = New System.Drawing.Point(3, 93)
     Me.txtClock.Name = "txtClock"
-    Me.txtClock.Size = New System.Drawing.Size(138, 58)
+    Me.txtClock.Size = New System.Drawing.Size(141, 58)
     Me.txtClock.TabIndex = 233
     Me.txtClock.Text = "100:00"
     Me.txtClock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -288,9 +288,9 @@ Partial Class frmMain
     Me.rdb2ndHalf.AutoCheck = False
     Me.rdb2ndHalf.AutoSize = True
     Me.rdb2ndHalf.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.rdb2ndHalf.Location = New System.Drawing.Point(75, 236)
+    Me.rdb2ndHalf.Location = New System.Drawing.Point(76, 236)
     Me.rdb2ndHalf.Name = "rdb2ndHalf"
-    Me.rdb2ndHalf.Size = New System.Drawing.Size(66, 35)
+    Me.rdb2ndHalf.Size = New System.Drawing.Size(68, 35)
     Me.rdb2ndHalf.TabIndex = 235
     Me.rdb2ndHalf.Text = "2nd"
     Me.rdb2ndHalf.UseSelectable = True
@@ -302,9 +302,9 @@ Partial Class frmMain
     Me.rdb1stHalf.AutoSize = True
     Me.rdb1stHalf.Checked = True
     Me.rdb1stHalf.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.rdb1stHalf.Location = New System.Drawing.Point(75, 195)
+    Me.rdb1stHalf.Location = New System.Drawing.Point(76, 195)
     Me.rdb1stHalf.Name = "rdb1stHalf"
-    Me.rdb1stHalf.Size = New System.Drawing.Size(66, 35)
+    Me.rdb1stHalf.Size = New System.Drawing.Size(68, 35)
     Me.rdb1stHalf.TabIndex = 234
     Me.rdb1stHalf.TabStop = True
     Me.rdb1stHalf.Text = "1st"
@@ -318,9 +318,9 @@ Partial Class frmMain
     Me.StopClock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.StopClock.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.StopClock.ForeColor = System.Drawing.SystemColors.ControlLightLight
-    Me.StopClock.Location = New System.Drawing.Point(75, 154)
+    Me.StopClock.Location = New System.Drawing.Point(76, 154)
     Me.StopClock.Name = "StopClock"
-    Me.StopClock.Size = New System.Drawing.Size(66, 35)
+    Me.StopClock.Size = New System.Drawing.Size(68, 35)
     Me.StopClock.TabIndex = 5
     Me.StopClock.Text = "STOP"
     Me.StopClock.UseVisualStyleBackColor = False
@@ -333,7 +333,7 @@ Partial Class frmMain
     Me.StartClock.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.StartClock.Location = New System.Drawing.Point(3, 154)
     Me.StartClock.Name = "StartClock"
-    Me.StartClock.Size = New System.Drawing.Size(66, 35)
+    Me.StartClock.Size = New System.Drawing.Size(67, 35)
     Me.StartClock.TabIndex = 4
     Me.StartClock.Text = "START"
     Me.StartClock.UseVisualStyleBackColor = False
@@ -881,9 +881,9 @@ Partial Class frmMain
     Me.TableLayoutPanel3.SetColumnSpan(Me.groupBox2, 2)
     Me.groupBox2.Controls.Add(Me.MetroGridEvents)
     Me.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.groupBox2.Location = New System.Drawing.Point(879, 478)
+    Me.groupBox2.Location = New System.Drawing.Point(877, 478)
     Me.groupBox2.Name = "groupBox2"
-    Me.groupBox2.Size = New System.Drawing.Size(274, 141)
+    Me.groupBox2.Size = New System.Drawing.Size(276, 141)
     Me.groupBox2.TabIndex = 374
     Me.groupBox2.TabStop = False
     Me.groupBox2.Text = "Match Events"
@@ -934,7 +934,7 @@ Partial Class frmMain
     Me.MetroGridEvents.RowHeadersVisible = False
     Me.MetroGridEvents.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridEvents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridEvents.Size = New System.Drawing.Size(268, 122)
+    Me.MetroGridEvents.Size = New System.Drawing.Size(270, 122)
     Me.MetroGridEvents.TabIndex = 1
     '
     'ColumnID
@@ -999,7 +999,7 @@ Partial Class frmMain
     Me.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.groupBox1.Location = New System.Drawing.Point(629, 478)
     Me.groupBox1.Name = "groupBox1"
-    Me.groupBox1.Size = New System.Drawing.Size(244, 141)
+    Me.groupBox1.Size = New System.Drawing.Size(242, 141)
     Me.groupBox1.TabIndex = 373
     Me.groupBox1.TabStop = False
     Me.groupBox1.Text = "Team Stats"
@@ -1033,7 +1033,7 @@ Partial Class frmMain
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(238, 122)
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(236, 122)
     Me.TableLayoutPanel2.TabIndex = 535
     '
     'lblHomeTeam2
@@ -1047,7 +1047,7 @@ Partial Class frmMain
     Me.lblHomeTeam2.ForeColor = System.Drawing.Color.White
     Me.lblHomeTeam2.Location = New System.Drawing.Point(3, 0)
     Me.lblHomeTeam2.Name = "lblHomeTeam2"
-    Me.lblHomeTeam2.Size = New System.Drawing.Size(112, 30)
+    Me.lblHomeTeam2.Size = New System.Drawing.Size(111, 30)
     Me.lblHomeTeam2.TabIndex = 154
     Me.lblHomeTeam2.Text = "??"
     Me.lblHomeTeam2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1059,7 +1059,7 @@ Partial Class frmMain
     Me.TableLayoutPanel2.SetColumnSpan(Me.label91, 2)
     Me.label91.Dock = System.Windows.Forms.DockStyle.Fill
     Me.label91.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label91.Location = New System.Drawing.Point(82, 90)
+    Me.label91.Location = New System.Drawing.Point(81, 90)
     Me.label91.Name = "label91"
     Me.label91.Size = New System.Drawing.Size(72, 30)
     Me.label91.TabIndex = 179
@@ -1073,7 +1073,7 @@ Partial Class frmMain
     Me.TableLayoutPanel2.SetColumnSpan(Me.label90, 2)
     Me.label90.Dock = System.Windows.Forms.DockStyle.Fill
     Me.label90.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label90.Location = New System.Drawing.Point(82, 60)
+    Me.label90.Location = New System.Drawing.Point(81, 60)
     Me.label90.Name = "label90"
     Me.label90.Size = New System.Drawing.Size(72, 30)
     Me.label90.TabIndex = 178
@@ -1087,7 +1087,7 @@ Partial Class frmMain
     Me.TableLayoutPanel2.SetColumnSpan(Me.label89, 2)
     Me.label89.Dock = System.Windows.Forms.DockStyle.Fill
     Me.label89.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label89.Location = New System.Drawing.Point(82, 30)
+    Me.label89.Location = New System.Drawing.Point(81, 30)
     Me.label89.Name = "label89"
     Me.label89.Size = New System.Drawing.Size(72, 30)
     Me.label89.TabIndex = 177
@@ -1103,9 +1103,9 @@ Partial Class frmMain
     Me.lblAwayTeam2.Dock = System.Windows.Forms.DockStyle.Fill
     Me.lblAwayTeam2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.lblAwayTeam2.ForeColor = System.Drawing.Color.White
-    Me.lblAwayTeam2.Location = New System.Drawing.Point(121, 0)
+    Me.lblAwayTeam2.Location = New System.Drawing.Point(120, 0)
     Me.lblAwayTeam2.Name = "lblAwayTeam2"
-    Me.lblAwayTeam2.Size = New System.Drawing.Size(114, 30)
+    Me.lblAwayTeam2.Size = New System.Drawing.Size(113, 30)
     Me.lblAwayTeam2.TabIndex = 176
     Me.lblAwayTeam2.Text = "??"
     Me.lblAwayTeam2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1126,7 +1126,7 @@ Partial Class frmMain
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 626.0!))
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66667!))
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155.0!))
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158.0!))
     Me.TableLayoutPanel3.Controls.Add(Me.groupBox2, 2, 1)
     Me.TableLayoutPanel3.Controls.Add(Me.groupBox1, 1, 1)
     Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanelTeams, 0, 0)
@@ -1165,7 +1165,7 @@ Partial Class frmMain
     Me.TeamControlHome.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.TeamControlHome.Location = New System.Drawing.Point(3, 3)
     Me.TeamControlHome.Name = "TeamControlHome"
-    Me.TeamControlHome.Size = New System.Drawing.Size(491, 463)
+    Me.TeamControlHome.Size = New System.Drawing.Size(489, 463)
     Me.TeamControlHome.TabIndex = 378
     Me.TeamControlHome.Team = Nothing
     '
@@ -1174,9 +1174,9 @@ Partial Class frmMain
     Me.TeamControlAway.BackColor = System.Drawing.Color.White
     Me.TeamControlAway.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TeamControlAway.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.TeamControlAway.Location = New System.Drawing.Point(500, 3)
+    Me.TeamControlAway.Location = New System.Drawing.Point(498, 3)
     Me.TeamControlAway.Name = "TeamControlAway"
-    Me.TeamControlAway.Size = New System.Drawing.Size(491, 463)
+    Me.TeamControlAway.Size = New System.Drawing.Size(490, 463)
     Me.TeamControlAway.TabIndex = 379
     Me.TeamControlAway.Team = Nothing
     '
@@ -1185,7 +1185,7 @@ Partial Class frmMain
     Me.SingleStatControlHomeCorners.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleStatControlHomeCorners.Location = New System.Drawing.Point(3, 33)
     Me.SingleStatControlHomeCorners.Name = "SingleStatControlHomeCorners"
-    Me.SingleStatControlHomeCorners.Size = New System.Drawing.Size(73, 24)
+    Me.SingleStatControlHomeCorners.Size = New System.Drawing.Size(72, 24)
     Me.SingleStatControlHomeCorners.Stat = Nothing
     Me.SingleStatControlHomeCorners.StatSubject = Nothing
     Me.SingleStatControlHomeCorners.TabIndex = 535
@@ -1195,7 +1195,7 @@ Partial Class frmMain
     Me.SingleStatControlHomeOffsides.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleStatControlHomeOffsides.Location = New System.Drawing.Point(3, 63)
     Me.SingleStatControlHomeOffsides.Name = "SingleStatControlHomeOffsides"
-    Me.SingleStatControlHomeOffsides.Size = New System.Drawing.Size(73, 24)
+    Me.SingleStatControlHomeOffsides.Size = New System.Drawing.Size(72, 24)
     Me.SingleStatControlHomeOffsides.Stat = Nothing
     Me.SingleStatControlHomeOffsides.StatSubject = Nothing
     Me.SingleStatControlHomeOffsides.TabIndex = 536
@@ -1205,7 +1205,7 @@ Partial Class frmMain
     Me.SingleStatControlHomeWood.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleStatControlHomeWood.Location = New System.Drawing.Point(3, 93)
     Me.SingleStatControlHomeWood.Name = "SingleStatControlHomeWood"
-    Me.SingleStatControlHomeWood.Size = New System.Drawing.Size(73, 24)
+    Me.SingleStatControlHomeWood.Size = New System.Drawing.Size(72, 24)
     Me.SingleStatControlHomeWood.Stat = Nothing
     Me.SingleStatControlHomeWood.StatSubject = Nothing
     Me.SingleStatControlHomeWood.TabIndex = 537
@@ -1213,9 +1213,9 @@ Partial Class frmMain
     'SingleStatControlAwayCorners
     '
     Me.SingleStatControlAwayCorners.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlAwayCorners.Location = New System.Drawing.Point(160, 33)
+    Me.SingleStatControlAwayCorners.Location = New System.Drawing.Point(159, 33)
     Me.SingleStatControlAwayCorners.Name = "SingleStatControlAwayCorners"
-    Me.SingleStatControlAwayCorners.Size = New System.Drawing.Size(75, 24)
+    Me.SingleStatControlAwayCorners.Size = New System.Drawing.Size(74, 24)
     Me.SingleStatControlAwayCorners.Stat = Nothing
     Me.SingleStatControlAwayCorners.StatSubject = Nothing
     Me.SingleStatControlAwayCorners.TabIndex = 538
@@ -1223,9 +1223,9 @@ Partial Class frmMain
     'SingleStatControlAwayOffsides
     '
     Me.SingleStatControlAwayOffsides.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlAwayOffsides.Location = New System.Drawing.Point(160, 63)
+    Me.SingleStatControlAwayOffsides.Location = New System.Drawing.Point(159, 63)
     Me.SingleStatControlAwayOffsides.Name = "SingleStatControlAwayOffsides"
-    Me.SingleStatControlAwayOffsides.Size = New System.Drawing.Size(75, 24)
+    Me.SingleStatControlAwayOffsides.Size = New System.Drawing.Size(74, 24)
     Me.SingleStatControlAwayOffsides.Stat = Nothing
     Me.SingleStatControlAwayOffsides.StatSubject = Nothing
     Me.SingleStatControlAwayOffsides.TabIndex = 539
@@ -1233,9 +1233,9 @@ Partial Class frmMain
     'SingleStatControlAwayWood
     '
     Me.SingleStatControlAwayWood.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlAwayWood.Location = New System.Drawing.Point(160, 93)
+    Me.SingleStatControlAwayWood.Location = New System.Drawing.Point(159, 93)
     Me.SingleStatControlAwayWood.Name = "SingleStatControlAwayWood"
-    Me.SingleStatControlAwayWood.Size = New System.Drawing.Size(75, 24)
+    Me.SingleStatControlAwayWood.Size = New System.Drawing.Size(74, 24)
     Me.SingleStatControlAwayWood.Stat = Nothing
     Me.SingleStatControlAwayWood.StatSubject = Nothing
     Me.SingleStatControlAwayWood.TabIndex = 540
@@ -1248,8 +1248,9 @@ Partial Class frmMain
     Me.ClientSize = New System.Drawing.Size(1180, 662)
     Me.Controls.Add(Me.ToolStrip1)
     Me.Controls.Add(Me.TableLayoutPanel3)
+    Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
     Me.Name = "frmMain"
-    Me.Text = "frmMainForm"
+    Me.Text = "AlKamel soccer logger"
     Me.TableLayoutPanelTeams.ResumeLayout(False)
     Me.grpControls.ResumeLayout(False)
     Me.tableLayoutPanelPeriodes.ResumeLayout(False)
