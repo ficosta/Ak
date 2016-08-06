@@ -17,7 +17,9 @@ Public Class FormPeriodControl
     Try
       With Me.MetroGridPeriods
         .Rows.Clear()
+        .MultiSelect = False
         Dim itemIndex As Integer
+
         itemIndex = .Rows.Add("Reset")
         .Rows(itemIndex).Cells(ColumnType.Index).Value = "RESET"
         .Rows(itemIndex).Cells(ColumnID.Index).Value = "0"
@@ -41,12 +43,14 @@ Public Class FormPeriodControl
           '.Rows(itemIndex).Frozen = True
 
           itemIndex = .Rows.Add("START:" & i)
+          If Not _match.MatchPeriods.ActivePeriod Is Nothing AndAlso _match.MatchPeriods.ActivePeriod.Part = _match.MatchPeriods(i).Part - 1 And _match.MatchPeriods.ActivePeriod.Activa = False Then itemToSelect = itemIndex
           .Rows(itemIndex).Cells(ColumnType.Index).Value = "START"
           .Rows(itemIndex).Cells(ColumnID.Index).Value = CStr(i)
           .Rows(itemIndex).Cells(ColumnText.Index).Value = _match.MatchPeriods(i).Nom & " (start clock)"
           .Rows(itemIndex).Selected = (i = periodToStart And start)
 
           itemIndex = .Rows.Add("STOP:" & i)
+          If Not _match.MatchPeriods.ActivePeriod Is Nothing AndAlso _match.MatchPeriods.ActivePeriod.Part = _match.MatchPeriods(i).Part And _match.MatchPeriods.ActivePeriod.Activa = True Then itemToSelect = itemIndex
           .Rows(itemIndex).Cells(ColumnType.Index).Value = "STOP"
           .Rows(itemIndex).Cells(ColumnID.Index).Value = CStr(i)
           .Rows(itemIndex).Cells(ColumnText.Index).Value = _match.MatchPeriods(i).Nom & " (stop clock)"
@@ -64,9 +68,12 @@ Public Class FormPeriodControl
         .ClearSelection()
 
         For row As Integer = 0 To .Rows.Count - 1
-          Me.MetroGridPeriods.Rows(itemIndex).Selected = (row = itemToSelect)
+          Me.MetroGridPeriods.Rows(row).Selected = False
         Next
+
+        Me.MetroGridPeriods.Rows(itemToSelect).Selected = True
       End With
+
     Catch ex As Exception
 
     End Try
@@ -84,7 +91,7 @@ Public Class FormPeriodControl
       If frmWaitForInput.ShowWaitDialog(Me, "Reset match data?", _match.Description, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.Cancel Then Exit Sub
 
       _match.Reset()
-
+      Me.Close()
     Catch ex As Exception
 
     End Try
@@ -95,13 +102,13 @@ Public Class FormPeriodControl
     Try
       If _match Is Nothing Then Exit Sub
       If _match.MatchPeriods.ActivePeriod Is Nothing Then Exit Sub
-      dlg.Minutes = _match.MatchPeriods.ActivePeriod.PlayingTime \ 60
-      dlg.Seconds = _match.MatchPeriods.ActivePeriod.PlayingTime Mod 60
+      dlg.Minutes = _match.MatchPeriods.TempsJocWithOffset \ 60
+      dlg.Seconds = _match.MatchPeriods.TempsJocWithOffset Mod 60
       If dlg.ShowDialog(Me) Then
         Dim newTime As Integer = dlg.Minutes * 60 + dlg.Seconds
 
         _match.MatchPeriods.SetPlayingTime(newTime)
-
+        Me.Close()
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -117,9 +124,9 @@ Public Class FormPeriodControl
     Try
       Select Case _selectedAction ' Me.MetroGridPeriods.Rows(e.RowIndex).Cells(ColumnID.Index).Value
         Case "RESET"
-          ResetMatch()
+       '   ResetMatch()
         Case "OVERWRITE"
-          OverWriteClock()
+          '  OverWriteClock()
       End Select
 
       ' ExecuteSelectedAction()
@@ -199,9 +206,6 @@ Public Class FormPeriodControl
     _match.MatchPeriods.UpdatePeriodExtraTime(_match.MatchPeriods.ActivePeriod, Me.NumericUpDownMinutes.Value)
   End Sub
 
-  Private Sub MetroGridPeriods_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridPeriods.CellContentClick
-
-  End Sub
 
   Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
     ExecuteSelectedAction()
@@ -212,6 +216,9 @@ Public Class FormPeriodControl
     Me.Close()
   End Sub
 
+  Private Sub FormPeriodControl_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+    PopulateGrid()
+  End Sub
 
 #End Region
 

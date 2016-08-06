@@ -6,12 +6,17 @@
 
   Private Sub New()
     Dim graphVersion As GraphicVersion
-    graphVersion = New GraphicVersion("Saudi league", "BeInReal/MBC/Football/Scenes/", "CHANNELS/MBC_SPORTS/Badges/512/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Jerseys/Pics/", "CHANNELS/MBC_SPORTS/Badges/3D/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Colors/", "", "")
+    '    graphVersion = New GraphicVersion("Saudi league", "BeInReal/MBC/Football/Scenes/", "CHANNELS/MBC_SPORTS/Badges/512/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Jerseys/Pics/", "CHANNELS/MBC_SPORTS/Badges/3D/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Colors/", "", "")
+    'graphVersion = New GraphicVersion("Saudi league", "BeInReal/MBC/Football/Scenes/", "CHANNELS/MBC_SPORTS/Badges/512/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Jerseys/Pics/", "CHANNELS/MBC_SPORTS/Badges/3D/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Colors/", "", "")
+    graphVersion = New GraphicVersion("Saudi league", "CHANNELS/MBC_SPORTS/2016/LEAGUE/Scenes/", "CHANNELS/MBC_SPORTS/Badges/512/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Jerseys/Pics/", "CHANNELS/MBC_SPORTS/Badges/3D/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Colors/", "", "")
+
     graphVersion.UseLongPreview = False
     Me.Add(graphVersion)
 
     graphVersion.UseLongPreview = True
-    graphVersion = New GraphicVersion("Cup", "CHANNELS/MBC_SPORTS/2016/CPC_2016/Ingame_Alkamel/", "CHANNELS/MBC_SPORTS/Badges/512/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Jerseys/Pics/", "CHANNELS/MBC_SPORTS/Badges/3D/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Colors/", "", "")
+    '    graphVersion = New GraphicVersion("Cup", "CHANNELS/MBC_SPORTS/2016/CPC_2016/Ingame_Alkamel/", "CHANNELS/MBC_SPORTS/Badges/512/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Jerseys/Pics/", "CHANNELS/MBC_SPORTS/Badges/3D/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Colors/", "", "")
+    graphVersion = New GraphicVersion("Cup", "CHANNELS/MBC_SPORTS/2016/CPC_2016/Scenes/", "CHANNELS/MBC_SPORTS/Badges/512/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Jerseys/Pics/", "CHANNELS/MBC_SPORTS/Badges/3D/", "CHANNELS/MBC_SPORTS/CLUPS_LOGOS/Colors/", "", "")
+
     Me.Add(graphVersion)
 
   End Sub

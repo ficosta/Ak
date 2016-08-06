@@ -63,11 +63,11 @@ Public Class GraphicsTeamCaptions
       _teamStaffs = New TeamStaffs
 
       If graphicStep Is Nothing Then
-        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 ans subs", Step0.Home11AndSubs, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 and subs", Step0.Home11AndSubs, True, True))
         gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 mini formation", Step0.Home11MiniFormation, True, True))
         gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 formation", Step0.Home11Formation, True, True))
 
-        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 ans subs", Step0.Away11AndSubs, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 and subs", Step0.Away11AndSubs, True, True))
         gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 mini formation", Step0.Away11MiniFormation, True, True))
         gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 formation", Step0.Away11Formation, True, True))
 
@@ -124,7 +124,7 @@ Public Class GraphicsTeamCaptions
     If GraphicVersions.Instance.SelectedGraphicVersion.UseLongPreview Then
       scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 90, DirectorAction.Dummy)
     Else
-      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 105, DirectorAction.Dummy)
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 90, DirectorAction.Dummy)
     End If
     scene.SceneDirectorsIn.Add("Change_1_2", 0, DirectorAction.Rewind)
     scene.SceneDirectorsIn.Add("Title_change_1_2", 0, DirectorAction.Rewind)
@@ -178,6 +178,12 @@ Public Class GraphicsTeamCaptions
     Dim prefix As String = ""
     Dim subjectPrefix As String = ""
     Try
+      If GraphicVersions.Instance.SelectedGraphicVersion.UseLongPreview Then
+        scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 90, DirectorAction.Dummy)
+      Else
+        scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 90, DirectorAction.Dummy)
+      End If
+
       scene.SceneParameters.Add("Side_" & gSide & "_TeamList_Vis.active", "1")
       scene.SceneParameters.Add("TeamList_Side_" & gSide & "_Substitutes_Title", Arabic("Substitutes"))
 

@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Runtime.InteropServices
+Imports System.Windows.Forms
 Imports AkSocc
 
 Public Class KeyCombination
@@ -86,6 +87,8 @@ Public Class KeyCapture
   Public Alt As Boolean = False
   Public Windows As Boolean = False
 
+  Public ParentHandle As IntPtr = 0
+
   Private _enabled As Boolean = True
   Public Property Enabled() As Boolean
     Get
@@ -104,35 +107,55 @@ Public Class KeyCapture
   End Property
 
 
+  Public Declare Function GetActiveWindow Lib "user32" Alias "GetActiveWindow" () As IntPtr
+  Public Declare Function GetWindowText Lib "user32" Alias "GetWindowTextA" (ByVal hwnd As IntPtr, ByVal lpString As System.Text.StringBuilder, ByVal cch As Integer) As Integer
+
+  Private Function GetMyWindowText(handle As IntPtr) As String
+    ' Create a buffer of 256 characters
+    Dim Caption As New System.Text.StringBuilder(256)
+    GetWindowText(handle, Caption, Caption.Capacity)
+    Return Caption.ToString
+  End Function
+
+
   Public Sub New()
     Application.AddMessageFilter(Me)
 
     'Mode chyron
-    Me.LlistaCombinations.Add(New KeyCombination("Read", Keys.Return))
-    Me.LlistaCombinations.Add(New KeyCombination("Read", Keys.F4))
-    Me.LlistaCombinations.Add(New KeyCombination("Read next", Keys.Add))
-    Me.LlistaCombinations.Add(New KeyCombination("Take", Keys.F5))
-    Me.LlistaCombinations.Add(New KeyCombination("Continue", Keys.F8))
-    Me.LlistaCombinations.Add(New KeyCombination("TakeOut", Keys.F6))
-    Me.LlistaCombinations.Add(New KeyCombination("Record", Keys.Subtract))
-    Me.LlistaCombinations.Add(New KeyCombination("Read+Take", Keys.Return, False, True, False, False))
+    'Me.LlistaCombinations.Add(New KeyCombination("Read", Keys.Return))
+    'Me.LlistaCombinations.Add(New KeyCombination("Read", Keys.F4))
+    'Me.LlistaCombinations.Add(New KeyCombination("Read next", Keys.Add))
+    'Me.LlistaCombinations.Add(New KeyCombination("Take", Keys.F5))
+    'Me.LlistaCombinations.Add(New KeyCombination("Continue", Keys.F8))
+    'Me.LlistaCombinations.Add(New KeyCombination("TakeOut", Keys.F6))
+    'Me.LlistaCombinations.Add(New KeyCombination("Record", Keys.Subtract))
+    'Me.LlistaCombinations.Add(New KeyCombination("Read+Take", Keys.Return, False, True, False, False))
 
-    Me.LlistaCombinations.Add(New KeyCombination("0", Keys.NumPad0))
-    Me.LlistaCombinations.Add(New KeyCombination("1", Keys.NumPad1))
-    Me.LlistaCombinations.Add(New KeyCombination("2", Keys.NumPad2))
-    Me.LlistaCombinations.Add(New KeyCombination("3", Keys.NumPad3))
-    Me.LlistaCombinations.Add(New KeyCombination("4", Keys.NumPad4))
-    Me.LlistaCombinations.Add(New KeyCombination("5", Keys.NumPad5))
-    Me.LlistaCombinations.Add(New KeyCombination("6", Keys.NumPad6))
-    Me.LlistaCombinations.Add(New KeyCombination("7", Keys.NumPad7))
-    Me.LlistaCombinations.Add(New KeyCombination("8", Keys.NumPad8))
-    Me.LlistaCombinations.Add(New KeyCombination("9", Keys.NumPad9))
+    'Me.LlistaCombinations.Add(New KeyCombination("0", Keys.NumPad0))
+    'Me.LlistaCombinations.Add(New KeyCombination("1", Keys.NumPad1))
+    'Me.LlistaCombinations.Add(New KeyCombination("2", Keys.NumPad2))
+    'Me.LlistaCombinations.Add(New KeyCombination("3", Keys.NumPad3))
+    'Me.LlistaCombinations.Add(New KeyCombination("4", Keys.NumPad4))
+    'Me.LlistaCombinations.Add(New KeyCombination("5", Keys.NumPad5))
+    'Me.LlistaCombinations.Add(New KeyCombination("6", Keys.NumPad6))
+    'Me.LlistaCombinations.Add(New KeyCombination("7", Keys.NumPad7))
+    'Me.LlistaCombinations.Add(New KeyCombination("8", Keys.NumPad8))
+    'Me.LlistaCombinations.Add(New KeyCombination("9", Keys.NumPad9))
 
 
   End Sub
 
   Public Function PreFilterMessage(ByRef m As System.Windows.Forms.Message) As Boolean Implements System.Windows.Forms.IMessageFilter.PreFilterMessage
     If Not _enabled Then Return False
+
+    If m.Msg <> WM_KEYDOWN And m.Msg <> WM_KEYUP And m.Msg <> WM_SYSKEYDOWN And m.Msg <> WM_SYSKEYUP Then Return False
+
+    'Debug.Print("======== PreFilterMessage =========")
+    'Debug.Print("Active window [" & GetActiveWindow().ToInt32.ToString & "] = " & GetMyWindowText(GetActiveWindow))
+    'Debug.Print("Active window [" & ParentHandle.ToInt32.ToString & "] = " & GetMyWindowText(ParentHandle))
+
+    If Me.ParentHandle.ToInt32 <> 0 And Me.ParentHandle <> GetActiveWindow Then Return False
+
     Select Case m.Msg
       Case WM_KEYDOWN, WM_SYSKEYDOWN
         ' Debug.Print(m.LParam.ToString & " " & m.WParam.ToString)
@@ -159,7 +182,7 @@ Public Class KeyCapture
           Case Keys.Shift, Keys.ShiftKey
             Me.Shift = False
             Return True
-          Case Keys.Alt, 18
+          Case Keys.Alt, Keys.Menu, Keys.RMenu
             Me.Alt = False
             Return True
           Case Keys.Control, Keys.ControlKey

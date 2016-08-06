@@ -57,7 +57,10 @@ Public Class TeamClassificationForMatchDay
     If Me.Team Is Nothing Then
       Return MyBase.ToString()
     Else
-      Return Me.Position & ". " & Team.TeamAELCaption1Name & vbCrLf & vbTab & Me.Points & "." & vbTab & Me.MatchesWon & "." & vbTab & Me.MatchesDrawn & "." & vbTab & Me.MatchesLost & "." & vbTab & GoalsFor & "." & vbTab & GoalsAgainst & "." & vbTab & GoalAverage & "."
+      Dim text As String = Me.Position & ". " & Team.TeamAELCaption1Name & vbCrLf & vbTab & Me.Points & "." & vbTab & Me.MatchesWon & "." & vbTab & Me.MatchesDrawn & "." & vbTab & Me.MatchesLost & "." & vbTab & GoalsFor & "." & vbTab & GoalsAgainst & "." & vbTab & GoalAverage & "."
+
+      text = text & " [" & Me.PositionChange.ToString & "]"
+      Return text
     End If
 
   End Function

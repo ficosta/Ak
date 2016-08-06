@@ -92,7 +92,7 @@ Public Class GraphicsTeamStats
         Case Step0.Offisdes
           Scene = PrepareTeamStat(changeStep, "Offsides", Me.Match.HomeTeam.MatchStats.Offsides.ValueText, Me.Match.AwayTeam.MatchStats.Offsides.ValueText)
         Case Step0.FoulsComitted
-          Scene = PrepareTeamStat(changeStep, "Fouls comitted", Me.Match.HomeTeam.MatchStats.Fouls.ValueText, Me.Match.AwayTeam.MatchStats.Fouls.ValueText)
+          Scene = PrepareTeamStat(changeStep, "FOULS COMMITTED", Me.Match.HomeTeam.MatchStats.Fouls.ValueText, Me.Match.AwayTeam.MatchStats.Fouls.ValueText)
         Case Step0.Corners
           Scene = PrepareTeamStat(changeStep, "Corners", Me.Match.HomeTeam.MatchStats.Corners.ValueText, Me.Match.AwayTeam.MatchStats.Corners.ValueText)
         Case Step0.Possession

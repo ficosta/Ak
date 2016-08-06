@@ -224,7 +224,13 @@ Public Class frmMain
         _vizControl.Config.SceneBasePath = GraphicVersions.Instance.SelectedGraphicVersion.Path
       End If
       If Not _previewControl Is Nothing Then
-        _previewControl.Config = _vizControl.Config
+
+        Dim pvwConfig As New VizCommands.tyConfigVizrt
+        pvwConfig.TCPHost = AppSettings.Instance.VizrtHost
+        pvwConfig.TCPPort = AppSettings.Instance.VizrtPreviewPort
+        pvwConfig.SceneBasePath = AppSettings.Instance.ScenePath
+
+        _previewControl.Config = pvwConfig
       End If
     Catch ex As Exception
 
@@ -290,6 +296,9 @@ Public Class frmMain
 
         Me.LabelAwayTeamShortName.Text = _match.AwayTeam.TeamAELTinyName
         Me.LabelHomeTeamShortName.Text = _match.HomeTeam.TeamAELTinyName
+
+        Me.MetroLabelPeriodTime.Text = ""
+        Me.MetroLabelPeriodName.Text = ""
 
         EngageDataBinding()
 
@@ -803,18 +812,12 @@ Public Class frmMain
         Me.MetroLabelPeriodTime.Text = _match.MatchPeriods.TempsJocWithOffsetString
         Me.MetroLabelPeriodName.Text = _match.MatchPeriods.Nom
 
-        Dim XX As New MetroFramework.Components.MetroStyleManager()
-
-        If _match.MatchPeriods.ActivePeriod.PlayingTime > _match.MatchPeriods.ActivePeriod.TotalTime Then
-          labelColor = colorOn
-          XX.Theme = MetroFramework.MetroThemeStyle.Dark
-          Me.MetroLabelPeriodTime.BackColor = Color.Red
-          Me.MetroLabelPeriodTime.Invalidate()
+        If _match.MatchPeriods.ActivePeriod.Activa = False Then
+          labelColor = Color.White
+        ElseIf _match.MatchPeriods.ActivePeriod.IsPeriodDone Then
+          labelColor = Color.LightSalmon
         Else
-          labelColor = colorOff
-          XX.Theme = MetroFramework.MetroThemeStyle.Light
-
-          Me.MetroLabelPeriodTime.BackColor = Color.Blue
+          labelColor = Color.LightGreen
         End If
       End If
       Me.MetroLabelPeriodTime.BackColor = labelColor
@@ -1136,6 +1139,7 @@ Public Class frmMain
           _keyCapture.LlistaCombinations.Add(instance.KeyCombination)
         End If
       Next
+      _keyCapture.ParentHandle = Me.Handle
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try

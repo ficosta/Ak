@@ -50,6 +50,7 @@ Public Class FormLoadScenes
     If _sceneIndex < Me.SceneList.Count Then
       If _sceneIndex = -1 Then _sceneIndex = 0
       _vizControl.ActivateScene(_vizControl.Config.SceneBasePath & Me.SceneList(_sceneIndex))
+      _vizControl.DirectorRewindAll()
       '_vizControl.ActivateScene("")
       GlobalNotifier.Instance.AddInfoMessage(Me.SceneList(_sceneIndex) & " activating")
       Me.ShowScene(Me.SceneList(_sceneIndex), "activating scene", Color.Orange)
@@ -71,7 +72,7 @@ Public Class FormLoadScenes
             Me.ShowScene(Me.SceneList(_sceneIndex), "error activating scene", Color.Red)
             Debug.Print("error activating scene " & Me.SceneList(_sceneIndex))
           Else
-            Me.ShowScene(Me.SceneList(_sceneIndex), "activated", Color.Green)
+            Me.ShowScene(Me.SceneList(_sceneIndex), "activated", Color.LightGreen)
             Debug.Print("activated scene " & Me.SceneList(_sceneIndex))
             GlobalNotifier.Instance.AddInfoMessage(Me.SceneList(_sceneIndex) & " activated")
           End If

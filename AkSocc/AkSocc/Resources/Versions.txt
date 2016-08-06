@@ -3,6 +3,10 @@ Version 0.7.7
 - Fixed: Officials were not getting saved to the database
 - More work on opta integration
 - Improved scene load window
+- Fixed a problem with the 3rd line of the "As it stands" graphic
+- Minor interface tweaks
+- Tweaks to the clock control window
+- Reorganized the Graphic Hub so scenes and materials are all in the same folders and easy to find
 
 ====================
 Version 0.7.6

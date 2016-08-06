@@ -1084,10 +1084,7 @@ Imports MatchInfo
     Try
       _matchEvents.Reset(Me.match_id)
       _matchGoals.Reset(Me.match_id)
-      Me.MatchPeriods.EndPeriod(1)
-      Me.MatchPeriods.ActivePeriod = Me.MatchPeriods(0)
-      Me.MatchPeriods.SetPlayingTime(0)
-      Me.MatchPeriods.EndPeriod(1)
+      Me.MatchPeriods.Reset()
 
       Me.HomeTeam.MatchGoals.Reset(Me.match_id)
       For Each player As Player In Me.HomeTeam.MatchPlayers
@@ -1106,6 +1103,11 @@ Imports MatchInfo
           End If
         Next
       Next
+
+      Me._home_goals = -1
+      Me._away_goals = -1
+
+      RaiseEvent MatchReset()
       RaiseEvent ScoreChanged()
     Catch ex As Exception
       Debug.Print(ex.ToString)

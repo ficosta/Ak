@@ -86,7 +86,11 @@ Public Class GraphicsBugs
     scene.SceneName = "gfx_bugs"
     scene.SceneDirector = "DIR_MAIN$In_Out"
     scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 0, DirectorAction.Start)
-    scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 75, DirectorAction.Dummy)
+    If GraphicVersions.Instance.SelectedGraphicVersion.UseLongPreview Then
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 95, DirectorAction.Dummy)
+    Else
+      scene.SceneDirectorsIn.Add("DIR_MAIN$In_Out", 50, DirectorAction.Dummy)
+    End If
     scene.SceneDirectorsIn.Add("Crawl_Side_" & gSide, 0, DirectorAction.Start)
     scene.SceneDirectorsIn.Add("Popout", 0, DirectorAction.Rewind)
 

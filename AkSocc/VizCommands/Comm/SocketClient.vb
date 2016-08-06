@@ -372,10 +372,15 @@ Public Class SocketClient
               CPiTCPSocket = Nothing
               Dim args() As Object = {False}
               Me.CPiBackgroundWorker.ReportProgress(eSocketProgressState.Disconnected, CStr(args(0)))
-
-              Thread.Sleep(1)
+              Me.CPiBackgroundWorker.CancelAsync()
             End If
-            End If
+          Else
+            'the socket admits it's not connected!
+            CPiTCPSocket = Nothing
+            Dim args() As Object = {False}
+            Me.CPiBackgroundWorker.ReportProgress(eSocketProgressState.Disconnected, CStr(args(0)))
+            Me.CPiBackgroundWorker.CancelAsync()
+          End If
 
           '--Are we stil conncted?
           If IsConnected() = False Then
@@ -391,6 +396,7 @@ Public Class SocketClient
               _connected = False
           End Select
         End Try
+        Thread.Sleep(1)
       End While
     Catch ex As Exception
 

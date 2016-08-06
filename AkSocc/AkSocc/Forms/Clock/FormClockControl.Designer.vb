@@ -272,6 +272,7 @@ Partial Class FormClockControl
     Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
     Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.Name = "FormClockControl"
+    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "Clock position"
     Me.TableLayoutPanelButtons.ResumeLayout(False)
     Me.TableLayoutPanelControls.ResumeLayout(False)

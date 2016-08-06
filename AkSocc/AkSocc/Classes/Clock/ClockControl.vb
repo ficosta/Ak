@@ -596,6 +596,7 @@ Public NotInheritable Class ClockControl
   Private _sponsorOnair As Boolean = False
   Public Sub UpdateSponsor()
     Try
+      If _vizControl Is Nothing Then Exit Sub
       _vizControl.SetControlObjectValue("$object", "Clock_Control_OMO_Sponsor", _SponsorSelectedLogo, eRendererLayers.FrontLayer)
       If _clockOnAir = False Then
         _sponsorOnair = False

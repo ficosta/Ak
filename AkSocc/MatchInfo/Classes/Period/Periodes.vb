@@ -358,4 +358,28 @@ Public Class Periods
     End Try
     Return ActivePeriod
   End Function
+
+  Public Function Reset() As Boolean
+    Dim res As Boolean = False
+    Try
+      For Each period As Period In Me.List
+        Me.EndPeriod(period.Part, 0)
+        period.Activa = False
+        period.StartOffset = 0
+        period.ExtraTime = 0
+        period.ManualOffset = 0
+        period.HoraInici = New Date
+        period.SavePart()
+      Next
+
+      Me.ActivePeriod = Me.List(0)
+
+      RaiseEvent ActivePeriodStateChanged(Me.ActivePeriod)
+
+      res = True
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
 End Class

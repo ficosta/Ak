@@ -78,4 +78,18 @@ Public Class frmFixtures
 
     End Try
   End Sub
+
+  Private Sub frmFixtures_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+    With Me.MetroGridMatches
+      For i As Integer = 1 To 10
+        .Rows.Add("Item " & i)
+      Next
+
+      .MultiSelect = False
+      For row As Integer = 0 To .Rows.Count - 1
+        .Rows(row).Selected = False
+      Next
+      .Rows(5).Selected = True
+    End With
+  End Sub
 End Class
