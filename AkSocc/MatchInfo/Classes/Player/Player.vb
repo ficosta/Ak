@@ -469,7 +469,7 @@
           SQL += " VideoName2=@VideoName2,"
         End If
         If ActualDb.OptaId <> OptaId AndAlso OptaId <> -1 Then
-          SQL += " OptaId=@OptaId,"
+          SQL += " OptaId=" & optaID & ","
         End If
         If ActualDb.SeasonCleanSheets <> SeasonCleanSheets AndAlso SeasonCleanSheets <> -1 Then
           SQL += " SeasonCleanSheets=@SeasonCleanSheets,"
@@ -508,7 +508,18 @@
 #End Region
 
 #Region "Player stats"
-
+  Public Function optaGetValue(valueName As String) As String
+    Dim res As String = "0"
+    Try
+      For i As Integer = 0 To Me.optaStatValueNames.Count - 1
+        If optaStatValueNames(i) = valueName Then
+          res = optaStatValues(i)
+        End If
+      Next
+    Catch ex As Exception
+    End Try
+    Return res
+  End Function
 #End Region
 
   Public Overrides Function ToString() As String

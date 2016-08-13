@@ -307,15 +307,15 @@ Partial Class FormSubstitution
     Me.TableLayoutPanel1.ColumnCount = 2
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanel1.Controls.Add(Me.MetroLabelINPlayer, 1, 2)
+    Me.TableLayoutPanel1.Controls.Add(Me.MetroLabelINPlayer, 0, 2)
     Me.TableLayoutPanel1.Controls.Add(Me.MetroLabelInfo, 0, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.MetroTextBoxPlayers, 0, 1)
-    Me.TableLayoutPanel1.Controls.Add(Me.MetroLabelOUTPlayer, 0, 2)
+    Me.TableLayoutPanel1.Controls.Add(Me.MetroLabelOUTPlayer, 1, 2)
     Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 3)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 3
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel1.Size = New System.Drawing.Size(685, 92)
     Me.TableLayoutPanel1.TabIndex = 2
@@ -324,9 +324,10 @@ Partial Class FormSubstitution
     '
     Me.MetroLabelINPlayer.AutoSize = True
     Me.MetroLabelINPlayer.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabelINPlayer.Location = New System.Drawing.Point(345, 60)
+    Me.MetroLabelINPlayer.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.MetroLabelINPlayer.Location = New System.Drawing.Point(3, 70)
     Me.MetroLabelINPlayer.Name = "MetroLabelINPlayer"
-    Me.MetroLabelINPlayer.Size = New System.Drawing.Size(337, 32)
+    Me.MetroLabelINPlayer.Size = New System.Drawing.Size(336, 22)
     Me.MetroLabelINPlayer.TabIndex = 5
     Me.MetroLabelINPlayer.Text = "IN Player"
     '
@@ -335,9 +336,10 @@ Partial Class FormSubstitution
     Me.MetroLabelInfo.AutoSize = True
     Me.TableLayoutPanel1.SetColumnSpan(Me.MetroLabelInfo, 2)
     Me.MetroLabelInfo.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroLabelInfo.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroLabelInfo.Location = New System.Drawing.Point(3, 0)
     Me.MetroLabelInfo.Name = "MetroLabelInfo"
-    Me.MetroLabelInfo.Size = New System.Drawing.Size(679, 30)
+    Me.MetroLabelInfo.Size = New System.Drawing.Size(679, 35)
     Me.MetroLabelInfo.TabIndex = 2
     Me.MetroLabelInfo.Text = "Enter player numbers separated by a space"
     Me.MetroLabelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -346,18 +348,20 @@ Partial Class FormSubstitution
     '
     Me.TableLayoutPanel1.SetColumnSpan(Me.MetroTextBoxPlayers, 2)
     Me.MetroTextBoxPlayers.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroTextBoxPlayers.Location = New System.Drawing.Point(3, 33)
+    Me.MetroTextBoxPlayers.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.MetroTextBoxPlayers.Location = New System.Drawing.Point(3, 38)
     Me.MetroTextBoxPlayers.Name = "MetroTextBoxPlayers"
-    Me.MetroTextBoxPlayers.Size = New System.Drawing.Size(679, 20)
+    Me.MetroTextBoxPlayers.Size = New System.Drawing.Size(679, 25)
     Me.MetroTextBoxPlayers.TabIndex = 3
     '
     'MetroLabelOUTPlayer
     '
     Me.MetroLabelOUTPlayer.AutoSize = True
     Me.MetroLabelOUTPlayer.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroLabelOUTPlayer.Location = New System.Drawing.Point(3, 60)
+    Me.MetroLabelOUTPlayer.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.MetroLabelOUTPlayer.Location = New System.Drawing.Point(345, 70)
     Me.MetroLabelOUTPlayer.Name = "MetroLabelOUTPlayer"
-    Me.MetroLabelOUTPlayer.Size = New System.Drawing.Size(336, 32)
+    Me.MetroLabelOUTPlayer.Size = New System.Drawing.Size(337, 22)
     Me.MetroLabelOUTPlayer.TabIndex = 4
     Me.MetroLabelOUTPlayer.Text = "OUT Player"
     '

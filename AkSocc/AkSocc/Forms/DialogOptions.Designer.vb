@@ -69,6 +69,21 @@ Partial Class DialogOptions
     Me.OpenFileDialogDataBase = New System.Windows.Forms.OpenFileDialog()
     Me.OpenFileDialogXML = New System.Windows.Forms.OpenFileDialog()
     Me.FolderBrowserDialogPaths = New System.Windows.Forms.FolderBrowserDialog()
+    Me.TabPage3 = New System.Windows.Forms.TabPage()
+    Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
+    Me.Label1 = New System.Windows.Forms.Label()
+    Me.TextBoxOptaLocalPath = New System.Windows.Forms.TextBox()
+    Me.ButtonOptaLocalPath = New System.Windows.Forms.Button()
+    Me.Label2 = New System.Windows.Forms.Label()
+    Me.TextBoxFTPServer = New System.Windows.Forms.TextBox()
+    Me.Label5 = New System.Windows.Forms.Label()
+    Me.Label6 = New System.Windows.Forms.Label()
+    Me.TextBoxFTPUser = New System.Windows.Forms.TextBox()
+    Me.TextBoxFTPPassword = New System.Windows.Forms.TextBox()
+    Me.LabelOptaCompetitionId = New System.Windows.Forms.Label()
+    Me.LabelOptaSearonId = New System.Windows.Forms.Label()
+    Me.TextBoxOptaCompetitionId = New System.Windows.Forms.TextBox()
+    Me.TextBoxOptaSeasonId = New System.Windows.Forms.TextBox()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TabControlOptions.SuspendLayout()
     Me.TabPage1.SuspendLayout()
@@ -80,6 +95,8 @@ Partial Class DialogOptions
     Me.TabPageLogger.SuspendLayout()
     Me.TableLayoutPanel4.SuspendLayout()
     CType(Me.NumericUpDownLogger, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.TabPage3.SuspendLayout()
+    Me.TableLayoutPanel5.SuspendLayout()
     Me.SuspendLayout()
     '
     'TableLayoutPanel1
@@ -93,7 +110,7 @@ Partial Class DialogOptions
     Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 1, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 2, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.CheckBoxShowOptionsOnStartup, 0, 0)
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(19, 373)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(19, 297)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 1
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -140,10 +157,11 @@ Partial Class DialogOptions
     Me.TabControlOptions.Controls.Add(Me.TabPage1)
     Me.TabControlOptions.Controls.Add(Me.TabPage2)
     Me.TabControlOptions.Controls.Add(Me.TabPageLogger)
+    Me.TabControlOptions.Controls.Add(Me.TabPage3)
     Me.TabControlOptions.Location = New System.Drawing.Point(12, 12)
     Me.TabControlOptions.Name = "TabControlOptions"
-    Me.TabControlOptions.SelectedIndex = 1
-    Me.TabControlOptions.Size = New System.Drawing.Size(773, 355)
+    Me.TabControlOptions.SelectedIndex = 3
+    Me.TabControlOptions.Size = New System.Drawing.Size(773, 278)
     Me.TabControlOptions.TabIndex = 1
     Me.TabControlOptions.UseSelectable = True
     '
@@ -155,8 +173,8 @@ Partial Class DialogOptions
     Me.TabPage1.HorizontalScrollbarSize = 10
     Me.TabPage1.Location = New System.Drawing.Point(4, 38)
     Me.TabPage1.Name = "TabPage1"
-    Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-    Me.TabPage1.Size = New System.Drawing.Size(765, 313)
+    Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+    Me.TabPage1.Size = New System.Drawing.Size(765, 236)
     Me.TabPage1.TabIndex = 0
     Me.TabPage1.Text = "General options"
     Me.TabPage1.UseVisualStyleBackColor = True
@@ -194,7 +212,7 @@ Partial Class DialogOptions
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel3.Size = New System.Drawing.Size(759, 307)
+    Me.TableLayoutPanel3.Size = New System.Drawing.Size(759, 230)
     Me.TableLayoutPanel3.TabIndex = 2
     '
     'MetroButtonOtherMatchesPath
@@ -344,8 +362,8 @@ Partial Class DialogOptions
     Me.TabPage2.HorizontalScrollbarSize = 10
     Me.TabPage2.Location = New System.Drawing.Point(4, 38)
     Me.TabPage2.Name = "TabPage2"
-    Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-    Me.TabPage2.Size = New System.Drawing.Size(765, 313)
+    Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+    Me.TabPage2.Size = New System.Drawing.Size(765, 236)
     Me.TabPage2.TabIndex = 1
     Me.TabPage2.Text = "Vizrt options"
     Me.TabPage2.UseVisualStyleBackColor = True
@@ -385,7 +403,7 @@ Partial Class DialogOptions
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(759, 307)
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(759, 230)
     Me.TableLayoutPanel2.TabIndex = 0
     '
     'MetroLabel2
@@ -544,12 +562,13 @@ Partial Class DialogOptions
     Me.TabPageLogger.Controls.Add(Me.TableLayoutPanel4)
     Me.TabPageLogger.Location = New System.Drawing.Point(4, 38)
     Me.TabPageLogger.Name = "TabPageLogger"
-    Me.TabPageLogger.Size = New System.Drawing.Size(765, 313)
+    Me.TabPageLogger.Size = New System.Drawing.Size(765, 236)
     Me.TabPageLogger.TabIndex = 2
     Me.TabPageLogger.Text = "Logger"
     '
     'TableLayoutPanel4
     '
+    Me.TableLayoutPanel4.BackColor = System.Drawing.Color.White
     Me.TableLayoutPanel4.ColumnCount = 3
     Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151.0!))
     Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -570,7 +589,7 @@ Partial Class DialogOptions
     Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel4.Size = New System.Drawing.Size(765, 313)
+    Me.TableLayoutPanel4.Size = New System.Drawing.Size(765, 236)
     Me.TableLayoutPanel4.TabIndex = 1
     '
     'Label3
@@ -626,6 +645,188 @@ Partial Class DialogOptions
     '
     Me.OpenFileDialogXML.FileName = "Matches file path"
     '
+    'TabPage3
+    '
+    Me.TabPage3.Controls.Add(Me.TableLayoutPanel5)
+    Me.TabPage3.Location = New System.Drawing.Point(4, 38)
+    Me.TabPage3.Name = "TabPage3"
+    Me.TabPage3.Size = New System.Drawing.Size(765, 236)
+    Me.TabPage3.TabIndex = 3
+    Me.TabPage3.Text = "Opta"
+    '
+    'TableLayoutPanel5
+    '
+    Me.TableLayoutPanel5.BackColor = System.Drawing.Color.White
+    Me.TableLayoutPanel5.ColumnCount = 3
+    Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151.0!))
+    Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanel5.Controls.Add(Me.Label1, 0, 0)
+    Me.TableLayoutPanel5.Controls.Add(Me.TextBoxOptaLocalPath, 1, 0)
+    Me.TableLayoutPanel5.Controls.Add(Me.ButtonOptaLocalPath, 2, 0)
+    Me.TableLayoutPanel5.Controls.Add(Me.Label2, 0, 1)
+    Me.TableLayoutPanel5.Controls.Add(Me.TextBoxFTPServer, 1, 1)
+    Me.TableLayoutPanel5.Controls.Add(Me.Label5, 0, 2)
+    Me.TableLayoutPanel5.Controls.Add(Me.Label6, 0, 3)
+    Me.TableLayoutPanel5.Controls.Add(Me.TextBoxFTPUser, 1, 2)
+    Me.TableLayoutPanel5.Controls.Add(Me.TextBoxFTPPassword, 1, 3)
+    Me.TableLayoutPanel5.Controls.Add(Me.LabelOptaCompetitionId, 0, 5)
+    Me.TableLayoutPanel5.Controls.Add(Me.LabelOptaSearonId, 0, 6)
+    Me.TableLayoutPanel5.Controls.Add(Me.TextBoxOptaCompetitionId, 1, 5)
+    Me.TableLayoutPanel5.Controls.Add(Me.TextBoxOptaSeasonId, 1, 6)
+    Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel5.Location = New System.Drawing.Point(0, 0)
+    Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
+    Me.TableLayoutPanel5.RowCount = 8
+    Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+    Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel5.Size = New System.Drawing.Size(765, 236)
+    Me.TableLayoutPanel5.TabIndex = 2
+    '
+    'Label1
+    '
+    Me.Label1.AutoSize = True
+    Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label1.Location = New System.Drawing.Point(3, 0)
+    Me.Label1.Name = "Label1"
+    Me.Label1.Size = New System.Drawing.Size(145, 30)
+    Me.Label1.TabIndex = 0
+    Me.Label1.Text = "Local path"
+    Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'TextBoxOptaLocalPath
+    '
+    Me.TextBoxOptaLocalPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.TextBoxOptaLocalPath.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TextBoxOptaLocalPath.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TextBoxOptaLocalPath.Location = New System.Drawing.Point(154, 3)
+    Me.TextBoxOptaLocalPath.Name = "TextBoxOptaLocalPath"
+    Me.TextBoxOptaLocalPath.Size = New System.Drawing.Size(573, 25)
+    Me.TextBoxOptaLocalPath.TabIndex = 1
+    '
+    'ButtonOptaLocalPath
+    '
+    Me.ButtonOptaLocalPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonOptaLocalPath.Location = New System.Drawing.Point(733, 3)
+    Me.ButtonOptaLocalPath.Name = "ButtonOptaLocalPath"
+    Me.ButtonOptaLocalPath.Size = New System.Drawing.Size(29, 24)
+    Me.ButtonOptaLocalPath.TabIndex = 4
+    Me.ButtonOptaLocalPath.Text = "..."
+    '
+    'Label2
+    '
+    Me.Label2.AutoSize = True
+    Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label2.Location = New System.Drawing.Point(3, 30)
+    Me.Label2.Name = "Label2"
+    Me.Label2.Size = New System.Drawing.Size(145, 30)
+    Me.Label2.TabIndex = 5
+    Me.Label2.Text = "FTP Server"
+    Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'TextBoxFTPServer
+    '
+    Me.TextBoxFTPServer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.TextBoxFTPServer.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TextBoxFTPServer.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TextBoxFTPServer.Location = New System.Drawing.Point(154, 33)
+    Me.TextBoxFTPServer.Name = "TextBoxFTPServer"
+    Me.TextBoxFTPServer.Size = New System.Drawing.Size(573, 25)
+    Me.TextBoxFTPServer.TabIndex = 6
+    '
+    'Label5
+    '
+    Me.Label5.AutoSize = True
+    Me.Label5.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label5.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label5.Location = New System.Drawing.Point(3, 60)
+    Me.Label5.Name = "Label5"
+    Me.Label5.Size = New System.Drawing.Size(145, 30)
+    Me.Label5.TabIndex = 5
+    Me.Label5.Text = "FTP User"
+    Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'Label6
+    '
+    Me.Label6.AutoSize = True
+    Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Label6.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label6.Location = New System.Drawing.Point(3, 90)
+    Me.Label6.Name = "Label6"
+    Me.Label6.Size = New System.Drawing.Size(145, 30)
+    Me.Label6.TabIndex = 5
+    Me.Label6.Text = "FTP Password"
+    Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'TextBoxFTPUser
+    '
+    Me.TextBoxFTPUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.TextBoxFTPUser.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TextBoxFTPUser.Location = New System.Drawing.Point(154, 63)
+    Me.TextBoxFTPUser.Name = "TextBoxFTPUser"
+    Me.TextBoxFTPUser.Size = New System.Drawing.Size(138, 25)
+    Me.TextBoxFTPUser.TabIndex = 6
+    '
+    'TextBoxFTPPassword
+    '
+    Me.TextBoxFTPPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.TextBoxFTPPassword.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TextBoxFTPPassword.Location = New System.Drawing.Point(154, 93)
+    Me.TextBoxFTPPassword.Name = "TextBoxFTPPassword"
+    Me.TextBoxFTPPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+    Me.TextBoxFTPPassword.Size = New System.Drawing.Size(138, 25)
+    Me.TextBoxFTPPassword.TabIndex = 6
+    '
+    'LabelOptaCompetitionId
+    '
+    Me.LabelOptaCompetitionId.AutoSize = True
+    Me.LabelOptaCompetitionId.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelOptaCompetitionId.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelOptaCompetitionId.Location = New System.Drawing.Point(3, 130)
+    Me.LabelOptaCompetitionId.Name = "LabelOptaCompetitionId"
+    Me.LabelOptaCompetitionId.Size = New System.Drawing.Size(145, 30)
+    Me.LabelOptaCompetitionId.TabIndex = 5
+    Me.LabelOptaCompetitionId.Text = "Competition Id"
+    Me.LabelOptaCompetitionId.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'LabelOptaSearonId
+    '
+    Me.LabelOptaSearonId.AutoSize = True
+    Me.LabelOptaSearonId.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelOptaSearonId.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelOptaSearonId.Location = New System.Drawing.Point(3, 160)
+    Me.LabelOptaSearonId.Name = "LabelOptaSearonId"
+    Me.LabelOptaSearonId.Size = New System.Drawing.Size(145, 30)
+    Me.LabelOptaSearonId.TabIndex = 5
+    Me.LabelOptaSearonId.Text = "Season Id"
+    Me.LabelOptaSearonId.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'TextBoxOptaCompetitionId
+    '
+    Me.TextBoxOptaCompetitionId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.TextBoxOptaCompetitionId.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TextBoxOptaCompetitionId.Location = New System.Drawing.Point(154, 133)
+    Me.TextBoxOptaCompetitionId.Name = "TextBoxOptaCompetitionId"
+    Me.TextBoxOptaCompetitionId.Size = New System.Drawing.Size(138, 25)
+    Me.TextBoxOptaCompetitionId.TabIndex = 6
+    '
+    'TextBoxOptaSeasonId
+    '
+    Me.TextBoxOptaSeasonId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.TextBoxOptaSeasonId.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TextBoxOptaSeasonId.Location = New System.Drawing.Point(154, 163)
+    Me.TextBoxOptaSeasonId.Name = "TextBoxOptaSeasonId"
+    Me.TextBoxOptaSeasonId.Size = New System.Drawing.Size(138, 25)
+    Me.TextBoxOptaSeasonId.TabIndex = 6
+    '
     'DialogOptions
     '
     Me.AcceptButton = Me.OK_Button
@@ -633,9 +834,10 @@ Partial Class DialogOptions
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.BackColor = System.Drawing.Color.White
     Me.CancelButton = Me.Cancel_Button
-    Me.ClientSize = New System.Drawing.Size(797, 414)
+    Me.ClientSize = New System.Drawing.Size(797, 337)
     Me.Controls.Add(Me.TabControlOptions)
     Me.Controls.Add(Me.TableLayoutPanel1)
+    Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
     Me.MaximizeBox = False
     Me.MinimizeBox = False
@@ -657,6 +859,9 @@ Partial Class DialogOptions
     Me.TableLayoutPanel4.ResumeLayout(False)
     Me.TableLayoutPanel4.PerformLayout()
     CType(Me.NumericUpDownLogger, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.TabPage3.ResumeLayout(False)
+    Me.TableLayoutPanel5.ResumeLayout(False)
+    Me.TableLayoutPanel5.PerformLayout()
     Me.ResumeLayout(False)
 
   End Sub
@@ -705,4 +910,19 @@ Partial Class DialogOptions
   Friend WithEvents TextBoxLoggerHost As TextBox
   Friend WithEvents Label4 As Label
   Friend WithEvents NumericUpDownLogger As NumericUpDown
+  Friend WithEvents TabPage3 As TabPage
+  Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
+  Friend WithEvents Label1 As Label
+  Friend WithEvents TextBoxOptaLocalPath As TextBox
+  Friend WithEvents ButtonOptaLocalPath As Button
+  Friend WithEvents Label2 As Label
+  Friend WithEvents TextBoxFTPServer As TextBox
+  Friend WithEvents Label5 As Label
+  Friend WithEvents Label6 As Label
+  Friend WithEvents TextBoxFTPUser As TextBox
+  Friend WithEvents TextBoxFTPPassword As TextBox
+  Friend WithEvents LabelOptaCompetitionId As Label
+  Friend WithEvents LabelOptaSearonId As Label
+  Friend WithEvents TextBoxOptaCompetitionId As TextBox
+  Friend WithEvents TextBoxOptaSeasonId As TextBox
 End Class

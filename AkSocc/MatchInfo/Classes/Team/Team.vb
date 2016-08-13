@@ -169,6 +169,7 @@ Imports MatchInfo
       myCmd.Parameters.AddWithValue("@TeamPreviousPositionInLeague", TeamPreviousPositionInLeague)
       myCmd.Parameters.AddWithValue("@ArabicCaption1Name", ArabicCaption1Name)
       myCmd.Parameters.AddWithValue("@BadgeName", BadgeName)
+      myCmd.Parameters.AddWithValue("@OptaID", OptaID)
     Catch err As Exception
       Throw err
     End Try
@@ -352,28 +353,32 @@ Imports MatchInfo
         'UPDATE
         Dim SQL As String = ""
         If ActualDb.TeamAELCaption1Name <> TeamAELCaption1Name AndAlso TeamAELCaption1Name <> "" Then
-          SQL += " TeamAELCaption1Name=@TeamAELCaption1Name, "
+          SQL += " TeamAELCaption1Name=@TeamAELCaption1Name,"
         End If
         If ActualDb.TeamAELTinyName <> TeamAELTinyName AndAlso TeamAELTinyName <> "" Then
-          SQL += " TeamAELTinyName=@TeamAELTinyName, "
+          SQL += " TeamAELTinyName=@TeamAELTinyName,"
         End If
         If ActualDb.TeamTWIRelegationCode <> TeamTWIRelegationCode AndAlso TeamTWIRelegationCode <> "" Then
-          SQL += " TeamTWIRelegationCode=@TeamTWIRelegationCode, "
+          SQL += " TeamTWIRelegationCode=@TeamTWIRelegationCode,"
         End If
         If ActualDb.FudgeFactor <> FudgeFactor AndAlso FudgeFactor <> -1 Then
-          SQL += " FudgeFactor=@FudgeFactor, "
+          SQL += " FudgeFactor=@FudgeFactor,"
         End If
         If ActualDb.TeamPointsDeductions <> TeamPointsDeductions AndAlso TeamPointsDeductions <> -1 Then
-          SQL += " TeamPointsDeductions=@TeamPointsDeductions, "
+          SQL += " TeamPointsDeductions=@TeamPointsDeductions,"
         End If
         If ActualDb.TeamPreviousPositionInLeague <> TeamPreviousPositionInLeague AndAlso TeamPreviousPositionInLeague <> -1 Then
-          SQL += " TeamPreviousPositionInLeague=@TeamPreviousPositionInLeague, "
+          SQL += " TeamPreviousPositionInLeague=@TeamPreviousPositionInLeague,"
         End If
         If ActualDb.ArabicCaption1Name <> ArabicCaption1Name AndAlso ArabicCaption1Name <> "" Then
-          SQL += " ArabicCaption1Name=@ArabicCaption1Name, "
+          SQL += " ArabicCaption1Name=@ArabicCaption1Name,"
         End If
         If ActualDb.BadgeName <> BadgeName AndAlso BadgeName <> "" Then
-          SQL += " BadgeName=@BadgeName, "
+          SQL += " BadgeName=@BadgeName,"
+        End If
+        If ActualDb.OptaID <> OptaID Then
+          SQL += " OptaID=" & OptaID & ","
+          'SQL += " OptaID=@OptaID,"
         End If
         If SQL <> "" Then
           Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
@@ -388,8 +393,8 @@ Imports MatchInfo
         End If
       Else
         'INSERT
-        Dim SQL As String = "INSERT INTO Teams (TeamAELCaption1Name, TeamAELTinyName, TeamTWIRelegationCode, FudgeFactor, TeamPointsDeductions, TeamPreviousPositionInLeague, ArabicCaption1Name, BadgeName)"
-        SQL += " VALUES (@TeamAELCaption1Name, @TeamAELTinyName, @TeamTWIRelegationCode, @FudgeFactor, @TeamPointsDeductions, @TeamPreviousPositionInLeague, @ArabicCaption1Name, @BadgeName)"
+        Dim SQL As String = "INSERT INTO Teams (TeamAELCaption1Name, TeamAELTinyName, TeamTWIRelegationCode, FudgeFactor, TeamPointsDeductions, TeamPreviousPositionInLeague, ArabicCaption1Name, BadgeName, OptaID)"
+        SQL += " VALUES (@TeamAELCaption1Name, @TeamAELTinyName, @TeamTWIRelegationCode, @FudgeFactor, @TeamPointsDeductions, @TeamPreviousPositionInLeague, @ArabicCaption1Name, @BadgeName, " & OptaID & ")"
         Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
         conn.Open()
         Dim cmdExecute As OleDbCommand = CreateCommand()

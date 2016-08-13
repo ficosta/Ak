@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Opta_get_data.frmFixtures
+            Me.MainForm = Global.Opta_get_data.frmDownloader
         End Sub
     End Class
 End Namespace

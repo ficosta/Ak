@@ -9,9 +9,9 @@ Public Class GraphicsBugScore
   Public Sub New(_match As MatchInfo.Match)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicsBugs"
+    MyBase.Name = "GraphicsBugScore"
     MyBase.ID = 1
-    MyBase.KeyCombination = New KeyCombination(Description, Keys.F8, False, True, False, False)
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F7, False, True, False, False)
     Me.Scene = Me.InitDefaultScene(1)
   End Sub
 

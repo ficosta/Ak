@@ -59,6 +59,14 @@ Public Class DialogOptions
         Me.ComboBoxSceneVersion.Text = _graphicVersions(index).Name
       End If
 
+      Me.TextBoxFTPServer.Text = AppSettings.Instance.OptaFTPServer
+      Me.TextBoxFTPUser.Text = AppSettings.Instance.OptaFTPUser
+      Me.TextBoxFTPPassword.Text = AppSettings.Instance.OptaFTPPassword
+
+      Me.TextBoxOptaLocalPath.Text = AppSettings.Instance.OptaDefaultFolder
+      Me.TextBoxOptaCompetitionId.Text = AppSettings.Instance.OptaCompetitionID
+      Me.TextBoxOptaSeasonId.Text = AppSettings.Instance.OptaSeasonID
+
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -96,6 +104,16 @@ Public Class DialogOptions
         AppSettings.Instance.ScenePath = version.Path
         GraphicVersions.Instance.SelectedGraphicVersion = version
       End If
+
+
+      AppSettings.Instance.OptaFTPServer = Me.TextBoxFTPServer.Text
+      AppSettings.Instance.OptaFTPUser = Me.TextBoxFTPUser.Text
+      AppSettings.Instance.OptaFTPPassword = Me.TextBoxFTPPassword.Text
+
+      AppSettings.Instance.OptaDefaultFolder = Me.TextBoxOptaLocalPath.Text
+      AppSettings.Instance.OptaCompetitionID = Me.TextBoxOptaCompetitionId.Text
+      AppSettings.Instance.OptaSeasonID = Me.TextBoxOptaSeasonId.Text
+
       AppSettings.Instance.Save()
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -149,6 +167,25 @@ Public Class DialogOptions
       Me.FolderBrowserDialogPaths.SelectedPath = Me.MetroTextBoxDefaultKitsPath.Text
       If Me.FolderBrowserDialogPaths.ShowDialog(Me) = DialogResult.OK Then
         Me.MetroTextBoxDefaultKitsPath.Text = Me.FolderBrowserDialogPaths.SelectedPath
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub MetroButtonLocalPreviewPath_Click(sender As Object, e As EventArgs) Handles MetroButtonLocalPreviewPath.Click
+
+  End Sub
+
+  Private Sub MetroButtonRemotePreviewPath_Click(sender As Object, e As EventArgs) Handles MetroButtonRemotePreviewPath.Click
+
+  End Sub
+
+  Private Sub ButtonOptaLocalPath_Click(sender As Object, e As EventArgs) Handles ButtonOptaLocalPath.Click
+    Try
+      Me.FolderBrowserDialogPaths.SelectedPath = Me.TextBoxOptaLocalPath.Text
+      If Me.FolderBrowserDialogPaths.ShowDialog(Me) = DialogResult.OK Then
+        Me.TextBoxOptaLocalPath.Text = Me.FolderBrowserDialogPaths.SelectedPath
       End If
     Catch ex As Exception
 

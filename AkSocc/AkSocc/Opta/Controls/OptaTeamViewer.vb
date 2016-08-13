@@ -13,21 +13,26 @@ Public Class OptaTeamViewer
     End Set
   End Property
 
-  Private Sub ShowMatch()
-    Try
-      Me.LabelTeamName.Text = _team.OptaName
-      Me.LabelScore.Text = _team.Goals
+  Public Sub ShowMatch()
+    If Me.InvokeRequired Then
+      Me.Invoke(New MethodInvoker(AddressOf ShowMatch))
+    Else
+      Try
+        Me.LabelTeamName.Text = _team.OptaName
+        Me.LabelScore.Text = _team.optaScore
 
-      Me.MetroGridStats.Rows.Clear()
+        Me.MetroGridStats.Rows.Clear()
 
-      For Each player As Player In _team.MatchPlayers
-        AddPlayerToGrid(player)
-      Next
-      AddTeamToGrid(_team)
+        For Each player As Player In _team.MatchPlayers
+          AddPlayerToGrid(player)
+        Next
+        AddTeamToGrid(_team)
 
-    Catch ex As Exception
+      Catch ex As Exception
 
-    End Try
+      End Try
+    End If
+
   End Sub
 
   Private Sub AddTeamToGrid(team As Team)
@@ -55,7 +60,9 @@ Public Class OptaTeamViewer
       With Me.MetroGridStats
         Dim row As Integer = .Rows.Add("")
         .Rows(row).Cells(ColumnTeamID.Index).Value = player.optaTeamID
-        .Rows(row).Cells(ColumnPlayerID.Index).Value = player.optaID
+        .Rows(row).Cells(ColumnPlayerID.Index).Value = player.PlayerID
+        .Rows(row).Cells(ColumnPlayerOpdaID.Index).Value = player.optaID
+        .Rows(row).Cells(ColumnPlayerNumber.Index).Value = player.OptaSquadNumber
         .Rows(row).Cells(ColumnName.Index).Value = player.optaName
         .Rows(row).Cells(ColumnStat0.Index).Value = "Stats"
         For i As Integer = 0 To player.optaStatValueNames.Count - 1
@@ -85,6 +92,16 @@ Public Class OptaTeamViewer
         End If
 
       End With
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub ButtonEditTeam_Click(sender As Object, e As EventArgs) Handles ButtonEditTeam.Click
+    Try
+      Dim dlg As New frmOptaPlayerLink
+      dlg.OptaTeam = _team
+      dlg.ShowDialog(Me)
     Catch ex As Exception
 
     End Try

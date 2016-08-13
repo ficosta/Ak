@@ -202,7 +202,10 @@ Public Class PreviewControl
             controlVizrt.Config.SceneBasePath = _tConfig.SceneBasePath
             asset.Scene.SendSceneToEngine(controlVizrt)
             asset.Scene.JumpToEndFrame(controlVizrt, asset.Scene.SceneDirectorsIn)
-            
+
+            'Advanced Preview control!
+            controlVizrt.SetControlObjectValue("$object", "Preview_Key_Name", "Preview", asset.Scene.VizLayer)
+
             asset.AssetSate = ePreviewAssetState.Rendering
             _backgroundWorker.ReportProgress(0, New WorkState() With {.state = eWorkState.AssetStateChanged, .asset = asset})
 

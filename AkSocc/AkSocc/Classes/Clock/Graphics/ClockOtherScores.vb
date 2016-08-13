@@ -11,7 +11,7 @@ Public Class ClockOtherScores
     MyBase.New(match)
 
     MyBase.MustHaveClock = True
-    MyBase.KeyCombination = New KeyCombination(Description, Keys.F7, False, True, False, False)
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F7, True, True, False, False)
   End Sub
 
   Public Overloads Shared ReadOnly Property Description As String

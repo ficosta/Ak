@@ -15,7 +15,7 @@ Public Class Teams
       Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
       conn.Open()
 
-      Dim SQL As [String] = "SELECT TeamID, TeamAELCaption1Name, TeamAELTinyName, TeamTWIRelegationCode, FudgeFactor, TeamPointsDeductions, TeamPreviousPositionInLeague, ArabicCaption1Name, BadgeName"
+      Dim SQL As [String] = "SELECT TeamID, TeamAELCaption1Name, TeamAELTinyName, TeamTWIRelegationCode, FudgeFactor, TeamPointsDeductions, TeamPreviousPositionInLeague, ArabicCaption1Name, BadgeName, OPTAID"
       SQL += " FROM Teams "
       SQL += Where.Trim()
       Dim CmdSQL As New OleDbCommand(SQL, conn)
@@ -48,6 +48,9 @@ Public Class Teams
         End If
         If Not myReader.IsDBNull(8) Then
           NewItem.BadgeName = myReader.GetString(8)
+        End If
+        If Not myReader.IsDBNull(9) Then
+          NewItem.OptaID = myReader.GetInt32(9)
         End If
         List.Add(NewItem)
       End While

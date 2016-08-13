@@ -3,7 +3,17 @@ Imports System.Net
 Imports MatchInfo
 
 Public Class frmOptaMatchStats
-  Private _f9Helper As COptaF9Helper
+  Private WithEvents _f9Helper As COptaF9Helper
+  Public Property f9Helper As COptaF9Helper
+    Get
+      Return _f9Helper
+    End Get
+    Set(value As COptaF9Helper)
+      _f9Helper = value
+      Me.MatchOpta = _f9Helper.Match
+      ShowMatch()
+    End Set
+  End Property
 
   Private WithEvents _match As MatchInfo.Match
   Public Property Match As Match
@@ -12,6 +22,7 @@ Public Class frmOptaMatchStats
     End Get
     Set(value As Match)
       _match = value
+      ShowMatch()
     End Set
   End Property
 
@@ -45,21 +56,6 @@ Public Class frmOptaMatchStats
     End Try
   End Sub
 
-  Private Sub OpenFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenFileToolStripMenuItem.Click
-    Try
-      If Me.OpenFileDialogXML.ShowDialog() = DialogResult.OK Then
-        Me.ToolStripButtonRefresh.Enabled = False
-        _matchOpta = New Match
-        _f9Helper = New COptaF9Helper(Me.OpenFileDialogXML.FileName, _matchOpta)
-        _f9Helper.PreviewMatchInfo(True)
-        ' _f9Helper.InitializeData()
-        UpdateInfo()
-        Me.ToolStripButtonRefresh.Enabled = True
-      End If
-    Catch ex As Exception
-
-    End Try
-  End Sub
 
   Private Sub UpdateInfo()
     Try
@@ -70,7 +66,29 @@ Public Class frmOptaMatchStats
     End Try
   End Sub
 
-  Private Sub ToolStripButtonRefresh_Click(sender As Object, e As EventArgs) Handles ToolStripButtonRefresh.Click
+  Private Sub ToolStripButtonRefresh_Click(sender As Object, e As EventArgs)
     UpdateInfo()
+  End Sub
+
+  Private Sub frmOptaMatchStats_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+    Try
+      If _match Is Nothing Then Exit Sub
+      If _f9Helper Is Nothing Then Exit Sub
+
+      _f9Helper.PreviewMatchInfo(True)
+      ' _f9Helper.InitializeData()
+      UpdateInfo()
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub frmOptaMatchStats_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+  End Sub
+
+  Private Sub _f9Helper_Updated() Handles _f9Helper.Updated
+    Me.OptaTeamViewerHomeTeam.ShowMatch()
+    Me.OptaTeamViewerAwayTeam.ShowMatch()
   End Sub
 End Class

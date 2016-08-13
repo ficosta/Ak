@@ -186,14 +186,56 @@
     <Compile Include="Forms\MatchEvents\FormMatchEvents.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Opta\Classes\COptaF1Helper.vb" />
+    <Compile Include="Opta\Classes\COptaF26Helper.vb" />
     <Compile Include="Opta\Classes\COptaF9Helper.vb" />
     <Compile Include="Opta\Classes\COptaFile.vb" />
     <Compile Include="Opta\Classes\COptaLink.vb" />
+    <Compile Include="Opta\Classes\OptaTermStats.vb" />
     <Compile Include="Opta\Controls\OptaTeamViewer.designer.vb">
       <DependentUpon>OptaTeamViewer.vb</DependentUpon>
     </Compile>
     <Compile Include="Opta\Controls\OptaTeamViewer.vb">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Opta\Downloader\Classes\Download.vb" />
+    <Compile Include="Opta\Downloader\Classes\Downloads.vb" />
+    <Compile Include="Opta\Downloader\Controls\FileDownloader.designer.vb">
+      <DependentUpon>FileDownloader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Downloader\Controls\FileDownloader.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Opta\Downloader\Classes\FTPSyncManager.vb" />
+    <Compile Include="Opta\Downloader\Controls\MultiFileDownloader.designer.vb">
+      <DependentUpon>MultiFileDownloader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Downloader\Controls\MultiFileDownloader.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaFixtures.designer.vb">
+      <DependentUpon>frmOptaFixtures.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaFixtures.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaFTPSync.Designer.vb">
+      <DependentUpon>frmOptaFTPSync.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaFTPSync.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaStats.Designer.vb">
+      <DependentUpon>frmOptaStats.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaStats.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaTeams.designer.vb">
+      <DependentUpon>frmOptaTeams.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaTeams.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Opta\Forms\frmOptaMatchStats.designer.vb">
       <DependentUpon>frmOptaMatchStats.vb</DependentUpon>
@@ -294,10 +336,16 @@
     <Compile Include="Forms\MatchSetup\UserControlTactica.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Opta\OtherMatches\UCOtherMatch.designer.vb">
+    <Compile Include="Opta\Forms\frmOptaPlayerLink.Designer.vb">
+      <DependentUpon>frmOptaPlayerLink.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaPlayerLink.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OtherMatches\UCOtherMatch.designer.vb">
       <DependentUpon>UCOtherMatch.vb</DependentUpon>
     </Compile>
-    <Compile Include="Opta\OtherMatches\UCOtherMatch.vb">
+    <Compile Include="Forms\OtherMatches\UCOtherMatch.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\SceneLoad\FormLoadScenes.Designer.vb">
@@ -360,18 +408,18 @@
     <Compile Include="Controls\PlayerViewer.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Opta\OtherMatches\Classification\Classification.vb" />
-    <Compile Include="Opta\OtherMatches\Classification\ClassificationForMatchDay.vb" />
-    <Compile Include="Opta\OtherMatches\frmOtherMatches.Designer.vb">
+    <Compile Include="Forms\OtherMatches\Classification\Classification.vb" />
+    <Compile Include="Forms\OtherMatches\Classification\ClassificationForMatchDay.vb" />
+    <Compile Include="Forms\OtherMatches\frmOtherMatches.Designer.vb">
       <DependentUpon>frmOtherMatches.vb</DependentUpon>
     </Compile>
-    <Compile Include="Opta\OtherMatches\frmOtherMatches.vb">
+    <Compile Include="Forms\OtherMatches\frmOtherMatches.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Opta\OtherMatches\OtherMatch.vb" />
-    <Compile Include="Opta\OtherMatches\OtherMatchDays.vb" />
-    <Compile Include="Opta\OtherMatches\MatchDay.vb" />
-    <Compile Include="Opta\OtherMatches\Classification\TeamClassification.vb" />
+    <Compile Include="Forms\OtherMatches\OtherMatch.vb" />
+    <Compile Include="Forms\OtherMatches\OtherMatchDays.vb" />
+    <Compile Include="Forms\OtherMatches\MatchDay.vb" />
+    <Compile Include="Forms\OtherMatches\Classification\TeamClassification.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\TeamViewer.resx">
@@ -443,10 +491,31 @@
     <EmbeddedResource Include="Opta\Controls\OptaTeamViewer.resx">
       <DependentUpon>OptaTeamViewer.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Downloader\Controls\FileDownloader.resx">
+      <DependentUpon>FileDownloader.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Downloader\Controls\MultiFileDownloader.resx">
+      <DependentUpon>MultiFileDownloader.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmOptaFixtures.resx">
+      <DependentUpon>frmOptaFixtures.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmOptaFTPSync.resx">
+      <DependentUpon>frmOptaFTPSync.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmOptaStats.resx">
+      <DependentUpon>frmOptaStats.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmOptaTeams.resx">
+      <DependentUpon>frmOptaTeams.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Opta\Forms\frmOptaMatchStats.resx">
       <DependentUpon>frmOptaMatchStats.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Opta\OtherMatches\UCOtherMatch.resx">
+    <EmbeddedResource Include="Opta\Forms\frmOptaPlayerLink.resx">
+      <DependentUpon>frmOptaPlayerLink.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OtherMatches\UCOtherMatch.resx">
       <DependentUpon>UCOtherMatch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Penalties\frmPenalties.resx">
@@ -482,7 +551,7 @@
     <EmbeddedResource Include="Controls\PlayerViewer.resx">
       <DependentUpon>PlayerViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Opta\OtherMatches\frmOtherMatches.resx">
+    <EmbeddedResource Include="Forms\OtherMatches\frmOtherMatches.resx">
       <DependentUpon>frmOtherMatches.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -524,9 +593,7 @@
   <ItemGroup>
     <None Include="Resources\PS_Triangle_down.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OtherMatches\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\Versions.txt" />
   </ItemGroup>

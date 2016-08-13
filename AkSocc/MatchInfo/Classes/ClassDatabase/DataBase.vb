@@ -114,6 +114,7 @@ Public Class DataBase
       AddFieldToTable("Matches", "Official1", "INTEGER")
       AddFieldToTable("Matches", "Official2", "INTEGER")
       AddFieldToTable("Matches", "Official3", "INTEGER")
+      AddFieldToTable("Teams", "OPTAID", "INTEGER")
 
       Return True
     Catch ex As Exception

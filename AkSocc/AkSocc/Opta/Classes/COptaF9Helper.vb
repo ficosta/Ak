@@ -6,8 +6,13 @@ Imports MatchInfo
 Public Class COptaF9Helper
   Inherits COptaFile
 
+#Region "Events"
+  Public Event Updated()
+#End Region
+
 #Region "Variables"
   Private _benchPlayer As Integer = 0
+  Private WithEvents _fileWatcher As FileSystemWatcher
 #End Region
 
 #Region "Properties"
@@ -24,15 +29,13 @@ Public Class COptaF9Helper
 #End Region
 
 #Region "Constructors"
-  Public Sub New()
-
-  End Sub
 
   Public Sub New(ByVal path As String, ByRef partit As MatchInfo.Match)
     Me.Path = path
     _match = partit
 
     Me.IniciarEstadistiques()
+    Me.InitFilewatcher()
   End Sub
 #End Region
 
@@ -74,6 +77,7 @@ Public Class COptaF9Helper
             Next
         End Select
       Next
+      RaiseEvent Updated()
       res = True
     Catch ex As Exception
     End Try
@@ -143,7 +147,7 @@ Public Class COptaF9Helper
       Dim attimeStamp As String = attr.Value
 
       'If timeStamp <> Me.TimeStamp Then
-      Me.TimeStamp = TimeStamp
+      Me.TimeStamp = attimeStamp
       Dim teamIndex As Integer = 0
       For Each nodeSoccerFeed As XmlNode In nodeRoot.ChildNodes
         Select Case nodeSoccerFeed.Name
@@ -165,6 +169,7 @@ Public Class COptaF9Helper
             Next
         End Select
       Next
+      RaiseEvent Updated()
       'End If
     Catch ex As Exception
     End Try
@@ -219,6 +224,9 @@ Public Class COptaF9Helper
   Private Sub ReadMatchData(ByRef nodeMatchData As XmlNode, ByVal readPlayers As Boolean)
     Try
       Dim attr As XmlAttribute
+      Dim teams As New Teams
+      teams.GetFromDB("")
+
       For Each node As XmlNode In nodeMatchData
         Select Case node.Name
           Case "MatchInfo"
@@ -244,28 +252,48 @@ Public Class COptaF9Helper
             End Select
           Case "TeamData"
             Dim isLocal As Boolean = False
-            Dim Team As Team = Nothing
+            Dim team As Team = Nothing
             Dim loadPlayers As Boolean = False
+            Dim nOptaID As Integer
+            Dim nScore As Integer = -1
 
             attr = node.Attributes.GetNamedItem("Side")
             isLocal = (attr.Value = "Home")
             attr = node.Attributes.GetNamedItem("TeamRef")
+            nOptaID = NoNullInt(Me.FixID(attr.Value))
+            attr = node.Attributes.GetNamedItem("Score")
+            nScore = NoNullInt(Me.FixID(attr.Value))
 
-            If isLocal Then
-              If Me.Match.optaHomeTeamID = 0 Then
-                Me.Match.HomeTeam = New Team(NoNullString(Me.FixID(attr.Value)))
-                Me.Match.optaHomeTeamID = Me.Match.HomeTeam.OptaID
-                loadPlayers = True
+            team = teams.GetTeamByOptaID(nOptaID)
+
+            If team Is Nothing Then
+              If isLocal Then
+                If Me.Match.optaHomeTeamID = 0 Then
+                  Me.Match.HomeTeam = New Team(nOptaID)
+                  Me.Match.optaHomeTeamID = Me.Match.HomeTeam.OptaID
+                  loadPlayers = True
+                End If
+                team = Me.Match.HomeTeam
+              Else
+                If Me.Match.optaAwayTeamID = 0 Then
+                  Me.Match.AwayTeam = New Team(nOptaID)
+                  Me.Match.optaAwayTeamID = Me.Match.AwayTeam.OptaID
+                  loadPlayers = True
+                End If
+                team = Me.Match.AwayTeam
               End If
-              Team = Me.Match.HomeTeam
             Else
-              If Me.Match.optaAwayTeamID = 0 Then
-                Me.Match.AwayTeam = New Team(NoNullString(Me.FixID(attr.Value)))
-                Me.Match.optaAwayTeamID = Me.Match.AwayTeam.OptaID
-                loadPlayers = True
+              'team.GetAllPlayers()
+
+              If isLocal Then
+                Me.Match.HomeTeam = team
+              Else
+                Me.Match.AwayTeam = team
               End If
-              Team = Me.Match.AwayTeam
             End If
+
+            team.optaScore = nScore
+
             For Each nodeTeamData As XmlNode In node
               If readPlayers Then
                 Select Case nodeTeamData.Name
@@ -274,18 +302,18 @@ Public Class COptaF9Helper
                   Case "PlayerLineUp"
                     If loadPlayers Then
                       For Each nodePlayerLineUp As XmlNode In nodeTeamData.ChildNodes
-                        Me.ReadPlayer(nodePlayerLineUp, Team)
+                        Me.ReadPlayer(nodePlayerLineUp, team)
                       Next
                     Else
                       For Each nodePlayerLineUp As XmlNode In nodeTeamData.ChildNodes
-                        Me.ReadPlayer(nodePlayerLineUp, Team)
+                        Me.ReadPlayer(nodePlayerLineUp, team)
                       Next
                     End If
                   Case "Stat"
                     attr = nodeTeamData.Attributes.GetNamedItem("Type")
                     If Not attr Is Nothing Then
-                      Team.optaStatValueNames.Add(attr.Value)
-                      Team.optaStatValues.Add(nodeTeamData.InnerText)
+                      team.optaStatValueNames.Add(attr.Value)
+                      team.optaStatValues.Add(nodeTeamData.InnerText)
                     End If
                 End Select
               End If
@@ -325,6 +353,7 @@ Public Class COptaF9Helper
             Dim isLocal As Boolean = False
             Dim Team As Team = Nothing
             Dim loadPlayers As Boolean = False
+            Dim nScore As Integer = 0
 
             attr = node.Attributes.GetNamedItem("Side")
             isLocal = (attr.Value = "Home")
@@ -345,6 +374,10 @@ Public Class COptaF9Helper
               End If
               Team = Me.Match.AwayTeam
             End If
+
+            attr = node.Attributes.GetNamedItem("Score")
+            nScore = NoNullInt(Me.FixID(attr.Value))
+            Team.optaScore = nScore
             For Each nodeTeamData As XmlNode In node
               Select Case nodeTeamData.Name
                 Case "Booking" 'Targeta
@@ -374,12 +407,24 @@ Public Class COptaF9Helper
       Dim Team As Team
       Dim name As String = ""
       Dim index As Integer = 1
+      Dim nOptaID As Integer = Me.FixID(attr.Value)
 
+
+      Dim teams As New Teams()
+      teams.GetFromDB(" WHERE OPTAID = " & nOptaID)
+      Team = teams.GetTeamByOptaID(nOptaID)
+
+      If Team Is Nothing Then
+        Team = New Team
+      Else
+        ' Team.GetAllPlayers()
+      End If
       If isLocal Then
         Team = _match.HomeTeam
       Else
         Team = _match.AwayTeam
       End If
+
       Team.OptaID = Me.FixID(attr.Value)
 
       For Each node As XmlNode In nodeTeam
@@ -493,15 +538,24 @@ Public Class COptaF9Helper
     End Try
   End Sub
 
+  Private _allPlayers As Players = Nothing
+
   Private Sub ReadPlayer(ByRef nodePlayer As XmlNode, ByRef Team As Team)
     Try
       Dim attr As XmlAttribute = nodePlayer.Attributes.GetNamedItem("PlayerRef")
-      Dim CPlayer As Player = Team.GetPlayerByOptaId(Me.FixID(attr.Value))
+      Dim nOptaID As Integer = Me.FixID(attr.Value)
+      Dim CPlayer As Player = Team.GetPlayerByOptaId(nOptaID)
 
       If CPlayer Is Nothing Then
 
-        CPlayer = New Player
-        CPlayer.optaID = Me.FixID(attr.Value)
+        If _allPlayers Is Nothing Then
+          _allPlayers = New Players()
+          _allPlayers.GetAllPlayers()
+        End If
+        CPlayer = _allPlayers.GetPlayerByOptaId(nOptaID)
+
+        If CPlayer Is Nothing Then CPlayer = New Player
+        CPlayer.optaID = nOptaID
         attr = nodePlayer.Attributes.GetNamedItem("ShirtNumber")
         If Not attr Is Nothing Then
           CPlayer.OptaSquadNumber = attr.Value
@@ -592,5 +646,33 @@ Public Class COptaF9Helper
   End Sub
 #End Region
 
+#Region "File watcher"
+  Private Sub InitFilewatcher()
+    Try
+      _fileWatcher = New FileSystemWatcher
+      _fileWatcher.Path = System.IO.Path.GetDirectoryName(Me.Path)
+      ' Watch for changes in LastAccess and LastWrite times, and
+      ' the renaming of files or directories. 
+      _fileWatcher.NotifyFilter = (NotifyFilters.LastAccess Or NotifyFilters.LastWrite Or NotifyFilters.FileName Or NotifyFilters.DirectoryName)
+      ' Only watch text files.
+      _fileWatcher.Filter = System.IO.Path.GetFileName(Me.Path)
+      _fileWatcher.EnableRaisingEvents = True
+    Catch ex As Exception
 
+    End Try
+  End Sub
+
+  Private Sub _fileWatcher_Changed(sender As Object, e As FileSystemEventArgs) Handles _fileWatcher.Changed
+    Me.UpdateValors()
+  End Sub
+
+  Private Sub _fileWatcher_Created(sender As Object, e As FileSystemEventArgs) Handles _fileWatcher.Created
+    Me.UpdateValors()
+  End Sub
+
+  Private Sub _fileWatcher_Renamed(sender As Object, e As RenamedEventArgs) Handles _fileWatcher.Renamed
+    Me.UpdateValors()
+  End Sub
+
+#End Region
 End Class

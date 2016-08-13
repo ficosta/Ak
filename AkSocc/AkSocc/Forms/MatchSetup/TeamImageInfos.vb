@@ -139,8 +139,8 @@
 '      output = Me.GetByID(id)
 '      If output IsNot Nothing Then
 '        output.ColorImagePath = color
-'        Properties.Settings.[Default].TeamImageInfoList = Me.SerializeToString()
-'        Properties.Settings.[Default].Save()
+'        AppSettings.Instance.TeamImageInfoList = Me.SerializeToString()
+'        AppSettings.Instance.Save()
 '      End If
 '    Catch err As Exception
 '      Throw err
@@ -176,8 +176,8 @@
 '      output = Me.GetByID(id)
 '      If output IsNot Nothing Then
 '        output.JerseyImagePath = color
-'        Properties.Settings.[Default].TeamImageInfoList = Me.SerializeToString()
-'        Properties.Settings.[Default].Save()
+'        AppSettings.Instance.TeamImageInfoList = Me.SerializeToString()
+'        AppSettings.Instance.Save()
 '      End If
 '    Catch err As Exception
 '      Throw err
@@ -208,8 +208,8 @@
 '      output = Me.GetByID(id)
 '      If output IsNot Nothing Then
 '        output.JerseyGKImagePath = color
-'        Properties.Settings.[Default].TeamImageInfoList = Me.SerializeToString()
-'        Properties.Settings.[Default].Save()
+'        AppSettings.Instance.TeamImageInfoList = Me.SerializeToString()
+'        AppSettings.Instance.Save()
 '      End If
 '    Catch err As Exception
 '      Throw err

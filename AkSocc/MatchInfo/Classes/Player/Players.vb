@@ -40,6 +40,161 @@ Imports System.Data.OleDb
     Return Me.List.Count
   End Function
 
+
+  Public Function GetPlayerId(ID As Integer) As Player
+    Dim res As Player = Nothing
+    Try
+
+      For Each player As Player In Me.List
+        If player.ID = ID Then res = player
+      Next
+    Catch ex As Exception
+    End Try
+    Return res
+  End Function
+
+  Public Function GetPlayerByOptaId(ID As Integer) As Player
+    Dim res As Player = Nothing
+    Try
+
+      For Each player As Player In Me.List
+        If player.optaID = ID Then res = player
+      Next
+    Catch ex As Exception
+    End Try
+    Return res
+  End Function
+
+
+  Public Function GetAllPlayers() As Boolean
+    Try
+      Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
+      conn.Open()
+
+      Dim SQL As [String] = "SELECT PlayerID, PlayerFirstName, PlayerSurname, PlayerUniqueName, TeamID, SquadNo, DomesticTeamID, DomesticSquadNo, PlayerPosition, InternationalSquadNo, InternationalTeamID, InternationalPlayerUniqueName, EnglishBiog1, Biog1, EnglishBiog2, Biog2, EnglishBiog3, Biog3, Nationality, YellowCards, RedCards, SeasonGoals, PhotoName, ArabicName, VideoName, SeasonAppearances, PhotoName1, VideoName1, VideoName2, OptaId, SeasonCleanSheets"
+      SQL += " FROM Players "
+      Dim CmdSQL As New OleDbCommand(SQL, conn)
+
+      CmdSQL.CommandType = System.Data.CommandType.Text
+      Dim myPlayerReader As OleDbDataReader = CmdSQL.ExecuteReader()
+
+      Me.List.Clear()
+
+      While myPlayerReader.Read()
+        Dim player As New Player()
+
+        If Not myPlayerReader.IsDBNull(0) Then
+          player.PlayerID = myPlayerReader.GetInt32(0)
+        End If
+
+        If Not myPlayerReader.IsDBNull(1) Then
+          player.PlayerFirstName = myPlayerReader.GetString(1)
+        End If
+        If Not myPlayerReader.IsDBNull(2) Then
+          player.PlayerSurname = myPlayerReader.GetString(2)
+        End If
+        CType(player, StatSubject).Name = player.PlayerFirstName & " " & player.PlayerSurname
+        If Not myPlayerReader.IsDBNull(3) Then
+          player.PlayerUniqueName = myPlayerReader.GetString(3)
+          CType(player, StatSubject).Name = player.PlayerUniqueName
+        End If
+        If Not myPlayerReader.IsDBNull(6) Then
+          player.TeamID = myPlayerReader.GetInt32(6)
+        End If
+        ' EL QUE VALE ES EL DOMESTIC!!! = myPlayerReader.GetInt32(4);
+        If Not myPlayerReader.IsDBNull(7) Then
+          player.SquadNo = myPlayerReader.GetInt32(7)
+        End If
+        ' Y EL DomesticSquadNo
+        If Not myPlayerReader.IsDBNull(6) Then
+          player.DomesticTeamID = myPlayerReader.GetInt32(6)
+        End If
+        If Not myPlayerReader.IsDBNull(7) Then
+          player.DomesticSquadNo = myPlayerReader.GetInt32(7)
+        End If
+        If Not myPlayerReader.IsDBNull(8) Then
+          player.PlayerPosition = myPlayerReader.GetString(8)
+        End If
+        If Not myPlayerReader.IsDBNull(9) Then
+          player.InternationalSquadNo = myPlayerReader.GetInt32(9)
+        End If
+        If Not myPlayerReader.IsDBNull(10) Then
+          player.InternationalTeamID = myPlayerReader.GetInt32(10)
+        End If
+        If Not myPlayerReader.IsDBNull(11) Then
+          player.InternationalPlayerUniqueName = myPlayerReader.GetString(11)
+        End If
+        If Not myPlayerReader.IsDBNull(12) Then
+          player.EnglishBiog1 = myPlayerReader.GetString(12)
+        End If
+        If Not myPlayerReader.IsDBNull(13) Then
+          player.Biog1 = myPlayerReader.GetString(13)
+        End If
+        If Not myPlayerReader.IsDBNull(14) Then
+          player.EnglishBiog2 = myPlayerReader.GetString(14)
+        End If
+        If Not myPlayerReader.IsDBNull(15) Then
+          player.Biog2 = myPlayerReader.GetString(15)
+        End If
+        If Not myPlayerReader.IsDBNull(16) Then
+          player.EnglishBiog3 = myPlayerReader.GetString(16)
+        End If
+        If Not myPlayerReader.IsDBNull(17) Then
+          player.Biog3 = myPlayerReader.GetString(17)
+        End If
+        If Not myPlayerReader.IsDBNull(18) Then
+          player.Nationality = myPlayerReader.GetString(18)
+        End If
+        If Not myPlayerReader.IsDBNull(19) Then
+          player.YellowCards = myPlayerReader.GetInt32(19)
+        End If
+        If Not myPlayerReader.IsDBNull(20) Then
+          player.RedCards = myPlayerReader.GetInt32(20)
+        End If
+        If Not myPlayerReader.IsDBNull(21) Then
+          player.SeasonGoals = myPlayerReader.GetInt32(21)
+        End If
+        If Not myPlayerReader.IsDBNull(22) Then
+          player.PhotoName = myPlayerReader.GetString(22)
+        End If
+        If Not myPlayerReader.IsDBNull(23) Then
+          player.ArabicName = myPlayerReader.GetString(23)
+        End If
+        If Not myPlayerReader.IsDBNull(24) Then
+          player.VideoName = myPlayerReader.GetString(24)
+        End If
+        If Not myPlayerReader.IsDBNull(25) Then
+          player.SeasonAppearances = myPlayerReader.GetInt32(25)
+        End If
+        If Not myPlayerReader.IsDBNull(26) Then
+          player.PhotoName1 = myPlayerReader.GetString(26)
+        End If
+        If Not myPlayerReader.IsDBNull(27) Then
+          player.VideoName1 = myPlayerReader.GetString(27)
+        End If
+        If Not myPlayerReader.IsDBNull(28) Then
+          player.VideoName2 = myPlayerReader.GetString(28)
+        End If
+        If Not myPlayerReader.IsDBNull(29) Then
+          player.optaID = myPlayerReader.GetInt32(29)
+        End If
+        If Not myPlayerReader.IsDBNull(30) Then
+          player.SeasonCleanSheets = myPlayerReader.GetInt32(30)
+        End If
+
+        Me.List.Add(player)
+      End While
+
+      conn.Close()
+
+    Catch err As Exception
+      Throw err
+    End Try
+    Return True
+  End Function
+
+
+
   Public Sub Sort()
     Me.InnerList.Sort()
   End Sub

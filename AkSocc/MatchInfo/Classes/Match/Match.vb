@@ -450,7 +450,7 @@ Imports MatchInfo
           SQL &= " ArabicMatchCommentators=@ArabicMatchCommentators,"
         End If
         If _actualDB.optaID <> optaID AndAlso optaID <> -1 Then
-          SQL &= " OPTAID=@OPTAID,"
+          SQL &= " OPTAID=" & optaID & ","
         End If
         If Official.GetID(_actualDB.Official1) <> Official.GetID(Official1) Then
           SQL &= " Official1=" & Official.GetID(Official1) & ","

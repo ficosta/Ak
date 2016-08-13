@@ -4,6 +4,7 @@ Imports AkSocc
 
 Public Class KeyCombination
   Implements IEquatable(Of KeyCombination)
+  Implements IComparable
 
   Public Name As String
 
@@ -35,17 +36,6 @@ Public Class KeyCombination
     Me.Windows = biWindows
   End Sub
 
-
-  'Public Overloads Overrides Function Equals(ByVal obj As Object) As Boolean
-
-  '  If obj Is Nothing OrElse Not Me.GetType() Is obj.GetType() Then
-  '    Return False
-  '  End If
-
-  '  Dim k As KeyCombination = CType(obj, KeyCombination)
-  '  Return Me.KeyCode = k.KeyCode And Me.Alt = k.Alt And Me.Control = k.Control And Me.Shift = k.Shift And Me.Windows = k.Windows
-  'End Function
-
   Public Overloads Function Equals(other As KeyCombination) As Boolean Implements IEquatable(Of KeyCombination).Equals
     If other Is Nothing OrElse Not Me.GetType() Is other.GetType() Then
       Return False
@@ -64,7 +54,40 @@ Public Class KeyCombination
   End Operator
 
   Public Overrides Function ToString() As String
-    Return Me.Name
+    Return Me.KeyCode.ToString & " Shift=" & Me.Shift & " Ctl=" & Me.Control & " Alt=" & Me.Alt & " Windows=" & Me.Windows & "    " & Me.Name
+  End Function
+
+  Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+    Dim res As Integer = 0
+    Try
+      Dim aux As KeyCombination = CType(obj, KeyCombination)
+      If aux.KeyCode.ToString > Me.KeyCode.ToString Then
+        res = 1
+      ElseIf aux.KeyCode.ToString < Me.KeyCode.ToString Then
+        res = -1
+      ElseIf aux.Shift.ToString > Me.Shift.ToString Then
+        res = 1
+      ElseIf aux.Shift.ToString < Me.shift.ToString Then
+        res = -1
+      ElseIf aux.Control.ToString > Me.Control.ToString Then
+        res = 1
+      ElseIf aux.Control.ToString < Me.Control.ToString Then
+        res = -1
+      ElseIf aux.Alt.ToString > Me.Alt.ToString Then
+        res = 1
+      ElseIf aux.Alt.ToString < Me.Alt.ToString Then
+        res = -1
+      ElseIf aux.windows.ToString > Me.windows.ToString Then
+        res = 1
+      ElseIf aux.windows.ToString < Me.windows.ToString Then
+        res = -1
+      Else
+        res = 0
+      End If
+    Catch ex As Exception
+
+    End Try
+    Return res
   End Function
 End Class
 

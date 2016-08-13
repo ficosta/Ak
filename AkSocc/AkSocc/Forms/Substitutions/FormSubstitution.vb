@@ -165,19 +165,20 @@ Public Class FormSubstitution
       Dim nAux As Integer
       Dim aAux() As String = aux.Split(" ")
       If Integer.TryParse(aAux(0), nAux) Then
-        _playerOut = _team.AllPlayers.GetPlayerByDorsal(nAux)
-      Else
-        _playerOut = Nothing
-      End If
-      If aAux.Length > 1 Then
-        If Integer.TryParse(aAux(1), nAux) Then
-          _playerIn = _team.AllPlayers.GetPlayerByDorsal(nAux)
-        Else
-          _playerIn = Nothing
-        End If
+        _playerIn = _team.AllPlayers.GetPlayerByDorsal(nAux)
       Else
         _playerIn = Nothing
       End If
+      If aAux.Length > 1 Then
+        If Integer.TryParse(aAux(1), nAux) Then
+          _playerOut = _team.AllPlayers.GetPlayerByDorsal(nAux)
+        Else
+          _playerOut = Nothing
+        End If
+      Else
+        _playerOut = Nothing
+      End If
+
       If Not _playerIn Is Nothing Then
         Me.MetroLabelINPlayer.Text = "IN " & _playerIn.ToString
       Else

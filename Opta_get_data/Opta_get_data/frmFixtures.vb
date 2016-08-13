@@ -1,10 +1,12 @@
 ﻿Imports System.IO
 Imports System.Net
 Imports MatchInfo
+Imports MetroFramework.Controls
 
 Public Class frmFixtures
   Private _f1Helper As COptaF1Helper
   Private WithEvents _matches As MatchInfo.Matches
+  Private _localTeams As Teams
 
 
   Private Sub OpenFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenFileToolStripMenuItem.Click
@@ -14,6 +16,8 @@ Public Class frmFixtures
         _matches = New Matches
         _f1Helper = New COptaF1Helper(Me.OpenFileDialogXML.FileName, _matches)
         _f1Helper.Update()
+        _localTeams = New Teams()
+        _localTeams.GetFromDB("")
         ' _f9Helper.InitializeData()
         UpdateInfo()
         Me.ToolStripButtonRefresh.Enabled = True
@@ -41,7 +45,6 @@ Public Class frmFixtures
     Try
       With Me.MetroGridMatches
         .Rows.Clear()
-        
 
         For Each match As Match In _f1Helper.Matches
           Dim row As Integer = .Rows.Add("")
@@ -63,11 +66,16 @@ Public Class frmFixtures
   End Sub
 
   Private Sub ShowTeams()
+    ShowTeams(Me.MetroGridTeamsOpta, _f1Helper.Teams)
+    ShowTeams(Me.MetroGridTeamsLocal, _localTeams)
+  End Sub
+
+  Private Sub ShowTeams(grid As MetroGrid, teams As Teams)
     Try
-      With Me.MetroGridTeams
+      With grid
         .Rows.Clear()
 
-        For Each team As Team In _f1Helper.Teams
+        For Each team As Team In teams
           Dim row As Integer = .Rows.Add("")
           .Rows(row).Cells(ColumnTeamID.Index).Value = team.TeamID
           .Rows(row).Cells(ColumnTeamName.Index).Value = team.OptaName
@@ -75,7 +83,6 @@ Public Class frmFixtures
         Next
       End With
     Catch ex As Exception
-
     End Try
   End Sub
 

@@ -11,7 +11,7 @@ Public Class GraphicsCrawlResults
 
     MyBase.Name = "GraphicsCrawlResults"
     MyBase.ID = 1
-    MyBase.KeyCombination = New KeyCombination(MyBase.Name, Keys.F8, False, True, False, False)
+    MyBase.KeyCombination = New KeyCombination(MyBase.Name, Keys.F12, True, False, False, False)
     Me.Scene = Me.InitDefaultScene(1)
   End Sub
 

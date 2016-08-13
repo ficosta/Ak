@@ -187,6 +187,7 @@ Partial Class FormChoose
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.BackColor = System.Drawing.Color.White
+    Me.CancelButton = Me.Cancel_Button
     Me.ClientSize = New System.Drawing.Size(1230, 593)
     Me.Controls.Add(Me.SplitContainerAll)
     Me.Controls.Add(Me.TableLayoutPanel1)

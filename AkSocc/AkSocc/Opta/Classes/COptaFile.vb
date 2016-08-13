@@ -3,6 +3,8 @@ Imports System.IO
 Imports System.Text
 
 Public Class COptaFile
+
+
 #Region "Properties"
   Private _path As String = ""
   Public Property Path() As String
@@ -132,6 +134,7 @@ Public Class COptaFile
       res = res.Replace("t", "")
       res = res.Replace("o", "")
       res = res.Replace("c", "")
+      res = res.Replace("g", "")
       res = res.Replace("man", "")
     Catch ex As Exception
 

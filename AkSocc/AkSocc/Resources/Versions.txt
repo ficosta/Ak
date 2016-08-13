@@ -1,3 +1,59 @@
+﻿====================
+Version 0.7.10
+- Added Escape key to clock control window
+- Fixed: adding a new goal didn't work
+- Fixed: on the scoreline, depending on the locale of the computer, the brackets where showing in the wrong order
+
+====================
+Version 0.7.9
+- Changed the sponsor presentation
+- Removed league names from ScoreLine and 
+- Fixed mic icon on comentator graphic
+
+====================
+Version 0.7.8
+- Improved preview engine
+- Graphics controls: added escape key control
+- Fixes:
+			1- Scoreline with Goal scorer option is not showing the latest goal scorer . It is always showing the first goal scorer of the match. 
+			** not happening here, will need to look into that further.
+
+			2- In F9 button , when showing the formation , there should be option to exit or animate out graphics (Please use the escape button in all dialoges) .
+			** added escape key. not sure what else is missing
+
+			3- In added time dialoge , do not use the scroll up and down for numbers . Please use input box to enter the number. The same thing to do with Overwrite clock.
+			** changed as requested
+
+			4- in Time control, when pressing the start clock and after the show red card dialog , the main dialog must be exit so the user will not have to press again the start button . 
+			The same thing with stop clock . there should be confirmation dialoge and then exit the dialoge when confirming. 
+			** changed as requested
+
+			5- template of the reporter is not fixed yet, it is showing the microphone. 
+			** is last via imported?
+
+			6- Referee is not saving in the match settings. 
+			** fixed
+
+			7- In the clock subs , currently the player coming OUT is entered first while the Player coming IN is the second to enter. Please reverse it so that the In 
+			Player is the first and the OUT player is the second to enter.
+			** changed as requested
+
+			8- In the clock subs also, in the last dialoge after enetering the two players , Focus must be on the button to start the graphics when hitting the enter key .
+			** changed as requested
+
+			9- The focus on any player button is not lost causing its dialouge to prompte when selecting the reset button from time control.
+			** fixed
+
+			10- When the clock is running on first half and then if pressed the start second half . it must start after confirmation dialouge. This happens because operators may 
+				forget to stop the first half clock . Currently, it is starting the first half again .
+			** changed as requested
+    
+			11- Refere whistle is not exist in the template . 
+			** should there be no whistle in the template?
+
+			12- The header of the full frame league standing is not proper text . 
+			** What is the right text? شسنيتمن
+
 ====================
 Version 0.7.7
 - Fixed: Officials were not getting saved to the database
@@ -6,7 +62,7 @@ Version 0.7.7
 - Fixed a problem with the 3rd line of the "As it stands" graphic
 - Minor interface tweaks
 - Tweaks to the clock control window
-- Reorganized the Graphic Hub so scenes and materials are all in the same folders and easy to find
+- Reorganized the Graphic Hub so scenes and materials are all in the same folders and are easy to find
 
 ====================
 Version 0.7.6

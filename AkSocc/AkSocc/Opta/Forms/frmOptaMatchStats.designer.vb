@@ -25,77 +25,42 @@ Partial Class frmOptaMatchStats
     Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmOptaMatchStats))
-    Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-    Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-    Me.OpenFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-    Me.OpenFileDialogXML = New System.Windows.Forms.OpenFileDialog()
     Me.SplitContainerAll = New System.Windows.Forms.SplitContainer()
     Me.MetroGridMatchInfo = New MetroFramework.Controls.MetroGrid()
     Me.ColumnInfoID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnInfoName = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnInfoValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.TableLayoutPanelStats = New System.Windows.Forms.TableLayoutPanel()
-    Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-    Me.ToolStripButtonRefresh = New System.Windows.Forms.ToolStripButton()
     Me.OptaTeamViewerAwayTeam = New AkSocc.OptaTeamViewer()
     Me.OptaTeamViewerHomeTeam = New AkSocc.OptaTeamViewer()
-    Me.MenuStrip1.SuspendLayout()
+    Me.LabelState = New System.Windows.Forms.Label()
     CType(Me.SplitContainerAll, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SplitContainerAll.Panel1.SuspendLayout()
     Me.SplitContainerAll.Panel2.SuspendLayout()
     Me.SplitContainerAll.SuspendLayout()
     CType(Me.MetroGridMatchInfo, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanelStats.SuspendLayout()
-    Me.ToolStrip1.SuspendLayout()
     Me.SuspendLayout()
-    '
-    'MenuStrip1
-    '
-    Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
-    Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-    Me.MenuStrip1.Name = "MenuStrip1"
-    Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 3, 0, 3)
-    Me.MenuStrip1.Size = New System.Drawing.Size(916, 25)
-    Me.MenuStrip1.TabIndex = 1
-    Me.MenuStrip1.Text = "MenuStrip1"
-    '
-    'FileToolStripMenuItem
-    '
-    Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenFileToolStripMenuItem})
-    Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-    Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 19)
-    Me.FileToolStripMenuItem.Text = "File"
-    '
-    'OpenFileToolStripMenuItem
-    '
-    Me.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem"
-    Me.OpenFileToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
-    Me.OpenFileToolStripMenuItem.Text = "Open file..."
-    '
-    'OpenFileDialogXML
-    '
-    Me.OpenFileDialogXML.FileName = "Open xml"
-    Me.OpenFileDialogXML.Filter = "XML files|*.xml|All files|*.*"
     '
     'SplitContainerAll
     '
     Me.SplitContainerAll.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.SplitContainerAll.Location = New System.Drawing.Point(0, 53)
+    Me.SplitContainerAll.Location = New System.Drawing.Point(0, 2)
     Me.SplitContainerAll.Name = "SplitContainerAll"
     Me.SplitContainerAll.Orientation = System.Windows.Forms.Orientation.Horizontal
     '
     'SplitContainerAll.Panel1
     '
     Me.SplitContainerAll.Panel1.Controls.Add(Me.MetroGridMatchInfo)
+    Me.SplitContainerAll.Panel1Collapsed = True
     '
     'SplitContainerAll.Panel2
     '
     Me.SplitContainerAll.Panel2.Controls.Add(Me.TableLayoutPanelStats)
-    Me.SplitContainerAll.Size = New System.Drawing.Size(916, 639)
-    Me.SplitContainerAll.SplitterDistance = 92
+    Me.SplitContainerAll.Size = New System.Drawing.Size(916, 690)
+    Me.SplitContainerAll.SplitterDistance = 99
     Me.SplitContainerAll.TabIndex = 2
     '
     'MetroGridMatchInfo
@@ -144,7 +109,7 @@ Partial Class frmOptaMatchStats
     Me.MetroGridMatchInfo.RowHeadersVisible = False
     Me.MetroGridMatchInfo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridMatchInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridMatchInfo.Size = New System.Drawing.Size(916, 92)
+    Me.MetroGridMatchInfo.Size = New System.Drawing.Size(916, 99)
     Me.MetroGridMatchInfo.TabIndex = 0
     '
     'ColumnInfoID
@@ -171,45 +136,28 @@ Partial Class frmOptaMatchStats
     'TableLayoutPanelStats
     '
     Me.TableLayoutPanelStats.ColumnCount = 1
-    Me.TableLayoutPanelStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanelStats.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanelStats.Controls.Add(Me.OptaTeamViewerAwayTeam, 0, 1)
     Me.TableLayoutPanelStats.Controls.Add(Me.OptaTeamViewerHomeTeam, 0, 0)
+    Me.TableLayoutPanelStats.Controls.Add(Me.LabelState, 0, 2)
     Me.TableLayoutPanelStats.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanelStats.Location = New System.Drawing.Point(0, 0)
     Me.TableLayoutPanelStats.Name = "TableLayoutPanelStats"
-    Me.TableLayoutPanelStats.RowCount = 2
+    Me.TableLayoutPanelStats.RowCount = 3
     Me.TableLayoutPanelStats.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
     Me.TableLayoutPanelStats.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-    Me.TableLayoutPanelStats.Size = New System.Drawing.Size(916, 543)
+    Me.TableLayoutPanelStats.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanelStats.Size = New System.Drawing.Size(916, 690)
     Me.TableLayoutPanelStats.TabIndex = 0
-    '
-    'ToolStrip1
-    '
-    Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonRefresh})
-    Me.ToolStrip1.Location = New System.Drawing.Point(0, 25)
-    Me.ToolStrip1.Name = "ToolStrip1"
-    Me.ToolStrip1.Size = New System.Drawing.Size(916, 25)
-    Me.ToolStrip1.TabIndex = 3
-    Me.ToolStrip1.Text = "ToolStrip1"
-    '
-    'ToolStripButtonRefresh
-    '
-    Me.ToolStripButtonRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-    Me.ToolStripButtonRefresh.Enabled = False
-    Me.ToolStripButtonRefresh.Image = CType(resources.GetObject("ToolStripButtonRefresh.Image"), System.Drawing.Image)
-    Me.ToolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButtonRefresh.Name = "ToolStripButtonRefresh"
-    Me.ToolStripButtonRefresh.Size = New System.Drawing.Size(50, 22)
-    Me.ToolStripButtonRefresh.Text = "Refresh"
     '
     'OptaTeamViewerAwayTeam
     '
     Me.OptaTeamViewerAwayTeam.Dock = System.Windows.Forms.DockStyle.Fill
     Me.OptaTeamViewerAwayTeam.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.OptaTeamViewerAwayTeam.Location = New System.Drawing.Point(3, 275)
+    Me.OptaTeamViewerAwayTeam.Location = New System.Drawing.Point(3, 331)
     Me.OptaTeamViewerAwayTeam.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.OptaTeamViewerAwayTeam.Name = "OptaTeamViewerAwayTeam"
-    Me.OptaTeamViewerAwayTeam.Size = New System.Drawing.Size(910, 264)
+    Me.OptaTeamViewerAwayTeam.Size = New System.Drawing.Size(910, 319)
     Me.OptaTeamViewerAwayTeam.TabIndex = 1
     Me.OptaTeamViewerAwayTeam.Team = Nothing
     '
@@ -220,49 +168,48 @@ Partial Class frmOptaMatchStats
     Me.OptaTeamViewerHomeTeam.Location = New System.Drawing.Point(3, 4)
     Me.OptaTeamViewerHomeTeam.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.OptaTeamViewerHomeTeam.Name = "OptaTeamViewerHomeTeam"
-    Me.OptaTeamViewerHomeTeam.Size = New System.Drawing.Size(910, 263)
+    Me.OptaTeamViewerHomeTeam.Size = New System.Drawing.Size(910, 319)
     Me.OptaTeamViewerHomeTeam.TabIndex = 0
     Me.OptaTeamViewerHomeTeam.Team = Nothing
     '
-    'frmMain
+    'LabelState
+    '
+    Me.LabelState.AutoSize = True
+    Me.LabelState.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelState.Location = New System.Drawing.Point(3, 654)
+    Me.LabelState.Name = "LabelState"
+    Me.LabelState.Size = New System.Drawing.Size(910, 36)
+    Me.LabelState.TabIndex = 2
+    Me.LabelState.Text = "Undefined state"
+    Me.LabelState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'frmOptaMatchStats
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.ClientSize = New System.Drawing.Size(916, 692)
-    Me.Controls.Add(Me.ToolStrip1)
     Me.Controls.Add(Me.SplitContainerAll)
-    Me.Controls.Add(Me.MenuStrip1)
     Me.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.MainMenuStrip = Me.MenuStrip1
     Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-    Me.Name = "frmMain"
+    Me.Name = "frmOptaMatchStats"
     Me.Text = "Opta explorer"
-    Me.MenuStrip1.ResumeLayout(False)
-    Me.MenuStrip1.PerformLayout()
     Me.SplitContainerAll.Panel1.ResumeLayout(False)
     Me.SplitContainerAll.Panel2.ResumeLayout(False)
     CType(Me.SplitContainerAll, System.ComponentModel.ISupportInitialize).EndInit()
     Me.SplitContainerAll.ResumeLayout(False)
     CType(Me.MetroGridMatchInfo, System.ComponentModel.ISupportInitialize).EndInit()
     Me.TableLayoutPanelStats.ResumeLayout(False)
-    Me.ToolStrip1.ResumeLayout(False)
-    Me.ToolStrip1.PerformLayout()
+    Me.TableLayoutPanelStats.PerformLayout()
     Me.ResumeLayout(False)
-    Me.PerformLayout()
 
   End Sub
-  Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents OpenFileToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents OpenFileDialogXML As OpenFileDialog
-    Friend WithEvents SplitContainerAll As SplitContainer
-    Friend WithEvents MetroGridMatchInfo As MetroFramework.Controls.MetroGrid
-    Friend WithEvents ColumnInfoID As DataGridViewTextBoxColumn
-    Friend WithEvents ColumnInfoName As DataGridViewTextBoxColumn
-    Friend WithEvents ColumnInfoValue As DataGridViewTextBoxColumn
-    Friend WithEvents TableLayoutPanelStats As TableLayoutPanel
-    Friend WithEvents OptaTeamViewerAwayTeam As OptaTeamViewer
-    Friend WithEvents OptaTeamViewerHomeTeam As OptaTeamViewer
-    Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents ToolStripButtonRefresh As ToolStripButton
+  Friend WithEvents SplitContainerAll As SplitContainer
+  Friend WithEvents MetroGridMatchInfo As MetroFramework.Controls.MetroGrid
+  Friend WithEvents ColumnInfoID As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnInfoName As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnInfoValue As DataGridViewTextBoxColumn
+  Friend WithEvents TableLayoutPanelStats As TableLayoutPanel
+  Friend WithEvents OptaTeamViewerAwayTeam As OptaTeamViewer
+  Friend WithEvents OptaTeamViewerHomeTeam As OptaTeamViewer
+  Friend WithEvents LabelState As Label
 End Class

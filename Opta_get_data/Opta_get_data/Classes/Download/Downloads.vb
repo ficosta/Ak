@@ -30,6 +30,8 @@ Public Class Downloads
       down = New Download
       down.URL = url
       down.File = file
+      down.User = "see4836"
+      down.Password = "kG4MUqLhEDVh"
       Return Me.AddDownload(down)
     Catch ex As Exception
     End Try

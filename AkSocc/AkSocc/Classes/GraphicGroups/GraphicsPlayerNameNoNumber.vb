@@ -10,7 +10,7 @@ Public Class GraphicsPlayerNameNoNumber
     MyBase.New(_match)
     Me.MustHavePlayer = True
 
-    MyBase.KeyCombination = New KeyCombination(Description, Keys.F6, False, False, False, False)
+    MyBase.KeyCombination = New KeyCombination(Description, Keys.F3, True, False, False, False)
     Me.Scene = Me.InitDefaultScene(1)
   End Sub
 

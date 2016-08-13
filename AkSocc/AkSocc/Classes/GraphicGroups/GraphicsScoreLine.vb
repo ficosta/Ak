@@ -153,15 +153,17 @@ Public Class GraphicsScoreLine
 
 
     If show_logo Then
+      scene.SceneParameters.Add("Sponsor_Vis.active", "1")
       If GraphicVersions.Instance.SelectedGraphicVersion.UseLongPreview Then
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 80, DirectorAction.Start)
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 90, DirectorAction.Dummy)
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 95, DirectorAction.Start)
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 95, DirectorAction.Dummy)
       Else
-        scene.SceneDirectorsIn.Add("sponsor_in_out", 50, DirectorAction.Start)
+        scene.SceneDirectorsIn.Add("sponsor_in_out", 25, DirectorAction.Start)
         scene.SceneDirectorsIn.Add("sponsor_in_out", 55, DirectorAction.Dummy)
       End If
       scene.SceneDirectorsOut.Add("sponsor_in_out", 0, DirectorAction.ContinueNormal)
     Else
+      scene.SceneParameters.Add("Sponsor_Vis.active", "0")
       scene.SceneDirectorsIn.Add("sponsor_in_out", 0, DirectorAction.Rewind)
     End If
 
@@ -346,11 +348,12 @@ Public Class GraphicsScoreLine
         If i - 1 < goals.Count Then
           Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", GetGoalTime(goal)))
-          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", GetGoalPlayer(goal)))
-          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_02", GetGoalDescription(goal)))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", GetGoalDescription(goal)))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_02", GetGoalPlayer(goal)))
         Else
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", " "))
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", " "))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_02", " "))
         End If
       Next
       goals = Me.Match.AwayTeam.MatchGoals
@@ -360,11 +363,12 @@ Public Class GraphicsScoreLine
         If i - 1 < goals.Count Then
           Dim goal As MatchInfo.MatchGoal = goals.Item(i - 1)
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", GetGoalTime(goal)))
-          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", GetGoalPlayer(goal)))
-          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_02", GetGoalDescription(goal)))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", GetGoalDescription(goal)))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_02", GetGoalPlayer(goal)))
         Else
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Score_A", " "))
           scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_01", " "))
+          scene.SceneParameters.Add(New SceneParameter(prefix & i & "_Text_02", " "))
         End If
       Next
 
@@ -420,9 +424,11 @@ Public Class GraphicsScoreLine
         Case MatchInfo.MatchGoal.eGoalType.Penalty
           goalDescription = (Arabic("PENALTY"))
       End Select
-      goalDescription = goalDescription.Replace("(", "~")
-      goalDescription = goalDescription.Replace(")", "( ")
-      goalDescription = goalDescription.Replace("~", " )")
+      If System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName = "es" Then
+        goalDescription = goalDescription.Replace("(", "~")
+        goalDescription = goalDescription.Replace(")", "( ")
+        goalDescription = goalDescription.Replace("~", " )")
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try

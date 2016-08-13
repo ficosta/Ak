@@ -51,6 +51,8 @@ Public Class FileDownloader
       End If
       IsBusy = True
 
+      _client.Credentials = New System.Net.NetworkCredential(down.User, down.Password)
+
       _client.DownloadFileAsync(New Uri(down.URL), down.File)
       _Download.Progress = 0
       _Download.State = Download.eDownloadState.BeginingDownload

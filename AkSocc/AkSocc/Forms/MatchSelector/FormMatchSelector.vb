@@ -206,7 +206,7 @@ Public Class FormMatchSelector
 
     '  UpdateValuesFromMatchEvents()
 
-    '  Dim SnapPath As New System.IO.DirectoryInfo(Properties.Settings.[Default].VizrtPreviewFile)
+    '  Dim SnapPath As New System.IO.DirectoryInfo(AppSettings.Instance.VizrtPreviewFile)
     '  For Each file As System.IO.FileInfo In SnapPath.GetFiles()
     '    file.Delete()
     '  Next

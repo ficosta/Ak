@@ -129,7 +129,7 @@ Public Class FormPeriodControl
           '  OverWriteClock()
       End Select
 
-      ' ExecuteSelectedAction()
+      ' AcceptOption()
     Catch ex As Exception
 
     End Try
@@ -140,7 +140,7 @@ Public Class FormPeriodControl
       Select Case e.KeyCode
         Case Keys.Return
           e.Handled = True
-          ExecuteSelectedAction()
+          AcceptOption()
       End Select
     Catch ex As Exception
 
@@ -163,22 +163,36 @@ Public Class FormPeriodControl
     End Try
   End Sub
 
-  Private Sub ExecuteSelectedAction()
+  Private Function ExecuteSelectedAction() As Boolean
+    Dim res As Boolean = False
     Try
       Select Case _selectedAction
         Case "RESET"
           ResetMatch()
+          res = True
         Case "OVERWRITE"
           OverWriteClock()
+          res = True
         Case "START"
-          _match.MatchPeriods.StartPeriod(_match.MatchPeriods(_selectedIndex), 0)
+          If frmWaitForInput.ShowWaitDialog(Me, "Are you sure you want to start the selected period?", "Start period", MessageBoxButtons.OKCancel) = DialogResult.OK Then
+            res = True
+            _match.MatchPeriods.StartPeriod(_match.MatchPeriods(_selectedIndex), 0)
+          Else
+            res = False
+          End If
         Case "STOP"
-          _match.MatchPeriods.EndPeriod(_match.MatchPeriods(_selectedIndex), 0)
+          If frmWaitForInput.ShowWaitDialog(Me, "Are you sure you want to stop the selected period?", "Stop period", MessageBoxButtons.OKCancel) = DialogResult.OK Then
+            res = True
+            _match.MatchPeriods.EndPeriod(_match.MatchPeriods(_selectedIndex), 0)
+          Else
+            res = False
+          End If
       End Select
     Catch ex As Exception
 
     End Try
-  End Sub
+    Return res
+  End Function
 
   Private _updating As Boolean = False
   Private Sub _match_ActivePeriodStateChanged(period As Period) Handles _match.ActivePeriodStateChanged
@@ -206,10 +220,19 @@ Public Class FormPeriodControl
     _match.MatchPeriods.UpdatePeriodExtraTime(_match.MatchPeriods.ActivePeriod, Me.NumericUpDownMinutes.Value)
   End Sub
 
+  Private Sub AcceptOption()
+    Try
+      Dim res As Boolean
+      res = ExecuteSelectedAction()
+      If res Then Me.Close()
+      Me.DialogResult = DialogResult.OK
+    Catch ex As Exception
+
+    End Try
+  End Sub
 
   Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
-    ExecuteSelectedAction()
-    Me.Close()
+    AcceptOption()
   End Sub
 
   Private Sub Cancel_Button_Click(sender As Object, e As EventArgs) Handles Cancel_Button.Click

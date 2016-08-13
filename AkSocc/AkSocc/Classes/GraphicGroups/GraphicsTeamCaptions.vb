@@ -13,7 +13,7 @@ Public Class GraphicsTeamCaptions
     MyBase.Name = "GrapchisTeamCaptions"
     MyBase.ID = 1
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F9, False, False, False, False)
-    Me.Scene = Me.InitDefaultScene(1)
+    Me.Scene = Me.InitDefaultScene(1, False)
     Me.CantHaveClock = True
 
   End Sub
@@ -50,6 +50,14 @@ Public Class GraphicsTeamCaptions
     End Sub
   End Class
 
+  Class StepLogos
+    Inherits GraphicStep.GraphicStepDefinition
+
+    Public Shared ReadOnly YesLogo As GraphicStep.GraphicStepDefinition = New GraphicStep.GraphicStepDefinition("YES - Show sponsor")
+    Public Shared ReadOnly NoLogo As GraphicStep.GraphicStepDefinition = New GraphicStep.GraphicStepDefinition("NO - No sponsor")
+  End Class
+
+
 
   Public Overrides Function PrepareNextGraphicStep(Optional graphicStep As GraphicStep = Nothing) As GraphicStep
     Dim gsList As New GraphicSteps
@@ -63,16 +71,20 @@ Public Class GraphicsTeamCaptions
       _teamStaffs = New TeamStaffs
 
       If graphicStep Is Nothing Then
-        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 and subs", Step0.Home11AndSubs, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 mini formation", Step0.Home11MiniFormation, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 formation", Step0.Home11Formation, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 and subs", Step0.Home11AndSubs))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 mini formation", Step0.Home11MiniFormation))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.HomeTeam.TeamAELCaption1Name & " 11 formation", Step0.Home11Formation))
 
-        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 and subs", Step0.Away11AndSubs, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 mini formation", Step0.Away11MiniFormation, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 formation", Step0.Away11Formation, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 and subs", Step0.Away11AndSubs))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 mini formation", Step0.Away11MiniFormation))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Me.Match.AwayTeam.TeamAELCaption1Name & " 11 formation", Step0.Away11Formation))
 
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.DoubleTeams, True, True))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.DoubleSubs, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.DoubleTeams))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.DoubleSubs))
+      Else
+
+        gs.GraphicSteps.Add(New GraphicStep(gs, StepLogos.YesLogo, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, StepLogos.NoLogo, True, True))
 
       End If
     Catch ex As Exception
@@ -85,26 +97,27 @@ Public Class GraphicsTeamCaptions
     Me.Scene = New Scene
     Dim gs As GraphicStep = graphicStep.RootGraphicStep
     Dim changeStep As Integer = 1
+    Dim show_sponsor As Boolean = graphicStep.Name = StepLogos.YesLogo
     Try
       Select Case gs.ChildGraphicStep.UID
         Case Step0.Home11AndSubs
-          Scene = PrepareTeam(changeStep, Me.Match.HomeTeam)
+          Scene = PrepareTeam(changeStep, Me.Match.HomeTeam, show_sponsor)
         Case Step0.Away11AndSubs
-          Scene = PrepareTeam(changeStep, Me.Match.AwayTeam)
+          Scene = PrepareTeam(changeStep, Me.Match.AwayTeam, show_sponsor)
         Case Step0.Home11Formation
-          Scene = PrepareTeamFormation(changeStep, Me.Match.HomeTeam)
+          Scene = PrepareTeamFormation(changeStep, Me.Match.HomeTeam, show_sponsor)
         Case Step0.Away11Formation
-          Scene = PrepareTeamFormation(changeStep, Me.Match.AwayTeam)
+          Scene = PrepareTeamFormation(changeStep, Me.Match.AwayTeam, show_sponsor)
         Case Step0.Home11MiniFormation
-          Scene = PrepareTeamMiniFormation(changeStep, Me.Match.HomeTeam)
+          Scene = PrepareTeamMiniFormation(changeStep, Me.Match.HomeTeam, show_sponsor)
         Case Step0.Away11MiniFormation
-          Scene = PrepareTeamMiniFormation(changeStep, Me.Match.AwayTeam)
+          Scene = PrepareTeamMiniFormation(changeStep, Me.Match.AwayTeam, show_sponsor)
         Case Step0.DoubleTeams
-          Scene = PrepareDoubleTeam(changeStep, False)
+          Scene = PrepareDoubleTeam(changeStep, False, show_sponsor)
         Case Step0.DoubleSubs
-          Scene = PrepareDoubleTeam(changeStep, True)
+          Scene = PrepareDoubleTeam(changeStep, True, show_sponsor)
         Case Else
-          Scene = PrepareTeam(changeStep, Me.Match.HomeTeam)
+          Scene = PrepareTeam(changeStep, Me.Match.HomeTeam, show_sponsor)
       End Select
 
     Catch ex As Exception
@@ -114,7 +127,7 @@ Public Class GraphicsTeamCaptions
   End Function
 
 #Region "Team scenes"
-  Private Function InitDefaultScene(Optional gSide As Integer = 1) As Scene
+  Private Function InitDefaultScene(gSide As Integer, show_sponsor As Boolean) As Scene
     Dim scene As New Scene()
 
     scene.VizLayer = SceneLayer.Middle
@@ -139,7 +152,13 @@ Public Class GraphicsTeamCaptions
     scene.SceneDirectorsChangeIn.Add("Title_change_1_2", 200, DirectorAction.Dummy)
 
     scene.SceneParameters.Add("Veil_On_Off_Vis.active", "1")
-    scene.SceneParameters.Add("Title_Sponsor_Vis.active", "1")
+    If show_sponsor Then
+      scene.SceneParameters.Add("Title_Sponsor_Vis.active", "1")
+      scene.SceneParameters.Add("Title_Sponsor_Vis", "1")
+    Else
+      scene.SceneParameters.Add("Title_Sponsor_Vis.active", "0")
+      scene.SceneParameters.Add("Title_Sponsor_Vis", "0")
+    End If
 
 
     If Not Me.Match Is Nothing Then
@@ -173,8 +192,8 @@ Public Class GraphicsTeamCaptions
     Return scene
   End Function
 
-  Public Function PrepareTeam(gSide As Integer, team As Team) As Scene
-    Dim scene As Scene = InitDefaultScene(gSide)
+  Public Function PrepareTeam(gSide As Integer, team As Team, show_sponsor As Boolean) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide, show_sponsor)
     Dim prefix As String = ""
     Dim subjectPrefix As String = ""
     Try
@@ -250,8 +269,8 @@ Public Class GraphicsTeamCaptions
     Return scene
   End Function
 
-  Public Function PrepareTeamFormation(gSide As Integer, team As Team) As Scene
-    Dim scene As Scene = InitDefaultScene(gSide)
+  Public Function PrepareTeamFormation(gSide As Integer, team As Team, show_sponsor As Boolean) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide, show_sponsor)
     Dim prefix As String = ""
     Dim subjectPrefix As String = ""
     Try
@@ -324,8 +343,8 @@ Public Class GraphicsTeamCaptions
     Return scene
   End Function
 
-  Public Function PrepareTeamMiniFormation(gSide As Integer, team As Team) As Scene
-    Dim scene As Scene = InitDefaultScene(gSide)
+  Public Function PrepareTeamMiniFormation(gSide As Integer, team As Team, show_sponsor As Boolean) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide, show_sponsor)
     Dim prefix As String = ""
     Dim subjectPrefix As String = ""
     Try
@@ -409,8 +428,8 @@ Public Class GraphicsTeamCaptions
     Return scene
   End Function
 
-  Public Function PrepareDoubleTeam(gSide As Integer, subst As Boolean) As Scene
-    Dim scene As Scene = InitDefaultScene(gSide)
+  Public Function PrepareDoubleTeam(gSide As Integer, subst As Boolean, show_sponsor As Boolean) As Scene
+    Dim scene As Scene = InitDefaultScene(gSide, show_sponsor)
     Dim prefix As String = ""
     Dim subjectPrefix As String = ""
     Try

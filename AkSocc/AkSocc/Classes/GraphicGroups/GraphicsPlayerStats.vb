@@ -101,7 +101,12 @@ Public Class GraphicsPlayerStats
         gs.GraphicSteps.Add(New GraphicStep(gs, "Assists [" & Me.Player.MatchStats.Assis.Value.ToString() & "]", Step0.Assists.Key, True, False))
         gs.GraphicSteps.Add(New GraphicStep(gs, "Saves [" & Me.Player.MatchStats.Saves.Value.ToString() & "]", Step0.Saves.Key, True, False))
         gs.GraphicSteps.Add(New GraphicStep(gs, "Shots [" & Me.Player.MatchStats.Shots.Value.ToString() & "] & Assists [" & Me.Player.MatchStats.Assis.Value.ToString() & "]", Step0.ShotsAndAssists.Key, True, False))
-
+        'opta data!
+        For Each stat As Opta_Term_Stat In AppSettings.Instance.OptaStatsPlayer
+          If stat.ShowInLower Then
+            gs.GraphicSteps.Add(New GraphicStep(gs, stat.AppName & " [" & Me.Player.optaGetValue(stat.OPTAName) & "]", stat.OPTAName, True, False))
+          End If
+        Next
 
       End If
     Catch ex As Exception
@@ -145,6 +150,11 @@ Public Class GraphicsPlayerStats
           Exit Select
         Case Else
           'Opta
+          Dim stat As Opta_Term_Stat = AppSettings.Instance.OptaStatsPlayer.GetStatByOptaName(gs.ChildGraphicStep.UID)
+          If Not stat Is Nothing Then
+            dataText = stat.AppName & " " & Player.optaGetValue(stat.OPTAName)
+          End If
+          Exit Select
           'If OptaPlayer IsNot Nothing Then
           '  'ir a buscar los datos de opta, no se vuelve a conectar a la base de datos
           '  Dim myOPTATerm As Opta_Term_Stat = DirectCast(myChoose.OptionSelected.Tag, Opta_Term_Stat)
@@ -223,7 +233,7 @@ Public Class GraphicsPlayerStats
     Dim prefix As String = "LeftFramer_Title_Stats_Side_" & gSide & "_"
     Dim subjectPrefix As String = ""
     Try
-
+      scene.SceneParameters.Add("LeftFramer_Title_Bar_Side_" & gSide & "_Title_Type", "0")
       scene.SceneParameters.Add("Lower3rd_Player_Badge_Number_Control_OMO_GV_Choose", "0")
       scene.SceneParameters.Add("Lower3rd_Side_" & gSide & "_Bottom_Bar_Text_Text_01 ", stat_text)
     Catch ex As Exception

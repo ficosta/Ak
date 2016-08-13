@@ -57,6 +57,13 @@ Public Class GraphicGroupFullFramers
     Public Shared ReadOnly NoArrows As GraphicStep.GraphicStepDefinition = New GraphicStep.GraphicStepDefinition("NO - No arrows")
   End Class
 
+  Class StepLogos
+    Inherits GraphicStep.GraphicStepDefinition
+
+    Public Shared ReadOnly YesLogo As GraphicStep.GraphicStepDefinition = New GraphicStep.GraphicStepDefinition("YES - Show sponsor")
+    Public Shared ReadOnly NoLogo As GraphicStep.GraphicStepDefinition = New GraphicStep.GraphicStepDefinition("NO - No sponsor")
+  End Class
+
 
   Public Overrides Function PrepareNextGraphicStep(Optional graphicStep As GraphicStep = Nothing) As GraphicStep
     Dim gsList As New GraphicSteps
@@ -72,7 +79,7 @@ Public Class GraphicGroupFullFramers
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueTableTop))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueTableBottom))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.OtherMatchScores))
-        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FullFrameStats, True, True))
+        gs.GraphicSteps.Add(New GraphicStep(gs, Step0.FullFrameStats))
         gs.GraphicSteps.Add(New GraphicStep(gs, Step0.LeagueComparison, True, True))
       Else
         Select Case graphicStep.Depth
@@ -85,6 +92,10 @@ Public Class GraphicGroupFullFramers
                 For Each matchDays As MatchDay In Me.OtherMatchDays
                   gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(matchDays.MatchDayID, matchDays.MatchDayName), True, True))
                 Next
+              Case Step0.FullFrameStats
+                gs.GraphicSteps.Add(New GraphicStep(gs, StepLogos.YesLogo, True, True))
+                gs.GraphicSteps.Add(New GraphicStep(gs, StepLogos.NoLogo, True, True))
+
             End Select
 
         End Select
@@ -113,7 +124,7 @@ Public Class GraphicGroupFullFramers
         Case Step0.LeagueTableBottom
           Scene = PrepareLeagueTable(changeStep, False, graphicStep.Name = StepArrows.Arrows)
         Case Step0.FullFrameStats
-          Scene = PrepareFullFrameStats(changeStep)
+          Scene = PrepareFullFrameStats(changeStep, graphicStep.Name = StepLogos.YesLogo)
         Case Step0.LeagueComparison
           Scene = PrepareLeagueComparisson(changeStep)
       End Select
@@ -375,7 +386,7 @@ Public Class GraphicGroupFullFramers
   End Function
 
 
-  Public Function PrepareFullFrameStats(gSide As Integer) As Scene
+  Public Function PrepareFullFrameStats(gSide As Integer, show_sponsor As Boolean) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = "Stats_Side_" & gSide & "_"
     Dim posIndex As Integer = 0
@@ -398,14 +409,18 @@ Public Class GraphicGroupFullFramers
 
 
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Vis.active ", "1")
-      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "1")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Control_OMO_GV_Choose ", "0")
       scene.SceneParameters.Add("Title_Side_" & gSide & "_Centre_Text", Me.Match.AwayTeam.Goals & " - " & Me.Match.HomeTeam.Goals)
-      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", "")
-      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", "")
-      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", Me.Match.HomeTeam.Name)
-      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", Me.Match.AwayTeam.Name)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Right_Text", Me.Match.HomeTeam.Name)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Left_Text", Me.Match.AwayTeam.Name)
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Right_Text", "")
+      scene.SceneParameters.Add("Title_Side_" & gSide & "_Team_Left_Text", "")
 
-      scene.SceneParameters.Add("Title_Sponsor_Vis ", "1")
+      If show_sponsor Then
+        scene.SceneParameters.Add("Title_Sponsor_Vis ", "1")
+      Else
+        scene.SceneParameters.Add("Title_Sponsor_Vis ", "0")
+      End If
 
       Dim statNames() As String = {"Shots", "Shots_on_target", "Corners", "Offsides", "Fouls", "Cards", "Possession"}
       Dim stat As MatchInfo.Stat

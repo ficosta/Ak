@@ -1,4 +1,5 @@
-﻿Imports AkSocc
+﻿Imports System.ComponentModel
+Imports AkSocc
 Imports MetroFramework
 Imports MetroFramework.Forms
 Imports VizCommands
@@ -49,7 +50,7 @@ Public Class FormChoose
     AcceptGraphic()
   End Sub
 
-  Private Sub AcceptGraphic()
+Private Sub AcceptGraphic()
     Dim gSide As GraphicStep = Me.GraphicGroup.graphicStep
 
     ' If MsgBox("Start graphic?", MsgBoxStyle.YesNo, gSide.ToString) = MsgBoxResult.No Then Exit Sub
@@ -158,6 +159,17 @@ Public Class FormChoose
   End Sub
 
   Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
+    Me.Close()
+  End Sub
+
+
+  Private Sub FormChoose_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    If Me.DialogResult <> DialogResult.OK Then
+      CancelAction()
+    End If
+  End Sub
+
+  Private Sub CancelAction()
     Try
       If Not _currentScene Is Nothing Then
         _currentScene.StartSceneDirectors(_vizControl, Scene.TypeOfDirectors.OutDirectors)
@@ -166,7 +178,7 @@ Public Class FormChoose
       WriteToErrorLog(ex)
     End Try
     Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
-    Me.Close()
+    'Me.Close()
   End Sub
 
   Private Sub DialogChooseWithPreview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -494,5 +506,16 @@ Public Class FormChoose
   Private Sub UserControlChoose3_Load(sender As Object, e As EventArgs) Handles UserControlChoose3.Load
 
   End Sub
+
+  Private Sub FormChoose_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+    Try
+      Select Case e.KeyCode
+        Case Keys.Escape
+      End Select
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
 #End Region
 End Class

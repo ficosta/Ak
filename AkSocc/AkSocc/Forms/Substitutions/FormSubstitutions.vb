@@ -116,6 +116,7 @@ Public Class FormSubstitutions
       Me.MetroButtonShowSelectedSubstitution.Text = "Nothing to show"
       Me.MetroButtonShowSelectedSubstitution.Enabled = False
     End If
+    Me.MetroButtonShowSelectedSubstitution.Focus()
   End Sub
 #End Region
 End Class

@@ -1,5 +1,7 @@
 ﻿Imports System.ComponentModel
+Imports System.IO
 Imports AkSocc
+Imports AkSocc.FTPSyncManager
 Imports MatchInfo
 Imports VizCommands
 
@@ -11,6 +13,11 @@ Public Class frmMain
       Return _match
     End Get
   End Property
+
+  Private WithEvents _F9Helper As COptaF9Helper
+
+  Private WithEvents _optaMatches As Matches
+  Private WithEvents _F26Helper As COptaF26Helper
 
   Private WithEvents _statGraphic As GraphicStep
   Private WithEvents _dlgChoosWithPreview As FormChoose
@@ -42,6 +49,8 @@ Public Class frmMain
   End Property
 
   Private WithEvents _loggerComm As LoggerComm = LoggerComm.Instance
+
+  Private WithEvents _ftpSyncManager As FTPSyncManager = FTPSyncManager.Instance
 #End Region
 
 #Region "Constructor"
@@ -138,7 +147,7 @@ Public Class frmMain
     Try
       If ShowOptions(Me) Then
         ' Me.InitRender()
-        UpdateVizConfig()
+        UpdateConfig()
       End If
       Me.UpdateStatusLabel()
     Catch ex As Exception
@@ -204,7 +213,14 @@ Public Class frmMain
         'match selected!
         InitMatchInfo(dlg.SelectedMatchId)
         MatchSetup()
-        UpdateVizConfig()
+        UpdateConfig()
+        If _match.optaID > 0 Then
+          Dim file As String = "srml-" & AppSettings.Instance.OptaCompetitionID & "-" & AppSettings.Instance.OptaSeasonID & "-f" & _match.optaID & "-matchresults.xml"
+          file = System.IO.Path.Combine(AppSettings.Instance.OptaDefaultFolder, file)
+          _F9Helper = New COptaF9Helper(file, _match)
+        Else
+          _F9Helper = Nothing
+        End If
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -216,7 +232,7 @@ Public Class frmMain
     Return True
   End Function
 
-  Private Sub UpdateVizConfig()
+  Private Sub UpdateConfig()
     Try
       Me.InitRender()
 
@@ -232,6 +248,13 @@ Public Class frmMain
 
         _previewControl.Config = pvwConfig
       End If
+
+      FTPSyncManager.Instance.Initialize(AppSettings.Instance.OptaFTPServer, AppSettings.Instance.OptaFTPPath, AppSettings.Instance.OptaFTPUser, AppSettings.Instance.OptaFTPPassword, AppSettings.Instance.OptaDefaultFolder)
+      FTPSyncManager.Instance.Enabled = True
+
+      _optaMatches = New Matches()
+      _F26Helper = New COptaF26Helper(AppSettings.Instance.OptaDefaultFolder, _optaMatches)
+
     Catch ex As Exception
 
     End Try
@@ -364,8 +387,42 @@ Public Class frmMain
         End Select
       End If
       Me.LabelGraphicVersion.Text = GraphicVersions.Instance.SelectedGraphicVersion.Name
+      If _match Is Nothing Then
+        Me.ButtonOptaID.Text = "NO MATCH"
+        ButtonOptaID.Enabled = False
+        Me.ButtonOptaID.BackColor = Color.LightGray
+      ElseIf _match.optaID > 0 Then
+        Me.ButtonOptaID.Text = "OPTA ID " & _match.optaID
+        Me.ButtonOptaID.BackColor = Color.LightGreen
+        ButtonOptaID.Enabled = True
+      Else
+        Me.ButtonOptaID.Text = "undefined OPTA ID"
+        Me.ButtonOptaID.BackColor = Color.LightSalmon
+        ButtonOptaID.Enabled = True
+      End If
     Catch ex As Exception
       WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+
+  Private Sub ButtonOptaID_Click(sender As Object, e As EventArgs) Handles ButtonOptaID.Click
+    Try
+      If _match Is Nothing Then Exit Sub
+
+      Dim dlg As New frmOptaFixtures
+      dlg.MatchOptaID = _match.optaID
+      If dlg.ShowDialog(Me) = DialogResult.OK Then
+        _match.optaID = dlg.MatchOptaID
+        _match.Update()
+
+        Dim file As String = "srml-" & AppSettings.Instance.OptaCompetitionID & "-" & AppSettings.Instance.OptaSeasonID & "-f" & _match.optaID & "-matchresults.xml"
+        file = System.IO.Path.Combine(AppSettings.Instance.OptaDefaultFolder, file)
+        _F9Helper = New COptaF9Helper(file, _match)
+      End If
+      UpdateStatusLabel()
+    Catch ex As Exception
+
     End Try
   End Sub
 #End Region
@@ -1140,6 +1197,13 @@ Public Class frmMain
         End If
       Next
       _keyCapture.ParentHandle = Me.Handle
+
+      _keyCapture.LlistaCombinations.Sort()
+
+      For Each keyComb As KeyCombination In _keyCapture.LlistaCombinations
+        Debug.Print(keyComb.ToString)
+      Next
+
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -1497,7 +1561,7 @@ Public Class frmMain
         _dlgClockControl.BringToFront()
       End If
     Catch ex As Exception
-
+      WriteToErrorLog(ex)
     End Try
   End Sub
 
@@ -1505,5 +1569,107 @@ Public Class frmMain
     _dlgClockControl = Nothing
   End Sub
 
+#End Region
+
+#Region "OPTA"
+  Private WithEvents _frmOptaMatchStats As frmOptaMatchStats
+
+  'Private Sub FixturesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FixturesToolStripMenuItem.Click
+  '  Try
+  '    If _frmOptaMatchStats Is Nothing Then
+  '      _frmOptaMatchStats = New frmOptaMatchStats
+  '      _frmOptaMatchStats.Match = _match
+  '      _frmOptaMatchStats.f9Helper = _F9Helper
+  '      _frmOptaMatchStats.Show(Me)
+  '    Else
+  '      _frmOptaMatchStats.Close()
+  '    End If
+
+  '  Catch ex As Exception
+  '    WriteToErrorLog(ex)
+  '  End Try
+  'End Sub
+
+  Private Sub MatchDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MatchDataToolStripMenuItem.Click
+    Try
+      If _frmOptaMatchStats Is Nothing Then
+        _frmOptaMatchStats = New frmOptaMatchStats
+        _frmOptaMatchStats.Match = _match
+        _frmOptaMatchStats.f9Helper = _F9Helper
+        _frmOptaMatchStats.Show(Me)
+      Else
+        _frmOptaMatchStats.Close()
+      End If
+
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub _frmOptaMatchStats_Closed(sender As Object, e As EventArgs) Handles _frmOptaMatchStats.Closed
+    _frmOptaMatchStats = Nothing
+  End Sub
+
+
+  Private Sub SelectOptaStatsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectOptaStatsToolStripMenuItem.Click
+    Try
+      Dim dlg As New frmOptaStats
+      If dlg.ShowDialog(Me) = DialogResult.OK Then
+
+      End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private _externalOptaSync As Boolean = False
+
+  Private WithEvents _frmOptaFTPSync As New frmOptaFTPSync
+
+
+  Private Sub SyncToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SyncToolStripMenuItem.Click
+    Try
+      _externalOptaSync = True
+      _frmOptaFTPSync = New frmOptaFTPSync
+      _frmOptaFTPSync.Show(Me)
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+
+  Private Sub _frmOptaFTPSync_Closed(sender As Object, e As EventArgs) Handles _frmOptaFTPSync.Closed
+    Try
+      _externalOptaSync = False
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub _ftpSyncManager_SyncStateChanged(syncState As FTPSyncManager.CThreadState) Handles _ftpSyncManager.SyncStateChanged
+    Try
+      If _externalOptaSync Then Exit Sub
+      Dim down As New Download()
+      For Each ftpFile As FTPFileInfo In syncState.NewFiles
+        down = New Download
+        down.URL = ftpFile.FullPathRemote
+        down.File = ftpFile.FullPathLocal
+        down.User = _ftpSyncManager.FTPUser
+        down.Password = _ftpSyncManager.FTPPassword
+        Me.MultiFileDownloaderFTP.Downloads.AddDownload(down)
+      Next
+
+      For Each ftpFile As FTPFileInfo In syncState.ChangedFiles
+        down = New Download
+        down.URL = ftpFile.FullPathRemote
+        down.File = ftpFile.FullPathLocal
+        down.User = _ftpSyncManager.FTPUser
+        down.Password = _ftpSyncManager.FTPPassword
+        Me.MultiFileDownloaderFTP.Downloads.AddDownload(down)
+      Next
+    Catch ex As Exception
+
+    End Try
+  End Sub
 #End Region
 End Class

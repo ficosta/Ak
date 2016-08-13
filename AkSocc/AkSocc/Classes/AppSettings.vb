@@ -39,8 +39,23 @@ Public NotInheritable Class AppSettings
 
   Public Property UseLogger As Boolean = False
 
-  Public Property OptaStatsTeams As String
-  Public Property OptaStatsPlayers As String
+  Public Property OptaStatsTeamsDefinitionPath As String = "C:\teamOptaStats.xml"
+  Public Property OptaStatsPlayersDefinitionPath As String = "C:\playerOptaStats.xml"
+
+  Public Property OptaDefaultFolder As String = "C:\Alamiya\OPTA"
+  Public Property OptaDefaultHistoryFolder As String = "C:\Alamiya\OPTA\History"
+
+  Public Property OptaFTPServer As String = "ftp.alkamelsystems.com"
+  Public Property OptaFTPPath As String = ""
+  Public Property OptaFTPPort As Integer = 21
+  Public Property OptaFTPUser As String = "see4836"
+  Public Property OptaFTPPassword As String = "kG4MUqLhEDVh"
+
+  Public Property OptaCompetitionID As Integer = 202
+  Public Property OptaSeasonID As Integer = 2016
+
+  Public Property OptaStatsTeam As New Opta_Term_Stats(OptaStatsTeamsDefinitionPath)
+  Public Property OptaStatsPlayer As New Opta_Term_Stats(OptaStatsPlayersDefinitionPath)
 #End Region
 
   Public Function LlegirConfiguracio(ByVal niNumConfig As Integer) As AppSettings
@@ -70,8 +85,17 @@ Public NotInheritable Class AppSettings
     AppSettings.Instance.ClockPosition_Y = CDbl(CMyRegConfig.ReadValue("ClockPosition_y", AppSettings.Instance.ClockPosition_Y, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
 
 
-    AppSettings.Instance.OptaStatsPlayers = CStr(CMyRegConfig.ReadValue("OptaStatsPlayers", AppSettings.Instance.OptaStatsPlayers, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
-    AppSettings.Instance.OptaStatsTeams = CStr(CMyRegConfig.ReadValue("OptaStatsTeams", AppSettings.Instance.OptaStatsTeams, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.OptaStatsPlayersDefinitionPath = CStr(CMyRegConfig.ReadValue("OptaStatsPlayersDefinitionPath", AppSettings.Instance.OptaStatsPlayersDefinitionPath, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.OptaStatsTeamsDefinitionPath = CStr(CMyRegConfig.ReadValue("OptaStatsTeamsDefinitionPath", AppSettings.Instance.OptaStatsTeamsDefinitionPath, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+
+    AppSettings.Instance.OptaFTPServer = CStr(CMyRegConfig.ReadValue("OptaFTPServer", AppSettings.Instance.OptaFTPServer, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.OptaFTPUser = CStr(CMyRegConfig.ReadValue("OptaFTPUser", AppSettings.Instance.OptaFTPUser, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.OptaFTPPassword = CStr(CMyRegConfig.ReadValue("OptaFTPPassword", AppSettings.Instance.OptaFTPPassword, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.OptaFTPPort = CInt(CMyRegConfig.ReadValue("OptaFTPPort", AppSettings.Instance.OptaFTPPort, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.OptaDefaultFolder = CStr(CMyRegConfig.ReadValue("OptaDefaultFolder", AppSettings.Instance.OptaDefaultFolder, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.OptaDefaultHistoryFolder = CStr(CMyRegConfig.ReadValue("OptaDefaultHistoryFolder", AppSettings.Instance.OptaDefaultHistoryFolder, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.OptaCompetitionID = CStr(CMyRegConfig.ReadValue("OptaCompetitionID", AppSettings.Instance.OptaCompetitionID, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
+    AppSettings.Instance.OptaSeasonID = CStr(CMyRegConfig.ReadValue("OptaSeasonID", AppSettings.Instance.OptaSeasonID, RegistryHelper.eBrancaReg.brBrancaUsuari, False))
 
     Return AppSettings.Instance
   End Function
@@ -109,8 +133,18 @@ Public NotInheritable Class AppSettings
     CMyRegConfig.WriteValue("ClockPosition_X", tiConfig.ClockPosition_X, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
     CMyRegConfig.WriteValue("ClockPosition_y", tiConfig.ClockPosition_Y, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
 
-    CMyRegConfig.WriteValue("OptaStatsPlayers", tiConfig.OptaStatsPlayers, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
-    CMyRegConfig.WriteValue("OptaStatsTeams", tiConfig.OptaStatsTeams, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("OptaStatsPlayersDefinitionPath", tiConfig.OptaStatsPlayersDefinitionPath, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("OptaStatsTeamsDefinitionPath", tiConfig.OptaStatsTeamsDefinitionPath, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+
+
+    CMyRegConfig.WriteValue("OptaFTPServer", tiConfig.OptaFTPServer, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("OptaFTPUser", tiConfig.OptaFTPUser, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("OptaFTPPassword", tiConfig.OptaFTPPassword, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("OptaFTPPort", tiConfig.OptaFTPPort, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.DWord, False)
+    CMyRegConfig.WriteValue("OptaDefaultFolder", tiConfig.OptaDefaultFolder, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("OptaDefaultHistoryFolder", tiConfig.OptaDefaultHistoryFolder, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("OptaCompetitionID", tiConfig.OptaCompetitionID, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
+    CMyRegConfig.WriteValue("OptaSeasonID", tiConfig.OptaSeasonID, RegistryHelper.eBrancaReg.brBrancaUsuari, Microsoft.Win32.RegistryValueKind.String, False)
     CMyRegConfig = Nothing
   End Sub
 
