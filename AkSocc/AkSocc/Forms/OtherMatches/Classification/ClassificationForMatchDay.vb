@@ -37,7 +37,7 @@ Public Class ClassificationForMatchDay
     Me.TeamClassificationList.Clear()
 
     For Each team In teams
-      ' Me.TeamClassificationList.Add(New TeamClassificationForMatchDay() With {.Team = team, .MatchDay = Me.MatchDay})
+      ' Me.TeamClassificationList.Add(New TeamClassificationForMatchDay() With {.Team = team, .OtherMatchDay = Me.OtherMatchDay})
     Next
 
     Return True

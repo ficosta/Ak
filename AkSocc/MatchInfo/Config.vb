@@ -43,5 +43,17 @@
       Return _oledbConnection
     End Get
   End Property
+
+
+  Public Enum ePlayerSortType As Integer
+    Position
+    Name
+    SquadNumber
+    Stat
+    OptaStat
+  End Enum
+
+  Public Property PlayerSortType As ePlayerSortType = ePlayerSortType.Position
+  Public Property PlayerSortStatName As String = ""
 #End Region
 End Class

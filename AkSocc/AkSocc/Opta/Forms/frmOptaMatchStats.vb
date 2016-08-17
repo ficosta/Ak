@@ -88,7 +88,12 @@ Public Class frmOptaMatchStats
   End Sub
 
   Private Sub _f9Helper_Updated() Handles _f9Helper.Updated
-    Me.OptaTeamViewerHomeTeam.ShowMatch()
-    Me.OptaTeamViewerAwayTeam.ShowMatch()
+    If Me.InvokeRequired Then
+      Me.Invoke(New MethodInvoker(AddressOf _f9Helper_Updated))
+    Else
+      Me.OptaTeamViewerHomeTeam.ShowMatch()
+      Me.OptaTeamViewerAwayTeam.ShowMatch()
+      Me.LabelState.Text = "Last update: " & Now.ToString
+    End If
   End Sub
 End Class

@@ -66,9 +66,6 @@ Partial Class DialogOptions
     Me.TextBoxLoggerHost = New System.Windows.Forms.TextBox()
     Me.Label4 = New System.Windows.Forms.Label()
     Me.NumericUpDownLogger = New System.Windows.Forms.NumericUpDown()
-    Me.OpenFileDialogDataBase = New System.Windows.Forms.OpenFileDialog()
-    Me.OpenFileDialogXML = New System.Windows.Forms.OpenFileDialog()
-    Me.FolderBrowserDialogPaths = New System.Windows.Forms.FolderBrowserDialog()
     Me.TabPage3 = New System.Windows.Forms.TabPage()
     Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
     Me.Label1 = New System.Windows.Forms.Label()
@@ -84,6 +81,9 @@ Partial Class DialogOptions
     Me.LabelOptaSearonId = New System.Windows.Forms.Label()
     Me.TextBoxOptaCompetitionId = New System.Windows.Forms.TextBox()
     Me.TextBoxOptaSeasonId = New System.Windows.Forms.TextBox()
+    Me.OpenFileDialogDataBase = New System.Windows.Forms.OpenFileDialog()
+    Me.OpenFileDialogXML = New System.Windows.Forms.OpenFileDialog()
+    Me.FolderBrowserDialogPaths = New System.Windows.Forms.FolderBrowserDialog()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TabControlOptions.SuspendLayout()
     Me.TabPage1.SuspendLayout()
@@ -173,7 +173,7 @@ Partial Class DialogOptions
     Me.TabPage1.HorizontalScrollbarSize = 10
     Me.TabPage1.Location = New System.Drawing.Point(4, 38)
     Me.TabPage1.Name = "TabPage1"
-    Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+    Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
     Me.TabPage1.Size = New System.Drawing.Size(765, 236)
     Me.TabPage1.TabIndex = 0
     Me.TabPage1.Text = "General options"
@@ -362,7 +362,7 @@ Partial Class DialogOptions
     Me.TabPage2.HorizontalScrollbarSize = 10
     Me.TabPage2.Location = New System.Drawing.Point(4, 38)
     Me.TabPage2.Name = "TabPage2"
-    Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+    Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
     Me.TabPage2.Size = New System.Drawing.Size(765, 236)
     Me.TabPage2.TabIndex = 1
     Me.TabPage2.Text = "Vizrt options"
@@ -636,15 +636,6 @@ Partial Class DialogOptions
     Me.NumericUpDownLogger.Size = New System.Drawing.Size(68, 25)
     Me.NumericUpDownLogger.TabIndex = 3
     '
-    'OpenFileDialogDataBase
-    '
-    Me.OpenFileDialogDataBase.FileName = "OpenFileDialog1"
-    Me.OpenFileDialogDataBase.Title = "Data base"
-    '
-    'OpenFileDialogXML
-    '
-    Me.OpenFileDialogXML.FileName = "Matches file path"
-    '
     'TabPage3
     '
     Me.TabPage3.Controls.Add(Me.TableLayoutPanel5)
@@ -826,6 +817,15 @@ Partial Class DialogOptions
     Me.TextBoxOptaSeasonId.Name = "TextBoxOptaSeasonId"
     Me.TextBoxOptaSeasonId.Size = New System.Drawing.Size(138, 25)
     Me.TextBoxOptaSeasonId.TabIndex = 6
+    '
+    'OpenFileDialogDataBase
+    '
+    Me.OpenFileDialogDataBase.FileName = "OpenFileDialog1"
+    Me.OpenFileDialogDataBase.Title = "Data base"
+    '
+    'OpenFileDialogXML
+    '
+    Me.OpenFileDialogXML.FileName = "Matches file path"
     '
     'DialogOptions
     '

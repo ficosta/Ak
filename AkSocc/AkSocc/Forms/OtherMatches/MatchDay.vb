@@ -1,10 +1,11 @@
 ﻿Imports MatchInfo
 
-<Serializable()> Public Class MatchDay
+<Serializable()> Public Class OtherMatchDay
   Implements IComparable
 
   Public Property MatchDayID As String = Guid.NewGuid().ToString
   Public Property MatchDayName As String = "undefined"
+  Public Property CompetitionID As Integer = -1
 
   Public Property Name As String = "undefined"
   Public Property Index As Integer = 0
@@ -67,20 +68,6 @@
     Me.OtherMatches.Sort()
   End Sub
 
-  Public Function GetMatchDays() As List(Of MatchDay)
-    Dim res As New List(Of MatchDay)
-    Try
-      For Each match As OtherMatch In Me.OtherMatches
-        For Each matchDay As MatchDay In res
-
-        Next
-      Next
-    Catch ex As Exception
-
-    End Try
-    Return res
-  End Function
-
   Public Function GetMatch(id As String) As OtherMatch
     Dim res As OtherMatch = Nothing
     Try
@@ -123,7 +110,7 @@
   End Function
 
   Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
-    Dim aux As MatchDay = CType(obj, MatchDay)
+    Dim aux As OtherMatchDay = CType(obj, OtherMatchDay)
     If aux.MatchDayName > Me.MatchDayName Then
       Return 1
     ElseIf aux.MatchDayName < Me.MatchDayName Then

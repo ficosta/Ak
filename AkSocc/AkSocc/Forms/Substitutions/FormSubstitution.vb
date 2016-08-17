@@ -56,6 +56,8 @@ Public Class FormSubstitution
     Try
       _initializing = True
       grid.Rows.Clear()
+
+      Config.Instance.PlayerSortType = Config.ePlayerSortType.Position
       players.Sort()
 
       For Each player As Player In players

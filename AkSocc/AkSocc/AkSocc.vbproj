@@ -106,6 +106,7 @@
     <Compile Include="Classes\GraphicGroups\GraphicsBugs.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsCommons.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsInterviews.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsOptaTop5.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsPlayerNameNoNumber.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsBugScore.vb" />
     <Compile Include="Classes\GraphicGroups\GraphicsTeamCaptions.vb" />

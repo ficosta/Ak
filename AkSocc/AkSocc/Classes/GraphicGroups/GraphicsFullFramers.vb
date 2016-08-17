@@ -89,7 +89,7 @@ Public Class GraphicGroupFullFramers
                 gs.GraphicSteps.Add(New GraphicStep(gs, StepArrows.Arrows, True, True))
                 gs.GraphicSteps.Add(New GraphicStep(gs, StepArrows.NoArrows, True, True))
               Case Step0.OtherMatchScores
-                For Each matchDays As MatchDay In Me.OtherMatchDays
+                For Each matchDays As OtherMatchDay In Me.OtherMatchDays
                   gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(matchDays.MatchDayID, matchDays.MatchDayName), True, True))
                 Next
               Case Step0.FullFrameStats
@@ -119,7 +119,7 @@ Public Class GraphicGroupFullFramers
         Case Step0.LeagueTableTop
           Scene = PrepareLeagueTable(changeStep, True, graphicStep.Name = StepArrows.Arrows)
         Case Step0.OtherMatchScores
-          Dim matchDay As MatchDay = Me.OtherMatchDays.GetMatchDay(graphicStep.UID)
+          Dim matchDay As OtherMatchDay = Me.OtherMatchDays.GetMatchDay(graphicStep.UID)
           Scene = PrepareMatchScores(changeStep, matchDay)
         Case Step0.LeagueTableBottom
           Scene = PrepareLeagueTable(changeStep, False, graphicStep.Name = StepArrows.Arrows)
@@ -292,7 +292,7 @@ Public Class GraphicGroupFullFramers
     Return scene
   End Function
 
-  Public Function PrepareMatchScores(gSide As Integer, matchDay As MatchDay) As Scene
+  Public Function PrepareMatchScores(gSide As Integer, matchDay As OtherMatchDay) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = "Side_" & gSide & "_"
     Dim subjectPrefix As String = ""

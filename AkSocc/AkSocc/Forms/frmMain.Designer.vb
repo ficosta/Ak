@@ -1007,7 +1007,6 @@ Partial Class frmMain
     Me.ButtonF11OptaTop5.TabIndex = 274
     Me.ButtonF11OptaTop5.Text = "  OPTA TOP 5 F11"
     Me.ButtonF11OptaTop5.UseVisualStyleBackColor = False
-    Me.ButtonF11OptaTop5.Visible = False
     '
     'ButtonF5TeamMatchStats
     '

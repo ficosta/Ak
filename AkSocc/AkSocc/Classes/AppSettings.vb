@@ -56,6 +56,7 @@ Public NotInheritable Class AppSettings
 
   Public Property OptaStatsTeam As New Opta_Term_Stats(OptaStatsTeamsDefinitionPath)
   Public Property OptaStatsPlayer As New Opta_Term_Stats(OptaStatsPlayersDefinitionPath)
+
 #End Region
 
   Public Function LlegirConfiguracio(ByVal niNumConfig As Integer) As AppSettings

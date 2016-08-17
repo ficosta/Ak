@@ -109,12 +109,13 @@ Public Class DataBase
       CreateTable("CREATE TABLE PlayerStats (PlayerID INTEGER, MatchID INTEGER, Shots INTEGER, Shots_on_target INTEGER, Saves INTEGER, Fouls INTEGER, YCard INTEGER, RCard INTEGER, Assis INTEGER, Formation_pos INTEGER, Formation_x INTEGER, Formation_y INTEGER, Substituion INTEGER, CONSTRAINT pk_PlayerStats PRIMARY KEY (PlayerID, MatchID))")
       CreateTable("CREATE TABLE TeamMatchStats (TeamID INTEGER, MatchID INTEGER, Shots INTEGER, Saves INTEGER, Fouls INTEGER, YCard INTEGER, RCard INTEGER, Assis INTEGER, Shots_on_target INTEGER, corners INTEGER, offsides INTEGER, wood_hits INTEGER, PossessionMatch INTEGER, Possession1st INTEGER, Possession2nd INTEGER, PossessionLast5 INTEGER, PossessionLast10 INTEGER, PossessionOwn INTEGER, PossessionMid INTEGER, PossessionAttack INTEGER, FormID INTEGER, CONSTRAINT pk_TeamMatchStats PRIMARY KEY (TeamID, MatchID))")
       CreateTable("CREATE TABLE MatchEvents (EventID AUTOINCREMENT, MatchID INTEGER, TeamID INTEGER, TimeSecond INTEGER, PlayerID INTEGER, PlayerSecID INTEGER, EventType VARCHAR(30), CONSTRAINT pk_MatchEvents PRIMARY KEY (EventID))")
-      CreateTable("CREATE TABLE MatchGoals (GoalID AUTOINCREMENT, MatchID INTEGER, TeamGoalID INTEGER, Minute INTEGER, PlayerID INTEGER, Penalty YESNO, OwnGoal YESNO, CONSTRAINT pk_MatchGoals PRIMARY KEY (GoalID))")
+      CreateTable("CREATE TABLE MatchGoals (GoalID AUTOINCREMENT, MatchID INTEGER, TeamGoalID INTEGER, TimeSecond INTEGER, PlayerID INTEGER, Penalty YESNO, OwnGoal YESNO, CONSTRAINT pk_MatchGoals PRIMARY KEY (GoalID))")
 
       AddFieldToTable("Matches", "Official1", "INTEGER")
       AddFieldToTable("Matches", "Official2", "INTEGER")
       AddFieldToTable("Matches", "Official3", "INTEGER")
       AddFieldToTable("Teams", "OPTAID", "INTEGER")
+      AddFieldToTable("MatchGoals", "TimeSecond", "INTEGER")
 
       Return True
     Catch ex As Exception

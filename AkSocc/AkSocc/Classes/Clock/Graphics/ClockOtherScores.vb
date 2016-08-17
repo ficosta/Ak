@@ -4,7 +4,7 @@ Public Class ClockOtherScores
   Inherits GraphicGroup
 
   Private _otherMatchDays As OtherMatchDays
-  Private _otherMatchDay As MatchDay
+  Private _otherMatchDay As OtherMatchDay
   Private _otherMatch As OtherMatch
 
   Public Sub New(match As MatchInfo.Match)
@@ -49,7 +49,7 @@ Public Class ClockOtherScores
       If graphicStep Is Nothing Then
         _otherMatchDays = New OtherMatchDays
         _otherMatchDays.LoadOthers()
-        For Each matchDays As MatchDay In _otherMatchDays
+        For Each matchDays As OtherMatchDay In _otherMatchDays
           gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(matchDays.MatchDayID, matchDays.MatchDayName), False, False))
         Next
       Else

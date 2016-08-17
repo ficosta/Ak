@@ -72,6 +72,7 @@ Public Class DialogOptions
     End Try
   End Sub
 
+
   Private Function AcceptSettings() As Boolean
     Dim res As Boolean = True
     Try
@@ -81,7 +82,13 @@ Public Class DialogOptions
         End If
       End If
 
-        AppSettings.Instance.DataBasePath = Me.MetroTextBoxDataBase.Text
+      If Not FTPSyncManager.Instance.CheckFTPConnection(Me.TextBoxFTPServer.Text, 21, Me.TextBoxFTPUser.Text, Me.TextBoxFTPPassword.Text) Then
+        If frmWaitForInput.ShowWaitDialog(Me, "Could not connect to FTP server. Continue anyway?", "FTP connection", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
+          Return False
+        End If
+      End If
+
+      AppSettings.Instance.DataBasePath = Me.MetroTextBoxDataBase.Text
       AppSettings.Instance.OtherMatchesPath = Me.MetroTextBoxOtherMatchesFilePath.Text
       AppSettings.Instance.ShowSettingsOnStartup = Me.CheckBoxShowOptionsOnStartup.Checked
       AppSettings.Instance.UseArabicNames = Me.MetroCheckBoxUseArabicNames.Checked

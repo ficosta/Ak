@@ -1,5 +1,12 @@
 ﻿====================
 Version 0.7.10
+- Interface fixes
+- Added full opta support
+- Added option to have other matches for different competitions
+- Fixed problems with OtherMatches window
+
+====================
+Version 0.7.10
 - Added Escape key to clock control window
 - Fixed: adding a new goal didn't work
 - Fixed: on the scoreline, depending on the locale of the computer, the brackets where showing in the wrong order

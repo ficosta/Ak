@@ -31,9 +31,9 @@ Partial Class frmOptaMatchStats
     Me.ColumnInfoName = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnInfoValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.TableLayoutPanelStats = New System.Windows.Forms.TableLayoutPanel()
+    Me.LabelState = New System.Windows.Forms.Label()
     Me.OptaTeamViewerAwayTeam = New AkSocc.OptaTeamViewer()
     Me.OptaTeamViewerHomeTeam = New AkSocc.OptaTeamViewer()
-    Me.LabelState = New System.Windows.Forms.Label()
     CType(Me.SplitContainerAll, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SplitContainerAll.Panel1.SuspendLayout()
     Me.SplitContainerAll.Panel2.SuspendLayout()
@@ -109,7 +109,7 @@ Partial Class frmOptaMatchStats
     Me.MetroGridMatchInfo.RowHeadersVisible = False
     Me.MetroGridMatchInfo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridMatchInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridMatchInfo.Size = New System.Drawing.Size(916, 99)
+    Me.MetroGridMatchInfo.Size = New System.Drawing.Size(150, 99)
     Me.MetroGridMatchInfo.TabIndex = 0
     '
     'ColumnInfoID
@@ -150,6 +150,17 @@ Partial Class frmOptaMatchStats
     Me.TableLayoutPanelStats.Size = New System.Drawing.Size(916, 690)
     Me.TableLayoutPanelStats.TabIndex = 0
     '
+    'LabelState
+    '
+    Me.LabelState.AutoSize = True
+    Me.LabelState.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelState.Location = New System.Drawing.Point(3, 654)
+    Me.LabelState.Name = "LabelState"
+    Me.LabelState.Size = New System.Drawing.Size(910, 36)
+    Me.LabelState.TabIndex = 2
+    Me.LabelState.Text = "Undefined state"
+    Me.LabelState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
     'OptaTeamViewerAwayTeam
     '
     Me.OptaTeamViewerAwayTeam.Dock = System.Windows.Forms.DockStyle.Fill
@@ -172,23 +183,13 @@ Partial Class frmOptaMatchStats
     Me.OptaTeamViewerHomeTeam.TabIndex = 0
     Me.OptaTeamViewerHomeTeam.Team = Nothing
     '
-    'LabelState
-    '
-    Me.LabelState.AutoSize = True
-    Me.LabelState.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.LabelState.Location = New System.Drawing.Point(3, 654)
-    Me.LabelState.Name = "LabelState"
-    Me.LabelState.Size = New System.Drawing.Size(910, 36)
-    Me.LabelState.TabIndex = 2
-    Me.LabelState.Text = "Undefined state"
-    Me.LabelState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
     'frmOptaMatchStats
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.ClientSize = New System.Drawing.Size(916, 692)
     Me.Controls.Add(Me.SplitContainerAll)
+    Me.DoubleBuffered = True
     Me.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
     Me.Name = "frmOptaMatchStats"

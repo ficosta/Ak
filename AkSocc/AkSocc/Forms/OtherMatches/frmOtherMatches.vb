@@ -2,12 +2,12 @@
 
 Public Class frmMatchDay
 #Region "Other matches"
-  Private _matchDay As MatchDay
-  Public Property MatchDay As MatchDay
+  Private _matchDay As OtherMatchDay
+  Public Property MatchDay As OtherMatchDay
     Get
       Return _matchDay
     End Get
-    Set(value As MatchDay)
+    Set(value As OtherMatchDay)
       _matchDay = value
     End Set
   End Property
@@ -23,8 +23,12 @@ Public Class frmMatchDay
       For Each ctl As UCOtherMatch In _controls
         ctl.Competition = _competition
       Next
+
+      Me.ComboBoxCompetitions.SelectedItem = _competition
     End Set
   End Property
+
+  Private _competitions As Competitions
 #End Region
 
 
@@ -38,7 +42,7 @@ Public Class frmMatchDay
     End Set
   End Property
 
-  Private _selectedMatchDay As MatchDay = Nothing
+  Private _selectedMatchDay As OtherMatchDay = Nothing
   Private _controls As New List(Of UCOtherMatch)
 
   Private Sub frmMatchDay_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -54,9 +58,16 @@ Public Class frmMatchDay
       _controls.Add(Me.UcOtherMatch8)
       _controls.Add(Me.UcOtherMatch9)
 
+      _competitions = New Competitions
+      _competitions.GetFromDB("")
+      For Each comp As Competition In _competitions
+        Me.ComboBoxCompetitions.Items.Add(comp)
+      Next
+
       Dim _matches As Matches = Nothing
       If Not _competition Is Nothing Then
         _matches = Matches.GetMatchesForCompetition(_competition.CompID)
+        Me.ComboBoxCompetitions.SelectedIndex = Me.ComboBoxCompetitions.FindStringExact(_competition.ToString)
       End If
 
       For Each ctl As UCOtherMatch In _controls
@@ -77,9 +88,10 @@ Public Class frmMatchDay
     Try
       With Me.MetroGridMatchDay
         .Rows.Clear()
-        For Each day As MatchDay In _otherMatchDays
-          Dim itm As Integer = .Rows.Add(day.MatchDayID, day.MatchDayName)
-
+        For Each day As OtherMatchDay In _otherMatchDays
+          If day.CompetitionID = _competition.CompID Then
+            Dim itm As Integer = .Rows.Add(day.MatchDayID, day.MatchDayName)
+          End If
         Next
       End With
     Catch ex As Exception
@@ -89,14 +101,15 @@ Public Class frmMatchDay
 
   Private Sub NewMatchDayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewMatchDayToolStripMenuItem.Click
     Try
-      Dim newMatchDay As MatchDay = New MatchDay("New item")
-      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
-      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
-      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
-      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
-      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
-      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
-      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
+      Dim newMatchDay As OtherMatchDay = New OtherMatchDay("New item")
+      If Not _competition Is Nothing Then newMatchDay.CompetitionID = _competition.CompID
+      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .IsTable = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
+      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .IsTable = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
+      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .IsTable = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
+      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .IsTable = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
+      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .IsTable = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
+      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .IsTable = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
+      newMatchDay.Add(New OtherMatch() With {.IsCrawl = True, .IsTable = True, .MatchStatus = OtherMatch.otherMatchStatus.HalfTime})
 
       _otherMatchDays.Add(newMatchDay)
 
@@ -124,7 +137,7 @@ Public Class frmMatchDay
     End Try
   End Sub
 
-#Region "MatchDay"
+#Region "OtherMatchDay"
 
   Private Sub MostrarMatchDay()
     Try
@@ -248,8 +261,9 @@ Public Class frmMatchDay
 
     Try
       If e.ColumnIndex = ColumnDescription.Index Then
-        Dim matchDay As MatchDay = _otherMatchDays.Item(e.RowIndex)
+        Dim matchDay As OtherMatchDay = _otherMatchDays.Item(e.RowIndex)
         matchDay.MatchDayName = MetroGridMatchDay.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
+        matchDay.Name = MetroGridMatchDay.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -288,6 +302,15 @@ Public Class frmMatchDay
       Me.Close()
     Catch ex As Exception
       WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub ComboBoxCompetitions_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxCompetitions.SelectedIndexChanged
+    Try
+      _competition = Me.ComboBoxCompetitions.SelectedItem
+      Me.ShowMatchDays()
+    Catch ex As Exception
+
     End Try
   End Sub
 End Class

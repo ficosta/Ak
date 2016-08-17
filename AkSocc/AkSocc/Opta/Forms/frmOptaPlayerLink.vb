@@ -38,7 +38,7 @@ Public Class frmOptaPlayerLink
         _allPlayers.GetAllPlayers()
       End If
       ShowPlayers(Me.MetroGridOpta, Me._optaTeam.AllPlayers, True)
-      ShowPlayers(Me.MetroGridLocal, _localTeam.AllPlayers, False)
+      ShowPlayers(Me.MetroGridLocal, Me._localTeam.AllPlayers, False)
       UpdateLinkControls()
     Catch ex As Exception
 
@@ -47,40 +47,33 @@ Public Class frmOptaPlayerLink
 
   Private Sub ShowPlayers(grid As MetroGrid, myPlayers As Players, isOpta As Boolean)
     Try
-      With grid
-        '.Rows.Clear()
+      Dim showPlayers As New List(Of Player)
 
-        Dim mustShow As Boolean = False
-        Dim row As Integer
+      With grid
+
         For Each player As Player In myPlayers
-          row = -1
           If isOpta Then
-            mustShow = player.optaID > 0
-            For i As Integer = 0 To .Rows.Count - 1
-              If .Rows(i).Cells(ColumnTeamOptaID.Index).Value = player.optaID Then
-                row = i
-                Exit For
-              End If
-            Next
+            If player.optaID > 0 Then showPlayers.Add(player)
           Else
-            mustShow = player.PlayerID > 0
-            For i As Integer = 0 To .Rows.Count - 1
-              If .Rows(i).Cells(ColumnTeamID.Index).Value = player.PlayerID Then
-                row = i
-                Exit For
-              End If
-            Next
-          End If
-          If mustShow Then
-            If row = -1 Then row = .Rows.Add("")
-            .Rows(row).Cells(ColumnTeamID.Index).Value = player.PlayerID
-            .Rows(row).Cells(ColumnTeamOptaName.Index).Value = player.optaName
-            .Rows(row).Cells(ColumnTeamName.Index).Value = player.PlayerName
-            .Rows(row).Cells(ColumnTeamOptaID.Index).Value = player.optaID
-            .Rows(row).Cells(ColumnTeamNumber.Index).Value = player.DomesticSquadNo
-            .Rows(row).Cells(ColumnTeamOptaNumber.Index).Value = player.OptaSquadNumber
+            If player.PlayerID > 0 Then showPlayers.Add(player)
           End If
         Next
+
+        .Visible = False
+        .Rows.Clear()
+        .Rows.Add(showPlayers.Count)
+
+        Dim row As Integer = 0
+        For Each player As Player In showPlayers
+          .Rows(row).Cells(ColumnTeamID.Index).Value = player.PlayerID
+          .Rows(row).Cells(ColumnTeamOptaName.Index).Value = player.optaName
+          .Rows(row).Cells(ColumnTeamName.Index).Value = player.PlayerName
+          .Rows(row).Cells(ColumnTeamOptaID.Index).Value = player.optaID
+          .Rows(row).Cells(ColumnTeamNumber.Index).Value = player.DomesticSquadNo
+          .Rows(row).Cells(ColumnTeamOptaNumber.Index).Value = player.OptaSquadNumber
+          row += 1
+        Next
+        .Visible = True
       End With
     Catch ex As Exception
     End Try
@@ -134,11 +127,29 @@ Public Class frmOptaPlayerLink
 
         If row <> -1 Then
           .Rows(row).Selected = True
+          EnsureRowIsVisible(MetroGridLocal, row)
         End If
       End With
 
       Me.UpdateLinkControls()
     Catch ex As Exception
+    End Try
+  End Sub
+
+  Private Sub EnsureRowIsVisible(grid As MetroGrid, row As Integer)
+    Try
+      With grid
+        Dim topRow As Integer = .FirstDisplayedCell.RowIndex
+        Dim bottomRow As Integer = topRow + .DisplayedRowCount(False)
+        If row < topRow Or row > bottomRow Then
+          'we are out
+          Dim cell As DataGridViewCell = grid.Rows(row).Cells(0)
+
+          .FirstDisplayedCell = cell
+        End If
+      End With
+    Catch ex As Exception
+
     End Try
   End Sub
 

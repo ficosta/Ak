@@ -70,7 +70,7 @@ Public Class FormClassification
         Dim index As Integer = 0
         For Each team As TeamClassificationForMatchDay In matchDayClass.TeamClassificationList
           .Rows(index).Cells(ColumnPosition.Index).Value = team.Position
-          .Rows(index).Cells(ColumnName.Index).Value = team.Team.Name
+          .Rows(index).Cells(ColumnName.Index).Value = team.Team.TeamAELCaption1Name
           .Rows(index).Cells(ColumnPoints.Index).Value = team.Points
           .Rows(index).Cells(ColumnGoalAverage.Index).Value = team.GoalAverage
           .Rows(index).Cells(ColumnGoalsReceived.Index).Value = team.GoalsAgainst

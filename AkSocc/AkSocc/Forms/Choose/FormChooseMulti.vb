@@ -222,7 +222,6 @@ Public Class FormChooseMulti
     Return scene
   End Function
 
-
   Private Function PrepareScene(gSide As Integer) As Scene
     Dim scene As Scene = Me.InitDefaultScene(gSide)
     Try

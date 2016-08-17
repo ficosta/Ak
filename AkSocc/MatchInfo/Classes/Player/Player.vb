@@ -4,6 +4,7 @@
   Inherits StatSubject
   Implements IComparable
 
+
   Public PlayerID As Integer
   Public PlayerFirstName As String
   Public PlayerSurname As String
@@ -44,8 +45,34 @@
   Public optaTeamID As Integer
   Public optaMatchID As Integer
 
-  Public optaStatValueNames As New List(Of String)
-  Public optaStatValues As New List(Of String)
+  Public Class OptaStatValue
+    Public Property Name As String
+    Public Property Value As Double
+    Public Property IsSort As Boolean
+
+    Public Sub New(name As String, value As Double)
+      Me.Name = name
+      Me.Value = value
+    End Sub
+
+    Public Sub New(name As String, value As String)
+      Try
+        Me.Name = name
+        Me.Value = Double.Parse(value)
+      Catch ex As Exception
+
+      End Try
+    End Sub
+
+    Public Overrides Function ToString() As String
+      Return Me.Name & " = " & Me.Value
+    End Function
+  End Class
+
+  Public optaStatValues As New List(Of OptaStatValue)
+
+  'Public optaStatValueNames As New List(Of String)
+  'Public optaStatValues As New List(Of String)
 
 
 #Region "Variables non from the Player table"
@@ -63,9 +90,9 @@
         Return Me.ArabicName
       Else
         If MyBase.Name <> "" Then
-        Return MyBase.Name
-      Else
-        Return Me.PlayerUniqueName
+          Return MyBase.Name
+        Else
+          Return Me.PlayerUniqueName
         End If
       End If
     End Get
@@ -173,7 +200,7 @@
     PhotoName1 = ""
     VideoName1 = ""
     VideoName2 = ""
-    OptaId = -1
+    optaID = -1
     SeasonCleanSheets = -1
 
     Formation_Pos = -10
@@ -370,8 +397,12 @@
       PhotoName1 = SourcePlayer.PhotoName1
       VideoName1 = SourcePlayer.VideoName1
       VideoName2 = SourcePlayer.VideoName2
-      OptaId = SourcePlayer.OptaId
+      OptaId = SourcePlayer.optaID
       SeasonCleanSheets = SourcePlayer.SeasonCleanSheets
+
+      Formation_Pos = SourcePlayer.Formation_Pos
+      Formation_X = SourcePlayer.Formation_X
+      Formation_Y = SourcePlayer.Formation_Y
     Catch err As Exception
       Throw err
     End Try
@@ -511,9 +542,9 @@
   Public Function optaGetValue(valueName As String) As String
     Dim res As String = "0"
     Try
-      For i As Integer = 0 To Me.optaStatValueNames.Count - 1
-        If optaStatValueNames(i) = valueName Then
-          res = optaStatValues(i)
+      For i As Integer = 0 To Me.optaStatValues.Count - 1
+        If optaStatValues(i).Name = valueName Then
+          res = optaStatValues(i).Value.ToString
         End If
       Next
     Catch ex As Exception
@@ -524,10 +555,10 @@
 
   Public Overrides Function ToString() As String
     If SquadNo <> "-1" And PlayerName <> "" Then
-      Return Convert.ToString(SquadNo.ToString() & " ") & PlayerName
+      Return Convert.ToString(SquadNo.ToString() & " ") & PlayerName & "   " & Me.Formation_Pos & " (" & Me.Formation_X & ", " & Me.Formation_Y & ")"
     Else
 
-      Return Convert.ToString(OptaSquadNumber.ToString() & " ") & optaName & " (opta)"
+      Return Convert.ToString(OptaSquadNumber.ToString() & " ") & optaName & " (opta)" & "   " & Me.Formation_Pos & " (" & Me.Formation_X & ", " & Me.Formation_Y & ")"
 
     End If
   End Function
@@ -536,11 +567,39 @@
     Dim res As Integer = 0
     Try
       Dim aux As Player = CType(obj, Player)
-      If aux.Formation_Pos < Me.Formation_Pos Then
-        res = 1
-      ElseIf aux.Formation_Pos > Me.Formation_Pos Then
-        res = -1
-      End If
+
+      Select Case Config.Instance.PlayerSortType
+        Case Config.ePlayerSortType.SquadNumber
+          If aux.SquadNo < Me.SquadNo Then
+            res = 1
+          ElseIf aux.SquadNo > Me.SquadNo Then
+            res = -1
+          End If
+        Case Config.ePlayerSortType.Position
+          If aux.Formation_Pos < Me.Formation_Pos Then
+            res = 1
+          ElseIf aux.Formation_Pos > Me.Formation_Pos Then
+            res = -1
+          End If
+        Case Config.ePlayerSortType.Name
+          If aux.Name < Me.Name Then
+            res = 1
+          ElseIf aux.Name > Me.Name Then
+            res = -1
+          End If
+        Case Config.ePlayerSortType.OptaStat
+          If CDbl(aux.optaGetValue(Config.Instance.PlayerSortStatName)) > CDbl(Me.optaGetValue(Config.Instance.PlayerSortStatName)) Then
+            res = 1
+          ElseIf CDbl(aux.optaGetValue(Config.Instance.PlayerSortStatName)) < CDbl(Me.optaGetValue(Config.Instance.PlayerSortStatName)) Then
+            res = -1
+          End If
+        Case Config.ePlayerSortType.Stat
+          If CDbl(aux.GetMatchStatByName(Config.Instance.PlayerSortStatName).Value) > CDbl(Me.GetMatchStatByName(Config.Instance.PlayerSortStatName).Value) Then
+            res = 1
+          ElseIf CDbl(aux.GetMatchStatByName(Config.Instance.PlayerSortStatName).Value) < CDbl(Me.GetMatchStatByName(Config.Instance.PlayerSortStatName).Value) Then
+            res = -1
+          End If
+      End Select
 
     Catch ex As Exception
 

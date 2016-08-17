@@ -34,7 +34,6 @@ Public MustInherit Class GraphicGroup
 
   Public Property OtherMatchDays As OtherMatchDays
 
-
   Public Property Name As String = ""
   Public Property ID As Integer
   Public Shared Property Definition As String = ""
@@ -55,6 +54,8 @@ Public MustInherit Class GraphicGroup
 
   Public Property MustHaveClock As Boolean = False
   Public Property CantHaveClock As Boolean = False
+
+  Public Property MustHaveOPTA As Boolean = False
 
   Public Sub New(match As Match)
     _match = match

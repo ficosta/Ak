@@ -264,7 +264,15 @@ Public Class COptaF9Helper
             attr = node.Attributes.GetNamedItem("Score")
             nScore = NoNullInt(Me.FixID(attr.Value))
 
-            team = teams.GetTeamByOptaID(nOptaID)
+            If isLocal Then
+              team = Me.Match.HomeTeam
+            Else
+              team = Me.Match.AwayTeam
+            End If
+
+            If team Is Nothing Then
+              team = teams.GetTeamByOptaID(nOptaID)
+            End If
 
             If team Is Nothing Then
               If isLocal Then
@@ -547,45 +555,43 @@ Public Class COptaF9Helper
       Dim CPlayer As Player = Team.GetPlayerByOptaId(nOptaID)
 
       If CPlayer Is Nothing Then
-
-        If _allPlayers Is Nothing Then
-          _allPlayers = New Players()
-          _allPlayers.GetAllPlayers()
-        End If
-        CPlayer = _allPlayers.GetPlayerByOptaId(nOptaID)
-
-        If CPlayer Is Nothing Then CPlayer = New Player
-        CPlayer.optaID = nOptaID
-        attr = nodePlayer.Attributes.GetNamedItem("ShirtNumber")
-        If Not attr Is Nothing Then
-          CPlayer.OptaSquadNumber = attr.Value
-        End If
-        attr = nodePlayer.Attributes.GetNamedItem("Position")
-        If Not attr Is Nothing Then
-          Dim type As String = ""
-          If attr.Value = "Substitute" Then
-            attr = nodePlayer.Attributes.GetNamedItem("SubPosition")
-            If Not attr Is Nothing Then type = attr.Value
-          Else
-            type = attr.Value
+          If _allPlayers Is Nothing Then
+            _allPlayers = New Players()
+            _allPlayers.GetAllPlayers()
           End If
-          CPlayer.optaType = type
-        End If
-        For Each node As XmlNode In nodePlayer
-          If node.Name = "Stat" Then
-            attr = node.Attributes.GetNamedItem("Type")
-            If Not attr Is Nothing Then
-              CPlayer.optastatValueNames.Add(attr.Value)
-              CPlayer.optastatValues.Add(node.InnerText)
+          CPlayer = _allPlayers.GetPlayerByOptaId(nOptaID)
+
+          If CPlayer Is Nothing Then CPlayer = New Player
+          CPlayer.optaID = nOptaID
+          attr = nodePlayer.Attributes.GetNamedItem("ShirtNumber")
+          If Not attr Is Nothing Then
+            CPlayer.OptaSquadNumber = attr.Value
+          End If
+          attr = nodePlayer.Attributes.GetNamedItem("Position")
+          If Not attr Is Nothing Then
+            Dim type As String = ""
+            If attr.Value = "Substitute" Then
+              attr = nodePlayer.Attributes.GetNamedItem("SubPosition")
+              If Not attr Is Nothing Then type = attr.Value
+            Else
+              type = attr.Value
             End If
-
+            CPlayer.optaType = type
           End If
-        Next
+          For Each node As XmlNode In nodePlayer
+            If node.Name = "Stat" Then
+              attr = node.Attributes.GetNamedItem("Type")
+              If Not attr Is Nothing Then
+                CPlayer.optaStatValues.Add(New Player.OptaStatValue(attr.Value, node.InnerText))
+              End If
 
-        CPlayer.optaPosition = Team.MatchPlayers.Count + 1
-      End If
+            End If
+          Next
 
-      If Not Team.MatchPlayers.ContainsByOptaID(CPlayer.optaID) Then Team.MatchPlayers.Add(CPlayer)
+          CPlayer.optaPosition = Team.MatchPlayers.Count + 1
+        End If
+
+        If Not Team.MatchPlayers.ContainsByOptaID(CPlayer.optaID) Then Team.MatchPlayers.Add(CPlayer)
       If Not Team.AllPlayers.ContainsByOptaID(CPlayer.optaID) Then Team.AllPlayers.Add(CPlayer)
 
     Catch ex As Exception

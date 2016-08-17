@@ -61,9 +61,11 @@ Module MFuncions
   End Function
 
   Public Function NoNullString(ByVal CiValor As Object) As String
-    Dim sRes As String
+    Dim sRes As String = ""
     Try
-      sRes = CStr(CiValor)
+      If Not CiValor Is Nothing Then
+        sRes = CStr(CiValor)
+      End If
     Catch ex As Exception
       sRes = ""
     End Try

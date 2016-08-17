@@ -37,6 +37,8 @@ Partial Class frmMatchDay
     Me.NewMatchDayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
     Me.DeleteMatchDayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
     Me.TableLayoutPanelUCOtherMatches = New System.Windows.Forms.TableLayoutPanel()
+    Me.TableLayoutPanelMatchDays = New System.Windows.Forms.TableLayoutPanel()
+    Me.ComboBoxCompetitions = New System.Windows.Forms.ComboBox()
     Me.UcOtherMatch9 = New AkSocc.UCOtherMatch()
     Me.UcOtherMatch8 = New AkSocc.UCOtherMatch()
     Me.UcOtherMatch7 = New AkSocc.UCOtherMatch()
@@ -54,6 +56,7 @@ Partial Class frmMatchDay
     CType(Me.MetroGridMatchDay, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.ContextMenuStripMatchDays.SuspendLayout()
     Me.TableLayoutPanelUCOtherMatches.SuspendLayout()
+    Me.TableLayoutPanelMatchDays.SuspendLayout()
     Me.SuspendLayout()
     '
     'TableLayoutPanel1
@@ -104,7 +107,7 @@ Partial Class frmMatchDay
     '
     'SplitContainer1.Panel1
     '
-    Me.SplitContainer1.Panel1.Controls.Add(Me.MetroGridMatchDay)
+    Me.SplitContainer1.Panel1.Controls.Add(Me.TableLayoutPanelMatchDays)
     '
     'SplitContainer1.Panel2
     '
@@ -142,12 +145,11 @@ Partial Class frmMatchDay
     DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
     Me.MetroGridMatchDay.DefaultCellStyle = DataGridViewCellStyle2
-    Me.MetroGridMatchDay.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroGridMatchDay.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2
     Me.MetroGridMatchDay.EnableHeadersVisualStyles = False
     Me.MetroGridMatchDay.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
     Me.MetroGridMatchDay.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridMatchDay.Location = New System.Drawing.Point(0, 0)
+    Me.MetroGridMatchDay.Location = New System.Drawing.Point(3, 38)
     Me.MetroGridMatchDay.MultiSelect = False
     Me.MetroGridMatchDay.Name = "MetroGridMatchDay"
     Me.MetroGridMatchDay.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -166,7 +168,7 @@ Partial Class frmMatchDay
     Me.MetroGridMatchDay.ShowCellErrors = False
     Me.MetroGridMatchDay.ShowCellToolTips = False
     Me.MetroGridMatchDay.ShowRowErrors = False
-    Me.MetroGridMatchDay.Size = New System.Drawing.Size(181, 600)
+    Me.MetroGridMatchDay.Size = New System.Drawing.Size(175, 559)
     Me.MetroGridMatchDay.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroGridMatchDay.TabIndex = 48
     '
@@ -234,6 +236,32 @@ Partial Class frmMatchDay
     Me.TableLayoutPanelUCOtherMatches.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanelUCOtherMatches.Size = New System.Drawing.Size(948, 600)
     Me.TableLayoutPanelUCOtherMatches.TabIndex = 0
+    '
+    'TableLayoutPanelMatchDays
+    '
+    Me.TableLayoutPanelMatchDays.ColumnCount = 1
+    Me.TableLayoutPanelMatchDays.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelMatchDays.Controls.Add(Me.MetroGridMatchDay, 0, 1)
+    Me.TableLayoutPanelMatchDays.Controls.Add(Me.ComboBoxCompetitions, 0, 0)
+    Me.TableLayoutPanelMatchDays.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanelMatchDays.Location = New System.Drawing.Point(0, 0)
+    Me.TableLayoutPanelMatchDays.Name = "TableLayoutPanelMatchDays"
+    Me.TableLayoutPanelMatchDays.RowCount = 2
+    Me.TableLayoutPanelMatchDays.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanelMatchDays.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelMatchDays.Size = New System.Drawing.Size(181, 600)
+    Me.TableLayoutPanelMatchDays.TabIndex = 49
+    '
+    'ComboBoxCompetitions
+    '
+    Me.ComboBoxCompetitions.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ComboBoxCompetitions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+    Me.ComboBoxCompetitions.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ComboBoxCompetitions.FormattingEnabled = True
+    Me.ComboBoxCompetitions.Location = New System.Drawing.Point(3, 3)
+    Me.ComboBoxCompetitions.Name = "ComboBoxCompetitions"
+    Me.ComboBoxCompetitions.Size = New System.Drawing.Size(175, 25)
+    Me.ComboBoxCompetitions.TabIndex = 49
     '
     'UcOtherMatch9
     '
@@ -399,6 +427,7 @@ Partial Class frmMatchDay
     CType(Me.MetroGridMatchDay, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ContextMenuStripMatchDays.ResumeLayout(False)
     Me.TableLayoutPanelUCOtherMatches.ResumeLayout(False)
+    Me.TableLayoutPanelMatchDays.ResumeLayout(False)
     Me.ResumeLayout(False)
 
   End Sub
@@ -423,4 +452,6 @@ Partial Class frmMatchDay
   Friend WithEvents UcOtherMatch4 As UCOtherMatch
   Friend WithEvents UcOtherMatch3 As UCOtherMatch
   Friend WithEvents UcOtherMatch2 As UCOtherMatch
+  Friend WithEvents TableLayoutPanelMatchDays As TableLayoutPanel
+  Friend WithEvents ComboBoxCompetitions As ComboBox
 End Class

@@ -77,31 +77,34 @@ Module Main
 
     End Try
   End Sub
-  Public Sub WriteToErrorLog(ByVal msg As String,
-       ByVal stkTrace As String, ByVal title As String)
 
+
+  Public Sub WriteToErrorLog(ByVal msg As String,
+    ByVal stkTrace As String, ByVal title As String)
     Try
       Dim path As String = "C:\"
       'check and make the directory if necessary; this is set to look in 
       'the Application folder, you may wish to place the error log in 
       'another location depending upon the user's role and write access to 
       'different areas of the file system
-      If Not System.IO.Directory.Exists(path &
-    "\Errors\") Then
-        System.IO.Directory.CreateDirectory(path &
-        "\Errors\")
+      If Not System.IO.Directory.Exists(path & "\Errors\") Then
+        System.IO.Directory.CreateDirectory(path & "\Errors\")
+      End If
+
+      Dim file As String = System.IO.Path.Combine(path, "Errors\errlog.txt")
+
+      If System.IO.File.Exists(file) AndAlso New FileInfo(file).Length > 1024 * 1024 Then
+        RotateLogs(System.IO.Path.Combine(path, "Errors"))
       End If
 
       'check the file
-      Dim fs As FileStream = New FileStream(path &
-    "\Errors\errlog.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite)
+      Dim fs As FileStream = New FileStream(file, FileMode.OpenOrCreate, FileAccess.ReadWrite)
       Dim s As StreamWriter = New StreamWriter(fs)
       s.Close()
       fs.Close()
 
       'log it
-      Dim fs1 As FileStream = New FileStream(path &
-    "\Errors\errlog.txt", FileMode.Append, FileAccess.Write)
+      Dim fs1 As FileStream = New FileStream(file, FileMode.Append, FileAccess.Write)
       Dim s1 As StreamWriter = New StreamWriter(fs1)
       s1.Write("Title: " & title & vbCrLf)
       s1.Write("Message: " & msg & vbCrLf)
@@ -117,6 +120,26 @@ Module Main
 
   End Sub
 
+  Private Sub RotateLogs(path As String)
+    Try
+      Dim file As String = ""
+      For i As Integer = 8 To 0 Step -1
+        If i > 0 Then
+          file = System.IO.Path.Combine(path, "errlog_" & i & ".txt")
+        Else
+          file = System.IO.Path.Combine(path, "errlog.txt")
+        End If
+        If System.IO.File.Exists(file) Then
+          Dim dest As String = System.IO.Path.Combine(path, "errlog_" & (i + 1) & ".txt")
+          If System.IO.File.Exists(dest) Then System.IO.File.Delete(dest)
+          System.IO.File.Move(file, dest)
+        End If
+      Next
+
+    Catch ex As Exception
+
+    End Try
+  End Sub
 #End Region
 
 

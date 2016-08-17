@@ -104,9 +104,9 @@ Public Class FormMatchSetup
           Me.MetroComboBoxReferee3.Items.Add(official)
         Next
 
-        MetroComboBoxReferee1.SelectedIndex = MetroComboBoxReferee1.FindStringExact(match.Official1.ToString)
-        MetroComboBoxReferee2.SelectedIndex = MetroComboBoxReferee1.FindStringExact(match.Official2.ToString)
-        MetroComboBoxReferee3.SelectedIndex = MetroComboBoxReferee1.FindStringExact(match.Official3.ToString)
+        If Not match.Official1 Is Nothing Then MetroComboBoxReferee1.SelectedIndex = MetroComboBoxReferee1.FindStringExact(NoNullString(match.Official1.ToString))
+        If Not match.Official2 Is Nothing Then MetroComboBoxReferee2.SelectedIndex = MetroComboBoxReferee1.FindStringExact(NoNullString(match.Official2.ToString))
+        If Not match.Official3 Is Nothing Then MetroComboBoxReferee3.SelectedIndex = MetroComboBoxReferee1.FindStringExact(NoNullString(match.Official3.ToString))
 
       End If
     Catch ex As Exception

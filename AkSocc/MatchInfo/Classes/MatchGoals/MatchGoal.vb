@@ -114,7 +114,7 @@ Public Class MatchGoal
           SQL += " [TeamGoalID]=" & TeamGoalID.ToString() & ","
         End If
         If ActualDb.TimeSecond <> TimeSecond AndAlso TimeSecond <> -1 Then
-          SQL += " [Minute]=" & TimeSecond.ToString() & ","
+          SQL += " [TimeSecond]=" & TimeSecond.ToString() & ","
         End If
         If ActualDb.PlayerID <> PlayerID AndAlso PlayerID <> -1 Then
           SQL += " [PlayerID]=" & PlayerID.ToString() & ","
@@ -138,7 +138,7 @@ Public Class MatchGoal
       Else
         Dim conn As New OleDbConnection(Config.Instance.LocalConnectionString)
         conn.Open()
-        Dim SQL As String = "INSERT INTO MatchGoals ([MatchID], [TeamGoalID], [Minute], [PlayerID], [Penalty], [OwnGoal])"
+        Dim SQL As String = "INSERT INTO MatchGoals ([MatchID], [TeamGoalID], [TimeSecond], [PlayerID], [Penalty], [OwnGoal])"
         SQL += " VALUES (" & MatchID.ToString() & ", " & TeamGoalID.ToString() & ", " & TimeSecond.ToString() & ", " & PlayerID.ToString() & ", " & (If(Penalty, "1", "0")) & ", " & (If(OwnGoal, "1", "0")) & ")"
         Dim myCmd As New OleDbCommand(SQL, conn)
         myCmd.ExecuteNonQuery()

@@ -282,4 +282,33 @@ Public Class FTPSyncManager
   Private Sub _backgroundSyncWorker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles _backgroundSyncWorker.RunWorkerCompleted
 
   End Sub
+
+
+  Public Function CheckFTPConnection(host As String, port As Integer, user As String, password As String) As Boolean
+    Dim res As Boolean = False
+    Try
+      Dim request = DirectCast(WebRequest.Create(host), FtpWebRequest)
+      request.Credentials = New NetworkCredential(user, password)
+      request.Method = WebRequestMethods.Ftp.ListDirectory
+
+      Try
+        Using response As FtpWebResponse =
+        DirectCast(request.GetResponse(), FtpWebResponse)
+          ' Folder exists here
+          res = True
+        End Using
+
+      Catch ex As WebException
+        Dim response As FtpWebResponse =
+        DirectCast(ex.Response, FtpWebResponse)
+        'Does not exist
+        If response.StatusCode = FtpStatusCode.ActionNotTakenFileUnavailable Then
+          res = False
+        End If
+      End Try
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
 End Class

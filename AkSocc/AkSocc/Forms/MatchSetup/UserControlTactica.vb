@@ -3,6 +3,7 @@
 Public Class UserControlTactica
   Private _size As Double = 50
   Private _benchPlayerLabels As New List(Of Label)
+
 #Region "Properties"
   Private _tactica As Tactic = Nothing
   Public Property Tactic() As Tactic
@@ -12,6 +13,7 @@ Public Class UserControlTactica
     Set(ByVal value As Tactic)
       _tactica = value
       ShowTactics()
+      UpdateListViewTeam()
     End Set
   End Property
 
@@ -28,16 +30,24 @@ Public Class UserControlTactica
         If _tactica Is Nothing And Not _team Is Nothing Then _tactica = _team.Tactic
 
         If Not _team Is Nothing Then
-          UpdateSelectedTactic(New Tactic)
+          If _team.Tactic Is Nothing Then
+            UpdateSelectedTactic(New Tactic)
+          Else
+            UpdateSelectedTactic(_team.Tactic)
+
+          End If
+
         End If
 
         UpdateComboBox()
+        UpdateListViewTeam()
       End If
     End Set
   End Property
 
   Private Sub UpdateSelectedTactic(tactic As Tactic)
     Try
+      If tactic Is Nothing Then Exit Sub
       _team.Tactic = tactic
       For Each player As Player In _team.MatchPlayers
         Dim pos As PosicioTactic = _team.Tactic.GetPosicioByID(player.Formation_Pos)
@@ -47,6 +57,7 @@ Public Class UserControlTactica
           player.Formation_Y = Clamp(pos.Y, -_scale, _scale)
         End If
       Next
+
       UpdateListViewTeam()
       InicialitzarVisualitzacioPlayersTeam()
       InicialitzarVisualitzacioAllPlayersTeam()
@@ -107,6 +118,9 @@ Public Class UserControlTactica
   End Sub
   Public Sub ShowTactics()
     Try
+      If _tactica Is Nothing Then Exit Sub
+      If _team Is Nothing Then Exit Sub
+
       PopulateTacticWithPlayers(_tactica, _team)
       ' g.Clear(Color.Green)
       If Me.PictureBoxCanvas.Image Is Nothing Then
@@ -437,8 +451,8 @@ Public Class UserControlTactica
   Private Sub PictureBoxCanvas_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles PictureBoxCanvas.MouseUp
     If Not SelectedPosicio Is Nothing Then
       If Not SelectedPosicio.Player Is Nothing Then
-        SelectedPosicio.Player.Formation_X = SelectedPosicio.X * 200
-        SelectedPosicio.Player.Formation_Y = SelectedPosicio.Y * 200
+        SelectedPosicio.Player.Formation_X = SelectedPosicio.X '* 200
+        SelectedPosicio.Player.Formation_Y = SelectedPosicio.Y '* 200
       End If
     End If
     SelectedPosicio = Nothing

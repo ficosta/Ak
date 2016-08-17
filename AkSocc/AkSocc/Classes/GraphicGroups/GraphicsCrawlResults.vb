@@ -54,7 +54,7 @@ Public Class GraphicsCrawlResults
       gs.GraphicSteps.Clear()
 
       If graphicStep Is Nothing Then
-        For Each matchDays As MatchDay In Me.OtherMatchDays
+        For Each matchDays As OtherMatchDay In Me.OtherMatchDays
           gs.GraphicSteps.Add(New GraphicStep(gs, New Step0(matchDays.MatchDayID, matchDays.MatchDayName), True, False))
         Next
       End If
@@ -71,7 +71,7 @@ Public Class GraphicsCrawlResults
     Try
       Scene = InitDefaultScene(changeStep)
 
-      Dim matchDay As MatchDay = Me.OtherMatchDays.GetMatchDay(graphicStep.UID)
+      Dim matchDay As OtherMatchDay = Me.OtherMatchDays.GetMatchDay(graphicStep.UID)
       Scene = PrepareMatchScores(changeStep, matchDay)
 
     Catch ex As Exception
@@ -101,7 +101,7 @@ Public Class GraphicsCrawlResults
   End Function
 
 
-  Public Function PrepareMatchScores(gSide As Integer, matchDay As MatchDay) As Scene
+  Public Function PrepareMatchScores(gSide As Integer, matchDay As OtherMatchDay) As Scene
     Dim scene As Scene = InitDefaultScene(gSide)
     Dim prefix As String = "Crawll_Side_" & gSide & "_"
     Dim subjectPrefix As String = ""

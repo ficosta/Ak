@@ -43,8 +43,8 @@ Public Class COptaF1Helper
       For Each node As XmlNode In nodeRoot.ChildNodes
         Select Case node.Name
           Case "SoccerDocument"
-            ReadMatches(node)
             ReadTeams(node)
+            ReadMatches(node)
         End Select
       Next
 
@@ -93,7 +93,8 @@ Public Class COptaF1Helper
             attr = node.Attributes.GetNamedItem("Period")
             match.state = attr.Value
             attr = node.Attributes.GetNamedItem("MatchDay")
-            match.matchday = NoNullInt(attr.Value)
+            If Not attr Is Nothing Then match.matchday = NoNullInt(attr.Value)
+
           Case "Stat"
 
           Case "TeamData"

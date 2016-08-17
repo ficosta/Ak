@@ -107,7 +107,7 @@ Public Class COptaF26Helper
           Case "MatchInfo"
             attr = node.Attributes.GetNamedItem("Period")
             match.state = attr.Value
-            attr = node.Attributes.GetNamedItem("MatchDay")
+            attr = node.Attributes.GetNamedItem("OtherMatchDay")
             match.matchday = NoNullInt(attr.Value)
           Case "Stat"
 

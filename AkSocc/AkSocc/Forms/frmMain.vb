@@ -218,6 +218,7 @@ Public Class frmMain
           Dim file As String = "srml-" & AppSettings.Instance.OptaCompetitionID & "-" & AppSettings.Instance.OptaSeasonID & "-f" & _match.optaID & "-matchresults.xml"
           file = System.IO.Path.Combine(AppSettings.Instance.OptaDefaultFolder, file)
           _F9Helper = New COptaF9Helper(file, _match)
+          _F9Helper.PreviewMatchInfo(True)
         Else
           _F9Helper = Nothing
         End If
@@ -503,6 +504,8 @@ Public Class frmMain
                 frmWaitForInput.ShowWaitDialog(Me, "This action requires the clock to be visible", _match.ToString, MessageBoxButtons.OK)
               ElseIf instance.CantHaveClock And _clockControl.ClockVisible = True Then
                 frmWaitForInput.ShowWaitDialog(Me, "This action requires the clock to be retired", _match.ToString, MessageBoxButtons.OK)
+              ElseIf instance.MustHaveOPTA Then
+                frmWaitForInput.ShowWaitDialog(Me, "This action requires an OPTA connection", _match.ToString, MessageBoxButtons.OK)
               Else
                 instance.Match = _match
                 instance.Player = _selectedPlayer
@@ -576,7 +579,7 @@ Public Class frmMain
   End Sub
 
   Private Sub ButtonF11OptaTop5_Click(sender As Object, e As EventArgs) Handles ButtonF11OptaTop5.Click
-
+    StartGraphic(GraphicsOptaTop5.Description)
   End Sub
 
   Private Sub ButtonF12VideoTalkThroughts_Click(sender As Object, e As EventArgs) Handles ButtonF12VideoTalkThroughts.Click
@@ -1670,6 +1673,10 @@ Public Class frmMain
     Catch ex As Exception
 
     End Try
+  End Sub
+
+  Private Sub _F9Helper_Updated() Handles _F9Helper.Updated
+
   End Sub
 #End Region
 End Class

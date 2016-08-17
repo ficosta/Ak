@@ -10,13 +10,11 @@ Imports MatchInfo
       Config.Instance.Silent = True
       Me.LoadOthers()
       Config.Instance.Silent = silent
-
     Catch ex As Exception
-
     End Try
   End Sub
 
-  Public Function Add(MatchDay As MatchDay) As Integer
+  Public Function Add(MatchDay As OtherMatchDay) As Integer
     Try
       If Not MatchDay Is Nothing Then
         Me.List.Add(MatchDay)
@@ -26,9 +24,9 @@ Imports MatchInfo
     Return Me.List.Count
   End Function
 
-  Default Public Property Item(Index As Integer) As MatchDay
+  Default Public Property Item(Index As Integer) As OtherMatchDay
     Get
-      Return DirectCast(List(Index), MatchDay)
+      Return DirectCast(List(Index), OtherMatchDay)
     End Get
     Set
       List(Index) = Value
@@ -39,24 +37,10 @@ Imports MatchInfo
     Me.InnerList.Sort()
   End Sub
 
-  Public Function GetMatchDays() As List(Of MatchDay)
-    Dim res As New List(Of MatchDay)
+  Public Function GetMatchDay(matchDay As String) As OtherMatchDay
+    Dim res As OtherMatchDay = Nothing
     Try
-      For Each match As OtherMatch In Me.InnerList
-        For Each matchDay As MatchDay In res
-
-        Next
-      Next
-    Catch ex As Exception
-
-    End Try
-    Return res
-  End Function
-
-  Public Function GetMatchDay(matchDay As String) As MatchDay
-    Dim res As MatchDay = Nothing
-    Try
-      For Each match As MatchDay In Me.InnerList
+      For Each match As OtherMatchDay In Me.InnerList
         If match.MatchDayName = matchDay Or match.MatchDayID = matchDay Then
           res = match
           Exit For
@@ -71,7 +55,7 @@ Imports MatchInfo
   Public ReadOnly Property AllMatches() As List(Of OtherMatch)
     Get
       Dim res As New List(Of OtherMatch)
-      For Each matchDay As MatchDay In Me.List
+      For Each matchDay As OtherMatchDay In Me.List
         For Each match As OtherMatch In matchDay.OtherMatches
           res.Add(match)
         Next
@@ -90,7 +74,7 @@ Imports MatchInfo
   Public ReadOnly Property AllMatchesByTeam(idTeam As Integer) As List(Of OtherMatch)
     Get
       Dim res As New List(Of OtherMatch)
-      For Each matchDay As MatchDay In Me.List
+      For Each matchDay As OtherMatchDay In Me.List
         For Each match As OtherMatch In matchDay.OtherMatches
           If match.Match.HomeTeam.ID = idTeam Or match.Match.AwayTeam.ID = idTeam Then
             res.Add(match)
@@ -124,7 +108,7 @@ Imports MatchInfo
         If Not _teams.Contains(match.AwayTeam) Then _teams.Add(match.AwayTeam)
       Next
 
-      For Each matchDay As MatchDay In Me.List
+      For Each matchDay As OtherMatchDay In Me.List
         For Each match As OtherMatch In matchDay.OtherMatches
           If Not match.Match Is Nothing Then
             If Not _teams.Contains(match.Match.HomeTeam) Then _teams.Add(match.Match.HomeTeam)
@@ -139,7 +123,7 @@ Imports MatchInfo
         Dim teamForCompetition As New TeamClassificationForCompetition(team)
         _matches.Sort()
         Dim teamMatches As List(Of Match) = _matches.GetMatchesForTeam(team.ID)
-        'For Each matchDay As MatchDay In Me.List
+        'For Each matchDay As OtherMatchDay In Me.List
         '  Dim teamClassificationForMatchDay As New TeamClassificationForMatchDay(team, matchDay.Index, Nothing)
         '  For Each match As OtherMatch In matchDay.OtherMatches
         '    If Not match.Match Is Nothing Then
@@ -174,9 +158,11 @@ Imports MatchInfo
       Dim xmlRoot As XmlElement = xmlDoc.CreateElement("OtherMatches")
       xmlDoc.AppendChild(xmlRoot)
 
-      For Each myMatchDay As MatchDay In Me.List
+      For Each myMatchDay As OtherMatchDay In Me.List
         Dim xmlHeader As XmlElement = xmlDoc.CreateElement("Header")
         xmlHeader.SetAttribute("name", myMatchDay.MatchDayName)
+        xmlHeader.SetAttribute("competitionID", myMatchDay.CompetitionID)
+
         For Each myOtherMatch As OtherMatch In myMatchDay.OtherMatches
           Dim xmlLine As XmlElement = xmlDoc.CreateElement("Line")
           Dim xmlLineTitle As XmlElement = xmlDoc.CreateElement("Title")
@@ -223,7 +209,8 @@ Imports MatchInfo
         Next
         xmlRoot.AppendChild(xmlHeader)
       Next
-      xmlDoc.Save(My.MySettings.Default.OtherMatchesPath)
+
+      xmlDoc.Save(AppSettings.Instance.OtherMatchesPath)
     Catch
     End Try
   End Sub
@@ -232,9 +219,11 @@ Imports MatchInfo
     Dim xmlDoc As New XmlDocument()
     Try
       Me.InnerList.Clear()
-      xmlDoc.Load(My.MySettings.Default.OtherMatchesPath)
+      xmlDoc.Load(AppSettings.Instance.OtherMatchesPath)
       For Each myXmlHeaders As XmlNode In xmlDoc.SelectNodes("OtherMatches/Header")
-        Dim myMatchDay As New MatchDay(ReadAttribute(myXmlHeaders, "name"))
+        Dim myMatchDay As New OtherMatchDay(ReadAttribute(myXmlHeaders, "name"))
+        myMatchDay.CompetitionID = NoNullInt(ReadAttribute(myXmlHeaders, "competitionID"))
+        If myMatchDay.CompetitionID < 1 Then myMatchDay.CompetitionID = 298
         For Each myXmlLines As XmlNode In myXmlHeaders.SelectNodes("Line")
           Dim myOtherMatch As New OtherMatch
           myOtherMatch.MatchTitle = ReadSon(myXmlLines, "Title")
@@ -283,7 +272,7 @@ Imports MatchInfo
       For i As Integer = 1 To totallMatchDays
         Dim name As String = "ROUND " & i & " FIXTURES"
         If Me.GetMatchDay(name) Is Nothing Then
-          Dim myMatchDay As New MatchDay(name)
+          Dim myMatchDay As New OtherMatchDay(name)
           Me.Add(myMatchDay)
         End If
       Next
@@ -300,7 +289,6 @@ Imports MatchInfo
           match.Match.away_goals = match.AwayScore
           match.Match.SaveMatchGoalsToDB(False)
         End If
-
       Next
     Catch ex As Exception
 
