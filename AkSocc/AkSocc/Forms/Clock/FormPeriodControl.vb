@@ -194,41 +194,16 @@ Public Class FormPeriodControl
     Return res
   End Function
 
-  Private _updating As Boolean = False
-  Private Sub _match_ActivePeriodStateChanged(period As Period) Handles _match.ActivePeriodStateChanged
-    Try
-      If _updating Then Exit Sub
-      _updating = True
-      If period Is Nothing Then
-        Me.NumericUpDownMinutes.Enabled = False
-        Me.NumericUpDownMinutes.Value = 0
-      Else
-        Me.NumericUpDownMinutes.Enabled = True
-        Me.NumericUpDownMinutes.Value = period.ExtraTime
-      End If
-
-    Catch ex As Exception
-
-    End Try
-    _updating = False
-  End Sub
-
-  Private Sub NumericUpDownMinutes_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDownMinutes.ValueChanged
-    If _updating Then Exit Sub
-    If _match Is Nothing Then Exit Sub
-    If _match.MatchPeriods.ActivePeriod Is Nothing Then Exit Sub
-    _match.MatchPeriods.UpdatePeriodExtraTime(_match.MatchPeriods.ActivePeriod, Me.NumericUpDownMinutes.Value)
-  End Sub
-
   Private Sub AcceptOption()
     Try
+      Me.Cursor = Cursors.WaitCursor
       Dim res As Boolean
       res = ExecuteSelectedAction()
       If res Then Me.Close()
       Me.DialogResult = DialogResult.OK
     Catch ex As Exception
-
     End Try
+    Me.Cursor = Cursors.Default
   End Sub
 
   Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click

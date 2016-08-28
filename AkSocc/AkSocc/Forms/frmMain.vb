@@ -215,8 +215,16 @@ Public Class frmMain
         MatchSetup()
         UpdateConfig()
         If _match.optaID > 0 Then
-          Dim file As String = "srml-" & AppSettings.Instance.OptaCompetitionID & "-" & AppSettings.Instance.OptaSeasonID & "-f" & _match.optaID & "-matchresults.xml"
-          file = System.IO.Path.Combine(AppSettings.Instance.OptaDefaultFolder, file)
+          Dim directory As DirectoryInfo = New System.IO.DirectoryInfo(AppSettings.Instance.OptaDefaultFolder)
+          Dim file As String = "srml-*-f" & _match.optaID & "-matchresults.xml"
+
+          Dim fi As FileInfo() = directory.GetFiles("srml-*-f" & _match.optaID & "-matchresults.xml")
+          If fi.Length = 1 Then
+            file = fi(0).FullName
+          Else
+            file = System.IO.Path.Combine(AppSettings.Instance.OptaDefaultFolder, file)
+          End If
+
           _F9Helper = New COptaF9Helper(file, _match)
           _F9Helper.PreviewMatchInfo(True)
         Else
@@ -284,6 +292,7 @@ Public Class frmMain
       'Dim matches As New MatchInfo.Matches()
 
       Dim match As New Match(id) ' = matches.GetMatch(id)
+      Config.Instance.WasMatchSaved = False
       match.GetMatch()
 
       match.HomeTeam.GetFullMatchData()
@@ -504,7 +513,7 @@ Public Class frmMain
                 frmWaitForInput.ShowWaitDialog(Me, "This action requires the clock to be visible", _match.ToString, MessageBoxButtons.OK)
               ElseIf instance.CantHaveClock And _clockControl.ClockVisible = True Then
                 frmWaitForInput.ShowWaitDialog(Me, "This action requires the clock to be retired", _match.ToString, MessageBoxButtons.OK)
-              ElseIf instance.MustHaveOPTA Then
+              ElseIf instance.MustHaveOPTA And _match.optaID <= 0 Then
                 frmWaitForInput.ShowWaitDialog(Me, "This action requires an OPTA connection", _match.ToString, MessageBoxButtons.OK)
               Else
                 instance.Match = _match
@@ -1616,6 +1625,7 @@ Public Class frmMain
 
   Private Sub SelectOptaStatsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectOptaStatsToolStripMenuItem.Click
     Try
+      Me.Cursor = Cursors.WaitCursor
       Dim dlg As New frmOptaStats
       If dlg.ShowDialog(Me) = DialogResult.OK Then
 
@@ -1623,6 +1633,7 @@ Public Class frmMain
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
+    Me.Cursor = Cursors.Default
   End Sub
 
   Private _externalOptaSync As Boolean = False
@@ -1676,6 +1687,20 @@ Public Class frmMain
   End Sub
 
   Private Sub _F9Helper_Updated() Handles _F9Helper.Updated
+
+  End Sub
+
+  Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Try
+      If frmWaitForInput.ShowWaitDialog(Me, "Are you sure you want to close the app?", My.Application.Info.AssemblyName, MessageBoxButtons.YesNo) = DialogResult.No Then
+        e.Cancel = True
+      End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub TableLayoutPanel2_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel2.Paint
 
   End Sub
 #End Region

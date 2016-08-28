@@ -82,19 +82,19 @@ Module Main
   Public Sub WriteToErrorLog(ByVal msg As String,
     ByVal stkTrace As String, ByVal title As String)
     Try
-      Dim path As String = "C:\"
+      Dim path As String = "C:\Errors\" & My.Application.Info.AssemblyName
       'check and make the directory if necessary; this is set to look in 
       'the Application folder, you may wish to place the error log in 
       'another location depending upon the user's role and write access to 
       'different areas of the file system
-      If Not System.IO.Directory.Exists(path & "\Errors\") Then
-        System.IO.Directory.CreateDirectory(path & "\Errors\")
+      If Not System.IO.Directory.Exists(path) Then
+        System.IO.Directory.CreateDirectory(path)
       End If
 
-      Dim file As String = System.IO.Path.Combine(path, "Errors\errlog.txt")
+      Dim file As String = System.IO.Path.Combine(path, My.Application.Info.AssemblyName & "_errlog.txt")
 
       If System.IO.File.Exists(file) AndAlso New FileInfo(file).Length > 1024 * 1024 Then
-        RotateLogs(System.IO.Path.Combine(path, "Errors"))
+        RotateLogs(path)
       End If
 
       'check the file
@@ -125,12 +125,12 @@ Module Main
       Dim file As String = ""
       For i As Integer = 8 To 0 Step -1
         If i > 0 Then
-          file = System.IO.Path.Combine(path, "errlog_" & i & ".txt")
+          file = System.IO.Path.Combine(path, My.Application.Info.AssemblyName & "_errlog_" & i & ".txt")
         Else
-          file = System.IO.Path.Combine(path, "errlog.txt")
+          file = System.IO.Path.Combine(path, My.Application.Info.AssemblyName & "_errlog.txt")
         End If
         If System.IO.File.Exists(file) Then
-          Dim dest As String = System.IO.Path.Combine(path, "errlog_" & (i + 1) & ".txt")
+          Dim dest As String = System.IO.Path.Combine(path, My.Application.Info.AssemblyName & "_errlog_" & (i + 1) & ".txt")
           If System.IO.File.Exists(dest) Then System.IO.File.Delete(dest)
           System.IO.File.Move(file, dest)
         End If

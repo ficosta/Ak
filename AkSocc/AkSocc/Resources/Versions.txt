@@ -1,4 +1,11 @@
 ﻿====================
+Version 0.8.0
+- minor interface fixes
+- changed log folder and naming, added rotation of logs
+- Fixed problems with goal management
+- Optimized speed of changing period time
+
+====================
 Version 0.7.10
 - Interface fixes
 - Added full opta support

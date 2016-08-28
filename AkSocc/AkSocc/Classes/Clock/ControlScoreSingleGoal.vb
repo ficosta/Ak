@@ -70,6 +70,8 @@ Public Class ControlScoreSingleGoal
             End Select
 
             Dim players As New List(Of Player)
+            MatchInfo.Config.Instance.PlayerSortType = Config.ePlayerSortType.Position
+
             _team.MatchPlayers.Sort()
 
             For Each player As MatchInfo.Player In _team.MatchPlayers

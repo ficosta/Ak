@@ -22,10 +22,10 @@ Partial Class frmGoals
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-    Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-    Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-    Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroTileGraphics = New MetroFramework.Controls.MetroTile()
     Me.TableLayoutPanelData = New System.Windows.Forms.TableLayoutPanel()
@@ -77,6 +77,7 @@ Partial Class frmGoals
     Me.MetroTileGraphics.TabIndex = 0
     Me.MetroTileGraphics.Text = "Graphics"
     Me.MetroTileGraphics.UseSelectable = True
+    Me.MetroTileGraphics.Visible = False
     '
     'TableLayoutPanelData
     '
@@ -92,9 +93,8 @@ Partial Class frmGoals
     Me.TableLayoutPanelData.Location = New System.Drawing.Point(3, 33)
     Me.TableLayoutPanelData.Name = "TableLayoutPanelData"
     Me.TableLayoutPanelData.RowCount = 2
-    Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
     Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelData.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
     Me.TableLayoutPanelData.Size = New System.Drawing.Size(838, 358)
     Me.TableLayoutPanelData.TabIndex = 1
     '
@@ -102,9 +102,10 @@ Partial Class frmGoals
     '
     Me.MetroButtonAddAwayTeamSubstitition.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroButtonAddAwayTeamSubstitition.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.MetroButtonAddAwayTeamSubstitition.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroButtonAddAwayTeamSubstitition.Location = New System.Drawing.Point(3, 3)
     Me.MetroButtonAddAwayTeamSubstitition.Name = "MetroButtonAddAwayTeamSubstitition"
-    Me.MetroButtonAddAwayTeamSubstitition.Size = New System.Drawing.Size(273, 24)
+    Me.MetroButtonAddAwayTeamSubstitition.Size = New System.Drawing.Size(273, 34)
     Me.MetroButtonAddAwayTeamSubstitition.TabIndex = 3
     Me.MetroButtonAddAwayTeamSubstitition.Text = "Add home team GOAL"
     '
@@ -112,9 +113,10 @@ Partial Class frmGoals
     '
     Me.MetroButtonRemoveGoal.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroButtonRemoveGoal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.MetroButtonRemoveGoal.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroButtonRemoveGoal.Location = New System.Drawing.Point(282, 3)
     Me.MetroButtonRemoveGoal.Name = "MetroButtonRemoveGoal"
-    Me.MetroButtonRemoveGoal.Size = New System.Drawing.Size(273, 24)
+    Me.MetroButtonRemoveGoal.Size = New System.Drawing.Size(273, 34)
     Me.MetroButtonRemoveGoal.TabIndex = 2
     Me.MetroButtonRemoveGoal.Text = "Remove goal"
     '
@@ -128,44 +130,44 @@ Partial Class frmGoals
     Me.MetroGridGoals.BorderStyle = System.Windows.Forms.BorderStyle.None
     Me.MetroGridGoals.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
     Me.MetroGridGoals.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-    DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
-    DataGridViewCellStyle9.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
-    DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridGoals.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+    DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
+    DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
+    DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.MetroGridGoals.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
     Me.MetroGridGoals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
     Me.MetroGridGoals.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnID, Me.ColumnHomeType, Me.ColumnHomePlayer, Me.ColumnHomeGoal, Me.ColumnTime, Me.ColumnAwayGoal, Me.ColumnAwayPlayer, Me.ColumnAwayType})
     Me.TableLayoutPanelData.SetColumnSpan(Me.MetroGridGoals, 3)
-    DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle11.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
-    DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
-    DataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-    Me.MetroGridGoals.DefaultCellStyle = DataGridViewCellStyle11
+    DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
+    DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
+    DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+    Me.MetroGridGoals.DefaultCellStyle = DataGridViewCellStyle3
     Me.MetroGridGoals.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroGridGoals.EnableHeadersVisualStyles = False
     Me.MetroGridGoals.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
     Me.MetroGridGoals.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridGoals.Location = New System.Drawing.Point(3, 33)
+    Me.MetroGridGoals.Location = New System.Drawing.Point(3, 43)
     Me.MetroGridGoals.Name = "MetroGridGoals"
     Me.MetroGridGoals.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-    DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
-    DataGridViewCellStyle12.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
-    DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridGoals.RowHeadersDefaultCellStyle = DataGridViewCellStyle12
+    DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(53, Byte), Integer))
+    DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(133, Byte), Integer), CType(CType(72, Byte), Integer))
+    DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.MetroGridGoals.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
     Me.MetroGridGoals.RowHeadersVisible = False
     Me.MetroGridGoals.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridGoals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridGoals.Size = New System.Drawing.Size(832, 322)
+    Me.MetroGridGoals.Size = New System.Drawing.Size(832, 312)
     Me.MetroGridGoals.Style = MetroFramework.MetroColorStyle.Orange
     Me.MetroGridGoals.TabIndex = 0
     '
@@ -197,8 +199,8 @@ Partial Class frmGoals
     'ColumnTime
     '
     Me.ColumnTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-    Me.ColumnTime.DefaultCellStyle = DataGridViewCellStyle10
+    DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+    Me.ColumnTime.DefaultCellStyle = DataGridViewCellStyle2
     Me.ColumnTime.HeaderText = "Time"
     Me.ColumnTime.Name = "ColumnTime"
     Me.ColumnTime.ReadOnly = True
@@ -222,9 +224,10 @@ Partial Class frmGoals
     '
     Me.MetroButtonAddHomeTeamSubstitition.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroButtonAddHomeTeamSubstitition.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.MetroButtonAddHomeTeamSubstitition.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroButtonAddHomeTeamSubstitition.Location = New System.Drawing.Point(561, 3)
     Me.MetroButtonAddHomeTeamSubstitition.Name = "MetroButtonAddHomeTeamSubstitition"
-    Me.MetroButtonAddHomeTeamSubstitition.Size = New System.Drawing.Size(274, 24)
+    Me.MetroButtonAddHomeTeamSubstitition.Size = New System.Drawing.Size(274, 34)
     Me.MetroButtonAddHomeTeamSubstitition.TabIndex = 1
     Me.MetroButtonAddHomeTeamSubstitition.Text = "Add away team GOAL"
     '
@@ -237,6 +240,7 @@ Partial Class frmGoals
     Me.MetroButtonShowSelectedGoal.Size = New System.Drawing.Size(838, 29)
     Me.MetroButtonShowSelectedGoal.TabIndex = 1
     Me.MetroButtonShowSelectedGoal.Text = "Selected goal..."
+    Me.MetroButtonShowSelectedGoal.Visible = False
     '
     'MetroTileData
     '

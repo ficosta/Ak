@@ -139,6 +139,9 @@ Partial Class frmOptaStats
     '
     Me.MetroGridTeamStats.AllowUserToDeleteRows = False
     Me.MetroGridTeamStats.AllowUserToResizeRows = False
+    Me.MetroGridTeamStats.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.MetroGridTeamStats.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
     Me.MetroGridTeamStats.BorderStyle = System.Windows.Forms.BorderStyle.None
     Me.MetroGridTeamStats.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
@@ -161,11 +164,10 @@ Partial Class frmOptaStats
     DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
     Me.MetroGridTeamStats.DefaultCellStyle = DataGridViewCellStyle2
-    Me.MetroGridTeamStats.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroGridTeamStats.EnableHeadersVisualStyles = False
     Me.MetroGridTeamStats.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
     Me.MetroGridTeamStats.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridTeamStats.Location = New System.Drawing.Point(0, 0)
+    Me.MetroGridTeamStats.Location = New System.Drawing.Point(5, 3)
     Me.MetroGridTeamStats.Name = "MetroGridTeamStats"
     Me.MetroGridTeamStats.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
     DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -179,7 +181,7 @@ Partial Class frmOptaStats
     Me.MetroGridTeamStats.RowHeadersVisible = False
     Me.MetroGridTeamStats.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridTeamStats.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridTeamStats.Size = New System.Drawing.Size(839, 324)
+    Me.MetroGridTeamStats.Size = New System.Drawing.Size(829, 318)
     Me.MetroGridTeamStats.TabIndex = 2
     '
     'ColumnOptaName
@@ -229,6 +231,9 @@ Partial Class frmOptaStats
     '
     Me.MetroGridPlayerStats.AllowUserToDeleteRows = False
     Me.MetroGridPlayerStats.AllowUserToResizeRows = False
+    Me.MetroGridPlayerStats.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.MetroGridPlayerStats.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
     Me.MetroGridPlayerStats.BorderStyle = System.Windows.Forms.BorderStyle.None
     Me.MetroGridPlayerStats.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
@@ -251,11 +256,10 @@ Partial Class frmOptaStats
     DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
     DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
     Me.MetroGridPlayerStats.DefaultCellStyle = DataGridViewCellStyle5
-    Me.MetroGridPlayerStats.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroGridPlayerStats.EnableHeadersVisualStyles = False
     Me.MetroGridPlayerStats.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
     Me.MetroGridPlayerStats.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridPlayerStats.Location = New System.Drawing.Point(0, 0)
+    Me.MetroGridPlayerStats.Location = New System.Drawing.Point(5, 3)
     Me.MetroGridPlayerStats.Name = "MetroGridPlayerStats"
     Me.MetroGridPlayerStats.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
     DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -269,7 +273,7 @@ Partial Class frmOptaStats
     Me.MetroGridPlayerStats.RowHeadersVisible = False
     Me.MetroGridPlayerStats.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridPlayerStats.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridPlayerStats.Size = New System.Drawing.Size(839, 324)
+    Me.MetroGridPlayerStats.Size = New System.Drawing.Size(829, 318)
     Me.MetroGridPlayerStats.TabIndex = 3
     '
     'DataGridViewTextBoxColumn1

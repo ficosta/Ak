@@ -33,6 +33,7 @@ Public Class frmOptaPlayerLink
 
   Private Sub ShowPlayers()
     Try
+      Me.Text = "Link opta players for " & Me._localTeam.TeamAELCaption1Name
       If _allPlayers Is Nothing Then
         _allPlayers = New Players
         _allPlayers.GetAllPlayers()
@@ -136,24 +137,6 @@ Public Class frmOptaPlayerLink
     End Try
   End Sub
 
-  Private Sub EnsureRowIsVisible(grid As MetroGrid, row As Integer)
-    Try
-      With grid
-        Dim topRow As Integer = .FirstDisplayedCell.RowIndex
-        Dim bottomRow As Integer = topRow + .DisplayedRowCount(False)
-        If row < topRow Or row > bottomRow Then
-          'we are out
-          Dim cell As DataGridViewCell = grid.Rows(row).Cells(0)
-
-          .FirstDisplayedCell = cell
-        End If
-      End With
-    Catch ex As Exception
-
-    End Try
-  End Sub
-
-
   Private Sub MetroGridLocal_SelectionChanged(sender As Object, e As EventArgs) Handles MetroGridLocal.SelectionChanged
     Try
       If Me.MetroGridLocal.SelectedRows.Count = 0 Then
@@ -179,7 +162,16 @@ Public Class frmOptaPlayerLink
           End If
         Next
         _selectedLocalPlayer.optaID = _selectedOptaPlayer.optaID
-        ' _selectedLocalPlayer.Update()
+        _selectedLocalPlayer.optaName = _selectedOptaPlayer.optaName
+        _selectedLocalPlayer.OptaSquadNumber = _selectedOptaPlayer.OptaSquadNumber
+
+        _selectedOptaPlayer.PlayerFirstName = _selectedLocalPlayer.PlayerFirstName
+        _selectedOptaPlayer.PlayerSurname = _selectedLocalPlayer.PlayerSurname
+        _selectedOptaPlayer.SquadNo = _selectedLocalPlayer.SquadNo
+
+
+
+        _selectedLocalPlayer.UpdatePlayer()
         _selectedOptaPlayer.PlayerID = _selectedLocalPlayer.PlayerID
       Else
         _selectedLocalPlayer.optaID = 0
@@ -194,6 +186,14 @@ Public Class frmOptaPlayerLink
 
   Private Sub frmOptaPlayerLink_Shown(sender As Object, e As EventArgs) Handles Me.Shown
     Me.ShowPlayers()
+  End Sub
+
+  Private Sub MetroGridOpta_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridOpta.CellContentClick
+
+  End Sub
+
+  Private Sub frmOptaPlayerLink_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
   End Sub
 
 #End Region

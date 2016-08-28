@@ -102,6 +102,8 @@ Partial Class frmMain
     Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
     Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
     Me.ToolStripButtonSettings = New System.Windows.Forms.ToolStripButton()
+    Me.TableLayoutPanelBottom = New System.Windows.Forms.TableLayoutPanel()
+    Me.LabelAppVersion = New System.Windows.Forms.Label()
     Me.TeamControlHome = New AkLogger.TeamControl()
     Me.TeamControlAway = New AkLogger.TeamControl()
     Me.SingleStatControlHomeCorners = New AkLogger.SingleStatControl()
@@ -120,6 +122,7 @@ Partial Class frmMain
     Me.TableLayoutPanel2.SuspendLayout()
     Me.TableLayoutPanel3.SuspendLayout()
     Me.ToolStrip1.SuspendLayout()
+    Me.TableLayoutPanelBottom.SuspendLayout()
     Me.SuspendLayout()
     '
     'TableLayoutPanelTeams
@@ -136,17 +139,17 @@ Partial Class frmMain
     Me.TableLayoutPanelTeams.Name = "TableLayoutPanelTeams"
     Me.TableLayoutPanelTeams.RowCount = 1
     Me.TableLayoutPanelTeams.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelTeams.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 469.0!))
-    Me.TableLayoutPanelTeams.Size = New System.Drawing.Size(991, 469)
+    Me.TableLayoutPanelTeams.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 531.0!))
+    Me.TableLayoutPanelTeams.Size = New System.Drawing.Size(984, 491)
     Me.TableLayoutPanelTeams.TabIndex = 379
     '
     'grpControls
     '
     Me.grpControls.Controls.Add(Me.tableLayoutPanelPeriodes)
     Me.grpControls.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grpControls.Location = New System.Drawing.Point(1000, 3)
+    Me.grpControls.Location = New System.Drawing.Point(993, 3)
     Me.grpControls.Name = "grpControls"
-    Me.grpControls.Size = New System.Drawing.Size(153, 469)
+    Me.grpControls.Size = New System.Drawing.Size(160, 491)
     Me.grpControls.TabIndex = 375
     Me.grpControls.TabStop = False
     Me.grpControls.Text = "Controls"
@@ -182,7 +185,7 @@ Partial Class frmMain
     Me.tableLayoutPanelPeriodes.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.04964!))
     Me.tableLayoutPanelPeriodes.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.208037!))
     Me.tableLayoutPanelPeriodes.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-    Me.tableLayoutPanelPeriodes.Size = New System.Drawing.Size(147, 450)
+    Me.tableLayoutPanelPeriodes.Size = New System.Drawing.Size(154, 472)
     Me.tableLayoutPanelPeriodes.TabIndex = 238
     '
     'MetroLabelPeriodName
@@ -192,9 +195,9 @@ Partial Class frmMain
     Me.tableLayoutPanelPeriodes.SetColumnSpan(Me.MetroLabelPeriodName, 2)
     Me.MetroLabelPeriodName.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroLabelPeriodName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.MetroLabelPeriodName.Location = New System.Drawing.Point(3, 58)
+    Me.MetroLabelPeriodName.Location = New System.Drawing.Point(3, 60)
     Me.MetroLabelPeriodName.Name = "MetroLabelPeriodName"
-    Me.MetroLabelPeriodName.Size = New System.Drawing.Size(141, 35)
+    Me.MetroLabelPeriodName.Size = New System.Drawing.Size(148, 37)
     Me.MetroLabelPeriodName.TabIndex = 241
     Me.MetroLabelPeriodName.Text = "1st half"
     Me.MetroLabelPeriodName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -208,7 +211,7 @@ Partial Class frmMain
     Me.MetroLabelPeriodTime.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.MetroLabelPeriodTime.Location = New System.Drawing.Point(3, 0)
     Me.MetroLabelPeriodTime.Name = "MetroLabelPeriodTime"
-    Me.MetroLabelPeriodTime.Size = New System.Drawing.Size(141, 58)
+    Me.MetroLabelPeriodTime.Size = New System.Drawing.Size(148, 60)
     Me.MetroLabelPeriodTime.TabIndex = 240
     Me.MetroLabelPeriodTime.Text = "00:00"
     Me.MetroLabelPeriodTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -218,9 +221,9 @@ Partial Class frmMain
     Me.rdbExtra2.AutoCheck = False
     Me.rdbExtra2.AutoSize = True
     Me.rdbExtra2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.rdbExtra2.Location = New System.Drawing.Point(76, 318)
+    Me.rdbExtra2.Location = New System.Drawing.Point(80, 332)
     Me.rdbExtra2.Name = "rdbExtra2"
-    Me.rdbExtra2.Size = New System.Drawing.Size(68, 35)
+    Me.rdbExtra2.Size = New System.Drawing.Size(71, 37)
     Me.rdbExtra2.TabIndex = 239
     Me.rdbExtra2.Text = "e2"
     Me.rdbExtra2.UseSelectable = True
@@ -234,9 +237,9 @@ Partial Class frmMain
     Me.btnClockReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnClockReset.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.btnClockReset.ForeColor = System.Drawing.SystemColors.ControlLightLight
-    Me.btnClockReset.Location = New System.Drawing.Point(3, 408)
+    Me.btnClockReset.Location = New System.Drawing.Point(3, 427)
     Me.btnClockReset.Name = "btnClockReset"
-    Me.btnClockReset.Size = New System.Drawing.Size(141, 39)
+    Me.btnClockReset.Size = New System.Drawing.Size(148, 42)
     Me.btnClockReset.TabIndex = 237
     Me.btnClockReset.Text = "DATA RESET"
     Me.btnClockReset.UseVisualStyleBackColor = False
@@ -246,9 +249,9 @@ Partial Class frmMain
     Me.rdbExtra1.AutoCheck = False
     Me.rdbExtra1.AutoSize = True
     Me.rdbExtra1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.rdbExtra1.Location = New System.Drawing.Point(76, 277)
+    Me.rdbExtra1.Location = New System.Drawing.Point(80, 289)
     Me.rdbExtra1.Name = "rdbExtra1"
-    Me.rdbExtra1.Size = New System.Drawing.Size(68, 35)
+    Me.rdbExtra1.Size = New System.Drawing.Size(71, 37)
     Me.rdbExtra1.TabIndex = 236
     Me.rdbExtra1.Text = "e1"
     Me.rdbExtra1.UseSelectable = True
@@ -261,9 +264,9 @@ Partial Class frmMain
     Me.btnOverwriteClock.Dock = System.Windows.Forms.DockStyle.Fill
     Me.btnOverwriteClock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.btnOverwriteClock.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnOverwriteClock.Location = New System.Drawing.Point(3, 359)
+    Me.btnOverwriteClock.Location = New System.Drawing.Point(3, 375)
     Me.btnOverwriteClock.Name = "btnOverwriteClock"
-    Me.btnOverwriteClock.Size = New System.Drawing.Size(141, 43)
+    Me.btnOverwriteClock.Size = New System.Drawing.Size(148, 46)
     Me.btnOverwriteClock.TabIndex = 4
     Me.btnOverwriteClock.Text = "OVERWRITE CLOCK"
     Me.btnOverwriteClock.UseVisualStyleBackColor = False
@@ -275,9 +278,9 @@ Partial Class frmMain
     Me.tableLayoutPanelPeriodes.SetColumnSpan(Me.txtClock, 2)
     Me.txtClock.Dock = System.Windows.Forms.DockStyle.Fill
     Me.txtClock.Font = New System.Drawing.Font("Verdana", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.txtClock.Location = New System.Drawing.Point(3, 93)
+    Me.txtClock.Location = New System.Drawing.Point(3, 97)
     Me.txtClock.Name = "txtClock"
-    Me.txtClock.Size = New System.Drawing.Size(141, 58)
+    Me.txtClock.Size = New System.Drawing.Size(148, 60)
     Me.txtClock.TabIndex = 233
     Me.txtClock.Text = "100:00"
     Me.txtClock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -288,9 +291,9 @@ Partial Class frmMain
     Me.rdb2ndHalf.AutoCheck = False
     Me.rdb2ndHalf.AutoSize = True
     Me.rdb2ndHalf.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.rdb2ndHalf.Location = New System.Drawing.Point(76, 236)
+    Me.rdb2ndHalf.Location = New System.Drawing.Point(80, 246)
     Me.rdb2ndHalf.Name = "rdb2ndHalf"
-    Me.rdb2ndHalf.Size = New System.Drawing.Size(68, 35)
+    Me.rdb2ndHalf.Size = New System.Drawing.Size(71, 37)
     Me.rdb2ndHalf.TabIndex = 235
     Me.rdb2ndHalf.Text = "2nd"
     Me.rdb2ndHalf.UseSelectable = True
@@ -302,9 +305,9 @@ Partial Class frmMain
     Me.rdb1stHalf.AutoSize = True
     Me.rdb1stHalf.Checked = True
     Me.rdb1stHalf.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.rdb1stHalf.Location = New System.Drawing.Point(76, 195)
+    Me.rdb1stHalf.Location = New System.Drawing.Point(80, 203)
     Me.rdb1stHalf.Name = "rdb1stHalf"
-    Me.rdb1stHalf.Size = New System.Drawing.Size(68, 35)
+    Me.rdb1stHalf.Size = New System.Drawing.Size(71, 37)
     Me.rdb1stHalf.TabIndex = 234
     Me.rdb1stHalf.TabStop = True
     Me.rdb1stHalf.Text = "1st"
@@ -318,9 +321,9 @@ Partial Class frmMain
     Me.StopClock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.StopClock.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.StopClock.ForeColor = System.Drawing.SystemColors.ControlLightLight
-    Me.StopClock.Location = New System.Drawing.Point(76, 154)
+    Me.StopClock.Location = New System.Drawing.Point(80, 160)
     Me.StopClock.Name = "StopClock"
-    Me.StopClock.Size = New System.Drawing.Size(68, 35)
+    Me.StopClock.Size = New System.Drawing.Size(71, 37)
     Me.StopClock.TabIndex = 5
     Me.StopClock.Text = "STOP"
     Me.StopClock.UseVisualStyleBackColor = False
@@ -331,9 +334,9 @@ Partial Class frmMain
     Me.StartClock.Dock = System.Windows.Forms.DockStyle.Fill
     Me.StartClock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.StartClock.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.StartClock.Location = New System.Drawing.Point(3, 154)
+    Me.StartClock.Location = New System.Drawing.Point(3, 160)
     Me.StartClock.Name = "StartClock"
-    Me.StartClock.Size = New System.Drawing.Size(67, 35)
+    Me.StartClock.Size = New System.Drawing.Size(71, 37)
     Me.StartClock.TabIndex = 4
     Me.StartClock.Text = "START"
     Me.StartClock.UseVisualStyleBackColor = False
@@ -381,7 +384,7 @@ Partial Class frmMain
     Me.grpPossession.Controls.Add(Me.lblPossessionOwnT)
     Me.grpPossession.Controls.Add(Me.label52)
     Me.grpPossession.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grpPossession.Location = New System.Drawing.Point(3, 478)
+    Me.grpPossession.Location = New System.Drawing.Point(3, 500)
     Me.grpPossession.Name = "grpPossession"
     Me.grpPossession.Size = New System.Drawing.Size(620, 141)
     Me.grpPossession.TabIndex = 372
@@ -881,9 +884,9 @@ Partial Class frmMain
     Me.TableLayoutPanel3.SetColumnSpan(Me.groupBox2, 2)
     Me.groupBox2.Controls.Add(Me.MetroGridEvents)
     Me.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.groupBox2.Location = New System.Drawing.Point(877, 478)
+    Me.groupBox2.Location = New System.Drawing.Point(872, 500)
     Me.groupBox2.Name = "groupBox2"
-    Me.groupBox2.Size = New System.Drawing.Size(276, 141)
+    Me.groupBox2.Size = New System.Drawing.Size(281, 141)
     Me.groupBox2.TabIndex = 374
     Me.groupBox2.TabStop = False
     Me.groupBox2.Text = "Match Events"
@@ -934,7 +937,7 @@ Partial Class frmMain
     Me.MetroGridEvents.RowHeadersVisible = False
     Me.MetroGridEvents.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
     Me.MetroGridEvents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-    Me.MetroGridEvents.Size = New System.Drawing.Size(270, 122)
+    Me.MetroGridEvents.Size = New System.Drawing.Size(275, 122)
     Me.MetroGridEvents.TabIndex = 1
     '
     'ColumnID
@@ -997,9 +1000,9 @@ Partial Class frmMain
     '
     Me.groupBox1.Controls.Add(Me.TableLayoutPanel2)
     Me.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.groupBox1.Location = New System.Drawing.Point(629, 478)
+    Me.groupBox1.Location = New System.Drawing.Point(629, 500)
     Me.groupBox1.Name = "groupBox1"
-    Me.groupBox1.Size = New System.Drawing.Size(242, 141)
+    Me.groupBox1.Size = New System.Drawing.Size(237, 141)
     Me.groupBox1.TabIndex = 373
     Me.groupBox1.TabStop = False
     Me.groupBox1.Text = "Team Stats"
@@ -1033,7 +1036,7 @@ Partial Class frmMain
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel2.Size = New System.Drawing.Size(236, 122)
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(231, 122)
     Me.TableLayoutPanel2.TabIndex = 535
     '
     'lblHomeTeam2
@@ -1047,7 +1050,7 @@ Partial Class frmMain
     Me.lblHomeTeam2.ForeColor = System.Drawing.Color.White
     Me.lblHomeTeam2.Location = New System.Drawing.Point(3, 0)
     Me.lblHomeTeam2.Name = "lblHomeTeam2"
-    Me.lblHomeTeam2.Size = New System.Drawing.Size(111, 30)
+    Me.lblHomeTeam2.Size = New System.Drawing.Size(109, 30)
     Me.lblHomeTeam2.TabIndex = 154
     Me.lblHomeTeam2.Text = "??"
     Me.lblHomeTeam2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1059,9 +1062,9 @@ Partial Class frmMain
     Me.TableLayoutPanel2.SetColumnSpan(Me.label91, 2)
     Me.label91.Dock = System.Windows.Forms.DockStyle.Fill
     Me.label91.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label91.Location = New System.Drawing.Point(81, 90)
+    Me.label91.Location = New System.Drawing.Point(80, 90)
     Me.label91.Name = "label91"
-    Me.label91.Size = New System.Drawing.Size(72, 30)
+    Me.label91.Size = New System.Drawing.Size(70, 30)
     Me.label91.TabIndex = 179
     Me.label91.Text = "Wood Hits"
     Me.label91.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1073,9 +1076,9 @@ Partial Class frmMain
     Me.TableLayoutPanel2.SetColumnSpan(Me.label90, 2)
     Me.label90.Dock = System.Windows.Forms.DockStyle.Fill
     Me.label90.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label90.Location = New System.Drawing.Point(81, 60)
+    Me.label90.Location = New System.Drawing.Point(80, 60)
     Me.label90.Name = "label90"
-    Me.label90.Size = New System.Drawing.Size(72, 30)
+    Me.label90.Size = New System.Drawing.Size(70, 30)
     Me.label90.TabIndex = 178
     Me.label90.Text = "Offsides"
     Me.label90.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1087,9 +1090,9 @@ Partial Class frmMain
     Me.TableLayoutPanel2.SetColumnSpan(Me.label89, 2)
     Me.label89.Dock = System.Windows.Forms.DockStyle.Fill
     Me.label89.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.label89.Location = New System.Drawing.Point(81, 30)
+    Me.label89.Location = New System.Drawing.Point(80, 30)
     Me.label89.Name = "label89"
-    Me.label89.Size = New System.Drawing.Size(72, 30)
+    Me.label89.Size = New System.Drawing.Size(70, 30)
     Me.label89.TabIndex = 177
     Me.label89.Text = "Corners"
     Me.label89.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1103,9 +1106,9 @@ Partial Class frmMain
     Me.lblAwayTeam2.Dock = System.Windows.Forms.DockStyle.Fill
     Me.lblAwayTeam2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.lblAwayTeam2.ForeColor = System.Drawing.Color.White
-    Me.lblAwayTeam2.Location = New System.Drawing.Point(120, 0)
+    Me.lblAwayTeam2.Location = New System.Drawing.Point(118, 0)
     Me.lblAwayTeam2.Name = "lblAwayTeam2"
-    Me.lblAwayTeam2.Size = New System.Drawing.Size(113, 30)
+    Me.lblAwayTeam2.Size = New System.Drawing.Size(110, 30)
     Me.lblAwayTeam2.TabIndex = 176
     Me.lblAwayTeam2.Text = "??"
     Me.lblAwayTeam2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1126,18 +1129,20 @@ Partial Class frmMain
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 626.0!))
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66667!))
     Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158.0!))
+    Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 165.0!))
     Me.TableLayoutPanel3.Controls.Add(Me.groupBox2, 2, 1)
     Me.TableLayoutPanel3.Controls.Add(Me.groupBox1, 1, 1)
     Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanelTeams, 0, 0)
     Me.TableLayoutPanel3.Controls.Add(Me.grpPossession, 0, 1)
     Me.TableLayoutPanel3.Controls.Add(Me.grpControls, 3, 0)
+    Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanelBottom, 0, 2)
     Me.TableLayoutPanel3.Location = New System.Drawing.Point(12, 28)
     Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-    Me.TableLayoutPanel3.RowCount = 2
+    Me.TableLayoutPanel3.RowCount = 3
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 147.0!))
-    Me.TableLayoutPanel3.Size = New System.Drawing.Size(1156, 622)
+    Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel3.Size = New System.Drawing.Size(1156, 674)
     Me.TableLayoutPanel3.TabIndex = 381
     '
     'ToolStrip1
@@ -1158,6 +1163,34 @@ Partial Class frmMain
     Me.ToolStripButtonSettings.Size = New System.Drawing.Size(53, 22)
     Me.ToolStripButtonSettings.Text = "Settings"
     '
+    'TableLayoutPanelBottom
+    '
+    Me.TableLayoutPanelBottom.ColumnCount = 2
+    Me.TableLayoutPanel3.SetColumnSpan(Me.TableLayoutPanelBottom, 4)
+    Me.TableLayoutPanelBottom.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
+    Me.TableLayoutPanelBottom.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelBottom.Controls.Add(Me.LabelAppVersion, 0, 0)
+    Me.TableLayoutPanelBottom.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanelBottom.Location = New System.Drawing.Point(0, 644)
+    Me.TableLayoutPanelBottom.Margin = New System.Windows.Forms.Padding(0)
+    Me.TableLayoutPanelBottom.Name = "TableLayoutPanelBottom"
+    Me.TableLayoutPanelBottom.RowCount = 1
+    Me.TableLayoutPanelBottom.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanelBottom.Size = New System.Drawing.Size(1156, 30)
+    Me.TableLayoutPanelBottom.TabIndex = 380
+    '
+    'LabelAppVersion
+    '
+    Me.LabelAppVersion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.LabelAppVersion.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.LabelAppVersion.Location = New System.Drawing.Point(3, 0)
+    Me.LabelAppVersion.Margin = New System.Windows.Forms.Padding(3, 0, 3, 3)
+    Me.LabelAppVersion.Name = "LabelAppVersion"
+    Me.LabelAppVersion.Size = New System.Drawing.Size(74, 27)
+    Me.LabelAppVersion.TabIndex = 5
+    Me.LabelAppVersion.Text = "App version"
+    Me.LabelAppVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
     'TeamControlHome
     '
     Me.TeamControlHome.BackColor = System.Drawing.Color.White
@@ -1165,7 +1198,7 @@ Partial Class frmMain
     Me.TeamControlHome.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.TeamControlHome.Location = New System.Drawing.Point(3, 3)
     Me.TeamControlHome.Name = "TeamControlHome"
-    Me.TeamControlHome.Size = New System.Drawing.Size(489, 463)
+    Me.TeamControlHome.Size = New System.Drawing.Size(486, 485)
     Me.TeamControlHome.TabIndex = 378
     Me.TeamControlHome.Team = Nothing
     '
@@ -1174,9 +1207,9 @@ Partial Class frmMain
     Me.TeamControlAway.BackColor = System.Drawing.Color.White
     Me.TeamControlAway.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TeamControlAway.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.TeamControlAway.Location = New System.Drawing.Point(498, 3)
+    Me.TeamControlAway.Location = New System.Drawing.Point(495, 3)
     Me.TeamControlAway.Name = "TeamControlAway"
-    Me.TeamControlAway.Size = New System.Drawing.Size(490, 463)
+    Me.TeamControlAway.Size = New System.Drawing.Size(486, 485)
     Me.TeamControlAway.TabIndex = 379
     Me.TeamControlAway.Team = Nothing
     '
@@ -1185,7 +1218,7 @@ Partial Class frmMain
     Me.SingleStatControlHomeCorners.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleStatControlHomeCorners.Location = New System.Drawing.Point(3, 33)
     Me.SingleStatControlHomeCorners.Name = "SingleStatControlHomeCorners"
-    Me.SingleStatControlHomeCorners.Size = New System.Drawing.Size(72, 24)
+    Me.SingleStatControlHomeCorners.Size = New System.Drawing.Size(71, 24)
     Me.SingleStatControlHomeCorners.Stat = Nothing
     Me.SingleStatControlHomeCorners.StatSubject = Nothing
     Me.SingleStatControlHomeCorners.TabIndex = 535
@@ -1195,7 +1228,7 @@ Partial Class frmMain
     Me.SingleStatControlHomeOffsides.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleStatControlHomeOffsides.Location = New System.Drawing.Point(3, 63)
     Me.SingleStatControlHomeOffsides.Name = "SingleStatControlHomeOffsides"
-    Me.SingleStatControlHomeOffsides.Size = New System.Drawing.Size(72, 24)
+    Me.SingleStatControlHomeOffsides.Size = New System.Drawing.Size(71, 24)
     Me.SingleStatControlHomeOffsides.Stat = Nothing
     Me.SingleStatControlHomeOffsides.StatSubject = Nothing
     Me.SingleStatControlHomeOffsides.TabIndex = 536
@@ -1205,7 +1238,7 @@ Partial Class frmMain
     Me.SingleStatControlHomeWood.Dock = System.Windows.Forms.DockStyle.Fill
     Me.SingleStatControlHomeWood.Location = New System.Drawing.Point(3, 93)
     Me.SingleStatControlHomeWood.Name = "SingleStatControlHomeWood"
-    Me.SingleStatControlHomeWood.Size = New System.Drawing.Size(72, 24)
+    Me.SingleStatControlHomeWood.Size = New System.Drawing.Size(71, 24)
     Me.SingleStatControlHomeWood.Stat = Nothing
     Me.SingleStatControlHomeWood.StatSubject = Nothing
     Me.SingleStatControlHomeWood.TabIndex = 537
@@ -1213,9 +1246,9 @@ Partial Class frmMain
     'SingleStatControlAwayCorners
     '
     Me.SingleStatControlAwayCorners.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlAwayCorners.Location = New System.Drawing.Point(159, 33)
+    Me.SingleStatControlAwayCorners.Location = New System.Drawing.Point(156, 33)
     Me.SingleStatControlAwayCorners.Name = "SingleStatControlAwayCorners"
-    Me.SingleStatControlAwayCorners.Size = New System.Drawing.Size(74, 24)
+    Me.SingleStatControlAwayCorners.Size = New System.Drawing.Size(72, 24)
     Me.SingleStatControlAwayCorners.Stat = Nothing
     Me.SingleStatControlAwayCorners.StatSubject = Nothing
     Me.SingleStatControlAwayCorners.TabIndex = 538
@@ -1223,9 +1256,9 @@ Partial Class frmMain
     'SingleStatControlAwayOffsides
     '
     Me.SingleStatControlAwayOffsides.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlAwayOffsides.Location = New System.Drawing.Point(159, 63)
+    Me.SingleStatControlAwayOffsides.Location = New System.Drawing.Point(156, 63)
     Me.SingleStatControlAwayOffsides.Name = "SingleStatControlAwayOffsides"
-    Me.SingleStatControlAwayOffsides.Size = New System.Drawing.Size(74, 24)
+    Me.SingleStatControlAwayOffsides.Size = New System.Drawing.Size(72, 24)
     Me.SingleStatControlAwayOffsides.Stat = Nothing
     Me.SingleStatControlAwayOffsides.StatSubject = Nothing
     Me.SingleStatControlAwayOffsides.TabIndex = 539
@@ -1233,9 +1266,9 @@ Partial Class frmMain
     'SingleStatControlAwayWood
     '
     Me.SingleStatControlAwayWood.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.SingleStatControlAwayWood.Location = New System.Drawing.Point(159, 93)
+    Me.SingleStatControlAwayWood.Location = New System.Drawing.Point(156, 93)
     Me.SingleStatControlAwayWood.Name = "SingleStatControlAwayWood"
-    Me.SingleStatControlAwayWood.Size = New System.Drawing.Size(74, 24)
+    Me.SingleStatControlAwayWood.Size = New System.Drawing.Size(72, 24)
     Me.SingleStatControlAwayWood.Stat = Nothing
     Me.SingleStatControlAwayWood.StatSubject = Nothing
     Me.SingleStatControlAwayWood.TabIndex = 540
@@ -1245,7 +1278,7 @@ Partial Class frmMain
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.BackColor = System.Drawing.Color.White
-    Me.ClientSize = New System.Drawing.Size(1180, 662)
+    Me.ClientSize = New System.Drawing.Size(1180, 702)
     Me.Controls.Add(Me.ToolStrip1)
     Me.Controls.Add(Me.TableLayoutPanel3)
     Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -1264,6 +1297,7 @@ Partial Class frmMain
     Me.TableLayoutPanel3.ResumeLayout(False)
     Me.ToolStrip1.ResumeLayout(False)
     Me.ToolStrip1.PerformLayout()
+    Me.TableLayoutPanelBottom.ResumeLayout(False)
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -1351,4 +1385,6 @@ Partial Class frmMain
   Friend WithEvents ToolStripButtonSettings As ToolStripButton
   Friend WithEvents MetroLabelPeriodName As Label
   Friend WithEvents MetroLabelPeriodTime As Label
+  Friend WithEvents TableLayoutPanelBottom As TableLayoutPanel
+  Friend WithEvents LabelAppVersion As Label
 End Class

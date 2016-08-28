@@ -459,58 +459,65 @@ Public Class COptaF9Helper
 
               Dim CPlayer As Player = Team.GetPlayerByOptaId(optaID)
               Dim importaData As Boolean = True
+              Dim createPlayerIfDoesntExist As Boolean = False
+
+              If optaID = 182331 Then
+                Debug.Print("bismark!")
+              End If
 
 
               If importaData Then
-                If CPlayer Is Nothing Then
+                If CPlayer Is Nothing And createPlayerIfDoesntExist Then
                   CPlayer = New Player()
                   CPlayer.optaID = optaID
                   CPlayer.ID = optaID
-                  CPlayer.PlayerID = optaID
+                  'CPlayer.PlayerID = optaID
                 End If
 
-                CPlayer.optaPosition = Team.MatchPlayers.Count + 1
-                CPlayer.optaTeamID = Team.TeamID
-                CPlayer.optaMatchID = Me.Match.optaID
-                CPlayer.optaID = optaID
-                For Each nodePlayer As XmlNode In node.ChildNodes
-                  Select Case nodePlayer.Name
-                    Case "PersonName"
-                      For Each nodePersonName As XmlNode In nodePlayer
-                        Select Case nodePersonName.Name
-                          Case "First"
-                            first = nodePersonName.InnerText
-                          Case "Last"
-                            last = nodePersonName.InnerText
-                          Case "Known"
-                            known = nodePersonName.InnerText
-                        End Select
-                      Next
-                  End Select
-                Next
-                name = IIf(known <> "", known, first & " " & last)
-                CPlayer.optaName = first & " " & last
-                CPlayer.OptaShortName = name
+                If Not CPlayer Is Nothing Then
+
+                  CPlayer.optaPosition = Team.MatchPlayers.Count + 1
+                  CPlayer.optaTeamID = Team.OptaID
+                  CPlayer.optaMatchID = Me.Match.optaID
+                  CPlayer.optaID = optaID
+                  For Each nodePlayer As XmlNode In node.ChildNodes
+                    Select Case nodePlayer.Name
+                      Case "PersonName"
+                        For Each nodePersonName As XmlNode In nodePlayer
+                          Select Case nodePersonName.Name
+                            Case "First"
+                              first = nodePersonName.InnerText
+                            Case "Last"
+                              last = nodePersonName.InnerText
+                            Case "Known"
+                              known = nodePersonName.InnerText
+                          End Select
+                        Next
+                    End Select
+                  Next
+                  name = IIf(known <> "", known, first & " " & last)
+                  CPlayer.optaName = first & " " & last
+                  CPlayer.OptaShortName = name
+                  Me.AddOptaLink(New COptaLink(optaID, name, NoNullString(CPlayer.OptaSquadNumber), COptaLink.eTipusLink.Player))
+
+                  If isEntrenador Then
+                  attr = node.Attributes.GetNamedItem("Type")
+                  type = attr.Value
+                  position = 101
+                  If Not Team.TeamStaff.Contains(CPlayer) Then Team.TeamStaff.Add(CPlayer)
+                  Team.Manager = CPlayer
+                Else
+                  attr = node.Attributes.GetNamedItem("Position")
+                  type = attr.Value
+                  position = index
+                  If Not Team.MatchPlayers.Contains(CPlayer) Then Team.MatchPlayers.Add(CPlayer)
+                End If
+                CPlayer.optaPosition = position
+
+                CPlayer.optaType = type
               End If
-              Me.AddOptaLink(New COptaLink(optaID, name, NoNullString(CPlayer.OptaSquadNumber), COptaLink.eTipusLink.Player))
-
-              If isEntrenador Then
-                attr = node.Attributes.GetNamedItem("Type")
-                type = attr.Value
-                position = 101
-                If Not Team.TeamStaff.Contains(CPlayer) Then Team.TeamStaff.Add(CPlayer)
-                Team.Manager = CPlayer
-              Else
-                attr = node.Attributes.GetNamedItem("Position")
-                type = attr.Value
-                position = index
-                If Not Team.MatchPlayers.Contains(CPlayer) Then Team.MatchPlayers.Add(CPlayer)
-              End If
-              CPlayer.optaPosition = position
-
-              CPlayer.optaType = type
-
               index += 1
+              End If
             End If
         End Select
       Next
@@ -553,47 +560,55 @@ Public Class COptaF9Helper
       Dim attr As XmlAttribute = nodePlayer.Attributes.GetNamedItem("PlayerRef")
       Dim nOptaID As Integer = Me.FixID(attr.Value)
       Dim CPlayer As Player = Team.GetPlayerByOptaId(nOptaID)
+      Dim createPlayerIfDoesntExist As Boolean = False
 
-      If CPlayer Is Nothing Then
-          If _allPlayers Is Nothing Then
-            _allPlayers = New Players()
-            _allPlayers.GetAllPlayers()
-          End If
-          CPlayer = _allPlayers.GetPlayerByOptaId(nOptaID)
+      If nOptaID = 182331 Then
+        Debug.Print("bismark!")
+      End If
 
-          If CPlayer Is Nothing Then CPlayer = New Player
-          CPlayer.optaID = nOptaID
-          attr = nodePlayer.Attributes.GetNamedItem("ShirtNumber")
-          If Not attr Is Nothing Then
-            CPlayer.OptaSquadNumber = attr.Value
-          End If
-          attr = nodePlayer.Attributes.GetNamedItem("Position")
-          If Not attr Is Nothing Then
-            Dim type As String = ""
-            If attr.Value = "Substitute" Then
-              attr = nodePlayer.Attributes.GetNamedItem("SubPosition")
-              If Not attr Is Nothing Then type = attr.Value
-            Else
-              type = attr.Value
-            End If
-            CPlayer.optaType = type
-          End If
-          For Each node As XmlNode In nodePlayer
-            If node.Name = "Stat" Then
-              attr = node.Attributes.GetNamedItem("Type")
-              If Not attr Is Nothing Then
-                CPlayer.optaStatValues.Add(New Player.OptaStatValue(attr.Value, node.InnerText))
-              End If
-
-            End If
-          Next
-
-          CPlayer.optaPosition = Team.MatchPlayers.Count + 1
+      If CPlayer Is Nothing And createPlayerIfDoesntExist Then
+        If _allPlayers Is Nothing Then
+          _allPlayers = New Players()
+          _allPlayers.GetAllPlayers()
         End If
+        CPlayer = _allPlayers.GetPlayerByOptaId(nOptaID)
+      End If
 
+      'If CPlayer Is Nothing Then CPlayer = New Player
+      If Not CPlayer Is Nothing Then
+        CPlayer.optaID = nOptaID
+        attr = nodePlayer.Attributes.GetNamedItem("ShirtNumber")
+        If Not attr Is Nothing Then
+          CPlayer.OptaSquadNumber = attr.Value
+        End If
+        attr = nodePlayer.Attributes.GetNamedItem("Position")
+        If Not attr Is Nothing Then
+          Dim type As String = ""
+          If attr.Value = "Substitute" Then
+            attr = nodePlayer.Attributes.GetNamedItem("SubPosition")
+            If Not attr Is Nothing Then type = attr.Value
+          Else
+            type = attr.Value
+          End If
+          CPlayer.optaType = type
+        End If
+        For Each node As XmlNode In nodePlayer
+          If node.Name = "Stat" Then
+            attr = node.Attributes.GetNamedItem("Type")
+            If Not attr Is Nothing Then
+              CPlayer.optaStatValues.Add(New Player.OptaStatValue(attr.Value, node.InnerText))
+            End If
+
+          End If
+        Next
+
+        CPlayer.optaPosition = Team.MatchPlayers.Count + 1
+      End If
+
+      If Not CPlayer Is Nothing Then
         If Not Team.MatchPlayers.ContainsByOptaID(CPlayer.optaID) Then Team.MatchPlayers.Add(CPlayer)
-      If Not Team.AllPlayers.ContainsByOptaID(CPlayer.optaID) Then Team.AllPlayers.Add(CPlayer)
-
+        If Not Team.AllPlayers.ContainsByOptaID(CPlayer.optaID) Then Team.AllPlayers.Add(CPlayer)
+      End If
     Catch ex As Exception
 
     End Try

@@ -24,6 +24,19 @@ Imports MatchInfo
     Return Me.List.Count
   End Function
 
+  Public Sub remove(MatchDay As OtherMatchDay)
+    Try
+      If Not MatchDay Is Nothing Then
+        For i As Integer = Me.List.Count - 1 To 0 Step -1
+          If MatchDay.MatchDayID = CType(Me.List(i), OtherMatchDay).MatchDayID Then
+            Me.List.RemoveAt(i)
+          End If
+        Next
+      End If
+    Catch ex As Exception
+    End Try
+  End Sub
+
   Default Public Property Item(Index As Integer) As OtherMatchDay
     Get
       Return DirectCast(List(Index), OtherMatchDay)

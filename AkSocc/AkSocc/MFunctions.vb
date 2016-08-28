@@ -254,5 +254,24 @@ Module MFuncions
   End Function
 
 #End Region
+
+#Region "Metro grid"
+
+  Public Sub EnsureRowIsVisible(grid As MetroFramework.Controls.MetroGrid, row As Integer)
+    Try
+      With grid
+        Dim topRow As Integer = .FirstDisplayedCell.RowIndex
+        Dim bottomRow As Integer = topRow + .DisplayedRowCount(False)
+        If row < topRow Or row > bottomRow Then
+          'we are out
+          Dim cell As DataGridViewCell = grid.Rows(row).Cells(0)
+          .FirstDisplayedCell = cell
+        End If
+      End With
+    Catch ex As Exception
+
+    End Try
+  End Sub
+#End Region
 End Module
 

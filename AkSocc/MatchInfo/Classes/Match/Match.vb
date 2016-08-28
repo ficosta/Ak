@@ -136,11 +136,18 @@ Imports MatchInfo
   Private _lastGoal As MatchGoal = Nothing
   Public Property LastGoal() As MatchGoal
     Get
-      If Not _lastGoal Is Nothing Then
+      If Not _lastGoal Is Nothing And False Then
         Return _lastGoal
       ElseIf Me.MatchGoals.Count > 0 Then
         Me.MatchGoals.Sort()
-        Return Me.MatchGoals(0)
+        'last goal is the one with higher MatchID, not by time
+        _lastGoal = Me.MatchGoals(0)
+
+        For Each goal As MatchGoal In Me.MatchGoals
+          If goal.GoalID > _lastGoal.GoalID Then _lastGoal = goal
+        Next
+
+        Return _lastGoal
       Else
         Return Nothing
       End If
@@ -1064,13 +1071,11 @@ Imports MatchInfo
     Return res
   End Function
 
-  Private _wasSaved As Boolean = False
-
   Private Sub MatchPeriods_ActivePeriodStateChanged(period As Period) Handles MatchPeriods.ActivePeriodStateChanged
     Try
       RaiseEvent ActivePeriodStateChanged(period)
-      If _wasSaved = False And period.Activa Then
-        _wasSaved = True
+      If Config.Instance.WasMatchSaved = False And period.Activa Then
+        Config.Instance.WasMatchSaved = True
         Me.SaveMatchGoalsToDB(True)
         Me.Update()
       End If

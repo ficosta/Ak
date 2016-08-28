@@ -74,8 +74,8 @@ Public Class FileDownloader
     Dim percentage As Double = bytesIn / totalBytes * 100
 
     _Download.Progress = Int32.Parse(Math.Truncate(percentage).ToString())
-
-    Me.LabelState.Text = _Download.Progress & "%"
+    
+    Me.LabelState.Text = System.IO.Path.GetFileName(_Download.File) ' _Download.Progress & "%"
 
     Me.ProgressBar1.Value = Int32.Parse(Math.Truncate(percentage).ToString())
 
@@ -88,7 +88,7 @@ Public Class FileDownloader
     IsBusy = False
     _Download.Progress = 100
     _Download.State = Download.eDownloadState.Done
-    Me.LabelState.Text = "_client_DownloadStringCompleted"
+    Me.LabelState.Text = System.IO.Path.GetFileName(_Download.File) ' _Download.Progress & "%"
     RaiseEvent FileDownloaded(Me, _Download)
     RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Progress"))
   End Sub
@@ -100,6 +100,6 @@ Public Class FileDownloader
     _Download.State = Download.eDownloadState.Done
     RaiseEvent FileDownloaded(Me, _Download)
     RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Progress"))
-    Me.LabelState.Text = "_client_DownloadFileCompleted"
+    Me.LabelState.Text = System.IO.Path.GetFileName(_Download.File) ' _Download.Progress & "%"
   End Sub
 End Class

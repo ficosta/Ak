@@ -145,8 +145,8 @@ Public Class COptaF26Helper
             Next
 
             match.optaHomeTeamID = teamID
-            match.HomeTeam = Me.Teams.GetTeamByOptaID(teamID)
-            match.HomeTeam.Goals = score
+            If match.HomeTeam Is Nothing Then match.HomeTeam = Me.Teams.GetTeamByOptaID(teamID)
+            If Not match.HomeTeam Is Nothing Then match.HomeTeam.Goals = score
             match.optaHomeScore = score
 
           Case "away-team"
@@ -163,8 +163,8 @@ Public Class COptaF26Helper
             Next
 
             match.optaAwayTeamID = teamID
-            match.AwayTeam = Me.Teams.GetTeamByOptaID(teamID)
-            match.AwayTeam.Goals = score
+            If match.AwayTeam Is Nothing Then match.AwayTeam = Me.Teams.GetTeamByOptaID(teamID)
+            If Not match.AwayTeam Is Nothing Then match.AwayTeam.Goals = score
             match.optaAwayScore = score
 
         End Select
@@ -233,7 +233,6 @@ Public Class COptaF26Helper
   End Sub
 #End Region
 
-
 #Region "File watcher"
   Private Sub InitFilewatcher()
     Try
@@ -243,7 +242,7 @@ Public Class COptaF26Helper
       ' the renaming of files or directories. 
       _fileWatcher.NotifyFilter = (NotifyFilters.LastAccess Or NotifyFilters.LastWrite Or NotifyFilters.FileName Or NotifyFilters.DirectoryName)
       ' Only watch text files.
-      _fileWatcher.Filter = System.IO.Path.GetFileName("football_results.202*.xml")
+      _fileWatcher.Filter = System.IO.Path.GetFileName("football_results." & AppSettings.Instance.OptaCompetitionID & "*.xml")
       _fileWatcher.EnableRaisingEvents = True
     Catch ex As Exception
 

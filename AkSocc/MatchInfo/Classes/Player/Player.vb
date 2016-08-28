@@ -555,10 +555,10 @@
 
   Public Overrides Function ToString() As String
     If SquadNo <> "-1" And PlayerName <> "" Then
-      Return Convert.ToString(SquadNo.ToString() & " ") & PlayerName & "   " & Me.Formation_Pos & " (" & Me.Formation_X & ", " & Me.Formation_Y & ")"
+      Return Convert.ToString(SquadNo.ToString() & " ") & PlayerName '& "   " & Me.Formation_Pos & " (" & Me.Formation_X & ", " & Me.Formation_Y & ")"
     Else
 
-      Return Convert.ToString(OptaSquadNumber.ToString() & " ") & optaName & " (opta)" & "   " & Me.Formation_Pos & " (" & Me.Formation_X & ", " & Me.Formation_Y & ")"
+      Return Convert.ToString(OptaSquadNumber.ToString() & " ") & optaName & " (opta)" '& "   " & Me.Formation_Pos & " (" & Me.Formation_X & ", " & Me.Formation_Y & ")"
 
     End If
   End Function
@@ -571,15 +571,21 @@
       Select Case Config.Instance.PlayerSortType
         Case Config.ePlayerSortType.SquadNumber
           If aux.SquadNo < Me.SquadNo Then
-            res = 1
-          ElseIf aux.SquadNo > Me.SquadNo Then
             res = -1
+          ElseIf aux.SquadNo > Me.SquadNo Then
+            res = 1
           End If
         Case Config.ePlayerSortType.Position
-          If aux.Formation_Pos < Me.Formation_Pos Then
+          If Me.Formation_Pos <= 0 Then
             res = 1
-          ElseIf aux.Formation_Pos > Me.Formation_Pos Then
+          ElseIf aux.Formation_Pos <= 0 Then
             res = -1
+          Else
+            If aux.Formation_Pos < Me.Formation_Pos Then
+              res = 1
+            ElseIf aux.Formation_Pos > Me.Formation_Pos Then
+              res = -1
+            End If
           End If
         Case Config.ePlayerSortType.Name
           If aux.Name < Me.Name Then

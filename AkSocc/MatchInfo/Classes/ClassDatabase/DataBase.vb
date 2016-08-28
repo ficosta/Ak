@@ -116,6 +116,7 @@ Public Class DataBase
       AddFieldToTable("Matches", "Official3", "INTEGER")
       AddFieldToTable("Teams", "OPTAID", "INTEGER")
       AddFieldToTable("MatchGoals", "TimeSecond", "INTEGER")
+      AddFieldToTable("Competition", "OPTAID", "INTEGER")
 
       Return True
     Catch ex As Exception

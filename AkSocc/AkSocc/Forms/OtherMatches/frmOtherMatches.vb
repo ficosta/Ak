@@ -44,9 +44,11 @@ Public Class frmMatchDay
 
   Private _selectedMatchDay As OtherMatchDay = Nothing
   Private _controls As New List(Of UCOtherMatch)
+  Private _initializing As Boolean = False
 
   Private Sub frmMatchDay_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     Try
+      _initializing = True
       _controls.Clear()
       _controls.Add(Me.UcOtherMatch1)
       _controls.Add(Me.UcOtherMatch2)
@@ -80,6 +82,7 @@ Public Class frmMatchDay
     Catch ex As Exception
 
     End Try
+    _initializing = False
     _otherMatchDays = New OtherMatchDays
     ShowMatchDays()
   End Sub
@@ -87,16 +90,27 @@ Public Class frmMatchDay
   Public Sub ShowMatchDays()
     Try
       With Me.MetroGridMatchDay
+        _initializing = True
         .Rows.Clear()
+        _selectedMatchDay = Nothing
         For Each day As OtherMatchDay In _otherMatchDays
           If day.CompetitionID = _competition.CompID Then
             Dim itm As Integer = .Rows.Add(day.MatchDayID, day.MatchDayName)
+            _selectedMatchDay = day
           End If
         Next
+        If .Rows.Count > 0 Then
+          .Rows(0).Selected = True
+          For row As Integer = 1 To .Rows.Count - 1
+            .Rows(row).Selected = False
+          Next
+        End If
+        MostrarMatchDay()
       End With
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
+    _initializing = False
   End Sub
 
   Private Sub NewMatchDayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewMatchDayToolStripMenuItem.Click
@@ -121,13 +135,19 @@ Public Class frmMatchDay
 
   Private Sub DeleteMatchDayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteMatchDayToolStripMenuItem.Click
     Try
-
+      If _selectedMatchDay Is Nothing Then Exit Sub
+      If MsgBox("Delete match day " & _selectedMatchDay.Name & "?", MsgBoxStyle.YesNo, "Other match scores") = MsgBoxResult.Yes Then
+        _otherMatchDays.Remove(_selectedMatchDay)
+      End If
+      _selectedMatchDay = Nothing
+      ShowMatchDays()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
   End Sub
 
   Private Sub MetroGridMatchDay_SelectionChanged(sender As Object, e As EventArgs) Handles MetroGridMatchDay.SelectionChanged
+    If _initializing Then Exit Sub
     Try
       Dim id As String = MetroGridMatchDay.SelectedRows(0).Cells(Column1.Index).Value
       _selectedMatchDay = _otherMatchDays.GetMatchDay(id)
@@ -145,19 +165,32 @@ Public Class frmMatchDay
       'Me.TableLayoutPanelUCOtherMatches.SuspendLayout()
       'Me.TableLayoutPanelUCOtherMatches.Visible = False
       Try
-        Dim maxItems As Integer = Math.Min(_controls.Count, _selectedMatchDay.OtherMatches.Count)
-        For index As Integer = 0 To maxItems - 1
-          _controls(index).OtherMatchInfo = _selectedMatchDay(index)
-          _controls(index).ArrowUpVisible = (index > 0)
-          _controls(index).ArrowDownVisible = (index < maxItems - 1)
-          _controls(index).ButtonActionEnum = UCOtherMatch.eButtonAction.Delete
-        Next
-        For index As Integer = maxItems To _controls.Count - 1
-          _controls(index).OtherMatchInfo = Nothing
-          _controls(index).ArrowUpVisible = False
-          _controls(index).ArrowDownVisible = False
-          _controls(index).ButtonActionEnum = IIf(index = maxItems, UCOtherMatch.eButtonAction.AddNew, UCOtherMatch.eButtonAction.None)
-        Next
+        Dim maxItems As Integer
+
+        If Not _selectedMatchDay Is Nothing Then
+          maxItems = Math.Min(_controls.Count, _selectedMatchDay.OtherMatches.Count)
+          For index As Integer = 0 To maxItems - 1
+            _controls(index).OtherMatchInfo = _selectedMatchDay(index)
+            _controls(index).ArrowUpVisible = (index > 0)
+            _controls(index).ArrowDownVisible = (index < maxItems - 1)
+            _controls(index).ButtonActionEnum = UCOtherMatch.eButtonAction.Delete
+          Next
+          For index As Integer = maxItems To _controls.Count - 1
+            _controls(index).OtherMatchInfo = Nothing
+            _controls(index).ArrowUpVisible = False
+            _controls(index).ArrowDownVisible = False
+            _controls(index).ButtonActionEnum = IIf(index = maxItems, UCOtherMatch.eButtonAction.AddNew, UCOtherMatch.eButtonAction.None)
+          Next
+        Else
+          For index As Integer = 0 To _controls.Count - 1
+            _controls(index).OtherMatchInfo = Nothing
+            _controls(index).ArrowUpVisible = False
+            _controls(index).ArrowDownVisible = False
+            _controls(index).ButtonActionEnum = IIf(index = maxItems, UCOtherMatch.eButtonAction.AddNew, UCOtherMatch.eButtonAction.None)
+          Next
+        End If
+
+
       Catch ex As Exception
 
       End Try
@@ -258,12 +291,13 @@ Public Class frmMatchDay
 #End Region
 
   Private Sub MetroGridMatchDay_CellValidated(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridMatchDay.CellValidated
-
+    If _initializing Then Exit Sub
+    If _selectedMatchDay Is Nothing Then Exit Sub
     Try
       If e.ColumnIndex = ColumnDescription.Index Then
-        Dim matchDay As OtherMatchDay = _otherMatchDays.Item(e.RowIndex)
-        matchDay.MatchDayName = MetroGridMatchDay.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
-        matchDay.Name = MetroGridMatchDay.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
+        _selectedMatchDay.MatchDayName = MetroGridMatchDay.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
+        _selectedMatchDay.Name = MetroGridMatchDay.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
+        Debug.Print("match day text changed " & _selectedMatchDay.MatchDayID & " " & _selectedMatchDay.Name)
       End If
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -280,6 +314,7 @@ Public Class frmMatchDay
 
   Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
     Try
+      Me.Cursor = Cursors.WaitCursor
       ' SerializeObjectToFile(AppSettings.Instance.OtherMatchesPath, _otherMatchDays)
       _otherMatchDays.SaveXML()
 
@@ -294,6 +329,7 @@ Public Class frmMatchDay
 
       WriteToErrorLog(ex)
     End Try
+    Me.Cursor = Cursors.Default
   End Sub
 
   Private Sub Cancel_Button_Click(sender As Object, e As EventArgs) Handles Cancel_Button.Click
@@ -306,6 +342,7 @@ Public Class frmMatchDay
   End Sub
 
   Private Sub ComboBoxCompetitions_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxCompetitions.SelectedIndexChanged
+    If _initializing Then Exit Sub
     Try
       _competition = Me.ComboBoxCompetitions.SelectedItem
       Me.ShowMatchDays()

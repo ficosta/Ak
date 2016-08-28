@@ -24,7 +24,7 @@ Public Class frmOptaFixtures
     Try
       With Me.MetroGridMatches
         .Rows.Clear()
-
+        Dim selectedRow As Integer = 0
         For Each match As Match In _f1Helper.Matches
           Dim row As Integer = .Rows.Add("")
           .Rows(row).Cells(ColumnMatchesID.Index).Value = match.match_id
@@ -38,7 +38,14 @@ Public Class frmOptaFixtures
           End If
           If Not match.HomeTeam Is Nothing Then .Rows(row).Cells(ColumnHomeTeam.Index).Value = match.HomeTeam.OptaName
           If Not match.AwayTeam Is Nothing Then .Rows(row).Cells(ColumnAwayTeam.Index).Value = match.AwayTeam.OptaName
+          If match.optaID = Me.MatchOptaID Then
+            .Rows(row).Selected = True
+            selectedRow = row
+          Else
+            .Rows(row).Selected = False
+          End If
         Next
+        EnsureRowIsVisible(Me.MetroGridMatches, selectedRow)
       End With
     Catch ex As Exception
       WriteToErrorLog(ex)

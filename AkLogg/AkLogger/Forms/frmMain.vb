@@ -43,16 +43,47 @@ Partial Public Class frmMain
   ' Seconds Total in the App
   Private GlobalMatch As Match
   ' Match
-  Private PosesionWhere As PossessionWhereTypes
+  Private _possessionWhere As PossessionWhereTypes = PossessionWhereTypes.MidField
+  Private Property PossessionWhere As PossessionWhereTypes
+    Get
+      Return _possessionWhere
+    End Get
+    Set(value As PossessionWhereTypes)
+      _possessionWhere = value
+      UpdatePossessionWhereLabels()
+    End Set
+  End Property
   ' Actual position of the Possession
   Private PossessionHome1st As Integer, PossessionAway1st As Integer
   'Segundos de Posesion Parte 1
   Private PossessionHome2nd As Integer, PossessionAway2nd As Integer
   'Segundos de Posesion Parte 2
-  Private OutOfPlay As Boolean
+
   'Indica si el balon está en juego
-  Private PossessionIsHome As Boolean
+  Private _outOfPlay As Boolean = False
+  Private Property OutOfPlay As Boolean
+    Get
+      Return _outOfPlay
+    End Get
+    Set(value As Boolean)
+      _outOfPlay = value
+      UpdatePossessionLabels()
+    End Set
+  End Property
+
   ' True is Home. False: Away
+  Private _possessionIsHome As Boolean = True
+  Private Property PossessionIsHome As Boolean
+    Get
+      Return _possessionIsHome
+    End Get
+    Set(value As Boolean)
+      _possessionIsHome = value
+      UpdatePossessionLabels()
+    End Set
+  End Property
+
+
   Private bClosing As Boolean = False
 
   Private bControlPress As Boolean
@@ -96,142 +127,157 @@ Partial Public Class frmMain
     'Else
 
     Try
-        'Clock & Possession
-        tmrRefresh.Enabled = False
-        tmrClock.Enabled = False
-        txtClock.Text = "00:00"
+      'Clock & Possession
+      tmrRefresh.Enabled = False
+      tmrClock.Enabled = False
+      txtClock.Text = "00:00"
 
-        MainSec = 0
-        AppSettings.Instance.LastMatchId = 0
-        AppSettings.Instance.Save()
+      MainSec = 0
+      AppSettings.Instance.LastMatchId = 0
+      AppSettings.Instance.Save()
 
-        OutOfPlay = True
-        PossessionHome1st = 0
-        PossessionAway1st = 0
-        PossessionHome2nd = 0
-        PossessionAway2nd = 0
-        txtPossessionHomeOwnT.Text = "0"
-        txtPossessionHomeMidF.Text = "0"
-        txtPossessionHomeAttk.Text = "0"
-        txtPossessionAwayOwnT.Text = "0"
-        txtPossessionAwayMidF.Text = "0"
-        txtPossessionAwayAttk.Text = "0"
+      OutOfPlay = True
+      PossessionHome1st = 0
+      PossessionAway1st = 0
+      PossessionHome2nd = 0
+      PossessionAway2nd = 0
+      txtPossessionHomeOwnT.Text = "0"
+      txtPossessionHomeMidF.Text = "0"
+      txtPossessionHomeAttk.Text = "0"
+      txtPossessionAwayOwnT.Text = "0"
+      txtPossessionAwayMidF.Text = "0"
+      txtPossessionAwayAttk.Text = "0"
 
-        _match = New Match
-        MatchHelper.Instance.Match = _match
+      _match = New Match
+      MatchHelper.Instance.Match = _match
 
-        _match.HomeTeam = New Team
-        _match.HomeTeam.TeamAELCaption1Name = "Home team"
-        _match.HomeTeam.MatchPlayers = New Players(19)
-        Me.TeamControlHome.Team = _match.HomeTeam
-        _matchHomeTeam = _match.HomeTeam
+      _match.HomeTeam = New Team
+      _match.HomeTeam.TeamAELCaption1Name = "Home team"
+      _match.HomeTeam.MatchPlayers = New Players(19)
+      Me.TeamControlHome.Team = _match.HomeTeam
+      _matchHomeTeam = _match.HomeTeam
 
-        _match.AwayTeam = New Team
-        _match.AwayTeam.TeamAELCaption1Name = "Away team"
-        _match.AwayTeam.MatchPlayers = New Players(19)
-        _matchAwayTeam = _match.AwayTeam
-        Me.TeamControlAway.Team = _match.AwayTeam
-
-
-        ''Reset Players
-        'For i As Integer = 1 To 18
-        '  Dim myHomePlayer As Player = DirectCast(DirectCast(grpHomePlayers.Controls.Find("HomePlayer" & i, True)(0), Label).Tag, Player)
-        '  If myHomePlayer Is Nothing Then
-        '    myHomePlayer = New Player()
-        '    DirectCast(grpHomePlayers.Controls.Find("HomePlayer" & i, True)(0), Label).Tag = myHomePlayer
-        '  Else
-        '    myHomePlayer.MatchStats.Saves.Value = 0
-        '    myHomePlayer.MatchStats.Shots.Value = 0
-        '    myHomePlayer.MatchStats.ShotsOn.Value = 0
-        '    myHomePlayer.MatchStats.Assis.Value = 0
-        '    myHomePlayer.MatchStats.Fouls.Value = 0
-        '    myHomePlayer.YellowCards = 0
-        '    myHomePlayer.RedCards = 0
-        '  End If
-        '  ProcessPlayerLine(i, True)
-
-        '  Dim myAwayPlayer As Player = DirectCast(DirectCast(grpAwayPlayers.Controls.Find("AwayPlayer" & i, True)(0), Label).Tag, Player)
-        '  If myAwayPlayer Is Nothing Then
-        '    myAwayPlayer = New Player()
-        '    DirectCast(grpAwayPlayers.Controls.Find("AwayPlayer" & i, True)(0), Label).Tag = myAwayPlayer
-        '  Else
-        '    myAwayPlayer.MatchStats.Saves.Value = 0
-        '    myAwayPlayer.MatchStats.Shots.Value = 0
-        '    myAwayPlayer.MatchStats.ShotsOn.Value = 0
-        '    myAwayPlayer.MatchStats.Assis.Value = 0
-        '    myAwayPlayer.MatchStats.Fouls.Value = 0
-        '    myAwayPlayer.YellowCards = 0
-        '    myAwayPlayer.RedCards = 0
-        '  End If
-        '  ProcessPlayerLine(i, False)
-        'Next
-
-        ''Reset Teams
-        'HomeTeam = New Team()
-        'lblSavesHomeTot.Text = HomeTeam.MatchStats.Saves.ToString()
-        'lblShotsHomeTot.Text = HomeTeam.MatchStats.Shots.ToString()
-        'lblShtGlHomeTot.Text = HomeTeam.MatchStats.ShotsOn.ToString()
-        'lblAssisHomeTot.Text = HomeTeam.MatchStats.Assis.ToString()
-        'lblFoulsHomeTot.Text = HomeTeam.MatchStats.Fouls.ToString()
-        'lblYCardHomeTot.Text = HomeTeam.MatchStats.YellowCards.ToString()
-        'lblRCardHomeTot.Text = HomeTeam.MatchStats.RedCards.ToString()
-        'lblCornersHome.Text = HomeTeam.MatchStats.Corners.ToString()
-        'lblOffsidesHome.Text = HomeTeam.MatchStats.Offsides.ToString()
-        'lblWoodHitsHome.Text = HomeTeam.MatchStats.WoodHits.ToString()
-        'lblPossession1stHome.Text = HomeTeam.MatchStats.Possession1st.ToString()
-        'lblPossession2ndHome.Text = HomeTeam.MatchStats.Possession2nd.ToString()
-        'lblPossessionMatchHome.Text = HomeTeam.MatchStats.PossessionMatch.ToString()
-        'lblPossessionLast10Home.Text = HomeTeam.MatchStats.PossessionLast10.ToString()
-        'lblPossessionLast5Home.Text = HomeTeam.MatchStats.PossessionLast5.ToString()
-        'lblPossessionHomeOwnF.Text = HomeTeam.MatchStats.PossessionOwn.ToString()
-        'lblPossessionHomeMidF.Text = HomeTeam.MatchStats.PossessionMid.ToString()
-        'lblPossessionHomeAttk.Text = HomeTeam.MatchStats.PossessionAttack.ToString()
-
-        'AwayTeam = New Team()
-        'lblSavesAwayTot.Text = AwayTeam.MatchStats.Saves.ToString()
-        'lblShotsAwayTot.Text = AwayTeam.MatchStats.Shots.ToString()
-        'lblShtGlAwayTot.Text = AwayTeam.MatchStats.ShotsOn.ToString()
-        'lblAssisAwayTot.Text = AwayTeam.MatchStats.Assis.ToString()
-        'lblFoulsAwayTot.Text = AwayTeam.MatchStats.Fouls.ToString()
-        'lblYCardAwayTot.Text = AwayTeam.MatchStats.YellowCards.ToString()
-        'lblRCardAwayTot.Text = AwayTeam.MatchStats.RedCards.ToString()
-        'lblCornersAway.Text = AwayTeam.MatchStats.Corners.ToString()
-        'lblOffsidesAway.Text = AwayTeam.MatchStats.Offsides.ToString()
-        'lblWoodHitsAway.Text = AwayTeam.MatchStats.WoodHits.ToString()
-        'lblPossession1stAway.Text = AwayTeam.MatchStats.Possession1st.ToString()
-        'lblPossession2ndAway.Text = AwayTeam.MatchStats.Possession2nd.ToString()
-        'lblPossessionMatchAway.Text = AwayTeam.MatchStats.PossessionMatch.ToString()
-        'lblPossessionLast10Away.Text = AwayTeam.MatchStats.PossessionLast10.ToString()
-        'lblPossessionLast5Away.Text = AwayTeam.MatchStats.PossessionLast5.ToString()
-        'lblPossessionAwayOwnF.Text = AwayTeam.MatchStats.PossessionOwn.ToString()
-        'lblPossessionAwayMidF.Text = AwayTeam.MatchStats.PossessionMid.ToString()
-        'lblPossessionAwayAttk.Text = AwayTeam.MatchStats.PossessionAttack.ToString()
-
-        'For i As Integer = lsvEvents.Items.Count - 1 To 0 Step -1
-        '  lsvEvents.Items.RemoveAt(i)
-        'Next
+      _match.AwayTeam = New Team
+      _match.AwayTeam.TeamAELCaption1Name = "Away team"
+      _match.AwayTeam.MatchPlayers = New Players(19)
+      _matchAwayTeam = _match.AwayTeam
+      Me.TeamControlAway.Team = _match.AwayTeam
 
 
-        bControlPress = False
+      ''Reset Players
+      'For i As Integer = 1 To 18
+      '  Dim myHomePlayer As Player = DirectCast(DirectCast(grpHomePlayers.Controls.Find("HomePlayer" & i, True)(0), Label).Tag, Player)
+      '  If myHomePlayer Is Nothing Then
+      '    myHomePlayer = New Player()
+      '    DirectCast(grpHomePlayers.Controls.Find("HomePlayer" & i, True)(0), Label).Tag = myHomePlayer
+      '  Else
+      '    myHomePlayer.MatchStats.Saves.Value = 0
+      '    myHomePlayer.MatchStats.Shots.Value = 0
+      '    myHomePlayer.MatchStats.ShotsOn.Value = 0
+      '    myHomePlayer.MatchStats.Assis.Value = 0
+      '    myHomePlayer.MatchStats.Fouls.Value = 0
+      '    myHomePlayer.YellowCards = 0
+      '    myHomePlayer.RedCards = 0
+      '  End If
+      '  ProcessPlayerLine(i, True)
 
-        PosesionWhere = PossessionWhereTypes.MidField
+      '  Dim myAwayPlayer As Player = DirectCast(DirectCast(grpAwayPlayers.Controls.Find("AwayPlayer" & i, True)(0), Label).Tag, Player)
+      '  If myAwayPlayer Is Nothing Then
+      '    myAwayPlayer = New Player()
+      '    DirectCast(grpAwayPlayers.Controls.Find("AwayPlayer" & i, True)(0), Label).Tag = myAwayPlayer
+      '  Else
+      '    myAwayPlayer.MatchStats.Saves.Value = 0
+      '    myAwayPlayer.MatchStats.Shots.Value = 0
+      '    myAwayPlayer.MatchStats.ShotsOn.Value = 0
+      '    myAwayPlayer.MatchStats.Assis.Value = 0
+      '    myAwayPlayer.MatchStats.Fouls.Value = 0
+      '    myAwayPlayer.YellowCards = 0
+      '    myAwayPlayer.RedCards = 0
+      '  End If
+      '  ProcessPlayerLine(i, False)
+      'Next
 
-        LastPossession.Clear()
-      Catch err As Exception
-        MessageBox.Show("ERROR Reset. " & err.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.[Error])
-      End Try
+      ''Reset Teams
+      'HomeTeam = New Team()
+      'lblSavesHomeTot.Text = HomeTeam.MatchStats.Saves.ToString()
+      'lblShotsHomeTot.Text = HomeTeam.MatchStats.Shots.ToString()
+      'lblShtGlHomeTot.Text = HomeTeam.MatchStats.ShotsOn.ToString()
+      'lblAssisHomeTot.Text = HomeTeam.MatchStats.Assis.ToString()
+      'lblFoulsHomeTot.Text = HomeTeam.MatchStats.Fouls.ToString()
+      'lblYCardHomeTot.Text = HomeTeam.MatchStats.YellowCards.ToString()
+      'lblRCardHomeTot.Text = HomeTeam.MatchStats.RedCards.ToString()
+      'lblCornersHome.Text = HomeTeam.MatchStats.Corners.ToString()
+      'lblOffsidesHome.Text = HomeTeam.MatchStats.Offsides.ToString()
+      'lblWoodHitsHome.Text = HomeTeam.MatchStats.WoodHits.ToString()
+      'lblPossession1stHome.Text = HomeTeam.MatchStats.Possession1st.ToString()
+      'lblPossession2ndHome.Text = HomeTeam.MatchStats.Possession2nd.ToString()
+      'lblPossessionMatchHome.Text = HomeTeam.MatchStats.PossessionMatch.ToString()
+      'lblPossessionLast10Home.Text = HomeTeam.MatchStats.PossessionLast10.ToString()
+      'lblPossessionLast5Home.Text = HomeTeam.MatchStats.PossessionLast5.ToString()
+      'lblPossessionHomeOwnF.Text = HomeTeam.MatchStats.PossessionOwn.ToString()
+      'lblPossessionHomeMidF.Text = HomeTeam.MatchStats.PossessionMid.ToString()
+      'lblPossessionHomeAttk.Text = HomeTeam.MatchStats.PossessionAttack.ToString()
+
+      'AwayTeam = New Team()
+      'lblSavesAwayTot.Text = AwayTeam.MatchStats.Saves.ToString()
+      'lblShotsAwayTot.Text = AwayTeam.MatchStats.Shots.ToString()
+      'lblShtGlAwayTot.Text = AwayTeam.MatchStats.ShotsOn.ToString()
+      'lblAssisAwayTot.Text = AwayTeam.MatchStats.Assis.ToString()
+      'lblFoulsAwayTot.Text = AwayTeam.MatchStats.Fouls.ToString()
+      'lblYCardAwayTot.Text = AwayTeam.MatchStats.YellowCards.ToString()
+      'lblRCardAwayTot.Text = AwayTeam.MatchStats.RedCards.ToString()
+      'lblCornersAway.Text = AwayTeam.MatchStats.Corners.ToString()
+      'lblOffsidesAway.Text = AwayTeam.MatchStats.Offsides.ToString()
+      'lblWoodHitsAway.Text = AwayTeam.MatchStats.WoodHits.ToString()
+      'lblPossession1stAway.Text = AwayTeam.MatchStats.Possession1st.ToString()
+      'lblPossession2ndAway.Text = AwayTeam.MatchStats.Possession2nd.ToString()
+      'lblPossessionMatchAway.Text = AwayTeam.MatchStats.PossessionMatch.ToString()
+      'lblPossessionLast10Away.Text = AwayTeam.MatchStats.PossessionLast10.ToString()
+      'lblPossessionLast5Away.Text = AwayTeam.MatchStats.PossessionLast5.ToString()
+      'lblPossessionAwayOwnF.Text = AwayTeam.MatchStats.PossessionOwn.ToString()
+      'lblPossessionAwayMidF.Text = AwayTeam.MatchStats.PossessionMid.ToString()
+      'lblPossessionAwayAttk.Text = AwayTeam.MatchStats.PossessionAttack.ToString()
+
+      'For i As Integer = lsvEvents.Items.Count - 1 To 0 Step -1
+      '  lsvEvents.Items.RemoveAt(i)
+      'Next
+
+
+      bControlPress = False
+
+      PossessionWhere = PossessionWhereTypes.MidField
+
+      LastPossession.Clear()
+    Catch err As Exception
+      MessageBox.Show("ERROR Reset. " & err.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.[Error])
+    End Try
     'End If
   End Sub
 
-  Private Sub CheckPosesion()
+  Private Sub UpdatePossessionLabels()
     'TODO GELO
+    Dim coloBackOn As Color = Color.DarkGreen
+    Dim coloFrontOn As Color = Color.White
+
+    If (_outOfPlay) Then
+      lblOutOfPlay.BackColor = Color.LawnGreen
+      lblOutOfPlay.ForeColor = Color.Black
+      coloBackOn = Color.DarkGreen
+      coloFrontOn = Color.White
+    Else
+      lblOutOfPlay.BackColor = Color.Black
+      lblOutOfPlay.ForeColor = Color.White
+      coloBackOn = Color.LawnGreen
+      coloFrontOn = Color.Black
+    End If
+
     If PossessionIsHome Then
-      'lblHomeTeam1.BackColor = Color.LawnGreen
-      lblHomeTeam2.BackColor = Color.LawnGreen
-      lblHomeTeam3.BackColor = Color.LawnGreen
-      'lblHomeTeam1.ForeColor = Color.Black
-      lblHomeTeam2.ForeColor = Color.Black
-      lblHomeTeam3.ForeColor = Color.Black
+      'lblHomeTeam1.BackColor = colorOn
+      lblHomeTeam2.BackColor = coloBackOn
+      lblHomeTeam3.BackColor = coloBackOn
+      'lblHomeTeam1.ForeColor = coloFrontOn
+      lblHomeTeam2.ForeColor = coloFrontOn
+      lblHomeTeam3.ForeColor = coloFrontOn
       'lblAwayTeam1.BackColor = Color.Black
       lblAwayTeam2.BackColor = Color.Black
       lblAwayTeam3.BackColor = Color.Black
@@ -246,23 +292,23 @@ Partial Public Class frmMain
       lblHomeTeam2.ForeColor = Color.White
       lblHomeTeam3.ForeColor = Color.White
 
-      'lblAwayTeam1.BackColor = Color.LawnGreen
-      lblAwayTeam2.BackColor = Color.LawnGreen
-      lblAwayTeam3.BackColor = Color.LawnGreen
-      'lblAwayTeam1.ForeColor = Color.Black
-      lblAwayTeam2.ForeColor = Color.Black
-      lblAwayTeam3.ForeColor = Color.Black
+      'lblAwayTeam1.BackColor = colorOn
+      lblAwayTeam2.BackColor = coloBackOn
+      lblAwayTeam3.BackColor = coloBackOn
+      'lblAwayTeam1.ForeColor = coloFrontOn
+      lblAwayTeam2.ForeColor = coloFrontOn
+      lblAwayTeam3.ForeColor = coloFrontOn
     End If
   End Sub
 
   Private Sub lblHomeTeam_Click(sender As Object, e As EventArgs)
     PossessionIsHome = True
-    CheckPosesion()
+    UpdatePossessionLabels()
   End Sub
 
   Private Sub lblAwayTeam_Click(sender As Object, e As EventArgs)
     PossessionIsHome = False
-    CheckPosesion()
+    UpdatePossessionLabels()
   End Sub
 
   Private Sub AddPossession(Value As PossessionType)
@@ -961,7 +1007,7 @@ Partial Public Class frmMain
         Reset()
       Else
         Send(handler, "Empty")
-    End If
+      End If
 
     Catch ex As Exception
       Debug.Print(ex.ToString)
@@ -1090,6 +1136,8 @@ Partial Public Class frmMain
 
   Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
     Try
+      Me.LabelAppVersion.Text = "v " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "   "
+
       ShowOptions(Me)
 
       GlobalMatch = MatchHelper.Instance.Match
@@ -1152,7 +1200,7 @@ Partial Public Class frmMain
       Me.lblAwayTeam2.Text = _match.AwayTeam.Name
       Me.lblAwayTeam3.Text = _match.AwayTeam.Name
 
-      Me.showevents()
+      Me.ShowEvents()
 
 
 
@@ -1278,25 +1326,19 @@ Partial Public Class frmMain
   Private Sub lblHomeTeam_MouseClick(sender As Object, e As MouseEventArgs) Handles lblHomeTeam2.Click, lblHomeTeam3.Click
     OutOfPlay = False
     PossessionIsHome = True
-    CheckPosesion()
+    UpdatePossessionLabels()
   End Sub
 
   Private Sub lblAwayTeam_MouseClick(sender As Object, e As MouseEventArgs) Handles lblAwayTeam2.Click, lblAwayTeam3.Click
     OutOfPlay = False
     PossessionIsHome = False
-    CheckPosesion()
+    UpdatePossessionLabels()
   End Sub
 
 
   Private Sub lblOutOfPlay_Click(sender As Object, e As EventArgs) Handles lblOutOfPlay.Click
     OutOfPlay = Not OutOfPlay
-    If (OutOfPlay) Then
-      lblOutOfPlay.BackColor = Color.LawnGreen
-      lblOutOfPlay.ForeColor = Color.Black
-    Else
-      lblOutOfPlay.BackColor = Color.Black
-      lblOutOfPlay.ForeColor = Color.White
-    End If
+
   End Sub
 
 #End Region
@@ -1305,40 +1347,45 @@ Partial Public Class frmMain
   Private _selectedIndex As Integer
 
   Private Sub StartClock_Click(sender As Object, e As EventArgs) Handles StartClock.Click
+    Try
+
+      tmrClock.Enabled = False
+      tmrRefresh.Enabled = False
+
+      Dim timeToStart As Integer = 0
+      If rdb1stHalf.Checked Then
+        timeToStart = 0 * 60
+        _selectedIndex = 0
+      End If
+      If rdb2ndHalf.Checked Then
+        timeToStart = 45 * 60
+        _selectedIndex = 1
+      End If
+      If rdbExtra1.Checked Then
+        timeToStart = 90 * 60
+        _selectedIndex = 2
+      End If
+      If rdbExtra2.Checked Then
+        timeToStart = 105 * 60
+        _selectedIndex = 3
+      End If
+
+      OutOfPlay = True
+
+      MainSec = timeToStart
+
+      txtClock.Text = Utils.Secs2MMSS(MainSec)
+
+      tmrClock.Interval = 1000
+      AppSettings.Instance.ClockStart = DateTime.Now.Ticks
+      tmrClock.Enabled = True
+      tmrRefresh.Enabled = True
 
 
-    tmrClock.Enabled = False
-    tmrRefresh.Enabled = False
-
-    Dim timeToStart As Integer = 0
-    If rdb1stHalf.Checked Then
-      timeToStart = 0 * 60
-      _selectedIndex = 0
-    End If
-    If rdb2ndHalf.Checked Then
-      timeToStart = 45 * 60
-      _selectedIndex = 1
-    End If
-    If rdbExtra1.Checked Then
-      timeToStart = 90 * 60
-      _selectedIndex = 2
-    End If
-    If rdbExtra2.Checked Then
-      timeToStart = 105 * 60
-      _selectedIndex = 3
-    End If
-
-    MainSec = timeToStart
-
-    txtClock.Text = Utils.Secs2MMSS(MainSec)
-
-    tmrClock.Interval = 1000
-    AppSettings.Instance.ClockStart = DateTime.Now.Ticks
-    tmrClock.Enabled = True
-    tmrRefresh.Enabled = True
-
-
-    _match.MatchPeriods.StartPeriod(_match.MatchPeriods(_selectedIndex), 0)
+      _match.MatchPeriods.StartPeriod(_match.MatchPeriods(_selectedIndex), 0)
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
 
   End Sub
 
@@ -1360,11 +1407,11 @@ Partial Public Class frmMain
       AddPossession(PossessionType.OutS)
     ElseIf PossessionIsHome Then
       AddPossession(PossessionType.Home)
-      If PosesionWhere = PossessionWhereTypes.OwnField Then
+      If PossessionWhere = PossessionWhereTypes.OwnField Then
         txtPossessionHomeOwnT.Text = (Utils.Val(txtPossessionHomeOwnT.Text) + 1).ToString()
-      ElseIf PosesionWhere = PossessionWhereTypes.MidField Then
+      ElseIf PossessionWhere = PossessionWhereTypes.MidField Then
         txtPossessionHomeMidF.Text = (Utils.Val(txtPossessionHomeMidF.Text) + 1).ToString()
-      ElseIf PosesionWhere = PossessionWhereTypes.Attack Then
+      ElseIf PossessionWhere = PossessionWhereTypes.Attack Then
         txtPossessionHomeAttk.Text = (Utils.Val(txtPossessionHomeAttk.Text) + 1).ToString()
       End If
       If rdb1stHalf.Checked Then
@@ -1374,11 +1421,11 @@ Partial Public Class frmMain
       End If
     Else
       AddPossession(PossessionType.Away)
-      If PosesionWhere = PossessionWhereTypes.OwnField Then
+      If PossessionWhere = PossessionWhereTypes.OwnField Then
         txtPossessionAwayOwnT.Text = (Utils.Val(txtPossessionAwayOwnT.Text) + 1).ToString()
-      ElseIf PosesionWhere = PossessionWhereTypes.MidField Then
+      ElseIf PossessionWhere = PossessionWhereTypes.MidField Then
         txtPossessionAwayMidF.Text = (Utils.Val(txtPossessionAwayMidF.Text) + 1).ToString()
-      ElseIf PosesionWhere = PossessionWhereTypes.Attack Then
+      ElseIf PossessionWhere = PossessionWhereTypes.Attack Then
         txtPossessionAwayAttk.Text = (Utils.Val(txtPossessionAwayAttk.Text) + 1).ToString()
       End If
       If rdb1stHalf.Checked Then
@@ -1459,25 +1506,29 @@ Partial Public Class frmMain
 
   End Sub
 
+  Private Sub UpdatePossessionWhereLabels()
+    Try
+      Dim colorOn As Color = Color.LawnGreen
+      Dim colorOff As Color = Color.Gray
+
+      lblPossessionOwnT.BackColor = IIf(PossessionWhere = PossessionWhereTypes.OwnField, colorOn, colorOff)
+      lblPossessionAttk.BackColor = IIf(PossessionWhere = PossessionWhereTypes.Attack, colorOn, colorOff)
+      lblPossessionMidF.BackColor = IIf(PossessionWhere = PossessionWhereTypes.MidField, colorOn, colorOff)
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
   Private Sub lblPossessionOwnT_Click(sender As Object, e As EventArgs) Handles lblPossessionOwnT.Click
-    PosesionWhere = PossessionWhereTypes.OwnField
-    lblPossessionOwnT.BackColor = Color.LawnGreen
-    lblPossessionAttk.BackColor = Color.Gray
-    lblPossessionMidF.BackColor = Color.Gray
+    PossessionWhere = PossessionWhereTypes.OwnField
   End Sub
 
   Private Sub lblPossessionMidF_Click(sender As Object, e As EventArgs) Handles lblPossessionMidF.Click
-    PosesionWhere = PossessionWhereTypes.MidField
-    lblPossessionMidF.BackColor = Color.LawnGreen
-    lblPossessionAttk.BackColor = Color.Gray
-    lblPossessionOwnT.BackColor = Color.Gray
+    PossessionWhere = PossessionWhereTypes.MidField
   End Sub
 
   Private Sub lblPossessionAttk_Click(sender As Object, e As EventArgs) Handles lblPossessionAttk.Click
-    PosesionWhere = PossessionWhereTypes.Attack
-    lblPossessionAttk.BackColor = Color.LawnGreen
-    lblPossessionMidF.BackColor = Color.Gray
-    lblPossessionOwnT.BackColor = Color.Gray
+    PossessionWhere = PossessionWhereTypes.Attack
   End Sub
 
   Private Sub btnClockReset_Click_1(sender As Object, e As EventArgs) Handles btnClockReset.Click

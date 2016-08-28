@@ -18,6 +18,7 @@ Public Class FormSubstitutions
   Private Sub ShowSubstitutions(Optional selected As Substitution = Nothing)
     Try
       _initializing = True
+      Dim selectedRow As Integer = 0
       With Me.MetroGridSubstitutions
         .Rows.Clear()
         Dim substitutions As Substitutions = _match.Substitutions
@@ -35,8 +36,10 @@ Public Class FormSubstitutions
           Else
             .Rows(item).Selected = False
           End If
+          If .Rows(item).Selected Then selectedRow = item
         Next
       End With
+      EnsureRowIsVisible(Me.MetroGridSubstitutions, selectedRow)
       ShowSelecteSubstitiution()
     Catch ex As Exception
 

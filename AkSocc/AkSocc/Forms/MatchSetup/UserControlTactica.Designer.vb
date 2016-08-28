@@ -31,16 +31,7 @@ Partial Class UserControlTactica
     Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.TableLayoutPanelTot = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroGridPlayers = New MetroFramework.Controls.MetroGrid()
-    Me.ColumnPlayersID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnPlayersNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnPlayersName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnPlayersFormationPos = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnPlayerFormationX = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnPlayerFormationY = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.MetroGridTeamAll = New MetroFramework.Controls.MetroGrid()
-    Me.ColumnAllID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnAllNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.ColumnAllName = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.PanelCanvas = New System.Windows.Forms.Panel()
     Me.PictureBoxCanvas = New System.Windows.Forms.PictureBox()
     Me.ContextMenuStripPlayers = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -60,6 +51,15 @@ Partial Class UserControlTactica
     Me.ButtonSaveFormation = New System.Windows.Forms.Button()
     Me.MetroComboBoxFormation = New System.Windows.Forms.ComboBox()
     Me.ToolTipDrag = New System.Windows.Forms.ToolTip(Me.components)
+    Me.ColumnAllID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnAllNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnAllName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnPlayersID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnPlayersNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnPlayersName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnPlayersFormationPos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnPlayerFormationX = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ColumnPlayerFormationY = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.TableLayoutPanelTot.SuspendLayout()
     CType(Me.MetroGridPlayers, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.MetroGridTeamAll, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,52 +148,6 @@ Partial Class UserControlTactica
     Me.MetroGridPlayers.Size = New System.Drawing.Size(265, 468)
     Me.MetroGridPlayers.TabIndex = 49
     '
-    'ColumnPlayersID
-    '
-    Me.ColumnPlayersID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnPlayersID.HeaderText = "ID"
-    Me.ColumnPlayersID.Name = "ColumnPlayersID"
-    Me.ColumnPlayersID.ReadOnly = True
-    Me.ColumnPlayersID.Width = 47
-    '
-    'ColumnPlayersNumber
-    '
-    Me.ColumnPlayersNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnPlayersNumber.HeaderText = "#"
-    Me.ColumnPlayersNumber.Name = "ColumnPlayersNumber"
-    Me.ColumnPlayersNumber.Width = 41
-    '
-    'ColumnPlayersName
-    '
-    Me.ColumnPlayersName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnPlayersName.HeaderText = "Name"
-    Me.ColumnPlayersName.Name = "ColumnPlayersName"
-    Me.ColumnPlayersName.ReadOnly = True
-    Me.ColumnPlayersName.Width = 72
-    '
-    'ColumnPlayersFormationPos
-    '
-    Me.ColumnPlayersFormationPos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnPlayersFormationPos.HeaderText = "Pos"
-    Me.ColumnPlayersFormationPos.Name = "ColumnPlayersFormationPos"
-    Me.ColumnPlayersFormationPos.ReadOnly = True
-    Me.ColumnPlayersFormationPos.Width = 55
-    '
-    'ColumnPlayerFormationX
-    '
-    Me.ColumnPlayerFormationX.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnPlayerFormationX.HeaderText = "X"
-    Me.ColumnPlayerFormationX.Name = "ColumnPlayerFormationX"
-    Me.ColumnPlayerFormationX.ReadOnly = True
-    Me.ColumnPlayerFormationX.Width = 41
-    '
-    'ColumnPlayerFormationY
-    '
-    Me.ColumnPlayerFormationY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnPlayerFormationY.HeaderText = "Y"
-    Me.ColumnPlayerFormationY.Name = "ColumnPlayerFormationY"
-    Me.ColumnPlayerFormationY.ReadOnly = True
-    '
     'MetroGridTeamAll
     '
     Me.MetroGridTeamAll.AllowUserToAddRows = False
@@ -249,28 +203,6 @@ Partial Class UserControlTactica
     Me.MetroGridTeamAll.ShowRowErrors = False
     Me.MetroGridTeamAll.Size = New System.Drawing.Size(265, 468)
     Me.MetroGridTeamAll.TabIndex = 48
-    '
-    'ColumnAllID
-    '
-    Me.ColumnAllID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnAllID.HeaderText = "ID"
-    Me.ColumnAllID.Name = "ColumnAllID"
-    Me.ColumnAllID.ReadOnly = True
-    Me.ColumnAllID.Width = 47
-    '
-    'ColumnAllNumber
-    '
-    Me.ColumnAllNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-    Me.ColumnAllNumber.HeaderText = "#"
-    Me.ColumnAllNumber.Name = "ColumnAllNumber"
-    Me.ColumnAllNumber.Width = 41
-    '
-    'ColumnAllName
-    '
-    Me.ColumnAllName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-    Me.ColumnAllName.HeaderText = "Name"
-    Me.ColumnAllName.Name = "ColumnAllName"
-    Me.ColumnAllName.ReadOnly = True
     '
     'PanelCanvas
     '
@@ -520,6 +452,76 @@ Partial Class UserControlTactica
     Me.MetroComboBoxFormation.Size = New System.Drawing.Size(144, 25)
     Me.MetroComboBoxFormation.TabIndex = 50
     '
+    'ColumnAllID
+    '
+    Me.ColumnAllID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnAllID.HeaderText = "ID"
+    Me.ColumnAllID.Name = "ColumnAllID"
+    Me.ColumnAllID.ReadOnly = True
+    Me.ColumnAllID.Visible = False
+    Me.ColumnAllID.Width = 28
+    '
+    'ColumnAllNumber
+    '
+    Me.ColumnAllNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnAllNumber.HeaderText = "#"
+    Me.ColumnAllNumber.Name = "ColumnAllNumber"
+    Me.ColumnAllNumber.Width = 41
+    '
+    'ColumnAllName
+    '
+    Me.ColumnAllName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnAllName.HeaderText = "Name"
+    Me.ColumnAllName.Name = "ColumnAllName"
+    Me.ColumnAllName.ReadOnly = True
+    '
+    'ColumnPlayersID
+    '
+    Me.ColumnPlayersID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnPlayersID.HeaderText = "ID"
+    Me.ColumnPlayersID.Name = "ColumnPlayersID"
+    Me.ColumnPlayersID.ReadOnly = True
+    Me.ColumnPlayersID.Visible = False
+    Me.ColumnPlayersID.Width = 28
+    '
+    'ColumnPlayersNumber
+    '
+    Me.ColumnPlayersNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnPlayersNumber.HeaderText = "#"
+    Me.ColumnPlayersNumber.Name = "ColumnPlayersNumber"
+    Me.ColumnPlayersNumber.Width = 41
+    '
+    'ColumnPlayersName
+    '
+    Me.ColumnPlayersName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnPlayersName.HeaderText = "Name"
+    Me.ColumnPlayersName.Name = "ColumnPlayersName"
+    Me.ColumnPlayersName.ReadOnly = True
+    Me.ColumnPlayersName.Width = 72
+    '
+    'ColumnPlayersFormationPos
+    '
+    Me.ColumnPlayersFormationPos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnPlayersFormationPos.HeaderText = "Pos"
+    Me.ColumnPlayersFormationPos.Name = "ColumnPlayersFormationPos"
+    Me.ColumnPlayersFormationPos.ReadOnly = True
+    Me.ColumnPlayersFormationPos.Width = 55
+    '
+    'ColumnPlayerFormationX
+    '
+    Me.ColumnPlayerFormationX.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+    Me.ColumnPlayerFormationX.HeaderText = "X"
+    Me.ColumnPlayerFormationX.Name = "ColumnPlayerFormationX"
+    Me.ColumnPlayerFormationX.ReadOnly = True
+    Me.ColumnPlayerFormationX.Width = 41
+    '
+    'ColumnPlayerFormationY
+    '
+    Me.ColumnPlayerFormationY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+    Me.ColumnPlayerFormationY.HeaderText = "Y"
+    Me.ColumnPlayerFormationY.Name = "ColumnPlayerFormationY"
+    Me.ColumnPlayerFormationY.ReadOnly = True
+    '
     'UserControlTactica
     '
     Me.AllowDrop = True
@@ -547,9 +549,6 @@ Partial Class UserControlTactica
   Friend WithEvents ToolTipDrag As System.Windows.Forms.ToolTip
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
   Friend WithEvents MetroGridTeamAll As MetroFramework.Controls.MetroGrid
-  Friend WithEvents ColumnAllID As DataGridViewTextBoxColumn
-  Friend WithEvents ColumnAllNumber As DataGridViewTextBoxColumn
-  Friend WithEvents ColumnAllName As DataGridViewTextBoxColumn
   Friend WithEvents Label1 As Label
   Friend WithEvents Label2 As Label
   Friend WithEvents Label3 As Label
@@ -558,16 +557,19 @@ Partial Class UserControlTactica
   Friend WithEvents Label6 As Label
   Friend WithEvents Label7 As Label
   Friend WithEvents MetroGridPlayers As MetroFramework.Controls.MetroGrid
-  Friend WithEvents ColumnPlayersID As DataGridViewTextBoxColumn
-  Friend WithEvents ColumnPlayersNumber As DataGridViewTextBoxColumn
-  Friend WithEvents ColumnPlayersName As DataGridViewTextBoxColumn
-  Friend WithEvents ColumnPlayersFormationPos As DataGridViewTextBoxColumn
-  Friend WithEvents ColumnPlayerFormationX As DataGridViewTextBoxColumn
-  Friend WithEvents ColumnPlayerFormationY As DataGridViewTextBoxColumn
   Friend WithEvents ButtonRandom As Button
   Friend WithEvents MetroComboBoxFormation As System.Windows.Forms.ComboBox
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
   Friend WithEvents ButtonSaveFormation As Button
   Friend WithEvents ButtonSaveAs As Button
   Friend WithEvents ButtonDelete As Button
+  Friend WithEvents ColumnPlayersID As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnPlayersNumber As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnPlayersName As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnPlayersFormationPos As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnPlayerFormationX As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnPlayerFormationY As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnAllID As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnAllNumber As DataGridViewTextBoxColumn
+  Friend WithEvents ColumnAllName As DataGridViewTextBoxColumn
 End Class

@@ -39,12 +39,13 @@ Public Class Periods
       Return _activePeriod
     End Get
     Set(value As Period)
-      _activePeriod = value
-      For Each p As Period In Me.InnerList
+      If _activePeriod.Part <> value.Part Then
+        _activePeriod = value
+        For Each p As Period In Me.InnerList
 
-      Next
-      RaiseEvent ActivePeriodStateChanged(Me.ActivePeriod)
-
+        Next
+        RaiseEvent ActivePeriodStateChanged(Me.ActivePeriod)
+      End If
     End Set
   End Property
 

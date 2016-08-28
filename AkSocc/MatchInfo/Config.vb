@@ -27,6 +27,7 @@
   Public Property Silent As Boolean = False
   Public Property AsyncDataWrites As Boolean = False
 
+
   Private _oledbConnection As OleDb.OleDbConnection
   Public ReadOnly Property OledbConnection As OleDb.OleDbConnection
     Get
@@ -55,5 +56,6 @@
 
   Public Property PlayerSortType As ePlayerSortType = ePlayerSortType.Position
   Public Property PlayerSortStatName As String = ""
+  Public Property WasMatchSaved As Boolean = False
 #End Region
 End Class

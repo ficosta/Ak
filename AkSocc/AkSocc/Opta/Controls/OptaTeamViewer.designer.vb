@@ -29,13 +29,13 @@ Partial Class OptaTeamViewer
     Me.LabelTeamName = New System.Windows.Forms.Label()
     Me.TableLayoutPanelAll = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroGridStats = New MetroFramework.Controls.MetroGrid()
-    Me.ButtonEditTeam = New System.Windows.Forms.Button()
     Me.ColumnTeamID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnPlayerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnPlayerOpdaID = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnPlayerNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnName = New System.Windows.Forms.DataGridViewTextBoxColumn()
     Me.ColumnStat0 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.ButtonEditTeam = New System.Windows.Forms.Button()
     Me.TableLayoutPanelAll.SuspendLayout()
     CType(Me.MetroGridStats, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
@@ -57,7 +57,7 @@ Partial Class OptaTeamViewer
     Me.LabelTeamName.Dock = System.Windows.Forms.DockStyle.Fill
     Me.LabelTeamName.Location = New System.Drawing.Point(3, 0)
     Me.LabelTeamName.Name = "LabelTeamName"
-    Me.LabelTeamName.Size = New System.Drawing.Size(566, 46)
+    Me.LabelTeamName.Size = New System.Drawing.Size(506, 46)
     Me.LabelTeamName.TabIndex = 0
     Me.LabelTeamName.Text = "Team name"
     Me.LabelTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -66,7 +66,7 @@ Partial Class OptaTeamViewer
     '
     Me.TableLayoutPanelAll.ColumnCount = 3
     Me.TableLayoutPanelAll.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanelAll.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+    Me.TableLayoutPanelAll.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
     Me.TableLayoutPanelAll.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
     Me.TableLayoutPanelAll.Controls.Add(Me.LabelTeamName, 0, 0)
     Me.TableLayoutPanelAll.Controls.Add(Me.LabelScore, 2, 0)
@@ -132,17 +132,6 @@ Partial Class OptaTeamViewer
     Me.MetroGridStats.Size = New System.Drawing.Size(686, 508)
     Me.MetroGridStats.TabIndex = 2
     '
-    'ButtonEditTeam
-    '
-    Me.ButtonEditTeam.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonEditTeam.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-    Me.ButtonEditTeam.Location = New System.Drawing.Point(575, 3)
-    Me.ButtonEditTeam.Name = "ButtonEditTeam"
-    Me.ButtonEditTeam.Size = New System.Drawing.Size(54, 40)
-    Me.ButtonEditTeam.TabIndex = 3
-    Me.ButtonEditTeam.Text = "Edit"
-    Me.ButtonEditTeam.UseVisualStyleBackColor = True
-    '
     'ColumnTeamID
     '
     Me.ColumnTeamID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
@@ -190,6 +179,17 @@ Partial Class OptaTeamViewer
     Me.ColumnStat0.Name = "ColumnStat0"
     Me.ColumnStat0.ReadOnly = True
     Me.ColumnStat0.Width = 56
+    '
+    'ButtonEditTeam
+    '
+    Me.ButtonEditTeam.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonEditTeam.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.ButtonEditTeam.Location = New System.Drawing.Point(515, 3)
+    Me.ButtonEditTeam.Name = "ButtonEditTeam"
+    Me.ButtonEditTeam.Size = New System.Drawing.Size(114, 40)
+    Me.ButtonEditTeam.TabIndex = 3
+    Me.ButtonEditTeam.Text = "Team players..."
+    Me.ButtonEditTeam.UseVisualStyleBackColor = True
     '
     'OptaTeamViewer
     '

@@ -10,7 +10,7 @@ Public Class GraphicsOptaTop5
   Public Sub New(_match As MatchInfo.Match)
     MyBase.New(_match)
 
-    MyBase.Name = "GraphicsF5TeamStats"
+    MyBase.Name = "GraphicsOptaTop5"
     MyBase.ID = 1
     MyBase.MustHaveOPTA = True
     MyBase.KeyCombination = New KeyCombination(Description, Keys.F11, False, False, False, False)
@@ -180,7 +180,7 @@ Public Class GraphicsOptaTop5
           scene.SceneParameters.Add(prefix & "Data_0" & j & "_Text", "")
         Next
         If player.optaGetValue(optaStat.OPTAName) <> "0" And player.optaGetValue(optaStat.OPTAName) <> "" Then
-          ' Debug.Print(vbTab & (i + 1) & ". " & player.ToString & vbTab & player.optaGetValue(optaStat.OPTAName))
+          Debug.Print(vbTab & (i + 1) & ". " & player.ToString & vbTab & player.optaGetValue(optaStat.OPTAName))
           scene.SceneParameters.Add(prefix & "Data_06_Text", player.optaGetValue(optaStat.OPTAName))
           scene.SceneParameters.Add("LeftFramer_Table_Side_" & gSide & "_Line_" & (i + 1) & "_Vis.active", "1")
           count += 1

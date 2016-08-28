@@ -15,7 +15,6 @@ Public Class frmGoals
 #Region "Functions"
 
   Private _initializing As Boolean = False
-  Private _substitution As Substitution = Nothing
 
   Private Sub ShowGoals(Optional selected As MatchGoal = Nothing)
     Try
@@ -170,6 +169,14 @@ Public Class frmGoals
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
+  End Sub
+
+  Private Sub MetroGridGoals_SelectionChanged(sender As Object, e As EventArgs) Handles MetroGridGoals.SelectionChanged
+
+  End Sub
+
+  Private Sub MetroButtonShowSelectedGoal_Click(sender As Object, e As EventArgs) Handles MetroButtonShowSelectedGoal.Click
+
   End Sub
 
 
