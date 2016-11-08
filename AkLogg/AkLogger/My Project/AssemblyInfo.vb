@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("AkLogger")>
+<Assembly: AssemblyTitle("Logger")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("Hewlett-Packard Company")>
-<Assembly: AssemblyProduct("AkLogger")>
-<Assembly: AssemblyCopyright("Copyright © Hewlett-Packard Company 2016")>
+<Assembly: AssemblyCompany("Al-Kamel Systems")>
+<Assembly: AssemblyProduct("Logger")>
+<Assembly: AssemblyCopyright("Copyright © Al-Kamel Systems 2016")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

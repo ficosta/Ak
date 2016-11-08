@@ -21,7 +21,7 @@ Public NotInheritable Class AppSettings
   Public Property LastMatchId As Integer = 0
   Public Property LoggerIP As String = ""
   Public Property LoggerHost As String = ""
-  Public Property LoggerPort As Integer = 6405
+  Public Property LoggerPort As Integer = 2525
   Public Property OtherMatchesPath As String = ""
   Public Property PreviewLocalPath As String = ""
   Public Property PreviewRemotePath As String = ""

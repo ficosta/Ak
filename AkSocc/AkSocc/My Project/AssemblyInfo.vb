@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Soccer")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("Al-Kamel Technologies")>
+<Assembly: AssemblyCompany("Al-Kamel Systems")>
 <Assembly: AssemblyProduct("Soccer")>
-<Assembly: AssemblyCopyright("Copyright © Al-Kamel Technologies 2016")>
+<Assembly: AssemblyCopyright("Copyright © Al-Kamel Systems 2016")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.8.1.0")>
-<Assembly: AssemblyFileVersion("0.8.1.0")>
+<Assembly: AssemblyVersion("0.8.0.0")>
+<Assembly: AssemblyFileVersion("0.8.0.0")>

@@ -68,6 +68,7 @@ Partial Class DialogOptions
     Me.NumericUpDownLogger = New System.Windows.Forms.NumericUpDown()
     Me.TabPage3 = New System.Windows.Forms.TabPage()
     Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
+    Me.MetroCheckBoxOptaAutoUpdate = New MetroFramework.Controls.MetroCheckBox()
     Me.Label1 = New System.Windows.Forms.Label()
     Me.TextBoxOptaLocalPath = New System.Windows.Forms.TextBox()
     Me.ButtonOptaLocalPath = New System.Windows.Forms.Button()
@@ -652,6 +653,7 @@ Partial Class DialogOptions
     Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151.0!))
     Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+    Me.TableLayoutPanel5.Controls.Add(Me.MetroCheckBoxOptaAutoUpdate, 1, 7)
     Me.TableLayoutPanel5.Controls.Add(Me.Label1, 0, 0)
     Me.TableLayoutPanel5.Controls.Add(Me.TextBoxOptaLocalPath, 1, 0)
     Me.TableLayoutPanel5.Controls.Add(Me.ButtonOptaLocalPath, 2, 0)
@@ -668,7 +670,7 @@ Partial Class DialogOptions
     Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanel5.Location = New System.Drawing.Point(0, 0)
     Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
-    Me.TableLayoutPanel5.RowCount = 8
+    Me.TableLayoutPanel5.RowCount = 9
     Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
@@ -676,9 +678,21 @@ Partial Class DialogOptions
     Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
     Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+    Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
     Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel5.Size = New System.Drawing.Size(765, 236)
     Me.TableLayoutPanel5.TabIndex = 2
+    '
+    'MetroCheckBoxOptaAutoUpdate
+    '
+    Me.MetroCheckBoxOptaAutoUpdate.AutoSize = True
+    Me.MetroCheckBoxOptaAutoUpdate.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroCheckBoxOptaAutoUpdate.Location = New System.Drawing.Point(154, 193)
+    Me.MetroCheckBoxOptaAutoUpdate.Name = "MetroCheckBoxOptaAutoUpdate"
+    Me.MetroCheckBoxOptaAutoUpdate.Size = New System.Drawing.Size(573, 24)
+    Me.MetroCheckBoxOptaAutoUpdate.TabIndex = 7
+    Me.MetroCheckBoxOptaAutoUpdate.Text = "Auto update match results from opta data"
+    Me.MetroCheckBoxOptaAutoUpdate.UseSelectable = True
     '
     'Label1
     '
@@ -925,4 +939,5 @@ Partial Class DialogOptions
   Friend WithEvents LabelOptaSearonId As Label
   Friend WithEvents TextBoxOptaCompetitionId As TextBox
   Friend WithEvents TextBoxOptaSeasonId As TextBox
+  Friend WithEvents MetroCheckBoxOptaAutoUpdate As MetroFramework.Controls.MetroCheckBox
 End Class

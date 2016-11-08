@@ -53,6 +53,7 @@ Public NotInheritable Class AppSettings
 
   Public Property OptaCompetitionID As Integer = 202
   Public Property OptaSeasonID As Integer = 2016
+  Public Property OptaUpdateScores As Boolean = True
 
   Public Property OptaStatsTeam As New Opta_Term_Stats(OptaStatsTeamsDefinitionPath)
   Public Property OptaStatsPlayer As New Opta_Term_Stats(OptaStatsPlayersDefinitionPath)

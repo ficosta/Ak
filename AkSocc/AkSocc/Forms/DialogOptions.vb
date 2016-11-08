@@ -67,6 +67,7 @@ Public Class DialogOptions
       Me.TextBoxOptaCompetitionId.Text = AppSettings.Instance.OptaCompetitionID
       Me.TextBoxOptaSeasonId.Text = AppSettings.Instance.OptaSeasonID
 
+      Me.MetroCheckBoxOptaAutoUpdate.Checked = AppSettings.Instance.OptaUpdateScores
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -120,6 +121,8 @@ Public Class DialogOptions
       AppSettings.Instance.OptaDefaultFolder = Me.TextBoxOptaLocalPath.Text
       AppSettings.Instance.OptaCompetitionID = Me.TextBoxOptaCompetitionId.Text
       AppSettings.Instance.OptaSeasonID = Me.TextBoxOptaSeasonId.Text
+
+      AppSettings.Instance.OptaUpdateScores = Me.MetroCheckBoxOptaAutoUpdate.Checked
 
       AppSettings.Instance.Save()
     Catch ex As Exception

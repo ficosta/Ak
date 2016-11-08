@@ -61,6 +61,36 @@ Public Class COptaF26Helper
     End Try
     Return res
   End Function
+
+  Public Function UpdateFromBeginning() As Boolean
+    Try
+
+      For Each match As Match In _Matches
+        match.optaChanged = False
+      Next
+
+      Dim FileLocation As DirectoryInfo = New DirectoryInfo(AppSettings.Instance.OptaDefaultFolder)
+      _fileWatcher.Filter = System.IO.Path.GetFileName("football_results.*.xml")
+
+      Dim fi As FileInfo() = FileLocation.GetFiles(System.IO.Path.GetFileName("football_results.*.xml"))
+
+      For Each file As FileInfo In fi
+        Me.Path = System.IO.Path.Combine(AppSettings.Instance.OptaDefaultFolder, file.Name)
+        Me.Update()
+      Next
+
+      For Each match As Match In _Matches
+        If match.optaChanged Then
+          match.home_goals = match.optaHomeScore
+          match.away_goals = match.optaAwayScore
+          match.Update()
+        End If
+      Next
+
+    Catch ex As Exception
+
+    End Try
+  End Function
 #End Region
 
 #Region "Read Matches"
@@ -84,7 +114,7 @@ Public Class COptaF26Helper
 
       If Me.Matches Is Nothing Then
         Me.Matches = New Matches
-        ' Me.Matches.GetFromDB("")
+        Me.Matches.GetFromDB("")
       End If
 
       If Me.Teams Is Nothing Then
@@ -102,73 +132,80 @@ Public Class COptaF26Helper
         Me.Matches.Add(match)
       End If
 
-      For Each node As XmlNode In nodeMatch
-        Select Case node.Name
-          Case "MatchInfo"
-            attr = node.Attributes.GetNamedItem("Period")
-            match.state = attr.Value
-            attr = node.Attributes.GetNamedItem("OtherMatchDay")
-            match.matchday = NoNullInt(attr.Value)
-          Case "Stat"
+      If Not match Is Nothing Then
 
-          Case "TeamData"
-            attr = node.Attributes.GetNamedItem("Side")
-            Dim isHome As Boolean = (attr.Value = "Home")
-            attr = node.Attributes.GetNamedItem("TeamRef")
-            Dim teamID As Integer = Me.FixID(attr.Value)
-            attr = node.Attributes.GetNamedItem("Score")
-            Dim score As Integer = 0
-            If Not attr Is Nothing Then score = attr.Value
+        For Each node As XmlNode In nodeMatch
+          Select Case node.Name
+            Case "MatchInfo"
+              attr = node.Attributes.GetNamedItem("Period")
+              match.state = attr.Value
+              attr = node.Attributes.GetNamedItem("OtherMatchDay")
+              match.matchday = NoNullInt(attr.Value)
+            Case "Stat"
 
-            If isHome Then
+            Case "TeamData"
+              attr = node.Attributes.GetNamedItem("Side")
+              Dim isHome As Boolean = (attr.Value = "Home")
+              attr = node.Attributes.GetNamedItem("TeamRef")
+              Dim teamID As Integer = Me.FixID(attr.Value)
+              attr = node.Attributes.GetNamedItem("Score")
+              Dim score As Integer = 0
+              If Not attr Is Nothing Then score = attr.Value
+
+              If isHome Then
+                match.optaHomeTeamID = teamID
+                match.HomeTeam = Me.Teams.GetTeamByOptaID(teamID)
+                match.HomeTeam.Goals = score
+                match.optaHomeScore = score
+              Else
+                match.optaAwayTeamID = teamID
+                match.AwayTeam = Me.Teams.GetTeamByOptaID(teamID)
+                match.AwayTeam.Goals = score
+                match.optaAwayScore = score
+              End If
+            Case "home-team"
+              Dim teamID As Integer = 0
+              Dim score As Integer = 0
+
+              For Each auxNode As XmlNode In node.ChildNodes
+                Select Case auxNode.Name
+                  Case "team-id"
+                    teamID = NoNullInt(auxNode.InnerText)
+                  Case "score"
+                    score = NoNullInt(auxNode.InnerText)
+                End Select
+              Next
+
               match.optaHomeTeamID = teamID
-              match.HomeTeam = Me.Teams.GetTeamByOptaID(teamID)
-              match.HomeTeam.Goals = score
+              If match.HomeTeam Is Nothing Then match.HomeTeam = Me.Teams.GetTeamByOptaID(teamID)
+              If Not match.HomeTeam Is Nothing Then match.HomeTeam.Goals = score
               match.optaHomeScore = score
-            Else
+
+            Case "away-team"
+              Dim teamID As Integer = 0
+              Dim score As Integer = 0
+
+              For Each auxNode As XmlNode In node.ChildNodes
+                Select Case auxNode.Name
+                  Case "team-id"
+                    teamID = NoNullInt(auxNode.InnerText)
+                  Case "score"
+                    score = NoNullInt(auxNode.InnerText)
+                End Select
+              Next
+
               match.optaAwayTeamID = teamID
-              match.AwayTeam = Me.Teams.GetTeamByOptaID(teamID)
-              match.AwayTeam.Goals = score
+              If match.AwayTeam Is Nothing Then match.AwayTeam = Me.Teams.GetTeamByOptaID(teamID)
+              If Not match.AwayTeam Is Nothing Then match.AwayTeam.Goals = score
               match.optaAwayScore = score
-            End If
-          Case "home-team"
-            Dim teamID As Integer = 0
-            Dim score As Integer = 0
 
-            For Each auxNode As XmlNode In node.ChildNodes
-              Select Case auxNode.Name
-                Case "team-id"
-                  teamID = NoNullInt(auxNode.InnerText)
-                Case "score"
-                  score = NoNullInt(auxNode.InnerText)
-              End Select
-            Next
-
-            match.optaHomeTeamID = teamID
-            If match.HomeTeam Is Nothing Then match.HomeTeam = Me.Teams.GetTeamByOptaID(teamID)
-            If Not match.HomeTeam Is Nothing Then match.HomeTeam.Goals = score
-            match.optaHomeScore = score
-
-          Case "away-team"
-            Dim teamID As Integer = 0
-            Dim score As Integer = 0
-
-            For Each auxNode As XmlNode In node.ChildNodes
-              Select Case auxNode.Name
-                Case "team-id"
-                  teamID = NoNullInt(auxNode.InnerText)
-                Case "score"
-                  score = NoNullInt(auxNode.InnerText)
-              End Select
-            Next
-
-            match.optaAwayTeamID = teamID
-            If match.AwayTeam Is Nothing Then match.AwayTeam = Me.Teams.GetTeamByOptaID(teamID)
-            If Not match.AwayTeam Is Nothing Then match.AwayTeam.Goals = score
-            match.optaAwayScore = score
-
-        End Select
-      Next
+          End Select
+        Next
+        If match.match_id > 0 And AppSettings.Instance.OptaUpdateScores = True Then
+          match.optaChanged = True
+          ' match.Update()
+        End If
+      End If
     Catch ex As Exception
       Debug.Print(ex.ToString)
     End Try
@@ -242,7 +279,7 @@ Public Class COptaF26Helper
       ' the renaming of files or directories. 
       _fileWatcher.NotifyFilter = (NotifyFilters.LastAccess Or NotifyFilters.LastWrite Or NotifyFilters.FileName Or NotifyFilters.DirectoryName)
       ' Only watch text files.
-      _fileWatcher.Filter = System.IO.Path.GetFileName("football_results." & AppSettings.Instance.OptaCompetitionID & "*.xml")
+      _fileWatcher.Filter = System.IO.Path.GetFileName("football_results.*.xml")
       _fileWatcher.EnableRaisingEvents = True
     Catch ex As Exception
 

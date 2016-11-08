@@ -200,6 +200,8 @@ Imports MatchInfo
   Public optaHomeScore As Integer = 0
   Public optaAwayScore As Integer = 0
 
+  Public optaChanged As Boolean = False
+
 
   Public WithEvents MatchPeriods As New Periods
 

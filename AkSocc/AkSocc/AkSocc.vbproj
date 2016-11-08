@@ -214,6 +214,12 @@
     <Compile Include="Opta\Downloader\Controls\MultiFileDownloader.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Opta\Forms\frmLocalFixtures.designer.vb">
+      <DependentUpon>frmLocalFixtures.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmLocalFixtures.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Opta\Forms\frmOptaFixtures.designer.vb">
       <DependentUpon>frmOptaFixtures.vb</DependentUpon>
     </Compile>
@@ -497,6 +503,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Opta\Downloader\Controls\MultiFileDownloader.resx">
       <DependentUpon>MultiFileDownloader.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmLocalFixtures.resx">
+      <DependentUpon>frmLocalFixtures.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Opta\Forms\frmOptaFixtures.resx">
       <DependentUpon>frmOptaFixtures.vb</DependentUpon>

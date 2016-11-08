@@ -262,7 +262,14 @@ Public Class frmMain
       FTPSyncManager.Instance.Enabled = True
 
       _optaMatches = New Matches()
-      _F26Helper = New COptaF26Helper(AppSettings.Instance.OptaDefaultFolder, _optaMatches)
+
+      If Not _match Is Nothing Then
+        _optaMatches = Matches.GetMatchesForCompetition(_match.competition_id)
+
+        _F26Helper = New COptaF26Helper(AppSettings.Instance.OptaDefaultFolder, _optaMatches)
+        _F26Helper.UpdateFromBeginning()
+        
+      End If
 
     Catch ex As Exception
 
@@ -422,6 +429,8 @@ Public Class frmMain
 
       Dim dlg As New frmOptaFixtures
       dlg.MatchOptaID = _match.optaID
+      dlg.CompetitionId = _match.competition_id
+      dlg.Matches = _optaMatches
       If dlg.ShowDialog(Me) = DialogResult.OK Then
         _match.optaID = dlg.MatchOptaID
         _match.Update()
@@ -1701,6 +1710,10 @@ Public Class frmMain
   End Sub
 
   Private Sub TableLayoutPanel2_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel2.Paint
+
+  End Sub
+
+  Private Sub FixturesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FixturesToolStripMenuItem.Click
 
   End Sub
 #End Region
