@@ -87,12 +87,6 @@
     <Compile Include="Classes\VizControl_new.vb" />
     <Compile Include="Comm\CheckSocketConnection.vb" />
     <Compile Include="Comm\SocketClient.vb" />
-    <Compile Include="FormScript.Designer.vb">
-      <DependentUpon>FormScript.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormScript.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Language\Translation.vb" />
     <Compile Include="Language\Translator.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -120,9 +114,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormScript.resx">
-      <DependentUpon>FormScript.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
