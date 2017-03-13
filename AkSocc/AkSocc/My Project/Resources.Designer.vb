@@ -63,6 +63,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property alkamel_2012() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("alkamel_2012", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property CAMP_PER_OPTA_OK() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("CAMP_PER_OPTA_OK", resourceCulture)
@@ -112,18 +122,23 @@ Namespace My.Resources
         
         '''<summary>
         '''  Looks up a localized string similar to ====================
-        '''Version 0.7.6
+        '''Version 0.8.0
+        '''- minor interface fixes
+        '''- changed log folder and naming, added rotation of logs
+        '''- Fixed problems with goal management
+        '''- Optimized speed of changing period time
         '''
         '''====================
-        '''Version 0.7.5
-        '''- Fixed clock card presentation for cup graphics.
-        '''- Fixed clock substitution presentation for cup graphics.
-        '''- Fixed ScoreLine: when launching last scorer, teams and scores where not being updated.
-        '''- Fixed reporter graphic (was showing the microphone logo).
-        '''- Fixed a problem reconnecting automatically to the viz engine if connection was lost.
-        '''- Fixed the calculation of classifications for incomplete match days.
+        '''Version 0.7.10
+        '''- Interface fixes
+        '''- Added full opta support
+        '''- Added option to have other matches for different competitions
+        '''- Fixed problems with OtherMatches window
         '''
-        '''.
+        '''====================
+        '''Version 0.7.10
+        '''- Added Escape key to clock control window
+        '''- Fixed: adding a new goal didn&apos;t [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property Versions() As String
             Get

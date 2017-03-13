@@ -611,6 +611,7 @@
     <None Include="Resources\IconApp.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\alkamel_2012.jpg" />
     <Content Include="Resources\Football 2-50-green.ico" />
     <Content Include="Resources\Football 2-50-grey.ico" />
     <Content Include="Resources\Football 2-50-orange.ico" />

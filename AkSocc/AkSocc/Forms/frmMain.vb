@@ -404,19 +404,27 @@ Public Class frmMain
         End Select
       End If
       Me.LabelGraphicVersion.Text = GraphicVersions.Instance.SelectedGraphicVersion.Name
-      If _match Is Nothing Then
-        Me.ButtonOptaID.Text = "NO MATCH"
-        ButtonOptaID.Enabled = False
-        Me.ButtonOptaID.BackColor = Color.LightGray
-      ElseIf _match.optaID > 0 Then
-        Me.ButtonOptaID.Text = "OPTA ID " & _match.optaID
-        Me.ButtonOptaID.BackColor = Color.LightGreen
-        ButtonOptaID.Enabled = True
-      Else
-        Me.ButtonOptaID.Text = "undefined OPTA ID"
-        Me.ButtonOptaID.BackColor = Color.LightSalmon
-        ButtonOptaID.Enabled = True
+      If AppSettings.Instance.UseOptaData Then
+        If _match Is Nothing Then
+          Me.ButtonOptaID.Text = "NO MATCH"
+          ButtonOptaID.Enabled = False
+          Me.ButtonOptaID.BackColor = Color.LightGray
+        ElseIf _match.optaID > 0 Then
+          Me.ButtonOptaID.Text = "OPTA ID " & _match.optaID
+          Me.ButtonOptaID.BackColor = Color.LightGreen
+          ButtonOptaID.Enabled = True
+        Else
+          Me.ButtonOptaID.Text = "undefined OPTA ID"
+          Me.ButtonOptaID.BackColor = Color.LightSalmon
+          ButtonOptaID.Enabled = True
+        End If
       End If
+      Me.ButtonF11OptaTop5.Visible = AppSettings.Instance.UseOptaData
+      Me.ButtonOptaID.Visible = AppSettings.Instance.UseOptaData
+      Me.ToolStripDropDownButtonOpta.Visible = AppSettings.Instance.UseOptaData
+      Me.MultiFileDownloaderFTP.Visible = AppSettings.Instance.UseOptaData
+      Me.TableLayoutPanelAll.ColumnStyles(3).Width = IIf(AppSettings.Instance.UseOptaData, 120, 0)
+      Me.TableLayoutPanelAll.ColumnStyles(4).Width = IIf(AppSettings.Instance.UseOptaData, 180, 0)
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -543,8 +551,6 @@ Public Class frmMain
     Me.Cursor = cursor
     Return res
   End Function
-
-
 
   Private Sub ButtonF1ScoreLine_Click(sender As Object, e As EventArgs) Handles ButtonF1ScoreLine.Click
     StartGraphic(GraphicsScoreLine.Description)
@@ -859,12 +865,9 @@ Public Class frmMain
 
     End Try
   End Sub
-
-
 #End Region
 
 #Region "Clock controls"
-
   Private Sub MetroButtonTimeControl_Click(sender As Object, e As EventArgs) Handles MetroButtonTimeControl.Click
     Try
       Dim frm As New FormPeriodControl()
@@ -903,7 +906,6 @@ Public Class frmMain
       WriteToErrorLog(ex)
     End Try
   End Sub
-
 
   Private Sub MetroButtonClockIN_Click(sender As Object, e As EventArgs) Handles MetroButtonClock.Click
     ToggleClockControl()
@@ -996,7 +998,6 @@ Public Class frmMain
     Return Nothing
   End Function
 #End Region
-
 
   Private Sub MetroButtonClockStats_Click(sender As Object, e As EventArgs) Handles MetroButtonClockStats.Click
     StartGraphic(ClockGenericStraps.Description)
@@ -1118,8 +1119,10 @@ Public Class frmMain
       For Each ctl As PlayerViewer In _awayPlayerControls
         ctl.IsSelected = (ctl.Player.ID = sender.Player.ID)
       Next
-      If Not _match Is Nothing And Not _selectedPlayer Is Nothing Then
-        StartGraphic(GraphicsPlayerName.Description)
+      If AppSettings.Instance.Behaviour_OpenPlayerDescriptionOnSelection Then
+        If Not _match Is Nothing And Not _selectedPlayer Is Nothing Then
+          StartGraphic(GraphicsPlayerName.Description)
+        End If
       End If
     Catch ex As Exception
     End Try
@@ -1159,7 +1162,6 @@ Public Class frmMain
 
     _updating = False
   End Sub
-
 
   Private Sub InitTeamPlayerControls(team As Team, controls As List(Of PlayerViewer))
     Try
@@ -1230,7 +1232,6 @@ Public Class frmMain
     End Try
 
   End Sub
-
 
   Private Sub _keyCapture_Keycaptured() Handles _keyCapture.Keycaptured
     Debug.Print("_keyCapture_Keycaptured ")
@@ -1485,13 +1486,10 @@ Public Class frmMain
     End Try
   End Sub
 
-
   Private Sub _match_MatchReset() Handles _match.MatchReset
     'Match
     InitMatchInfo(_match)
   End Sub
-
-
 #End Region
 
 #Region "Match events"
@@ -1527,7 +1525,6 @@ Public Class frmMain
 
 #Region "Check vizrt connection / reconnect"
   Private WithEvents _checkSocketConnection As VizCommands.CheckSocketConnection
-
 
   Private Sub TimerVizrtConnection_Tick(sender As Object, e As EventArgs) Handles TimerVizrtConnection.Tick
     Try
@@ -1570,7 +1567,6 @@ Public Class frmMain
 
 #Region "Clock control"
   Private WithEvents _dlgClockControl As FormClockControl
-
 
   Private Sub ButtonClockManagement_Click(sender As Object, e As EventArgs) Handles ButtonClockManagement.Click
     Try
@@ -1631,7 +1627,6 @@ Public Class frmMain
     _frmOptaMatchStats = Nothing
   End Sub
 
-
   Private Sub SelectOptaStatsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectOptaStatsToolStripMenuItem.Click
     Try
       Me.Cursor = Cursors.WaitCursor
@@ -1649,7 +1644,6 @@ Public Class frmMain
 
   Private WithEvents _frmOptaFTPSync As New frmOptaFTPSync
 
-
   Private Sub SyncToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SyncToolStripMenuItem.Click
     Try
       _externalOptaSync = True
@@ -1659,7 +1653,6 @@ Public Class frmMain
       WriteToErrorLog(ex)
     End Try
   End Sub
-
 
   Private Sub _frmOptaFTPSync_Closed(sender As Object, e As EventArgs) Handles _frmOptaFTPSync.Closed
     Try
@@ -1701,7 +1694,7 @@ Public Class frmMain
 
   Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
     Try
-      If frmWaitForInput.ShowWaitDialog(Me, "Are you sure you want to close the app?", My.Application.Info.AssemblyName, MessageBoxButtons.YesNo) = DialogResult.No Then
+      If frmWaitForInput.ShowWaitDialog(Me, "Are you sure you want to close the app?", My.Application.Info.AssemblyName, MessageBoxButtons.YesNo, MessageBoxIcon.Error) = DialogResult.No Then
         e.Cancel = True
       End If
     Catch ex As Exception
@@ -1709,12 +1702,17 @@ Public Class frmMain
     End Try
   End Sub
 
-  Private Sub TableLayoutPanel2_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel2.Paint
+  Private Sub FixturesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FixturesToolStripMenuItem.Click
 
   End Sub
 
-  Private Sub FixturesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FixturesToolStripMenuItem.Click
+  Private Sub ToolStripButtonAbout_Click(sender As Object, e As EventArgs) Handles ToolStripButtonAbout.Click
+    Try
+      Dim dlg As New SplashScreenMain
+      dlg.ShowDialog(Me)
+    Catch ex As Exception
 
+    End Try
   End Sub
 #End Region
 End Class

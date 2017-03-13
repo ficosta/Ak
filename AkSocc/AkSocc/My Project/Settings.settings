@@ -9,7 +9,7 @@
       <Value Profile="(Default)">localhost</Value>
     </Setting>
     <Setting Name="VizrtPort" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">6100</Value>
+      <Value Profile="(Default)">6200</Value>
     </Setting>
     <Setting Name="LoggerHost" Type="System.String" Scope="User">
       <Value Profile="(Default)">localhost</Value>

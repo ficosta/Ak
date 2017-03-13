@@ -1,4 +1,9 @@
 ﻿Public NotInheritable Class SplashScreenMain
+  Private Sub SplashScreenMain_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
+    If e.KeyCode = Keys.Escape Then
+      Me.Close()
+    End If
+  End Sub
 
   'TODO: This form can easily be set as the splash screen for the application by going to the "Application" tab
   '  of the Project Designer ("Properties" under the "Project" menu).
@@ -32,4 +37,7 @@
     Copyright.Text = My.Application.Info.Copyright
   End Sub
 
+  Private Sub SplashScreenMain_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown, ApplicationTitle.MouseDown, Version.MouseDown, Copyright.MouseDown
+    Me.Close()
+  End Sub
 End Class

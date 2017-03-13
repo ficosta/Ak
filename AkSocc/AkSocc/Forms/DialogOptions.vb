@@ -59,6 +59,8 @@ Public Class DialogOptions
         Me.ComboBoxSceneVersion.Text = _graphicVersions(index).Name
       End If
 
+      Me.MetroCheckBoxUseOptaData.Checked = AppSettings.Instance.UseOptaData
+
       Me.TextBoxFTPServer.Text = AppSettings.Instance.OptaFTPServer
       Me.TextBoxFTPUser.Text = AppSettings.Instance.OptaFTPUser
       Me.TextBoxFTPPassword.Text = AppSettings.Instance.OptaFTPPassword
@@ -68,6 +70,8 @@ Public Class DialogOptions
       Me.TextBoxOptaSeasonId.Text = AppSettings.Instance.OptaSeasonID
 
       Me.MetroCheckBoxOptaAutoUpdate.Checked = AppSettings.Instance.OptaUpdateScores
+
+      Me.MetroCheckBoxOpenPlayerDescriptionOnSelection.Checked = AppSettings.Instance.Behaviour_OpenPlayerDescriptionOnSelection
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -83,11 +87,14 @@ Public Class DialogOptions
         End If
       End If
 
-      If Not FTPSyncManager.Instance.CheckFTPConnection(Me.TextBoxFTPServer.Text, 21, Me.TextBoxFTPUser.Text, Me.TextBoxFTPPassword.Text) Then
-        If frmWaitForInput.ShowWaitDialog(Me, "Could not connect to FTP server. Continue anyway?", "FTP connection", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
-          Return False
+      If Me.MetroCheckBoxUseOptaData.Checked Then
+        If Not FTPSyncManager.Instance.CheckFTPConnection(Me.TextBoxFTPServer.Text, 21, Me.TextBoxFTPUser.Text, Me.TextBoxFTPPassword.Text) Then
+          If frmWaitForInput.ShowWaitDialog(Me, "Could not connect to FTP server. Continue anyway?", "FTP connection", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
+            Return False
+          End If
         End If
       End If
+
 
       AppSettings.Instance.DataBasePath = Me.MetroTextBoxDataBase.Text
       AppSettings.Instance.OtherMatchesPath = Me.MetroTextBoxOtherMatchesFilePath.Text
@@ -113,6 +120,7 @@ Public Class DialogOptions
         GraphicVersions.Instance.SelectedGraphicVersion = version
       End If
 
+      AppSettings.Instance.UseOptaData = Me.MetroCheckBoxUseOptaData.Checked
 
       AppSettings.Instance.OptaFTPServer = Me.TextBoxFTPServer.Text
       AppSettings.Instance.OptaFTPUser = Me.TextBoxFTPUser.Text
@@ -123,6 +131,8 @@ Public Class DialogOptions
       AppSettings.Instance.OptaSeasonID = Me.TextBoxOptaSeasonId.Text
 
       AppSettings.Instance.OptaUpdateScores = Me.MetroCheckBoxOptaAutoUpdate.Checked
+
+      AppSettings.Instance.Behaviour_OpenPlayerDescriptionOnSelection = Me.MetroCheckBoxOpenPlayerDescriptionOnSelection.Checked
 
       AppSettings.Instance.Save()
     Catch ex As Exception

@@ -39,6 +39,8 @@ Public NotInheritable Class AppSettings
 
   Public Property UseLogger As Boolean = False
 
+  Public Property UseOptaData As Boolean = False
+
   Public Property OptaStatsTeamsDefinitionPath As String = "C:\teamOptaStats.xml"
   Public Property OptaStatsPlayersDefinitionPath As String = "C:\playerOptaStats.xml"
 
@@ -57,6 +59,11 @@ Public NotInheritable Class AppSettings
 
   Public Property OptaStatsTeam As New Opta_Term_Stats(OptaStatsTeamsDefinitionPath)
   Public Property OptaStatsPlayer As New Opta_Term_Stats(OptaStatsPlayersDefinitionPath)
+
+  'Behavious
+  Public Property Behaviour_OpenPlayerDescriptionOnSelection As Boolean = True
+
+
 
 #End Region
 
