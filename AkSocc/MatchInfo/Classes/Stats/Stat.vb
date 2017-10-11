@@ -49,7 +49,11 @@ Public Class Stat
         Case eDataType.IntValue
           Return CStr(_value)
         Case eDataType.PercentageValue
-          Return "%" & CStr(_value)
+          If Config.Instance.UseArabicNames Then
+            Return "%" & CStr(_value)
+          Else
+            Return CStr(_value) & "%"
+          End If
         Case Else
           Return CStr(_value)
       End Select

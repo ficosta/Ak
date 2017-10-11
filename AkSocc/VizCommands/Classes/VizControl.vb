@@ -1616,6 +1616,10 @@ Public Class VizControl
       'sAux = CStr(nPiLastCommand) & " " & siCommand & vbNullChar
       CiSocket.Send(sAux)
 
+      Dim delimiterChar As Char = vbnullchar
+      Dim out As Byte() = System.Text.Encoding.UTF8.GetBytes(siCommand + delimiterChar)
+      'CiSocket.send(out)
+
       'lTicks = Now.Ticks - lTicks : Debug.Print("CiSocket.Send " & siCommand & " " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
       RaiseEvent RawDataSent(sAux)
       Return nPiLastCommand

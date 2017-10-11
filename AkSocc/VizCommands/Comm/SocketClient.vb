@@ -198,6 +198,47 @@ Public Class SocketClient
 
   End Sub
 
+  Public Sub Send(ByVal bytes() As Byte)
+    Dim lTicks As Long = Now.Ticks
+    Try
+      If IsConnected() = False Then
+        RaiseEvent Connected(False)
+        RaiseEvent ConnectedEx(False, CPiTCPSocket.RemoteEndPoint)
+
+      Else
+        If CPiTCPSocket.Connected Then
+          'lTicks = Now.Ticks - lTicks : Debug.Print("IsConnected " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
+          '--Send the string data and block the thread until all data is sent
+          'CPiTCPSocket.Send(bytes, bytes.Length, SocketFlags.None)
+          'lTicks = Now.Ticks - lTicks : Debug.Print("Encoding " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
+
+          Dim nDataSent As Integer = 0
+          Dim nSize As Integer
+
+          While nDataSent < bytes.Length
+            nSize = Math.Min(Me.nPiPacketSize, bytes.Length - nDataSent)
+            nDataSent = nDataSent + CPiTCPSocket.Send(bytes, nDataSent, nSize, SocketFlags.None)
+            'lTicks = Now.Ticks - lTicks : Debug.Print("send loop step " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
+            RaiseEvent ActivityOutgoing()
+            'Application.DoEvents()
+          End While
+          'lTicks = Now.Ticks - lTicks : Debug.Print("DataSend " & data & " " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks
+        Else
+          Try
+            RaiseEvent Connected(False)
+            RaiseEvent ConnectedEx(False, CPiTCPSocket.RemoteEndPoint)
+            CPiTCPSocket.Disconnect(True)
+          Catch ex As Exception
+          End Try
+          CPiTCPSocket = Nothing
+        End If
+      End If
+    Catch ex As Exception
+
+    End Try
+
+  End Sub
+
   Public Sub Close()
     If IsConnected() = True Then
       CPiTCPSocket.Shutdown(SocketShutdown.Both)

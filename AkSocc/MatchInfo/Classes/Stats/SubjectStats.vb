@@ -73,7 +73,7 @@ Public Class SubjectStats
     End Get
   End Property
 
-  Private WithEvents _possession As New Stat("Possession", False, 0, eDataType.PercentageValue)
+  Private WithEvents _possession As New Stat("Possession", False, 0, "POSSESSION", eDataType.PercentageValue)
 
   Public ReadOnly Property Possession As Stat
     Get

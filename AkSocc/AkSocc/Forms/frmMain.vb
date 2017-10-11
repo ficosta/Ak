@@ -1324,9 +1324,13 @@ Public Class frmMain
     'End If
   End Sub
 
-  Private Sub _notifier_NewMessage(msg As GlobalNotifier.tyMessage) Handles _notifier.NewMessage
-    Try
 
+
+  Private Delegate Sub UpdateLabelInvoker(msg As GlobalNotifier.tyMessage)
+  Private Sub UpdateLabel(msg As GlobalNotifier.tyMessage)
+    If Me.InvokeRequired Then
+      Me.Invoke(New UpdateLabelInvoker(AddressOf UpdateLabel), msg)
+    Else
       Select Case msg.type
         Case GlobalNotifier.eMessageType.AppError
           Me.LabelLog.ForeColor = Color.DarkRed
@@ -1337,9 +1341,12 @@ Public Class frmMain
         Case GlobalNotifier.eMessageType.Warning
           Me.LabelLog.ForeColor = Color.DarkOrange
       End Select
-    Catch ex As Exception
+    End If
 
-    End Try
+  End Sub
+
+  Private Sub _notifier_NewMessage(msg As GlobalNotifier.tyMessage) Handles _notifier.NewMessage
+    UpdateLabel(msg)
   End Sub
 
   Private Sub ToolStripStatusLabelGetLoggerData_Click(sender As Object, e As EventArgs)

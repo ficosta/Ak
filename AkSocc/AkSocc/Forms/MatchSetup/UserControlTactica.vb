@@ -551,31 +551,32 @@ Public Class UserControlTactica
         Dim sNom As String = ""
         Dim bEntrenador As Boolean = False
 
+        If Not _team Is Nothing AndAlso Not _team.MatchPlayers Is Nothing Then
+          For index As Integer = 0 To _team.MatchPlayers.Count - 1
+            CPlayer = _team.MatchPlayers(index)
+            While .Rows.Count <= CPlayer.Formation_Pos
+              .Rows.Add("")
+            End While
+          Next
 
-        For index As Integer = 0 To _team.MatchPlayers.Count - 1
-          CPlayer = _team.MatchPlayers(index)
-          While .Rows.Count <= CPlayer.Formation_Pos
-            .Rows.Add("")
-          End While
-        Next
-
-        For index As Integer = 0 To _team.MatchPlayers.Count - 1
-          CPlayer = _team.MatchPlayers(index)
-          If CPlayer.Formation_Pos > 0 Then
-            CRow = .Rows(CPlayer.Formation_Pos - 1)
-            CRow.Cells(ColumnPlayersID.Index).Value = CPlayer.PlayerID
-            CRow.Cells(ColumnPlayersName.Index).Value = CPlayer.PlayerName
-            CRow.Cells(ColumnPlayersNumber.Index).Value = CPlayer.SquadNo
-            CRow.Cells(ColumnPlayersFormationPos.Index).Value = CPlayer.Formation_Pos
-            CRow.Cells(ColumnPlayerFormationX.Index).Value = CPlayer.Formation_X
-            CRow.Cells(ColumnPlayerFormationY.Index).Value = CPlayer.Formation_Y
-            If CRow.Index < 11 Then
-              CRow.DefaultCellStyle.ForeColor = Color.Black
-            Else
-              CRow.DefaultCellStyle.ForeColor = Color.LightGray
+          For index As Integer = 0 To _team.MatchPlayers.Count - 1
+            CPlayer = _team.MatchPlayers(index)
+            If CPlayer.Formation_Pos > 0 Then
+              CRow = .Rows(CPlayer.Formation_Pos - 1)
+              CRow.Cells(ColumnPlayersID.Index).Value = CPlayer.PlayerID
+              CRow.Cells(ColumnPlayersName.Index).Value = CPlayer.PlayerName
+              CRow.Cells(ColumnPlayersNumber.Index).Value = CPlayer.SquadNo
+              CRow.Cells(ColumnPlayersFormationPos.Index).Value = CPlayer.Formation_Pos
+              CRow.Cells(ColumnPlayerFormationX.Index).Value = CPlayer.Formation_X
+              CRow.Cells(ColumnPlayerFormationY.Index).Value = CPlayer.Formation_Y
+              If CRow.Index < 11 Then
+                CRow.DefaultCellStyle.ForeColor = Color.Black
+              Else
+                CRow.DefaultCellStyle.ForeColor = Color.LightGray
+              End If
             End If
-          End If
-        Next
+          Next
+        End If
       End With
     Catch ex As Exception
       WriteToErrorLog(ex)

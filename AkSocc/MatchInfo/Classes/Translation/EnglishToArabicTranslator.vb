@@ -79,7 +79,7 @@ Public Class EnglishToArabicTranslator
         End If
       End If
     Catch err As Exception
-      Throw err
+      ' Throw err
     End Try
     Return (output)
   End Function

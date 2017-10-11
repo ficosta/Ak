@@ -68,6 +68,7 @@ Public Class CheckSocketConnection
       Else
         _backWorker.ReportProgress(eSocketCheckState.Disconnected)
       End If
+      sck.Disconnect(False)
     Catch ex As Exception
       _backWorker.ReportProgress(eSocketCheckState.Error)
       LastErrorCode = ex.HResult
