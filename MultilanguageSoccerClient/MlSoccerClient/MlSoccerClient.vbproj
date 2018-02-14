@@ -1,0 +1,639 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{35DDAF7F-0630-47FD-BA9E-D55098CB9E9C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Sub Main</StartupObject>
+    <RootNamespace>MlSoccerClient</RootNamespace>
+    <AssemblyName>MlSoccerClient</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>MlSoccerClient.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>MlSoccerClient.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Football 2-50-grey.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\AppSettings.vb" />
+    <Compile Include="Classes\Clock\ClockControl.vb" />
+    <Compile Include="Classes\Clock\ClockSubstitution.vb" />
+    <Compile Include="Classes\ErrorHandling.vb" />
+    <Compile Include="Classes\Clock\Graphics\ClockGenericStraps.vb" />
+    <Compile Include="Classes\Clock\Graphics\ClockMatchStatistics.vb" />
+    <Compile Include="Classes\Clock\Graphics\ClockOtherScores.vb" />
+    <Compile Include="Classes\Clock\Graphics\ClockPenalties.vb" />
+    <Compile Include="Classes\Clock\Graphics\ClockPlayerCard.vb" />
+    <Compile Include="Classes\Clock\Graphics\ClockStrapsWithIcon.vb" />
+    <Compile Include="Classes\Clock\Graphics\ClockSubstitutes.vb" />
+    <Compile Include="Classes\Clock\ControlScoreSingleGoal.vb" />
+    <Compile Include="Classes\GlobalNotifier.vb" />
+    <Compile Include="Classes\GraphicGroups\Graphics2WayBoxes.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsAsItStands.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsBugHTFT.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsBugs.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsCommons.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsInterviews.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsOptaTop5.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsPlayerNameNoNumber.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsBugScore.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsTeamCaptions.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsReferee.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsScoreLine.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsTeamStats.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsCrawlFreeText.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsCrawlResults.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsMatchIdent.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsFullFramers.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsCrawlTeam.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsReporter.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsPlayerStats.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsPlayerName.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsTeamStaff.vb" />
+    <Compile Include="Classes\GraphicGroups\GraphicsTeamStatsL3.vb" />
+    <Compile Include="Classes\Graphics\GraphicScoreLine.vb" />
+    <Compile Include="Classes\GraphicVersions\GraphicVersion.vb" />
+    <Compile Include="Classes\GraphicVersions\GraphicVersions.vb" />
+    <Compile Include="Classes\KeyCapture.vb" />
+    <Compile Include="Classes\Logger\LoggerComm.vb" />
+    <Compile Include="Classes\Prototype\Graphic.vb" />
+    <Compile Include="Classes\Prototype\GraphicStep.vb" />
+    <Compile Include="Classes\Prototype\GraphicSteps.vb" />
+    <Compile Include="Classes\Prototype\GraphicGroup.vb" />
+    <Compile Include="Classes\RegistryHelper.vb" />
+    <Compile Include="Controls\TeamViewer.Designer.vb">
+      <DependentUpon>TeamViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TeamViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutBoxAk.Designer.vb">
+      <DependentUpon>AboutBoxAk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AboutBoxAk.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Auxiliar forms\frmWaitForInput.Designer.vb">
+      <DependentUpon>frmWaitForInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Auxiliar forms\frmWaitForInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Choose\FormChooseMulti.Designer.vb">
+      <DependentUpon>FormChooseMulti.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Choose\FormChooseMulti.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Classification\FormClassification.Designer.vb">
+      <DependentUpon>FormClassification.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Classification\FormClassification.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clock\FormAddedTime.Designer.vb">
+      <DependentUpon>FormAddedTime.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\FormAddedTime.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clock\FormClockControl.Designer.vb">
+      <DependentUpon>FormClockControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\FormClockControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clock\FormPeriodControl_new.Designer.vb">
+      <DependentUpon>FormPeriodControl_new.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\FormPeriodControl_new.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MatchEvents\FormMatchEvents.Designer.vb">
+      <DependentUpon>FormMatchEvents.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MatchEvents\FormMatchEvents.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Classes\COptaF1Helper.vb" />
+    <Compile Include="Opta\Classes\COptaF26Helper.vb" />
+    <Compile Include="Opta\Classes\COptaF9Helper.vb" />
+    <Compile Include="Opta\Classes\COptaFile.vb" />
+    <Compile Include="Opta\Classes\COptaLink.vb" />
+    <Compile Include="Opta\Classes\OptaTermStats.vb" />
+    <Compile Include="Opta\Controls\OptaTeamViewer.designer.vb">
+      <DependentUpon>OptaTeamViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Controls\OptaTeamViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Opta\Downloader\Classes\Download.vb" />
+    <Compile Include="Opta\Downloader\Classes\Downloads.vb" />
+    <Compile Include="Opta\Downloader\Controls\FileDownloader.designer.vb">
+      <DependentUpon>FileDownloader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Downloader\Controls\FileDownloader.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Opta\Downloader\Classes\FTPSyncManager.vb" />
+    <Compile Include="Opta\Downloader\Controls\MultiFileDownloader.designer.vb">
+      <DependentUpon>MultiFileDownloader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Downloader\Controls\MultiFileDownloader.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmLocalFixtures.designer.vb">
+      <DependentUpon>frmLocalFixtures.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmLocalFixtures.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaFixtures.designer.vb">
+      <DependentUpon>frmOptaFixtures.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaFixtures.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaFTPSync.Designer.vb">
+      <DependentUpon>frmOptaFTPSync.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaFTPSync.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaStats.Designer.vb">
+      <DependentUpon>frmOptaStats.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaStats.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaTeams.designer.vb">
+      <DependentUpon>frmOptaTeams.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaTeams.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaMatchStats.designer.vb">
+      <DependentUpon>frmOptaMatchStats.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaMatchStats.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Penalties\FormPenalties.Designer.vb">
+      <DependentUpon>frmPenalties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Penalties\frmPenalties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Goals\frmGoal.Designer.vb">
+      <DependentUpon>frmGoal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Goals\frmGoal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Goals\frmGoals.Designer.vb">
+      <DependentUpon>frmGoals.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Goals\frmGoals.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MatchSelector\FormMatchSelector.Designer.vb">
+      <DependentUpon>FormMatchSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MatchSelector\FormMatchSelector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Auxiliar forms\FormWaitingForDirector.Designer.vb">
+      <DependentUpon>FormWaitingForDirector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Auxiliar forms\FormWaitingForDirector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Choose\FormChoose.Designer.vb">
+      <DependentUpon>FormChoose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Choose\FormChoose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Choose\UserControlChoose.Designer.vb">
+      <DependentUpon>UserControlChoose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Choose\UserControlChoose.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Clock\FormOvewriteClock.Designer.vb">
+      <DependentUpon>FormOvewriteClock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\FormOvewriteClock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clock\FormPeriodControl.Designer.vb">
+      <DependentUpon>FormPeriodControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\FormPeriodControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clock\UCPeriod.Designer.vb">
+      <DependentUpon>UCPeriod.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clock\UCPeriod.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DialogOptions.Designer.vb">
+      <DependentUpon>DialogOptions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogOptions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MatchSetup\FormMatchSetup.Designer.vb">
+      <DependentUpon>FormMatchSetup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MatchSetup\FormMatchSetup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MatchSetup\SerializableMatchInfo.vb" />
+    <Compile Include="Forms\MatchSetup\TeamImageInfos.vb" />
+    <Compile Include="Forms\MatchSetup\UCTeamMatchSetup.Designer.vb">
+      <DependentUpon>UCTeamMatchSetup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MatchSetup\UCTeamMatchSetup.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\MatchSetup\UserControlTactica.Designer.vb">
+      <DependentUpon>UserControlTactica.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MatchSetup\UserControlTactica.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaPlayerLink.Designer.vb">
+      <DependentUpon>frmOptaPlayerLink.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opta\Forms\frmOptaPlayerLink.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OtherMatches\UCOtherMatch.designer.vb">
+      <DependentUpon>UCOtherMatch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OtherMatches\UCOtherMatch.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SceneLoad\FormLoadScenes.Designer.vb">
+      <DependentUpon>FormLoadScenes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SceneLoad\FormLoadScenes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SplashScreenMain.Designer.vb">
+      <DependentUpon>SplashScreenMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SplashScreenMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitution.Designer.vb">
+      <DependentUpon>FormSubstitution.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitution.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitutionPreSelection.Designer.vb">
+      <DependentUpon>FormSubstitutionPreSelection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitutionPreSelection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitutions.Designer.vb">
+      <DependentUpon>FormSubstitutions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Substitutions\FormSubstitutions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Auxiliar forms\frmWait.Designer.vb">
+      <DependentUpon>frmWait.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Auxiliar forms\frmWait.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.vb" />
+    <Compile Include="MFunctions.vb" />
+    <Compile Include="Multilanguage\MTranslator.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Controls\PlayerViewer.Designer.vb">
+      <DependentUpon>PlayerViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PlayerViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\OtherMatches\Classification\Classification.vb" />
+    <Compile Include="Forms\OtherMatches\Classification\ClassificationForMatchDay.vb" />
+    <Compile Include="Forms\OtherMatches\frmOtherMatches.Designer.vb">
+      <DependentUpon>frmOtherMatches.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OtherMatches\frmOtherMatches.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OtherMatches\OtherMatch.vb" />
+    <Compile Include="Forms\OtherMatches\OtherMatchDays.vb" />
+    <Compile Include="Forms\OtherMatches\MatchDay.vb" />
+    <Compile Include="Forms\OtherMatches\Classification\TeamClassification.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\TeamViewer.resx">
+      <DependentUpon>TeamViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AboutBoxAk.resx">
+      <DependentUpon>AboutBoxAk.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Auxiliar forms\frmWaitForInput.resx">
+      <DependentUpon>frmWaitForInput.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Choose\FormChooseMulti.resx">
+      <DependentUpon>FormChooseMulti.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Choose\FormChoose.resx">
+      <DependentUpon>FormChoose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Choose\UserControlChoose.resx">
+      <DependentUpon>UserControlChoose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Classification\FormClassification.resx">
+      <DependentUpon>FormClassification.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\FormAddedTime.resx">
+      <DependentUpon>FormAddedTime.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\FormClockControl.resx">
+      <DependentUpon>FormClockControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\FormOvewriteClock.resx">
+      <DependentUpon>FormOvewriteClock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\FormPeriodControl_new.resx">
+      <DependentUpon>FormPeriodControl_new.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\FormPeriodControl.resx">
+      <DependentUpon>FormPeriodControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clock\UCPeriod.resx">
+      <DependentUpon>UCPeriod.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DialogOptions.resx">
+      <DependentUpon>DialogOptions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MatchEvents\FormMatchEvents.resx">
+      <DependentUpon>FormMatchEvents.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Goals\frmGoal.resx">
+      <DependentUpon>frmGoal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Goals\frmGoals.resx">
+      <DependentUpon>frmGoals.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MatchSelector\FormMatchSelector.resx">
+      <DependentUpon>FormMatchSelector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MatchSetup\FormMatchSetup.resx">
+      <DependentUpon>FormMatchSetup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MatchSetup\UCTeamMatchSetup.resx">
+      <DependentUpon>UCTeamMatchSetup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MatchSetup\UserControlTactica.resx">
+      <DependentUpon>UserControlTactica.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Controls\OptaTeamViewer.resx">
+      <DependentUpon>OptaTeamViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Downloader\Controls\FileDownloader.resx">
+      <DependentUpon>FileDownloader.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Downloader\Controls\MultiFileDownloader.resx">
+      <DependentUpon>MultiFileDownloader.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmLocalFixtures.resx">
+      <DependentUpon>frmLocalFixtures.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmOptaFixtures.resx">
+      <DependentUpon>frmOptaFixtures.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmOptaFTPSync.resx">
+      <DependentUpon>frmOptaFTPSync.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmOptaStats.resx">
+      <DependentUpon>frmOptaStats.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmOptaTeams.resx">
+      <DependentUpon>frmOptaTeams.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmOptaMatchStats.resx">
+      <DependentUpon>frmOptaMatchStats.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opta\Forms\frmOptaPlayerLink.resx">
+      <DependentUpon>frmOptaPlayerLink.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OtherMatches\UCOtherMatch.resx">
+      <DependentUpon>UCOtherMatch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Penalties\frmPenalties.resx">
+      <DependentUpon>frmPenalties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SceneLoad\FormLoadScenes.resx">
+      <DependentUpon>FormLoadScenes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SplashScreenMain.resx">
+      <DependentUpon>SplashScreenMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Substitutions\FormSubstitution.resx">
+      <DependentUpon>FormSubstitution.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Substitutions\FormSubstitutionPreSelection.resx">
+      <DependentUpon>FormSubstitutionPreSelection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Substitutions\FormSubstitutions.resx">
+      <DependentUpon>FormSubstitutions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Auxiliar forms\FormWaitingForDirector.resx">
+      <DependentUpon>FormWaitingForDirector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Auxiliar forms\frmWait.resx">
+      <DependentUpon>frmWait.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PlayerViewer.resx">
+      <DependentUpon>PlayerViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OtherMatches\frmOtherMatches.resx">
+      <DependentUpon>frmOtherMatches.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CAMP_PER_OPTA_OK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AkSocc\MatchInfo\MatchInfo.vbproj">
+      <Project>{358b286c-8a11-4853-8ea0-415bcc4002cd}</Project>
+      <Name>MatchInfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AkSocc\VizCommands\VizCommands.vbproj">
+      <Project>{0bb903ea-a74a-44c4-81e5-0281ad804781}</Project>
+      <Name>VizCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MultilanguageTools\MultilanguageTools.vbproj">
+      <Project>{6d02d801-7f48-4f6f-9bf9-b63d8ded8fd6}</Project>
+      <Name>MultilanguageTools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS_Triangle_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS_Triangle_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS_Triangle_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS_Triangle_down.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Versions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconApp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tuboc_big_black.png" />
+    <None Include="Resources\tuboc_big_black.jpg" />
+    <None Include="Resources\TB.png" />
+    <None Include="Resources\alkamel_2012.jpg" />
+    <Content Include="Resources\Football 2-50-green.ico" />
+    <Content Include="Resources\Football 2-50-grey.ico" />
+    <Content Include="Resources\Football 2-50-orange.ico" />
+    <Content Include="Resources\Football 2-50.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

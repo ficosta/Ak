@@ -189,5 +189,35 @@ Public Class UCPreview
     End Try
   End Sub
 
+
+#End Region
+
+
+#Region "Parameters context menu"
+  Private _dataGridViewParametersMouseRow As Integer = -1
+
+  Private Sub CopyParameterNameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyParameterNameToolStripMenuItem.Click
+    Try
+      If _dataGridViewParametersMouseRow >= 0 Then
+        Dim dr As DataGridViewRow = Me.DataGridViewParameters.Rows(_dataGridViewParametersMouseRow)
+        Clipboard.SetText(dr.Cells("name").Value)
+      End If
+    Catch ex As Exception
+    End Try
+  End Sub
+
+  Private Sub CopyParameterValueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyParameterValueToolStripMenuItem.Click
+    Try
+      If _dataGridViewParametersMouseRow >= 0 Then
+        Dim dr As DataGridViewRow = Me.DataGridViewParameters.Rows(_dataGridViewParametersMouseRow)
+        Clipboard.SetText(dr.Cells("value").Value)
+      End If
+    Catch ex As Exception
+    End Try
+  End Sub
+
+  Private Sub DataGridViewParameters_CellMouseEnter(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewParameters.CellMouseEnter
+    _dataGridViewParametersMouseRow = e.RowIndex
+  End Sub
 #End Region
 End Class

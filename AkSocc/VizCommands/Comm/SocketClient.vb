@@ -162,7 +162,6 @@ Public Class SocketClient
       If IsConnected() = False Then
         RaiseEvent Connected(False)
         RaiseEvent ConnectedEx(False, CPiTCPSocket.RemoteEndPoint)
-
       Else
         If CPiTCPSocket.Connected Then
           'lTicks = Now.Ticks - lTicks : Debug.Print("IsConnected " & CInt(lTicks / TimeSpan.TicksPerMillisecond)) : lTicks = Now.Ticks

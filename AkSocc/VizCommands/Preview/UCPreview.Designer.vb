@@ -22,6 +22,10 @@ Partial Class UCPreview
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
+    Me.components = New System.ComponentModel.Container()
+    Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.SplitContainerPreview = New System.Windows.Forms.SplitContainer()
     Me.TableLayoutPanelPreview = New System.Windows.Forms.TableLayoutPanel()
     Me.LabelTitle = New System.Windows.Forms.Label()
@@ -29,6 +33,9 @@ Partial Class UCPreview
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.DataGridViewParameters = New MetroFramework.Controls.MetroGrid()
     Me.ButtonPreview = New System.Windows.Forms.Button()
+    Me.ContextMenuStripParameters = New System.Windows.Forms.ContextMenuStrip(Me.components)
+    Me.CopyParameterNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.CopyParameterValueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
     CType(Me.SplitContainerPreview, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SplitContainerPreview.Panel1.SuspendLayout()
     Me.SplitContainerPreview.Panel2.SuspendLayout()
@@ -37,6 +44,7 @@ Partial Class UCPreview
     CType(Me.PictureBoxCanvas, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel2.SuspendLayout()
     CType(Me.DataGridViewParameters, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.ContextMenuStripParameters.SuspendLayout()
     Me.SuspendLayout()
     '
     'SplitContainerPreview
@@ -114,11 +122,47 @@ Partial Class UCPreview
     '
     Me.DataGridViewParameters.AllowUserToAddRows = False
     Me.DataGridViewParameters.AllowUserToDeleteRows = False
+    Me.DataGridViewParameters.AllowUserToResizeRows = False
+    Me.DataGridViewParameters.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    Me.DataGridViewParameters.BorderStyle = System.Windows.Forms.BorderStyle.None
+    Me.DataGridViewParameters.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+    Me.DataGridViewParameters.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+    DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
+    DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.DataGridViewParameters.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
     Me.DataGridViewParameters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
     Me.TableLayoutPanel2.SetColumnSpan(Me.DataGridViewParameters, 2)
+    Me.DataGridViewParameters.ContextMenuStrip = Me.ContextMenuStripParameters
+    DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
+    DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+    Me.DataGridViewParameters.DefaultCellStyle = DataGridViewCellStyle2
     Me.DataGridViewParameters.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.DataGridViewParameters.EnableHeadersVisualStyles = False
+    Me.DataGridViewParameters.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    Me.DataGridViewParameters.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
     Me.DataGridViewParameters.Location = New System.Drawing.Point(3, 3)
     Me.DataGridViewParameters.Name = "DataGridViewParameters"
+    Me.DataGridViewParameters.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+    DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
+    DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.DataGridViewParameters.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+    Me.DataGridViewParameters.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+    Me.DataGridViewParameters.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
     Me.DataGridViewParameters.Size = New System.Drawing.Size(816, 130)
     Me.DataGridViewParameters.TabIndex = 8
     '
@@ -130,6 +174,24 @@ Partial Class UCPreview
     Me.ButtonPreview.Size = New System.Drawing.Size(114, 24)
     Me.ButtonPreview.TabIndex = 9
     Me.ButtonPreview.Text = "Preview"
+    '
+    'ContextMenuStripParameters
+    '
+    Me.ContextMenuStripParameters.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyParameterNameToolStripMenuItem, Me.CopyParameterValueToolStripMenuItem})
+    Me.ContextMenuStripParameters.Name = "ContextMenuStripParameters"
+    Me.ContextMenuStripParameters.Size = New System.Drawing.Size(193, 48)
+    '
+    'CopyParameterNameToolStripMenuItem
+    '
+    Me.CopyParameterNameToolStripMenuItem.Name = "CopyParameterNameToolStripMenuItem"
+    Me.CopyParameterNameToolStripMenuItem.Size = New System.Drawing.Size(192, 22)
+    Me.CopyParameterNameToolStripMenuItem.Text = "Copy parameter name"
+    '
+    'CopyParameterValueToolStripMenuItem
+    '
+    Me.CopyParameterValueToolStripMenuItem.Name = "CopyParameterValueToolStripMenuItem"
+    Me.CopyParameterValueToolStripMenuItem.Size = New System.Drawing.Size(192, 22)
+    Me.CopyParameterValueToolStripMenuItem.Text = "Copy parameter value"
     '
     'UCPreview
     '
@@ -147,6 +209,7 @@ Partial Class UCPreview
     CType(Me.PictureBoxCanvas, System.ComponentModel.ISupportInitialize).EndInit()
     Me.TableLayoutPanel2.ResumeLayout(False)
     CType(Me.DataGridViewParameters, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.ContextMenuStripParameters.ResumeLayout(False)
     Me.ResumeLayout(False)
 
   End Sub
@@ -158,4 +221,7 @@ Partial Class UCPreview
   Friend WithEvents DataGridViewParameters As MetroFramework.Controls.MetroGrid
   Friend WithEvents ButtonPreview As System.Windows.Forms.Button
   Friend WithEvents PictureBoxCanvas As System.Windows.Forms.PictureBox
+  Friend WithEvents ContextMenuStripParameters As System.Windows.Forms.ContextMenuStrip
+  Friend WithEvents CopyParameterNameToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents CopyParameterValueToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
