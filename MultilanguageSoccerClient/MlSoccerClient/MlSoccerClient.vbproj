@@ -132,11 +132,16 @@
     <Compile Include="Classes\GraphicVersions\GraphicVersions.vb" />
     <Compile Include="Classes\KeyCapture.vb" />
     <Compile Include="Classes\Logger\LoggerComm.vb" />
+    <Compile Include="Classes\NewGraphics.vb" />
     <Compile Include="Classes\Prototype\Graphic.vb" />
     <Compile Include="Classes\Prototype\GraphicStep.vb" />
     <Compile Include="Classes\Prototype\GraphicSteps.vb" />
     <Compile Include="Classes\Prototype\GraphicGroup.vb" />
     <Compile Include="Classes\RegistryHelper.vb" />
+    <Compile Include="Classes\TubocGraphics\1Subject1Data.vb" />
+    <Compile Include="Classes\TubocGraphics\GraphicData.vb" />
+    <Compile Include="Classes\TubocGraphics\ScoreLine.vb" />
+    <Compile Include="Classes\TubocGraphics\TubocGraphic.vb" />
     <Compile Include="Controls\TeamViewer.Designer.vb">
       <DependentUpon>TeamViewer.vb</DependentUpon>
     </Compile>

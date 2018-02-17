@@ -27,6 +27,8 @@ Public Class CheckSocketConnection
 
   Public Function CheckConnection(host As String, port As Integer) As Boolean
     Try
+      Return True
+
       If _backWorker Is Nothing Then
         _backWorker = New BackgroundWorker
         _backWorker.WorkerSupportsCancellation = False

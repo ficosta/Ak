@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Reflection
 
 Public Class SubjectStats
   Implements INotifyPropertyChanged
@@ -190,6 +191,38 @@ Public Class SubjectStats
 
 
   Public Property StatBag As New List(Of Stat) From {Me.GoalStat, Me.ShotsOn, Me.Shots, Me.Corners, Me.Offsides, Me.WoodHits, Me.YellowCards, Me.RedCards, Me.Possession, Me.Formation_Pos, Me.Formation_X, Me.Formation_Y, Me.Saves, Me.Fouls, Me.Assis}
+
+  Public Function GetPropertyValue(ByVal obj As Object, ByVal PropName As String) As Object
+    Dim objType As Type = obj.GetType()
+    Dim pInfo As System.Reflection.PropertyInfo = objType.GetProperty(PropName)
+    Dim PropValue As Object = pInfo.GetValue(obj, Reflection.BindingFlags.GetProperty, Nothing, Nothing, Nothing)
+    Return PropValue
+  End Function
+
+  Public Function GetStat(name As String) As Stat
+    Return Me.GetPropertyValue(Me, name)
+  End Function
+
+  Public Shared Function GetStatNames() As List(Of String)
+    Dim res As New List(Of String)
+    Try
+      Dim myPropertyInfo() As PropertyInfo
+      ' Get the properties of 'Type' class object.
+      Dim aux As New SubjectStats
+      
+      myPropertyInfo = aux.GetType().GetProperties()
+      Console.WriteLine("Properties of System.Type are:")
+      Dim i As Integer
+      For i = 0 To myPropertyInfo.Length - 1
+        If myPropertyInfo(i).PropertyType.ToString = "MatchInfo.Stat" Then
+          res.Add(myPropertyInfo(i).Name())
+        End If
+      Next i
+    Catch ex As Exception
+
+    End Try
+    Return res
+  End Function
 
 
   Public Sub New()

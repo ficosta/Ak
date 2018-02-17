@@ -44,6 +44,7 @@ Partial Class DialogOptions
     Me.MetroButtonDefaultkitsPath = New System.Windows.Forms.Button()
     Me.MetroLabel3 = New System.Windows.Forms.Label()
     Me.MetroLabel4 = New System.Windows.Forms.Label()
+    Me.MetroCheckBoxUseMultiLanguage = New MetroFramework.Controls.MetroCheckBox()
     Me.TabPage2 = New MetroFramework.Controls.MetroTabPage()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
     Me.MetroLabel2 = New System.Windows.Forms.Label()
@@ -89,7 +90,6 @@ Partial Class DialogOptions
     Me.OpenFileDialogDataBase = New System.Windows.Forms.OpenFileDialog()
     Me.OpenFileDialogXML = New System.Windows.Forms.OpenFileDialog()
     Me.FolderBrowserDialogPaths = New System.Windows.Forms.FolderBrowserDialog()
-    Me.MetroCheckBoxUseMultiLanguage = New MetroFramework.Controls.MetroCheckBox()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.TabControlOptions.SuspendLayout()
     Me.TabPage1.SuspendLayout()
@@ -363,6 +363,17 @@ Partial Class DialogOptions
     Me.MetroLabel4.TabIndex = 12
     Me.MetroLabel4.Text = "Default kits path"
     Me.MetroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'MetroCheckBoxUseMultiLanguage
+    '
+    Me.MetroCheckBoxUseMultiLanguage.AutoSize = True
+    Me.MetroCheckBoxUseMultiLanguage.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.MetroCheckBoxUseMultiLanguage.Location = New System.Drawing.Point(158, 123)
+    Me.MetroCheckBoxUseMultiLanguage.Name = "MetroCheckBoxUseMultiLanguage"
+    Me.MetroCheckBoxUseMultiLanguage.Size = New System.Drawing.Size(563, 24)
+    Me.MetroCheckBoxUseMultiLanguage.TabIndex = 13
+    Me.MetroCheckBoxUseMultiLanguage.Text = "Multilanguage output"
+    Me.MetroCheckBoxUseMultiLanguage.UseSelectable = True
     '
     'TabPage2
     '
@@ -913,17 +924,6 @@ Partial Class DialogOptions
     'OpenFileDialogXML
     '
     Me.OpenFileDialogXML.FileName = "Matches file path"
-    '
-    'MetroCheckBoxUseMultiLanguage
-    '
-    Me.MetroCheckBoxUseMultiLanguage.AutoSize = True
-    Me.MetroCheckBoxUseMultiLanguage.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.MetroCheckBoxUseMultiLanguage.Location = New System.Drawing.Point(158, 123)
-    Me.MetroCheckBoxUseMultiLanguage.Name = "MetroCheckBoxUseMultiLanguage"
-    Me.MetroCheckBoxUseMultiLanguage.Size = New System.Drawing.Size(563, 24)
-    Me.MetroCheckBoxUseMultiLanguage.TabIndex = 13
-    Me.MetroCheckBoxUseMultiLanguage.Text = "Multilanguage output"
-    Me.MetroCheckBoxUseMultiLanguage.UseSelectable = True
     '
     'DialogOptions
     '

@@ -64,6 +64,7 @@ Public Class frmMain
 #Region "Form events"
   Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     Me.LabelAppVersion.Text = "v " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "   "
+    PopulateStatList()
   End Sub
 
   Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
@@ -90,6 +91,7 @@ Public Class frmMain
     Me.Cursor = Cursors.Default
 
   End Sub
+
 #End Region
 
 #Region "Initialize functions"
@@ -102,40 +104,61 @@ Public Class frmMain
     Me.UpdateStatusLabel()
   End Sub
 
-  Private Sub InitRender()
+  Private Sub Connectrender()
     Try
-      If _checkSocketConnection Is Nothing Then
-        _checkSocketConnection = New CheckSocketConnection
-        _checkSocketConnection.CheckConnection(AppSettings.Instance.VizrtHost, AppSettings.Instance.VizrtPort)
-      ElseIf _checkSocketConnection.LastSocketState = CheckSocketConnection.eSocketCheckState.Connected Then
-        'the connection is good
-        If Not _vizControl Is Nothing Then _vizControl.CloseSockets()
-        Me.UpdateStatusLabel()
-        _vizControl = New VizCommands.VizControl
-        _vizControl.Config = New VizCommands.tyConfigVizrt
-        _vizControl.Config.TCPHost = AppSettings.Instance.VizrtHost
-        _vizControl.Config.TCPPort = AppSettings.Instance.VizrtPort
-        _vizControl.Config.SceneBasePath = AppSettings.Instance.ScenePath
-        _vizControl.InitializeSockets()
+      Task.Run(Sub()
+                 If Not _vizControl Is Nothing Then _vizControl.CloseSockets()
+                 Me.UpdateStatusLabel()
+                 _vizControl = New VizCommands.VizControl
+                 _vizControl.Config = New VizCommands.tyConfigVizrt
+                 _vizControl.Config.TCPHost = AppSettings.Instance.VizrtHost
+                 _vizControl.Config.TCPPort = AppSettings.Instance.VizrtPort
+                 _vizControl.Config.SceneBasePath = AppSettings.Instance.ScenePath
+                 _vizControl.InitializeSockets()
 
-        Dim pvwConfig As New VizCommands.tyConfigVizrt
-        pvwConfig.TCPHost = AppSettings.Instance.VizrtHost
-        pvwConfig.TCPPort = AppSettings.Instance.VizrtPreviewPort
-        pvwConfig.SceneBasePath = AppSettings.Instance.ScenePath
+                 If _vizControl.SocketStateTCP = eSocketState.Connected Then
+                   Dim pvwConfig As New VizCommands.tyConfigVizrt
+                   pvwConfig.TCPHost = AppSettings.Instance.VizrtHost
+                   pvwConfig.TCPPort = AppSettings.Instance.VizrtPreviewPort
+                   pvwConfig.SceneBasePath = AppSettings.Instance.ScenePath
 
-        _previewControl = New VizCommands.PreviewControl(pvwConfig, AppSettings.Instance.PreviewLocalPath, AppSettings.Instance.PreviewRemotePath)
-        '_previewControl = Nothing
+                   _previewControl = New VizCommands.PreviewControl(pvwConfig, AppSettings.Instance.PreviewLocalPath, AppSettings.Instance.PreviewRemotePath)
+                   '_previewControl = Nothing
 
-        _clockControl.VizControl = _vizControl
-      Else
-        'no connection or we dind't check it out yet!
-        If TimerVizrtConnection.Enabled = True Then
-          'we are already on it, nothing to do
+                   _clockControl.VizControl = _vizControl
+                 End If
+                 Me.UpdateStatusLabel()
+               End Sub)
+
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+
+  Private Sub InitRender(Optional checkForConnectionStatus As Boolean = False)
+    Try
+      If checkForConnectionStatus Then
+        If _checkSocketConnection Is Nothing Then
+          _checkSocketConnection = New CheckSocketConnection
+          _checkSocketConnection.CheckConnection(AppSettings.Instance.VizrtHost, AppSettings.Instance.VizrtPort)
+        ElseIf _checkSocketConnection.LastSocketState = CheckSocketConnection.eSocketCheckState.Connected Then
+          'the connection is good
+          Me.Connectrender()
         Else
-          TimerVizrtConnection.Interval = 5000
-          TimerVizrtConnection.Enabled = True
+          'no connection or we dind't check it out yet!
+          If TimerVizrtConnection.Enabled = True Then
+            'we are already on it, nothing to do
+          Else
+            TimerVizrtConnection.Interval = 5000
+            TimerVizrtConnection.Enabled = True
+          End If
         End If
+      Else
+        'just try
+        Me.Connectrender()
       End If
+
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -388,44 +411,49 @@ Public Class frmMain
 #End Region
 
 #Region "Status label"
+  Delegate Sub UpdateStatusLabelCallback()
   Private Sub UpdateStatusLabel()
     Try
-      If _vizControl Is Nothing Then
-        Me.LabelVizEngine.BackColor = Color.Red
+      If Me.InvokeRequired Then
+        Me.Invoke(New UpdateStatusLabelCallback(AddressOf UpdateStatusLabel))
       Else
-        Select Case _vizControl.SocketStateTCP
-          Case VizCommands.eSocketState.Connected
-            Me.LabelVizEngine.BackColor = Color.Green
-          Case VizCommands.eSocketState.Connecting
-            Me.LabelVizEngine.BackColor = Color.Orange
-          Case VizCommands.eSocketState.Disconnected
-            Me.LabelVizEngine.BackColor = Color.Red
-          Case VizCommands.eSocketState.ErrorState
-            Me.LabelVizEngine.BackColor = Color.Red
-        End Select
-      End If
-      Me.LabelGraphicVersion.Text = GraphicVersions.Instance.SelectedGraphicVersion.Name
-      If AppSettings.Instance.UseOptaData Then
-        If _match Is Nothing Then
-          Me.ButtonOptaID.Text = "NO MATCH"
-          ButtonOptaID.Enabled = False
-          Me.ButtonOptaID.BackColor = Color.LightGray
-        ElseIf _match.optaID > 0 Then
-          Me.ButtonOptaID.Text = "OPTA ID " & _match.optaID
-          Me.ButtonOptaID.BackColor = Color.LightGreen
-          ButtonOptaID.Enabled = True
+        If _vizControl Is Nothing Then
+          Me.LabelVizEngine.BackColor = Color.Red
         Else
-          Me.ButtonOptaID.Text = "undefined OPTA ID"
-          Me.ButtonOptaID.BackColor = Color.LightSalmon
-          ButtonOptaID.Enabled = True
+          Select Case _vizControl.SocketStateTCP
+            Case VizCommands.eSocketState.Connected
+              Me.LabelVizEngine.BackColor = Color.Green
+            Case VizCommands.eSocketState.Connecting
+              Me.LabelVizEngine.BackColor = Color.Orange
+            Case VizCommands.eSocketState.Disconnected
+              Me.LabelVizEngine.BackColor = Color.Red
+            Case VizCommands.eSocketState.ErrorState
+              Me.LabelVizEngine.BackColor = Color.Red
+          End Select
         End If
+        Me.LabelGraphicVersion.Text = GraphicVersions.Instance.SelectedGraphicVersion.Name
+        If AppSettings.Instance.UseOptaData Then
+          If _match Is Nothing Then
+            Me.ButtonOptaID.Text = "NO MATCH"
+            ButtonOptaID.Enabled = False
+            Me.ButtonOptaID.BackColor = Color.LightGray
+          ElseIf _match.optaID > 0 Then
+            Me.ButtonOptaID.Text = "OPTA ID " & _match.optaID
+            Me.ButtonOptaID.BackColor = Color.LightGreen
+            ButtonOptaID.Enabled = True
+          Else
+            Me.ButtonOptaID.Text = "undefined OPTA ID"
+            Me.ButtonOptaID.BackColor = Color.LightSalmon
+            ButtonOptaID.Enabled = True
+          End If
+        End If
+        Me.ButtonF11OptaTop5.Visible = AppSettings.Instance.UseOptaData
+        Me.ButtonOptaID.Visible = AppSettings.Instance.UseOptaData
+        Me.ToolStripDropDownButtonOpta.Visible = AppSettings.Instance.UseOptaData
+        Me.MultiFileDownloaderFTP.Visible = AppSettings.Instance.UseOptaData
+        Me.TableLayoutPanelAll.ColumnStyles(3).Width = IIf(AppSettings.Instance.UseOptaData, 120, 0)
+        Me.TableLayoutPanelAll.ColumnStyles(4).Width = IIf(AppSettings.Instance.UseOptaData, 180, 0)
       End If
-      Me.ButtonF11OptaTop5.Visible = AppSettings.Instance.UseOptaData
-      Me.ButtonOptaID.Visible = AppSettings.Instance.UseOptaData
-      Me.ToolStripDropDownButtonOpta.Visible = AppSettings.Instance.UseOptaData
-      Me.MultiFileDownloaderFTP.Visible = AppSettings.Instance.UseOptaData
-      Me.TableLayoutPanelAll.ColumnStyles(3).Width = IIf(AppSettings.Instance.UseOptaData, 120, 0)
-      Me.TableLayoutPanelAll.ColumnStyles(4).Width = IIf(AppSettings.Instance.UseOptaData, 180, 0)
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -1128,6 +1156,9 @@ Public Class frmMain
           StartGraphic(GraphicsPlayerName.Description)
         End If
       End If
+      _graphicData.Subjects.Clear()
+      _graphicData.Subjects.Add(_selectedPlayer)
+      UpdateStatGUI
     Catch ex As Exception
     End Try
     _updating = False
@@ -1540,7 +1571,10 @@ Public Class frmMain
   Private Sub TimerVizrtConnection_Tick(sender As Object, e As EventArgs) Handles TimerVizrtConnection.Tick
     Try
       ' Me.TimerVizrtConnection.Enabled = False
-      _checkSocketConnection.CheckConnection(AppSettings.Instance.VizrtHost, AppSettings.Instance.VizrtPort)
+      If _vizControl.SocketStateTCP = eSocketState.Disconnected Then
+        ' _checkSocketConnection.CheckConnection(AppSettings.Instance.VizrtHost, AppSettings.Instance.VizrtPort)
+        Me.InitRender(False)
+      End If
       'Me.LabelVizEngine.BackColor = Color.Aqua
     Catch ex As Exception
 
@@ -1722,8 +1756,97 @@ Public Class frmMain
       Dim dlg As New SplashScreenMain
       dlg.ShowDialog(Me)
     Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub LabelVizEngine_Click(sender As Object, e As EventArgs) Handles LabelVizEngine.Click
+    Try
+      If _vizControl Is Nothing Then
+        Me.InitRender()
+      ElseIf _vizControl.SocketStateTCP <> eSocketState.Connected Then
+        ' _vizControl.InitializeSockets()
+        InitRender()
+      End If
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+#End Region
+
+#Region "Tuboc graphics"
+  Private _tubocGraphic As Tuboc.Graphic = Nothing
+  Private _graphicData As New Tuboc.GraphicData
+
+  Private Sub PopulateStatList()
+    Try
+      Dim stats As New List(Of String)
+      stats = SubjectStats.GetStatNames()
+
+      For Each stat As String In stats
+        Me.MetroGridStats.Rows.Add(stat)
+      Next
+    Catch ex As Exception
 
     End Try
   End Sub
+
+  Private Sub UpdateStatGUI()
+
+  End Sub
+
+  Private Sub PrepareGraphic(graphic As Tuboc.Graphic)
+    Try
+      _tubocGraphic = graphic
+      _tubocGraphic.PrepareGraphic(_match, _graphicData)
+      _tubocGraphic.Scene.SendSceneToEngine(_vizControl)
+      _tubocGraphic.Scene.RewindSceneDirectors(_vizControl, VizCommands.Scene.TypeOfDirectors.InDirectors)
+      _tubocGraphic.Scene.StartSceneDirectors(_vizControl, VizCommands.Scene.TypeOfDirectors.InDirectors)
+    Catch ex As Exception
+      WriteToErrorLog(ex)
+    End Try
+  End Sub
+
+  Private Sub ButtonTubocHideGraphic_Click(sender As Object, e As EventArgs) Handles ButtonTubocHideGraphic.Click
+    Try
+      If Not _tubocGraphic Is Nothing Then
+        _tubocGraphic.Scene.StartSceneDirectors(_vizControl, VizCommands.Scene.TypeOfDirectors.OutDirectors)
+      End If
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
+  Private Sub ButtonTubocScoreLine_Click(sender As Object, e As EventArgs) Handles ButtonTubocScoreLine.Click
+    Try
+      PrepareGraphic(New Tuboc.ScoreLine)
+    Catch ex As Exception
+    End Try
+  End Sub
+
+  Private Sub ButtonTubocShowGraphic_Click(sender As Object, e As EventArgs) Handles ButtonTubocShowGraphic.Click
+    Try
+      PrepareGraphic(New Tuboc._1Subject1Data)
+    Catch ex As Exception
+    End Try
+  End Sub
+
+  Private Sub MetroGridStats_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridStats.CellContentClick
+    Try
+      Dim statName As String = Me.MetroGridStats.Item(0, e.RowIndex).Value
+      _graphicData.StatNames.Clear()
+
+      If Not _graphicData.StatNames.Contains(statName) Then
+        _graphicData.StatNames.Add(statName)
+      Else
+        _graphicData.StatNames.Remove(statName)
+      End If
+      Me.UpdateStatGUI()
+    Catch ex As Exception
+
+    End Try
+  End Sub
+
 #End Region
 End Class

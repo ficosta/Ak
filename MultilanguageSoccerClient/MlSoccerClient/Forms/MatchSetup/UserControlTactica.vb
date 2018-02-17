@@ -1,4 +1,5 @@
-﻿Imports MatchInfo
+﻿Imports System.Drawing
+Imports MatchInfo
 
 Public Class UserControlTactica
   Private _size As Double = 50
@@ -667,9 +668,9 @@ Public Class UserControlTactica
               pos.Player.Formation_Pos = pos.Posicio
               _lastPositionIndex = pos.Posicio
               ShowTactics()
-                Me.UpdateListViewsTeamsIPlayers()
-              End If
+              Me.UpdateListViewsTeamsIPlayers()
             End If
+          End If
         Else
           'any of the substs?
           For Each lbl As Label In _benchPlayerLabels
@@ -927,7 +928,7 @@ Public Class UserControlTactica
       If Me.MetroComboBoxFormation.SelectedItem Is Nothing Then
         SaveFormationAs()
       ElseIf frmWaitForInput.ShowWaitDialog(Nothing, "Save formation " & _tactica.NomTactic & "?", "Save formation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.OK Then
-        _tactica.save()
+        _tactica.Save()
       End If
     Catch ex As Exception
 
@@ -967,10 +968,10 @@ Public Class UserControlTactica
         End If
         _tactica.Delete()
 
-          _tactiques.GetFromDB()
-          UpdateComboBox()
+        _tactiques.GetFromDB()
+        UpdateComboBox()
 
-        End If
+      End If
     Catch ex As Exception
 
     End Try

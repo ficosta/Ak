@@ -237,6 +237,10 @@ Public Class StatSubject
           Exit For
         End If
       Next
+      If res Is Nothing Then
+        'is it the property name?
+        res = Me.MatchStats.GetStat(name)
+      End If
     Catch ex As Exception
     End Try
     Return res
@@ -251,6 +255,10 @@ Public Class StatSubject
           Exit For
         End If
       Next
+      If res Is Nothing Then
+        'is it the property name?
+        res = Me.SeasonStats.GetStat(name)
+      End If
     Catch ex As Exception
     End Try
     Return res
