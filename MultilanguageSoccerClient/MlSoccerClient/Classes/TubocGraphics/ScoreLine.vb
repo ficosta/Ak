@@ -13,15 +13,20 @@ Namespace Tuboc
 
     Public Overrides Sub PrepareGraphic(match As Match, graphicData As GraphicData)
       Try
-        If Not match Is Nothing Then
-          Me.Scene.SceneParameters.Add("home_team_name", match.HomeTeam.Name)
-          Me.Scene.SceneParameters.Add("home_team_score", match.home_goals)
 
-          Me.Scene.SceneParameters.Add("away_team_name", match.AwayTeam.Name)
-          Me.Scene.SceneParameters.Add("away_team_score", match.away_goals)
+        Me.Scene.SceneLevel = 1
+        Me.Scene.SceneTargetDevices.Add("VIZRT@MSI")
+        Me.Scene.SceneTargetDevices.Clear()
 
-          Me.Scene.SceneParameters.Add("match_state", match.state)
-        End If
+        Me.Scene.SceneParameters.Add("title", "<%device%>")
+
+        For i As Integer = 1 To 4
+          Me.Scene.SceneParameters.Add("subject_0" & i & "_number", "number")
+          Me.Scene.SceneParameters.Add("subject_01_name", "name " & i)
+          Me.Scene.SceneParameters.Add("subject_01_team_short", "team " & i)
+
+          Me.Scene.SceneParameters.Add("subject_0" & i & "_data_01", i)
+        Next
       Catch ex As Exception
 
       End Try

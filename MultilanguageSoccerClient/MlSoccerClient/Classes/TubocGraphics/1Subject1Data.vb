@@ -33,7 +33,6 @@ Namespace Tuboc
           If Not stat Is Nothing Then
             Me.Scene.SceneParameters.Add("data_01_name", stat.StatTitle)
             Me.Scene.SceneParameters.Add("subject_01_data_01", stat.ValueText)
-
           End If
           
         End If

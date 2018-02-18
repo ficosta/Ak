@@ -1340,10 +1340,10 @@ Public Class frmMain
 
   Private Sub ButtonPANIC_Click(sender As Object, e As EventArgs) Handles ButtonPANIC.Click
     Try
+      _vizControl.ResetTubocAccessLevel()
       _vizControl.ActivateScene("", VizCommands.eRendererLayers.BackLayer)
       _vizControl.ActivateScene("", VizCommands.eRendererLayers.FrontLayer)
       _vizControl.ActivateScene("", VizCommands.eRendererLayers.MidleLayer)
-
       _previewControl.ClearOutput()
     Catch ex As Exception
 
@@ -1800,9 +1800,11 @@ Public Class frmMain
     Try
       _tubocGraphic = graphic
       _tubocGraphic.PrepareGraphic(_match, _graphicData)
+      _vizControl.SetTubocAccesLevel(_tubocGraphic.Scene.SceneLevel, _tubocGraphic.Scene.SceneTargetDevices)
       _tubocGraphic.Scene.SendSceneToEngine(_vizControl)
       _tubocGraphic.Scene.RewindSceneDirectors(_vizControl, VizCommands.Scene.TypeOfDirectors.InDirectors)
       _tubocGraphic.Scene.StartSceneDirectors(_vizControl, VizCommands.Scene.TypeOfDirectors.InDirectors)
+      _vizControl.ResetTubocAccessLevel()
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -1811,7 +1813,9 @@ Public Class frmMain
   Private Sub ButtonTubocHideGraphic_Click(sender As Object, e As EventArgs) Handles ButtonTubocHideGraphic.Click
     Try
       If Not _tubocGraphic Is Nothing Then
+        _vizControl.SetTubocAccesLevel(_tubocGraphic.Scene.SceneLevel, _tubocGraphic.Scene.SceneTargetDevices)
         _tubocGraphic.Scene.StartSceneDirectors(_vizControl, VizCommands.Scene.TypeOfDirectors.OutDirectors)
+        _vizControl.ResetTubocAccessLevel()
       End If
     Catch ex As Exception
 
@@ -1830,6 +1834,14 @@ Public Class frmMain
       PrepareGraphic(New Tuboc._1Subject1Data)
     Catch ex As Exception
     End Try
+  End Sub
+
+  Private Sub ButtonTubocExtraInfo_Click(sender As Object, e As EventArgs) Handles ButtonTubocExtraInfo.Click
+    Try
+      PrepareGraphic(New Tuboc.ExtraInfo)
+    Catch ex As Exception
+    End Try
+
   End Sub
 
   Private Sub MetroGridStats_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles MetroGridStats.CellContentClick

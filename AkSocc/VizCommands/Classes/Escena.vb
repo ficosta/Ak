@@ -32,6 +32,9 @@ End Enum
   Public Property SceneDirectorsChangeOut As New SceneDirectors
   Private _currentSceneDirectors As SceneDirectors
 
+  Public Property SceneLevel As Integer = 0
+  Public Property SceneTargetDevices As New List(Of String)
+
   Private WithEvents _vizrtControl As VizControl = Nothing
 
   Public Function Clone() As Object Implements ICloneable.Clone
@@ -48,6 +51,8 @@ End Enum
       _vizrtControl = CiControlVizrt
       If _vizrtControl Is Nothing Then Return 0
       ' _vizrtControl.LoadScene(Me.Escena)
+
+      _vizrtControl.SetTubocAccesLevel(Me.SceneLevel, Me.SceneTargetDevices)
 
       bUcase = _vizrtControl.Config.UcaseTexts
       If biActivate Then
@@ -84,6 +89,8 @@ End Enum
         '  System.Threading.Thread.Sleep(0)
         '  System.Windows.Forms.Application.DoEvents()
         'End If
+
+        _vizrtControl.ResetTubocAccessLevel()
       Next
     Catch ex As Exception
 

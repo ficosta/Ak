@@ -139,6 +139,7 @@
     <Compile Include="Classes\Prototype\GraphicGroup.vb" />
     <Compile Include="Classes\RegistryHelper.vb" />
     <Compile Include="Classes\TubocGraphics\1Subject1Data.vb" />
+    <Compile Include="Classes\TubocGraphics\ExtraInfo.vb" />
     <Compile Include="Classes\TubocGraphics\GraphicData.vb" />
     <Compile Include="Classes\TubocGraphics\ScoreLine.vb" />
     <Compile Include="Classes\TubocGraphics\TubocGraphic.vb" />

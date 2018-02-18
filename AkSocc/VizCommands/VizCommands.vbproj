@@ -55,8 +55,9 @@
       <HintPath>..\..\MultilanguageSoccerClient\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ScintillaNET">
-      <HintPath>..\..\..\..\..\Documents\Visual Studio 2015\Projects\ScintillaNET-master\src\ScintillaNET\bin\Debug\ScintillaNET.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\GSFilters\GSTools\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

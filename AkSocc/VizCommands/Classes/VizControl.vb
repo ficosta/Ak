@@ -1496,6 +1496,29 @@ Public Class VizControl
     End Try
   End Sub
 
+  Private Class AccessLevel
+    Public Property Level As Integer
+    Public Property Devices As New List(Of String)
+  End Class
+
+  Public Sub SetTubocAccesLevel(level As Integer, targetDevices As List(Of String))
+    Try
+      Dim aux As New AccessLevel
+      aux.Level = level
+      aux.Devices = targetDevices
+
+      Dim command As String
+      command = "<<" & Newtonsoft.Json.JsonConvert.SerializeObject(aux) & ">>" & vbNullChar
+
+      Me.CPiSocketTCP.Send(command)
+    Catch ex As Exception
+    End Try
+  End Sub
+
+  Public Sub ResetTubocAccessLevel()
+    Me.SetTubocAccesLevel(0, New List(Of String))
+  End Sub
+
   Public Function SendTCPCommand(ByVal siCommand As String, Optional ByVal niIndex As Integer = -1) As Integer
     Return SendSocketCommand(Me.CPiSocketTCP, siCommand, niIndex)
   End Function
@@ -1548,8 +1571,6 @@ Public Class VizControl
       Return SendSocketCommand(Me.CPiSocketTCP, CiCommand.SentData, niindex)
 
       RaiseEvent CommandSent(CiCommand)
-
-
     Catch ex As Exception
       'AddError(ex.Source, ex.ToString)
       Return 0
