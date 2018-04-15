@@ -52,7 +52,6 @@ End Enum
       If _vizrtControl Is Nothing Then Return 0
       ' _vizrtControl.LoadScene(Me.Escena)
 
-      _vizrtControl.SetTubocAccesLevel(Me.SceneLevel, Me.SceneTargetDevices)
 
       bUcase = _vizrtControl.Config.UcaseTexts
       If biActivate Then
@@ -90,7 +89,6 @@ End Enum
         '  System.Windows.Forms.Application.DoEvents()
         'End If
 
-        _vizrtControl.ResetTubocAccessLevel()
       Next
     Catch ex As Exception
 
@@ -121,18 +119,33 @@ End Enum
 
   Public Sub StartSceneDirectors(CiControlVizrt As VizControl, sceneDirectors As SceneDirectors)
     Try
-      _vizrtControl = CiControlVizrt
-      If _backgroundWorker Is Nothing Then
-        _backgroundWorker = New BackgroundWorker
-        _backgroundWorker.WorkerReportsProgress = True
-        _backgroundWorker.WorkerSupportsCancellation = True
+      Dim sync As Boolean = True
+      If sync Then
+        For Each director As SceneDirector In sceneDirectors
+          Select Case director.Action
+            Case DirectorAction.ContinueNormal
+              CiControlVizrt.DirectorContinue(director.Name, Me.VizLayer)
+            Case DirectorAction.ContinueReverse
+              CiControlVizrt.DirectorContinueReverse(director.Name, Me.VizLayer)
+            Case DirectorAction.Start
+              CiControlVizrt.DirectorStart(director.Name, Me.VizLayer)
+          End Select
+        Next
+      Else
+        _vizrtControl = CiControlVizrt
+        If _backgroundWorker Is Nothing Then
+          _backgroundWorker = New BackgroundWorker
+          _backgroundWorker.WorkerReportsProgress = True
+          _backgroundWorker.WorkerSupportsCancellation = True
+        End If
+
+        _currentSceneDirectors = sceneDirectors
+
+        If Not _backgroundWorker.IsBusy Then
+          _backgroundWorker.RunWorkerAsync()
+        End If
       End If
 
-      _currentSceneDirectors = sceneDirectors
-
-      If Not _backgroundWorker.IsBusy Then
-        _backgroundWorker.RunWorkerAsync()
-      End If
     Catch ex As Exception
 
     End Try

@@ -40,14 +40,16 @@ Public Class SocketClient
   Public Sub Connect(ByVal hostNameOrAddress As String, ByVal port As Int32)
     Dim serverAddress As IPAddress
     Try
+      If IPAddress.TryParse(hostNameOrAddress, serverAddress) = False Then
+        serverAddress = Dns.GetHostEntry(hostNameOrAddress).AddressList(0)
+        For Each ip As IPAddress In Dns.GetHostEntry(hostNameOrAddress).AddressList
+          If ip.AddressFamily = AddressFamily.InterNetwork Then
+            serverAddress = ip
+            Exit For
+          End If
+        Next
+      End If
 
-      serverAddress = Dns.GetHostEntry(hostNameOrAddress).AddressList(0)
-      For Each ip As IPAddress In Dns.GetHostEntry(hostNameOrAddress).AddressList
-        If ip.AddressFamily = AddressFamily.InterNetwork Then
-          serverAddress = ip
-          Exit For
-        End If
-      Next
     Catch ex As Exception
       Throw New Exception("Could not resolve Host name or Address.", ex)
     End Try

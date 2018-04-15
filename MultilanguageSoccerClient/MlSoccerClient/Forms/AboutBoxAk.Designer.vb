@@ -39,7 +39,7 @@ Partial Class AboutBoxAk
     Me.LabelCopyright = New System.Windows.Forms.Label()
     Me.LabelCompanyName = New System.Windows.Forms.Label()
     Me.TextBoxDescription = New System.Windows.Forms.TextBox()
-    Me.OKButton = New Button()
+    Me.OKButton = New System.Windows.Forms.Button()
     Me.TableLayoutPanel.SuspendLayout()
     CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
@@ -131,24 +131,13 @@ Partial Class AboutBoxAk
     '
     'TextBoxDescription
     '
-    '
-    '
-    '
     Me.TextBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TextBoxDescription.Lines = New String() {"Description :", "", "(At runtime, the labels' text will be replaced with the application's assembly in" &
-            "formation.", "Customize the application's assembly information in the Application pane of Proje" &
-            "ct Designer.)"}
     Me.TextBoxDescription.Location = New System.Drawing.Point(136, 83)
     Me.TextBoxDescription.Margin = New System.Windows.Forms.Padding(6, 3, 3, 3)
-    Me.TextBoxDescription.MaxLength = 32767
     Me.TextBoxDescription.Multiline = True
     Me.TextBoxDescription.Name = "TextBoxDescription"
-    Me.TextBoxDescription.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
     Me.TextBoxDescription.ReadOnly = True
     Me.TextBoxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both
-    Me.TextBoxDescription.SelectedText = ""
-    Me.TextBoxDescription.SelectionLength = 0
-    Me.TextBoxDescription.SelectionStart = 0
     Me.TextBoxDescription.Size = New System.Drawing.Size(257, 97)
     Me.TextBoxDescription.TabIndex = 0
     Me.TextBoxDescription.TabStop = False
@@ -158,12 +147,12 @@ Partial Class AboutBoxAk
     '
     Me.OKButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.OKButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
+    Me.OKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
     Me.OKButton.Location = New System.Drawing.Point(318, 186)
     Me.OKButton.Name = "OKButton"
     Me.OKButton.Size = New System.Drawing.Size(75, 18)
     Me.OKButton.TabIndex = 0
     Me.OKButton.Text = "&OK"
-    Me.OKButton.FlatStyle = FlatStyle.Flat
     '
     'AboutBoxAk
     '
@@ -181,6 +170,7 @@ Partial Class AboutBoxAk
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "AboutBoxAk"
     Me.TableLayoutPanel.ResumeLayout(False)
+    Me.TableLayoutPanel.PerformLayout()
     CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 

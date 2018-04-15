@@ -7,7 +7,7 @@ Namespace Tuboc
     Public Sub New()
       Me.Scene = New VizCommands.Scene
       Me.Scene.SceneName = "EXTRA_INFO"
-      Me.Scene.VizLayer = VizCommands.SceneLayer.Back
+      Me.Scene.VizLayer = VizCommands.SceneLayer.Middle
       Me.Scene.SceneDirectorsIn.Add("DIR_IN_OUT", 0, VizCommands.DirectorAction.ContinueNormal)
       Me.Scene.SceneDirectorsOut.Add("DIR_IN_OUT", 0, VizCommands.DirectorAction.ContinueReverse)
     End Sub
@@ -18,15 +18,15 @@ Namespace Tuboc
         Me.Scene.SceneTargetDevices.Add("Vizrt@MSI")
         'Me.Scene.SceneTargetDevices.Clear()
 
-        If Not match Is Nothing Then
-          Me.Scene.SceneParameters.Add("home_team_name", match.HomeTeam.Name)
-          Me.Scene.SceneParameters.Add("home_team_score", match.home_goals)
+        Me.Scene.SceneParameters.Add("title", "<%device%>")
 
-          Me.Scene.SceneParameters.Add("away_team_name", match.AwayTeam.Name)
-          Me.Scene.SceneParameters.Add("away_team_score", match.away_goals)
+        For i As Integer = 1 To 4
+          Me.Scene.SceneParameters.Add("subject_0" & i & "_number", "number")
+          Me.Scene.SceneParameters.Add("subject_0" & i & "_name", "name " & i)
+          Me.Scene.SceneParameters.Add("subject_0" & i & "_team_short", "team " & i)
 
-          Me.Scene.SceneParameters.Add("match_state", match.state)
-        End If
+          Me.Scene.SceneParameters.Add("subject_0" & i & "_data_01", i)
+        Next
       Catch ex As Exception
 
       End Try

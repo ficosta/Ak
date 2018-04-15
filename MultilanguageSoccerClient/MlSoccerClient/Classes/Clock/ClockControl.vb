@@ -182,8 +182,7 @@ Public NotInheritable Class ClockControl
     End Get
     Set(value As Boolean)
       If value <> _clockVisible And value Then
-
-        _showRedCards = (frmWaitForInput.ShowWaitDialog(Nothing, "Show read cards?", "Clock control", MessageBoxButtons.YesNo, MessageBoxIcon.Hand) = DialogResult.Yes)
+        '_showRedCards = (frmWaitForInput.ShowWaitDialog(Nothing, "Show read cards?", "Clock control", MessageBoxButtons.YesNo, MessageBoxIcon.Hand) = DialogResult.Yes)
       End If
         _clockVisible = value
       UpdateClockVisibility()

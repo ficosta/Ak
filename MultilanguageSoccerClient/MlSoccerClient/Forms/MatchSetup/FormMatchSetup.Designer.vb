@@ -106,7 +106,7 @@ Partial Class FormMatchSetup
     Me.MetroTabControl1.Location = New System.Drawing.Point(3, 3)
     Me.MetroTabControl1.Name = "MetroTabControl1"
     Me.TableLayoutPanelGlobal.SetRowSpan(Me.MetroTabControl1, 2)
-    Me.MetroTabControl1.SelectedIndex = 0
+    Me.MetroTabControl1.SelectedIndex = 2
     Me.MetroTabControl1.Size = New System.Drawing.Size(1070, 549)
     Me.MetroTabControl1.TabIndex = 48
     Me.MetroTabControl1.UseSelectable = True

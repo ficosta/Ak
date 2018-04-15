@@ -826,8 +826,11 @@ Public Class frmMain
           End If
         End If
       Next
-      Dim frm As New FormLoadScenes(_scenes, _vizControl.Config)
-      frm.Show(Me)
+      Me.Invoke(Sub()
+                  Dim frm As New FormLoadScenes(_scenes, _vizControl.Config)
+                  frm.Show()
+                End Sub)
+      '    frm.Show(Me)
     Catch ex As Exception
       WriteToErrorLog(ex)
     End Try
@@ -1800,10 +1803,13 @@ Public Class frmMain
     Try
       _tubocGraphic = graphic
       _tubocGraphic.PrepareGraphic(_match, _graphicData)
+
       _vizControl.SetTubocAccesLevel(_tubocGraphic.Scene.SceneLevel, _tubocGraphic.Scene.SceneTargetDevices)
+      _tubocGraphic.Scene.RewindSceneDirectors(_vizControl, VizCommands.Scene.TypeOfDirectors.InDirectors)
       _tubocGraphic.Scene.SendSceneToEngine(_vizControl)
       _tubocGraphic.Scene.RewindSceneDirectors(_vizControl, VizCommands.Scene.TypeOfDirectors.InDirectors)
       _tubocGraphic.Scene.StartSceneDirectors(_vizControl, VizCommands.Scene.TypeOfDirectors.InDirectors)
+
       _vizControl.ResetTubocAccessLevel()
     Catch ex As Exception
       WriteToErrorLog(ex)
@@ -1814,7 +1820,9 @@ Public Class frmMain
     Try
       If Not _tubocGraphic Is Nothing Then
         _vizControl.SetTubocAccesLevel(_tubocGraphic.Scene.SceneLevel, _tubocGraphic.Scene.SceneTargetDevices)
+
         _tubocGraphic.Scene.StartSceneDirectors(_vizControl, VizCommands.Scene.TypeOfDirectors.OutDirectors)
+
         _vizControl.ResetTubocAccessLevel()
       End If
     Catch ex As Exception
