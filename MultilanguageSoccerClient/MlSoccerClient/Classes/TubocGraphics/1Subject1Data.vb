@@ -15,7 +15,7 @@ Namespace Tuboc
       Try
         If Not match Is Nothing Then
           Dim player As Player = CType(graphicData.Subjects(0), Player)
-          Dim team As Team
+          Dim team As Team = Nothing
 
           Select Case player.TeamID
             Case match.home_team_id
@@ -24,20 +24,21 @@ Namespace Tuboc
               team = match.AwayTeam
           End Select
 
-          Me.Scene.SceneParameters.Add("subject_01_number", player.DomesticSquadNo)
-          Me.Scene.SceneParameters.Add("subject_01_name", player.Name)
-          Me.Scene.SceneParameters.Add("subject_01_team_short", team.Name)
+          If Not team Is Nothing Then
+            Me.Scene.SceneParameters.Add("subject_01_number", player.DomesticSquadNo)
+            Me.Scene.SceneParameters.Add("subject_01_name", player.Name)
+            Me.Scene.SceneParameters.Add("subject_01_team_short", team.Name)
 
-
-          Dim stat As Stat = player.GetMatchStatByName(graphicData.StatNames(0))
-          If Not stat Is Nothing Then
-            Me.Scene.SceneParameters.Add("data_01_name", stat.StatTitle)
-            Me.Scene.SceneParameters.Add("subject_01_data_01", stat.ValueText)
-          Else
-            Me.Scene.SceneParameters.Add("data_01_name", "")
-            Me.Scene.SceneParameters.Add("subject_01_data_01", "")
+            Dim stat As Stat = player.GetMatchStatByName(graphicData.StatNames(0))
+            If Not stat Is Nothing Then
+              Me.Scene.SceneParameters.Add("data_01_name", stat.StatTitle)
+              Me.Scene.SceneParameters.Add("subject_01_data_01", stat.ValueText)
+            Else
+              Me.Scene.SceneParameters.Add("data_01_name", "")
+              Me.Scene.SceneParameters.Add("subject_01_data_01", "")
+            End If
           End If
-          
+
         End If
       Catch ex As Exception
 

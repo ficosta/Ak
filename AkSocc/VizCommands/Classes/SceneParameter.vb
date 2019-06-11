@@ -25,4 +25,8 @@ End Enum
     Me.Value = value
     Me.Type = type
   End Sub
+
+  Public Overrides Function ToString() As String
+    Return Me.Name & " = " & Me.Value & " (" & Me.Type.ToString & ")"
+  End Function
 End Class

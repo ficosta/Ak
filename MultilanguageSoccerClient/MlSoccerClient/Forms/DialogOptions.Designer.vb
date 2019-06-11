@@ -942,6 +942,7 @@ Partial Class DialogOptions
     Me.Name = "DialogOptions"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "Options..."
+    Me.TopMost = True
     Me.TableLayoutPanel1.ResumeLayout(False)
     Me.TableLayoutPanel1.PerformLayout()
     Me.TabControlOptions.ResumeLayout(False)

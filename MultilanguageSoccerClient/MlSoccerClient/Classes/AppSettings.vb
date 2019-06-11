@@ -48,7 +48,7 @@ Public NotInheritable Class AppSettings
   Public Property OptaDefaultFolder As String = "C:\Alamiya\OPTA"
   Public Property OptaDefaultHistoryFolder As String = "C:\Alamiya\OPTA\History"
 
-  Public Property OptaFTPServer As String = "ftp.alkamelsystems.com"
+  Public Property OptaFTPServer As String = "ftp.someurl.com"
   Public Property OptaFTPPath As String = ""
   Public Property OptaFTPPort As Integer = 21
   Public Property OptaFTPUser As String = "see4836"

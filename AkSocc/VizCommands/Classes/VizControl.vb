@@ -1496,16 +1496,12 @@ Public Class VizControl
     End Try
   End Sub
 
-  Private Class AccessLevel
-    Public Property Level As Integer
-    Public Property Devices As New List(Of String)
-  End Class
-
-  Public Sub SetTubocAccesLevel(level As Integer, targetDevices As List(Of String))
+  Public Sub SetTubocAccesLevel(level As Integer, targetDevices() As String, bannedDevices() As String)
     Try
       Dim aux As New AccessLevel
       aux.Level = level
       aux.Devices = targetDevices
+      aux.BannedDevices = bannedDevices
 
       Dim command As String
       command = "<<" & Newtonsoft.Json.JsonConvert.SerializeObject(aux) & ">>" & vbNullChar
@@ -1516,7 +1512,7 @@ Public Class VizControl
   End Sub
 
   Public Sub ResetTubocAccessLevel()
-    Me.SetTubocAccesLevel(0, New List(Of String))
+    Me.SetTubocAccesLevel(0, New String() {}, New String() {})
   End Sub
 
   Public Function SendTCPCommand(ByVal siCommand As String, Optional ByVal niIndex As Integer = -1) As Integer

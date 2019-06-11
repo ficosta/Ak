@@ -26,9 +26,9 @@ Partial Class frmMain
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-    Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-    Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-    Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+    Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
     Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
     Me.ToolStripButtonSettings = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripButtonSelectMatch = New System.Windows.Forms.ToolStripButton()
@@ -143,6 +143,9 @@ Partial Class frmMain
     Me.ButtonTubocScoreLine = New System.Windows.Forms.Button()
     Me.ButtonTubocHideGraphic = New System.Windows.Forms.Button()
     Me.ButtonTubocShowGraphic = New System.Windows.Forms.Button()
+    Me.ButtonTubocExtraInfo = New System.Windows.Forms.Button()
+    Me.ucStreamControl = New MlSoccerClient.UCStreamControl()
+    Me.ButtonShowStreamInfo = New System.Windows.Forms.Button()
     Me.TabPageOldControls = New System.Windows.Forms.TabPage()
     Me.TableLayoutPanelMainGraphics = New System.Windows.Forms.TableLayoutPanel()
     Me.ButtonShftF12MatchScoresCrawl = New System.Windows.Forms.Button()
@@ -185,7 +188,6 @@ Partial Class frmMain
     Me.TimerClock = New System.Windows.Forms.Timer(Me.components)
     Me.TimerRefreshStats = New System.Windows.Forms.Timer(Me.components)
     Me.TimerVizrtConnection = New System.Windows.Forms.Timer(Me.components)
-    Me.ButtonTubocExtraInfo = New System.Windows.Forms.Button()
     Me.ToolStrip1.SuspendLayout()
     CType(Me.SplitContainerAll, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SplitContainerAll.Panel1.SuspendLayout()
@@ -1682,25 +1684,28 @@ Partial Class frmMain
     '
     'TableLayoutPanel1
     '
-    Me.TableLayoutPanel1.ColumnCount = 4
-    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-    Me.TableLayoutPanel1.Controls.Add(Me.MetroGridStats, 2, 1)
+    Me.TableLayoutPanel1.ColumnCount = 5
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
+    Me.TableLayoutPanel1.Controls.Add(Me.MetroGridStats, 0, 3)
     Me.TableLayoutPanel1.Controls.Add(Me.ButtonTubocScoreLine, 0, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.ButtonTubocHideGraphic, 0, 4)
-    Me.TableLayoutPanel1.Controls.Add(Me.ButtonTubocShowGraphic, 2, 0)
+    Me.TableLayoutPanel1.Controls.Add(Me.ButtonTubocShowGraphic, 0, 2)
     Me.TableLayoutPanel1.Controls.Add(Me.ButtonTubocExtraInfo, 1, 0)
+    Me.TableLayoutPanel1.Controls.Add(Me.ucStreamControl, 2, 3)
+    Me.TableLayoutPanel1.Controls.Add(Me.ButtonShowStreamInfo, 4, 0)
     Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 3)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 5
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
     Me.TableLayoutPanel1.Size = New System.Drawing.Size(665, 394)
     Me.TableLayoutPanel1.TabIndex = 0
     '
@@ -1714,53 +1719,52 @@ Partial Class frmMain
     Me.MetroGridStats.BorderStyle = System.Windows.Forms.BorderStyle.None
     Me.MetroGridStats.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
     Me.MetroGridStats.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-    DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
-    DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
-    DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridStats.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+    DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
+    DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.MetroGridStats.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
     Me.MetroGridStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
     Me.MetroGridStats.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnID})
     Me.TableLayoutPanel1.SetColumnSpan(Me.MetroGridStats, 2)
-    DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
-    DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
-    DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-    Me.MetroGridStats.DefaultCellStyle = DataGridViewCellStyle2
+    DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(136, Byte), Integer))
+    DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+    Me.MetroGridStats.DefaultCellStyle = DataGridViewCellStyle5
     Me.MetroGridStats.Dock = System.Windows.Forms.DockStyle.Fill
     Me.MetroGridStats.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
     Me.MetroGridStats.EnableHeadersVisualStyles = False
     Me.MetroGridStats.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
     Me.MetroGridStats.GridColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    Me.MetroGridStats.Location = New System.Drawing.Point(335, 81)
+    Me.MetroGridStats.Location = New System.Drawing.Point(3, 123)
     Me.MetroGridStats.MultiSelect = False
     Me.MetroGridStats.Name = "MetroGridStats"
     Me.MetroGridStats.ReadOnly = True
     Me.MetroGridStats.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-    DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
-    DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-    DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-    DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
-    DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
-    DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.MetroGridStats.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+    DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
+    DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+    DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+    DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(247, Byte), Integer))
+    DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+    DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.MetroGridStats.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
     Me.MetroGridStats.RowHeadersVisible = False
     Me.MetroGridStats.RowHeadersWidth = 10
     Me.MetroGridStats.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-    Me.TableLayoutPanel1.SetRowSpan(Me.MetroGridStats, 3)
     Me.MetroGridStats.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
     Me.MetroGridStats.ShowCellErrors = False
     Me.MetroGridStats.ShowCellToolTips = False
     Me.MetroGridStats.ShowEditingIcon = False
     Me.MetroGridStats.ShowRowErrors = False
-    Me.MetroGridStats.Size = New System.Drawing.Size(327, 228)
+    Me.MetroGridStats.Size = New System.Drawing.Size(234, 228)
     Me.MetroGridStats.TabIndex = 48
     '
     'ColumnID
@@ -1777,7 +1781,7 @@ Partial Class frmMain
     Me.ButtonTubocScoreLine.Dock = System.Windows.Forms.DockStyle.Fill
     Me.ButtonTubocScoreLine.Location = New System.Drawing.Point(3, 3)
     Me.ButtonTubocScoreLine.Name = "ButtonTubocScoreLine"
-    Me.ButtonTubocScoreLine.Size = New System.Drawing.Size(160, 72)
+    Me.ButtonTubocScoreLine.Size = New System.Drawing.Size(114, 34)
     Me.ButtonTubocScoreLine.TabIndex = 0
     Me.ButtonTubocScoreLine.Text = "Score line"
     Me.ButtonTubocScoreLine.UseVisualStyleBackColor = True
@@ -1787,9 +1791,9 @@ Partial Class frmMain
     Me.ButtonTubocHideGraphic.BackColor = System.Drawing.Color.Salmon
     Me.ButtonTubocHideGraphic.Dock = System.Windows.Forms.DockStyle.Fill
     Me.ButtonTubocHideGraphic.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-    Me.ButtonTubocHideGraphic.Location = New System.Drawing.Point(3, 315)
+    Me.ButtonTubocHideGraphic.Location = New System.Drawing.Point(3, 357)
     Me.ButtonTubocHideGraphic.Name = "ButtonTubocHideGraphic"
-    Me.ButtonTubocHideGraphic.Size = New System.Drawing.Size(160, 76)
+    Me.ButtonTubocHideGraphic.Size = New System.Drawing.Size(114, 34)
     Me.ButtonTubocHideGraphic.TabIndex = 1
     Me.ButtonTubocHideGraphic.Text = "Hide"
     Me.ButtonTubocHideGraphic.UseVisualStyleBackColor = False
@@ -1798,12 +1802,41 @@ Partial Class frmMain
     '
     Me.TableLayoutPanel1.SetColumnSpan(Me.ButtonTubocShowGraphic, 2)
     Me.ButtonTubocShowGraphic.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ButtonTubocShowGraphic.Location = New System.Drawing.Point(335, 3)
+    Me.ButtonTubocShowGraphic.Location = New System.Drawing.Point(3, 83)
     Me.ButtonTubocShowGraphic.Name = "ButtonTubocShowGraphic"
-    Me.ButtonTubocShowGraphic.Size = New System.Drawing.Size(327, 72)
+    Me.ButtonTubocShowGraphic.Size = New System.Drawing.Size(234, 34)
     Me.ButtonTubocShowGraphic.TabIndex = 49
     Me.ButtonTubocShowGraphic.Text = "Show graphic"
     Me.ButtonTubocShowGraphic.UseVisualStyleBackColor = True
+    '
+    'ButtonTubocExtraInfo
+    '
+    Me.ButtonTubocExtraInfo.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonTubocExtraInfo.Location = New System.Drawing.Point(123, 3)
+    Me.ButtonTubocExtraInfo.Name = "ButtonTubocExtraInfo"
+    Me.ButtonTubocExtraInfo.Size = New System.Drawing.Size(114, 34)
+    Me.ButtonTubocExtraInfo.TabIndex = 50
+    Me.ButtonTubocExtraInfo.Text = "Extra info"
+    Me.ButtonTubocExtraInfo.UseVisualStyleBackColor = True
+    '
+    'ucStreamControl
+    '
+    Me.TableLayoutPanel1.SetColumnSpan(Me.ucStreamControl, 3)
+    Me.ucStreamControl.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ucStreamControl.Location = New System.Drawing.Point(243, 123)
+    Me.ucStreamControl.Name = "ucStreamControl"
+    Me.ucStreamControl.Size = New System.Drawing.Size(419, 228)
+    Me.ucStreamControl.TabIndex = 51
+    '
+    'ButtonShowStreamInfo
+    '
+    Me.ButtonShowStreamInfo.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.ButtonShowStreamInfo.Location = New System.Drawing.Point(548, 3)
+    Me.ButtonShowStreamInfo.Name = "ButtonShowStreamInfo"
+    Me.ButtonShowStreamInfo.Size = New System.Drawing.Size(114, 34)
+    Me.ButtonShowStreamInfo.TabIndex = 52
+    Me.ButtonShowStreamInfo.Text = "Stream info"
+    Me.ButtonShowStreamInfo.UseVisualStyleBackColor = True
     '
     'TabPageOldControls
     '
@@ -2368,15 +2401,6 @@ Partial Class frmMain
     '
     Me.TimerVizrtConnection.Interval = 2000
     '
-    'ButtonTubocExtraInfo
-    '
-    Me.ButtonTubocExtraInfo.Location = New System.Drawing.Point(169, 3)
-    Me.ButtonTubocExtraInfo.Name = "ButtonTubocExtraInfo"
-    Me.ButtonTubocExtraInfo.Size = New System.Drawing.Size(87, 36)
-    Me.ButtonTubocExtraInfo.TabIndex = 50
-    Me.ButtonTubocExtraInfo.Text = "Extra info"
-    Me.ButtonTubocExtraInfo.UseVisualStyleBackColor = True
-    '
     'frmMain
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2391,6 +2415,7 @@ Partial Class frmMain
     Me.Name = "frmMain"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
     Me.Text = "TUBOC Multilanguage soccer graphics"
+    Me.TopMost = True
     Me.ToolStrip1.ResumeLayout(False)
     Me.ToolStrip1.PerformLayout()
     Me.SplitContainerAll.Panel1.ResumeLayout(False)
@@ -2577,4 +2602,6 @@ Partial Class frmMain
   Friend WithEvents ButtonTubocShowGraphic As Button
   Friend WithEvents ColumnID As DataGridViewTextBoxColumn
   Friend WithEvents ButtonTubocExtraInfo As Button
+  Friend WithEvents ucStreamControl As UCStreamControl
+  Friend WithEvents ButtonShowStreamInfo As Button
 End Class

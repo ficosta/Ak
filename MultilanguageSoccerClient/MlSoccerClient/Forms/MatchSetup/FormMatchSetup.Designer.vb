@@ -617,6 +617,7 @@ Partial Class FormMatchSetup
     Me.ShowIcon = False
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
     Me.Text = "Match setup"
+    Me.TopMost = True
     Me.TableLayoutPanelGlobal.ResumeLayout(False)
     Me.MetroTabControl1.ResumeLayout(False)
     Me.TabPageMatchSetup.ResumeLayout(False)

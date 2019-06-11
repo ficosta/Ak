@@ -11,8 +11,9 @@
     <AssemblyName>MlSoccerClient</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -191,11 +192,23 @@
     <Compile Include="Forms\Clock\FormPeriodControl_new.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmBasicPlayer.Designer.vb">
+      <DependentUpon>frmBasicPlayer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBasicPlayer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\MatchEvents\FormMatchEvents.Designer.vb">
       <DependentUpon>FormMatchEvents.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\MatchEvents\FormMatchEvents.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StreamControl\UCStreamControl.Designer.vb">
+      <DependentUpon>UCStreamControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StreamControl\UCStreamControl.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -481,6 +494,9 @@
     <EmbeddedResource Include="Forms\DialogOptions.resx">
       <DependentUpon>DialogOptions.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBasicPlayer.resx">
+      <DependentUpon>frmBasicPlayer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MatchEvents\FormMatchEvents.resx">
       <DependentUpon>FormMatchEvents.vb</DependentUpon>
     </EmbeddedResource>
@@ -504,6 +520,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MatchSetup\UserControlTactica.resx">
       <DependentUpon>UserControlTactica.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StreamControl\UCStreamControl.resx">
+      <DependentUpon>UCStreamControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Opta\Controls\OptaTeamViewer.resx">
       <DependentUpon>OptaTeamViewer.vb</DependentUpon>

@@ -15,8 +15,6 @@ Namespace Tuboc
       Try
 
         Me.Scene.SceneLevel = 1
-        Me.Scene.SceneTargetDevices.Add("VIZRT@MSI")
-        Me.Scene.SceneTargetDevices.Clear()
 
 
         If Not match Is Nothing Then

@@ -32,8 +32,10 @@ End Enum
   Public Property SceneDirectorsChangeOut As New SceneDirectors
   Private _currentSceneDirectors As SceneDirectors
 
+  Public Property FixedAccessLevel As Boolean = False
   Public Property SceneLevel As Integer = 0
-  Public Property SceneTargetDevices As New List(Of String)
+  Public Property SceneTargetDevices As String() = {}
+  Public Property SceneBannedDevices As String() = {}
 
   Private WithEvents _vizrtControl As VizControl = Nothing
 
